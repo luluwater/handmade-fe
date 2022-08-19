@@ -1,10 +1,11 @@
 import React from "react";
+import Blog from "./pages/Blog";
 import { useRoutes } from "react-router-dom";
 
 const routeConfig = [
   {
     path: "/",
-    // element: <Home />,
+    element: <Blog />,
   },
   {
     path: "/login",

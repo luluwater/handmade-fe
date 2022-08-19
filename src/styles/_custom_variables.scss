@@ -1,0 +1,78 @@
+$primary:#E77656;
+$secondary:#779CB2;
+$secondary-dark:#517990;
+
+$white:#FFFFFF;
+$dark:#3F3F3F;
+
+$skin-brighter:#F4EEE8;
+$skin-bright:#E2DAD2;
+
+$gray-dark:#878787;
+$gray-light:#D9D9D9;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "secondary-dark": $secondary-dark,
+   "white":$white,
+   "dark":$dark,
+   "skin-brighter":$skin-brighter,
+   "skin-bright":$skin-bright,
+   "gray-dark":$gray-dark,
+   "gray-light":$gray-light
+);
+
+$spacer: 1rem ;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 2.5,
+  7: $spacer * 3,
+  8: $spacer * 3.5,
+  9: $spacer * 4,
+  10: $spacer * 5,
+  11: $spacer * 6,
+  12: $spacer * 7,
+) ;
+
+$body-bg: $skin-brighter;
+
+// 以下可修改
+
+// 要再修改看 container 要多大
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+) ;
+
+// 如果用 row 排版看 gutter 要不要修改
+// $grid-gutter-width: 1.5rem !default;
+
+//看要擴充多少
+// $font-sizes: (
+//   1: $h1-font-size,
+//   2: $h2-font-size,
+//   3: $h3-font-size,
+//   4: $h4-font-size,
+//   5: $h5-font-size,
+//   6: $h6-font-size,
+//   xl: $xl-font-size,
+// ) !default;
+
+
+
+
+
+//字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Roboto:wght@400;700;900&display=swap');
+
+$font-family-sans-serif: "Noto Sans TC", "Roboto", "sans-seri"
+
