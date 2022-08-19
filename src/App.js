@@ -1,25 +1,95 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useRoutes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const routeConfig = [
+  {
+    path: "/",
+    // element: <Home />,
+  },
+  {
+    path: "/login",
+    // element: <Login />,
+  },
+  {
+    path: "/signup",
+    // element: <Signup />,
+  },
+  {
+    path: "/about",
+    // element: <About />,
+  },
+
+  {
+    path: "/news",
+    // element: <News />,
+  },
+  {
+    path: "/brand",
+    // element: <Brand />,
+  },
+  {
+    path: "/brand/:id",
+    // element: <BrandDetail />,
+  },
+  {
+    path: "/course",
+    // element: <Course />,
+  },
+  {
+    path: "/course/:id",
+    // element: <CourseDetail />,
+  },
+  {
+    path: "/product",
+    // element: <Product />,
+  },
+
+  {
+    path: "/product/:id",
+    // element: <ProductDetail />,
+  },
+
+  {
+    path: "/user",
+    children: [
+      {
+        path: "/user/account",
+        // element: <UserAccount />,
+      },
+      {
+        path: "/user/order",
+        // element: <UserOrder />,
+      },
+      {
+        path: "/user/like",
+        // element: <UserLike />,
+      },
+      {
+        path: "/user/blog",
+        // element: <UserBlog />,
+      },
+      {
+        path: "/user/chat",
+        // element: <UserChat />,
+      },
+    ],
+  },
+  {
+    path: "/map",
+    // element: <Map />,
+  },
+
+
+
+  {
+    path: "*",
+    // element:<NoFound/>
+  },
+];
+
+const App = () => {
+  const element = useRoutes(routeConfig);
+  return <>{element}</>;
+};
 
 export default App;
