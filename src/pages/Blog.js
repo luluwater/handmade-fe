@@ -18,7 +18,6 @@ function Blog() {
           <Button variant="dark">dark</Button>{' '}
           <Button variant="link bg-primary btn">Link</Button>
         </div>
-        <a className="mt-3 w-100 btn btn-primary">123</a>
         <Form.Control type="email" placeholder="Enter email" />
         <Form.Select aria-label="Default select example">
           <option>Open this select menu</option>
