@@ -1,96 +1,94 @@
-import React from "react";
-import Blog from "./pages/Blog";
-import { useRoutes } from "react-router-dom";
+import React from 'react'
+import Blog from './pages/Blog'
+import { useRoutes } from 'react-router-dom'
 
 const routeConfig = [
   {
-    path: "/",
+    path: '/',
     element: <Blog />,
   },
   {
-    path: "/login",
+    path: '/login',
     // element: <Login />,
   },
   {
-    path: "/signup",
+    path: '/signup',
     // element: <Signup />,
   },
   {
-    path: "/about",
+    path: '/about',
     // element: <About />,
   },
 
   {
-    path: "/news",
+    path: '/news',
     // element: <News />,
   },
   {
-    path: "/brand",
+    path: '/brand',
     // element: <Brand />,
   },
   {
-    path: "/brand/:id",
+    path: '/brand/:id',
     // element: <BrandDetail />,
   },
   {
-    path: "/course",
+    path: '/course',
     // element: <Course />,
   },
   {
-    path: "/course/:id",
+    path: '/course/:id',
     // element: <CourseDetail />,
   },
   {
-    path: "/product",
+    path: '/product',
     // element: <Product />,
   },
 
   {
-    path: "/product/:id",
+    path: '/product/:id',
     // element: <ProductDetail />,
   },
 
   {
-    path: "/user",
+    path: '/user',
     children: [
       {
-        path: "/user/account",
+        path: '/user/account',
         // element: <UserAccount />,
       },
       {
-        path: "/user/order",
+        path: '/user/order',
         // element: <UserOrder />,
       },
       {
-        path: "/user/like",
+        path: '/user/like',
         // element: <UserLike />,
       },
       {
-        path: "/user/blog",
+        path: '/user/blog',
         // element: <UserBlog />,
       },
       {
-        path: "/user/chat",
+        path: '/user/chat',
         // element: <UserChat />,
       },
     ],
   },
   {
-    path: "/map",
+    path: '/map',
     // element: <Map />,
   },
 
-
-
   {
-    path: "*",
+    path: '*',
     // element:<NoFound/>
   },
-];
+]
 
 const App = () => {
-  const element = useRoutes(routeConfig);
-  return <>{element}</>;
-};
+  const element = useRoutes(routeConfig)
+  return <>{element}</>
+}
 
-export default App;
+export default App
