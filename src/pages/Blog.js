@@ -8,14 +8,14 @@ function Blog() {
     <>
       <>
         <div className="d-flex flex-column gap-3">
-          <Button variant="primary">Primary</Button>{' '}
-          <Button variant="secondary">Secondary</Button>{' '}
-          <Button variant="secondary-dark">secondary-dark</Button>{' '}
-          <Button variant="skin-brighter">skin-brighter</Button>{' '}
-          <Button variant="skin-bright">skin-bright</Button>{' '}
-          <Button variant="gray-dark">gray-dark</Button>{' '}
-          <Button variant="gray-light">gray-light</Button>{' '}
-          <Button variant="dark">dark</Button>{' '}
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="secondary-dark">secondary-dark</Button>
+          <Button variant="skin-brighter">skin-brighter</Button>
+          <Button variant="skin-bright">skin-bright</Button>
+          <Button variant="gray-dark">gray-dark</Button>
+          <Button variant="gray-light">gray-light</Button>
+          <Button variant="dark">dark</Button>
           <Button variant="link bg-primary btn">Link</Button>
         </div>
         <Form.Control type="email" placeholder="Enter email" />

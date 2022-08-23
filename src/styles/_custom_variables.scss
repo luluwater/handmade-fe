@@ -1,26 +1,28 @@
-$primary:#E77656;
-$secondary:#779CB2;
-$secondary-dark:#517990;
-$white:#FFFFFF;
-$dark:#3F3F3F;
-$skin-brighter:#F4EEE8;
-$skin-bright:#E2DAD2;
-$gray-dark:#878787;
-$gray-light:#D9D9D9;
+$primary: #e77656;
+$secondary: #779cb2;
+$secondary-dark: #517990;
+$white: #ffffff;
+$dark: #3f3f3f;
+$skin-brighter: #f4eee8;
+$skin-bright: #e2dad2;
+$gray-dark: #878787;
+$gray-light: #d9d9d9;
+$gray-darker: #5f5c51;
 
 $theme-colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "secondary-dark": $secondary-dark,
-   "white":$white,
-   "dark":$dark,
-   "skin-brighter":$skin-brighter,
-   "skin-bright":$skin-bright,
-   "gray-dark":$gray-dark,
-   "gray-light":$gray-light
+  'primary': $primary,
+  'secondary': $secondary,
+  'secondary-dark': $secondary-dark,
+  'white': $white,
+  'dark': $dark,
+  'skin-brighter': $skin-brighter,
+  'skin-bright': $skin-bright,
+  'gray-dark': $gray-dark,
+  'gray-light': $gray-light,
+  'gray-darker': $gray-darker,
 );
 
-$spacer: 1rem ;
+$spacer: 1rem;
 $spacers: (
   0: 0,
   1: $spacer * 0.25,
@@ -35,9 +37,7 @@ $spacers: (
   10: $spacer * 5,
   11: $spacer * 6,
   12: $spacer * 7,
-) ;
-
-
+);
 
 $body-bg: $skin-brighter;
 
@@ -50,23 +50,18 @@ $container-max-widths: (
   lg: 960px,
   xl: 1140px,
   xxl: 1320px,
-) ;
+);
 
 // 如果用 row 排版看 gutter 要不要修改
 // $grid-gutter-width: 1.5rem !default;
-
-//看要擴充多少
 $font-size-base: 1rem;
-
-//要讓文字自適應 ?
-$xl-font-size:  $font-size-base * 6 ;   // 96px
-$h1-font-size: $font-size-base * 3 ;    // 48px
-$h2-font-size: $font-size-base * 2 ;    // 32px
-$h3-font-size: $font-size-base * 1.75 ; // 28px
-$h4-font-size: $font-size-base * 1.5 ;  // 24px 
-$h5-font-size: $font-size-base * 1.25 ; // 18px
-$h6-font-size: $font-size-base ;        // 16px
-
+$xl-font-size: $font-size-base * 6; // 96px
+$h1-font-size: $font-size-base * 3; // 48px
+$h2-font-size: $font-size-base * 2; // 32px
+$h3-font-size: $font-size-base * 1.75; // 28px
+$h4-font-size: $font-size-base * 1.5; // 24px
+$h5-font-size: $font-size-base * 1.25; // 18px
+$h6-font-size: $font-size-base; // 16px
 
 $font-sizes: (
   1: $h1-font-size,
@@ -76,7 +71,7 @@ $font-sizes: (
   5: $h5-font-size,
   6: $h6-font-size,
   xl: $xl-font-size,
-) ;
+);
 
 $link-decoration: none;
 $link-color: #fff;
@@ -91,20 +86,15 @@ $link-color: #fff;
 // $btn-active-bg-tint-amount: 20% !default;
 // $btn-active-border-shade-amount: 25% !default;
 // $btn-active-border-tint-amount: 10% !default;
-$btn-border-radius: 0 ;
+$btn-border-radius: 0;
 
 // form control
 $input-border-radius: 0;
 $input-focus-box-shadow: none;
 $input-focus-border-color: $gray-dark;
 // $input-focus-bg:$primary;
-$form-select-focus-box-shadow:none;
+$form-select-focus-box-shadow: none;
 //文字是否自適應
 // $enable-rfs: false;
 
-
-//字體
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Roboto:wght@400;700;900&display=swap');
-
-$font-family-sans-serif: "Noto Sans TC", "Roboto", "sans-seri"
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap');
