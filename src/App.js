@@ -1,5 +1,6 @@
 import React from 'react'
 import Blog from './pages/Blog'
+import ChatRoom from './components/ChatRoom'
 import { useRoutes } from 'react-router-dom'
 
 const routeConfig = [
@@ -70,8 +71,8 @@ const routeConfig = [
         // element: <UserBlog />,
       },
       {
-        path: '/user/chat',
-        // element: <UserChat />,
+        path: '/user/chatRoom',
+        element: <ChatRoom />,
       },
     ],
   },
