@@ -2,11 +2,17 @@ import React from 'react'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Blog() {
   return (
     <>
       <>
+        <FontAwesomeIcon icon="fa-solid fa-bars" />
+        <FontAwesomeIcon icon="fa-solid fa-barcode" />
+        <FontAwesomeIcon icon="fa-solid fa-paper-plane-top" />
+        <FontAwesomeIcon className="fs-2" icon="fas fa-search" />
+        <FontAwesomeIcon className="fs-2" icon="fas fa-dot-circle" />
         <div className="d-flex flex-column gap-3">
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
