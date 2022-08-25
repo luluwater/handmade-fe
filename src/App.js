@@ -1,12 +1,16 @@
 import React from 'react'
-import Blog from './pages/Blog'
-import ChatRoom from './components/ChatRoom'
+
 import { useRoutes } from 'react-router-dom'
+
+import ChatRoom from './components/ChatRoom'
+import BlogPage from './pages/BlogPage'
+import BlogDetailPage from './pages/BlogDetailPage'
+import BlogEditPage from './pages/BlogEditPage'
 
 const routeConfig = [
   {
     path: '/',
-    element: <Blog />,
+    element: <ChatRoom />,
   },
   {
     path: '/login',
@@ -76,6 +80,22 @@ const routeConfig = [
       },
     ],
   },
+
+  {
+    path: '/blog',
+    element: <BlogPage />,
+    children: [
+      {
+        path: '/blog/:id',
+        element: <BlogDetailPage />,
+      },
+    ],
+  },
+  {
+    path: '/blog/editor',
+    element: <BlogEditPage />,
+  },
+
   {
     path: '/map',
     // element: <Map />,
