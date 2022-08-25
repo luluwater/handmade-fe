@@ -1,1 +1,1 @@
-## [handmade-backend](https://angushyx.github.io/hexschool-week4/)
+## [handmade-backend](https://github.com/angushyx/handmade-b)
