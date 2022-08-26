@@ -1,26 +1,42 @@
-.banner {
-  height: 500px;
-  background: #ccc;
-  &-item {
+@import '../../styles/custom_variables';
+
+.blog_banner {
+  height: 600px;
+  background: $skin-bright;
+  &_img {
+    max-height: 600px;
   }
-  &-img {
-    object-fit: fill;
-    max-height: 400px;
-    width: 100%;
+  &_text {
+    letter-spacing: 2rem;
+    line-height: 2;
   }
 }
-.blog {
-  // blog_list_item_btn
-  &_list {
-    display: flex;
-    &_item {
-      &_btn {
-        margin: 10px;
+.blog_list {
+  &_btn {
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 4px;
+      background-color: $gray-dark;
+      position: absolute;
+      right: 0;
+      transition: 0.4s;
+    }
+    &:hover {
+      color: $white;
+      &::after {
+        width: 100%;
+        left: 0;
       }
     }
   }
-}
-.blog {
-}
-.blog_list_item_btn {
+  &_img {
+    width: 250px;
+  }
+
+  &_content {
+    letter-spacing: 3px;
+  }
 }

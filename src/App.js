@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
-
+import 'bootstrap/dist/css/bootstrap.css'
+import './styles/style.scss'
 import ChatRoom from './components/ChatRoom'
 import BlogLayout from './components/Blog'
 
