@@ -4,8 +4,8 @@ import { Link, Outlet } from 'react-router-dom'
 const Home = () => {
   return (
     <>
-      <nav className="nav-bar bg-black text-white text-center">
-        這格個是 navbar
+      <nav className="nav-bar bg-black text-white text-center d-flex justify-content-around">
+        <h1 className="text-center">歡迎來到首首</h1>
         <ul className="d-flex list-unstyled gap-3 align-items-center justify-content-center gap-2">
           <li>
             <Link className="text-white btn btn-warning " to="/">
@@ -24,7 +24,7 @@ const Home = () => {
           </li>
         </ul>
       </nav>
-      <h1 className="text-center">歡迎來到首首</h1>
+
       <Outlet />
     </>
   )
