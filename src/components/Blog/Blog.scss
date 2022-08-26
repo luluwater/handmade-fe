@@ -1,6 +1,6 @@
 .banner {
-  max-height: 400px;
-  background: #c25;
+  height: 500px;
+  background: #ccc;
   &-item {
   }
   &-img {
@@ -8,4 +8,19 @@
     max-height: 400px;
     width: 100%;
   }
+}
+.blog {
+  // blog_list_item_btn
+  &_list {
+    display: flex;
+    &_item {
+      &_btn {
+        margin: 10px;
+      }
+    }
+  }
+}
+.blog {
+}
+.blog_list_item_btn {
 }
