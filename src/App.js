@@ -1,17 +1,14 @@
 import React from 'react'
-
 import { useRoutes } from 'react-router-dom'
 
 import ChatRoom from './components/ChatRoom'
 import BlogLayout from './components/Blog'
+
 import Home from './pages/Home'
-
 import Login from './pages/Login'
-
 import BlogPage from './pages/BlogPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import BlogEditPage from './pages/BlogEditPage'
-
 import NoFound from './pages/NoFound'
 
 // const routeConfig = [
