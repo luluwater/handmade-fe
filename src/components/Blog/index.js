@@ -33,12 +33,11 @@ const BlogLayout = () => {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
-        <div className="banner">123</div>
-        {/* {images.map((img) => (
+        {images.map((img) => (
           <SwiperSlide className="banner" key={img}>
             <img className="banner-img" src={img} alt="" />
           </SwiperSlide>
-        ))} */}
+        ))}
       </Swiper>
       <button className="btn btn-primary" onClick={() => swiper.slideNext()}>
         Slide to the next slide
