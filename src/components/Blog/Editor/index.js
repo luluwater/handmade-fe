@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import parse from 'html-react-parser'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
-import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
+// import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import axios from 'axios'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 const API_URL = 'http://localhost:8080'
 const UPLOAD_ENDPOINT = 'upload_files'
@@ -19,15 +20,15 @@ const Editor = () => {
 
   /**
    * TODO 目前是一上傳就把圖片打進路由裡面，現在要把他改成 "按下" 送出按鈕才把檔案送出，並載入。
-   * @param {lodaer} lodaer
+   * @param {loader} loader
    * @returns 回傳upload 函式
    */
-  const uploadAdapter = (lodaer) => {
+  const uploadAdapter = (loader) => {
     return {
       upload: () => {
         return new Promise((resolve, reject) => {
           const body = new FormData()
-          lodaer.file.then((file) => {
+          loader.file.then((file) => {
             body.append('files', file)
             fetch(`${API_URL}/${UPLOAD_ENDPOINT}`, {
               method: 'post',
@@ -70,15 +71,10 @@ const Editor = () => {
 
   return (
     <>
-      {' '}
-      <div className="App">
-        {/* <CKEditorContext context={Context}> */}
-        <h2>Using CKEditor 5 build in React</h2>
+      <div className="">
         <CKEditor
-          editor={BalloonEditor}
+          editor={ClassicEditor}
           config={{
-            // plugins: [Paragraph, Bold, Italic, Essentials],
-            // toolbar: ["bold", "italic"],
             extraPlugins: [uploadPlugin],
           }}
           data={addData}
@@ -89,12 +85,11 @@ const Editor = () => {
           onBlur={(event, editor) => {}}
           onFocus={(event, editor) => {}}
         />
-        {/* </CKEditorContext> */}
       </div>
       <button className="btn btn-info" type="submit" onClick={submitBlog}>
         {addedData ? 'Hide Data' : 'Show Data'}
       </button>
-      <div>{addData ? parse(addData) : ''}</div>{' '}
+      <div>{addData ? parse(addData) : ''}</div>
     </>
   )
 }
