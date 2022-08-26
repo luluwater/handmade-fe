@@ -120,19 +120,22 @@ const routeConfig = [
       {
         path: 'blog',
         element: <BlogLayout />, //  --> /blog
-        children: [
-          {
-            path: 'edit',
-            element: <BlogEditPage />, //  --> /blog/edit
-          },
-          {
-            path: ':id',
-            element: <BlogDetailPage />, //  --> /blog/:id
-          },
-        ],
+      },
+      {
+        path: 'blog/edit',
+        element: <BlogEditPage />, //  --> /blog/edit
+      },
+      {
+        path: 'blog/:id',
+        element: <BlogDetailPage />, //  --> /blog/:id
       },
     ],
   },
+
+  //   {
+  //     path: '/signup',
+  //     // element: <Signup />,
+  //   },
 
   {
     path: 'login',
