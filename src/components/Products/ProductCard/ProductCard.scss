@@ -1,0 +1,25 @@
+.card{
+  width: 15rem;
+}
+.card_swiper{
+  width: 100%;
+  .swiperslide{
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+}
+.card_faverite{
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+// @media screen and (max-width:992px){ 
+//   .card_faverite{
+//     width: 2.5rem;
+//     height: 2.5rem;
+//   }
+// }

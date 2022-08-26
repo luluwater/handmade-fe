@@ -10,6 +10,7 @@ import BlogPage from './pages/BlogPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import BlogEditPage from './pages/BlogEditPage'
 import NoFound from './pages/NoFound'
+import Proudcts from './pages/Products'
 
 // const routeConfig = [
 //   {
@@ -130,6 +131,10 @@ const routeConfig = [
             element: <BlogDetailPage />, //  --> /blog/:id
           },
         ],
+      },
+      {
+        path: 'product',
+        element: <Proudcts />,
       },
     ],
   },
