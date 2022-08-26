@@ -1,0 +1,11 @@
+.banner {
+  max-height: 400px;
+  background: #c25;
+  &-item {
+  }
+  &-img {
+    object-fit: fill;
+    max-height: 400px;
+    width: 100%;
+  }
+}
