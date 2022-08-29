@@ -53,10 +53,10 @@ function ProductCard({
       <Row className="justify-content-between align-items-center mx-1">
         <Col xs={8} className="mt-2">
           <p className="mb-1  ">
-            <small>|{storeName}|</small>
+            <small>| {storeName} |</small>
           </p>
           <h6 className="mb-1 ">{name}</h6>
-          <p className="text-primary fw-bold">{price}</p>
+          <p className="text-primary fw-bold">${price}</p>
         </Col>
         <Col xs={4} className="text-end">
           <button className="bg-primary card_faverite">
