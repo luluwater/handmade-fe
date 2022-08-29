@@ -2,7 +2,8 @@ import React from 'react'
 import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
-import ChatRoom from './components/ChatRoom'
+import Layout from './pages/Layout'
+
 import BlogLayout from './components/Blog'
 
 import Home from './pages/Home'
@@ -12,140 +13,58 @@ import BlogDetailPage from './pages/BlogDetailPage'
 
 import NoFound from './pages/NoFound'
 
-// const routeConfig = [
-//   {
-//     path: '/',
-//     element: <Home />,
-//   },
-//   {
-//     path: '/login',
-//     // element: <Login />,
-//   },
-//   {
-//     path: '/signup',
-//     // element: <Signup />,
-//   },
-//   {
-//     path: '/about',
-//     // element: <About />,
-//   },
-
-//   {
-//     path: '/news',
-//     // element: <News />,
-//   },
-//   {
-//     path: '/brand',
-//     // element: <Brand />,
-//   },
-//   {
-//     path: '/brand/:id',
-//     // element: <BrandDetail />,
-//   },
-//   {
-//     path: '/course',
-//     // element: <Course />,
-//   },
-//   {
-//     path: '/course/:id',
-//     // element: <CourseDetail />,
-//   },
-//   {
-//     path: '/product',
-//     // element: <Product />,
-//   },
-
-//   {
-//     path: '/product/:id',
-//     // element: <ProductDetail />,
-//   },
-
-//   {
-//     path: '/user',
-//     children: [
-//       {
-//         path: '/user/account',
-//         // element: <UserAccount />,
-//       },
-//       {
-//         path: '/user/order',
-//         // element: <UserOrder />,
-//       },
-//       {
-//         path: '/user/like',
-//         // element: <UserLike />,
-//       },
-//       {
-//         path: '/user/blog',
-//         // element: <UserBlog />,
-//       },
-//       {
-//         path: '/user/chatRoom',
-//         element: <ChatRoom />,
-//       },
-//     ],
-//   },
-
-//   {
-//     path: 'blog',
-//     element: <BlogLayout />,
-//     children: [
-//       {
-//         path: 'edit',
-//         element: <BlogEditPage />,
-//       },
-//       {
-//         path: ':id',
-//         element: <BlogDetailPage />,
-//       },
-//     ],
-//   },
-
-//   {
-//     path: '/map',
-//     // element: <Map />,
-//   },
-
-//   {
-//     path: '*',
-//     // element:<NoFound/>
-//   },
-// ]
-
 const routeConfig = [
   {
     path: '/',
-    element: <Home />,
-
+    element: <Layout />,
     children: [
       {
+        path: 'home',
+        element: <Home />,
+      },
+
+      {
         path: 'blog',
-        element: <BlogLayout />, //  --> /blog
+        element: <BlogLayout />,
       },
       {
         path: 'blog/edit',
-        element: <BlogEditPage />, //  --> /blog/edit
+        element: <BlogEditPage />,
       },
       {
         path: 'blog/:blogId',
-        element: <BlogDetailPage />, //  --> /blog/:id
+        element: <BlogDetailPage />,
+      },
+      {
+        path: 'store',
+        // element: <Store />,
+      },
+      //user router
+      // {
+      //   path: 'user',
+      //   element: <UserList />,
+      //   children: [
+      //     {
+      //       path: 'user/home',
+      //       element: <Home />,
+      //     },
+      //     {
+      //       path: 'user/mangment',
+      //       element: <Mangment />,
+      //     },
+      //   ],
+      // },
+
+      {
+        path: 'login',
+        element: <Login />,
+      },
+
+      {
+        path: '*',
+        element: <NoFound />,
       },
     ],
-  },
-
-  //   {
-  //     path: '/signup',
-  //     // element: <Signup />,
-  //   },
-
-  {
-    path: 'login',
-    element: <Login />,
-  },
-
-  {
-    path: '*',
-    element: <NoFound />,
   },
 ]
 

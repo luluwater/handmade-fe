@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import BlogItem from './BlogItem'
-import { useGetBlogListQuery } from '../../../services/blogApi'
+import { useGetBlogQuery } from '../../../services/blogApi'
 
 /**
  * 跟後端拿資料到這裡渲染
  * @returns
  */
 const BlogList = () => {
-  const { data, error, isLoading } = useGetBlogListQuery()
+  const { data, error, isLoading } = useGetBlogQuery('all')
 
   return (
     <>
@@ -51,6 +51,7 @@ const BlogList = () => {
               create_time={item.create_time}
               id={item.blog_id}
               name={item.name}
+              category={item.category_name}
             />
           ))}
         </ListGroup>

@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 /**
- * @param {data} param0
+ * @param {data} param
  * @returns
  */
 
-const BlogItem = ({ content, tag, title, create_time, id, name }) => {
+const BlogItem = ({ content, tag, title, create_time, id, name, category }) => {
   const transformTime = moment(create_time).format('MMMM DD YYYY')
 
   return (
@@ -23,12 +23,20 @@ const BlogItem = ({ content, tag, title, create_time, id, name }) => {
         </Link>
       </div>
       <div className="blog_list_item d-flex flex-column">
-        <Badge
-          className="rounded-0 mb-2 align-self-start py-2 px-3 text-dark"
-          bg="primary"
-        >
-          {tag}
-        </Badge>
+        <div className="d-flex gap-3">
+          <Badge
+            className="rounded-0 mb-2 align-self-start py-2 px-3 text-dark"
+            bg="primary"
+          >
+            {tag}
+          </Badge>
+          <Badge
+            className="rounded-0 mb-2 align-self-start py-2 px-3 text-dark"
+            bg="primary"
+          >
+            {category}
+          </Badge>
+        </div>
         <h4 className="fw-bold">{title}</h4>
         <p className="text-muted">
           {name} <span className="ms-3">{transformTime}</span>

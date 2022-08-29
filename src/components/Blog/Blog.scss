@@ -1,4 +1,4 @@
-// @import '../../styles/custom_variables';
+@import '../../styles/custom_variables';
 
 .blog_banner {
   max-height: 450px;
@@ -28,7 +28,7 @@
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-  // color: $white;
+  color: $white;
 }
 
 .blog_list {
@@ -39,13 +39,13 @@
       display: block;
       width: 0;
       height: 4px;
-      // background-color: $gray-dark;
+      background-color: $gray-dark;
       position: absolute;
       right: 0;
       transition: 0.4s;
     }
     &:hover {
-      // color: $white;
+      color: $white;
       &::after {
         width: 100%;
         left: 0;

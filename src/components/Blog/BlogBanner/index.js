@@ -19,7 +19,7 @@ const BlogBanner = () => {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: false }}
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
         {images.map((img) => (

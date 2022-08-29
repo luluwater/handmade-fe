@@ -17,7 +17,7 @@ const Blog = () => {
       <Container className="mb-12">
         <Row>
           <Col className="border-right" lg={3}>
-            sm=4
+            lg=3
           </Col>
           <Col lg={9}>
             <BlogList />
