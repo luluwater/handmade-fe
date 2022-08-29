@@ -7,8 +7,18 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './ProductCard.scss'
+import { useSelector } from 'react-redux/es/exports'
+import { showProductCard } from '../../../slices/productCard-slice'
 
-function ProductCard() {
+function ProductCard({
+  productId,
+  imgsId,
+  storeName,
+  name,
+  price,
+  isFavorite,
+}) {
+  const states = useSelector((state) => state.showProductCard)
   return (
     <Card className="card m-2">
       <Swiper
@@ -41,14 +51,20 @@ function ProductCard() {
       </Swiper>
       {/* // className='d-flex justify-content-between align-items-center' */}
       <Row className="justify-content-between align-items-center mx-1">
-        <Col className='mt-2'>
-          <p className="mb-1">|路室|</p>
-          <h6 className="mb-1">陶藝手作體驗</h6>
-          <p className="text-primary fw-bold">$1200</p>
+        <Col xs={8} className="mt-2">
+          <p className="mb-1  ">
+            <small>|{storeName}|</small>
+          </p>
+          <h6 className="mb-1 ">{name}</h6>
+          <p className="text-primary fw-bold">{price}</p>
         </Col>
-        <Col sm={4} className="text-end">
+        <Col xs={4} className="text-end">
           <button className="bg-primary card_faverite">
-            <FontAwesomeIcon icon="far fa-heart" inverse size="1x" />
+            <FontAwesomeIcon
+              icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+              inverse
+              size="lg"
+            />
           </button>
         </Col>
       </Row>
