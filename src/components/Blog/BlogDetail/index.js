@@ -4,11 +4,11 @@ import { Link, useParams } from 'react-router-dom'
 import Badge from 'react-bootstrap/Badge'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import CommentList from './CommentList'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
   const { data, error, isLoading } = useGetBlogQuery(blogId)
-  console.log(data)
 
   return (
     <>
@@ -33,7 +33,7 @@ const BlogDetail = () => {
               </Link>
             </li>
           </ul>
-          <div className="container mb-12">
+          <div className="container mb-6 mb-lg-8">
             <div className="text-center ">
               <Badge
                 className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4"
@@ -59,7 +59,9 @@ const BlogDetail = () => {
               <article>{item.content}</article>
             </div>
           </div>
-          <div className="text-center mt-9 mb-4">/ 相關店家 /</div>
+          <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
+            / <spna class="mx-2">相關店家 </spna>/
+          </div>
           <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6  mb-7">
             <div className="position-relative">
               <img
@@ -72,17 +74,14 @@ const BlogDetail = () => {
               </h5>
             </div>
             <div>
-              <div className="mb-3">{item.intro}</div>
+              <div className="my-3 text-cut">{item.intro}</div>
               <p>地址：{item.address}</p>
               <p>交通方式：{item.route}</p>
               <p>連絡電話：{item.phone}</p>
               <p>營業時間：{item.opening_hour}</p>
             </div>
           </div>
-          <div className="container">
-            <h6 className=" pb-2 border-bottom mb-5">留言區</h6>
-            <img src="" alt="user avatar" />
-          </div>
+          <CommentList />
         </>
       ))}
     </>

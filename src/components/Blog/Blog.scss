@@ -58,13 +58,6 @@
 
   &_content {
     letter-spacing: 3px;
-    // @media (min-width: 768px) {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    // }
   }
   &_title {
     display: -webkit-box;
@@ -76,4 +69,16 @@
       max-width: 75%;
     }
   }
+}
+.text-cut {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_image {
+  width: 32px;
+  height: 32px;
 }

@@ -41,7 +41,7 @@ const BlogItem = ({ content, tag, title, create_time, id, name, category }) => {
         <p className="text-muted">
           {name} <span className="ms-3">{transformTime}</span>
         </p>
-        <p className="blog_list_content">{content}</p>
+        <p className="text-cut">{content}</p>
         <Link
           to={`/blog/${id}`}
           className="blog_list_btn align-self-end text-gray-darker"
