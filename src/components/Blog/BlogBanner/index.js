@@ -11,7 +11,7 @@ const BlogBanner = () => {
   return (
     <>
       <Swiper
-        className="blog_banner"
+        className="bg-skin-bright h-100"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={0}
         slidesPerView={1}
@@ -29,7 +29,7 @@ const BlogBanner = () => {
                 LATEST <br /> NEWS
               </h1>
               <img
-                className="blog_banner_img img-fluid w-100"
+                className="blog_banner_img img-fluid w-100 h-100 "
                 src={img}
                 alt="blog"
               />

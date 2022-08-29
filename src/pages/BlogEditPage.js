@@ -1,8 +1,8 @@
 import React from 'react'
-import Editor from '../components/Blog/Editor'
+import BlogEdit from '../components/Blog/BlogEdit'
 
 const BlogEditPage = () => {
-  return <Editor />
+  return <BlogEdit />
 }
 
-export default BlogEditPage
+export default BlogEdit
