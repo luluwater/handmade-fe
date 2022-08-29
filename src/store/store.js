@@ -11,7 +11,6 @@ const reducers = combineReducers({
    * Reducer 放這裡
    */
   blogReducer,
-
   [blogApiService.reducerPath]: blogApiService.reducer,
 })
 
