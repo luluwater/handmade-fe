@@ -23,3 +23,6 @@ img/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+src/assets/blog/
+src/assets/
