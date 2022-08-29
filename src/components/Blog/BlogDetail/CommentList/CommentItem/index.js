@@ -1,6 +1,7 @@
 import React from 'react'
 
-const CommentItem = () => {
+//判斷 USER 是否是自己，改變留言方式
+const CommentItem = ({ user, content, commentTime }) => {
   return (
     <>
       <div className="container mb-4">
@@ -14,20 +15,15 @@ const CommentItem = () => {
                   src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   alt="user avatar"
                 />
-                <span>lu*****123</span>
+                <span>{user}</span>
               </div>
               <div className="d-flex gap-3 ">
                 <div>這裡放星星</div>
-                <div>2022.09.10</div>
+                <div>{commentTime}</div>
               </div>
             </div>
           </div>
-          <p>
-            上課環境舒適, 陶藝老師專業又親切,
-            作品完成超有成就感。防疫期間無法前往上課,
-            還有居家自主練習包可以繼續捏陶, 好有趣~
-            在台北市東區，可以有這麼大的拉胚空間！真的是完美！老師教學認真也願意分享一下小技巧！沒有想到三週之後也可以完成一些小作品。
-          </p>
+          <p>{content}</p>
           <button className="rounded-2 bg-secondary text-white px-4 py-1 mb-3 d-none d-md-block ms-auto">
             回覆留言
           </button>

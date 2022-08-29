@@ -8,12 +8,13 @@ import CommentList from './CommentList'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
-  console.log(blogId)
+
   const { data, error, isLoading } = useGetBlogQuery(blogId)
+  console.log(data?.comment.comment)
 
   return (
     <>
-      {/* {data?.blog[0].map((item) => (
+      {data?.blog.map((item) => (
         <>
           <ul className="list-unstyled d-flex text-black mt-4 ms-3">
             <li>
@@ -82,9 +83,17 @@ const BlogDetail = () => {
               <p>營業時間：{item.opening_hour}</p>
             </div>
           </div>
-          <CommentList />
+
+          {data?.comment.comment.map((item) => (
+            <CommentList
+              key={item.comment_id}
+              user={item.user_id}
+              content={item.content}
+              commentTime={item.comment_date}
+            />
+          ))}
         </>
-      ))} */}
+      ))}
     </>
   )
 }
