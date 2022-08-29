@@ -8,11 +8,12 @@ import CommentList from './CommentList'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
+  console.log(blogId)
   const { data, error, isLoading } = useGetBlogQuery(blogId)
 
   return (
     <>
-      {data?.map((item) => (
+      {/* {data?.blog[0].map((item) => (
         <>
           <ul className="list-unstyled d-flex text-black mt-4 ms-3">
             <li>
@@ -83,7 +84,7 @@ const BlogDetail = () => {
           </div>
           <CommentList />
         </>
-      ))}
+      ))} */}
     </>
   )
 }
