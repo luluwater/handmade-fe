@@ -9,7 +9,7 @@ function Proudcts() {
 
   const fetchProduct = async () => {
     const response = await productApi.get('/api/product')
-    console.log(response.data)
+    // console.log(response.data)
     setProducts(response.data)
   }
   useEffect(() => {
@@ -19,18 +19,37 @@ function Proudcts() {
   return (
     <Container fluid className="m-3 mx-auto ">
       <Row>
-        <Col sm={3}>
+        <Col lg={4} xl={3}>
           <Filter></Filter>
         </Col>
         <Col>
-          <div className="d-flex flex-wrap  justify-content-center">
-            {products.map((v, i) => {
-              console.log(v)
+          <div className='d-flex justify-content-center'>
+            <Row className="product_list gap-6">
+              {products?.map((v, i) => {
+                return (
+                  <ProductCard
+                    key={v.id}
+                    productId={v.id}
+                    imgs={v.img_name}
+                    category={v.category_en_name}
+                    storeName={v.store_name}
+                    name={v.name}
+                    price={v.price}
+                    isFavorite={false}
+                  />
+                )
+              })}
+            </Row>
+          </div>
+
+          {/* <div className="d-flex flex-wrap  justify-content-start gap-5">
+            {products?.map((v, i) => {              
               return (
                 <ProductCard
                   key={v.id}
                   productId={v.id}
-                  imgsId={v.product_image_id}
+                  imgs={v.img_name}
+                  category={v.category_en_name}
                   storeName={v.store_name}
                   name={v.name}
                   price={v.price}
@@ -38,7 +57,7 @@ function Proudcts() {
                 />
               )
             })}
-          </div>
+          </div> */}
         </Col>
       </Row>
     </Container>
