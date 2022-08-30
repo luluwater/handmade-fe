@@ -8,7 +8,7 @@ const Navbar = () => {
         <h1 className="text-center">歡迎來到首首</h1>
         <ul className="d-flex list-unstyled gap-3 align-items-center justify-content-center gap-2">
           <li>
-            <Link className="text-white btn btn-warning " to="/">
+            <Link className="text-white btn btn-warning " to="home">
               Home
             </Link>
           </li>

@@ -10,7 +10,7 @@ const reducers = combineReducers({
   /**
    * Reducer 放這裡
    */
-  // blogReducer,
+  blogReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   // [userApiService.reducerPath]: userApiService.reducer,
 })

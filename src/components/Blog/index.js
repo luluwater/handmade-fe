@@ -1,4 +1,4 @@
-// import BlogBanner from './BlogBanner'
+import BlogBanner from './BlogBanner'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -7,7 +7,7 @@ import BlogList from './BlogList'
 const Blog = () => {
   return (
     <>
-      {/* <BlogBanner /> */}
+      <BlogBanner />
       <h1
         style={{ height: '130px' }}
         className="bg-black text-white text-center mb-8"

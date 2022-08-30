@@ -7,13 +7,6 @@ export const blogApiService = createApi({
   reducerPath: 'blogApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/' }),
   endpoints: (builder) => ({
-    // 用上面這ㄍ方法(各個 endpoint 分開寫)
-    // getBlogList: builder.query({
-    //   query: () => 'blog',
-    // }),
-    // getBlogDetail: builder.query({
-    //   query: (blogId) => `blog/${blogId}`,
-    // }),
     getBlog: builder.query({
       query: (blogId) => {
         if (blogId !== 'all') {
@@ -22,7 +15,10 @@ export const blogApiService = createApi({
         return 'blog'
       },
     }),
+    createBlog: builder.mutation({
+      query: (data) => {},
+    }),
   }),
 })
 
-export const { useGetBlogQuery } = blogApiService
+export const { useGetBlogQuery, useCreateBlogMutation } = blogApiService
