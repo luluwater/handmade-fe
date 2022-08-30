@@ -8,6 +8,7 @@ import store from './store/store'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
+
 library.add(fas)
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
