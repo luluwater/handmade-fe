@@ -1,0 +1,39 @@
+@import '../../styles/custom_variables';
+
+
+.navbar{
+  padding: 0;
+  img{
+    width: 13rem;
+  }
+  .searchInput{
+    width: 13rem;
+    border: 2px solid $secondary;
+    border-radius: .5rem;
+    background-color: $skin-brighter;
+  }
+  // button{
+  //   border: 0px;
+  // }
+
+
+}
+
+.nav_list{
+
+  li:before{
+    content:'|';
+    margin: 0 2rem;
+    color:$secondary;
+  }
+  li:first-child:before{
+    display: none;
+  }
+}
+
+.nav_link{
+  color: $secondary;
+  font-weight: 600;
+}
+
+
