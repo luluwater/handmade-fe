@@ -1,7 +1,7 @@
 import React from 'react'
 import AccordionHeader from './AccordionHeader'
 import listData from './data'
-import './styles.scss'
+import './FilterStores.scss'
 import { useState } from 'react'
 
 function ForFilter() {
@@ -41,11 +41,11 @@ function ForFilter() {
   return (
     <>
       <div className="filter">
-        <div className="filter-title">所有店家</div>
+        <div className="filter_title">所有店家</div>
 
         {lists.map((ar, index) => (
           <div key={index}>
-            <div className="filter-category">
+            <div className="filter_category">
               <AccordionHeader
                 active={ar.active}
                 onClick={() => handleTile(ar)}
@@ -56,9 +56,9 @@ function ForFilter() {
             {ar.active &&
               ar.innerList.map((inner) => (
                 <div key={inner.id}>
-                  <label className="filter-stores">
+                  <label className="filter_stores">
                     <input
-                      className="filter-input"
+                      className="filter_input"
                       type="checkbox"
                       onChange={handleChange(ar)}
                       checked={inner.completed}
