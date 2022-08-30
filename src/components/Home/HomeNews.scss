@@ -1,0 +1,88 @@
+@import '../../styles/custom_variables';
+
+.home_newStore{
+    width: 635px;
+    height: 675px;
+    color: $white;
+    background-color: $gray-darker;
+
+    &_title{
+        display: inline-block;
+        width: 160px;
+        padding: 10px;
+        margin: 10px;
+        font-size: $h4-font-size;
+        letter-spacing: 5px;
+        text-align: center;
+        border-bottom: 1px $white solid;
+    }
+
+    &_content{
+        width: 560px;
+
+        &_pic1{
+            width: 250px;
+            display: inline-block;
+        }
+
+        &_pic2{
+            width: 570px;
+            margin-top: 30px;
+            margin-bottom: 18px;
+        }
+
+        &_right{
+            display: inline-block;
+            margin-left: 20px;
+            position: relative;
+            top:100px;
+        }
+        
+        &_name{
+        font-size: $h5-font-size;
+        letter-spacing: 3px;
+        margin-top: 15px;
+        }
+
+        &_text{
+            margin: 5px 0;
+            line-height: 26px
+        }
+
+// ========== button ==========
+
+        &_button{
+            width: 135px;
+            height: 40px;
+            background-color: $white;
+            border: none;
+            border-radius: 10px;
+            color: $gray-darker;
+            margin-top: 10px;
+            line-height: 20px;
+            
+        }
+        
+        &_button:hover{
+            background-color: $white;
+            color: $primary;
+
+        }
+
+        &_button:focus{
+            background-color: $white;
+            color: $gray-darker;
+            outline: none;
+            box-shadow:none;
+        }
+        
+        &_button:active:focus{
+            background-color: $white;
+            color: $gray-darker;
+            outline: none;
+            box-shadow:none;
+        }
+
+    }
+    
+}

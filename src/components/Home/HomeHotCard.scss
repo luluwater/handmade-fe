@@ -1,0 +1,53 @@
+@import '../../styles/custom_variables';
+
+.home_hotCard{
+    width: 420px;
+    height: 610px;
+
+    &_pic{
+        display: inline-block;
+        width: 400px;
+        height: 400px;
+    }
+    &_name{
+        margin: 15px;
+        color: $gray-darker;
+        font-size: $h5-font-size;
+    }
+    &_text{
+        margin-bottom: 10px;
+        color: $gray-darker;
+        font-size: 14px;
+    }
+    &_button{
+        width: 135px;
+        height: 40px;
+        background-color: $secondary;
+        border: none;
+        border-radius: 10px;
+        color: $white;
+        margin-top: 10px;
+        line-height: 20px;
+        
+    }
+    
+    &_button:hover{
+        background-color: $secondary-dark;
+        color: $white;
+
+    }
+
+    &_button:focus{
+        background-color: $white;
+        color: $gray-darker;
+        outline: none;
+        box-shadow:none;
+    }
+    
+    &_button:active:focus{
+        background-color: $white;
+        color: $gray-darker;
+        outline: none;
+        box-shadow:none;
+    }
+}
