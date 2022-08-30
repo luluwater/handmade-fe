@@ -1,24 +1,38 @@
 import { useState } from 'react'
 import Reply from '../Reply'
+import { useCreateCommentMutation } from '../../../../../services/commentAPI'
+import { v4 as uuidv4 } from 'uuid'
 
 const CommentItem = ({ user, content, commentTime }) => {
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
 
+  const comment = {
+    id: uuidv4(),
+    content: inputValue,
+    user_id: '27',
+    blog_id: '72',
+    comment_date: '2025-07-15 23:13:23',
+  }
+  const [createComment] = useCreateCommentMutation()
+
   /**
    * TODO: 把資料傳送出去到資料庫，要
    * @param {*}
    */
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
+
   const handleChange = (e) => {
-    console.log(e.target.value)
     setInputValue(e.target.value)
   }
   const handleCancel = () => {
     setInputValue('')
     setOpen(!open)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    createComment(comment)
+    console.log('work')
   }
 
   return (
