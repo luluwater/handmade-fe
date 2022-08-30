@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
-import productApi from '../apis/productApi'
-import Filter from '../components/Products/Filter/Filter'
+import { useGetProductListQuery } from '../services/productApi'
+import Filter from '../components/Filter/Filter'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 
 function Proudcts() {
-  const [products, setProducts] = useState([])
-
-  const fetchProduct = async () => {
-    const response = await productApi.get('/api/product')
-    // console.log(response.data)
-    setProducts(response.data)
-  }
-  useEffect(() => {
-    fetchProduct()
-  }, [])
+  const { data, error, isLoading } = useGetProductListQuery()
+  console.log(data);
 
   return (
     <Container fluid className="m-3 mx-auto ">
@@ -23,9 +15,9 @@ function Proudcts() {
           <Filter></Filter>
         </Col>
         <Col>
-          <div className='d-flex justify-content-center'>
+          <div className="d-flex justify-content-center">
             <Row className="product_list gap-6">
-              {products?.map((v, i) => {
+              {data?.map((v, i) => {
                 return (
                   <ProductCard
                     key={v.id}
