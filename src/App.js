@@ -5,9 +5,14 @@ import './styles/style.scss'
 import Layout from './pages/Layout'
 
 import BlogLayout from './components/Blog'
-
 import Home from './pages/Home'
 import Login from './pages/Login'
+
+import About from './pages/AboutPage'
+import AboutLayout from './components/About'
+import News from './pages/NewsPage'
+import NewsLayout from './components/News'
+
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
@@ -45,15 +50,32 @@ const routeConfig = [
       //   element: <UserList />,
       //   children: [
       //     {
-      //       path: 'user/home',
-      //       element: <Home />,
+      //       path: 'user/profile',
+      //       element: <Profile />,
       //     },
       //     {
-      //       path: 'user/mangment',
-      //       element: <Mangment />,
+      //       path: 'user/filterpage',
+      //       element: <FilterPage />,
       //     },
       //   ],
       // },
+
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'about',
+        element: <AboutLayout />,
+      },
+      {
+        path: 'news',
+        element: <News />,
+      },
+      {
+        path: 'news',
+        element: <NewsLayout />,
+      },
 
       {
         path: 'login',

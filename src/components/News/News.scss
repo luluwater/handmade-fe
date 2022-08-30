@@ -1,0 +1,111 @@
+@import '../../styles/custom_variables';
+
+.news_banner {
+  max-height: 450px;
+  
+  @media (min-width: 576px) {
+    max-height: 400px;
+  }
+  
+  @media (min-width: 768px) {
+    max-height: 600px;
+  }
+  
+  &_img {
+    object-fit: cover;
+    max-height: 300px;
+    @media (min-width: 576px) {
+      max-height: 400px;
+    }
+    @media (min-width: 768px) {
+      height: 100%;
+    }
+  }
+  &_text {
+    letter-spacing: 2rem;
+    line-height: 2;
+  }
+}
+
+.news_details {
+  width: 1000px;
+  &_box {
+    width: 50px;
+    height: 200px;
+    border-left: 2px solid;
+    border-color: $gray-darker;
+    // -moz-transform:rotate(5deg);
+    // -webkit-transform:rotate(5deg);
+    // -o-transform:rotate(5deg);
+    // -ms-transform:rotate(5deg);
+    transform:rotate(30deg);
+  }
+  &_title {
+    font-size: $h3-font-size;
+    letter-spacing: 3px;
+    color:$gray-darker;
+  }
+  &_img {
+    object-fit: cover;
+    height: 500px;
+    width: 500px;
+  }
+  &_content {
+    color: $gray-darker;
+    font-size: $h6-font-size;
+    position: relative;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 2;
+  }
+  &_text {
+    font-size: $h3-font-size;
+    letter-spacing: 3px;
+    color: $gray-darker;
+    position: relative;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.news_Coupon {
+  &_text {
+      font-size: $h3-font-size;
+      letter-spacing: 3px;
+      color: $gray-darker;
+  }
+  &_img {
+      object-fit: cover;
+      width: 500px;
+      position: absolute;
+      z-index: -1;
+  }
+  &_btn {
+      border: none;
+      position: relative;
+      z-index: 10000;
+      color: $secondary-dark;
+      width: 200px;
+      background-color: $skin-bright;
+      letter-spacing: 3px;
+      font-size: $h3-font-size;
+      &:hover {
+        border: none;
+        background-color: $secondary-dark;
+        color: $skin-bright;
+      }
+      &:focus {
+        // border: none;
+        // outline: none;
+        background-color: $secondary-dark;
+        color: $skin-bright;
+      }
+    //   &:active {
+    //     border: none!important;
+    //     outline: none!important
+        
+    //   }
+  }
+}

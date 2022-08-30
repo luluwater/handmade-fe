@@ -22,6 +22,16 @@ const Navbar = () => {
               Login
             </Link>
           </li>
+          <li>
+            <Link className="text-white btn btn-warning" to="about">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link className="text-white btn btn-warning" to="news">
+              News
+            </Link>
+          </li>
         </ul>
       </nav>
     </>
