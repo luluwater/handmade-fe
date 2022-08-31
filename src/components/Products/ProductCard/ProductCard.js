@@ -9,6 +9,7 @@ import 'swiper/css/effect-fade'
 import './ProductCard.scss'
 import { useSelector } from 'react-redux/es/exports'
 import { showProductCard } from '../../../slices/productCard-slice'
+import cart from '../../../assets/cart.svg'
 
 function getImgsRouter(imgsName, category, productId) {
   const baseRouter = 'assets/product/product'
@@ -57,7 +58,7 @@ function ProductCard({
           <h6 className="mb-1 text-truncate">{name}</h6>
           <p className="text-primary fw-bold">${price}</p>
         </Col>
-        <Col className="text-end">
+        <Col className="text-end d-flex">
           <button className="bg-primary card_favorite border-0  rounded-circle me-2">
             <FontAwesomeIcon
               icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
@@ -65,11 +66,10 @@ function ProductCard({
               size="lg"
             />
           </button>
-          <button className="bg-secondary card_favorite border-0  rounded-circle">
-          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" inverse
-              size="lg"/>
+          <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+            <img src={cart} alt="" className='cart'/>
             {/* <FontAwesomeIcon
-              icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+              icon="fa-solid fa-cart-shopping"
               inverse
               size="lg"
             /> */}

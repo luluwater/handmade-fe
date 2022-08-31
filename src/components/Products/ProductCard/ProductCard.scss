@@ -5,6 +5,10 @@
 .product_card .row{
  height: 90px;
 }
+.product_card .cart{ 
+  width: 20px;
+  height: 20px; 
+}
 .product_card .swiper-button-prev::after,
 .product_card .swiper-button-next::after {
   font-size: 2rem;
