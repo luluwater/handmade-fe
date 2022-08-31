@@ -46,7 +46,7 @@ const Footer = () => {
             />
           </li>
         </ul>
-        <div className='d-flex '>
+        <div className="d-flex">
           <p>會員制度</p>
           <p>服務條款</p>
           <p>訂閱電子報</p>
