@@ -16,4 +16,4 @@ export const productCardSlice = createSlice({
 })
 
 export const showProductCard = (state) => state.showProductCard
-export default showProductCard.reducers
+export default showProductCard.reducer
