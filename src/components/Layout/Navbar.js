@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar px-5">
+      <nav className="navbar px-5 pt-2">
         <div className="d-flex align-items-center">
           <img src={Logo} alt="" />
           <p className="ms-3 mt-9">Handmade is Heartmade</p>
@@ -46,7 +46,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <ul className="list-unstyled d-flex navbar_list me-3 mt-4">
+          <ul className="list-unstyled d-flex navbar_list me-3 mt-5">
             <li>
               <Link to="home" className="navbar_link">
                 HOME
