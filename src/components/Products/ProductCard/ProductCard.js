@@ -49,21 +49,30 @@ function ProductCard({
           )
         })}
       </Swiper>
-      <Row className="justify-content-between align-items-center">
-        <Col xs={8} className="mt-2">
+      <Row className="justify-content-between align-items-center ">
+        <Col xs={6} className="mt-2">
           <p className="mb-1  text-truncate">
             <small>| {storeName} |</small>
           </p>
           <h6 className="mb-1 text-truncate">{name}</h6>
           <p className="text-primary fw-bold">${price}</p>
         </Col>
-        <Col xs={4} className="text-end">
-          <button className="bg-primary card_favorite border-0  rounded-circle">
+        <Col className="text-end">
+          <button className="bg-primary card_favorite border-0  rounded-circle me-2">
             <FontAwesomeIcon
               icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
               inverse
               size="lg"
             />
+          </button>
+          <button className="bg-secondary card_favorite border-0  rounded-circle">
+          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" inverse
+              size="lg"/>
+            {/* <FontAwesomeIcon
+              icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+              inverse
+              size="lg"
+            /> */}
           </button>
         </Col>
       </Row>
