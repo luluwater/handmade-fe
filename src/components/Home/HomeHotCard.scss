@@ -4,15 +4,16 @@
     width: 420px;
     height: 610px;
 
+
     &_pic{
         display: inline-block;
-        width: 400px;
-        height: 400px;
+        width: 360px;
+        height: 360px;
     }
     &_name{
-        margin: 15px;
+        margin: 20px 0 10px 0;
         color: $gray-darker;
-        font-size: $h5-font-size;
+        font-weight: 600;
     }
     &_text{
         margin-bottom: 10px;
@@ -20,13 +21,13 @@
         font-size: 14px;
     }
     &_button{
-        width: 135px;
+        width: 120px;
         height: 40px;
         background-color: $secondary;
         border: none;
         border-radius: 10px;
         color: $white;
-        margin-top: 10px;
+        margin-top: 5px;
         line-height: 20px;
         
     }
@@ -38,16 +39,17 @@
     }
 
     &_button:focus{
-        background-color: $white;
-        color: $gray-darker;
+        background-color: $secondary;
+        color: $white;
         outline: none;
         box-shadow:none;
     }
     
     &_button:active:focus{
-        background-color: $white;
-        color: $gray-darker;
+        background-color: $secondary-dark;
+        color: $white;
         outline: none;
         box-shadow:none;
     }
 }
+

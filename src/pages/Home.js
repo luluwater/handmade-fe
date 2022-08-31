@@ -1,26 +1,29 @@
 import HomeNewStore from '../components/Home/HomeNewStore'
 import HomeNewActive from '../components/Home/HomeNewActive'
-import HomeHotCard from '../components/Home/HomeHotCard'
-import { Row, Col } from 'react-bootstrap'
-
+import HomeHotCourse from '../components/Home/HomeHotCourse'
+import { Row, Col, Container } from 'react-bootstrap'
 import React from 'react'
+import HomeHotProduct from '../components/Home/HomeHotProduct'
 
 const Home = () => {
   return (
     <>
-      <Row>
-        <Col>
-          <HomeNewStore />
-        </Col>
-        <Col>
-          <HomeNewActive />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <HomeHotCard />
-        </Col>
-      </Row>
+      <Container>
+        <Row>
+          <Col>
+            <HomeNewStore />
+          </Col>
+          <Col>
+            <HomeNewActive />
+          </Col>
+        </Row>
+        <Row>
+          <HomeHotCourse />
+        </Row>
+        <Row>
+          <HomeHotProduct />
+        </Row>
+      </Container>
     </>
   )
 }

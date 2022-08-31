@@ -5,13 +5,13 @@ function HomeNewActive() {
   return (
     <>
       <div className="home_newStore d-flex flex-column align-items-center">
-        <div className="home_newStore_title">活動資訊</div>
+        <h4 className="home_newStore_title">活動資訊</h4>
         <div className="home_newStore_content">
-          <img className="home_newStore_content_pic2" src={Image1} />
+          <img className="home_newStore_content_pic2" src={Image1} alt="" />
           <div className="home_newStore_content_bottom">
-            <div className="home_newStore_content_name">
+            <h5 className="home_newStore_content_name">
               世界女孩日 | The day of Girl
-            </div>
+            </h5>
             <div className="home_newStore_content_text">
               <br />
               美好的生活，是需要自己去刻畫的。

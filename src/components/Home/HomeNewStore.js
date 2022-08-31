@@ -6,11 +6,11 @@ function HomeNewStore() {
   return (
     <>
       <div className="home_newStore d-flex flex-column align-items-center">
-        <div className="home_newStore_title">新駐店家</div>
+        <h4 className="home_newStore_title">新駐店家</h4>
         <div className="home_newStore_content">
-          <img className="home_newStore_content_pic1" src={Image1} />
+          <img className="home_newStore_content_pic1" src={Image1} alt="" />
           <div className="home_newStore_content_right">
-            <div className="home_newStore_content_name">璐室 | 陶藝</div>
+            <h5 className="home_newStore_content_name">璐室 | 陶藝</h5>
             <div className="home_newStore_content_text">
               你可以醒者，同時決定夢的形狀。
               <br />
@@ -22,9 +22,9 @@ function HomeNewStore() {
           </div>
         </div>
         <div className="home_newStore_content">
-          <img className="home_newStore_content_pic1" src={Image2} />
+          <img className="home_newStore_content_pic1" src={Image2} alt="" />
           <div className="home_newStore_content_right">
-            <div className="home_newStore_content_name">Meadow | 花藝</div>
+            <h5 className="home_newStore_content_name">Meadow | 花藝</h5>
             <div className="home_newStore_content_text">
               Meadow － 有野花的草原、牧地地，
               <br />
