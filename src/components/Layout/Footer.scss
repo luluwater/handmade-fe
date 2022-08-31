@@ -2,12 +2,10 @@
 
 .footer{
     background: $secondary;
-    height: 527px;
-    position: fixed;
-    bottom: 0;
+    height: 500px;
     width: 100%;
 
-    ul{
+    &_icon_ul{
         li{
             width: 50px;
             height: 50px;
@@ -17,15 +15,31 @@
             display: flex;
             justify-content: center;
             align-items: center;
-   
         }
-        
     }
     
-    .awesomeIcon{
+    &_awesomeIcon{
         color: $secondary;
         line-height: 50px;
-  
         cursor: pointer;
     }
+
+    &_row1{
+        
+        margin: 0 500px;
+        color: $white;
+    }
+
+    &_cursor{
+        cursor: pointer;
+    }
+
+    &_row2{
+        margin: 0 500px;
+        color: $white;
+    }
+    &_shopping_note{
+        padding-left: 3%;
+    }
+
 }
