@@ -9,14 +9,24 @@ import { getComment } from '../../../../slices/comment-slice'
 const CommentList = () => {
   const { blogId } = useParams()
   const { data, error, isLoading } = useCommentsQuery(blogId)
-
   const dispatch = useDispatch()
 
+  const replyList = useSelector((state) => state.replyReducer.reply)
+
+  const finalComment = data?.map((item) => {
+    const filterReply = replyList?.filter((reply) => {
+      return item.comment_id === reply.comment_id
+    })
+    const newComment = { ...item, filterReply }
+    return newComment
+  })
+
   useEffect(() => {
-    dispatch(getComment(data))
-  }, [data])
+    dispatch(getComment(finalComment))
+  }, [data, replyList])
 
   const commentList = useSelector((state) => state.commentReducer.comment)
+
 
   return (
     <>
@@ -27,6 +37,7 @@ const CommentList = () => {
           userAvatar={item.avatar}
           content={item.content}
           commentTime={moment(item.comment_date).format('YYYY-MM-DD')}
+          filterReply={item.filterReply}
         />
       ))}
     </>

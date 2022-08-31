@@ -12,7 +12,6 @@ export const replySlice = createSlice({
       state.reply.push(action.payload)
     },
     getReply: (state, action) => {
-      console.log('in slice', state.reply)
       state.reply = action.payload
     },
   },

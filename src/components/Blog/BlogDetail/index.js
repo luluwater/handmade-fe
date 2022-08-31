@@ -8,7 +8,6 @@ import CommentList from './CommentList'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
-
   const { data, error, isLoading } = useGetBlogQuery(blogId)
 
   return (

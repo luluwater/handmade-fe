@@ -12,6 +12,7 @@ export const commentSlice = createSlice({
       state.comment.push(action.payload)
     },
     getComment: (state, action) => {
+      console.log('接收到的 payload', action.payload)
       state.comment = action.payload
     },
   },

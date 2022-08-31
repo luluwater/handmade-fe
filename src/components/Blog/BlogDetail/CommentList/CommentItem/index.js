@@ -1,6 +1,7 @@
 import Reply from '../Reply'
+import CreateComment from '../CreateComment'
 
-const CommentItem = ({ user, content, commentTime }) => {
+const CommentItem = ({ user, content, commentTime, filterReply }) => {
   return (
     <>
       <div className="mx-4 border-bottom border-dark d-flex flex-column mb-4">
@@ -18,8 +19,17 @@ const CommentItem = ({ user, content, commentTime }) => {
         </div>
         <p>{content}</p>
 
-        <Reply />
-      </div>{' '}
+        {filterReply?.map((item) => (
+          <Reply
+            key={item.reply_id}
+            avatar={item.avatar}
+            createTime={item.reply_date}
+            name={item.name}
+            reply={item.reply_content}
+          />
+        ))}
+        <CreateComment />
+      </div>
     </>
   )
 }

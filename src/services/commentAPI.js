@@ -3,12 +3,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const commentApiService = createApi({
   reducerPath: 'commentApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/' }),
-  // tagTypes: ['Comment'],
+  tagTypes: ['Comment'],
   endpoints: (builder) => ({
     // READ
     comments: builder.query({
       query: (blogId) => `/comment/${blogId}`,
-      // providesTags: ['Comment'],
+      providesTags: ['Comment'],
     }),
     // CREATE
     createComment: builder.mutation({
