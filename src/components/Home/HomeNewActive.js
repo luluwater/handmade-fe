@@ -12,7 +12,7 @@ function HomeNewActive() {
             <h5 className="home_newStore_content_name">
               世界女孩日 | The day of Girl
             </h5>
-            <div className="home_newStore_content_text">
+            <div className="home_newStore_content_text1">
               <br />
               美好的生活，是需要自己去刻畫的。
               <br />
@@ -21,7 +21,6 @@ function HomeNewActive() {
               在這個屬於每一位女性的紀念日裡，獻上平衡斜槓生活學，致每位女性，與我們一同實踐美好的生活理念，從容面對生活中的不同身分！
               <br />
               邀請擁有無與倫比創造力的妳，把自己歸零、擺脫生活中的所有身分，與我們攜手度過愜意放鬆的手做體驗，享受專屬於自己或是與閨蜜們的美好時光。
-              <br />
               <br />
             </div>
             <Button className="home_newStore_content_button">看更多</Button>

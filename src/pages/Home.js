@@ -1,9 +1,10 @@
+import React from 'react'
+import { Row, Col, Container } from 'react-bootstrap'
 import HomeNewStore from '../components/Home/HomeNewStore'
 import HomeNewActive from '../components/Home/HomeNewActive'
 import HomeHotCourse from '../components/Home/HomeHotCourse'
-import { Row, Col, Container } from 'react-bootstrap'
-import React from 'react'
 import HomeHotProduct from '../components/Home/HomeHotProduct'
+import HomeCategory from '../components/Home/HomeCategory'
 
 const Home = () => {
   return (
@@ -22,6 +23,9 @@ const Home = () => {
         </Row>
         <Row>
           <HomeHotProduct />
+        </Row>
+        <Row>
+          <HomeCategory />
         </Row>
       </Container>
     </>
