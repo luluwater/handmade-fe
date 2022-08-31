@@ -1,0 +1,45 @@
+@import '../../styles/custom_variables';
+
+.footer{
+    background: $secondary;
+    height: 500px;
+    width: 100%;
+
+    &_icon_ul{
+        li{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: $white;
+            margin: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    
+    &_awesomeIcon{
+        color: $secondary;
+        line-height: 50px;
+        cursor: pointer;
+    }
+
+    &_row1{
+        
+        margin: 0 500px;
+        color: $white;
+    }
+
+    &_cursor{
+        cursor: pointer;
+    }
+
+    &_row2{
+        margin: 0 500px;
+        color: $white;
+    }
+    &_shopping_note{
+        padding-left: 3%;
+    }
+
+}

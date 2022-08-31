@@ -1,3 +1,5 @@
+@import '../../styles/custom_variables';
+
 .blog_banner {
   max-height: 450px;
 
@@ -11,6 +13,7 @@
 
   &_img {
     max-height: 300px;
+    object-fit: cover;
     @media (min-width: 576px) {
       max-height: 400px;
     }

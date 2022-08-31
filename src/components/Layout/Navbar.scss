@@ -1,0 +1,63 @@
+@import '../../styles/custom_variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+
+.navbar{
+  background-color: $skin-brighter;
+
+  padding: 0;
+  img{
+    width: 11rem;
+  }
+  p{
+    font-family: 'Reggae One', cursive;
+    color: $secondary;
+  }
+  .searchInput{
+    width: 13rem;
+    height: 2rem;
+    border: 2px solid $secondary;
+    border-radius: .5rem;
+    background-color: $skin-brighter;
+    padding: .5rem;
+    outline-color: $primary;
+  }
+
+  button{
+    background-color: $skin-brighter;
+  }
+
+
+}
+
+
+.navbar_awesomeIcon{
+  color:$secondary;
+  &:hover{
+    color: $primary;
+  }
+}
+
+
+
+
+.navbar_list{
+
+  li:before{
+    content:'|';
+    margin: 0 2rem;
+    color:$secondary;
+  }
+  li:first-child:before{
+    display: none;
+  }
+}
+
+.navbar_link{
+  color: $secondary;
+  font-weight: 700;
+  letter-spacing:1px;
+}
+
+
