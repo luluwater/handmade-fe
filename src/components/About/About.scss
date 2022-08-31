@@ -2,15 +2,12 @@
 
 .about_banner {
   max-height: 450px;
-
   @media (min-width: 576px) {
     max-height: 400px;
   }
-
   @media (min-width: 768px) {
     max-height: 600px;
   }
-
   &_img {
     object-fit: cover;
     max-height: 300px;

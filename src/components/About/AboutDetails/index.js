@@ -17,7 +17,7 @@ const AboutDetails = () => {
           </div>
           <div className="about_details_box ms-8 mt-5" />
         </Col>
-        <Row>
+        <Row className="about_details_mobile">
           <Col className="d-flex justify-content-end p-0">
             <img
               className="about_details_img img-fluid"

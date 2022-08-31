@@ -6,11 +6,6 @@
   @media (min-width: 576px) {
     max-height: 400px;
   }
-  
-  @media (min-width: 768px) {
-    max-height: 600px;
-  }
-  
   &_img {
     object-fit: cover;
     max-height: 300px;
@@ -70,7 +65,7 @@
   }
 }
 
-.news_Coupon {
+.news_coupon {
   &_text {
       font-size: $h3-font-size;
       letter-spacing: 3px;
@@ -107,5 +102,27 @@
     //     outline: none!important
         
     //   }
+  }
+}
+.news_card {
+  background-color: $skin-bright;
+  width: 1200px;
+  overflow: hidden;
+  &_title {
+    letter-spacing: 3px;
+    color:$gray-darker;
+  }
+  &_card {
+    // width: 1200px;
+  }
+  &_favorite {
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+  }
+  &_img {
+    object-fit: cover;
+    // width: 280px;
   }
 }
