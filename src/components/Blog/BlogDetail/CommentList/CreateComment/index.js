@@ -6,27 +6,17 @@ import { useDispatch } from 'react-redux'
 import { useRepliesQuery } from '../../../../../services/replyApi'
 import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
-import { useCreateCommentMutation } from '../../../../../services/commentApi'
+import moment from 'moment'
+import { getComment } from '../../../../../slices/comment-slice'
+import { useCreateReplyMutation } from '../../../../../services/commentApi'
 
-const CreateComment = () => {
+const CreateComment = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()
-  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const dispatch = useDispatch()
 
-  const comment = {
-    id: uuidv4(),
-    content: inputValue,
-    user_id: '27',
-    blog_id: '72',
-    comment_date: '2025-07-15 23:13:23',
-  }
-
-  const [createComment] = useCreateCommentMutation()
-  /**
-   * TODO: 把資料傳送出去到資料庫，要
-   * @param {*}
-   */
+  const [createReply] = useCreateReplyMutation()
 
   const handleChange = (e) => {
     setInputValue(e.target.value)
@@ -36,14 +26,29 @@ const CreateComment = () => {
     setOpen(!open)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    createComment(comment)
-    console.log('work')
-  }
   useEffect(() => {
     dispatch(getReply(data))
   }, [data])
+
+  /**
+   * 把回覆傳送給後端和更新 slice
+   * @param {event} e
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const reply = {
+      id: uuidv4(),
+      reply_content: inputValue,
+      //USER_ID 從 LOCAL STROAGE拿
+      user_id: '1',
+      reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
+      comment_id: commentId,
+    }
+    createReply(reply)
+    dispatch(getComment(data))
+  }
+  // console.log(moment().format('YYYY-MM-DD h:mm:ss'))
 
   return (
     <>

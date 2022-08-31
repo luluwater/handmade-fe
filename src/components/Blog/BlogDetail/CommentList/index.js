@@ -27,12 +27,12 @@ const CommentList = () => {
 
   const commentList = useSelector((state) => state.commentReducer.comment)
 
-
   return (
     <>
       {commentList?.map((item) => (
         <CommentItem
           key={item.comment_id}
+          commentId={item.comment_id}
           user={item.name}
           userAvatar={item.avatar}
           content={item.content}

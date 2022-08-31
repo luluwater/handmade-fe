@@ -1,7 +1,13 @@
 import Reply from '../Reply'
 import CreateComment from '../CreateComment'
 
-const CommentItem = ({ user, content, commentTime, filterReply }) => {
+const CommentItem = ({
+  commentId,
+  user,
+  content,
+  commentTime,
+  filterReply,
+}) => {
   return (
     <>
       <div className="mx-4 border-bottom border-dark d-flex flex-column mb-4">
@@ -28,7 +34,7 @@ const CommentItem = ({ user, content, commentTime, filterReply }) => {
             reply={item.reply_content}
           />
         ))}
-        <CreateComment />
+        <CreateComment commentId={commentId} />
       </div>
     </>
   )
