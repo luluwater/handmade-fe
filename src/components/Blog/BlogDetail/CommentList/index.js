@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import CommentItem from './CommentItem'
 import moment from 'moment'
-import { useCommentsQuery } from '../../../../services/commentAPI'
+import { useCommentsQuery } from '../../../../services/commentApi'
+import { useSelector, useDispatch } from 'react-redux'
+import { getComment } from '../../../../slices/comment-slice'
 
 const CommentList = () => {
   const { blogId } = useParams()
   const { data, error, isLoading } = useCommentsQuery(blogId)
-  console.log(data)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getComment(data))
+  }, [data])
+
+  const commentList = useSelector((state) => state.commentReducer.comment)
 
   return (
     <>
-      {data?.map((item) => (
+      {commentList?.map((item) => (
         <CommentItem
           key={item.comment_id}
           user={item.name}

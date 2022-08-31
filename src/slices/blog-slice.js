@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  data: [],
-  // 長度:
-  // 目前
+  blog: [],
 }
 
 export const blogSlice = createSlice({
@@ -11,16 +9,10 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     addBlog: (state, action) => {
-      state.data.push(action.payload)
+      state.blog.push(action.payload)
     },
     getBlog: (state, action) => {
-      console.log(state.data)
-      state.data = action.payload
-    },
-
-    pagation: (state, action) => {
-      console.log(state.data)
-      state.data = action.payload
+      state.blog = action.payload
     },
   },
 })

@@ -1,12 +1,31 @@
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
-import { useState } from 'react'
-import { useCreateCommentMutation } from '../../../../../services/commentAPI'
 import { v4 as uuidv4 } from 'uuid'
+import moment from 'moment'
+import React, { useState, useEffect } from 'react'
+
+import { useCreateCommentMutation } from '../../../../../services/commentApi'
+import { useRepliesQuery } from '../../../../../services/replyApi'
+import { useSelector, useDispatch } from 'react-redux'
+import { getReply } from '../../../../../slices/reply-slice'
 
 const Reply = () => {
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const dispatch = useDispatch()
+  const { data, error, isLoading } = useRepliesQuery()
+
+  useEffect(() => {
+    dispatch(getReply(data))
+  }, [])
+
+  const replyList = useSelector((state) => state.replyReducer.reply)
+  const commentList = useSelector((state) => state.commentReducer.comment)
+
+  // const filterData = commentList.map((item) => {
+  //   console.log(item.comment_id)
+  // })
+  // console.log(commentList)
 
   const comment = {
     id: uuidv4(),
@@ -15,6 +34,7 @@ const Reply = () => {
     blog_id: '72',
     comment_date: '2025-07-15 23:13:23',
   }
+
   const [createComment] = useCreateCommentMutation()
   /**
    * TODO: 把資料傳送出去到資料庫，要
@@ -34,22 +54,26 @@ const Reply = () => {
     createComment(comment)
     console.log('work')
   }
+
   return (
     <>
-      <div className="w-100 w-md-50 ms-auto mb-4 bg-skin-bright p-3">
-        <div className="d-flex align-items-end gap-3 mb-2">
-          <div className="d-flex align-items-end gap-2">
-            <img
-              className="user_image"
-              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              alt="user avatar"
-            />{' '}
-            <span>user</span>
+      {replyList?.map((item) => (
+        <div className="w-100 w-md-50 ms-auto mb-4 bg-skin-bright p-3">
+          <div className="d-flex align-items-end gap-3 mb-2">
+            <div className="d-flex align-items-end gap-2">
+              <img
+                className="user_image"
+                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                alt="user avatar"
+              />{' '}
+              <span>{item.name}</span>
+            </div>
+            <div>{moment(item.reply_date).format('YYYY-MM-DD')}</div>
           </div>
-          <div>2021-07-15</div>
+          {item.reply_content}
         </div>
-        人做得到，那我也可以做到。不要先入為主覺得好玩很複雜，實際上，好玩可能比你想的還要更複雜
-      </div>
+      ))}
+
       <button
         onClick={() => setOpen(!open)}
         aria-controls="comment-collapse"
