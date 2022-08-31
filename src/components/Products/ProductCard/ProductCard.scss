@@ -1,7 +1,6 @@
 .product_card{
   width: 260px;
-  // height: 23.5rem;
-  overflow: hidden;
+  // height: 23.5rem;  
 }
 .product_card .row{
  height: 90px;
@@ -20,9 +19,7 @@
     }
   }
 }
-.card_faverite{
-  border: none;
-  border-radius: 50%;
+.card_faverite{  
   width: 3rem;
   height: 3rem;
 }

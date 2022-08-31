@@ -31,7 +31,7 @@ function ProductCard({
 }) {
   const states = useSelector((state) => state.showProductCard)
   return (
-    <Card className="product_card m-2 p-0">
+    <Card className="product_card border-0 bg-transparent m-2 p-0">
       <Swiper
         modules={[Navigation]}
         navigation
@@ -39,7 +39,7 @@ function ProductCard({
         speed={800}
         slidesPerView={1}
         loop
-        className="card_swiper"
+        className="card_swiper rounded shadow"
       >
         {getImgsRouter(imgs, category, productId).map((v, i) => {
           return (
@@ -49,7 +49,7 @@ function ProductCard({
           )
         })}
       </Swiper>
-      <Row className="justify-content-between align-items-center mx-1">
+      <Row className="justify-content-between align-items-center">
         <Col xs={8} className="mt-2">
           <p className="mb-1  text-truncate">
             <small>| {storeName} |</small>
@@ -58,7 +58,7 @@ function ProductCard({
           <p className="text-primary fw-bold">${price}</p>
         </Col>
         <Col xs={4} className="text-end">
-          <button className="bg-primary card_faverite">
+          <button className="bg-primary card_faverite border-0  rounded-circle">
             <FontAwesomeIcon
               icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
               inverse

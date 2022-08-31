@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
-import Filter from '../components/Filter/Filter'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 
 function Proudcts() {
@@ -12,7 +11,7 @@ function Proudcts() {
     <Container fluid className="m-3 mx-auto ">
       <Row>
         <Col lg={4} xl={3}>
-          <Filter></Filter>
+          
         </Col>
         <Col>
           <div className="d-flex justify-content-center">
