@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
+import FilterKeyword from '../components/FIlter/FilterKeyword'
 
 function Proudcts() {
   const { data, error, isLoading } = useGetProductListQuery()
-  console.log(data);
+  console.log(data)
 
   return (
     <Container fluid className="m-3 mx-auto ">
       <Row>
         <Col lg={4} xl={3}>
-          
+          <FilterKeyword />
         </Col>
         <Col>
           <div className="d-flex justify-content-center">
