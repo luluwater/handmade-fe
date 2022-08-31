@@ -31,7 +31,7 @@ function ProductCard({
 }) {
   const states = useSelector((state) => state.showProductCard)
   return (
-    <Card className="product_card border-0 bg-transparent m-2 p-0">
+    <Card className="product_card border-0 bg-transparent m-2 p-0 text-gray-dark">
       <Swiper
         modules={[Navigation]}
         navigation
