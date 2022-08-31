@@ -6,10 +6,12 @@ import HomeHotCourse from '../components/Home/HomeHotCourse'
 import HomeHotProduct from '../components/Home/HomeHotProduct'
 import HomeCategory from '../components/Home/HomeCategory'
 import HomeBlog from '../components/Home/HomeBlog'
+import Video from '../components/Home/HomeVideo'
 
 const Home = () => {
   return (
     <>
+      <Video />
       <Container>
         <Row>
           <Col>
