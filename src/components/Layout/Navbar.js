@@ -36,7 +36,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <Link to="/">
+            <Link to="/login">
               <FontAwesomeIcon
                 icon="fa-solid fa-user"
                 size="xl"
