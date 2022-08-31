@@ -4,9 +4,10 @@ import CommentItem from './CommentItem'
 import moment from 'moment'
 import { useCommentsQuery } from '../../../../services/commentAPI'
 
-const CommentList = ({ user, content, commentTime }) => {
+const CommentList = () => {
   const { blogId } = useParams()
   const { data, error, isLoading } = useCommentsQuery(blogId)
+  console.log(data)
 
   return (
     <>

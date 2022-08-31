@@ -1,35 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useGetBlogQuery } from '../../../services/blogApi'
 import { Link, useParams } from 'react-router-dom'
 import Badge from 'react-bootstrap/Badge'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CommentList from './CommentList'
-import Reply from './CommentList/Reply'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
-  const [open, setOpen] = useState(true)
 
   const { data, error, isLoading } = useGetBlogQuery(blogId)
-
-  const [inputValue, setInputValue] = useState('')
-
-  /**
-   * TODO: 把資料傳送出去到資料庫，要
-   * @param {*}
-   */
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-  const handleChange = (e) => {
-    setInputValue(e.target.value)
-  }
-
-  const handleCancel = () => {
-    setInputValue('')
-    setOpen(!open)
-  }
 
   return (
     <>
@@ -108,13 +88,6 @@ const BlogDetail = () => {
           </div>
           <div className="mt-4 container">
             <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>
-            <Reply
-              open={open}
-              handleSubmit={handleSubmit}
-              handleChange={handleChange}
-              handleCancel={handleCancel}
-              inputValue={inputValue}
-            />
           </div>
         </>
       ))}
