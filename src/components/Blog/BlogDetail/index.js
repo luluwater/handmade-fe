@@ -23,7 +23,6 @@ const BlogDetail = () => {
     e.preventDefault()
   }
   const handleChange = (e) => {
-    console.log(e.target.value)
     setInputValue(e.target.value)
   }
 
@@ -105,14 +104,7 @@ const BlogDetail = () => {
           </div>
           <div className="container">
             <h6 className="pb-2 mb-3 fs-md-3 w-25">留言區</h6>
-            {data?.comment.comment.map((item) => (
-              <CommentList
-                key={item.comment_id}
-                user={item.user_id}
-                content={item.content}
-                commentTime={item.comment_date}
-              />
-            ))}
+            <CommentList />
           </div>
           <div className="mt-4 container">
             <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>

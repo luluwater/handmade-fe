@@ -8,10 +8,12 @@ export const commentApiService = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/' }),
   tagTypes: ['Comment'],
   endpoints: (builder) => ({
+    // READ
     comments: builder.query({
-      query: () => '/comment',
-      providesTags: ['Contact'],
+      query: (blogId) => `/comment/${blogId}`,
+      providesTags: ['Comment'],
     }),
+    // CREATE
     createComment: builder.mutation({
       query: (content) => ({
         url: '/comment',
@@ -23,4 +25,4 @@ export const commentApiService = createApi({
   }),
 })
 
-export const { useCreateCommentMutation } = commentApiService
+export const { useCommentsQuery, useCreateCommentMutation } = commentApiService

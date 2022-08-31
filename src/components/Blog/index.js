@@ -7,7 +7,7 @@ import BlogList from './BlogList'
 const Blog = () => {
   return (
     <>
-      <BlogBanner />
+      {/* <BlogBanner /> */}
       <h1
         style={{ height: '130px' }}
         className="bg-black text-white text-center mb-8"
