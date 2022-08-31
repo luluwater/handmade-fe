@@ -7,8 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './ProductCard.scss'
-import { useSelector } from 'react-redux/es/exports'
-import { showProductCard } from '../../../slices/productCard-slice'
+
 import cart from '../../../assets/cart.svg'
 
 function getImgsRouter(imgsName, category, productId) {
@@ -30,7 +29,6 @@ function ProductCard({
   price,
   isFavorite,
 }) {
-  const states = useSelector((state) => state.showProductCard)
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
       <Swiper
@@ -67,7 +65,7 @@ function ProductCard({
             />
           </button>
           <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
-            <img src={cart} alt="" className='cart'/>
+            <img src={cart} alt="" className="cart" />
             {/* <FontAwesomeIcon
               icon="fa-solid fa-cart-shopping"
               inverse
