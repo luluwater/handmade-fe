@@ -58,7 +58,7 @@ function ProductCard({
           <p className="text-primary fw-bold">${price}</p>
         </Col>
         <Col xs={4} className="text-end">
-          <button className="bg-primary card_faverite border-0  rounded-circle">
+          <button className="bg-primary card_favorite border-0  rounded-circle">
             <FontAwesomeIcon
               icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
               inverse
