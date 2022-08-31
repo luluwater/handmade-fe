@@ -10,7 +10,7 @@ function HomeHotProduct() {
   const Cards = [
     {
       img: Image1,
-      name: '可麗露',
+      name: '苦甜巧克力',
       text: '小型的法式甜點，散發著酒香和香草味。',
       price: '$990',
     },
@@ -47,6 +47,7 @@ function HomeHotProduct() {
   ]
   return (
     <>
+      <h4 className="home_hot_title">熱銷商品</h4>
       <div className="d-flex">
         {Cards.map((v, i) => {
           return (

@@ -3,5 +3,24 @@
 .home_category_pic{
     width: 200px;
     height: 200px;
-    background-color: $gray-darker;
+    z-index: 1;
+    position: absolute;
+
+}
+.home_category_box{
+    width: 200px;
+    height: 200px; 
+    background: $gray-darker;
+    opacity: .5;
+    z-index: 2;
+    position: absolute;
+}
+.home_category_name{
+    width: 200px;
+    height: 200px; 
+    text-align: center;
+    line-height: 200px;
+    z-index: 5;
+    color: $white;
+    position: relative;
 }

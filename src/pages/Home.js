@@ -5,6 +5,7 @@ import HomeNewActive from '../components/Home/HomeNewActive'
 import HomeHotCourse from '../components/Home/HomeHotCourse'
 import HomeHotProduct from '../components/Home/HomeHotProduct'
 import HomeCategory from '../components/Home/HomeCategory'
+import HomeBlog from '../components/Home/HomeBlog'
 
 const Home = () => {
   return (
@@ -26,6 +27,9 @@ const Home = () => {
         </Row>
         <Row>
           <HomeCategory />
+        </Row>
+        <Row>
+          <HomeBlog />
         </Row>
       </Container>
     </>

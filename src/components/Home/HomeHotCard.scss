@@ -1,5 +1,16 @@
 @import '../../styles/custom_variables';
+.home_hot_title{
+    display: inline-block;
+    width: 160px;
+    padding: 10px;
+    margin: 50px auto;
+    letter-spacing: 5px;
+    text-align: center;
+    border-bottom: 2px $gray-darker solid;
+    color: $gray-darker;
+    font-weight: 600;
 
+}
 .home_hotCard{
     width: 420px;
     height: 610px;

@@ -48,6 +48,7 @@ function HomeHotCourse() {
   ]
   return (
     <>
+      <h4 className="home_hot_title">熱門課程</h4>
       <div className="d-flex">
         {Cards.map((v, i) => {
           return (

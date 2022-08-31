@@ -17,14 +17,19 @@ function HomeCategory() {
   ]
   return (
     <>
-      {Category.map((v, i) => {
-        return (
-          <div key={v.img}>
-            <img className="home_category_pic" src={v.img} alt="" />
-            <h5 className="home_category_name">{v.name}</h5>
-          </div>
-        )
-      })}
+      <div className="d-flex justify-content-between">
+        {Category.map((v, i) => {
+          return (
+            <div key={v.img}>
+              <img className="home_category_pic" src={v.img} alt="" />
+              <div className="home_category_box"></div>
+              <a href="#/">
+                <h5 className="home_category_name">{v.name}</h5>
+              </a>
+            </div>
+          )
+        })}
+      </div>
     </>
   )
 }
