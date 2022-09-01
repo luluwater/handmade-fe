@@ -1,5 +1,5 @@
 import Reply from '../Reply'
-import CreateComment from '../CreateComment'
+import CreateReply from '../CreateReply'
 
 const CommentItem = ({
   commentId,
@@ -25,16 +25,19 @@ const CommentItem = ({
         </div>
         <p>{content}</p>
 
-        {filterReply?.map((item) => (
-          <Reply
-            key={item.reply_id}
-            avatar={item.avatar}
-            createTime={item.reply_date}
-            name={item.name}
-            reply={item.reply_content}
-          />
-        ))}
-        <CreateComment commentId={commentId} />
+        <div className="h-50">
+          {filterReply?.map((item) => (
+            <Reply
+              key={item.reply_id}
+              id={item.reply_id}
+              avatar={item.avatar}
+              createTime={item.reply_date}
+              name={item.name}
+              reply={item.reply_content}
+            />
+          ))}
+        </div>
+        <CreateReply commentId={commentId} />
       </div>
     </>
   )

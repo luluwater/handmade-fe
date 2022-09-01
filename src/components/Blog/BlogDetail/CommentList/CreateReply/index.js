@@ -1,16 +1,20 @@
 import React from 'react'
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useRepliesQuery } from '../../../../../services/replyApi'
-import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import { getComment } from '../../../../../slices/comment-slice'
 import { useCreateReplyMutation } from '../../../../../services/replyApi'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-const CreateComment = ({ commentId }) => {
+import {
+  useRepliesQuery,
+  useCreateReplyMutation,
+} from '../../../../../services/replyApi'
+import { getReply, displayToast } from '../../../../../slices/reply-slice'
+
+const CreateReply = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -28,27 +32,32 @@ const CreateComment = ({ commentId }) => {
 
   useEffect(() => {
     dispatch(getReply(data))
-  }, [data])
+  }, [data, dispatch])
+
+  // 要傳送的物件
+  const reply = {
+    id: uuidv4(),
+    reply_content: inputValue,
+    //USER_ID 從 LOCAL STROAGE拿
+    user_id: '1',
+    reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
+    comment_id: commentId,
+  }
 
   /**
    * 把回覆傳送給後端和更新 slice
    * @param {event} e
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const reply = {
-      id: uuidv4(),
-      reply_content: inputValue,
-      //USER_ID 從 LOCAL STROAGE拿
-      user_id: '1',
-      reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
-      comment_id: commentId,
+    try {
+      await setInputValue('')
+      await createReply(reply)
+      await dispatch(displayToast(true))
+    } catch (e) {
+      console.log(e)
     }
-    createReply(reply)
-    dispatch(getComment(data))
   }
-  // console.log(moment().format('YYYY-MM-DD h:mm:ss'))
 
   return (
     <>
@@ -72,6 +81,7 @@ const CreateComment = ({ commentId }) => {
             />
             <div className="d-flex justify-content-end gap-3 align-items-center my-4">
               <button
+                type="button"
                 onClick={handleCancel}
                 className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-none d-md-block"
               >
@@ -91,4 +101,4 @@ const CreateComment = ({ commentId }) => {
   )
 }
 
-export default CreateComment
+export default CreateReply

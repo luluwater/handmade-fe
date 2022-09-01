@@ -23,13 +23,11 @@ const CommentList = () => {
 
   useEffect(() => {
     dispatch(getComment(finalComment))
-  }, [data, replyList])
-
-  const commentList = useSelector((state) => state.commentReducer.comment)
+  }, [dispatch, finalComment])
 
   return (
     <>
-      {commentList?.map((item) => (
+      {finalComment?.map((item) => (
         <CommentItem
           key={item.comment_id}
           commentId={item.comment_id}

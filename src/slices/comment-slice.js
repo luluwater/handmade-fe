@@ -8,12 +8,11 @@ export const commentSlice = createSlice({
   name: 'comment',
   initialState,
   reducers: {
-    addComment: (state, action) => {
-      state.comment.push(action.payload)
-    },
     getComment: (state, action) => {
-      console.log('接收到的 payload', action.payload)
       state.comment = action.payload
+    },
+    addComment: (state, action) => {
+      console.log(action.payload)
     },
   },
 })
