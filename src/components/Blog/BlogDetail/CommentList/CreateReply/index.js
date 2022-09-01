@@ -14,7 +14,6 @@ import { displayToast } from '../../../../../slices/reply-slice'
 
 const CreateReply = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()
-
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const dispatch = useDispatch()
