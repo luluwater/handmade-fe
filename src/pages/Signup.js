@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Login_SignUp_img/Login.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import LoginImg from '../src/assets/HANDMADE_LOGO.png'
+// import LoginImg from '../src/assets/HANDMADE_LOGO.png'
 const SignUp = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (

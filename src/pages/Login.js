@@ -36,7 +36,7 @@ const Login = () => {
             <br />
             <input type="submit" value="登入" className="Login" />
             <br />
-            <Link to="/Signup.js">
+            <Link to="/SignUp">
               <input type="submit" value="註冊" className="SignUp" />
             </Link>
             <h4 className="footerLogin text-center">or Login with</h4>
