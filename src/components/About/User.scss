@@ -64,19 +64,98 @@
       height: 577px;
       background-color: $skin-bright;
     }
-    &_title {
-      width: 80npm0px;
-      color: $gray-darker;
-      letter-spacing: 3px;
-      color: $gray-darker;
-      border-bottom: 1px solid $gray-darker;
+  &_title {
+    width: 800px;
+    color: $gray-darker;
+    letter-spacing: 3px;
+    color: $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+    padding-bottom:10px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top: 2rem;
+  }
+  &_header {
+    width: 300px;
+    color: $gray-darker;
+    letter-spacing: 3px;
+    color: $gray-darker;
+    padding: 15px;
+  }
+  &_btn {
+    width: 120px;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    color: $gray-darker;
+    background-color: $skin-brighter !important;
+    &:hover {
+      // background-color: $secondary;
+      color: $secondary;
     }
-    &_header {
-      width: 300px;
-      height: 50px;
-      color: $gray-darker;
-      letter-spacing: 3px;
-      color: $gray-darker;
-    }
+  }
+  &_input {
+    width: 350px;
+    background-color: $skin-brighter !important;
+    // height: 40px;
+    // margin: 0;
+  }
+  // &_update {
+  //   color: $gray-darker;
+  //   width: 100px;
+  //   margin: 0;
+  // }
+  // &_input {
+  //   width: 400px;
+  // }
 }
+
+.user_password {
+    position: absolute;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%);
+  &_card {
+    display: flex;
+    position: absolute;
+    top: 50%;  
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 600px;
+    height: 300px;
+    background-color: $skin-brighter;
+    box-shadow :  10px 10px 15px rgba(129, 129, 129, 0.082);
+    // opacity: .5;
+  }
+  &_update {
+    color: $gray-darker;
+    width: 100px;
+    margin: 0;
+  }
+  &_input {
+    width: 250px;
+    background-color: $skin-brighter;
+  }
+  &_btn {
+    width: 130px;
+    height: 40px;
+    color: $skin-brighter;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    background-color: $primary;
+    &:hover {
+      background-color: $secondary;
+      color: $skin-brighter;
+    }
+  }
+  &_show {
+    border: none;
+    color: $secondary-dark;
+  }
+}
+
+
 
