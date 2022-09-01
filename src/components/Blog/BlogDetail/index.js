@@ -6,6 +6,9 @@ import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CommentList from './CommentList'
 import Toasts from '../../UI/Toasts'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
@@ -15,6 +18,7 @@ const BlogDetail = () => {
     <>
       <div className="position-relative">
         <Toasts />
+
         {data?.blog.map((item) => (
           <>
             <ul className="list-unstyled d-flex text-black mt-4 ms-3">
@@ -31,7 +35,7 @@ const BlogDetail = () => {
                 /
               </li>
               <li>
-                <Link className="text-secondary-dark p-3 " to="login">
+                <Link className="text-secondary-dark p-3 " to={item.blog_id}>
                   {item.category_name}
                 </Link>
               </li>
@@ -90,6 +94,9 @@ const BlogDetail = () => {
             </div>
             <div className="mt-4 container">
               <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>
+              <div>
+                <CKEditor editor={BalloonEditor} />
+              </div>
             </div>
           </>
         ))}

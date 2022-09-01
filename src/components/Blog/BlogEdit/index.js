@@ -1,7 +1,8 @@
 import React from 'react'
+import Editor from './Editor'
 
 const BlogEdit = () => {
-  return <div>BlogEdit</div>
+  return <Editor />
 }
 
 export default BlogEdit

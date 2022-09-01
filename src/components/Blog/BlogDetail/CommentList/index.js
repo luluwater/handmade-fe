@@ -23,7 +23,7 @@ const CommentList = () => {
 
   useEffect(() => {
     dispatch(getComment(finalComment))
-  }, [data, replyList])
+  }, [dispatch, finalComment])
 
   return (
     <>

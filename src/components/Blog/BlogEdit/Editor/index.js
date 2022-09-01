@@ -3,7 +3,7 @@ import parse from 'html-react-parser'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 // import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import axios from 'axios'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 const API_URL = 'http://localhost:8080'
 const UPLOAD_ENDPOINT = 'upload_files'
@@ -14,12 +14,11 @@ const Editor = () => {
 
   const handleChange = (e, editor) => {
     const data = editor.getData()
-    console.log(data)
     setVal(data)
   }
 
   /**
-   * TODO 目前是一上傳就把圖片打進路由裡面，現在要把他改成 "按下" 送出按鈕才把檔案送出，並載入。
+   * TODO: 目前是一上傳就把圖片打進路由裡面，現在要把他改成 "按下" 送出按鈕才把檔案送出，並載入。
    * @param {loader} loader
    * @returns 回傳upload 函式
    */
@@ -73,7 +72,7 @@ const Editor = () => {
     <>
       <div className="">
         <CKEditor
-          editor={ClassicEditor}
+          // editor={BalloonEditor}
           config={{
             extraPlugins: [uploadPlugin],
           }}
@@ -86,9 +85,9 @@ const Editor = () => {
           onFocus={(event, editor) => {}}
         />
       </div>
-      <button className="btn btn-info" type="submit" onClick={submitBlog}>
+      {/* <button className="btn btn-info" type="submit" onClick={submitBlog}>
         {addedData ? 'Hide Data' : 'Show Data'}
-      </button>
+      </button> */}
       <div>{addData ? parse(addData) : ''}</div>
     </>
   )

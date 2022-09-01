@@ -1,25 +1,36 @@
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  EffectFade,
+  Autoplay,
+} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 import 'swiper/scss/autoplay'
+import 'swiper/scss/effect-fade'
 import '../Blog.scss'
+
 import images from '../../../image'
 
 const BlogBanner = () => {
+  SwiperCore.use([Autoplay])
   return (
     <>
       <Swiper
-        className="bg-skin-bri  ght h-100 mb-12"
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        className=" h-100 mb-12"
+        modules={[Navigation, Pagination, Scrollbar, A11y, EffectFade]}
         spaceBetween={0}
         slidesPerView={1}
-        autoplay
+        autoplay={{ delay: 2000 }}
+        loop={true}
+        effect="fade"
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: false }}
-        // onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
       >
         {images.map((img) => (

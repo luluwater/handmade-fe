@@ -1,16 +1,16 @@
 import React from 'react'
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useRepliesQuery } from '../../../../../services/replyApi'
-import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
-import { useCreateReplyMutation } from '../../../../../services/replyApi'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { displayToast } from '../../../../../slices/reply-slice'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import {
+  useRepliesQuery,
+  useCreateReplyMutation,
+} from '../../../../../services/replyApi'
+import { getReply, displayToast } from '../../../../../slices/reply-slice'
 
 const CreateReply = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()
@@ -19,8 +19,6 @@ const CreateReply = ({ commentId }) => {
   const dispatch = useDispatch()
 
   const [createReply] = useCreateReplyMutation()
-
-  const MySwal = withReactContent(Swal)
 
   const handleChange = (e) => {
     setInputValue(e.target.value)
@@ -32,7 +30,7 @@ const CreateReply = ({ commentId }) => {
 
   useEffect(() => {
     dispatch(getReply(data))
-  }, [data])
+  }, [data, dispatch])
 
   // 要傳送的物件
   const reply = {
@@ -81,6 +79,7 @@ const CreateReply = ({ commentId }) => {
             />
             <div className="d-flex justify-content-end gap-3 align-items-center my-4">
               <button
+                type="button"
                 onClick={handleCancel}
                 className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-none d-md-block"
               >
