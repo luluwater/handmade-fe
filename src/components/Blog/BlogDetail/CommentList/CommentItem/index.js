@@ -1,5 +1,5 @@
 import Reply from '../Reply'
-import CreateComment from '../CreateComment'
+import CreateReply from '../CreateReply'
 
 const CommentItem = ({
   commentId,
@@ -36,7 +36,7 @@ const CommentItem = ({
             />
           ))}
         </div>
-        <CreateComment commentId={commentId} />
+        <CreateReply commentId={commentId} />
       </div>
     </>
   )

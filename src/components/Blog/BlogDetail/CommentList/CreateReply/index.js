@@ -7,9 +7,9 @@ import { useRepliesQuery } from '../../../../../services/replyApi'
 import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
-import { useCreateReplyMutation } from '../../../../../services/commentApi'
+import { useCreateReplyMutation } from '../../../../../services/replyApi'
 
-const CreateComment = ({ commentId }) => {
+const CreateReply = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -33,7 +33,7 @@ const CreateComment = ({ commentId }) => {
    * 把回覆傳送給後端和更新 slice
    * @param {event} e
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const reply = {
@@ -44,9 +44,9 @@ const CreateComment = ({ commentId }) => {
       reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
       comment_id: commentId,
     }
-    createReply(reply)
+    await setInputValue('')
+    await createReply(reply)
   }
-  // console.log(moment().format('YYYY-MM-DD h:mm:ss'))
 
   return (
     <>
@@ -89,4 +89,4 @@ const CreateComment = ({ commentId }) => {
   )
 }
 
-export default CreateComment
+export default CreateReply

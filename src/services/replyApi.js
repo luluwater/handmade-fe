@@ -6,23 +6,23 @@ export const replyApiService = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
   }),
-  tagTypes: ['reply'],
+  tagTypes: ['Reply'],
   endpoints: (builder) => ({
     // READ
     replies: builder.query({
       query: () => 'reply',
-      providesTags: ['reply'],
+      providesTags: ['Reply'],
     }),
-    // CREATE
-    // createReply: builder.mutation({
-    //   query: (content) => ({
-    //     url: '/reply',
-    //     method: 'POST',
-    //     body: content,
-    //   }),
-    //   invalidatesTags: ['reply'],
-    // }),
+    //Insert reply
+    createReply: builder.mutation({
+      query: (reply) => ({
+        url: '/reply',
+        method: 'POST',
+        body: reply,
+      }),
+      invalidatesTags: ['Reply'],
+    }),
   }),
 })
 
-export const { useRepliesQuery } = replyApiService
+export const { useRepliesQuery, useCreateReplyMutation } = replyApiService
