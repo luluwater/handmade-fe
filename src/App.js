@@ -12,6 +12,7 @@ import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
 import NoFound from './pages/NoFound'
+import Proudcts from './pages/Products'
 
 const routeConfig = [
   {
@@ -63,6 +64,10 @@ const routeConfig = [
       {
         path: '*',
         element: <NoFound />,
+      },
+      {
+        path: 'product',
+        element: <Proudcts />,
       },
     ],
   },

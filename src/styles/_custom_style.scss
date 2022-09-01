@@ -2,3 +2,25 @@ img {
   max-width: 100%;
   height: auto;
 }
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: rgb(201, 201, 201);
+}
+.swiper-button-prev:hover.swiper-button-prev::after,
+.swiper-button-next:hover.swiper-button-next::after {
+  color: white;
+}
+.product_list{
+  width: 1230px;
+}
+
+@media screen and (max-width:1660px){
+  .product_list{
+    width: 930px;
+  }
+}
+@media screen and (max-width:1260px){
+  .product_list{
+    width: 610px;
+  }
+}
