@@ -12,6 +12,7 @@ import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
 import NoFound from './pages/NoFound'
+import MapSearch from './pages/MapSearch'
 
 const routeConfig = [
   {
@@ -34,6 +35,10 @@ const routeConfig = [
       {
         path: 'blog/:blogId',
         element: <BlogDetailPage />,
+      },
+      {
+        path: 'map',
+        element: <MapSearch />,
       },
       {
         path: 'store',

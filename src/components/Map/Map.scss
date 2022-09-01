@@ -1,0 +1,28 @@
+@import "../../styles/custom_variables";
+.map {
+  height: 100vh;
+  width: 80vw;
+}
+//important
+.leaflet-container{
+  width: 100%;
+  height: 100%;
+}
+.storeCard{
+  max-height: 10rem;
+}
+.storeCard .card-header{
+  // font-weight: bold;
+}
+.storeCard .storeCard_intro{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.storeCard a{  
+  color: $secondary;
+}
+.storeCard a:hover{
+  color: $primary;
+}
