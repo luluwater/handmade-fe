@@ -8,7 +8,7 @@ import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import { getComment } from '../../../../../slices/comment-slice'
-import { useCreateReplyMutation } from '../../../../../services/commentApi'
+import { useCreateReplyMutation } from '../../../../../services/replyApi'
 
 const CreateComment = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()

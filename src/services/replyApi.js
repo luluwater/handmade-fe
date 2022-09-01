@@ -11,15 +11,28 @@ export const replyApiService = createApi({
       providesTags: ['reply'],
     }),
     // CREATE
-    // createReply: builder.mutation({
-    //   query: (content) => ({
-    //     url: '/reply',
-    //     method: 'POST',
-    //     body: content,
-    //   }),
-    //   invalidatesTags: ['reply'],
-    // }),
+    createReply: builder.mutation({
+      query: (reply) => ({
+        url: '/reply',
+        method: 'POST',
+        body: reply,
+      }),
+      invalidatesTags: ['Reply'],
+    }),
+    //DELETE Reply
+    deleteReply: builder.mutation({
+      query: (replyId) => ({
+        url: '/reply',
+        method: 'delete',
+        body: replyId,
+      }),
+      invalidatesTags: ['Reply'],
+    }),
   }),
 })
 
-export const { useRepliesQuery } = replyApiService
+export const {
+  useRepliesQuery,
+  useCreateReplyMutation,
+  useDeleteReplyMutation,
+} = replyApiService
