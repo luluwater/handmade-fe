@@ -11,7 +11,6 @@ export const replyApiService = createApi({
     // READ
     replies: builder.query({
       query: () => 'reply',
-      providesTags: ['Reply'],
     }),
     //Insert reply
     createReply: builder.mutation({
@@ -20,9 +19,20 @@ export const replyApiService = createApi({
         method: 'POST',
         body: reply,
       }),
-      invalidatesTags: ['Reply'],
+    }),
+    //DELETE Reply
+    deleteReply: builder.mutation({
+      query: (replyId) => ({
+        url: '/reply',
+        method: 'delete',
+        body: replyId,
+      }),
     }),
   }),
 })
 
-export const { useRepliesQuery, useCreateReplyMutation } = replyApiService
+export const {
+  useRepliesQuery,
+  useCreateReplyMutation,
+  useDeleteReplyMutation,
+} = replyApiService

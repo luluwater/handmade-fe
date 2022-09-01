@@ -29,6 +29,7 @@ const CommentItem = ({
           {filterReply?.map((item) => (
             <Reply
               key={item.reply_id}
+              id={item.reply_id}
               avatar={item.avatar}
               createTime={item.reply_date}
               name={item.name}

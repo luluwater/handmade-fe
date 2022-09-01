@@ -1,6 +1,20 @@
 import React from 'react'
 import moment from 'moment'
-const Reply = ({ avatar, createTime, name, reply }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSelector } from 'react-redux'
+import { useDeleteReplyMutation } from '../../../../../services/replyApi'
+
+const Reply = ({ id, avatar, createTime, name, reply }) => {
+  const [deleteReply] = useDeleteReplyMutation()
+
+  const handleDelete = async (e) => {
+    const parentEel = e.target.parentElement
+    const targetId = parentEel.dataset.id
+    if (targetId === undefined) return
+
+    await deleteReply({ id: targetId })
+  }
+
   return (
     <>
       <div className="w-100 w-md-50 ms-auto mb-4 bg-skin-bright p-3">
@@ -13,8 +27,13 @@ const Reply = ({ avatar, createTime, name, reply }) => {
             />{' '}
             <span>{name}</span>
           </div>
-          <div className="fs-6 text-muted">
-            {moment(createTime).startOf('hour').fromNow()}
+          <div className="d-flex gap-3">
+            <div className="fs-6 text-muted">
+              {moment(createTime).startOf('hour').fromNow()}
+            </div>
+            <div data-id={id} onClick={handleDelete}>
+              <FontAwesomeIcon className="fs-6" icon="fas fa-times" />
+            </div>{' '}
           </div>
         </div>
         {reply}

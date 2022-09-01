@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import NoFound from './pages/NoFound'
+import ChatRoomPage from './pages/ChatRoomPage'
 
 const routeConfig = [
   {
@@ -33,6 +34,10 @@ const routeConfig = [
       {
         path: 'blog/:blogId',
         element: <BlogDetailPage />,
+      },
+      {
+        path: 'chat',
+        element: <ChatRoomPage />,
       },
       {
         path: 'store',

@@ -8,14 +8,20 @@ import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import { useCreateReplyMutation } from '../../../../../services/replyApi'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { displayToast } from '../../../../../slices/reply-slice'
 
 const CreateReply = ({ commentId }) => {
   const { data, error, isLoading } = useRepliesQuery()
+
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const dispatch = useDispatch()
 
   const [createReply] = useCreateReplyMutation()
+
+  const MySwal = withReactContent(Swal)
 
   const handleChange = (e) => {
     setInputValue(e.target.value)
@@ -29,23 +35,29 @@ const CreateReply = ({ commentId }) => {
     dispatch(getReply(data))
   }, [data])
 
+  // 要傳送的物件
+  const reply = {
+    id: uuidv4(),
+    reply_content: inputValue,
+    //USER_ID 從 LOCAL STROAGE拿
+    user_id: '1',
+    reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
+    comment_id: commentId,
+  }
+
   /**
    * 把回覆傳送給後端和更新 slice
    * @param {event} e
    */
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const reply = {
-      id: uuidv4(),
-      reply_content: inputValue,
-      //USER_ID 從 LOCAL STROAGE拿
-      user_id: '1',
-      reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
-      comment_id: commentId,
+    try {
+      await setInputValue('')
+      await createReply(reply)
+      await dispatch(displayToast(true))
+    } catch (e) {
+      console.log(e)
     }
-    await setInputValue('')
-    await createReply(reply)
   }
 
   return (
