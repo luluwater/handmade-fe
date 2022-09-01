@@ -1,8 +1,16 @@
 @import url(https://fonts.google.com/noto/specimen/Noto+Sans+TC?query=Not);
 /* @import '../styles/custom_variables'; */
-.border {
-
-  border: 2px solid #ce2626;
+.Frame{
+  margin: 0 auto;
+  background:  #F4EEE8;
+  border: 10px solid #ffffff;
+  border-radius: 20px;
+  max-width:1300px;
+  margin-top:57px
+}
+.border{
+  border-radius:20 solid #ffffff  !important;
+  border: transparent !important;
 }
 h1 {
   font-family: 'Share Tech Mono', monospace;
@@ -14,29 +22,27 @@ h1 {
   color: #5f5c51;
   margin-top: 40px;
 }
-.img {
+img {
   margin-right: 141px;
-  height: 110px;
-  width: 611px;
+  
 }
 .AccountInput {
   margin-top: 3em;
   width: 352px;
   height: 57.72px;
-  left: 0px;
-  top: 81px;
   border: 2px solid #5f5c51;
   border-radius: 10px;
+  padding: 0.75rem;
+  /* text-align:initial; */
 }
 .PasswordInput {
   margin-top: 36px;
   width: 352px;
   height: 57.72px;
-  left: 0px;
-  top: 81px;
   border: 2px solid #5f5c51;
   border-radius: 10px;
   margin-bottom: 18px;
+  padding: 0.75rem;
 }
 ::placeholder {
   font-family: 'Roboto';
@@ -49,6 +55,7 @@ h1 {
 }
 Form {
   position: relative;
+  max-width: auto;
 }
 .ForgetPassword {
   font-family: 'Roboto';
@@ -63,7 +70,7 @@ Form {
   right: 0%;
 }
 .Login {
-  margin-top:35.79px;
+  margin-top: 35.79px;
   width: 352px;
   height: 57.72px;
   background: #e77656;
@@ -80,4 +87,23 @@ Form {
 }
 h4 {
   margin-top: 38.75px;
+}
+.icon{
+  size: 20px;
+  margin-left: 6.85em;
+  margin-top: 18px;
+  margin-bottom: 35px;
+ }
+
+@media screen and (max-width: 576px) {
+  img {
+    display: none;
+  }
+  Frame{
+    width: 100%;
+  }
+  .footerLogin{
+    margin-top: 27px;
+  }
+   
 }
