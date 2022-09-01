@@ -6,6 +6,13 @@ import Image4 from '../../assets/product/product_tufting_145/tufting_商品_Hi-J
 import Image5 from '../../assets/product/product_floral_71/花藝＿商品＿花曜日＿莫蘭迪粉花籃＿2.jpg'
 import Image6 from '../../assets/product/product_metalwork_1/金工_商品_以覺學_流水純銀耳扣 Flow Silver EarCuff_kv2.webp'
 import { Button } from 'react-bootstrap'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+
+import { Navigation, Mousewheel } from 'swiper'
+
 function HomeHotProduct() {
   const Cards = [
     {
@@ -48,23 +55,35 @@ function HomeHotProduct() {
   return (
     <>
       <h4 className="home_hot_title">熱銷商品</h4>
-      <div className="d-flex">
-        {Cards.map((v, i) => {
-          return (
-            <>
-              <div
-                className="home_hotCard d-flex flex-column align-items-center"
-                key={v.name}
-              >
-                <img className="home_hotCard_pic" src={v.img} alt="" />
-                <h5 className="home_hotCard_name">{v.name}</h5>
-                <div className="home_hotCard_text">{v.text}</div>
-                <Button className="home_hotCard_button">{v.price}</Button>
-              </div>
-            </>
-          )
-        })}
-      </div>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        navigation={true}
+        mousewheel={true}
+        loop={true}
+        modules={[Navigation, Mousewheel]}
+        className="mySwiper"
+      >
+        <div className="d-flex">
+          {Cards.map((v, i) => {
+            return (
+              <>
+                <SwiperSlide className="home_hotSwiper">
+                  <div
+                    className="home_hotCard d-flex flex-column align-items-center"
+                    key={v.name}
+                  >
+                    <img className="home_hotCard_pic" src={v.img} alt="" />
+                    <h5 className="home_hotCard_name">{v.name}</h5>
+                    <div className="home_hotCard_text">{v.text}</div>
+                    <Button className="home_hotCard_button">{v.price}</Button>
+                  </div>
+                </SwiperSlide>
+              </>
+            )
+          })}
+        </div>
+      </Swiper>
     </>
   )
 }

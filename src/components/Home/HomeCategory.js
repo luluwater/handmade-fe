@@ -17,13 +17,12 @@ function HomeCategory() {
   ]
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between home_category">
         {Category.map((v, i) => {
           return (
-            <div key={v.img}>
-              <img className="home_category_pic" src={v.img} alt="" />
-              <div className="home_category_box"></div>
+            <div key={v.img} className="home_category_box">
               <a href="#/">
+                <img className="home_category_pic" src={v.img} alt="" />
                 <h5 className="home_category_name">{v.name}</h5>
               </a>
             </div>

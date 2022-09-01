@@ -33,7 +33,7 @@ function HomeBlog() {
   return (
     <>
       <h4 className="home_blog_title">最新文章</h4>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between home_blog_card">
         {NewBlog.map((v, i) => {
           return (
             <div key={v.name} className="home_blog">
@@ -47,7 +47,7 @@ function HomeBlog() {
         })}
       </div>
       <h4 className="home_blog_title">熱門文章</h4>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between home_blog_card">
         {HotBlog.map((v, i) => {
           return (
             <div key={v.name} className="home_blog2">

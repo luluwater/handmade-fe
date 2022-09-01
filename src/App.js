@@ -19,7 +19,7 @@ const routeConfig = [
     element: <Layout />,
     children: [
       {
-        path: 'home',
+        path: '/',
         element: <Home />,
       },
 

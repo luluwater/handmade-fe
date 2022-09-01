@@ -3,7 +3,7 @@
     display: inline-block;
     width: 160px;
     padding: 10px;
-    margin: 50px auto;
+    margin: 0 auto 50px;
     letter-spacing: 5px;
     text-align: center;
     border-bottom: 2px $gray-darker solid;
@@ -14,7 +14,6 @@
 .home_hotCard{
     width: 420px;
     height: 610px;
-
 
     &_pic{
         display: inline-block;
@@ -62,4 +61,21 @@
         outline: none;
         box-shadow:none;
     }
+}
+
+.swiper-button-prev, .swiper-button-next{
+    cursor: default;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    position: relative;
+    bottom: 110px;
+}
+@media screen and (max-width:576px){
+    
+    .home_hotSwiper{
+        margin: 0 200px;
+    }
+
 }

@@ -16,7 +16,7 @@ function HomeNewStore() {
               <br />
               源於 Lucid Dream 的嚮往。
               <br />
-              期盼建立起一個這樣的空間用雙手實踐。
+              期盼建立起一個空間用雙手實踐。
             </div>
             <Button className="home_newStore_content_button">查看店家</Button>
           </div>

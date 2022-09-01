@@ -7,6 +7,13 @@ import Image5 from '../../assets/course/course_bakery_41/課程_花貓_基礎海
 import Image6 from '../../assets/course/course_floral_28/花藝＿課程＿草地學花＿原木乾燥桌花＿1.jpg'
 
 import { Button } from 'react-bootstrap'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+
+import { Navigation, Mousewheel } from 'swiper'
+
 function HomeHotCourse() {
   const Cards = [
     {
@@ -49,23 +56,35 @@ function HomeHotCourse() {
   return (
     <>
       <h4 className="home_hot_title">熱門課程</h4>
-      <div className="d-flex">
-        {Cards.map((v, i) => {
-          return (
-            <>
-              <div
-                className="home_hotCard d-flex flex-column align-items-center"
-                key={v.name}
-              >
-                <img className="home_hotCard_pic" src={v.img} alt="" />
-                <h5 className="home_hotCard_name">{v.name}</h5>
-                <div className="home_hotCard_text">{v.text}</div>
-                <Button className="home_hotCard_button">{v.price}</Button>
-              </div>
-            </>
-          )
-        })}
-      </div>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        navigation={true}
+        mousewheel={true}
+        loop={true}
+        modules={[Navigation, Mousewheel]}
+        className="mySwiper"
+      >
+        <div className="d-flex aaaaaaaaa">
+          {Cards.map((v, i) => {
+            return (
+              <>
+                <SwiperSlide className="home_hotSwiper">
+                  <div
+                    className="home_hotCard d-flex flex-column align-items-center"
+                    key={v.name}
+                  >
+                    <img className="home_hotCard_pic" src={v.img} alt="" />
+                    <h5 className="home_hotCard_name">{v.name}</h5>
+                    <div className="home_hotCard_text">{v.text}</div>
+                    <Button className="home_hotCard_button">{v.price}</Button>
+                  </div>
+                </SwiperSlide>
+              </>
+            )
+          })}
+        </div>
+      </Swiper>
     </>
   )
 }

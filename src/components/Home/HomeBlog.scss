@@ -4,7 +4,7 @@
     display: inline-block;
     width: 160px;
     padding: 10px;
-    margin: 50px auto;
+    margin: 100px auto 30px;
     letter-spacing: 5px;
     text-align: center;
     color: $gray-darker;
@@ -41,4 +41,26 @@
     height: 570px;
     position: relative;
     border-bottom: 1px solid $gray-darker;
+}
+
+@media screen and (max-width:576px) {
+    .home_blog_card{
+        width: 530px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .home_blog{
+        margin: 20px 0;
+        width: 600px;
+        height: 450px;
+        position: relative;
+        border-bottom: 1px solid $gray-darker;
+    }    
+    .home_blog2{
+        margin: 20px 0;
+        width: 600px;
+        height: 510px;
+        position: relative;
+        border-bottom: 1px solid $gray-darker;
+    }
 }
