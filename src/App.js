@@ -13,6 +13,7 @@ import BlogDetailPage from './pages/BlogDetailPage'
 
 import NoFound from './pages/NoFound'
 import Proudcts from './pages/Products'
+import ProductDetailPage from './pages/ProductDetailPage'
 
 const routeConfig = [
   {
@@ -68,6 +69,10 @@ const routeConfig = [
       {
         path: 'product',
         element: <Proudcts />,
+      },
+      {
+        path: 'ProductDetailPage',
+        element: <ProductDetailPage />,
       },
     ],
   },
