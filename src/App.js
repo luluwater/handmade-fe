@@ -10,7 +10,6 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
-
 import NoFound from './pages/NoFound'
 
 const routeConfig = [

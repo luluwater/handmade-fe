@@ -7,7 +7,6 @@ import { useRepliesQuery } from '../../../../../services/replyApi'
 import { getReply } from '../../../../../slices/reply-slice'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
-import { getComment } from '../../../../../slices/comment-slice'
 import { useCreateReplyMutation } from '../../../../../services/commentApi'
 
 const CreateComment = ({ commentId }) => {
@@ -46,7 +45,6 @@ const CreateComment = ({ commentId }) => {
       comment_id: commentId,
     }
     createReply(reply)
-    dispatch(getComment(data))
   }
   // console.log(moment().format('YYYY-MM-DD h:mm:ss'))
 

@@ -37,6 +37,7 @@
     "bootstrap": "^5.2.0",
     "css-loader": "^5.2.7",
     "date-fns": "^2.29.2",
+    "dotenv": "^16.0.2",
     "framer-motion": "^7.2.1",
     "html-react-parser": "^3.0.4",
     "moment": "^2.29.4",

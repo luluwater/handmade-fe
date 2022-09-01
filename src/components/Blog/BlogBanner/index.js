@@ -11,7 +11,7 @@ const BlogBanner = () => {
   return (
     <>
       <Swiper
-        className="bg-skin-bright h-100 mb-12"
+        className="bg-skin-bri  ght h-100 mb-12"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={0}
         slidesPerView={1}
