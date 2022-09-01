@@ -7,6 +7,7 @@ import { useDeleteReplyMutation } from '../../../../../services/replyApi'
 const Reply = ({ id, avatar, createTime, name, reply }) => {
   const [deleteReply] = useDeleteReplyMutation()
 
+  //想個辦法同步執行
   const handleDelete = async (e) => {
     const parentEel = e.target.parentElement
     const targetId = parentEel.dataset.id
