@@ -1,13 +1,22 @@
+import { useSelector, useDispatch } from 'react-redux'
 import { useGetStoreListQuery } from '../../services/storeApi'
 import StoreCard from './StoreCard'
+import { getStore } from '../../slices/store-slice'
+import { useEffect } from 'react'
 
 function MapSidebar() {
   const { data, error, isLoading } = useGetStoreListQuery()
-  console.log(data)
+  // console.log(data)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getStore(data))
+  }, [data])
+  const [storeData] = useSelector((state) => state.storeReducer.store)
+  console.log(storeData);
   return (
-    <>
+    <div className="map_Sidebar">
       <h1>List</h1>
-      {data?.map((v) => {
+      {storeData?.map((v) => {
         return (
           <StoreCard
             key={v.id}
@@ -23,7 +32,7 @@ function MapSidebar() {
           />
         )
       })}
-    </>
+    </div>
   )
 }
 

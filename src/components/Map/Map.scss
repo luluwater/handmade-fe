@@ -1,28 +1,43 @@
 @import "../../styles/custom_variables";
 .map {
   height: 100vh;
-  width: 80vw;
+  width: 100%;
 }
 //important
 .leaflet-container{
   width: 100%;
   height: 100%;
 }
-.storeCard{
+.map_storeCard{
   max-height: 10rem;
+  color: $gray-darker;
 }
-.storeCard .card-header{
-  // font-weight: bold;
+.map_storeCard:hover{
+  background-color: rgba(255, 255, 255, 0.89);  
+  color: $dark;
+
 }
-.storeCard .storeCard_intro{
+.map_storeCard img{
+  width: 80px;
+  height: 80px;
+}
+.map_storeCard .card-text{
+  margin-bottom: 0;
+}
+.map_storeCard .map_storeCard_intro{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
-.storeCard a{  
+.map_storeCard a{  
   color: $secondary;
 }
-.storeCard a:hover{
+.map_storeCard a:hover{
   color: $primary;
+}
+.map_Sidebar{
+  height: 100vh;
+  width: 400px;
+  overflow-y: scroll;
 }

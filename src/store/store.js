@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import blogReducer from '../slices/blog-slice'
+import storeReducer from '../slices/store-slice'
 import { blogApiService } from '../services/blogApi'
 import { storeApiService } from '../services/storeApi'
 // import { userApiService } from '../services/userApi'
@@ -12,6 +13,7 @@ const reducers = combineReducers({
    * Reducer 放這裡
    */
   // blogReducer,
+  storeReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   // [userApiService.reducerPath]: userApiService.reducer,

@@ -7,10 +7,10 @@ const MapSearch = () => {
   return (
     <>
       <Row className="gx-0">
-        <Col sm={'auto'}>
+        <Col>
           <Map />
         </Col>
-        <Col className="bg-secondary">
+        <Col sm={'auto'} className="bg-secondary">
           <MapSidebar />
         </Col>
       </Row>
