@@ -24,79 +24,104 @@
 
 .news_details {
   width: 1000px;
+  @media screen and (max-width: 576px) {
+    width: 500px;
+  }
   &_box {
     width: 50px;
     height: 200px;
     border-left: 2px solid;
     border-color: $gray-darker;
-    // -moz-transform:rotate(5deg);
-    // -webkit-transform:rotate(5deg);
-    // -o-transform:rotate(5deg);
-    // -ms-transform:rotate(5deg);
     transform:rotate(30deg);
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
   }
   &_title {
     font-size: $h3-font-size;
     letter-spacing: 3px;
     color:$gray-darker;
+    @media screen and (max-width: 576px) {
+      font-size: $h6-font-size;
+      margin-top: -3rem;
+      margin-bottom: -3rem;
+    }
+  }
+  &_imgBox {
+    height: 500px;
+    width: 500px;
   }
   &_img {
     object-fit: cover;
-    height: 500px;
-    width: 500px;
+    width: 100%;
+    height: 100%;
   }
   &_content {
     color: $gray-darker;
     font-size: $h6-font-size;
-    position: relative;
-    top: 50%;  
-    left: 50%;
-    transform: translate(-50%, -50%);
     line-height: 2;
-  }
-  &_text {
-    font-size: $h3-font-size;
-    letter-spacing: 3px;
-    color: $gray-darker;
     position: relative;
     top: 50%;  
     left: 50%;
     transform: translate(-50%, -50%);
+    // @media screen and (max-width: 576px) {
+    //   margin-top: 3rem;
+    // }
+  }
+}
+
+// 修正區哭哭 //
+@media screen and (max-width: 576px) {
+  .column-revers {
+    flex-direction: column-reverse;
+  }
+  .contentFix {
+    padding: 3rem;
+  }
+  .content2Fix  {
+    top: 7rem;
   }
 }
 
 .news_coupon {
   &_text {
-      font-size: $h3-font-size;
-      letter-spacing: 3px;
-      color: $gray-darker;
+    font-size: $h3-font-size;
+    letter-spacing: 3px;
+    color: $gray-darker;
+    @media screen and (max-width: 576px) {
+      font-size: $h6-font-size;
+      margin-top: 1rem;
+    }
+  }
+  &_imgBox {
+    width: 500px;
+    position: relative;      
+    z-index: -1;
+    margin-top: -3rem;
   }
   &_img {
-      object-fit: cover;
-      width: 500px;
-      position: absolute;
-      z-index: -1;
+    object-fit: cover;
   }
   &_btn {
+    border: none;
+    position: absolute;
+    z-index: 10000;
+    color: $secondary-dark;
+    width: 200px;
+    background-color: $skin-bright;
+    letter-spacing: 3px;
+    font-size: $h3-font-size;
+    &:hover {
       border: none;
-      position: relative;
-      z-index: 10000;
-      color: $secondary-dark;
-      width: 200px;
-      background-color: $skin-bright;
-      letter-spacing: 3px;
-      font-size: $h3-font-size;
-      &:hover {
-        border: none;
-        background-color: $secondary-dark;
-        color: $skin-bright;
-      }
-      &:focus {
-        // border: none;
-        // outline: none;
-        background-color: $secondary-dark;
-        color: $skin-bright;
-      }
+      background-color: $secondary-dark;
+      color: $skin-bright;
+    }
+    &:focus {
+      // border: none;
+      // outline: none;
+      background-color: $secondary-dark;
+      color: $skin-bright;
+    }
     //   &:active {
     //     border: none!important;
     //     outline: none!important
@@ -104,25 +129,55 @@
     //   }
   }
 }
+
 .news_card {
+  padding: 1rem;
+  @media screen and (max-width: 576px) {
+    &_m {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
   background-color: $skin-bright;
   width: 1200px;
   overflow: hidden;
+  &_swiper {
+    max-width: 100%;
+    height: var(--product_card_scale);
+  }
   &_title {
     letter-spacing: 3px;
     color:$gray-darker;
-  }
-  &_card {
-    // width: 1200px;
   }
   &_favorite {
     border: none;
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
+    @media screen and (max-width: 576px) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
   &_img {
     object-fit: cover;
-    // width: 280px;
+    width: 100%;
+    height: auto; 
   }
+  &_cart {
+    width: 25px;
+    height: 25px; 
+  }
+  &_text {
+    letter-spacing: 2px;
+    color:$gray-darker;
+  }
+  &_store {
+    color:$gray-darker;
+  }
+}
+
+.news_card .swiper-button-prev::after,
+.news_card .swiper-button-next::after {
+  font-size: 2rem;
 }

@@ -27,15 +27,17 @@ const NewsDetails = () => {
           </div>
         </Col>
         <Row>
-          <Col className="d-flex justify-content-end p-0">
-            <img
-              className="news_details_img img-fluid"
-              src={NewsImg1}
-              alt="NewsImg1"
-            />
+          <Col sm={12} md={6} className="d-flex justify-content-end p-0">
+            <div className="news_details_imgBox">
+              <img
+                className="news_details_img img-fluid"
+                src={NewsImg1}
+                alt="NewsImg1"
+              />
+            </div>
           </Col>
-          <Col className="p-0">
-            <div className="news_details_content text-center">
+          <Col sm={12} md={6} className="p-0">
+            <div className="contentFix news_details_content text-center">
               今年，在這個屬於每一位女性的紀念日裡，
               <br />
               ［HANDMADE手手］獻上平衡斜槓生活學，
@@ -50,9 +52,9 @@ const NewsDetails = () => {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col className="p-0">
-            <div className="news_details_content text-center">
+        <Row className="column-revers">
+          <Col sm={12} md={6} className="p-0">
+            <div className="content2Fix  news_details_content text-center">
               ［HANDMADE 手手］邀請擁有無與倫比創造力的妳，
               <br />
               把自己歸零、擺脫生活中的所有身分，
@@ -62,12 +64,14 @@ const NewsDetails = () => {
               享受專屬於自己或是與閨蜜們的美好時光。
             </div>
           </Col>
-          <Col className="p-0">
-            <img
-              className="news_details_img img-fluid"
-              src={NewsImg2}
-              alt="NewsImg2"
-            />
+          <Col sm={12} md={6} className="p-0">
+            <div className="news_details_imgBox">
+              <img
+                className="news_details_img img-fluid"
+                src={NewsImg2}
+                alt="NewsImg2"
+              />
+            </div>
           </Col>
         </Row>
       </Container>

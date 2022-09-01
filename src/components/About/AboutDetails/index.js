@@ -18,14 +18,16 @@ const AboutDetails = () => {
           <div className="about_details_box ms-8 mt-5" />
         </Col>
         <Row className="about_details_mobile">
-          <Col className="d-flex justify-content-end p-0">
-            <img
-              className="about_details_img img-fluid"
-              src={DetailImg1}
-              alt="DetailImg1"
-            />
+          <Col sm={12} md={6} className="d-flex justify-content-end p-0">
+            <div className="about_details_imgBox">
+              <img
+                className="about_details_img img-fluid"
+                src={DetailImg1}
+                alt="DetailImg1"
+              />
+            </div>
           </Col>
-          <Col className="p-0">
+          <Col sm={12} md={6} className="p-0">
             <div className="about_details_content text-center">
               哲學家 David Hume 把自我比擬為心靈的舞台，
               <br />
@@ -38,8 +40,8 @@ const AboutDetails = () => {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col className="p-0">
+        <Row className="column-revers">
+          <Col sm={12} md={6} className="p-0">
             <div className="about_details_content text-center">
               每個人都需要藉由某種方式達到自己的身心平衡，生活累了，
               <br />
@@ -51,12 +53,14 @@ const AboutDetails = () => {
               增加生活的樂趣！這就是手手成立的宗旨。
             </div>
           </Col>
-          <Col className="p-0">
-            <img
-              className="about_details_img img-fluid"
-              src={DetailImg2}
-              alt="DetailImg2"
-            />
+          <Col sm={12} md={6} className="p-0">
+            <div className="about_details_imgBox">
+              <img
+                className="about_details_img img-fluid"
+                src={DetailImg2}
+                alt="DetailImg2"
+              />
+            </div>
           </Col>
         </Row>
         <div className="about_details_text d-flex justify-content-center mb-12 mt-12">
