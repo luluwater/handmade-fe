@@ -2,3 +2,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+.storeList_leftSide{
+  @media screen and (max-width:576px){
+    display: none;
+  }
+}

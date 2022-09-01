@@ -11,7 +11,11 @@ import Login from './pages/Login'
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
+import Store from './pages/Store'
+import StoreBanner from '../src/components/Store/StoreBanner'
+
 import NoFound from './pages/NoFound'
+import StoreDetail from './pages/StoreDetail'
 
 const routeConfig = [
   {
@@ -37,7 +41,11 @@ const routeConfig = [
       },
       {
         path: 'store',
-        // element: <Store />,
+        element: <Store />,
+      },
+      {
+        path: 'store/1',
+        element: <StoreDetail />,
       },
       //user router
       // {
