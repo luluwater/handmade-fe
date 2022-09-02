@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGetBlogQuery } from '../../../services/blogApi'
 import { Link, useParams } from 'react-router-dom'
 import Badge from 'react-bootstrap/Badge'
@@ -6,13 +6,53 @@ import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CommentList from './CommentList'
 import Toasts from '../../UI/Toasts'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
+import { v4 as uuidv4 } from 'uuid'
+import Emojis from '../../UI/Emoji'
+import Form from 'react-bootstrap/Form'
+
+import { useCreateCommentMutation } from '../../../services/commentApi'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
   const { data, error, isLoading } = useGetBlogQuery(blogId)
+  const [inputValue, setInputValue] = useState('')
+  const [createComment] = useCreateCommentMutation()
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value)
+  }
+  const handleCancel = () => {
+    setInputValue('')
+  }
+
+  /**
+   * 把回覆傳送給後端和更新 slice
+   * comment 這裡我要拿到的值有
+   * 1. blog_id (從上面的 blog_id 拿)
+   * 2. user_id (從 local stroage 裡面拿)
+   * 3. comment_date (當下的時間)
+   * 4. comment (inputValue)
+   * 5. state 直接寫在資料庫裡
+   * 6. valid 直接寫在資料庫裡
+   * @param {event} e
+   */
+  const comment = {
+    id: uuidv4(),
+    blog_id: blogId,
+    user_id: '3',
+    comment_date: moment().format('YYYY-MM-DD h:mm:ss'),
+    content: inputValue,
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await setInputValue('')
+      await createComment(comment)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <>
@@ -94,9 +134,33 @@ const BlogDetail = () => {
             </div>
             <div className="mt-4 container">
               <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>
-              <div>
-                <CKEditor editor={BalloonEditor} />
-              </div>
+              <form onSubmit={handleSubmit}>
+                <Form.Group id="example-collapse-text">
+                  <Form.Control
+                    className=" bg-skin-bright"
+                    as="textarea"
+                    rows={4}
+                    value={inputValue}
+                    onChange={handleChange}
+                  />
+
+                  <div className="d-flex justify-content-end gap-3 align-items-center my-4">
+                    <button
+                      onClick={handleCancel}
+                      type="button"
+                      className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-none d-md-block"
+                    >
+                      取消
+                    </button>
+                    <button
+                      type="submit"
+                      className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-none d-md-block"
+                    >
+                      送出
+                    </button>
+                  </div>
+                </Form.Group>
+              </form>
             </div>
           </>
         ))}

@@ -6,7 +6,7 @@ export const commentApiService = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
   }),
-  tagTypes: ['Comment', 'Reply'],
+  tagTypes: ['Comment'],
   endpoints: (builder) => ({
     // READ
     comments: builder.query({
@@ -15,27 +15,14 @@ export const commentApiService = createApi({
     }),
     // CREATE
     createComment: builder.mutation({
-      query: (content) => ({
+      query: (comment) => ({
         url: '/comment',
         method: 'POST',
-        body: content,
+        body: comment,
       }),
       invalidatesTags: ['Comment'],
-    }),
-    //Insert reply
-    createReply: builder.mutation({
-      query: (reply) => ({
-        url: '/reply',
-        method: 'POST',
-        body: reply,
-      }),
-      invalidatesTags: ['Reply'],
     }),
   }),
 })
 
-export const {
-  useCommentsQuery,
-  useCreateCommentMutation,
-  useCreateReplyMutation,
-} = commentApiService
+export const { useCommentsQuery, useCreateCommentMutation } = commentApiService

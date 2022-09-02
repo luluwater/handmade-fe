@@ -16,7 +16,7 @@ export const replyApiService = createApi({
     //Insert reply
     createReply: builder.mutation({
       query: (reply) => ({
-        url: '/reply',
+        url: 'reply',
         method: 'POST',
         body: reply,
       }),
@@ -25,7 +25,7 @@ export const replyApiService = createApi({
     //DELETE Reply
     deleteReply: builder.mutation({
       query: (replyId) => ({
-        url: '/reply',
+        url: 'reply',
         method: 'delete',
         body: replyId,
       }),
