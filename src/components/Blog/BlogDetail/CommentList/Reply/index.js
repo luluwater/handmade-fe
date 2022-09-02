@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDeleteReplyMutation } from '../../../../../services/replyApi'
@@ -57,7 +56,7 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
 
   return (
     <>
-      <div className="w-100 w-md-50 ms-auto mb-4 bg-skin-bright p-3">
+      <div className="w-100 w-md-50 ms-auto mb-4 bg-skin-bright p-3 rounded-3">
         <div className="d-flex align-items-end gap-3 justify-content-between mb-3">
           <div className="d-flex align-items-end gap-2">
             <img
@@ -68,9 +67,7 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
             <span>{name}</span>
           </div>
           <div className="d-flex gap-3">
-            <div className="fs-6 text-muted">
-              {moment(createTime).startOf('hour').fromNow()}
-            </div>
+            <div className="fs-6 text-muted">{createTime}</div>
             <div data-id={id} onClick={handleDelete}>
               <FontAwesomeIcon className="fs-6" icon="fas fa-times" />
             </div>{' '}

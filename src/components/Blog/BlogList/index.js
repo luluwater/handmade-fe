@@ -33,12 +33,6 @@ const BlogList = () => {
         </>
       ) : (
         <>
-          <>
-            <BlogItemSkeleton />
-            <BlogItemSkeleton />
-            <BlogItemSkeleton />
-            <BlogItemSkeleton />
-          </>
           <ListGroup className="blog_list">
             {blogList?.map((item) => (
               <BlogItem

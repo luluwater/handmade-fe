@@ -8,11 +8,10 @@ import { getComment } from '../../../../slices/comment-slice'
 
 const CommentList = () => {
   const { blogId } = useParams()
-  const { data, error, isLoading } = useCommentsQuery(blogId)
+  const { data } = useCommentsQuery(blogId)
   const dispatch = useDispatch()
 
   const replyList = useSelector((state) => state.replyReducer.reply)
-  console.log(data)
   const finalComment = data?.map((item) => {
     const filterReply = replyList?.filter((reply) => {
       return item.comment_id === reply.comment_id
@@ -27,17 +26,19 @@ const CommentList = () => {
 
   return (
     <>
-      {finalComment?.map((item) => (
-        <CommentItem
-          key={item.comment_id}
-          commentId={item.comment_id}
-          user={item.name}
-          userAvatar={item.avatar}
-          content={item.content}
-          commentTime={moment(item.commentTime).calendar()}
-          filterReply={item.filterReply}
-        />
-      ))}
+      <div>
+        {finalComment?.map((item) => (
+          <CommentItem
+            key={item.comment_id}
+            commentId={item.comment_id}
+            user={item.name}
+            userAvatar={item.avatar}
+            content={item.content}
+            commentTime={moment(item.commentTime).calendar()}
+            filterReply={item.filterReply}
+          />
+        ))}
+      </div>
     </>
   )
 }

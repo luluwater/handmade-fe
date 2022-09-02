@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CommentList from './CommentList'
 import TextForm from './CommentList/TextForm'
 import Toasts from '../../UI/Toasts'
-import Emojis from '../../UI/Emoji'
 
 import { useGetBlogQuery } from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentApi'
@@ -145,7 +144,7 @@ const BlogDetail = () => {
             </div>
             <div className="mt-4 container">
               <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>
-              <Emojis />
+
               <TextForm
                 inputValue={inputValue}
                 handleSubmit={handleSubmit}
