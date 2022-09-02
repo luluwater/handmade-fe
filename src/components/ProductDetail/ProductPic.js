@@ -32,7 +32,7 @@ function ProductPic() {
     <>
       <Row>
         {/* ========== 左側所有照片 ========== */}
-        <Col className="col-1 detail_swiperL">
+        <Col className="col-3 detail_swiperL">
           <Swiper
             onSwiper={setThumbsSwiper}
             slidesPerView={3}
@@ -56,7 +56,7 @@ function ProductPic() {
         {/* ========== 左側所有照片 ========== */}
 
         {/* ========== 右側大照片 ========== */}
-        <Col className="col-3 detail_swiperR">
+        <Col className="col-8 detail_swiperR">
           <Swiper
             style={{
               '--swiper-navigation-color': '#fff',

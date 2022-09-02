@@ -1,7 +1,7 @@
 @import '../../styles/custom_variables';
 
 .detail_swiperL{
-    margin-left: 20px;
+    // margin-left: 20px;
     &_pic{
         width: 150px;
         height: 150px;
@@ -28,4 +28,8 @@
         width: 470px;
     }
 
+}
+.test{
+    width: 800px;
+    word-break: break-all;
 }
