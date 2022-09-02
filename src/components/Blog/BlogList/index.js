@@ -11,7 +11,7 @@ import BlogItemSkeleton from './BlogItemSkeleton'
  * @returns
  */
 const BlogList = () => {
-  const { data, error, isLoading } = useGetBlogQuery('all')
+  const { data, isLoading } = useGetBlogQuery('all')
   const dispatch = useDispatch()
 
   useEffect(() => {

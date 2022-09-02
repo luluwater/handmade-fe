@@ -19,7 +19,7 @@ import { displayToast } from '../../../slices/reply-slice'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
-  const { data, error, isLoading } = useGetBlogQuery(blogId)
+  const { data } = useGetBlogQuery(blogId)
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
   const dispatch = useDispatch()
