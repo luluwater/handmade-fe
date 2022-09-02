@@ -1,13 +1,13 @@
 import React from 'react'
+import moment from 'moment'
 import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 
 /**
+ * TODO: 拿資料來改變 Badge 的顏色
  * @param {data} param
  * @returns
  */
-
 const BlogItem = ({ content, tag, title, createTime, id, name, category }) => {
   const transformTime = moment(createTime).format('MMMM DD YYYY')
 

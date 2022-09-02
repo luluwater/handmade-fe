@@ -1,8 +1,8 @@
 import React from 'react'
 import moment from 'moment'
+import Swal from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDeleteReplyMutation } from '../../../../../services/replyApi'
-import Swal from 'sweetalert2'
 
 const Reply = ({ id, avatar, createTime, name, reply }) => {
   const [deleteReply] = useDeleteReplyMutation()

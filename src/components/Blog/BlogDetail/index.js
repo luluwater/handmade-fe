@@ -1,41 +1,30 @@
 import React, { useState } from 'react'
-import { useGetBlogQuery } from '../../../services/blogApi'
 import { Link, useParams } from 'react-router-dom'
-import Badge from 'react-bootstrap/Badge'
 import moment from 'moment'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import CommentList from './CommentList'
-import Toasts from '../../UI/Toasts'
 import { v4 as uuidv4 } from 'uuid'
-import Emojis from '../../UI/Emoji'
-import Form from 'react-bootstrap/Form'
 
+import Badge from 'react-bootstrap/Badge'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import CommentList from './CommentList'
+import TextForm from './CommentList/TextForm'
+import Toasts from '../../UI/Toasts'
+import Emojis from '../../UI/Emoji'
+
+import { useGetBlogQuery } from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentApi'
+
+import { useDispatch } from 'react-redux'
+import { displayToast } from '../../../slices/reply-slice'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
   const { data, error, isLoading } = useGetBlogQuery(blogId)
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
+  const dispatch = useDispatch()
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value)
-  }
-  const handleCancel = () => {
-    setInputValue('')
-  }
-
-  /**
-   * 把回覆傳送給後端和更新 slice
-   * comment 這裡我要拿到的值有
-   * 1. blog_id (從上面的 blog_id 拿)
-   * 2. user_id (從 local stroage 裡面拿)
-   * 3. comment_date (當下的時間)
-   * 4. comment (inputValue)
-   * 5. state 直接寫在資料庫裡
-   * 6. valid 直接寫在資料庫裡
-   * @param {event} e
-   */
+  // TODO: user_id 從 local stroage 裡拿出
   const comment = {
     id: uuidv4(),
     blog_id: blogId,
@@ -44,11 +33,33 @@ const BlogDetail = () => {
     content: inputValue,
   }
 
+  /**
+   * 文字輸入框的文字與輸入中的文字雙向綁定
+   * @param {*} e
+   */
+  const handleChange = (e) => {
+    setInputValue(e.target.value)
+  }
+
+  /**
+   * 取消時把 inputValue 清空
+   */
+  const handleCancel = () => {
+    setInputValue('')
+  }
+
+  /**
+   * 1. Input 資料清空
+   * 2. 送資料到資料庫
+   * 3. 顯示出 toast
+   * @param {event} e 送出表單事件
+   */
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       await setInputValue('')
       await createComment(comment)
+      await dispatch(displayToast(true))
     } catch (e) {
       console.log(e)
     }
@@ -134,33 +145,13 @@ const BlogDetail = () => {
             </div>
             <div className="mt-4 container">
               <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>
-              <form onSubmit={handleSubmit}>
-                <Form.Group id="example-collapse-text">
-                  <Form.Control
-                    className=" bg-skin-bright"
-                    as="textarea"
-                    rows={4}
-                    value={inputValue}
-                    onChange={handleChange}
-                  />
-
-                  <div className="d-flex justify-content-end gap-3 align-items-center my-4">
-                    <button
-                      onClick={handleCancel}
-                      type="button"
-                      className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-none d-md-block"
-                    >
-                      取消
-                    </button>
-                    <button
-                      type="submit"
-                      className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-none d-md-block"
-                    >
-                      送出
-                    </button>
-                  </div>
-                </Form.Group>
-              </form>
+              <Emojis />
+              <TextForm
+                inputValue={inputValue}
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                handleCancel={handleCancel}
+              />
             </div>
           </>
         ))}

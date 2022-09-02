@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import moment from 'moment'
 import { useParams } from 'react-router'
 import CommentItem from './CommentItem'
-import moment from 'moment'
 import { useCommentsQuery } from '../../../../services/commentApi'
-import { useSelector, useDispatch } from 'react-redux'
 import { getComment } from '../../../../slices/comment-slice'
 
 const CommentList = () => {
@@ -12,7 +12,7 @@ const CommentList = () => {
   const dispatch = useDispatch()
 
   const replyList = useSelector((state) => state.replyReducer.reply)
-
+  console.log(data)
   const finalComment = data?.map((item) => {
     const filterReply = replyList?.filter((reply) => {
       return item.comment_id === reply.comment_id
@@ -34,7 +34,7 @@ const CommentList = () => {
           user={item.name}
           userAvatar={item.avatar}
           content={item.content}
-          commentTime={moment(item.comment_date).format('YYYY-MM-DD')}
+          commentTime={moment(item.commentTime).calendar()}
           filterReply={item.filterReply}
         />
       ))}

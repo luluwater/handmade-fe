@@ -1,10 +1,12 @@
 import React from 'react'
-import Collapse from 'react-bootstrap/Collapse'
-import Form from 'react-bootstrap/Form'
-import { v4 as uuidv4 } from 'uuid'
-import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+
+import { v4 as uuidv4 } from 'uuid'
+import moment from 'moment'
+
+import Collapse from 'react-bootstrap/Collapse'
+import Form from 'react-bootstrap/Form'
 
 import {
   useRepliesQuery,
@@ -69,7 +71,7 @@ const CreateReply = ({ commentId }) => {
       </button>
       <Collapse in={open}>
         <form onSubmit={handleSubmit}>
-          <Form.Group id="example-collapse-text">
+          <Form.Group>
             <Form.Control
               className=" bg-skin-bright"
               as="textarea"

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 
+// 狀態 slice
 import replyReducer from '../slices/reply-slice'
 import blogReducer from '../slices/blog-slice'
 import commentReducer from '../slices/comment-slice'
 
+// API services
 import { blogApiService } from '../services/blogApi'
 import { commentApiService } from '../services/commentApi'
 import { replyApiService } from '../services/replyApi'

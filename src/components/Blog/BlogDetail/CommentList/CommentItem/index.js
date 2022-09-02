@@ -20,7 +20,6 @@ const CommentItem = ({
             />
             <span>{user}</span>
           </div>
-
           <div>{commentTime}</div>
         </div>
         <p>{content}</p>
