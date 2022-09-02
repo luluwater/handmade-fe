@@ -6,12 +6,6 @@ import { useState } from 'react'
 
 function ForFilter() {
   const [state, setState] = useState({ lists: listData })
-  const [checkedAll, setCheckedAll] = useState(false)
-
-  const handleAllChecked = (event) => {
-    
-  }
-
   const handleTile = (list) => {
     setState((prevState) => ({
       lists: prevState.lists.map((item) =>
@@ -51,11 +45,7 @@ function ForFilter() {
         {lists.map((ar, index) => (
           <div key={index}>
             <div className="filter_category">
-              <input
-                type="checkbox"
-                style={{ margin: '0 5px' }}
-                onClick={handleAllChecked}
-              />
+              <input type="checkbox" style={{ margin: '0 5px' }} />
               <AccordionHeader
                 active={ar.active}
                 onClick={() => handleTile(ar)}
