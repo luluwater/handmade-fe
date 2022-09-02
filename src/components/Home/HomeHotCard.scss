@@ -62,16 +62,15 @@
         box-shadow:none;
     }
 }
-
 .swiper-button-prev, .swiper-button-next{
     cursor: default;
 }
-
 .swiper-button-prev::after,
 .swiper-button-next::after {
     position: relative;
     bottom: 110px;
 }
+
 @media screen and (max-width:576px){
     
     .home_hotSwiper{

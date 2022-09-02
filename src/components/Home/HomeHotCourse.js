@@ -65,7 +65,7 @@ function HomeHotCourse() {
         modules={[Navigation, Mousewheel]}
         className="mySwiper"
       >
-        <div className="d-flex aaaaaaaaa">
+        <div className="d-flex">
           {Cards.map((v, i) => {
             return (
               <>
