@@ -5,7 +5,7 @@ function AccordionHeader({ active, name, onClick }) {
   return (
     <div onClick={onClick}>
       <div>
-        {name}
+        <label>{name}</label>
         <ToggleIcon state={active ? true : false} />
       </div>
     </div>
