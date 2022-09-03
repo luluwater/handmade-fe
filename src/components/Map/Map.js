@@ -10,11 +10,14 @@ import 'leaflet/dist/leaflet.css'
 import './Map.scss'
 import { useSelector } from 'react-redux'
 import StoreCard from './StoreCard'
+import { Col, Row } from 'react-bootstrap'
+import { useState } from 'react'
 
 function Map() {
   const defaultIcon = Leaflet.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
+    iconAnchor: [12.5, 0],
   })
   Leaflet.Marker.prototype.options.icon = defaultIcon
 
@@ -33,14 +36,30 @@ function Map() {
         />
         {storeData?.map((v) => {
           return (
-            <>
-              <Marker key={v.id} position={[v.store_lat, v.store_lng]}>
-                <Popup>
-                  <h5 className="fw-bold">{v.name}</h5>
-                  <p>{v.address}</p>
-                  <p>{v.phone}</p>
-                  <p>{v.intro}</p>
-                  {/* <StoreCard
+            <Marker key={v.id} position={[v.store_lat, v.store_lng]}>
+              <Popup>
+                <Row className="align-items-center">
+                  <Col sm={'auto'}>
+                    <div
+                      style={{ width: '80px', height: '80px' }}
+                      className="border"
+                    ></div>
+                  </Col>
+                  <Col>
+                    <h5 className="fw-bold">{v.name}</h5>
+                    <p className="my-2">
+                      <b>地址:</b>
+                      {v.address}
+                    </p>
+                    <p className="my-2">
+                      <b>電話:</b>
+                      {v.phone}
+                    </p>
+                  </Col>
+                </Row>
+
+                <p>{v.intro}</p>
+                {/* <StoreCard
                     key={v.id}
                     name={v.name}
                     intro={v.intro}
@@ -52,9 +71,8 @@ function Map() {
                     lng={v.store_lng}
                     lat={v.store_lat}
                   ></StoreCard> */}
-                </Popup>
-              </Marker>
-            </>
+              </Popup>
+            </Marker>
           )
         })}
       </MapContainer>
