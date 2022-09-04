@@ -4,24 +4,34 @@ import { Row, Col, Button } from 'react-bootstrap'
 import './ProductDetail.scss'
 
 function ProductIntro() {
+  const intro = `尺寸：口徑約 6.5cm / 高 6cm
+若售完或是無庫存：可接單訂製，製作期約30天。陶瓷需經過兩次高溫燒製淬煉，等待絕對值得！
+  
+1. 切勿單點放置在火爐上加熱，以免作品裂損。
+2. 建議以手洗方式清洗，避免碰撞，器皿較能長久使用。
+3. 陶器表層有毛孔，油脂及水分容易滲入氣孔內，洗淨後再使用。
+4. 部分陶器具開片現象是源自土與釉收縮率有差別，非器物龜裂導致，故不影響使用。
+5. 可使用洗碗機、烤箱、微波爐，建議晾乾後收納入櫃。
+`
+
   return (
     <>
-      <Row className="d-flex flex-column">
+      <Row className="d-flex flex-column fw-bold">
         {/* ========== */}
-        <Col className="d-flex">
+        <Col className="d-flex detail_border_top">
           <Col>
-            <p>Round Round 陶藝工作室</p>
-            <h2>石丸波佐見燒 - 森之歌陶杯</h2>
-            <p>NT.880</p>
+            <p className="detail_store">Round Round 陶藝工作室</p>
+            <h2 className="detail_name">石丸波佐見燒 - 森之歌陶杯</h2>
+            <h4 className="detail_price">NT.880</h4>
           </Col>
-          <Col className="d-flex">
-            <p>總評分</p>
-            <h2>4.8</h2>
+          <Col className="d-flex detail_score mt-7 ms-12">
+            <p className="detail_score_title mt-2 mx-2">總評分</p>
+            <h2 className="detail_score_number">4.8</h2>
           </Col>
         </Col>
         {/* ========== */}
 
-        <Col className="d-flex">
+        <Col className="d-flex detail_border_top detail_amount py-4">
           <h5>數量</h5>
           <Button>+</Button>
           <h5>1</h5>
@@ -29,21 +39,10 @@ function ProductIntro() {
           <Button>加入購物車</Button>
           <Button>愛勳</Button>
         </Col>
-        <Col>
-          <p className="test">
-            重用性：對於很難抽離狀態邏輯（stateful logic）而難以重用。雖然現行的
-            HOC 或 render props
-            已可解決這個問題，但還是過於複雜，而且不好寫測試。 class component
-            過於複雜、難以理解：class component 的 lifecycle method
-            往往像個便利商店般包了很多雜七雜八的事情，例如：在 componentDidMount
-            與 componentDidUpdate 加入讀取 API 來抓資料的 action，而
-            componentDidMount 可能還包含一些事件綁定，最後還會在
-            componentWillUnmount
-            把這些事件綁定解除掉…（是不是跟小七店員一樣包山包海什麼都會什麼都做）…我們都知道每個
-            function
-            只要做一件事情就好，包山包海在這裡就不被鼓勵了，畢竟缺點很多-很難懂也很難維護、容易有
-            bug、很難寫測試。
-          </p>
+        <Col className="detail_border_top">
+          <div className="detail_intro " style={{ whiteSpace: 'pre-wrap' }}>
+            {intro}
+          </div>
         </Col>
       </Row>
     </>

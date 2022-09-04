@@ -1,5 +1,6 @@
 @import '../../styles/custom_variables';
 
+// ===== pic =====
 .detail_swiperL{
     // margin-left: 20px;
     &_pic{
@@ -12,11 +13,13 @@
     }
     .swiper-slide{
         width: 150px;
-        height: 160px !important
+        height: 160px !important ;
     }
-    .swiper-slide-thumb-active{
-        height: 160px !important
-
+    .swiper-slide-thumb-active {
+        height: 160px !important ;
+        img{
+            opacity: .5;
+        }
     }
 }
 .detail_swiperR{
@@ -29,6 +32,50 @@
     }
 
 }
-.test{
-    width: 800px;
+
+// ===== intro =====
+.detail_store{
+    font-size: 14px;
+    color: $gray-darker;
+    margin: 20px 0 10px 3px;
+    
 }
+
+.detail_name{
+    font-size: 30px;
+    color: $gray-darker;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+.detail_price{
+    color: $primary;
+    font-weight: 900;
+    margin: 0 0 10px 3px;
+}
+
+.detail_score{
+
+    &_title{
+        font-size: 14px;
+        color: $gray-darker;
+    }
+    &_number{
+        color: $primary;
+        font-weight: 900;
+        margin: 0 0 10px 3px;
+    }
+}
+
+.detail_intro{
+    width: 900px;
+    color: $gray-darker;
+    font-size: 14px;
+    margin: 10px auto ;
+    line-height: 25px;
+
+}
+.detail_border_top{
+    border-top: 1px solid  $gray-darker;
+    margin-bottom: 10px;
+}
+
