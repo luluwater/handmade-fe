@@ -1,5 +1,6 @@
 import React from 'react'
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDeleteReplyMutation } from '../../../../../services/replyApi'
 
@@ -16,10 +17,6 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
 
   const handleDelete = async (e) => {
     try {
-      const parentEel = e.target.parentElement
-      const targetId = parentEel.dataset.id
-      if (targetId === undefined) return
-
       await swalWithBootstrapButtons
         .fire({
           title: 'Are you sure?',
@@ -37,7 +34,7 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
               'Your file has been deleted.',
               'success'
             )
-            deleteReply({ id: targetId })
+            deleteReply({ id })
           } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
@@ -68,9 +65,9 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
           </div>
           <div className="d-flex gap-3">
             <div className="fs-6 text-muted">{createTime}</div>
-            <div data-id={id} onClick={handleDelete}>
+            <Link to="#" data-id={id} onClick={handleDelete}>
               <FontAwesomeIcon className="fs-6" icon="fas fa-times" />
-            </div>{' '}
+            </Link>{' '}
           </div>
         </div>
         {reply}

@@ -22,7 +22,19 @@ export const commentApiService = createApi({
       }),
       invalidatesTags: ['Comment'],
     }),
+    deleteComment: builder.mutation({
+      query: (commentId) => ({
+        url: 'comment',
+        method: 'delete',
+        body: commentId,
+      }),
+      invalidatesTags: ['Comment'],
+    }),
   }),
 })
 
-export const { useCommentsQuery, useCreateCommentMutation } = commentApiService
+export const {
+  useCommentsQuery,
+  useCreateCommentMutation,
+  useDeleteCommentMutation,
+} = commentApiService

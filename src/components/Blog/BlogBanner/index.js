@@ -35,7 +35,7 @@ const BlogBanner = () => {
       >
         {images.map((img) => (
           <SwiperSlide key={img}>
-            <div className="position-relative d-flex justify-content-center align-items-center">
+            <div className=" position-relative d-flex justify-content-center align-items-center">
               <h1 className="blog_banner_text position-absolute text-white text-center">
                 LATEST <br /> NEWS
               </h1>

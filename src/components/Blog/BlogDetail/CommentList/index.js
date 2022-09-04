@@ -12,17 +12,17 @@ const CommentList = () => {
   const dispatch = useDispatch()
 
   const replyList = useSelector((state) => state.replyReducer.reply)
+
   const finalComment = data?.map((item) => {
     const filterReply = replyList?.filter((reply) => {
       return item.comment_id === reply.comment_id
     })
-    const newComment = { ...item, filterReply }
-    return newComment
+    return { ...item, filterReply }
   })
 
-  useEffect(() => {
-    dispatch(getComment(finalComment))
-  }, [dispatch, finalComment])
+  // useEffect( () => {
+  //   dispatch(getComment(finalComment))
+  // }, [dispatch, finalComment])
 
   return (
     <>

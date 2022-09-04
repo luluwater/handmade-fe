@@ -18,7 +18,6 @@ const BlogList = () => {
     dispatch(getBlog(data))
   }, [data, dispatch])
 
-  // 拿 useGetBlogQuery 從 server 拿到資料後，copy 一份新的 data 提供前端狀態使用
   const blogList = useSelector((state) => state.blogReducer.blog)
 
   return (

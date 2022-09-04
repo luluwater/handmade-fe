@@ -3,7 +3,8 @@ import moment from 'moment'
 import CreateReply from '../CreateReply'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IoAccessibilityOutline } from 'react-icons/io5'
+import { useDeleteCommentMutation } from '../../../../../services/commentApi'
+
 const CommentItem = ({
   commentId,
   user,
@@ -11,18 +12,32 @@ const CommentItem = ({
   commentTime,
   filterReply,
 }) => {
+  const [deleteComment] = useDeleteCommentMutation()
+  const handleDelete = async () => {
+    try {
+      console.log('12314')
+      deleteComment({ commentId })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <div className=" p-4  mt-6 border-bottom border-secondary-dark">
         <div className="mx-4  d-flex flex-column mb-4">
           <div className="d-flex justify-content-end gap-3">
-            <Link to="#" className="text-secondary p-1">
+            <Link to="#" className="p-1 blog_comment_link text-secondary">
               修改
-              <IoAccessibilityOutline />
-              <FontAwesomeIcon icon="fas fa-edit" />
+              <FontAwesomeIcon icon="fas fa-edit " className=" ms-1" />
             </Link>
-            <Link to="#" className="text-primary p-1">
-              刪除 <FontAwesomeIcon icon="fas fa-times" />
+            <Link
+              to="#"
+              onClick={handleDelete}
+              className="p-1 blog_comment_link text-primary"
+            >
+              刪除
+              <FontAwesomeIcon icon="fas fa-times" className=" ms-1" />
             </Link>
           </div>
           <div className="bg-skin-bright p-3 ">
