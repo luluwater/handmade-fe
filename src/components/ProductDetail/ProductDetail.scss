@@ -37,7 +37,6 @@
 .detail_store{
     font-size: 14px;
     color: $gray-darker;
-    margin: 20px 0 10px 3px;
     
 }
 
@@ -45,12 +44,10 @@
     font-size: 30px;
     color: $gray-darker;
     font-weight: 900;
-    margin-bottom: 10px;
 }
 .detail_price{
     color: $primary;
     font-weight: 900;
-    margin: 0 0 10px 3px;
 }
 
 .detail_score{
@@ -62,20 +59,14 @@
     &_number{
         color: $primary;
         font-weight: 900;
-        margin: 0 0 10px 3px;
     }
 }
 
 .detail_intro{
-    width: 900px;
-    color: $gray-darker;
     font-size: 14px;
-    margin: 10px auto ;
-    line-height: 25px;
+    color: $gray-darker;
+    width: 900px;
 
 }
-.detail_border_top{
-    border-top: 1px solid  $gray-darker;
-    margin-bottom: 10px;
-}
+
 
