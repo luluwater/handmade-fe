@@ -4,7 +4,7 @@ import './Login_SignUp_img/Login.css'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // import LoginImg from '../src/assets/HANDMADE_LOGO.png'
-const SignUp = () => {
+const FindPassword = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
@@ -65,4 +65,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default FindPassword

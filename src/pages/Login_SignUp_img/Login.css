@@ -1,15 +1,15 @@
 @import url(https://fonts.google.com/noto/specimen/Noto+Sans+TC?query=Not);
 /* @import '../styles/custom_variables'; */
-.Frame{
+.Frame {
   margin: 0 auto;
-  background:  #F4EEE8;
+  background: #f4eee8;
   border: 10px solid #ffffff;
   border-radius: 20px;
-  max-width:1300px;
-  margin-top:57px
+  max-width: 1300px;
+  margin-top: 57px;
 }
-.border{
-  border-radius:20 solid #ffffff  !important;
+.border {
+  border-radius: 20 solid #ffffff !important;
   border: transparent !important;
 }
 h1 {
@@ -24,7 +24,6 @@ h1 {
 }
 img {
   margin-right: 141px;
-  
 }
 .AccountInput {
   margin-top: 3em;
@@ -52,6 +51,7 @@ img {
   line-height: 25px;
   letter-spacing: 0.1em;
   padding-left: 1em;
+  color: #5f5c51;
 }
 Form {
   position: relative;
@@ -75,7 +75,14 @@ Form {
   height: 57.72px;
   background: #e77656;
   border-radius: 10px;
+  border: #e77656;
   color: #ffffff;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.3em;
 }
 .SignUp {
   margin-top: 36px;
@@ -83,27 +90,42 @@ Form {
   height: 57.72px;
   background: #5f5c51;
   border-radius: 10px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.3em;
   color: #ffffff;
+  border: #5f5c51;
 }
-h4 {
+h4,
+.footerLogin {
   margin-top: 38.75px;
+  color: #5f5c51;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.1em;
 }
-.icon{
+.icon {
   size: 20px;
   margin-left: 6.85em;
   margin-top: 18px;
   margin-bottom: 35px;
- }
+}
 
 @media screen and (max-width: 576px) {
   img {
     display: none;
   }
-  Frame{
+  Frame {
     width: 100%;
   }
-  .footerLogin{
+  .footerLogin {
     margin-top: 27px;
   }
-   
 }
