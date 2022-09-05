@@ -17,6 +17,9 @@ const BlogDetail = () => {
   const { data } = useGetBlogQuery(blogId)
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
+  const [showPicker, setShowPicker] = useState(false)
+
+  const [chosenEmoji, setChosenEmoji] = useState(null)
 
   // TODO: user_id 從 local stroage 裡拿出
   const comment = {
@@ -36,6 +39,20 @@ const BlogDetail = () => {
   }
 
   /**
+   * 送出 emoji 物件
+   * @param {*} event
+   * @param {*} emojiObject
+   */
+  const onEmojiClick = (event, emojiObject) => {
+    const textAreaElement = document.getElementById('comment-textarea')
+    setChosenEmoji(emojiObject)
+    setInputValue(
+      inputValue.substr(0, textAreaElement.selectionStart) +
+        emojiObject.emoji +
+        inputValue.substr(textAreaElement.selectionEnd)
+    )
+  }
+  /**
    * 取消時把 inputValue 清空
    */
   const handleCancel = () => {
@@ -51,6 +68,7 @@ const BlogDetail = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      await setShowPicker(false)
       await setInputValue('')
       await createComment(comment)
       await Toast.fire({
@@ -60,6 +78,10 @@ const BlogDetail = () => {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  const handleShowPicker = () => {
+    setShowPicker((pre) => !pre)
   }
 
   return (
@@ -143,10 +165,13 @@ const BlogDetail = () => {
             <div className="mt-4 container">
               <h6 className="pb-2 mb-3 d fs-md-6 fs-md-3 ">我要留言</h6>
               <TextForm
-                inputValue={inputValue}
                 handleSubmit={handleSubmit}
+                inputValue={inputValue}
                 handleChange={handleChange}
                 handleCancel={handleCancel}
+                onEmojiClick={onEmojiClick}
+                handleShowPicker={handleShowPicker}
+                showPicker={showPicker}
               />
             </div>
           </>

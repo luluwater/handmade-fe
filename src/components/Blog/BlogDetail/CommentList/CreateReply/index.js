@@ -8,6 +8,7 @@ import moment from 'moment'
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
 import { Toast } from '../../../../UI/SwalStyle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   useRepliesQuery,
@@ -82,6 +83,7 @@ const CreateReply = ({ commentId }) => {
               rows={4}
               value={inputValue}
               onChange={handleChange}
+              placeholder="輸入回覆..."
             />
             <div className="d-flex justify-content-end gap-3 align-items-center my-4">
               <button
@@ -95,7 +97,8 @@ const CreateReply = ({ commentId }) => {
                 type="submit"
                 className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-none d-md-block"
               >
-                送出
+                回覆
+                <FontAwesomeIcon className="ms-2" icon="fa-solid fa-reply" />
               </button>
             </div>
           </Form.Group>
