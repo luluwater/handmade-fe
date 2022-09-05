@@ -9,10 +9,10 @@ export const FilterPage = () => {
       <Container>
         <div className="mt-5 user_filter d-flex align-items-center justify-content-center">
           <nav class="user_navbar d-flex fw-bold align-items-center justify-content-center">
-            <Link to="/" className="item">
+            <Link to="/user/:userId" className="item">
               帳號管理
             </Link>
-            <Link to="/" className="item">
+            <Link to="/user/:userId/orders" className="item">
               訂單管理
             </Link>
             <Link to="/" className="item">
