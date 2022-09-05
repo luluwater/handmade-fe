@@ -2,7 +2,7 @@ import React from 'react'
 import storeBanner from '../../../assets/store_banner/store_pettery＿6.jpg'
 import './StoreDetailBanner.scss'
 
-const index = () => {
+const StoreDetailBanner = () => {
   return (
     <>
       <div className="store_detail_banner_imgBox mt-5">
@@ -13,4 +13,4 @@ const index = () => {
   )
 }
 
-export default index
+export default StoreDetailBanner

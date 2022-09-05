@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import './StoreCard.scss'
 import storeLogo from '../../../assets/store/store_pottery_6/陶藝_璐室_logo.jpg'
+import { useParams } from 'react-router-dom'
 
 const StoreCard = ({ id, name, img, category_en_name }) => {
   return (

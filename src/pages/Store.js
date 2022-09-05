@@ -12,7 +12,7 @@ const Store = () => {
   return (
     <>
       <StoreBanner />
-      <div  className="mt-10 StorePage_container">
+      <div className="mt-10 StorePage_container">
         <Row>
           <Col md={3} className="storeList_leftSide">
             這裡是左Bar

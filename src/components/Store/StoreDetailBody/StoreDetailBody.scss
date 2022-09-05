@@ -38,7 +38,7 @@
     }
     &_Intro{
         color: $gray-darker;
-        margin: 8rem 10rem;
+        margin: 8rem 20%;
         font-size: $h5-font-size;
         line-height: $h1-font-size;
         @media screen and (max-width:576px){
@@ -48,7 +48,7 @@
     &_storeInfoBox{
         display: flex;
         color: $gray-darker;
-        margin: 13rem 10rem  7rem 10rem;
+        margin: 13rem 15%  7rem 15%;
         font-size: $h5-font-size;
         @media screen and (max-width:576px){
             flex-direction: column;
@@ -129,15 +129,28 @@
     }
     &_recommendBox{
         margin: 6rem 10rem  7rem 10rem;
+        @media screen and (max-width:576px){
+            margin: 0 0 3rem 0;
+
+        }
+
+    }
+
+    &_courseRecommend,&_productRecommend{
+        background: $skin-bright;
+        color: $gray-darker;
+        font-size: $h5-font-size;
+        font-weight: 700;
+        border: 10px solid $skin-brighter;
+        @media screen and (max-width:576px){
+            margin-bottom: 1rem ;
+
+        }
     }
 
     &_courseRecommend{
-        background: $skin-bright;
 
     }
-    &_productRecommend{
-        background: $skin-bright;
 
-    }
 
     }

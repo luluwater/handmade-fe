@@ -12,7 +12,7 @@ import Store_kv_3 from '../../../../src/assets/store/store_pottery_6/陶藝_璐�
 import Store_kv_4 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-4.jpg'
 import Store_kv_5 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-5.jpg'
 
-const index = () => {
+const StoreSwiperKV = () => {
   return (
     <>
       <div className="d-flex justify-content-center ">
@@ -58,4 +58,4 @@ const index = () => {
   )
 }
 
-export default index
+export default StoreSwiperKV

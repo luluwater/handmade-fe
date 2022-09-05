@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import './StoreDetailBody.scss'
 import StoreSwiperKV from '../StoreSwiperKV'
+import CourseRecommend from '../RecommendCard/CourseRecommend'
+import ProductRecommend from '../RecommendCard/ProductRecommend'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
-const index = () => {
+const StoreDetailBody = () => {
   return (
     <>
       <section className="StoreDetailBody">
@@ -74,33 +76,20 @@ const index = () => {
           </Link>
         </div>
 
-        <div>
-          <Row className="StoreDetailBody_recommendBox justify-content-center">
+        <Row className="StoreDetailBody_recommendBox justify-content-center ">
+          <Col xs={12} md={5} className="StoreDetailBody_courseRecommend">
+            <p className="text-center my-4">課程推薦</p>
+            <CourseRecommend />
+          </Col>
 
-
-            <Col
-              xs={12}
-              md={6}
-              className="StoreDetailBody_courseRecommend"
-            >
-              123
-            </Col>
-
-
-
-            <Col
-              xs={12}
-              md={6}
-              className="StoreDetailBody_productRecommend"
-            >123</Col>
-
-
-
-          </Row>
-        </div>
+          <Col xs={12} md={5} className="StoreDetailBody_courseRecommend">
+            <p className="text-center my-4">商品推薦</p>
+            <ProductRecommend />
+          </Col>
+        </Row>
       </section>
     </>
   )
 }
 
-export default index
+export default StoreDetailBody
