@@ -47,7 +47,7 @@ const UserAccount = () => {
             <h5 className="user_account_title fw-bold">
               會員資料
               <FontAwesomeIcon
-                className="user_account_edit_show btn"
+                className="user_account_edit_show"
                 icon="fa-solid fa-pen-to-square"
                 size="sm"
                 onClick={() => {

@@ -18,10 +18,10 @@ export const FilterPage = () => {
             <Link to="likes" className="item">
               收藏清單
             </Link>
-            <Link to="/" className="item">
+            <Link to="coupons" className="item">
               折價券
             </Link>
-            <Link to="/" className="item">
+            <Link to="blogs" className="item">
               我的部落格
             </Link>
             <Link to="/" className="item">

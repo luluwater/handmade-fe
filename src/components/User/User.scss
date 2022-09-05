@@ -327,11 +327,44 @@
     color: $gray-darker;
     border-bottom: 1px solid $gray-darker;
   }
-  // &_coupon {
-
-  // }
   &_pay {
     width: 200px;
     color: $gray-darker;
+  }
+}
+.user_blogs {
+  &_form {
+    width: 950px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+ }
+ &_newBtn {
+  width: 120px;
+  border: 1px solid $gray-darker;
+  letter-spacing: 3px;
+  font-size: $h6-font-size;
+  color: $gray-darker;
+  background-color: $skin-bright !important;
+  &:hover {
+    background-color: $primary !important;
+    color: $skin-bright;
+    border: 1px solid $primary;
+  }
+ }
+  &_btn {
+    padding-left: 15px;
+    border: none;
+    &:hover {
+      color: $secondary;
+      border: none;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  &_table {
+      width: 850px;
+      color: $gray-darker;
+      border-bottom: 1px solid $gray-darker;
   }
 }

@@ -16,6 +16,9 @@ import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
 import UserAccount from './components/User/UserAccount'
 import UserOrderDetailPage from './pages/UserOrderDetailPage'
+import UserLikesPage from './pages/UserLikesPage'
+import UserCouponsPage from './pages/UserCouponsPage'
+import UserBlogsPage from './pages/UserBlogsPage'
 
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
@@ -63,6 +66,18 @@ const routeConfig = [
           {
             path: 'orders/details',
             element: <UserOrderDetailPage />,
+          },
+          {
+            path: 'likes',
+            element: <UserLikesPage />,
+          },
+          {
+            path: 'coupons',
+            element: <UserCouponsPage />,
+          },
+          {
+            path: 'blogs',
+            element: <UserBlogsPage />,
           },
         ],
       },
