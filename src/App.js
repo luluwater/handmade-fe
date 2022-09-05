@@ -14,6 +14,7 @@ import BlogDetailPage from './pages/BlogDetailPage'
 import NoFound from './pages/NoFound'
 import Proudcts from './pages/Products'
 import ProductDetailPage from './pages/ProductDetailPage'
+import CourseDetailPage from './pages/CourseDetailPage'
 
 const routeConfig = [
   {
@@ -73,6 +74,10 @@ const routeConfig = [
       {
         path: 'ProductDetailPage',
         element: <ProductDetailPage />,
+      },
+      {
+        path: 'CourseDetailPage',
+        element: <CourseDetailPage />,
       },
     ],
   },

@@ -15,9 +15,9 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 
-import './ProductDetail.scss'
+import './CourseDetail.scss'
 
-function ProductPic() {
+function CoursePic() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
   const Pics = [
@@ -83,4 +83,4 @@ function ProductPic() {
     </>
   )
 }
-export default ProductPic
+export default CoursePic
