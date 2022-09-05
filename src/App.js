@@ -5,9 +5,17 @@ import './styles/style.scss'
 import Layout from './pages/Layout'
 
 import BlogLayout from './components/Blog'
-
 import Home from './pages/Home'
 import Login from './pages/Login'
+
+import About from './pages/AboutPage'
+import AboutLayout from './components/About'
+import News from './pages/NewsPage'
+import NewsLayout from './components/News'
+import UserAccountPage from './pages/UserAccountPage'
+import UserOrdersPage from './pages/UserOrdersPage'
+import UserAccount from './components/User/UserAccount'
+
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
@@ -40,21 +48,37 @@ const routeConfig = [
         path: 'store',
         // element: <Store />,
       },
-      //user router
-      // {
-      //   path: 'user',
-      //   element: <UserList />,
-      //   children: [
-      //     {
-      //       path: 'user/home',
-      //       element: <Home />,
-      //     },
-      //     {
-      //       path: 'user/mangment',
-      //       element: <Mangment />,
-      //     },
-      //   ],
-      // },
+      {
+        path: 'user',
+        element: <UserAccountPage />,
+        children: [
+          {
+            path: 'management',
+            element: <UserAccount />,
+          },
+          {
+            path: 'orders',
+            element: <UserOrdersPage />,
+          },
+        ],
+      },
+
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'about',
+        element: <AboutLayout />,
+      },
+      {
+        path: 'news',
+        element: <News />,
+      },
+      {
+        path: 'news',
+        element: <NewsLayout />,
+      },
 
       {
         path: 'login',
