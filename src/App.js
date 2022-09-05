@@ -15,12 +15,12 @@ import NewsLayout from './components/News'
 import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
 import UserAccount from './components/User/UserAccount'
+import UserOrderDetailPage from './pages/UserOrderDetailPage'
 
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
 import NoFound from './pages/NoFound'
-import Proudcts from './pages/Products'
 
 const routeConfig = [
   {
@@ -60,6 +60,10 @@ const routeConfig = [
             path: 'orders',
             element: <UserOrdersPage />,
           },
+          {
+            path: 'orders/details',
+            element: <UserOrderDetailPage />,
+          },
         ],
       },
 
@@ -88,10 +92,6 @@ const routeConfig = [
       {
         path: '*',
         element: <NoFound />,
-      },
-      {
-        path: 'product',
-        element: <Proudcts />,
       },
     ],
   },

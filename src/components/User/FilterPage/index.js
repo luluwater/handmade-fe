@@ -15,7 +15,7 @@ export const FilterPage = () => {
             <Link to="orders" className="item">
               訂單管理
             </Link>
-            <Link to="/" className="item">
+            <Link to="likes" className="item">
               收藏清單
             </Link>
             <Link to="/" className="item">

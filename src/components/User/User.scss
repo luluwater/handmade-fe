@@ -161,7 +161,7 @@
   &_card {
     display: flex;
     position: absolute;
-    top: 50%;  
+    top: 65%;  
     left: 60%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -262,6 +262,12 @@
     // right: 60%;
     transform: translate(-50%, -50%);
   }
+  &_link {
+    color: $primary;
+    &:hover {
+      color: $secondary-dark;
+    }
+  }
 }
 
 .user_pages {
@@ -292,3 +298,40 @@
   }
 }
 
+.user_order_details {
+  &_title {
+    border-bottom: 1px solid $gray-darker;
+    padding-bottom: 8px;
+  }
+  &_form {
+    // height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+ }
+ &_link {
+  color: $gray-darker;
+  &:hover {
+    color: $secondary-dark;
+  }
+ }
+&_table {
+  width: 850px;
+  color: $gray-darker;
+}
+}
+
+.user_order_list {
+  &_table {
+    width: 850px;
+    color: $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+  }
+  // &_coupon {
+
+  // }
+  &_pay {
+    width: 200px;
+    color: $gray-darker;
+  }
+}
