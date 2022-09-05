@@ -117,32 +117,39 @@ const BlogDetail = () => {
                   </li>
                 </ul>
 
-                <Link to="#">
-                  <FontAwesomeIcon
-                    className="fs-2 me-5 text-gray-darker"
-                    icon="fa-solid fa-ellipsis"
-                  />
-                </Link>
-
                 <Dropdown className="me-3">
                   <Dropdown.Toggle
                     className="bg-skin-brighter border-0"
                     id="dropdown-basic"
                   >
                     <FontAwesomeIcon
-                      className="fs-2 me-5 text-gray-darker"
+                      className="fs-2 me-8 text-gray-darker"
                       icon="fa-solid fa-ellipsis"
                     />
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      <Dropdown.Divider />
-                      Another action
+                    <Dropdown.Item
+                      className="d-flex gap-3 align-items-center justify-content-center"
+                      href="#/action-1"
+                    >
+                      <span>新增文章</span>
+                      <FontAwesomeIcon icon="fa-solid fa-plus" />
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">
-                      Something else
+
+                    <Dropdown.Item
+                      className="d-flex gap-3 align-items-center justify-content-center"
+                      href="#/action-2"
+                    >
+                      <span>修改文章</span>
+                      <FontAwesomeIcon icon="fa-solid fa-pen" />
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      className="d-flex gap-3 align-items-center justify-content-center text-primary"
+                      href="#/action-2"
+                    >
+                      <span>刪除文章</span>
+                      <FontAwesomeIcon icon="fa-solid fa-delete-left" />
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
