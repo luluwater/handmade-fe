@@ -20,9 +20,11 @@ const CommentList = () => {
     return { ...item, filterReply }
   })
 
-  // useEffect( () => {
-  //   dispatch(getComment(finalComment))
-  // }, [dispatch, finalComment])
+  useEffect(() => {
+    dispatch(getComment(finalComment))
+  }, [dispatch, finalComment])
+
+  // const commentList = useSelector((state) => state.commentReducer.comment)
 
   return (
     <>

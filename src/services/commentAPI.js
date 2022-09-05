@@ -22,6 +22,7 @@ export const commentApiService = createApi({
       }),
       invalidatesTags: ['Comment'],
     }),
+    //DELETE Comment
     deleteComment: builder.mutation({
       query: (commentId) => ({
         url: 'comment',

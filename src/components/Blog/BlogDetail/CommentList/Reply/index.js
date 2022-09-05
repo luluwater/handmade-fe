@@ -15,7 +15,7 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
     buttonsStyling: false,
   })
 
-  const handleDelete = async (e) => {
+  const handleDelete = async () => {
     try {
       await swalWithBootstrapButtons
         .fire({
