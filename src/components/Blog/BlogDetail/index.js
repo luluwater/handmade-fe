@@ -139,7 +139,9 @@ const BlogDetail = () => {
               </div>
             </div>
             <div className="container">
-              <h6 className="pb-2 mb-3 fs-md-3 w-25">留言區</h6>
+              <h6 className=" w-100 fs-3 text-md-start text-center mb-0 ">
+                留言區
+              </h6>
               <CommentList />
             </div>
             <div className="mt-4 container">

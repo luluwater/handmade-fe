@@ -89,7 +89,7 @@ const CommentItem = ({
 
   return (
     <>
-      <div className=" p-4  mt-6 border-bottom border-secondary-dark">
+      <div className=" p-4 mt-3 mt-md-6 border-bottom border-secondary-dark">
         <div className="mx-4  d-flex flex-column mb-4">
           <div className="d-flex justify-content-end gap-3">
             {/* TODO: 修改再增加條件判斷拿 user 加上 seeion 的 user 來判斷 */}
@@ -114,7 +114,7 @@ const CommentItem = ({
           </div>
           <div className="bg-skin-bright p-3 ">
             <div className="d-flex align-items-center gap-4  mb-3 justify-content-between">
-              <div className="d-flex align-items-center gap-3">
+              <div className="d-flex flex-column flex-md-row align-items-center gap-3">
                 <img
                   className="user_image"
                   src="https://cdn-icons-png.flaticon.com/512/149/149071.png"

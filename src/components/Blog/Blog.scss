@@ -85,16 +85,5 @@
 }
 
 .blog_comment_link:hover {
-  color: $white !important;
+  color: $gray-darker !important;
 }
-
-.blog_swiper_opacity {
-  &::after {
-    content: '';
-    z-index: 99;
-    background: red;
-    width: 100%;
-    height: 100%;
-  }
-}
-
