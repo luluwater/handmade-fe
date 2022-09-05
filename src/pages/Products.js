@@ -14,7 +14,7 @@ function Proudcts() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(addProduct(data))
-  }, [data])
+  }, [dispatch, data])
   const productList = useSelector((state) => state.productReducer.product)
   console.log(productList)
   return (
@@ -29,21 +29,10 @@ function Proudcts() {
           <path
             d="M 0,300 C 0,300 0,200 0,200 C 132,177 264,154 437,159 C 610,163 824,194 998,206 C 1172,217 1306,208 1440,200 C 1440,200 1440,300 1440,300 Z"
             stroke="none"
-            stroke-width="0"
             fill="#f4eee8"
-            fill-opacity="1"
             className="path-top"
             transform="rotate(-180 720 200)"
           ></path>
-          {/* <path
-            d="M 0,400 C 0,400  0,350  0,350 C 97,355  194,360  328,370 C 461,380  630,390  773,385 C 915,380  1030,370  1137,365 C 1243,360  1341,350  1440,350 C 1440,400  1440,400  1440,400 Z"
-            stroke="#000000"
-            stroke-width="1"
-            stroke-opacity="0.5"
-            fill-opacity="0"
-            className=""
-            transform="rotate(-180 720 200)"
-          ></path>           */}
         </svg>
         <svg
           id="svg"
@@ -54,9 +43,7 @@ function Proudcts() {
           <path
             d="M 0,400 C 0,400 0,200 0,200 C 132,177 264,154 437,159 C 610,163 824,194 998,206 C 1172,217 1306,208 1440,200 C 1440,200 1440,400 1440,400 Z"
             stroke="none"
-            stroke-width="0"
             fill="#f4eee8"
-            fill-opacity="1"
             className="path-bottom"
           ></path>
         </svg>
@@ -81,7 +68,7 @@ function Proudcts() {
                       storeName={v.store_name}
                       name={v.name}
                       price={v.price}
-                      isFavorite={false}
+                      isFavorite={v.isFavorite}
                     />
                   )
                 })}
