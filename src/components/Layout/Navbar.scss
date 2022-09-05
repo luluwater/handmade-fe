@@ -4,13 +4,29 @@
 
 
 .navbar{
-  padding: 0;
+  background-color: $skin-brighter;
+  padding: 1rem 2rem 1rem 2rem;
+  @media screen and (max-width:576px){
+    padding: 1rem .5rem 1rem .5rem;
+  }
+
   img{
     width: 11rem;
+    @media screen and (max-width:576px){
+      width: 7rem;
+    }
   }
   p{
     font-family: 'Reggae One', cursive;
     color: $secondary;
+    @media screen and (max-width:576px){
+      display: none;
+    }
+  }
+  form{
+    @media screen and (max-width:576px){
+      display: none;
+    }
   }
   .searchInput{
     width: 13rem;
@@ -25,11 +41,24 @@
   button{
     background-color: $skin-brighter;
   }
+  &_user{
+    @media screen and (max-width:576px){
+      display: none;
+    }
+  }
+  &_bars{
+    display: none;
+    @media screen and (max-width:576px){
+      display: block;
+      margin: 0 .5rem;
+    }
+  }
 
 
 }
 
-.Navbar_awesomeIcon{
+
+.navbar_awesomeIcon{
   color:$secondary;
   &:hover{
     color: $primary;
@@ -39,7 +68,8 @@
 
 
 
-.nav_list{
+.navbar_list{
+  display: flex;
 
   li:before{
     content:'|';
@@ -47,6 +77,10 @@
     color:$secondary;
   }
   li:first-child:before{
+    display: none;
+  }
+
+  @media screen and (max-width:576px){
     display: none;
   }
 }

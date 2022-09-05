@@ -10,6 +10,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import FindPassword from './pages/FindPassword'
+import ResetPassword from './pages/ResetPassword'
+
 
 
 import BlogEditPage from './pages/BlogEditPage'
@@ -70,6 +72,10 @@ const routeConfig = [
       {
         path: 'FindPassword',
         element: <FindPassword />,
+      },
+       {
+        path: 'ResetPassword',
+        element: <ResetPassword />,
       },
 
       {

@@ -17,7 +17,7 @@ Form {
   position: relative;
   max-width: auto;
 }
-.LoginTitle{
+.LoginTitle {
   font-family: 'Share Tech Mono', monospace;
   font-weight: 400;
   font-size: 30px;
@@ -28,7 +28,7 @@ Form {
   margin-top: 88px;
 }
 .LoginPic {
-  margin-top:68px;
+  margin-top: 68px;
   width: 610px;
   height: 611px;
   margin-right: 138px;
@@ -62,7 +62,6 @@ input::placeholder {
   letter-spacing: 0.1em;
   padding-left: 0.1em;
   color: #5f5c51;
-
 }
 
 .ForgetPassword {
@@ -127,6 +126,13 @@ input::placeholder {
 @media screen and (max-width: 576px) {
   img {
     display: none;
+  }
+  .LoginTitle {
+    margin-top: 0;
+  }
+  .ForgetPassword {
+    margin-top: 10px;
+    font-size: 22px;
   }
   Frame {
     width: 100%;
