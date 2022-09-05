@@ -24,3 +24,8 @@ img {
     width: 610px;
   }
 }
+.storeList_leftSide{
+  @media screen and (max-width:576px){
+    display: none;
+  }
+}
