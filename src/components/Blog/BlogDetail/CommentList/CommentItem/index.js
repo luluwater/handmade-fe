@@ -29,6 +29,9 @@ const CommentItem = ({
   const [contentInput, setContentInput] = useState(content)
   const [editTime, setEditTime] = useState('')
 
+  /**
+   * 刪除留言，取得目前的 comment ID 來做
+   */
   const handleDelete = async () => {
     try {
       let btnResult = await swalButtons.fire({
@@ -50,10 +53,12 @@ const CommentItem = ({
     }
   }
 
+  //改變編輯與閱讀狀態
   const handleChangModal = () => {
     setIsEditing((pre) => !pre)
   }
 
+  //改變編輯與閱讀狀態
   const handleChange = (e) => {
     setContentInput(e.target.value)
   }
@@ -63,6 +68,11 @@ const CommentItem = ({
     contentInput,
     comment_date: moment().format('YYYY-MM-DD h:mm:ss'),
   }
+  /**
+   * 修改完留言後，把 "正在留言" 轉變為 false，
+   * 以及送出修改後的 data 到後端去
+   * @param {envent} e
+   */
   const handleUpdate = async (e) => {
     e.preventDefault()
     try {
