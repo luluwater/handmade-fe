@@ -3,7 +3,7 @@ import { Outlet } from 'react-router'
 import { Container } from 'react-bootstrap'
 import FilterPage from '../components/User/FilterPage'
 import UserCard from '../components/User/UserCard'
-import UserAccount from '../components/User/UserAccount'
+// import UserAccount from '../components/User/UserAccount'
 
 const UserAccountPage = () => {
   return (
@@ -11,9 +11,8 @@ const UserAccountPage = () => {
       <FilterPage />
       <Container className="d-flex">
         <UserCard />
-        <UserAccount />
+        <Outlet />
       </Container>
-      <Outlet />
     </>
   )
 }

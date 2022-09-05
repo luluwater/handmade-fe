@@ -13,9 +13,8 @@ import AboutLayout from './components/About'
 import News from './pages/NewsPage'
 import NewsLayout from './components/News'
 import UserAccountPage from './pages/UserAccountPage'
-import UserCoursesPage from './pages/UserCoursesPage'
 import UserOrdersPage from './pages/UserOrdersPage'
-import UserProductsPage from './pages/UserProductsPage'
+import UserAccount from './components/User/UserAccount'
 
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
@@ -49,22 +48,16 @@ const routeConfig = [
         // element: <Store />,
       },
       {
-        path: 'user/:userId',
+        path: 'user',
         element: <UserAccountPage />,
         children: [
           {
+            path: 'management',
+            element: <UserAccount />,
+          },
+          {
             path: 'orders',
             element: <UserOrdersPage />,
-            children: [
-              {
-                path: 'courses',
-                element: <UserCoursesPage />,
-              },
-              {
-                path: 'products',
-                element: <UserProductsPage />,
-              },
-            ],
           },
         ],
       },
