@@ -28,7 +28,6 @@ const CommentList = () => {
     <>
       <div>
         {finalComment?.map((item) => {
-          console.log(item.comment_date)
           return (
             <CommentItem
               key={item.comment_id}

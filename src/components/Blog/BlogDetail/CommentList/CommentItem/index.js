@@ -24,9 +24,10 @@ const CommentItem = ({
 
   const [isEditing, setIsEditing] = useState(false)
   const [contentInput, setContentInput] = useState(content)
-  const [editTime, setEditTime] = useState(
-    moment().format('YYYY-MM-DD h:mm:ss')
-  )
+  const [editTime, setEditTime] = useState('')
+  const [isEdited, setIsEdited] = useState(content !== contentInput)
+
+  console.log(isEdited)
 
   const swalButtons = Swal.mixin({
     customClass: {
@@ -85,7 +86,8 @@ const CommentItem = ({
 
   useEffect(() => {
     setEditTime(moment().format('YYYY-MM-DD h:mm:ss'))
-  }, [contentInput])
+    setIsEdited(content !== contentInput)
+  }, [contentInput, content])
 
   return (
     <>
@@ -124,7 +126,9 @@ const CommentItem = ({
               </div>
               <div>
                 <div className="mb-3"> {commentTime}</div>
-                <div className="text-muted"> 在 {editTime} 修改</div>
+                {isEdited && (
+                  <div className="text-muted"> 在 {editTime} 修改</div>
+                )}
               </div>
             </div>
 
