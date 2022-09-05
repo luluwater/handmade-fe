@@ -10,7 +10,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import CommentList from './CommentList'
 import TextForm from './CommentList/TextForm'
 import { useGetBlogQuery } from '../../../services/blogApi'
-import { useCreateCommentMutation } from '../../../services/commentApi'
+import { useCreateCommentMutation } from '../../../services/commentAPI'
 
 import { Toast } from '../../UI/SwalStyle'
 // import Dropdown from 'react-bootstrap/Dropdown'

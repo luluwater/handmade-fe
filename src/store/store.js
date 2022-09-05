@@ -8,7 +8,7 @@ import commentReducer from '../slices/comment-slice'
 
 // API services
 import { blogApiService } from '../services/blogApi'
-import { commentApiService } from '../services/commentApi'
+import { commentApiService } from '../services/commentAPI'
 import { replyApiService } from '../services/replyApi'
 
 /**

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   useDeleteCommentMutation,
   useUpdateCommentMutation,
-} from '../../../../../services/commentApi'
+} from '../../../../../services/commentAPI'
 
 import Swal from 'sweetalert2'
 import Form from 'react-bootstrap/Form'

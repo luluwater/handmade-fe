@@ -31,6 +31,15 @@ export const commentApiService = createApi({
       }),
       invalidatesTags: ['Comment'],
     }),
+    //update Comment
+    updateComment: builder.mutation({
+      query: (data) => ({
+        url: 'comment',
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Comment'],
+    }),
   }),
 })
 

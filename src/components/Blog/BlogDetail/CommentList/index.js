@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { useParams } from 'react-router'
 import CommentItem from './CommentItem'
-import { useCommentsQuery } from '../../../../services/commentApi'
+import { useCommentsQuery } from '../../../../services/commentAPI'
 import { getComment } from '../../../../slices/comment-slice'
 
 const CommentList = () => {
