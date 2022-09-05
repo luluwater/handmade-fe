@@ -11,6 +11,7 @@ import { useGetBlogQuery } from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentApi'
 
 import { Toast } from '../../UI/SwalStyle'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
@@ -89,25 +90,57 @@ const BlogDetail = () => {
       <div className="position-relative">
         {data?.blog.map((item) => (
           <>
-            <ul className="list-unstyled d-flex text-black mt-4 ms-3">
-              <li>
-                <Link className="text-dark p-3" to="/">
-                  首頁
-                </Link>
-                /
-              </li>
-              <li>
-                <Link className="text-dark p-3" to="/blog">
-                  部落格
-                </Link>
-                /
-              </li>
-              <li>
-                <Link className="text-secondary-dark p-3 " to={item.blog_id}>
-                  {item.category_name}
-                </Link>
-              </li>
-            </ul>
+            <div className="d-flex align-items-center justify-content-between mt-4">
+              <ul className="list-unstyled d-flex text-black m-0">
+                <li>
+                  <Link className="text-dark p-3" to="/">
+                    首頁
+                  </Link>
+                  /
+                </li>
+                <li>
+                  <Link className="text-dark p-3" to="/blog">
+                    部落格
+                  </Link>
+                  /
+                </li>
+                <li>
+                  <Link className="text-secondary-dark p-3 " to={item.blog_id}>
+                    {item.category_name}
+                  </Link>
+                </li>
+              </ul>
+
+              <Link to="#">
+                <FontAwesomeIcon
+                  className="fs-2 me-5 text-gray-darker"
+                  icon="fa-solid fa-ellipsis"
+                />
+              </Link>
+
+              <Dropdown className="me-3">
+                <Dropdown.Toggle
+                  className="bg-skin-brighter border-0"
+                  id="dropdown-basic"
+                >
+                  <FontAwesomeIcon
+                    className="fs-2 me-5 text-gray-darker"
+                    icon="fa-solid fa-ellipsis"
+                  />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    <Dropdown.Divider />
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
             <div className="container mb-6 mb-lg-8">
               <div className="text-center ">
                 <Badge
@@ -144,6 +177,7 @@ const BlogDetail = () => {
                   src="https://images.unsplash.com/photo-1657299170237-2d4cd59b5156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                   alt=""
                 />{' '}
+                {/* TODO:修改推薦店家 */}
                 <h5 class="position-absolute top-50 start-50 translate-middle text-white fs-2">
                   如是著物
                 </h5>

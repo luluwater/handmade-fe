@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Picker from 'emoji-picker-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +8,6 @@ const TextForm = ({
   handleSubmit,
   handleChange,
   handleCancel,
-  chosenEmoji,
   onEmojiClick,
   handleShowPicker,
   showPicker,

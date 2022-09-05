@@ -37,6 +37,7 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
           <div className="d-flex align-items-end gap-2">
             <img
               className="user_image"
+              // TODO: 塞資料到這裡面來
               src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
               alt="user avatar"
             />{' '}
