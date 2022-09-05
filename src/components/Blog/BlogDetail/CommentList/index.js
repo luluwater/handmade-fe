@@ -24,22 +24,23 @@ const CommentList = () => {
     dispatch(getComment(finalComment))
   }, [dispatch, finalComment])
 
-  // const commentList = useSelector((state) => state.commentReducer.comment)
-
   return (
     <>
       <div>
-        {finalComment?.map((item) => (
-          <CommentItem
-            key={item.comment_id}
-            commentId={item.comment_id}
-            user={item.name}
-            userAvatar={item.avatar}
-            content={item.content}
-            commentTime={moment(item.commentTime).calendar()}
-            filterReply={item.filterReply}
-          />
-        ))}
+        {finalComment?.map((item) => {
+          console.log(item.comment_date)
+          return (
+            <CommentItem
+              key={item.comment_id}
+              commentId={item.comment_id}
+              user={item.name}
+              userAvatar={item.avatar}
+              content={item.content}
+              commentTime={moment(item.comment_date).calendar()}
+              filterReply={item.filterReply}
+            />
+          )
+        })}
       </div>
     </>
   )

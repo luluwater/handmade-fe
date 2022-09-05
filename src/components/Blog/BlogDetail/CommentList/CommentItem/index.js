@@ -1,10 +1,16 @@
 import Reply from '../Reply'
 import moment from 'moment'
+import { useEffect, useState } from 'react'
 import CreateReply from '../CreateReply'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useDeleteCommentMutation } from '../../../../../services/commentApi'
+import {
+  useDeleteCommentMutation,
+  useUpdateCommentMutation,
+} from '../../../../../services/commentApi'
+
 import Swal from 'sweetalert2'
+import Form from 'react-bootstrap/Form'
 
 const CommentItem = ({
   commentId,
@@ -14,10 +20,17 @@ const CommentItem = ({
   filterReply,
 }) => {
   const [deleteComment] = useDeleteCommentMutation()
+  const [updateComment] = useUpdateCommentMutation()
 
-  const swalWithBootstrapButtons = Swal.mixin({
+  const [isEditing, setIsEditing] = useState(false)
+  const [contentInput, setContentInput] = useState(content)
+  const [editTime, setEditTime] = useState(
+    moment().format('YYYY-MM-DD h:mm:ss')
+  )
+
+  const swalButtons = Swal.mixin({
     customClass: {
-      confirmButton: 'btn btn-success',
+      confirmButton: 'btn btn-primary',
       cancelButton: 'btn btn-danger',
     },
     buttonsStyling: false,
@@ -25,33 +38,21 @@ const CommentItem = ({
 
   const handleDelete = async () => {
     try {
-      await swalWithBootstrapButtons
+      await swalButtons
         .fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
+          title: '確定刪除留言?',
           icon: 'warning',
           showCancelButton: true,
-          confirmButtonText: 'Yes, delete it!',
-          cancelButtonText: 'No, cancel!',
+          confirmButtonText: '刪除',
+          cancelButtonText: '不要好了',
           reverseButtons: true,
         })
         .then((result) => {
           if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
+            swalButtons.fire('成功刪除!', '留言已刪除', 'success')
             deleteComment({ commentId })
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire(
-              'Cancelled',
-              'Your imaginary file is safe :)',
-              'error'
-            )
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalButtons.fire('取消', '您的留言還在唷 :)', 'error')
           }
         })
     } catch (e) {
@@ -59,15 +60,49 @@ const CommentItem = ({
     }
   }
 
+  const handleChangModal = () => {
+    setIsEditing((pre) => !pre)
+  }
+
+  const handleChange = (e) => {
+    setContentInput(e.target.value)
+  }
+
+  const updateData = {
+    commentId,
+    content,
+    comment_date: moment().format('YYYY-MM-DD h:mm:ss'),
+  }
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+    try {
+      updateComment({ updateData })
+      setIsEditing((pre) => !pre)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    setEditTime(moment().format('YYYY-MM-DD h:mm:ss'))
+  }, [contentInput])
+
   return (
     <>
       <div className=" p-4  mt-6 border-bottom border-secondary-dark">
         <div className="mx-4  d-flex flex-column mb-4">
           <div className="d-flex justify-content-end gap-3">
-            <Link to="#" className="p-1 blog_comment_link text-secondary">
-              修改
-              <FontAwesomeIcon icon="fas fa-edit " className=" ms-1" />
-            </Link>
+            {/* TODO: 修改再增加條件判斷拿 user 加上 seeion 的 user 來判斷 */}
+            {user && (
+              <Link
+                to="#"
+                onClick={handleChangModal}
+                className="p-1 blog_comment_link text-secondary"
+              >
+                修改
+                <FontAwesomeIcon icon="fas fa-edit " className=" ms-1" />
+              </Link>
+            )}
             <Link
               to="#"
               onClick={handleDelete}
@@ -87,10 +122,28 @@ const CommentItem = ({
                 />
                 <span>{user}</span>
               </div>
-              <div>{commentTime}</div>
+              <div>
+                <div className="mb-3"> {commentTime}</div>
+                <div className="text-muted"> 在 {editTime} 修改</div>
+              </div>
             </div>
 
-            <p>{content}</p>
+            {isEditing ? (
+              <form onSubmit={handleUpdate}>
+                <Form.Control
+                  className=" bg-skin-bright border-dark"
+                  as="textarea"
+                  rows={4}
+                  value={contentInput}
+                  onChange={handleChange}
+                />
+                <button className="rounded-2 border-0 bg-secondary text-white px-4 py-1 mt-3 d-none d-md-block ms-auto">
+                  確認
+                </button>
+              </form>
+            ) : (
+              <p>{contentInput}</p>
+            )}
           </div>
 
           <div className="h-50 pt-5">
