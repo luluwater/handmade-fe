@@ -38,4 +38,5 @@ export const {
   useCommentsQuery,
   useCreateCommentMutation,
   useDeleteCommentMutation,
+  useUpdateCommentMutation,
 } = commentApiService
