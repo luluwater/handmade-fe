@@ -37,6 +37,7 @@ const CommentList = () => {
               content={item.content}
               commentTime={moment(item.comment_date).calendar()}
               filterReply={item.filterReply}
+              isEdited={item.isEdited}
             />
           )
         })}

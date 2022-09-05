@@ -12,12 +12,14 @@ import {
 import Swal from 'sweetalert2'
 import Form from 'react-bootstrap/Form'
 
+//TODO:再多建立一個資料表紀錄修改後的時間
 const CommentItem = ({
   commentId,
   user,
   content,
   commentTime,
   filterReply,
+  isEdited,
 }) => {
   const [deleteComment] = useDeleteCommentMutation()
   const [updateComment] = useUpdateCommentMutation()
@@ -25,14 +27,11 @@ const CommentItem = ({
   const [isEditing, setIsEditing] = useState(false)
   const [contentInput, setContentInput] = useState(content)
   const [editTime, setEditTime] = useState('')
-  const [isEdited, setIsEdited] = useState(content !== contentInput)
-
-  console.log(isEdited)
 
   const swalButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-primary',
-      cancelButton: 'btn btn-danger',
+      cancelButton: 'btn btn-skin-bright',
     },
     buttonsStyling: false,
   })
@@ -45,7 +44,7 @@ const CommentItem = ({
           icon: 'warning',
           showCancelButton: true,
           confirmButtonText: '刪除',
-          cancelButtonText: '不要好了',
+          cancelButtonText: '取消',
           reverseButtons: true,
         })
         .then((result) => {
@@ -71,7 +70,7 @@ const CommentItem = ({
 
   const updateData = {
     commentId,
-    content,
+    contentInput,
     comment_date: moment().format('YYYY-MM-DD h:mm:ss'),
   }
   const handleUpdate = async (e) => {
@@ -85,9 +84,8 @@ const CommentItem = ({
   }
 
   useEffect(() => {
-    setEditTime(moment().format('YYYY-MM-DD h:mm:ss'))
-    setIsEdited(content !== contentInput)
-  }, [contentInput, content])
+    setEditTime(updateData.comment_date)
+  }, [updateData.comment_date])
 
   return (
     <>
@@ -125,9 +123,9 @@ const CommentItem = ({
                 <span>{user}</span>
               </div>
               <div>
-                <div className="mb-3"> {commentTime}</div>
+                <div className="mb-3 text-end"> {commentTime}</div>
                 {isEdited && (
-                  <div className="text-muted"> 在 {editTime} 修改</div>
+                  <div className="text-muted"> 於 {editTime} 修改</div>
                 )}
               </div>
             </div>
@@ -135,7 +133,7 @@ const CommentItem = ({
             {isEditing ? (
               <form onSubmit={handleUpdate}>
                 <Form.Control
-                  className=" bg-skin-bright border-dark"
+                  className="bg-skin-bright border-dark"
                   as="textarea"
                   rows={4}
                   value={contentInput}
