@@ -10,7 +10,7 @@ const UPLOAD_ENDPOINT = 'upload_files'
 
 const Editor = () => {
   const [addData, setVal] = useState('')
-  const [addedData, showData] = useState('')
+  // const [addedData, showData] = useState('')
 
   const handleChange = (e, editor) => {
     const data = editor.getData()
