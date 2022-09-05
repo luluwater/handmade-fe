@@ -2,26 +2,21 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
-
 import Badge from 'react-bootstrap/Badge'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import CommentList from './CommentList'
 import TextForm from './CommentList/TextForm'
-import Toasts from '../../UI/Toasts'
-
 import { useGetBlogQuery } from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentApi'
 
-import { useDispatch } from 'react-redux'
-import { displayToast } from '../../../slices/reply-slice'
+import { Toast } from '../../UI/SwalStyle'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
   const { data } = useGetBlogQuery(blogId)
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
-  const dispatch = useDispatch()
 
   // TODO: user_id 從 local stroage 裡拿出
   const comment = {
@@ -58,7 +53,10 @@ const BlogDetail = () => {
     try {
       await setInputValue('')
       await createComment(comment)
-      await dispatch(displayToast(true))
+      await Toast.fire({
+        icon: 'success',
+        title: '已送出留言',
+      })
     } catch (e) {
       console.log(e)
     }
@@ -67,8 +65,6 @@ const BlogDetail = () => {
   return (
     <>
       <div className="position-relative">
-        <Toasts />
-
         {data?.blog.map((item) => (
           <>
             <ul className="list-unstyled d-flex text-black mt-4 ms-3">
@@ -145,8 +141,7 @@ const BlogDetail = () => {
               <CommentList />
             </div>
             <div className="mt-4 container">
-              <h6 className="pb-2 mb-3 fs-6 fs-md-3">我要留言</h6>
-
+              <h6 className="pb-2 mb-3 d fs-md-6 fs-md-3 ">我要留言</h6>
               <TextForm
                 inputValue={inputValue}
                 handleSubmit={handleSubmit}

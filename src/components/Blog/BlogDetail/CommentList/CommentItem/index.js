@@ -11,6 +11,7 @@ import {
 
 import Swal from 'sweetalert2'
 import Form from 'react-bootstrap/Form'
+import { Toast, swalButtons } from '../../../../UI/SwalStyle'
 
 //TODO:再多建立一個資料表紀錄修改後的時間
 const CommentItem = ({
@@ -28,33 +29,22 @@ const CommentItem = ({
   const [contentInput, setContentInput] = useState(content)
   const [editTime, setEditTime] = useState('')
 
-  const swalButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-primary',
-      cancelButton: 'btn btn-skin-bright',
-    },
-    buttonsStyling: false,
-  })
-
   const handleDelete = async () => {
     try {
-      await swalButtons
-        .fire({
-          title: '確定刪除留言?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: '刪除',
-          cancelButtonText: '取消',
-          reverseButtons: true,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            swalButtons.fire('成功刪除!', '留言已刪除', 'success')
-            deleteComment({ commentId })
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-            swalButtons.fire('取消', '您的留言還在唷 :)', 'error')
-          }
-        })
+      let btnResult = await swalButtons.fire({
+        title: '確定刪除留言?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '刪除',
+        cancelButtonText: '取消',
+        reverseButtons: true,
+      })
+
+      if (btnResult.dismiss === Swal.DismissReason.cancel) {
+        await swalButtons.fire('取消', '您的留言還在唷 :)', 'error')
+      }
+      await swalButtons.fire('成功刪除!', '留言已刪除', 'success')
+      await deleteComment({ commentId })
     } catch (e) {
       console.log(e)
     }
@@ -76,8 +66,12 @@ const CommentItem = ({
   const handleUpdate = async (e) => {
     e.preventDefault()
     try {
-      updateComment({ updateData })
-      setIsEditing((pre) => !pre)
+      await updateComment({ updateData })
+      await setIsEditing((pre) => !pre)
+      await Toast.fire({
+        icon: 'success',
+        title: '修改成功',
+      })
     } catch (e) {
       console.log(e)
     }

@@ -1,51 +1,30 @@
 import React from 'react'
-import Swal from 'sweetalert2'
+
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDeleteReplyMutation } from '../../../../../services/replyApi'
+import { swalButtons } from '../../../../UI/SwalStyle'
+import Swal from 'sweetalert2'
 
 const Reply = ({ id, avatar, createTime, name, reply }) => {
   const [deleteReply] = useDeleteReplyMutation()
 
-  const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger',
-    },
-    buttonsStyling: false,
-  })
-
   const handleDelete = async () => {
     try {
-      await swalWithBootstrapButtons
-        .fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Yes, delete it!',
-          cancelButtonText: 'No, cancel!',
-          reverseButtons: true,
-        })
-        .then((result) => {
-          if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-            deleteReply({ id })
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire(
-              'Cancelled',
-              'Your imaginary file is safe :)',
-              'error'
-            )
-          }
-        })
+      let btnResult = await swalButtons.fire({
+        title: '確定刪除回覆?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '刪除',
+        cancelButtonText: '取消',
+        reverseButtons: true,
+      })
+      console.log(btnResult)
+      if (btnResult.dismiss === Swal.DismissReason.cancel) {
+        await swalButtons.fire('取消', '您的回覆還在唷 :)', 'error')
+      }
+      await swalButtons.fire('成功刪除!', '回覆已刪除', 'success')
+      await deleteReply({ id })
     } catch (e) {
       console.log(e)
     }

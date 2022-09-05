@@ -7,15 +7,16 @@ import moment from 'moment'
 
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
+import { Toast } from '../../../../UI/SwalStyle'
 
 import {
   useRepliesQuery,
   useCreateReplyMutation,
 } from '../../../../../services/replyApi'
-import { getReply, displayToast } from '../../../../../slices/reply-slice'
+import { getReply } from '../../../../../slices/reply-slice'
 
 const CreateReply = ({ commentId }) => {
-  const { data, error, isLoading } = useRepliesQuery()
+  const { data } = useRepliesQuery()
   const [open, setOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const dispatch = useDispatch()
@@ -38,7 +39,7 @@ const CreateReply = ({ commentId }) => {
   const reply = {
     id: uuidv4(),
     reply_content: inputValue,
-    //USER_ID 從 LOCAL STROAGE拿
+    //TODO: USER_ID 從 LOCAL STROAGE拿
     user_id: '1',
     reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
     comment_id: commentId,
@@ -53,7 +54,10 @@ const CreateReply = ({ commentId }) => {
     try {
       await setInputValue('')
       await createReply(reply)
-      await dispatch(displayToast(true))
+      await Toast.fire({
+        icon: 'success',
+        title: '已送出回覆',
+      })
     } catch (e) {
       console.log(e)
     }
