@@ -9,6 +9,8 @@ import BlogLayout from './components/Blog'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import FindPassword from './pages/FindPassword'
+
 
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
@@ -64,6 +66,10 @@ const routeConfig = [
       {
         path: 'SignUp',
         element: <SignUp />,
+      },
+      {
+        path: 'FindPassword',
+        element: <FindPassword />,
       },
 
       {
