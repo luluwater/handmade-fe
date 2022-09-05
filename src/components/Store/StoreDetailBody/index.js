@@ -75,17 +75,27 @@ const index = () => {
         </div>
 
         <div>
-          <Row className="StoreDetailBody_recommendBox">
+          <Row className="StoreDetailBody_recommendBox justify-content-center">
+
+
             <Col
               xs={12}
               md={6}
               className="StoreDetailBody_courseRecommend"
-            ></Col>
+            >
+              123
+            </Col>
+
+
+
             <Col
               xs={12}
               md={6}
               className="StoreDetailBody_productRecommend"
-            ></Col>
+            >123</Col>
+
+
+
           </Row>
         </div>
       </section>

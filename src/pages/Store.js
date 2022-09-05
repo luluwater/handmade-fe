@@ -12,7 +12,7 @@ const Store = () => {
   return (
     <>
       <StoreBanner />
-      <Container fluid className="mt-10 px-10 min-vw-50">
+      <div  className="mt-10 StorePage_container">
         <Row>
           <Col md={3} className="storeList_leftSide">
             這裡是左Bar
@@ -21,7 +21,7 @@ const Store = () => {
             <Row className="mx-2 mb-5">
               {data?.map((item) => {
                 return (
-                  <Col xs={6} md={3} className="mb-5">
+                  <Col xs={6} md={3} className="mb-5" key={item.id}>
                     <StoreCard
                       id={item.id}
                       name={item.name}
@@ -34,7 +34,7 @@ const Store = () => {
             </Row>
           </Col>
         </Row>
-      </Container>
+      </div>
     </>
   )
 }

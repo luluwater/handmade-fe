@@ -9,7 +9,7 @@ const StoreCard = ({ id, name, img, category_en_name }) => {
     <>
       <Card className="StoreCard_card p-0">
         <div className="StoreCard_imgBox">
-          <Link to="/">
+          <Link to={`/store/${id}`}>
             <img
               src={require(`../../../assets/store/store_${category_en_name}_${id}/${img}`)}
               alt=""

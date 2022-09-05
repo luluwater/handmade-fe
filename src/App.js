@@ -44,7 +44,7 @@ const routeConfig = [
         element: <Store />,
       },
       {
-        path: 'store/1',
+        path: 'store/:storeId',
         element: <StoreDetail />,
       },
       //user router
