@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import blogReducer from '../slices/blog-slice'
 import productReducer from '../slices/productCard-slice'
+import paginationReducer from '../slices/filterPagination-slice'
 import { blogApiService } from '../services/blogApi'
 import { productApiService } from '../services/productApi'
 // import { userApiService } from '../services/userApi'
@@ -14,6 +15,7 @@ const reducers = combineReducers({
    */
   // blogReducer,
   productReducer,
+  paginationReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [productApiService.reducerPath]: productApiService.reducer,
   // [userApiService.reducerPath]: userApiService.reducer,

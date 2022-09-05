@@ -4,19 +4,21 @@ import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../slices/productCard-slice'
-import { wave, productBanner } from '../image'
-// import productBanner from '../assets/banner/store_floral_13.jpg'
+import { pagination } from '../slices/filterPagination-slice'
+import { productBanner } from '../image'
 
 function Proudcts() {
   //api get products data
   const { data, error, isLoading } = useGetProductListQuery()
-  // console.log(data)
+  // console.log('api', data)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(addProduct(data))
+    dispatch(pagination(data))
   }, [dispatch, data])
-  const productList = useSelector((state) => state.productReducer.product)
-  console.log(productList)
+  // const productListNoP = useSelector((state) => state.productReducer.product)
+  // console.log('normal', productListNoP)
+  const productList = useSelector((state) => state.paginationReducer.data)
+  // console.log('pagination',productList)
   return (
     <>
       <div className="position-relative">
