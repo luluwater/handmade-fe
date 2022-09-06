@@ -6,7 +6,7 @@ const FindPassword = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
-      <div className="Frame">
+      <div className="FindPasswordFrame">
         <div className="border d-flex justify-content-center">
           <img
             className="FindPasswordPic"
@@ -28,7 +28,7 @@ const FindPassword = () => {
               name="SignUpEmail"
               placeholder="註冊信箱"
             >
-            送出
+              送出
             </button>
             <br />
             <Link to="/ResetPassword">
