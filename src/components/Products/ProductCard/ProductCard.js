@@ -36,7 +36,7 @@ function ProductCard({
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
 
-  console.log(isFavorite)
+  // console.log(isFavorite)
 
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">

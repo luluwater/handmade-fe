@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../slices/productCard-slice'
 import { pagination } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
+import Paginate from '../components/Filter/Paginate'
 
 function Proudcts() {
   //api get products data
@@ -76,6 +77,7 @@ function Proudcts() {
                 })}
               </Row>
             </div>
+            <Paginate />
 
             {/* <div className="d-flex flex-wrap  justify-content-start gap-5">
             {products?.map((v, i) => {              
