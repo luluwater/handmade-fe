@@ -135,7 +135,7 @@ const CommentItem = ({
             </div>
 
             {isEditing ? (
-              <form onSubmit={handleUpdate}>
+              <Form onSubmit={handleUpdate}>
                 <Form.Control
                   className="bg-skin-bright border-dark"
                   as="textarea"
@@ -146,7 +146,7 @@ const CommentItem = ({
                 <button className="rounded-2 border-0 bg-secondary text-white px-4 py-1 mt-3 d-none d-md-block ms-auto">
                   確認
                 </button>
-              </form>
+              </Form>
             ) : (
               <p>{contentInput}</p>
             )}

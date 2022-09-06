@@ -76,16 +76,6 @@ $font-sizes: (
 $link-decoration: none;
 $link-color: #fff;
 
-// BTN Customized
-// $btn-hover-bg-tint-amount: 100% ;
-// $btn-hover-bg-shade-amount: 15% !default;
-// $btn-hover-bg-tint-amount: 15% !default;
-// $btn-hover-border-shade-amount: 20% !default;
-// $btn-hover-border-tint-amount: 10% !default;
-// $btn-active-bg-shade-amount: 20% !default;
-// $btn-active-bg-tint-amount: 20% !default;
-// $btn-active-border-shade-amount: 25% !default;
-// $btn-active-border-tint-amount: 10% !default;
 $btn-border-radius: 0;
 $link-hover-color: $primary;
 
@@ -99,5 +89,7 @@ $input-focus-border-color: $gray-dark;
 $form-select-focus-box-shadow: none;
 //文字是否自適應
 // $enable-rfs: false;
+
+$dropdown-link-active-bg: $secondary;
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700;900&display=swap');

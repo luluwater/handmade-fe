@@ -6,7 +6,7 @@ export const blogApiService = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
   }),
-
+  tagTypes: ['blog'],
   endpoints: (builder) => ({
     getBlog: builder.query({
       query: (blogId) => {
@@ -15,9 +15,25 @@ export const blogApiService = createApi({
         }
         return 'blog'
       },
+      providesTags: ['blog'],
     }),
+    // CREATE
     createBlog: builder.mutation({
-      query: (data) => {},
+      query: (data) => ({
+        url: 'blog',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['blog'],
+    }),
+    //TODO: update Blog
+    updateBlog: builder.mutation({
+      query: (data) => ({
+        url: 'blog',
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['blog'],
     }),
   }),
 })

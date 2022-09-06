@@ -10,6 +10,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
+import BlogCreatePage from './pages/BlogCreatePage'
 import NoFound from './pages/NoFound'
 import ChatRoomPage from './pages/ChatRoomPage'
 
@@ -34,6 +35,10 @@ const routeConfig = [
       {
         path: 'blog/:blogId',
         element: <BlogDetailPage />,
+      },
+      {
+        path: 'blog/create',
+        element: <BlogCreatePage />,
       },
       {
         path: 'chat',

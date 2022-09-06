@@ -85,32 +85,29 @@ img {
   }
 }
 
-// .btn-check:focus + .btn,
-// .btn:focus,
-// .btn-check:active .btn:active {
-//   box-shadow: none;
-// }
+// editor
+.ck-editor__editable[role='textbox'] {
+  /* editing area */
+  min-height: 500px;
+}
 
-// .btn-check:checked + &,
-// .btn-check:active + &,
-// &:active,
-// &.active,
-// .show > &.dropdown-toggle {
-//   color: none;
-//   background-color: none;
-//   // Remove CSS gradients if they're enabled
-//   background-image: if($enable-gradients, none, null);
-//   border-color: none;
+.ck-content .image {
+  /* block images */
+  max-width: 80%;
+  margin: 20px auto;
+}
+//TODO:這有沒有需要放?
+#add_blog_active {
+  color: #fff;
+  background: var(--main-color);
+}
 
-//   &:focus {
-//     @if $enable-shadows {
-//       @include box-shadow(
-//         $btn-active-box-shadow,
-//         0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), 0.5)
-//       );
-//     } @else {
-//       // Avoid using mixin so we can pass custom focus shadow properly
-//       box-shadow: 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), 0.5);
-//     }
-//   }
-// }
+#add_blog_active a::before {
+  content: '';
+  height: 25px;
+  width: 5px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  transform: translate(-300%, -50%);
+}

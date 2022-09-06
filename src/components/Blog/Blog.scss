@@ -87,3 +87,11 @@
 .blog_comment_link:hover {
   color: $gray-darker !important;
 }
+
+.blog_dropdown_delete {
+  color: $primary;
+}
+
+.blog_preview_img {
+  object-fit: cover;
+}

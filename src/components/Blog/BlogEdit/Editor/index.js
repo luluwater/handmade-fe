@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import parse from 'html-react-parser'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
-// import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import axios from 'axios'
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 const API_URL = 'http://localhost:8080'
 const UPLOAD_ENDPOINT = 'upload_files'
@@ -70,12 +69,15 @@ const Editor = () => {
 
   return (
     <>
-      <div className="">
+      <div>
         <CKEditor
-          // editor={BalloonEditor}
-          config={{
-            extraPlugins: [uploadPlugin],
-          }}
+          editor={BalloonEditor}
+          config={
+            ({
+              extraPlugins: [uploadPlugin],
+            },
+            { placeholder: '輸入內容...' })
+          }
           data={addData}
           onReady={(editor) => {
             console.log('Editor is ready to use!', editor)

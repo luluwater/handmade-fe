@@ -50,9 +50,9 @@ const BlogDetail = () => {
     const textAreaElement = document.getElementById('comment-textarea')
     setChosenEmoji(emojiObject)
     setInputValue(
-      inputValue.substr(0, textAreaElement.selectionStart) +
+      inputValue.substring(0, textAreaElement.selectionStart) +
         emojiObject.emoji +
-        inputValue.substr(textAreaElement.selectionEnd)
+        inputValue.substring(textAreaElement.selectionEnd)
     )
   }
   /**
@@ -119,7 +119,7 @@ const BlogDetail = () => {
 
                 <Dropdown className="me-3">
                   <Dropdown.Toggle
-                    className="bg-skin-brighter border-0"
+                    className="bg-skin-brighter btn-outline-skin-brighter border-0"
                     id="dropdown-basic"
                   >
                     <FontAwesomeIcon
@@ -131,12 +131,11 @@ const BlogDetail = () => {
                   <Dropdown.Menu>
                     <Dropdown.Item
                       className="d-flex gap-3 align-items-center justify-content-center"
-                      href="#/action-1"
+                      href="/blog/create"
                     >
                       <span>新增文章</span>
                       <FontAwesomeIcon icon="fa-solid fa-plus" />
                     </Dropdown.Item>
-
                     <Dropdown.Item
                       className="d-flex gap-3 align-items-center justify-content-center"
                       href="#/action-2"
@@ -145,7 +144,7 @@ const BlogDetail = () => {
                       <FontAwesomeIcon icon="fa-solid fa-pen" />
                     </Dropdown.Item>
                     <Dropdown.Item
-                      className="d-flex gap-3 align-items-center justify-content-center text-primary"
+                      className="blog_dropdown_delete d-flex gap-3 align-items-center justify-content-center"
                       href="#/action-2"
                     >
                       <span>刪除文章</span>
