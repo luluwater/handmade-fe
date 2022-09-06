@@ -1,19 +1,18 @@
-import Image1_1 from '../../assets/product/product_pottery_39/陶藝_商品_歡樂陶一家_造型把手杯_1.jpg'
-import Image1_2 from '../../assets/product/product_pottery_39/陶藝_商品_歡樂陶一家_造型把手杯_2.jpg'
-import Image1_3 from '../../assets/product/product_pottery_39/陶藝_商品_歡樂陶一家_造型把手杯_4.jpg'
-import Image2_1 from '../../assets/product/product_pottery_49/陶藝_商品_純Object_夜_1.jpg'
-import Image2_2 from '../../assets/product/product_pottery_49/陶藝_商品_純Object_夜_2.jpg'
-import Image2_3 from '../../assets/product/product_pottery_49/陶藝_商品_純Object_夜_3.jpg'
-import Image3_1 from '../../assets/product/product_bakery_106/商品_Welcome_bake來約會吧_阿爾薩斯蘋果塔_1.jpg'
-import Image3_2 from '../../assets/product/product_bakery_106/商品_Welcome_bake來約會吧_阿爾薩斯蘋果塔_3.jpg'
-import Image3_3 from '../../assets/product/product_bakery_106/商品_Welcome_bake來約會吧_阿爾薩斯蘋果塔_5.jpg'
-import Image4_1 from '../../assets/product/product_floral_69/花藝＿商品＿草地學花＿乾燥花玻璃盒＿1.jpg'
-import Image4_2 from '../../assets/product/product_floral_69/花藝＿商品＿草地學花＿乾燥花玻璃盒＿4.jpg'
-import Image4_3 from '../../assets/product/product_floral_69/花藝＿商品＿草地學花＿乾燥花玻璃盒＿2.jpg'
-import cart from '../../assets/cart.svg'
+import Image1_1 from '../../assets/course/course_bakery_41/課程_花貓_基礎海綿蛋糕研修班_1.jpg'
+import Image1_2 from '../../assets/course/course_bakery_41/課程_花貓_基礎海綿蛋糕研修班_3.png'
+import Image1_3 from '../../assets/course/course_bakery_41/課程_花貓_基礎海綿蛋糕研修班_2.jpg'
+import Image2_1 from '../../assets/course/course_floral_29/花藝＿課程＿花曜日＿藤編花籃＿1.jpg'
+import Image2_2 from '../../assets/course/course_floral_29/花藝＿課程＿花曜日＿藤編花籃＿2.jpg'
+import Image2_3 from '../../assets/course/course_floral_29/花藝＿課程＿花曜日＿藤編花籃＿3.jpg'
+import Image3_1 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_1.jpg'
+import Image3_2 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_2.jpg'
+import Image3_3 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_2.jpg'
+import Image4_1 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_3.jpg'
+import Image4_2 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_1.jpg'
+import Image4_3 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_2.jpg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Col, Container } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -25,34 +24,34 @@ function CourseCard() {
   const Info = [
     {
       img: [Image1_1, Image1_2, Image1_3],
-      store: '歡樂陶一家',
-      name: '造型把手杯',
-      price: '$ 1500',
+      store: '花貓蛋糕實驗室',
+      name: '基礎海綿蛋糕研修班',
+      price: '$ 2200',
     },
     {
       img: [Image2_1, Image2_2, Image2_3],
-      store: '純 Object',
-      name: '夜 - 手作陶盤器',
-      price: '$ 1750',
+      store: '花曜日 FlowerDays',
+      name: '藤編花籃',
+      price: '$ 2080',
     },
     {
       img: [Image3_1, Image3_2, Image3_3],
-      store: 'Welcome_Bake',
-      name: '阿爾薩斯蘋果塔',
-      price: '$ 780',
+      store: '璐室 Lucid Dream',
+      name: '陶藝手捏體驗',
+      price: '$ 1200',
     },
     {
       img: [Image4_1, Image4_2, Image4_3],
-      store: '草地學花',
-      name: '乾燥花玻璃盒',
-      price: '$ 1400',
+      store: '小紅花',
+      name: '常規-手作地毯課',
+      price: '$ 3300',
     },
   ]
 
   return (
     <>
       <h4 className="mb-5 news_card_title text-center mt-10 mb-8 fw-bold">
-        商品推薦
+        課程推薦
       </h4>
 
       <Container className="news_card mb-12 w-100 d-flex">
@@ -90,7 +89,9 @@ function CourseCard() {
                   <p className="news_card_store m-2 text-truncate">
                     <small>| {v.store} |</small>
                   </p>
-                  <h6 className="news_card_text m-1 fw-bold">{v.name}</h6>
+                  <a href="#/">
+                    <h6 className="news_card_text m-1 fw-bold">{v.name}</h6>
+                  </a>
                   <h6 className="news_card_text text-primary fw-bold m-1">
                     {v.price}
                   </h6>
@@ -106,9 +107,6 @@ function CourseCard() {
                       // icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
                     />
-                  </button>
-                  <button className="bg-secondary news_card_favorite border-0 rounded-circle">
-                    <img src={cart} alt="" className="news_card_cart" />
                   </button>
                 </div>
               </div>

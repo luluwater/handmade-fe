@@ -90,7 +90,9 @@ function ProductCard() {
                   <p className="news_card_store m-2 text-truncate">
                     <small>| {v.store} |</small>
                   </p>
-                  <h6 className="news_card_text m-1 fw-bold">{v.name}</h6>
+                  <a href="#/">
+                    <h6 className="news_card_text m-1 fw-bold">{v.name}</h6>
+                  </a>
                   <h6 className="news_card_text text-primary fw-bold m-1">
                     {v.price}
                   </h6>
