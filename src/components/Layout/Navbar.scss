@@ -1,0 +1,94 @@
+@import '../../styles/custom_variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+
+.navbar{
+  background-color: $skin-brighter;
+  padding: 1rem 2rem 1rem 2rem;
+  @media screen and (max-width:576px){
+    padding: 1rem .5rem 1rem .5rem;
+  }
+
+  img{
+    width: 11rem;
+    @media screen and (max-width:576px){
+      width: 7rem;
+    }
+  }
+  p{
+    font-family: 'Reggae One', cursive;
+    color: $secondary;
+    @media screen and (max-width:576px){
+      display: none;
+    }
+  }
+  form{
+    @media screen and (max-width:576px){
+      display: none;
+    }
+  }
+  .searchInput{
+    width: 13rem;
+    height: 2rem;
+    border: 2px solid $secondary;
+    border-radius: .5rem;
+    background-color: $skin-brighter;
+    padding: .5rem;
+    outline-color: $primary;
+  }
+
+  button{
+    background-color: $skin-brighter;
+  }
+  &_user{
+    @media screen and (max-width:576px){
+      display: none;
+    }
+  }
+  &_bars{
+    display: none;
+    @media screen and (max-width:576px){
+      display: block;
+      margin: 0 .5rem;
+    }
+  }
+
+
+}
+
+
+.navbar_awesomeIcon{
+  color:$secondary;
+  &:hover{
+    color: $primary;
+  }
+}
+
+
+
+
+.navbar_list{
+  display: flex;
+
+  li:before{
+    content:'|';
+    margin: 0 2rem;
+    color:$secondary;
+  }
+  li:first-child:before{
+    display: none;
+  }
+
+  @media screen and (max-width:576px){
+    display: none;
+  }
+}
+
+.navbar_link{
+  color: $secondary;
+  font-weight: 700;
+  letter-spacing:1px;
+}
+
+
