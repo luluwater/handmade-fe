@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import { getComment } from '../../../../../slices/comment-slice'
-import { useCreateReplyMutation } from '../../../../../services/replyApi'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
