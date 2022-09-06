@@ -1,18 +1,20 @@
 @import url(https://fonts.google.com/noto/specimen/Noto+Sans+TC?query=Not);
 /* @import '../styles/custom_variables'; */
-.Frame {
+.LoginFrame {
   margin: 0 auto;
   background: #f4eee8;
   border: 10px solid #ffffff;
   border-radius: 20px;
   max-width: 1300px;
   margin-top: 57px;
+  margin-bottom: 90px;
+
 }
 .border {
   border-radius: 20px solid #ffffff !important;
   border: transparent !important;
 }
-Form {
+.LoginForm {
   margin-top: 20px;
   position: relative;
   max-width: auto;
@@ -57,7 +59,7 @@ Form {
 input::placeholder {
   font-family: 'Roboto';
   font-weight: 400;
-  font-size: 18px;
+  font-size:  22px;
   line-height: 25px;
   letter-spacing: 0.1em;
   padding-left: 0.1em;
@@ -68,7 +70,7 @@ input::placeholder {
   font-family: 'Noto Sans TC', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size:  22px;
   line-height: 19px;
   letter-spacing: 0.1em;
   color: #5f5c51;
@@ -87,7 +89,7 @@ input::placeholder {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 23px;
   letter-spacing: 0.3em;
 }
@@ -100,7 +102,7 @@ input::placeholder {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size:  22px;
   line-height: 23px;
   letter-spacing: 0.3em;
   color: #ffffff;
@@ -112,7 +114,7 @@ input::placeholder {
   font-family: 'Noto Sans TC', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size:  22px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.1em;
@@ -130,12 +132,18 @@ input::placeholder {
   .LoginTitle {
     margin-top: 0;
   }
+  .AccountInput{
+     margin-top: 25px;
+  }
   .ForgetPassword {
     margin-top: 10px;
     font-size: 22px;
   }
-  Frame {
-    width: 100%;
+  .LoginForm{
+    margin-top:8px;
+  }
+  .LoginFrame {
+   width: 456px;
   }
   .footerLogin {
     margin-top: 27px;

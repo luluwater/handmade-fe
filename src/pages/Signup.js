@@ -7,14 +7,14 @@ const SignUp = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
-      <div className="Frame">
+      <div className="SignUpFrame">
         <div className="border d-flex justify-content-center">
           <img
             className="SignUpPic"
             src={require('./Login_SignUp_img/login_pic_工作區域_6_1.png')}
             alt=""
           />
-          <form action="" className="Form ">
+          <form action="" className="SignUpForm ">
             <h1 className="SignUpTitle text-center">會員註冊</h1>
             <input
               className="AccountInputSignUp"
@@ -46,12 +46,12 @@ const SignUp = () => {
             <br />
             <input type="submit" value="註冊" className="NewSignUp" />
 
-            <h4 className="text-center">or Login with</h4>
+            <h2 className="footerLogin text-center">Or Login With</h2>
             <Link to="">
               <FontAwesomeIcon
-                icon="fab fa-google-plus-square "
+                icon="fa-solid fa-user"
                 size="xl"
-                className="mx-3 Navbar_awesomeIcon"
+                className="Navbar_awesomeIcon icon"
                 fixedWidth
               />
             </Link>

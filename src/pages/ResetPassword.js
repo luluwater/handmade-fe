@@ -1,41 +1,41 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Login_SignUp_img/Login.css'
+import './Login_SignUp_img/ResetPassword.css'
 
 const ResetPassword = () => {
   return (
     <>
-      <div className="Frame">
+      <div className="ResetPasswordFrame">
         <div className="border d-flex justify-content-center">
           <img
-            className="LoginPic"
+            className="ResetPasswordPic"
             src={require('./Login_SignUp_img/login_pic_工作區域_3_1.png')}
             alt=""
           />
-          <form action="" className="Form ">
-            <h1 className="LoginTitle text-center">會員登入</h1>
+          <form action="" className="ResetPasswordForm ">
+            <h1 className="ResetPasswordTitle text-center">設置新密碼</h1>
             <input
-              className="AccountInput"
-              type="text"
-              name="AccountInput"
-              placeholder="會員帳號"
-            />
-            <br />
-            <input
-              className="PasswordInput"
+              className="ResetPasswordInput"
               type="password"
-              name="PasswordInput"
-              placeholder="會員密碼"
+              name="ResetPasswordInput"
+              placeholder="新密碼"
             />
             <br />
-            {/* <Link to="/FindPassword"> */}
-            <a href="./FindPassword" className="ForgetPassword">
-              忘記密碼
-            </a>
-            {/* </Link> */}
+            <input
+              className="ResetPasswordInputSecond"
+              type="password"
+              name="ResetPasswordInputSecond"
+              placeholder="確認新密碼"
+            />
             <br />
 
-            <input type="submit" value="登入" className="Login" />
+            <button
+              type="button"
+              value="submit"
+              className="ResetPasswordSubmit"
+            >
+              送出
+            </button>
             <br />
           </form>
           {/* <Link className="text-primary btn" to="/blog">

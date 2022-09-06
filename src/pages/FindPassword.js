@@ -21,12 +21,15 @@ const FindPassword = () => {
               <h1 className="P_Section  mt-3">請輸入您的信箱</h1>
               <p className="P_Section  mt-3 ">以接收密碼重置信件</p>
             </div>
-            <input
+            <button
               className="SignUpEmail"
-              type="email"
+              type="button"
+              value="submit"
               name="SignUpEmail"
               placeholder="註冊信箱"
-            />
+            >
+            送出
+            </button>
             <br />
             <Link to="/ResetPassword">
               <input type="submit" value="送出" className="submit" />

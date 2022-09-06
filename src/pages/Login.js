@@ -7,14 +7,14 @@ const Login = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
-      <div className="Frame">
+      <div className="LoginFrame">
         <div className="border d-flex justify-content-center">
           <img
             className="LoginPic"
             src={require('./Login_SignUp_img/login_pic_工作區域_3_1.png')}
             alt=""
           />
-          <form action="" className="Form ">
+          <form action="" className="LoginForm ">
             <h1 className="LoginTitle text-center">會員登入</h1>
             <input
               className="AccountInput"
@@ -32,16 +32,20 @@ const Login = () => {
             <br />
             {/* <Link to="/FindPassword"> */}
             <a href="./FindPassword" className="ForgetPassword">
-              忘記密碼
+              忘記密碼?
             </a>
             {/* </Link> */}
             <br />
-            <input type="submit" value="登入" className="Login" />
+            <button type="submit" value="submit" className="Login">
+              登入
+            </button>
             <br />
             <Link to="/SignUp">
-              <input type="submit" value="註冊" className="SignUp" />
+              <button type="submit" value="submit" className="SignUp">
+                註冊
+              </button>
             </Link>
-            <h4 className="footerLogin text-center">or Login with</h4>
+            <h2 className="footerLogin text-center">Or Login With</h2>
             <Link to="">
               <FontAwesomeIcon
                 icon="fa-solid fa-user"

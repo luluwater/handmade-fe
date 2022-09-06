@@ -1,12 +1,13 @@
 @import url(https://fonts.google.com/noto/specimen/Noto+Sans+TC?query=Not);
 /* @import '../styles/custom_variables'; */
-.Frame {
+.SignUpFrame {
   margin: 0 auto;
   background: #f4eee8;
   border: 10px solid #ffffff;
   border-radius: 20px;
   max-width: 1300px;
   margin-top: 57px;
+  margin-bottom: 90px;
 }
 .border {
   border-radius: 20px solid #ffffff !important;
@@ -20,7 +21,7 @@
   margin-top: 104px;
   margin-bottom: 69.74px;
 }
-Form {
+.SignUpForm {
   padding-top: 20px;
   position: relative;
   max-width: auto;
@@ -35,7 +36,6 @@ Form {
   color: #5f5c51;
   margin-top: 82px;
 }
-
 .AccountInputSignUp {
   margin-top: 32px;
   width: 352px;
@@ -82,7 +82,7 @@ Form {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 25px;
   letter-spacing: 0.1em;
   padding-left: 0.1em;
@@ -97,18 +97,17 @@ Form {
   border-radius: 10px;
   font-family: 'Roboto';
   font-weight: 400;
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: 0.3em;
   color: #ffffff;
 }
-h4,
 .footerLogin {
   margin-top: 38.75px;
   color: #5f5c51;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 22px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.1em;
@@ -124,8 +123,14 @@ h4,
   img {
     display: none;
   }
-  Frame {
-    width: 100%;
+  .SignUpForm{
+    padding-top: 0px;
+  }
+  .SignUpTitle{
+    margin-top: 36PX;
+  }
+  .SignUpFrame {
+    width: 456px;
   }
   .footerLogin {
     margin-top: 27px;
