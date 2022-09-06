@@ -12,7 +12,13 @@ import Store_kv_3 from '../../../../src/assets/store/store_pottery_6/陶藝_璐�
 import Store_kv_4 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-4.jpg'
 import Store_kv_5 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-5.jpg'
 
+import { useParams } from 'react-router-dom'
+import { useGetStoreDetailQuery } from '../../../services/storeApi'
+
 const StoreSwiperKV = () => {
+  const { storeId } = useParams()
+  const { data } = useGetStoreDetailQuery(storeId)
+
   return (
     <>
       <div className="d-flex justify-content-center ">
@@ -36,21 +42,17 @@ const StoreSwiperKV = () => {
             }}
             className="storeDetail_swiper"
           >
-            <SwiperSlide>
-              <img src={Store_kv_1} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={Store_kv_2} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={Store_kv_3} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={Store_kv_4} alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={Store_kv_5} alt="" />
-            </SwiperSlide>
+            {data?.map((item) => {
+    
+              return (
+                <SwiperSlide>
+                  <img
+                    src={require(`../../../assets/store_banner/${item.kv_imgs}`)}
+                    alt=""
+                  />
+                </SwiperSlide>
+              )
+            })}
           </Swiper>
         </div>
       </div>

@@ -2,11 +2,11 @@ import React from 'react'
 import '../styles/style.scss'
 import StoreBanner from '../components/Store/StoreBanner'
 import StoreCard from '../components/Store/StoreCard'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { useGetStoreQuery } from '../services/storeApi'
 
 const Store = () => {
-  const { data, error, isLoading } = useGetStoreQuery('all')
+  const { data } = useGetStoreQuery()
   console.log(data)
 
   return (
