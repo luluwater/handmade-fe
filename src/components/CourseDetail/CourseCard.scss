@@ -4,6 +4,7 @@
   padding: 1rem;
   @media screen and (max-width: 576px) {
     overflow: visible;
+    flex-wrap: wrap;
       &_m {
       margin-top: 1rem;
       margin-bottom: 1rem;
