@@ -12,9 +12,9 @@ import About from './pages/AboutPage'
 import AboutLayout from './components/About'
 import News from './pages/NewsPage'
 import NewsLayout from './components/News'
+import UserPage from './pages/UserPage'
 import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
-import UserAccount from './components/User/UserAccount'
 import UserOrderDetailPage from './pages/UserOrderDetailPage'
 import UserLikesPage from './pages/UserLikesPage'
 import UserCouponsPage from './pages/UserCouponsPage'
@@ -53,11 +53,11 @@ const routeConfig = [
       },
       {
         path: 'user',
-        element: <UserAccountPage />,
+        element: <UserPage />,
         children: [
           {
             path: 'management',
-            element: <UserAccount />,
+            element: <UserAccountPage />,
           },
           {
             path: 'orders',
