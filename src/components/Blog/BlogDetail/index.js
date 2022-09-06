@@ -113,7 +113,7 @@ const BlogDetail = () => {
         {data?.blog.map((item) => {
           return (
             <>
-              <div className="d-flex align-items-center justify-content-between mt-4">
+              <div className="d-flex align-items-center justify-content-between my-4">
                 <ul className="list-unstyled d-flex text-black m-0">
                   <li>
                     <Link className="text-dark p-3" to="/">
@@ -137,6 +137,7 @@ const BlogDetail = () => {
                   </li>
                 </ul>
 
+                {/* Dropdown */}
                 <Dropdown className="me-3">
                   <Dropdown.Toggle
                     className="bg-skin-brighter btn-outline-skin-brighter border-0"

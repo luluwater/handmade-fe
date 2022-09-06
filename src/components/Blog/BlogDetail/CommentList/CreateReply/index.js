@@ -66,14 +66,16 @@ const CreateReply = ({ commentId }) => {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(!open)}
-        aria-controls="comment-collapse"
-        aria-expanded={open}
-        className="rounded-2 border-0 bg-secondary text-white px-4 py-1 mb-3 d-none d-md-block ms-auto"
-      >
-        回覆留言
-      </button>
+      <div className="text-end">
+        <button
+          onClick={() => setOpen(!open)}
+          aria-controls="comment-collapse"
+          aria-expanded={open}
+          className="rounded-2 border-0 bg-secondary text-white px-4 py-1 mb-3 ms-auto"
+        >
+          回覆留言
+        </button>
+      </div>
       <Collapse in={open}>
         <form onSubmit={handleSubmit}>
           <Form.Group>
@@ -81,6 +83,7 @@ const CreateReply = ({ commentId }) => {
               className=" bg-skin-bright"
               as="textarea"
               rows={4}
+              required
               value={inputValue}
               onChange={handleChange}
               placeholder="輸入回覆..."
@@ -89,13 +92,13 @@ const CreateReply = ({ commentId }) => {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-none d-md-block"
+                className="rounded-2 border-0 bg-secondary text-white px-4 py-1"
               >
                 取消
               </button>
               <button
                 type="submit"
-                className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-none d-md-block"
+                className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1"
               >
                 回覆
                 <FontAwesomeIcon className="ms-2" icon="fa-solid fa-reply" />
