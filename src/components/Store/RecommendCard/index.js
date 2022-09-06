@@ -7,10 +7,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './recommendCard.scss'
-import NewsCardImg4 from '../../../assets/store/store_bakery_21/烘焙_花貓_kv_1.jpg'
 
 // 資料
-const RecommendCard = () => {
+const RecommendCard = ({ type, id, store, name, price, img, category }) => {
   return (
     <>
       <Card className="recommendCard border-0 bg-transparent mx-1 p-0 text-gray-darker">
@@ -18,23 +17,30 @@ const RecommendCard = () => {
           modules={[Navigation]}
           navigation
           effect={'slide'}
-          speed={800}
+          speed={600}
           slidesPerView={1}
           loop
           className="card_swiper shadow"
         >
-          <SwiperSlide>
-            <img src={NewsCardImg4} alt="" />
-          </SwiperSlide>
+          {img?.map((item) => {
+            return (
+              <SwiperSlide key={item}>
+                <img
+                  src={require(`../../../assets/${type}/${type}_${category}_${id}/${item}`)}
+                  alt=""
+                />
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
 
         <Row className="justify-content-between align-items-center ">
           <Col xs={6} className="mt-2">
-            <p className="mb-1  text-truncate recommendCard_storeName">
-              <p className='m-0'>| 璐室 |</p>
+            <p className="mb-1 text-truncate recommendCard_storeName ">
+              <p className="m-0">| {store} |</p>
             </p>
-            <h6 className="mb-1 text-truncate ps-1">璐室</h6>
-            <p className="text-primary fw-bold ps-1">$1200</p>
+            <h6 className="mb-1 text-truncate ps-1">{name}</h6>
+            <p className="text-primary fw-bold ps-1">${price}</p>
           </Col>
           <Col className="text-end d-flex">
             <button className="bg-primary card_favorite border-0  rounded-circle me-2">

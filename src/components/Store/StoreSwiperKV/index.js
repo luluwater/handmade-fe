@@ -6,19 +6,8 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { EffectCoverflow, Pagination, Navigation } from 'swiper'
 import './StoreSwiperKV.scss'
-import Store_kv_1 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-1.jpg'
-import Store_kv_2 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-2.jpg'
-import Store_kv_3 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-3.jpg'
-import Store_kv_4 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-4.jpg'
-import Store_kv_5 from '../../../../src/assets/store/store_pottery_6/陶藝_璐室_KV-5.jpg'
 
-import { useParams } from 'react-router-dom'
-import { useGetStoreDetailQuery } from '../../../services/storeApi'
-
-const StoreSwiperKV = () => {
-  const { storeId } = useParams()
-  const { data } = useGetStoreDetailQuery(storeId)
-
+const StoreSwiperKV = ({ id, category, kvImg }) => {
   return (
     <>
       <div className="d-flex justify-content-center ">
@@ -42,12 +31,11 @@ const StoreSwiperKV = () => {
             }}
             className="storeDetail_swiper"
           >
-            {data?.map((item) => {
-    
+            {kvImg?.map((item) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={item}>
                   <img
-                    src={require(`../../../assets/store_banner/${item.kv_imgs}`)}
+                    src={require(`../../../../src/assets/store/store_${category}_${id}/${item}`)}
                     alt=""
                   />
                 </SwiperSlide>

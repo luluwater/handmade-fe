@@ -17,7 +17,7 @@ const StoreCard = ({ id, name, img, category_en_name }) => {
             />
           </Link>
         </div>
-        <Link to="/store/1">
+        <Link to={`/store/${id}`}>
           <p className="text-center mt-3 text-gray-darker">| {name} |</p>
         </Link>
       </Card>

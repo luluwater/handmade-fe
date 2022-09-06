@@ -2,6 +2,7 @@ import React from 'react'
 import './StoreBanner.scss'
 import storeBanner from '../../../assets/store_banner/store_banner.jpg'
 
+
 const StoreBanner = () => {
   return (
     <>

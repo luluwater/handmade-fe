@@ -18,19 +18,21 @@ const StoreDetailBody = () => {
     <>
       {data?.map((item) => {
         return (
-          <section key={item.id} className="StoreDetailBody">
+          <section key={item.img} className="StoreDetailBody">
             <div className="d-flex StoreDetailBody_sloganBox d-flex justify-content-center">
               <h2 className="StoreDetailBody_slogan text-center ">
                 {item.slogan}
               </h2>
             </div>
 
-            <StoreSwiperKV />
+            <StoreSwiperKV
+              id={item.id}
+              category={item.category_en_name}
+              kvImg={item.kv_imgs}
+            />
 
             <article className="StoreDetailBody_Intro">
-              <p className="text-center">
-                {item.intro}
-              </p>
+              <p className="text-center">{item.intro}</p>
             </article>
 
             <div className="StoreDetailBody_storeInfoBox align-items-center">
@@ -44,9 +46,7 @@ const StoreDetailBody = () => {
                 </li>
                 <li>
                   <strong>交通方式：</strong>
-                  <span>
-                    {item.route}
-                  </span>
+                  <span>{item.route}</span>
                 </li>
                 <li>
                   <strong>聯絡電話：</strong>
@@ -61,23 +61,23 @@ const StoreDetailBody = () => {
             </div>
 
             <div className="StoreDetailBody_SNS d-flex justify-content-center">
-              <Link to={item.FB_url}>
+              <a href={item.FB_url}>
                 <FontAwesomeIcon
                   icon={faFacebookF}
                   size="3x"
                   className="StoreDetailBody_awesomeIcon"
                   fixedWidth
                 />
-              </Link>
+              </a>
 
-              <Link to={item.IG_url}>
+              <a href={item.IG_url}>
                 <FontAwesomeIcon
                   icon={faInstagram}
                   size="3x"
                   className="StoreDetailBody_awesomeIcon"
                   fixedWidth
                 />
-              </Link>
+              </a>
             </div>
 
             <Row className="StoreDetailBody_recommendBox justify-content-center ">
