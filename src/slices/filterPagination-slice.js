@@ -3,8 +3,8 @@ import { act } from 'react-dom/test-utils'
 
 function doPagination(state) {
   state.data = state.rawData?.slice(
-    (state.currentPage - 1) * state.prePage,
-    state.prePage * state.currentPage
+    (state.currentPage - 1) * state.itemCount,
+    state.itemCount * state.currentPage
   )
 }
 function checkPage(page, state) {
@@ -18,7 +18,7 @@ const initialState = {
   data: [],
   filter: [],
   currentPage: 1,
-  prePage: 20,
+  itemCount: 20,
   totalPage: 1,
 }
 
@@ -28,9 +28,12 @@ export const paginationSlice = createSlice({
   reducers: {
     pagination: (state, action) => {
       const length = action.payload?.length ?? 1
-      state.totalPage = Math.ceil(length / state.prePage)
+      state.totalPage = Math.ceil(length / state.itemCount)
       state.rawData = action.payload
       doPagination(state)
+    },
+    setShowItemCount: (state, action) => {
+      state.itemCount = action.payload
     },
     changePage: (state, action) => {
       const page = checkPage(action.payload, state)
@@ -51,6 +54,6 @@ export const paginationSlice = createSlice({
   },
 })
 
-export const { pagination, changePage, nextPage, prePage } =
+export const { pagination, setShowItemCount, changePage, nextPage, prePage } =
   paginationSlice.actions
 export default paginationSlice.reducer
