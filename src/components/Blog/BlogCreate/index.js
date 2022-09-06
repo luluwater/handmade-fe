@@ -11,6 +11,9 @@ import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import { useCreateBlogMutation } from '../../../services/blogApi'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
+import { useNavigate } from 'react-router'
+import { Toast, swalButtons } from '../../UI/SwalStyle'
+import Swal from 'sweetalert2'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
@@ -19,6 +22,8 @@ const BlogCreate = () => {
   const [addTitle, setAddTitle] = useState('')
   const [addCategory, setAddCategory] = useState('')
   const [addStore, setAddStore] = useState('')
+
+  const navigate = useNavigate()
 
   const handleContentChange = (e, editor) => {
     const data = editor.getData()
@@ -48,9 +53,10 @@ const BlogCreate = () => {
    *  useNavgative
    * @param {event} e
    */
+  const id = uuidv4()
 
   const data = {
-    id: uuidv4(),
+    id,
     //TODO:LOCAL 裡拿
     user_id: '2',
     title: addTitle,
@@ -61,8 +67,17 @@ const BlogCreate = () => {
     create_time: moment().format('YYYY-MM-DD h:mm:ss'),
   }
 
-  const handleSubmit = (e) => {
-    createBlog(data)
+  const handleSubmit = async (e) => {
+    try {
+      await createBlog(data)
+      await navigate(`/blog/${id}`, { replace: true })
+      await Toast.fire({
+        icon: 'success',
+        title: '建立成功',
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const [show, setShow] = useState(false)

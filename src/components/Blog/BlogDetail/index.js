@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
 import Badge from 'react-bootstrap/Badge'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Dropdown from 'react-bootstrap/Dropdown'
+import parse from 'html-react-parser'
 
 import CommentList from './CommentList'
 import TextForm from './CommentList/TextForm'
-import { useGetBlogQuery } from '../../../services/blogApi'
+import {
+  useGetBlogQuery,
+  useDeleteBlogMutation,
+} from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentAPI'
 
 import { Toast } from '../../UI/SwalStyle'
@@ -20,7 +24,10 @@ const BlogDetail = () => {
   const { data } = useGetBlogQuery(blogId)
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
+  const [deleteBlog] = useDeleteBlogMutation()
   const [showPicker, setShowPicker] = useState(false)
+
+  const navigate = useNavigate()
 
   const [chosenEmoji, setChosenEmoji] = useState(null)
 
@@ -77,6 +84,19 @@ const BlogDetail = () => {
       await Toast.fire({
         icon: 'success',
         title: '已送出留言',
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const handleDeleteBlog = async () => {
+    try {
+      await deleteBlog(blogId)
+      await navigate('/blog')
+      await Toast.fire({
+        icon: 'success',
+        title: '已刪除文章',
       })
     } catch (e) {
       console.log(e)
@@ -144,8 +164,8 @@ const BlogDetail = () => {
                       <FontAwesomeIcon icon="fa-solid fa-pen" />
                     </Dropdown.Item>
                     <Dropdown.Item
+                      onClick={handleDeleteBlog}
                       className="blog_dropdown_delete d-flex gap-3 align-items-center justify-content-center"
-                      href="#/action-2"
                     >
                       <span>刪除文章</span>
                       <FontAwesomeIcon icon="fa-solid fa-delete-left" />
@@ -176,7 +196,9 @@ const BlogDetail = () => {
                     />
                     <span className="ms-2">收藏數{item.favorite_amount}</span>
                   </div>
-                  <article>{item.content}</article>
+                  <article className="text-start">
+                    {parse(item.content)}
+                  </article>
                 </div>
               </div>
               <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">

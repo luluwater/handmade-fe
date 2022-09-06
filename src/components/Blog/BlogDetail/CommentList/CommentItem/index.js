@@ -44,7 +44,7 @@ const CommentItem = ({
       })
 
       if (btnResult.dismiss === Swal.DismissReason.cancel) {
-        await swalButtons.fire('取消', '您的留言還在唷 :)', 'error')
+        return await swalButtons.fire('取消', '您的留言還在唷 :)', 'error')
       }
       await swalButtons.fire('成功刪除!', '留言已刪除', 'success')
       await deleteComment({ commentId })

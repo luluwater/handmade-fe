@@ -17,7 +17,7 @@ export const blogApiService = createApi({
       },
       providesTags: ['blog'],
     }),
-    // CREATE
+    // CREATE Blog
     createBlog: builder.mutation({
       query: (data) => ({
         url: 'blog',
@@ -35,7 +35,17 @@ export const blogApiService = createApi({
       }),
       invalidatesTags: ['blog'],
     }),
+    // DELETE Blog
+    deleteBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `blog/${blogId}`,
+        method: 'delete',
+        body: blogId,
+      }),
+      invalidatesTags: ['blog'],
+    }),
   }),
 })
 
-export const { useGetBlogQuery, useCreateBlogMutation } = blogApiService
+export const { useGetBlogQuery, useCreateBlogMutation, useDeleteBlogMutation } =
+  blogApiService

@@ -21,7 +21,7 @@ const Reply = ({ id, avatar, createTime, name, reply }) => {
       })
       console.log(btnResult)
       if (btnResult.dismiss === Swal.DismissReason.cancel) {
-        await swalButtons.fire('取消', '您的回覆還在唷 :)', 'error')
+        return await swalButtons.fire('取消', '您的回覆還在唷 :)', 'error')
       }
       await swalButtons.fire('成功刪除!', '回覆已刪除', 'success')
       await deleteReply({ id })
