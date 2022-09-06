@@ -124,7 +124,15 @@
     }
     
 }
+.detail_info{
+    
+    h4{
+    color: $gray-darker;
+    font-weight: 900;
+    letter-spacing: 3px;
 
+    }
+}
 .detail_intro{
     font-size: 14px;
     color: $gray-darker;
@@ -145,14 +153,14 @@
 }
 
 .detail_cart:hover{
-    width: 200px;
+    width: 250px;
     height: 50px;
     color: $white;
     letter-spacing: 5px;
     margin: 0 20px;
 }
 .detail_cart, .detail_cart:focus{
-    width: 200px;
+    width: 250px;
     height: 50px;
     color: $white;
     letter-spacing: 5px;
@@ -219,7 +227,8 @@
     }
 }
 
-// ========== ==========
+
+// ========== showmore ==========
 
 .showmore{
     background: transparent !important;
@@ -281,5 +290,65 @@
         top: -30px;
         width: 200px;
     }
+    .react-datepicker__month-container{
+        width: 370px;
+    }
+}
 
+// ========== DatePicker ==========
+
+.course-total{
+    border: 1px $gray-darker solid;
+    width: 320px;
+    color: $gray-darker;
+}
+.course_order_title{
+    color: $gray-darker;
+}
+.course_time_btn{
+    background: $skin-bright;
+    border: none;
+    color: $gray-darker;
+}
+.course_time_btn:focus,.course_time_btn:active:focus{
+    outline: none;
+    box-shadow:none;
+    color: $white;
+
+}
+.course_time_btn:hover{
+    color: $white;
+}
+.course_date{
+.react-datepicker{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 0px;
+    border: none !important;
+
+    &__current-month{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400 !important;
+    }
+
+    &__header{
+        background-color: $skin-bright !important;
+    }
+
+    &__month-container{
+        background-color: $skin-bright;
+        height: 270px;
+    }
+
+    &__navigation-icon {
+        color: $gray-darker !important;
+        margin-top: 10px;
+    }
+
+    &__day--selected, &__day--keyboard-selected{
+        background-color: $primary !important;
+    }
+}
 }

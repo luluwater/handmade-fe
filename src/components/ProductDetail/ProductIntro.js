@@ -5,6 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './ProductDetail.scss'
 
 function ProductIntro() {
+  const info = [
+    {
+      id: 1,
+      store: 'Round Round 陶藝工作室',
+      name: '石丸波佐見燒 - 森之歌陶杯',
+      price: 'NT.880',
+      score: '4.8',
+    },
+  ]
   const intro = `尺寸：口徑約 6.5cm / 高 6cm
 若售完或是無庫存：可接單訂製，製作期約30天。陶瓷需經過兩次高溫燒製淬煉，等待絕對值得！
   
@@ -19,22 +28,27 @@ function ProductIntro() {
     <>
       <Row className="d-flex flex-column fw-bold detail_RWD">
         {/* ========== */}
-        <Col className="d-flex detail_top">
-          <Col sm={12} lg={8}>
-            <p className="detail_store">Round Round 陶藝工作室</p>
-            <h2 className="detail_name">石丸波佐見燒 - 森之歌陶杯</h2>
-            <h4 className="detail_price">NT.880</h4>
-          </Col>
-          <Col className="d-flex detail_score mt-6 ms-lg-12 col-sm-12 me-sm-0">
-            <FontAwesomeIcon
-              icon="fa-solid fa-star"
-              size="sm"
-              className="detail_score_star"
-            />
-            <p className="detail_score_title mt-2 mx-2">總評分</p>
-            <h2 className="detail_score_number">4.8</h2>
-          </Col>
-        </Col>
+        {info.map((v, i) => {
+          return (
+            <Col className="d-flex detail_top" key={v.id}>
+              <Col sm={12} lg={8}>
+                <p className="detail_store">{v.store}</p>
+                <h2 className="detail_name">{v.name}</h2>
+                <h4 className="detail_price">{v.price}</h4>
+              </Col>
+              <Col className="d-flex detail_score mt-6 ms-lg-12 col-sm-12 me-sm-0">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-star"
+                  size="sm"
+                  className="detail_score_star"
+                />
+                <p className="detail_score_title mt-2 mx-2">總評分</p>
+                <h2 className="detail_score_number">{v.score}</h2>
+              </Col>
+            </Col>
+          )
+        })}
+
         {/* ========== */}
 
         <Col className="d-flex detail_amount py-4">
