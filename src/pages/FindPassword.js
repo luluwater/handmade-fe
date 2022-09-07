@@ -18,6 +18,7 @@ const FindPassword = () => {
             src={require('./Login_SignUp_img/login_pic_工作區域_3_1.png')}
             alt=""
           />
+          
           <form action="" className="FormFindPassword ">
             <h1 className="FindPassword text-center">找回密碼</h1>
             <br />
