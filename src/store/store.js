@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
+
+// 狀態 slice
+import replyReducer from '../slices/reply-slice'
 import blogReducer from '../slices/blog-slice'
 import storeReducer from '../slices/store-slice'
 import productReducer from '../slices/productCard-slice'
@@ -18,7 +21,6 @@ const reducers = combineReducers({
   /**
    * Reducer 放這裡
    */
-  // blogReducer,
   productReducer,
   paginationReducer,
   filterStoreReducer,
@@ -27,7 +29,6 @@ const reducers = combineReducers({
   [productApiService.reducerPath]: productApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
-  // [userApiService.reducerPath]: userApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
 })
 
@@ -39,7 +40,6 @@ const store = configureStore({
       .concat(productApiService.middleware)
       .concat(storeApiService.middleware)
       .concat(categoryApiService.middleware)
-    // .concat(userApiService.middleware)
       .concat(userApiService.middleware)
   },
 })

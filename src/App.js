@@ -25,8 +25,9 @@ import UserLikesPage from './pages/UserLikesPage'
 import UserCouponsPage from './pages/UserCouponsPage'
 import UserBlogsPage from './pages/UserBlogsPage'
 
-import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
+import BlogCreatePage from './pages/BlogCreatePage'
+import BlogEditPage from './pages/BlogEditPage'
 
 import Store from './pages/Store'
 
@@ -58,6 +59,10 @@ const routeConfig = [
       {
         path: 'blog/:blogId',
         element: <BlogDetailPage />,
+      },
+      {
+        path: 'blog/create',
+        element: <BlogCreatePage />,
       },
       {
         path: 'map',

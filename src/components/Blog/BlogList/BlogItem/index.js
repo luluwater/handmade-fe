@@ -1,15 +1,15 @@
 import React from 'react'
+import moment from 'moment'
 import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 
 /**
+ * TODO: 拿資料來改變 Badge 的顏色
  * @param {data} param
  * @returns
  */
-
-const BlogItem = ({ content, tag, title, create_time, id, name, category }) => {
-  const transformTime = moment(create_time).format('MMMM DD YYYY')
+const BlogItem = ({ content, tag, title, createTime, id, name, category }) => {
+  const transformTime = moment(createTime).format('MMMM DD YYYY')
 
   return (
     <div className="mb-2 d-flex flex-column flex-lg-row gap-6 pb-4 mb-6 border-bottom ">
@@ -41,7 +41,7 @@ const BlogItem = ({ content, tag, title, create_time, id, name, category }) => {
         <p className="text-muted">
           {name} <span className="ms-3">{transformTime}</span>
         </p>
-        <p className="blog_list_content">{content}</p>
+        <p className="text-cut">{content}</p>
         <Link
           to={`/blog/${id}`}
           className="blog_list_btn align-self-end text-gray-darker"

@@ -15,7 +15,6 @@ const Navbar = () => {
 
           <p className="ms-3 mt-9">Handmade is Heartmade</p>
         </div>
-
         <div>
           <div className="d-flex justify-content-end align-items-center mt-3">
             <form action="" className="flex ">
