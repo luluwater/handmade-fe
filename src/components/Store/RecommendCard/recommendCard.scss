@@ -1,0 +1,43 @@
+  .recommendCard{
+    width: 260px;
+    @media screen and (max-width:576px){
+      width: 220px;
+
+      }
+    .row{
+        height: 90px;
+    }
+    .cart{
+        width: 20px;
+        height: 20px; 
+    }
+    .swiper-button-prev::after,.swiper-button-next::after{
+        font-size: 2rem;
+    }
+    .card_swiper{
+        max-width: 100%;
+        max-height: 100%;
+        @media screen and (max-width:576px){
+          width: 220px;
+          }
+        .swiperslide{    
+          img{
+            width: 100%;
+            height: auto;      
+          }
+        }
+      }
+      .card_favorite{  
+        width: 3rem;
+        height: 3rem;
+        @media screen and (max-width:576px){
+          width: 2.5rem;
+          height: 2.5rem;
+    
+          }
+      }
+      &_storeName{
+        font-size: .9rem;
+      }
+  }
+

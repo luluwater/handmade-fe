@@ -24,3 +24,15 @@ img {
     width: 610px;
   }
 }
+.storeList_leftSide{
+  @media screen and (max-width:576px){
+    display: none;
+  }
+}
+
+.StorePage_container{
+  padding: 0 5rem;
+  @media screen and (max-width:576px){
+  padding: 0;
+  }
+}

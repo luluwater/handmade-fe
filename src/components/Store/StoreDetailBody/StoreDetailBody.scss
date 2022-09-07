@@ -1,0 +1,156 @@
+@import '../../../styles/custom_variables';
+
+.StoreDetailBody{
+    &_sloganBox{
+        margin: 5rem 0;
+        @media screen and (max-width:576px){
+        margin: 1.5rem 0;
+
+        }
+    }
+    &_slogan{
+        font-size: $h4-font-size;
+        width: 800px;
+        padding: 20px 50px;
+        position: relative;
+        line-height: 2.3rem;
+        color: $gray-darker;
+        
+        &::before{
+            content: '';
+            position: absolute;
+            left: -5px;
+            width: 100%;
+            height: 100px;
+            border-right: 2px solid $gray-darker;
+            border-left: 2px solid $gray-darker;
+            transform: skew(-35deg);
+        }
+        @media screen and (max-width:576px){
+          width: 100%;
+          font-size: $h6-font-size;
+          line-height: 1.8rem;
+          &::before{
+            display: none;
+          }
+          }
+      
+    }
+    &_Intro{
+        color: $gray-darker;
+        margin: 8rem 20%;
+        font-size: $h5-font-size;
+        line-height: $h1-font-size;
+        @media screen and (max-width:576px){
+        margin: 2rem 2rem;
+    }
+    }
+    &_storeInfoBox{
+        display: flex;
+        color: $gray-darker;
+        margin: 13rem 15%  7rem 15%;
+        font-size: $h5-font-size;
+        @media screen and (max-width:576px){
+            flex-direction: column;
+            margin: 5rem 0;
+        }
+        
+
+    }
+    &_storeInfo{
+        width: 50%;
+        padding: 1rem 2rem;
+        li{
+            line-height: $h1-font-size;
+            font-size: 700;
+            h5:before{
+                content: '';
+                margin-right: .5rem;
+                border-right:10px solid $secondary;
+
+                @media screen and (max-width:576px){
+                    display: none;
+                }
+            }
+            h5{
+                @media screen and (max-width:576px){
+                    font-size: $h3-font-size;
+                    text-align: center;
+                    padding-bottom: 1rem;
+                    border-bottom: 5px solid $secondary;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+        @media screen and (max-width:576px){
+            width: 100%;
+        }
+
+    }
+    &_storeMapBox{
+        width: 50%;
+        height: 400px;
+        background-color: $secondary;
+        @media screen and (max-width:576px){
+            width: 90%;
+        }
+
+    }
+    &_SNS{
+        position: relative;
+        a{
+            margin: 0 2rem 3rem 2rem ;
+            background-color: $secondary;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            text-align: center;
+            width: 25%;
+            height: 70%;
+            border-right: 3px solid $secondary;
+            border-left: 3px solid $secondary;
+            transform: skew(-35deg);
+            @media screen and (max-width:576px){
+                display: none;
+                // width: 69%;
+            }
+        }
+
+    }
+    &_recommendBox{
+        margin: 6rem 10rem  7rem 10rem;
+        @media screen and (max-width:576px){
+            margin: 0 0 3rem 0;
+
+        }
+
+    }
+
+    &_courseRecommend,&_productRecommend{
+        background: $skin-bright;
+        color: $gray-darker;
+        font-size: $h5-font-size;
+        font-weight: 700;
+        border: 10px solid $skin-brighter;
+        @media screen and (max-width:576px){
+            margin-bottom: 1rem ;
+
+        }
+    }
+
+    &_courseRecommend{
+
+    }
+
+
+    }
