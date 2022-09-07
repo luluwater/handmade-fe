@@ -14,7 +14,7 @@ const Login = () => {
             src={require('./Login_SignUp_img/login_pic_工作區域_3_1.png')}
             alt=""
           />
-          <form action="" className="LoginForm ">
+          <form action="" className="LoginForm position-relative ">
             <h1 className="LoginTitle text-center">會員登入</h1>
             <input
               className="AccountInput"
@@ -23,13 +23,25 @@ const Login = () => {
               placeholder="會員帳號"
             />
             <br />
+            <FontAwesomeIcon
+              icon="fa-regular fa-eye"
+              size="xl"
+              className="iconEyeOne"
+            />
+            <br />
             <input
               className="PasswordInput"
               type="password"
               name="PasswordInput"
               placeholder="會員密碼"
             />
+
             <br />
+            <FontAwesomeIcon
+              icon="fa-regular fa-eye"
+              size="xl"
+              className="iconEyeTwo"
+            />
             {/* <Link to="/FindPassword"> */}
             <a href="./FindPassword" className="ForgetPassword">
               忘記密碼?
@@ -46,14 +58,16 @@ const Login = () => {
               </button>
             </Link>
             <h2 className="footerLogin text-center">Or Login With</h2>
-            <Link to="">
+            <Link to="/https://www.google.com.tw/webhp?tabrw">
               <FontAwesomeIcon
-                icon="fa-solid fa-user"
+                icon="fa-brands fa-google"
                 size="xl"
-                className="Navbar_awesomeIcon icon"
+                className="icon2"
                 fixedWidth
               />
             </Link>
+
+            <div className="Bg"></div>
           </form>
           {/* <Link className="text-primary btn" to="/blog">
           會員登入

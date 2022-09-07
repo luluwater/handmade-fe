@@ -47,14 +47,16 @@ const SignUp = () => {
             <input type="submit" value="註冊" className="NewSignUp" />
 
             <h2 className="footerLogin text-center">Or Login With</h2>
-            <Link to="">
+            <Link to="/https://www.google.com.tw/webhp?tabrw">
               <FontAwesomeIcon
-                icon="fa-solid fa-user"
+                icon="fa-brands fa-google"
                 size="xl"
-                className="Navbar_awesomeIcon icon"
+                className="icon2"
                 fixedWidth
               />
             </Link>
+
+            <div className="Bg"></div>
           </form>
           {/* <Link className="text-primary btn" to="/blog">
           會員登入

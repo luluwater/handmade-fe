@@ -41,6 +41,7 @@
     "date-fns": "^2.29.2",
     "framer-motion": "^7.2.1",
     "html-react-parser": "^3.0.4",
+    "icons": "^1.0.0",
     "moment": "^2.29.4",
     "motion": "^10.14.1",
     "postcss": "^8.4.14",
