@@ -23,19 +23,13 @@ const Login = () => {
               placeholder="會員帳號"
             />
             <br />
-            <FontAwesomeIcon
-              icon="fa-regular fa-eye"
-              size="xl"
-              className="iconEyeOne"
-            />
-            <br />
+      
             <input
               className="PasswordInput"
               type="password"
               name="PasswordInput"
               placeholder="會員密碼"
             />
-
             <br />
             <FontAwesomeIcon
               icon="fa-regular fa-eye"

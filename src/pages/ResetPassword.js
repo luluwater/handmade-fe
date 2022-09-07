@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Login_SignUp_img/ResetPassword.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ResetPassword = () => {
   return (
@@ -21,11 +22,24 @@ const ResetPassword = () => {
               placeholder="新密碼"
             />
             <br />
+            <FontAwesomeIcon
+              icon="fa-regular fa-eye"
+              size="xl"
+              className="iconEyeOne"
+            />
+            <br />
             <input
               className="ResetPasswordInputSecond"
               type="password"
               name="ResetPasswordInputSecond"
               placeholder="確認新密碼"
+            />
+            <br />
+
+            <FontAwesomeIcon
+              icon="fa-regular fa-eye"
+              size="xl"
+              className="iconEyeTwo"
             />
             <br />
 

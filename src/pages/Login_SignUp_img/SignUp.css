@@ -68,7 +68,7 @@
   color: #5f5c51;
 }
 .RePasswordInputSignUp {
-  margin-top: 31.28px;
+  margin-top: 8.28px;
   width: 352px;
   height: 57.72px;
   border: 2px solid #5f5c51;
@@ -90,7 +90,7 @@
   color: #5f5c51;
 }
 .NewSignUp {
-  margin-top: 31.28px;
+  margin-top: 8.28px;
   width: 352px;
   height: 57.72px;
   background: #e77656;
@@ -125,15 +125,10 @@
 .iconEyeOne{
   position:relative;
   color: #5f5c51;
-  top: -42.5px;
+  top: -40px;
   left: 300px;
 }
-.iconEyeTwo{
-  position:relative;
-  color: #5f5c51;
-  top: -60px;
-  left: 300px;
-}
+
 
 @media screen and (max-width: 576px) {
   img {

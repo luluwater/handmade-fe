@@ -37,11 +37,23 @@ const SignUp = () => {
               placeholder="密碼"
             />
             <br />
+            <FontAwesomeIcon
+              icon="fa-regular fa-eye"
+              size="xl"
+              className="iconEyeOne"
+            />
+            <br />
             <input
               className="RePasswordInputSignUp"
               type="password"
               name="RePasswordInputSignUp"
               placeholder="請再次輸入密碼"
+            />
+            <br />
+            <FontAwesomeIcon
+              icon="fa-regular fa-eye"
+              size="xl"
+              className="iconEyeOne"
             />
             <br />
             <input type="submit" value="註冊" className="NewSignUp" />

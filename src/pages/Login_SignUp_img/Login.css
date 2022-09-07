@@ -47,7 +47,7 @@
   background: #f4eee8;
 }
 .PasswordInput {
-  margin-top: 5px;
+  margin-top: 36px;
   width: 352px;
   height: 57.72px;
   border: 2px solid #5f5c51;
@@ -128,17 +128,19 @@ input::placeholder {
   margin-top: 28px;
   margin-bottom: 35px;
 }
-.iconEyeOne{
-  position:relative;
-  color: #5f5c51;
-  top: -42.5px;
-  left: 300px;
-}
 .iconEyeTwo{
   position:relative;
   color: #5f5c51;
   top: -60px;
   left: 300px;
+}
+.icon2 {
+  position: absolute;
+  color:#f4eee8;
+  size: 20px;
+  margin-left:6.72em;
+  margin-top: 33px;
+  margin-bottom: 35px;
 }
 @media screen and (max-width: 576px) {
   img {
