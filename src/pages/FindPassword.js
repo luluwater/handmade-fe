@@ -6,6 +6,11 @@ const FindPassword = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
+      <div className="PFrankWorkDisplay text-center">
+        <p className="P_Section">忘記密碼了嗎?</p>
+        <p className="P_Section  mt-3">請輸入您的電子信箱，</p>
+        <p className="P_Section  mt-3 ">以接收密碼重置信件。</p>
+      </div>
       <div className="FindPasswordFrame">
         <div className="border d-flex justify-content-center">
           <img
@@ -17,19 +22,17 @@ const FindPassword = () => {
             <h1 className="FindPassword text-center">找回密碼</h1>
             <br />
             <div className="PFrankWork text-center">
-              <h1 className="P_Section">忘記密碼了嗎?</h1>
-              <h1 className="P_Section  mt-3">請輸入您的信箱</h1>
+              <p className="P_Section">忘記密碼了嗎?</p>
+              <p className="P_Section  mt-3">請輸入您的信箱</p>
               <p className="P_Section  mt-3 ">以接收密碼重置信件</p>
             </div>
-            <button
+            <input
               className="SignUpEmail"
-              type="button"
-              value="submit"
+              type="email"
               name="SignUpEmail"
               placeholder="註冊信箱"
-            >
-              送出
-            </button>
+              required
+            ></input>
             <br />
             <Link to="/ResetPassword">
               <input type="submit" value="送出" className="submit" />

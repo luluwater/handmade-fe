@@ -20,12 +20,12 @@
   max-width: auto;
 }
 .LoginTitle {
-  font-family: 'Share Tech Mono', monospace;
-  font-weight: 400;
+  font-family:serif;
+  font-weight: 500;
   font-size: 30px;
   line-height: 35px;
   letter-spacing: 0.2em;
-  font-weight: bold;
+
   color: #5f5c51;
   margin-top: 88px;
 }
@@ -59,7 +59,7 @@
 input::placeholder {
   font-family: 'Roboto';
   font-weight: 400;
-  font-size:  22px;
+  font-size: 18px;
   line-height: 25px;
   letter-spacing: 0.1em;
   padding-left: 0.1em;
@@ -130,7 +130,8 @@ input::placeholder {
     display: none;
   }
   .LoginTitle {
-    margin-top: 0;
+    margin-top: 28px;
+    margin-bottom: 0;
   }
   .AccountInput{
      margin-top: 25px;
