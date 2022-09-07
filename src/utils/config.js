@@ -36,3 +36,4 @@ export const API_URL =
 //     IMG_PRODUCTS_SCENERY + '/scenery-banner.mp4';
 // export const IMG_PRODUCTS_PORTRAIT_BANNER =
 //     IMG_PRODUCTS_PORTRAIT + '/portrait-banner.mp4';
+//     IMG_PRODUCTS_PORTRAIT + '/portrait-banner.mp4';

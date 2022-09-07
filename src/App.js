@@ -9,13 +9,21 @@ import BlogLayout from './components/Blog'
 import Home from './pages/Home'
 import Login from './pages/Login'
 
+import SignUp from './pages/SignUp'
+import FindPassword from './pages/FindPassword'
+import ResetPassword from './pages/ResetPassword'
+
 import About from './pages/AboutPage'
 import AboutLayout from './components/About'
 import News from './pages/NewsPage'
 import NewsLayout from './components/News'
+import UserPage from './pages/UserPage'
 import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
-import UserAccount from './components/User/UserAccount'
+import UserOrderDetailPage from './pages/UserOrderDetailPage'
+import UserLikesPage from './pages/UserLikesPage'
+import UserCouponsPage from './pages/UserCouponsPage'
+import UserBlogsPage from './pages/UserBlogsPage'
 
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
@@ -24,6 +32,8 @@ import Store from './pages/Store'
 
 import NoFound from './pages/NoFound'
 import StoreDetail from './pages/StoreDetail'
+import ProductDetailPage from './pages/ProductDetailPage'
+import CourseDetailPage from './pages/CourseDetailPage'
 
 const routeConfig = [
   {
@@ -57,15 +67,31 @@ const routeConfig = [
       },
       {
         path: 'user',
-        element: <UserAccountPage />,
+        element: <UserPage />,
         children: [
           {
             path: 'management',
-            element: <UserAccount />,
+            element: <UserAccountPage />,
           },
           {
             path: 'orders',
             element: <UserOrdersPage />,
+          },
+          {
+            path: 'orders/details',
+            element: <UserOrderDetailPage />,
+          },
+          {
+            path: 'likes',
+            element: <UserLikesPage />,
+          },
+          {
+            path: 'coupons',
+            element: <UserCouponsPage />,
+          },
+          {
+            path: 'blogs',
+            element: <UserBlogsPage />,
           },
         ],
       },
@@ -88,8 +114,20 @@ const routeConfig = [
       },
 
       {
-        path: 'login',
+        path: 'Login',
         element: <Login />,
+      },
+      {
+        path: 'SignUp',
+        element: <SignUp />,
+      },
+      {
+        path: 'FindPassword',
+        element: <FindPassword />,
+      },
+      {
+        path: 'ResetPassword',
+        element: <ResetPassword />,
       },
 
       {
@@ -98,7 +136,15 @@ const routeConfig = [
       },
       {
         path: 'product',
-        // element: <Proudcts />,
+        element: <Proudcts />,
+      },
+      {
+        path: 'ProductDetailPage',
+        element: <ProductDetailPage />,
+      },
+      {
+        path: 'CourseDetailPage',
+        element: <CourseDetailPage />,
       },
     ],
   },

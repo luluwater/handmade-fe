@@ -1,0 +1,51 @@
+@import '../../styles/custom_variables';
+
+.home_blog_title{
+    display: inline-block;
+    width: 160px;
+    padding: 10px;
+    margin: 0px auto 30px;
+    letter-spacing: 5px;
+    text-align: center;
+    color: $gray-darker;
+    font-weight: 600;
+}
+.home_blog{
+    margin: 20px 0;
+    width: 600px;
+    height: 500px;
+    position: relative;
+
+    &_pic{
+        width: 600px;
+    }
+    
+    &_name{
+        color: $gray-darker;
+        margin: 20px 0;
+        line-height: 30px;
+    }
+
+    &_date{
+        margin: 10px 0;
+        color: $gray-darker;
+        font-size: 14px;
+        position: absolute;
+        right: 0;
+    }
+}
+
+
+@media screen and (max-width:576px) {
+    .home_blog_card{
+        width: 530px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .home_blog{
+        margin: 20px 0;
+        width: 600px;
+        height: 450px;
+        position: relative;
+    }    
+}

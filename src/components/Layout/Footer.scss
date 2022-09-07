@@ -2,6 +2,10 @@
 
 .footer{
     background: $secondary;
+    height: 527px;
+    // position: fixed;
+    bottom: 0;
+    width: 100%;
     
 
     &_icon_ul{

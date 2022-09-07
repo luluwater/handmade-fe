@@ -1,0 +1,284 @@
+@import '../../styles/custom_variables';
+
+// ===== pic =====
+.detail_swiperL{
+    // margin-left: 20px;
+    &_pic{
+        width: 170px;
+        height: 170px;
+    }
+    .swiper{
+        width: 170px;
+        height: 540px 
+    }
+    .swiper-slide{
+        width: 170px;
+        height: 180px !important ;
+    }
+    .swiper-slide-thumb-active {
+        height: 180px !important ;
+        img{
+            opacity: .5;
+        }
+    }
+}
+.detail_swiperR{
+    &_pic{
+        width: 530px;
+        height: 530px;
+    }
+    .swiper {
+        width: 530px;
+    }
+
+}
+
+// ===== intro =====
+.detail_top{
+    border-top: 1px solid $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+    padding: 20px 0 20px 20px;
+}
+.detail_store{
+    font-size: 14px;
+    color: $gray-darker;
+    padding-left: 3px;
+    
+}
+.detail_name{
+    font-size: 30px;
+    color: $gray-darker;
+    font-weight: 900;
+    width: 500px;
+}
+.detail_price{
+    color: $primary;
+    font-weight: 900;
+    padding: 12px 0 0 3px;
+    letter-spacing: 3px;
+}
+
+.detail_score{
+    &_title{
+        font-size: 14px;
+        color: $gray-darker;
+        letter-spacing: 2px;
+    }
+    &_number{
+        color: $primary;
+        font-weight: 900;
+    }
+    &_star{
+        color: $gray-darker;
+        margin-top: 12px;
+
+    }
+}
+.detail_amount{
+    padding-left: 25px;
+    &_plus, &_minus{
+        width: 40px;
+        height: 40px;
+        background: none;
+        border-radius: 50%;
+        margin: 5px 30px 0px ;
+        font-weight: 900;
+    }
+
+    // ========== 加 ==========
+
+    &_plus, &_plus:focus{
+        background: none;
+        color: $primary;
+    }
+    &_plus:hover{
+        background: $primary;
+        color: $white;
+    }
+
+    // ========== 減 ==========
+
+    &_minus, &_minus:focus{
+        background: none;
+        border: 1px solid $gray-darker;
+        color: $gray-darker;
+        }
+    &_minus:hover{
+        background: $gray-darker;
+        border: 1px solid $gray-darker;
+        color: $white;
+    }
+
+
+    &_title{
+        color: $gray-darker;
+        letter-spacing: 15px;
+        font-weight: 900;
+        margin-top: 15px;
+    }
+    &_number{
+        color: $gray-darker;
+        font-weight: 900;
+        margin-top: 15px;
+    }
+    
+}
+
+.detail_intro{
+    font-size: 14px;
+    color: $gray-darker;
+    width: 960px;
+    border-top: 1px solid $gray-darker;
+    padding: 20px 0 20px 25px;
+    line-height: 25px;
+}
+
+.detail_button:focus{
+    outline: none;
+    box-shadow:none;
+}
+
+.detail_button:active:focus{
+    outline: none;
+    box-shadow:none;
+}
+
+.detail_cart:hover{
+    width: 200px;
+    height: 50px;
+    color: $white;
+    letter-spacing: 5px;
+    margin: 0 20px;
+}
+.detail_cart, .detail_cart:focus{
+    width: 200px;
+    height: 50px;
+    color: $white;
+    letter-spacing: 5px;
+    background: $primary;
+    transition: .5s;
+    margin: 0 20px;
+}
+.detail_heart, .detail_heart:focus{
+    color: $white;
+    height: 50px;
+    width: 50px;
+    background: $gray-darker;
+    border: 1px solid $gray-darker;
+}
+.detail_heart:hover{
+    color: $white;
+    height: 50px;
+    width: 50px;
+    background: #7e7b6f;
+    border: 1px solid #7e7b6f;
+}
+.borderButtom{
+    border-bottom: 1px solid $gray-darker;
+}
+
+// ========== comment ==========
+
+.detail_comment_title{
+    color: $gray-darker;
+    letter-spacing: 3px;
+}
+.detail_comment{
+    font-size: 14px;
+    color: $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+
+
+    &_photo{
+        width: 80px;
+        height: 80px;
+    }
+    &_score{
+        width: 150px;
+    }
+    &_date{
+        letter-spacing: 2px;
+    }
+    &_img{
+        height: 200px;
+    }
+    &_getmore, &_getmore:focus{
+        width: 200px;
+        height: 50px;
+        color: $gray-darker;
+        letter-spacing: 5px;
+        background: $skin-bright;
+        border: none;
+        transition: .5s;
+        margin: 0 20px;
+    }
+    &_getmore:hover{
+        color: $skin-bright;
+        background: $gray-darker;
+    }
+}
+
+// ========== ==========
+
+.showmore{
+    background: transparent !important;
+
+}
+.showmore button{
+    width: 200px;
+    height: 50px;
+    color: $gray-darker !important;
+    background: $skin-bright !important;
+    border: none;
+    transition: .5s;
+    position: relative;
+    right: 110px;
+}
+.showmore button:hover{
+    color: $skin-bright !important;
+    background: $gray-darker !important;
+}
+
+@media screen and (max-width: 576px) {
+    .detail_swiperL{
+        display: none;
+    }
+    .detail_RWD{
+        width: 530px;
+        position: relative;
+        left: 35px;
+    }
+    .detail_top{
+        margin-top: 20px;
+        display: none;
+    }
+    .showmore button{
+        width: 200px;
+        height: 50px;
+        color: $gray-darker !important;
+        background: $skin-bright !important;
+        border: none;
+        transition: .5s;
+        position: relative;
+        left: 0px;
+    }
+    .detail_score{
+        width: 120px;
+        position: relative;
+        right: 120px;
+        top: 45px
+    }
+    .detail_amount_title{
+        display: none;
+    }
+    .detail_amount{
+        padding: 0px;
+    }
+    .detail_comment_title{
+        position: relative;
+        left: 210px;
+        top: -30px;
+        width: 200px;
+    }
+
+}
