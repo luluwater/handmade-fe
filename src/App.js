@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
+import CourseCart from './pages/CourseCart'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
@@ -20,7 +21,6 @@ import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
 import Store from './pages/Store'
-import StoreBanner from '../src/components/Store/StoreBanner'
 
 import NoFound from './pages/NoFound'
 import StoreDetail from './pages/StoreDetail'
@@ -101,6 +101,10 @@ const routeConfig = [
         // element: <Proudcts />,
       },
     ],
+  },
+  {
+    path: '/course_cart',
+    element: <CourseCart />,
   },
 ]
 
