@@ -2,10 +2,8 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
-import axios from 'axios'
 
-const API_URL = 'http://localhost:8080'
-const UPLOAD_ENDPOINT = 'upload_files'
+// const API_URL = 'http://localhost:8080'
 
 const Editor = ({
   addTitle,
@@ -19,51 +17,51 @@ const Editor = ({
    * @param {loader} loader
    * @returns 回傳upload 函式
    */
-  const uploadAdapter = (loader) => {
-    return {
-      upload: () => {
-        return new Promise((resolve, reject) => {
-          const body = new FormData()
-          loader.file.then((file) => {
-            body.append('files', file)
-            fetch(`${API_URL}/${UPLOAD_ENDPOINT}`, {
-              method: 'post',
-              body: body,
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                resolve({
-                  default: `${API_URL}/${res.filename}`,
-                })
-              })
-              .catch((err) => {
-                reject(err)
-              })
-          })
-        })
-      },
-    }
-  }
+  // const uploadAdapter = (loader) => {
+  //   return {
+  //     upload: () => {
+  //       return new Promise((resolve, reject) => {
+  //         const body = new FormData()
+  //         loader.file.then((file) => {
+  //           body.append('files', file)
+  //           fetch(`${API_URL}/${UPLOAD_ENDPOINT}`, {
+  //             method: 'post',
+  //             body: body,
+  //           })
+  //             .then((res) => res.json())
+  //             .then((res) => {
+  //               resolve({
+  //                 default: `${API_URL}/${res.filename}`,
+  //               })
+  //             })
+  //             .catch((err) => {
+  //               reject(err)
+  //             })
+  //         })
+  //       })
+  //     },
+  //   }
+  // }
 
-  function uploadPlugin(editor) {
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-      return uploadAdapter(loader)
-    }
-  }
+  // function uploadPlugin(editor) {
+  //   editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+  //     return uploadAdapter(loader)
+  //   }
+  // }
   /**
    *  TODO 把 addData 傳出去給後端 server route 後端 server 再把取得的 res.body 存進資料庫
    */
-  const submitBlog = () => {
-    axios({
-      method: 'post',
-      url: `${API_URL}/upload_blog`,
-      data: {
-        content: addContent,
-      },
-    }).then((res) => {
-      console.log(res)
-    })
-  }
+  // const submitBlog = () => {
+  //   axios({
+  //     method: 'post',
+  //     url: `${API_URL}/upload_blog`,
+  //     data: {
+  //       content: addContent,
+  //     },
+  //   }).then((res) => {
+  //     console.log(res)
+  //   })
+  // }
 
   return (
     <>
@@ -85,8 +83,6 @@ const Editor = ({
             console.log('Editor is ready to use!', editor)
           }}
           onChange={handleContentChange}
-          onBlur={(event, editor) => {}}
-          onFocus={(event, editor) => {}}
         />
       </div>
     </>
