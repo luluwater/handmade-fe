@@ -31,5 +31,5 @@ export const {
   useGetStoreQuery,
   useGetStoreDetailQuery,
   useGetStoreCourseQuery,
-  useGetProductCourseQuery
+  useGetProductCourseQuery,
 } = storeApiService

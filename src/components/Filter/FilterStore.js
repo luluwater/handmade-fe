@@ -3,12 +3,12 @@ import AccordionHeader from './AccordionHeader'
 // import listData from './data'
 import './FilterStore.scss'
 import { useState } from 'react'
-import { useGetStoreListQuery } from '../../services/storeApi'
+import { useGetStoreQuery } from '../../services/storeApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFilterStore } from '../../slices/filterStore-silce'
 
 function FilterStore() {
-  const { data, error, isload } = useGetStoreListQuery()
+  const { data, error, isload } = useGetStoreQuery()
   // console.log(data)
   const dispatch = useDispatch()
   const getNewData = () => {
