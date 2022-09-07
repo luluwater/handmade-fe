@@ -7,6 +7,10 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './ProductCard.scss'
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+} from '../../../services/productApi'
 
 import cart from '../../../assets/cart.svg'
 
@@ -29,6 +33,11 @@ function ProductCard({
   price,
   isFavorite,
 }) {
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+
+  // console.log(isFavorite)
+
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
       <Swiper
@@ -57,7 +66,16 @@ function ProductCard({
           <p className="text-primary fw-bold">${price}</p>
         </Col>
         <Col className="text-end d-flex">
-          <button className="bg-primary card_favorite border-0  rounded-circle me-2">
+          <button
+            className="bg-primary card_favorite border-0  rounded-circle me-2"
+            onClick={() => {
+              if (isFavorite) {
+                removeUserFavoriteProduct({ productId })
+              } else {
+                addUserFavoriteProduct({ productId })
+              }
+            }}
+          >
             <FontAwesomeIcon
               icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
               inverse

@@ -1,0 +1,62 @@
+@import '../../styles/custom_variables';
+
+.course_detail_card {
+  padding: 1rem;
+  @media screen and (max-width: 576px) {
+    overflow: visible;
+    flex-wrap: wrap;
+      &_m {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+
+  }
+  background-color: $skin-bright;
+  // height: 700px;
+  &_swiper {
+    max-width: 100%;
+  }
+  &_title {
+    letter-spacing: 3px;
+    color:$gray-darker;
+  }
+  &_favorite {
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    @media screen and (max-width: 576px) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+  &_img {
+    object-fit: cover;
+    width: 100%;
+    height: auto; 
+  }
+  &_cart {
+    width: 25px;
+    height: 25px; 
+  }
+  &_text {
+    letter-spacing: 1px;
+    color:$gray-darker;
+    @media screen and (max-width: 576px) {
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+  }
+  &_store {
+    color:$gray-darker;
+  }
+}
+
+.course_detail_card .swiper-button-prev::after,
+.course_detail_card .swiper-button-next::after {
+  font-size: 2rem;
+}
+
+
