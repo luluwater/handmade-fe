@@ -32,6 +32,8 @@ import StoreBanner from '../src/components/Store/StoreBanner'
 
 import NoFound from './pages/NoFound'
 import StoreDetail from './pages/StoreDetail'
+import ProductDetailPage from './pages/ProductDetailPage'
+import CourseDetailPage from './pages/CourseDetailPage'
 
 const routeConfig = [
   {
@@ -134,7 +136,15 @@ const routeConfig = [
       },
       {
         path: 'product',
-        // element: <Proudcts />,
+        element: <Proudcts />,
+      },
+      {
+        path: 'ProductDetailPage',
+        element: <ProductDetailPage />,
+      },
+      {
+        path: 'CourseDetailPage',
+        element: <CourseDetailPage />,
       },
     ],
   },
