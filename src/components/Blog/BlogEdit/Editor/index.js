@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import parse from 'html-react-parser'
+import React from 'react'
+import Form from 'react-bootstrap/Form'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import axios from 'axios'
@@ -7,15 +7,13 @@ import axios from 'axios'
 const API_URL = 'http://localhost:8080'
 const UPLOAD_ENDPOINT = 'upload_files'
 
-const Editor = () => {
-  const [addData, setVal] = useState('')
-  // const [addedData, showData] = useState('')
-
-  const handleChange = (e, editor) => {
-    const data = editor.getData()
-    setVal(data)
-  }
-
+const Editor = ({
+  addTitle,
+  handleTitleChange,
+  addContent,
+  handleContentChange,
+  editContent,
+}) => {
   /**
    * TODO: 目前是一上傳就把圖片打進路由裡面，現在要把他改成 "按下" 送出按鈕才把檔案送出，並載入。
    * @param {loader} loader
@@ -60,7 +58,7 @@ const Editor = () => {
       method: 'post',
       url: `${API_URL}/upload_blog`,
       data: {
-        content: addData,
+        content: addContent,
       },
     }).then((res) => {
       console.log(res)
@@ -69,28 +67,28 @@ const Editor = () => {
 
   return (
     <>
-      <div>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Control
+          type="text"
+          value={addTitle}
+          onChange={handleTitleChange}
+          placeholder="文章標題"
+          className="fs-1 border-0 border-start border-gray-dark"
+        />
+      </Form.Group>
+      <div className="mb-md-12 mb-7">
         <CKEditor
           editor={BalloonEditor}
-          config={
-            ({
-              extraPlugins: [uploadPlugin],
-            },
-            { placeholder: '輸入內容...' })
-          }
-          data={addData}
+          config={{ placeholder: '輸入內容...' }}
+          data={addContent ? addContent : editContent}
           onReady={(editor) => {
             console.log('Editor is ready to use!', editor)
           }}
-          onChange={handleChange}
+          onChange={handleContentChange}
           onBlur={(event, editor) => {}}
           onFocus={(event, editor) => {}}
         />
       </div>
-      {/* <button className="btn btn-info" type="submit" onClick={submitBlog}>
-        {addedData ? 'Hide Data' : 'Show Data'}
-      </button> */}
-      <div>{addData ? parse(addData) : ''}</div>
     </>
   )
 }

@@ -29,7 +29,7 @@ const routeConfig = [
         element: <BlogLayout />,
       },
       {
-        path: 'blog/edit',
+        path: 'blog/:blogId/edit',
         element: <BlogEditPage />,
       },
       {

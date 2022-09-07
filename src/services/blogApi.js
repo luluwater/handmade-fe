@@ -28,11 +28,10 @@ export const blogApiService = createApi({
     }),
     //TODO: update Blog
     updateBlog: builder.mutation({
-      query: (data) => ({
-        url: 'blog',
-        method: 'PUT',
-        body: data,
-      }),
+      query: (data) => {
+        const { blogId } = data
+        return { url: `blog/${blogId}/edit`, method: 'PUT', body: data }
+      },
       invalidatesTags: ['blog'],
     }),
     // DELETE Blog
@@ -47,5 +46,9 @@ export const blogApiService = createApi({
   }),
 })
 
-export const { useGetBlogQuery, useCreateBlogMutation, useDeleteBlogMutation } =
-  blogApiService
+export const {
+  useGetBlogQuery,
+  useCreateBlogMutation,
+  useDeleteBlogMutation,
+  useUpdateBlogMutation,
+} = blogApiService

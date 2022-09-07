@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import BlogList from './BlogList'
 
+
 const Blog = () => {
   return (
     <>

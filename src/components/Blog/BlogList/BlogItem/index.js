@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
+import parse from 'html-react-parser'
 
 /**
  * TODO: 拿資料來改變 Badge 的顏色
@@ -37,7 +38,7 @@ const BlogItem = ({ content, tag, title, createTime, id, name, category }) => {
         <p className="text-muted">
           {name} <span className="ms-3">{transformTime}</span>
         </p>
-        <p className="text-cut">{content}</p>
+        <p className="text-cut">{parse(content)}</p>
         <Link
           to={`/blog/${id}`}
           className="blog_list_btn align-self-end text-gray-darker"

@@ -6,14 +6,11 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import parse from 'html-react-parser'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import { useCreateBlogMutation } from '../../../services/blogApi'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import { useNavigate } from 'react-router'
-import { Toast, swalButtons } from '../../UI/SwalStyle'
-import Swal from 'sweetalert2'
+import { Toast } from '../../UI/SwalStyle'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
@@ -41,13 +38,13 @@ const BlogCreate = () => {
 
   /**
    * TODO: 拿到資料!!!
-   * 1. Title
-   * 2. content
-   * 3. current User
-   * 4. category ( 非必填 )
-   * 5. store ( 建立於category之上 )
-   * 6. tag?? ( 感覺有點麻煩 )
-   * 7. 發布時間 current time
+   * 1. Title     --> ok
+   * 2. content    --> ok
+   * 3. current User   --> not yet
+   * 4. category ( 非必填 ) --> ok
+   * 5. store ( 建立於category之上 ) --> not yet
+   * 6. tag?? ( 感覺有點麻煩 ) --> not yet
+   * 7. 發布時間 current time --> ok
    *
    * TODO: 創建完畢後直接跳轉到創建的頁面 blog/:blogId
    *  useNavgative
@@ -67,7 +64,7 @@ const BlogCreate = () => {
     create_time: moment().format('YYYY-MM-DD h:mm:ss'),
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     try {
       await createBlog(data)
       await navigate(`/blog/${id}`, { replace: true })
@@ -86,8 +83,6 @@ const BlogCreate = () => {
     setShow(true)
   }
 
-  console.log(addContent, addTitle, addCategory, addStore)
-
   return (
     <div className="container my-8">
       <Form>
@@ -100,28 +95,14 @@ const BlogCreate = () => {
             發布
           </button>
         </div>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Control
-            type="text"
-            value={addTitle}
-            onChange={handleTitleChange}
-            placeholder="文章標題"
-            className="fs-1 border-0 border-start border-gray-dark"
-          />
-        </Form.Group>
 
-        {/* Editor */}
+        {/* Title and content editor */}
         <div>
-          <CKEditor
-            editor={BalloonEditor}
-            config={{ placeholder: '輸入內容...' }}
-            data={addContent}
-            onReady={(editor) => {
-              console.log('Editor is ready to use!', editor)
-            }}
-            onChange={handleContentChange}
-            onBlur={(event, editor) => {}}
-            onFocus={(event, editor) => {}}
+          <Editor
+            addContent={addContent}
+            handleContentChange={handleContentChange}
+            addTitle={addTitle}
+            handleTitleChange={handleTitleChange}
           />
         </div>
 
