@@ -1,9 +1,9 @@
-:root{
-    --product_card_scale:260px
-  }
   .recommendCard{
-    width: var(--product_card_scale);
-    // height: 23.5rem;  
+    width: 260px;
+    @media screen and (max-width:576px){
+      width: 220px;
+
+      }
     .row{
         height: 90px;
     }
@@ -16,7 +16,10 @@
     }
     .card_swiper{
         max-width: 100%;
-        height: var(--product_card_scale);
+        max-height: 100%;
+        @media screen and (max-width:576px){
+          width: 220px;
+          }
         .swiperslide{    
           img{
             width: 100%;
@@ -27,36 +30,14 @@
       .card_favorite{  
         width: 3rem;
         height: 3rem;
+        @media screen and (max-width:576px){
+          width: 2.5rem;
+          height: 2.5rem;
+    
+          }
       }
       &_storeName{
         font-size: .9rem;
       }
   }
 
-
-
-  @media screen and (max-width:1660px){
-    .product_list{
-      width: 930px;
-    }
-  }
-  @media screen and (max-width:1260px){
-    .product_list{
-      width: 610px;
-    }
-  }
-  @media screen and (max-width:992px){ 
-    .product_list{
-      width: 520px;
-    }
-    .product_card{
-      width: 220px;    
-    }  
-    .card_swiper{    
-      height: 220px;
-    }
-    .card_favorite{
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-  }

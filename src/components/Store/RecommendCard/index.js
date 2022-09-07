@@ -44,7 +44,7 @@ const RecommendCard = ({ type, id, store, name, price, img, category }) => {
           </Col>
           <Col className="text-end d-flex">
             <button className="bg-primary card_favorite border-0  rounded-circle me-2">
-              <FontAwesomeIcon icon="fa-solid fa-heart" inverse size="lg" />
+              <FontAwesomeIcon icon="far fa-heart" inverse size="lg" />
             </button>
             <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
               <img src={cart} alt="" className="cart" />
