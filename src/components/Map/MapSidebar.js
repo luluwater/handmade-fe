@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useGetStoreListQuery } from '../../services/storeApi'
+import { useGetStoreQuery } from '../../services/storeApi'
 import StoreCard from './StoreCard'
 import { getStore } from '../../slices/store-slice'
 import { useEffect } from 'react'
 
 function MapSidebar() {
-  const { data, error, isLoading } = useGetStoreListQuery()
+  const { data, error, isLoading } = useGetStoreQuery()
   // console.log(data)
   const dispatch = useDispatch()
   useEffect(() => {
