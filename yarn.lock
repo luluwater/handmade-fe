@@ -2115,6 +2115,11 @@
   dependencies:
     "@babel/runtime" "^7.6.2"
 
+"@react-leaflet/core@^2.0.1":
+  "integrity" "sha512-XGmx01DovDt0IWsW4tqeuSYifpY19aUn9NYCqTBI3KNtjbCjj0pfiWa7krNsnJ6l2oQbv4Nt0/BabLbIvT4ocA=="
+  "resolved" "https://registry.npmjs.org/@react-leaflet/core/-/core-2.0.1.tgz"
+  "version" "2.0.1"
+
 "@reduxjs/toolkit@^1.8.5":
   "integrity" "sha512-f4D5EXO7A7Xq35T0zRbWq5kJQyXzzscnHKmjnu2+37B3rwHU6mX9PYlbfXdnxcY6P/7zfmjhgan0Z+yuOfeBmA=="
   "resolved" "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.8.5.tgz"
@@ -7025,6 +7030,11 @@
   dependencies:
     "language-subtag-registry" "~0.3.2"
 
+"leaflet@^1.8.0":
+  "integrity" "sha512-gwhMjFCQiYs3x/Sf+d49f10ERXaEFCPr+nVTryhAW8DWbMGqJqt9G4XuIaHmFW08zYvhgdzqXGr8AlW8v8dQkA=="
+  "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.8.0.tgz"
+  "version" "1.8.0"
+
 "leven@^3.1.0":
   "integrity" "sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A=="
   "resolved" "https://registry.npmjs.org/leven/-/leven-3.1.0.tgz"
@@ -8726,6 +8736,13 @@
   "integrity" "sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   "version" "18.2.0"
+
+"react-leaflet@^4.0.2":
+  "integrity" "sha512-pDyIf50Ek/LZ0p4Qxw2D9LMOx+LytQs2R+MY3mhTUPGzubrpP4QAgbCv2qc0L9y0qVRgx7dHavWuPFkc/WCJCw=="
+  "resolved" "https://registry.npmjs.org/react-leaflet/-/react-leaflet-4.0.2.tgz"
+  "version" "4.0.2"
+  dependencies:
+    "@react-leaflet/core" "^2.0.1"
 
 "react-lifecycles-compat@^3.0.4":
   "integrity" "sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA=="

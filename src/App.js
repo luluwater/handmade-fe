@@ -35,6 +35,7 @@ import StoreDetail from './pages/StoreDetail'
 import ProductDetailPage from './pages/ProductDetailPage'
 import CourseDetailPage from './pages/CourseDetailPage'
 import Products from './pages/Products'
+import MapSearch from './pages/MapSearch'
 
 const routeConfig = [
   {
@@ -57,6 +58,10 @@ const routeConfig = [
       {
         path: 'blog/:blogId',
         element: <BlogDetailPage />,
+      },
+      {
+        path: 'map',
+        element: <MapSearch />,
       },
       {
         path: 'store',
