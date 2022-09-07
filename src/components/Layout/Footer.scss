@@ -99,8 +99,6 @@
         @media screen and (max-width:576px){
             margin-top: .5rem;
             // padding-left: 2rem;
-            
-            
         }
 
     }
@@ -108,8 +106,22 @@
         p{
             @media screen and (max-width:576px){
                 padding-left: 4rem;
-                
             }
+        }
+    }
+
+    @media screen and (max-width:576px){
+        .footerOrder_0{
+            order: 0;
+        }
+        .footerOrder_1{
+            order: 1;
+        }
+        .footerOrder_2{
+            order: 2;
+        }
+        .footerOrder_3{
+            order: 3;
         }
     }
 
