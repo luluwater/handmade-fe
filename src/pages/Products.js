@@ -7,6 +7,7 @@ import { addProduct } from '../slices/productCard-slice'
 import { pagination } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
+import FilterStore from '../components/Filter/FilterStore'
 
 function Proudcts() {
   //api get products data
@@ -57,7 +58,9 @@ function Proudcts() {
       </div>
       <Container fluid className="m-3 mx-auto ">
         <Row>
-          <Col lg={4} xl={3}></Col>
+          <Col lg={4} xl={3}>
+            <FilterStore/>
+          </Col>
           <Col>
             <div className="d-flex justify-content-center">
               <Row className="product_list gap-6">
