@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import blogReducer from '../slices/blog-slice'
 import productReducer from '../slices/productCard-slice'
 import paginationReducer from '../slices/filterPagination-slice'
+import filterStoreReducer from '../slices/filterStore-silce'
 import { blogApiService } from '../services/blogApi'
 import { productApiService } from '../services/productApi'
 import { storeApiService } from '../services/storeApi'
@@ -18,6 +19,7 @@ const reducers = combineReducers({
   // blogReducer,
   productReducer,
   paginationReducer,
+  filterStoreReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [productApiService.reducerPath]: productApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
