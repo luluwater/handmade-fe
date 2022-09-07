@@ -226,7 +226,12 @@
     &:hover {
       background-color: $primary !important;
       color: $skin-bright;
-      border: none;
+      border: 1px solid $primary;
+    }
+    &:focus {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary;
     }
   }
   &_header {

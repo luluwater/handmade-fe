@@ -18,7 +18,7 @@ const UserAccount = ({ account, name, email, phone, birthday, address }) => {
     birthday,
     address
   )
-  const transformBirthday = moment(birthday).format('MMMM / DD / YYYY')
+  const transformBirthday = moment(birthday).format('YYYY/MM/DD')
   const [showUserPassword, setShowUserPassword] = useState(false)
   const [showUserAccount, setShowUserAccount] = useState(true)
   const [startDate, setStartDate] = useState(new Date())

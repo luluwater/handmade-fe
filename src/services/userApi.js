@@ -20,15 +20,11 @@ export const userApiService = createApi({
     //   }),
     //   invalidatesTags: ['User']
     // }),
-    // getUser: builder.query({
-    //   query: () => 'user/orders-products',
-    //   providesTags: ['User'],
-    // }),
-    // getUser: builder.query({
-    //   query: () => 'user/orders-courses',
-    //   providesTags: ['User'],
-    // }),
+    getUserProductOrders: builder.query({
+      query: () => 'user/product-orders',
+      providesTags: ['User'],
+    }),
   }),
 })
 
-export const { useGetUserQuery } = userApiService
+export const { useGetUserQuery, useGetUserProductOrdersQuery } = userApiService
