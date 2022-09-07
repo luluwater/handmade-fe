@@ -34,6 +34,7 @@ import NoFound from './pages/NoFound'
 import StoreDetail from './pages/StoreDetail'
 import ProductDetailPage from './pages/ProductDetailPage'
 import CourseDetailPage from './pages/CourseDetailPage'
+import Products from './pages/Products'
 
 const routeConfig = [
   {
@@ -135,8 +136,8 @@ const routeConfig = [
         element: <NoFound />,
       },
       {
-        path: 'product',
-        element: <Proudcts />,
+        path: 'shop',
+        element: <Products />,
       },
       {
         path: 'ProductDetailPage',

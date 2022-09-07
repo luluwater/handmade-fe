@@ -1,7 +1,7 @@
 import { React } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import './ProductDetail.scss'
-import Image1 from '../../assets/store/store_metalwork＿2/金工_轉角金工_kv2.jpg'
+import Image1 from '../../assets/store/store_metalwork_2/金工_轉角金工_kv2.jpg'
 import Image2 from '../../assets/store/store_pottery_7/陶藝_Round-Round_kv_3.jpg'
 import Image3 from '../../assets/user/profile_1.png'
 import Image4 from '../../assets/user/profile_3.png'
