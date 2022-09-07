@@ -2,7 +2,10 @@ import '../User.scss'
 import React from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import user1 from '../../../assets/user/profile_1.png'
-const UserCard = () => {
+// import { useParams } from 'react-router-dom'
+
+const UserCard = ({ name, email }) => {
+  console.log('name, email', name, email)
   return (
     <>
       <Col className="d-flex">
@@ -18,11 +21,13 @@ const UserCard = () => {
           </Row>
           {/* 感覺很難的預設+上傳照片 */}
           <Row className="justify-content-center">
-            <button className="user_profile_card_btn mt-5 fw-bold">更換圖像</button>
+            <button className="user_profile_card_btn mt-5 fw-bold">
+              更換圖像
+            </button>
           </Row>
           {/* 讀取資料 */}
-          <div className="mt-5 text-center">您好，黑色小花貓</div>
-          <div className="m-2 text-center">test@gmail.com</div>
+          <div className="mt-5 text-center">您好，{name}</div>
+          <div className="m-2 text-center">{email}</div>
           {/* 登出+回到首頁 */}
           <Row className="justify-content-center">
             <button className="user_profile_card_logout_btn mt-10 fw-bold">

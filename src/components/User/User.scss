@@ -73,7 +73,10 @@
     width: 950px;
     height: 577px;
     background-color: $skin-bright;
-    margin: 0;
+    // margin: 0;
+  }
+  &_table {
+    border-color: $skin-bright !important;
   }
   &_title {
     width: 800px;
@@ -90,11 +93,12 @@
     width: 300px;
     color: $gray-darker;
     letter-spacing: 3px;
-    padding: 15px;
+    padding: 50px;
   }
   &_text {
     color: $gray-darker;
     letter-spacing: 3px;
+    // padding: 30px;
   }
   &_edit_show {
     border: none;
@@ -115,10 +119,16 @@
     font-size: $h6-font-size;
     color: $gray-darker;
     background-color: $skin-bright !important;
+    // border: none;
     &:hover {
       background-color: $primary !important;
       color: $skin-bright;
-      border: none;
+      border: 1px solid $primary ;
+    }
+    &:active {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary ;
     }
   }
   &_input {
@@ -161,7 +171,7 @@
   &_card {
     display: flex;
     position: absolute;
-    top: 50%;  
+    top: 65%;  
     left: 60%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -216,7 +226,12 @@
     &:hover {
       background-color: $primary !important;
       color: $skin-bright;
-      border: none;
+      border: 1px solid $primary;
+    }
+    &:focus {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary;
     }
   }
   &_header {
@@ -262,13 +277,19 @@
     // right: 60%;
     transform: translate(-50%, -50%);
   }
+  &_link {
+    color: $primary;
+    &:hover {
+      color: $secondary-dark;
+    }
+  }
 }
 
 .user_pages {
   padding: 0;
   margin: 0;
   display: inline-block;
-  color:$dark;
+  color: $dark;
   list-style-type: none;
   &_page {
     margin: 3px;
@@ -292,3 +313,80 @@
   }
 }
 
+.user_order_details {
+  &_title {
+    border-bottom: 1px solid $gray-darker;
+    padding-bottom: 8px;
+  }
+  &_form {
+    // height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+ }
+ &_link {
+  color: $gray-darker;
+  &:hover {
+    color: $secondary-dark;
+  }
+ }
+&_table {
+  width: 850px;
+  color: $gray-darker ;
+  border-bottom: $skin-bright !important;
+}
+}
+
+.user_order_list {
+  &_table {
+    width: 850px;
+    color: $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+  }
+  &_pay {
+    width: 250px;
+    color: $gray-darker;
+    border-bottom: $skin-bright !important;
+    // background-color: $skin-bright !important;
+  }
+  &_td {
+    background-color: $skin-brighter !important;
+  }
+}
+
+.user_blogs {
+  &_form {
+    width: 950px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+ }
+ &_newBtn {
+  width: 120px;
+  border: 1px solid $gray-darker;
+  letter-spacing: 3px;
+  font-size: $h6-font-size;
+  color: $gray-darker;
+  background-color: $skin-bright !important;
+  &:hover {
+    background-color: $primary !important;
+    color: $skin-bright;
+    border: 1px solid $primary;
+  }
+ }
+  &_btn {
+    padding: 0 15px;
+    border: none;
+    &:hover {
+      color: $secondary;
+      border: none;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  &_table {
+      width: 850px;
+      color: $gray-darker;
+      border-bottom: 1px solid $gray-darker;
+  }
+}
