@@ -23,6 +23,7 @@ const TextForm = ({
         )}
         <Form.Group>
           <Form.Control
+            required
             id="comment-textarea"
             className="bg-skin-bright"
             as="textarea"
@@ -35,13 +36,13 @@ const TextForm = ({
             <button
               type="button"
               onClick={handleCancel}
-              className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-none d-md-block"
+              className="rounded-2 border-0 bg-secondary text-white px-4 py-1 d-md-block"
             >
               取消
             </button>
             <button
               type="submit"
-              className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-none d-md-block"
+              className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-md-block"
             >
               送出{' '}
               <FontAwesomeIcon

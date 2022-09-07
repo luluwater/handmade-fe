@@ -4,8 +4,8 @@ import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
 import Badge from 'react-bootstrap/Badge'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import BlogDropdown from '../../UI/BlogDropdown'
 
-import Dropdown from 'react-bootstrap/Dropdown'
 import parse from 'html-react-parser'
 
 import CommentList from './CommentList'
@@ -17,7 +17,6 @@ import {
 import { useCreateCommentMutation } from '../../../services/commentAPI'
 
 import { Toast } from '../../UI/SwalStyle'
-// import Dropdown from 'react-bootstrap/Dropdown'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
@@ -111,10 +110,11 @@ const BlogDetail = () => {
     <>
       <div className="position-relative">
         {data?.blog.map((item) => {
+          console.log(item)
           return (
             <>
-              <div className="d-flex align-items-center justify-content-between mt-4">
-                <ul className="list-unstyled d-flex text-black m-0">
+              <div className="d-flex align-items-center justify-content-between my-4">
+                <ul className="list-unstyled d-flex text-black m-0 ms-md-4">
                   <li>
                     <Link className="text-dark p-3" to="/">
                       首頁
@@ -130,48 +130,14 @@ const BlogDetail = () => {
                   <li>
                     <Link
                       className="text-secondary-dark p-3 "
-                      to={item.blog_id}
+                      to={`/blog/${item.blog_id}`}
                     >
                       {item.category_name}
                     </Link>
                   </li>
                 </ul>
 
-                <Dropdown className="me-3">
-                  <Dropdown.Toggle
-                    className="bg-skin-brighter btn-outline-skin-brighter border-0"
-                    id="dropdown-basic"
-                  >
-                    <FontAwesomeIcon
-                      className="fs-2 me-8 text-gray-darker"
-                      icon="fa-solid fa-ellipsis"
-                    />
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      className="d-flex gap-3 align-items-center justify-content-center"
-                      href="/blog/create"
-                    >
-                      <span>新增文章</span>
-                      <FontAwesomeIcon icon="fa-solid fa-plus" />
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      className="d-flex gap-3 align-items-center justify-content-center"
-                      href="#/action-2"
-                    >
-                      <span>修改文章</span>
-                      <FontAwesomeIcon icon="fa-solid fa-pen" />
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      onClick={handleDeleteBlog}
-                      className="blog_dropdown_delete d-flex gap-3 align-items-center justify-content-center"
-                    >
-                      <span>刪除文章</span>
-                      <FontAwesomeIcon icon="fa-solid fa-delete-left" />
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                <BlogDropdown item={item} handleDeleteBlog={handleDeleteBlog} />
               </div>
               <div className="container mb-6 mb-lg-8">
                 <div className="text-center ">
@@ -185,7 +151,7 @@ const BlogDetail = () => {
                   <h5 className="text-muted fs-5 mb-4">
                     {item.name}
                     <span className="ms-4">
-                      {moment(item.create_time).format('YYYY.MM.DD')}
+                      {moment(item.blog_create_time).format('YYYY.MM.DD')}
                     </span>
                   </h5>
 

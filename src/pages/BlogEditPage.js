@@ -5,4 +5,4 @@ const BlogEditPage = () => {
   return <BlogEdit />
 }
 
-export default BlogEdit
+export default BlogEditPage

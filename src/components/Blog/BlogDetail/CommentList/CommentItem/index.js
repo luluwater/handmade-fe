@@ -137,15 +137,18 @@ const CommentItem = ({
             {isEditing ? (
               <Form onSubmit={handleUpdate}>
                 <Form.Control
+                  required
                   className="bg-skin-bright border-dark"
                   as="textarea"
                   rows={4}
                   value={contentInput}
                   onChange={handleChange}
                 />
-                <button className="rounded-2 border-0 bg-secondary text-white px-4 py-1 mt-3 d-none d-md-block ms-auto">
-                  確認
-                </button>
+                <div className="text-end">
+                  <button className="rounded-2 border-0 bg-secondary text-white px-4 py-1 mt-3 ms-auto">
+                    確認
+                  </button>
+                </div>
               </Form>
             ) : (
               <p>{contentInput}</p>
