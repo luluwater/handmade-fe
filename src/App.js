@@ -5,19 +5,29 @@ import './styles/style.scss'
 import Layout from './pages/Layout'
 
 import BlogLayout from './components/Blog'
-
 import Home from './pages/Home'
 import Login from './pages/Login'
+
 import SignUp from './pages/SignUp'
 import FindPassword from './pages/FindPassword'
 import ResetPassword from './pages/ResetPassword'
 
-
+import About from './pages/AboutPage'
+import AboutLayout from './components/About'
+import News from './pages/NewsPage'
+import NewsLayout from './components/News'
+import UserAccountPage from './pages/UserAccountPage'
+import UserOrdersPage from './pages/UserOrdersPage'
+import UserAccount from './components/User/UserAccount'
 
 import BlogEditPage from './pages/BlogEditPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 
+import Store from './pages/Store'
+import StoreBanner from '../src/components/Store/StoreBanner'
+
 import NoFound from './pages/NoFound'
+import StoreDetail from './pages/StoreDetail'
 
 const routeConfig = [
   {
@@ -43,23 +53,43 @@ const routeConfig = [
       },
       {
         path: 'store',
-        // element: <Store />,
+        element: <Store />,
       },
-      //user router
-      // {
-      //   path: 'user',
-      //   element: <UserList />,
-      //   children: [
-      //     {
-      //       path: 'user/home',
-      //       element: <Home />,
-      //     },
-      //     {
-      //       path: 'user/mangment',
-      //       element: <Mangment />,
-      //     },
-      //   ],
-      // },
+      {
+        path: 'store/:storeId',
+        element: <StoreDetail />,
+      },
+      {
+        path: 'user',
+        element: <UserAccountPage />,
+        children: [
+          {
+            path: 'management',
+            element: <UserAccount />,
+          },
+          {
+            path: 'orders',
+            element: <UserOrdersPage />,
+          },
+        ],
+      },
+
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'about',
+        element: <AboutLayout />,
+      },
+      {
+        path: 'news',
+        element: <News />,
+      },
+      {
+        path: 'news',
+        element: <NewsLayout />,
+      },
 
       {
         path: 'Login',
@@ -73,7 +103,7 @@ const routeConfig = [
         path: 'FindPassword',
         element: <FindPassword />,
       },
-       {
+      {
         path: 'ResetPassword',
         element: <ResetPassword />,
       },
@@ -81,6 +111,10 @@ const routeConfig = [
       {
         path: '*',
         element: <NoFound />,
+      },
+      {
+        path: 'product',
+        // element: <Proudcts />,
       },
     ],
   },
