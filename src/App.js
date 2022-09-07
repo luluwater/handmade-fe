@@ -90,7 +90,7 @@ const routeConfig = [
         element: <NoFound />,
       },
       {
-        path: 'product',
+        path: 'shop',
         element: <Proudcts />,
       },
     ],

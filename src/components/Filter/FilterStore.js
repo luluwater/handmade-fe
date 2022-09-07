@@ -5,7 +5,12 @@ import './FilterStore.scss'
 import { useState } from 'react'
 import { useGetStoreListQuery } from '../../services/storeApi'
 import { useDispatch, useSelector } from 'react-redux'
-import { addFilterStore } from '../../slices/filterStore-silce'
+import {
+  addFilterStore,
+  handleToggoleTitle,
+  handleToggole,
+  handleSelecteAll,
+} from '../../slices/filterStore-silce'
 
 function FilterStore() {
   const { data, error, isload } = useGetStoreListQuery()
@@ -53,78 +58,15 @@ function FilterStore() {
   useEffect(() => {
     let newData = []
     if (Object.keys(data ?? {}).length !== 0) {
-      // console.log('2', data)
       newData = getNewData()
-      // console.log(newData)
     }
     dispatch(addFilterStore(newData))
-    // setState({ lists: newData })
   }, [dispatch, data])
 
   const state = useSelector((state) => state.filterStoreReducer.list)
-  // const [state, setState] = useState({ lists: newData })
-  const handleCategoryChecked = (list) => {
-    dispatch(
-      addFilterStore(
-        state.map((item) => {
-          if (item.id === list.id) {
-            const newChecked = !item.checked
-            const newInnerList = item.innerList.map((v) => ({
-              ...v,
-              completed: newChecked,
-            }))
-            console.log('newInnerList', newInnerList)
-            const newItem = {
-              ...item,
-              active: true,
-              checked: newChecked,
-              innerList: newInnerList,
-            }
-            return newItem
-          } else {
-            return item
-          }
-        })
-      )
-    )
-  }
-  const handleTile = (list) => {
-    console.log('click')
-    dispatch(
-      addFilterStore(
-        state.map((item) =>
-          item.id === list.id ? { ...item, active: !item.active } : item
-        )
-      )
-    )
-  }
-  console.log('storeSlice', state)
 
-  const handleChange = (selectedList) => (e) => {
-    const { checked, name } = e.target
-    dispatch(
-      addFilterStore(
-        state.map((list) =>
-          list.id === selectedList.id
-            ? {
-                ...list,
-                innerList: list.innerList.map((fruite) =>
-                  fruite.title === name
-                    ? {
-                        ...fruite,
-                        completed: checked,
-                      }
-                    : fruite
-                ),
-              }
-            : list
-        )
-      )
-    )
-  }
-  // console.log(state)
   const lists = state
-  // console.log('lists', lists)
+  console.log('lists', lists)
 
   return (
     <>
@@ -138,13 +80,13 @@ function FilterStore() {
                 type="checkbox"
                 style={{ margin: '0 5px' }}
                 onClick={() => {
-                  handleCategoryChecked(ar)
+                  dispatch(handleSelecteAll(ar))
                 }}
               />
               <AccordionHeader
                 active={ar.active}
                 onClick={() => {
-                  handleTile(ar)
+                  dispatch(handleToggoleTitle(ar))
                 }}
                 name={ar.category}
               />
@@ -157,7 +99,10 @@ function FilterStore() {
                     <input
                       className="filter_input"
                       type="checkbox"
-                      onChange={handleChange(ar)}
+                      onChange={(e) => {
+                        const { checked, name } = e.target
+                        dispatch(handleToggole({ ar, checked, name }))
+                      }}
                       checked={inner.completed}
                       name={inner.title}
                       id={inner.title}
