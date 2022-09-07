@@ -1,6 +1,6 @@
 @import '../../styles/custom_variables';
 
-.news_card {
+.product_detail_card {
   padding: 1rem;
   @media screen and (max-width: 576px) {
     overflow: visible;
@@ -43,7 +43,7 @@
     letter-spacing: 1px;
     color:$gray-darker;
     @media screen and (max-width: 576px) {
-        overflow:hidden;
+        // overflow:hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
@@ -51,10 +51,11 @@
   &_store {
     color:$gray-darker;
   }
+
 }
 
-.news_card .swiper-button-prev::after,
-.news_card .swiper-button-next::after {
+.product_detail_card .swiper-button-prev::after,
+.product_detail_card .swiper-button-next::after {
   font-size: 2rem;
 }
 

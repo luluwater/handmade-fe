@@ -56,35 +56,37 @@ function HomeHotCourse() {
   return (
     <>
       <h4 className="home_hot_title">熱門課程</h4>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        navigation={true}
-        mousewheel={true}
-        loop={true}
-        modules={[Navigation, Mousewheel]}
-        className="mySwiper"
-      >
-        <div className="d-flex">
-          {Cards.map((v, i) => {
-            return (
-              <>
-                <SwiperSlide className="home_hotSwiper">
-                  <div
-                    className="home_hotCard d-flex flex-column align-items-center"
-                    key={v.name}
-                  >
-                    <img className="home_hotCard_pic" src={v.img} alt="" />
-                    <h5 className="home_hotCard_name">{v.name}</h5>
-                    <div className="home_hotCard_text">{v.text}</div>
-                    <Button className="home_hotCard_button">{v.price}</Button>
-                  </div>
-                </SwiperSlide>
-              </>
-            )
-          })}
-        </div>
-      </Swiper>
+      <div className="home_card">
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          navigation={true}
+          mousewheel={true}
+          loop={true}
+          modules={[Navigation, Mousewheel]}
+          className="mySwiper"
+        >
+          <div className="d-flex">
+            {Cards.map((v, i) => {
+              return (
+                <>
+                  <SwiperSlide className="home_hotSwiper">
+                    <div
+                      className="home_hotCard d-flex flex-column align-items-center"
+                      key={v.name}
+                    >
+                      <img className="home_hotCard_pic" src={v.img} alt="" />
+                      <h5 className="home_hotCard_name">{v.name}</h5>
+                      <div className="home_hotCard_text">{v.text}</div>
+                      <Button className="home_hotCard_button">{v.price}</Button>
+                    </div>
+                  </SwiperSlide>
+                </>
+              )
+            })}
+          </div>
+        </Swiper>
+      </div>
     </>
   )
 }

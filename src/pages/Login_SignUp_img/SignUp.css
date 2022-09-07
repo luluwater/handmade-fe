@@ -121,7 +121,7 @@
 
 @media screen and (max-width: 576px) {
   img {
-    display: none;
+    /* display: none; */
   }
   .SignUpForm{
     padding-top: 0px;

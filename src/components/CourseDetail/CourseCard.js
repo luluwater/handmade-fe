@@ -50,14 +50,19 @@ function CourseCard() {
 
   return (
     <>
-      <h4 className="mb-5 news_card_title text-center mt-10 mb-8 fw-bold">
+      <h4 className="mb-5 course_detail_card_title text-center mt-10 mb-8 fw-bold">
         課程推薦
       </h4>
 
-      <Container className="news_card mb-12 w-100 d-flex">
+      <Container className="course_detail_card mb-12 w-100 d-flex">
         {Info.map((v, i) => {
           return (
-            <Col lg={3} sm={6} className="news_card_m px-3" key={v.img}>
+            <Col
+              lg={3}
+              sm={6}
+              className="course_detail_card_m px-3"
+              key={v.img}
+            >
               {/* ========== 商品照片 ========== */}
 
               <Swiper
@@ -67,14 +72,14 @@ function CourseCard() {
                 speed={800}
                 slidesPerView={1}
                 loop={true}
-                className="news_card_swiper rounded shadow"
+                className="course_detail_card_swiper rounded shadow"
               >
                 {v.img.map((v2, i2) => {
                   return (
                     <SwiperSlide>
                       <img
                         key={v2[0]}
-                        className="swiper-slide news_card_img"
+                        className="swiper-slide course_detail_card_img"
                         src={v2}
                         alt="products"
                       />
@@ -86,13 +91,15 @@ function CourseCard() {
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <p className="news_card_store m-2 text-truncate">
+                  <p className="course_detail_card_store m-2 text-truncate">
                     <small>| {v.store} |</small>
                   </p>
                   <a href="#/">
-                    <h6 className="news_card_text m-1 fw-bold">{v.name}</h6>
+                    <h6 className="course_detail_card_text m-1 fw-bold">
+                      {v.name}
+                    </h6>
                   </a>
-                  <h6 className="news_card_text text-primary fw-bold m-1">
+                  <h6 className="course_detail_card_text text-primary fw-bold m-1">
                     {v.price}
                   </h6>
                 </div>
@@ -100,7 +107,7 @@ function CourseCard() {
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button className="bg-primary news_card_favorite me-2">
+                  <button className="bg-primary course_detail_card_favorite me-2">
                     <FontAwesomeIcon
                       icon="far fa-heart"
                       size="lg"

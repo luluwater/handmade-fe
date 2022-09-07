@@ -51,14 +51,19 @@ function ProductCard() {
 
   return (
     <>
-      <h4 className="mb-5 news_card_title text-center mt-10 mb-8  fw-bold">
+      <h4 className="mb-5 product_detail_card_title text-center mt-10 mb-8  fw-bold">
         商品推薦
       </h4>
 
-      <Container className="news_card mb-12 w-100 d-flex">
+      <Container className="product_detail_card mb-12 w-100 d-flex">
         {Info.map((v, i) => {
           return (
-            <Col md={3} xs={6} className="news_card_m px-3" key={v.img}>
+            <Col
+              md={3}
+              xs={6}
+              className="product_detail_card_m px-3"
+              key={v.name}
+            >
               {/* ========== 商品照片 ========== */}
 
               <Swiper
@@ -68,14 +73,14 @@ function ProductCard() {
                 speed={800}
                 slidesPerView={1}
                 loop={true}
-                className="news_card_swiper rounded shadow"
+                className="product_detail_card_swiper rounded shadow"
               >
                 {v.img.map((v2, i2) => {
                   return (
                     <SwiperSlide>
                       <img
                         key={v2[0]}
-                        className="swiper-slide news_card_img"
+                        className="swiper-slide product_detail_card_img"
                         src={v2}
                         alt="products"
                       />
@@ -87,13 +92,15 @@ function ProductCard() {
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <p className="news_card_store m-2 text-truncate">
+                  <p className="product_detail_card_store m-2 text-truncate">
                     <small>| {v.store} |</small>
                   </p>
                   <a href="#/">
-                    <h6 className="news_card_text m-1 fw-bold">{v.name}</h6>
+                    <h6 className="product_detail_card_text m-1 fw-bold">
+                      {v.name}
+                    </h6>
                   </a>
-                  <h6 className="news_card_text text-primary fw-bold m-1">
+                  <h6 className="product_detail_card_text text-primary fw-bold m-1">
                     {v.price}
                   </h6>
                 </div>
@@ -101,7 +108,7 @@ function ProductCard() {
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button className="bg-primary news_card_favorite me-2">
+                  <button className="bg-primary product_detail_card_favorite me-2">
                     <FontAwesomeIcon
                       icon="far fa-heart"
                       size="lg"
@@ -109,8 +116,12 @@ function ProductCard() {
                       inverse
                     />
                   </button>
-                  <button className="bg-secondary news_card_favorite border-0 rounded-circle">
-                    <img src={cart} alt="" className="news_card_cart" />
+                  <button className="bg-secondary product_detail_card_favorite border-0 rounded-circle">
+                    <img
+                      src={cart}
+                      alt=""
+                      className="product_detail_card_cart"
+                    />
                   </button>
                 </div>
               </div>

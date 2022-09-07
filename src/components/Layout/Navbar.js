@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import Logo from '../../../src/assets/HANDMADE_LOGO.png'
+import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -10,7 +10,7 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="d-flex align-items-center">
           <Link to="home">
-            {/* <img src={Logo} alt="" /> */}
+            <img src={Logo} alt="" />
           </Link>
 
           <p className="ms-3 mt-9">Handmade is Heartmade</p>
@@ -39,7 +39,6 @@ const Navbar = () => {
               />
             </Link>
 
-         
             <Link to="login" className="navbar_user">
               <FontAwesomeIcon
                 icon="fa-solid fa-user"

@@ -1,6 +1,6 @@
 @import '../../styles/custom_variables';
 
-.news_card {
+.course_detail_card {
   padding: 1rem;
   @media screen and (max-width: 576px) {
     overflow: visible;
@@ -54,8 +54,8 @@
   }
 }
 
-.news_card .swiper-button-prev::after,
-.news_card .swiper-button-next::after {
+.course_detail_card .swiper-button-prev::after,
+.course_detail_card .swiper-button-next::after {
   font-size: 2rem;
 }
 
