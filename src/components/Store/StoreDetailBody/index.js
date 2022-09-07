@@ -10,9 +10,21 @@ import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { useParams } from 'react-router-dom'
 import { useGetStoreDetailQuery } from '../../../services/storeApi'
 
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import Leaflet from 'leaflet'
+import icon from 'leaflet/dist/images/marker-icon.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+
 const StoreDetailBody = () => {
   const { storeId } = useParams()
   const { data } = useGetStoreDetailQuery(storeId)
+
+  const defaultIcon = Leaflet.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+    iconAnchor: [12.5, 0],
+  })
+  Leaflet.Marker.prototype.options.icon = defaultIcon
 
   return (
     <>
@@ -57,7 +69,23 @@ const StoreDetailBody = () => {
                   <span>{item.opening_hour}</span>
                 </li>
               </ul>
-              <div className="StoreDetailBody_storeMapBox">MAP</div>
+              <div className="StoreDetailBody_storeMapBox">
+                <MapContainer
+                  center={[item.store_lat, item.store_lng]}
+                  zoom={25}
+                  scrollWheelZoom={false}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker position={[item.store_lat, item.store_lng]}>
+                    {/* <Popup>
+                      A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup> */}
+                  </Marker>
+                </MapContainer>
+              </div>
             </div>
 
             <div className="StoreDetailBody_SNS d-flex justify-content-center">
