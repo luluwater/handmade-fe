@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import parse from 'html-react-parser'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
-// import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 import axios from 'axios'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 const API_URL = 'http://localhost:8080'
 const UPLOAD_ENDPOINT = 'upload_files'
@@ -73,7 +73,7 @@ const Editor = () => {
     <>
       <div className="">
         <CKEditor
-          editor={ClassicEditor}
+          editor={BalloonEditor}
           config={{
             extraPlugins: [uploadPlugin],
           }}
