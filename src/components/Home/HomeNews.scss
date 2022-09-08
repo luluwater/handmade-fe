@@ -1,0 +1,146 @@
+@import '../../styles/custom_variables';
+
+.home_newStore{
+    width: 635px;
+    height: 675px;
+    color: $white;
+    background-color: $gray-darker;
+    margin-bottom: 100px;
+    position: relative;
+    top: -100px;
+
+
+    &_title{
+        display: inline-block;
+        width: 160px;
+        padding: 10px;
+        margin: 20px auto 10px;
+        letter-spacing: 5px;
+        text-align: center;
+        border-bottom: 1px $white solid;
+    }
+
+    &_content{
+        width: 560px;
+
+        &_pic1{
+            width: 250px;
+            display: inline-block;
+        }
+
+        &_pic2{
+            width: 570px;
+            margin-top: 30px;
+            margin-bottom: 18px;
+        }
+
+        &_right{
+            display: inline-block;
+            margin-left: 20px;
+            position: relative;
+            top:100px;
+        }
+        
+        &_name{
+        letter-spacing: 3px;
+        margin-top: 15px;
+        }
+
+        &_text{
+            margin: 5px 0;
+            line-height: 26px
+        }
+        &_text1{
+            margin: 10px 0;
+            line-height: 28px
+        }
+
+// ========== button ==========
+
+        &_button{
+            width: 135px;
+            height: 40px;
+            background-color: $white;
+            border: none;
+            border-radius: 10px;
+            color: $gray-darker;
+            margin-top: 10px;
+            line-height: 20px;
+            
+        }
+        
+        &_button:hover{
+            background-color: $white;
+            color: $primary;
+
+        }
+
+        &_button:focus{
+            background-color: $white;
+            color: $gray-darker;
+            outline: none;
+            box-shadow:none;
+        }
+        
+        &_button:active:focus{
+            background-color: $white;
+            color: $gray-darker;
+            outline: none;
+            box-shadow:none;
+        }
+
+    }
+    
+}
+
+@media screen and (max-width:576px){
+    .home_new_active{
+        margin-bottom: 200px;
+    }
+    .home_newStore{
+        width: 515px;
+        height: 600px;
+        margin: 20px auto;
+        position: relative;
+        top: -20px;
+
+        &_content{
+            width: 500px;
+            margin-left: 20px;
+            position: relative;
+            top:-25px;
+    
+            &_pic1{
+                width: 200px;
+                display: inline-block;
+            }
+    
+            &_pic2{
+                width: 480px;
+                margin: 50px 0 10px ;
+            }
+    
+            &_right{
+                display: inline-block;
+                margin-left: 20px;
+                position: relative;
+                top:75px;
+            }
+            
+            &_name{
+            letter-spacing: 3px;
+            margin-top: 15px;
+            }
+    
+            &_text{
+                margin: 5px 0;
+                line-height: 26px
+            }
+            &_text1{
+                margin: -20px 10px 0 0 ;
+                line-height: 26px
+            }
+    
+        }   
+    }
+}

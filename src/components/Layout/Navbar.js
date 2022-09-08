@@ -9,7 +9,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="d-flex align-items-center">
-          <Link to="home">
+          <Link to="/">
             <img src={Logo} alt="" />
           </Link>
 
@@ -39,7 +39,6 @@ const Navbar = () => {
               />
             </Link>
 
-         
             <Link to="login" className="navbar_user">
               <FontAwesomeIcon
                 icon="fa-solid fa-user"
@@ -61,7 +60,7 @@ const Navbar = () => {
 
           <ul className="list-unstyled navbar_list me-3 mt-5">
             <li>
-              <Link to="home" className="navbar_link">
+              <Link to="/" className="navbar_link">
                 HOME
               </Link>
             </li>
