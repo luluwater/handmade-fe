@@ -1,7 +1,7 @@
 import React from 'react'
-import '../components/UserLogin/SignUp/SignUp.css'
+import SignUp from '../components/UserLogin/SignUp/SignUp'
 
-const SignUp = () => {
+const SignUpPage = () => {
   return (
     <>
       <SignUp />
@@ -9,4 +9,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUpPage

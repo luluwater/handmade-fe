@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Login_SignUp_img/ResetPassword.css'
+import './ResetPassword.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ResetPassword = () => {
@@ -9,7 +9,7 @@ const ResetPassword = () => {
       <div className="ResetPasswordFrame">
         <div className="border d-flex justify-content-center">
           <img
-            className="ResetPasswordPic"
+            className="LoginPic"
             src={require('../../../assets/login/login_pic.png')}
             alt=""
           />

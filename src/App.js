@@ -7,11 +7,11 @@ import CourseCart from './pages/CourseCart'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
-import Login from './pages/Login'
+import LoginPage from './pages/Login'
 
-import SignUp from './pages/SignUp'
-import FindPassword from './pages/FindPassword'
-import ResetPassword from './pages/ResetPassword'
+import SignUpPage from './pages/SignUp'
+import FindPasswordPage from './pages/FindPassword'
+import ResetPasswordPage from './pages/ResetPassword'
 
 import About from './pages/AboutPage'
 import AboutLayout from './components/About'
@@ -121,19 +121,19 @@ const routeConfig = [
 
       {
         path: 'Login',
-        element: <Login />,
+        element: <LoginPage />,
       },
       {
         path: 'SignUp',
-        element: <SignUp />,
+        element: <SignUpPage />,
       },
       {
         path: 'FindPassword',
-        element: <FindPassword />,
+        element: <FindPasswordPage />,
       },
       {
         path: 'ResetPassword',
-        element: <ResetPassword />,
+        element: <ResetPasswordPage />,
       },
 
       {

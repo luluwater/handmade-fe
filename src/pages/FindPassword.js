@@ -1,7 +1,7 @@
 import React from 'react'
-import '../components/UserLogin/FindPassword/FindPassword.scss'
+import FindPassword from '../components/UserLogin/FindPassword/FindPassword'
 
-const FindPassword = () => {
+const FindPasswordPage = () => {
   return (
     <>
       <FindPassword />
@@ -9,4 +9,4 @@ const FindPassword = () => {
   )
 }
 
-export default FindPassword
+export default FindPasswordPage

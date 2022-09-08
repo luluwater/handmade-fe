@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Login_SignUp_img/FindPassword.scss'
+import './FindPassword.scss'
 
 const FindPassword = () => {
   //往上一層要加上 "/""，如果是子層則不用加
@@ -14,7 +14,7 @@ const FindPassword = () => {
       <div className="FindPasswordFrame">
         <div className="border d-flex justify-content-center">
           <img
-            className="FindPasswordPic"
+            className="LoginPic"
             src={require('../../../assets/login/login_pic.png')}
             alt=""
           />

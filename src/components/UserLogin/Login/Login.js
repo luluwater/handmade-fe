@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Login_SignUp_img/Login.css'
+import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Login = () => {

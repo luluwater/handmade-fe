@@ -131,7 +131,7 @@
 
 
 @media screen and (max-width: 576px) {
-  img {
+  .SignUpPic {
     display: none;
   }
   .SignUpForm{

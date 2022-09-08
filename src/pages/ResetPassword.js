@@ -1,7 +1,7 @@
 import React from 'react'
-import '../components/UserLogin/ResetPassword/ResetPassword.css'
+import ResetPassword from '../components/UserLogin/ResetPassword/ResetPassword'
 
-const ResetPassword = () => {
+const ResetPasswordPage = () => {
   return (
     <>
       <ResetPassword />
@@ -9,4 +9,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default ResetPasswordPage

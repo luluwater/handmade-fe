@@ -1,7 +1,7 @@
 import React from 'react'
-import '../components/UserLogin/Login/Login.css'
+import Login from '../components/UserLogin/Login/Login'
 
-const Login = () => {
+const LoginPage = () => {
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
@@ -10,4 +10,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginPage
