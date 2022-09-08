@@ -1,6 +1,6 @@
 import '../User.scss'
 import React from 'react'
-import { Row, Col, Form, Table, Container } from 'react-bootstrap'
+import { Col, Form, Table } from 'react-bootstrap'
 import UserPassword from '../UserPassword'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,7 +18,7 @@ const UserAccount = ({ account, name, email, phone, birthday, address }) => {
     birthday,
     address
   )
-  const transformBirthday = moment(birthday).format('YYYY/MM/DD')
+  const transformBirthday = moment(birthday).format('YYYY.MM.DD')
   const [showUserPassword, setShowUserPassword] = useState(false)
   const [showUserAccount, setShowUserAccount] = useState(true)
   const [startDate, setStartDate] = useState(new Date())

@@ -4,10 +4,13 @@ import { Row, Col, Form, Table } from 'react-bootstrap'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
+import 'react-datepicker/dist/react-datepicker.css'
+import { useGetUserCourseOrdersQuery } from '../../../services/userApi'
 
 const UserCourseOrders = () => {
+  const { data, error, isLoading } = useGetUserCourseOrdersQuery()
+  // console.log('dataCourseOrders', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   return (
@@ -50,28 +53,33 @@ const UserCourseOrders = () => {
             <Table className="mt-5 user_orders_table">
               <thead>
                 <tr className="text-center">
-                  <th>訂單項目</th>
+                  <th>訂單編號</th>
                   <th>訂單日期</th>
                   <th>訂單編號</th>
                   <th>收件人</th>
                   <th>付款方式</th>
-                  <th>訂單狀態</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="text-center">
-                  <td>預約課程</td>
-                  <td>2022.08.02</td>
-                  <td>
-                    <Link to="details" className="user_orders_link fw-bold">
-                      我是課程
-                    </Link>
-                  </td>
-                  <td>黑色小花貓</td>
-                  <td>信用卡</td>
-                  <td>已完成</td>
-                </tr>
-              </tbody>
+              {data?.map((item, v) => {
+                const transformCourse = moment(item.create_time).format(
+                  'YYYY.MM.DD'
+                )
+                return (
+                  <tbody key={item.order_number}>
+                    <tr className="text-center">
+                      <td>{transformCourse}</td>
+                      <td>
+                        <Link to="details" className="user_orders_link fw-bold">
+                          {item.order_number}
+                        </Link>
+                      </td>
+                      <td>{item.course_order_name}</td>
+                      <td>{item.payment_name}</td>
+                      <td>{item.order_staus_name}</td>
+                    </tr>
+                  </tbody>
+                )
+              })}
             </Table>
           </div>
           {/* <div className="user_orders_pages">

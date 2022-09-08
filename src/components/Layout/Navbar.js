@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../../src/assets/HANDMADE_LOGO.png'
+import Logo from '../../assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

@@ -11,7 +11,7 @@ import { useGetUserProductOrdersQuery } from '../../../services/userApi'
 
 const UserProductsOrders = () => {
   const { data, error, isLoading } = useGetUserProductOrdersQuery()
-  console.log('dataProductOrders', data)
+  // console.log('dataProductOrders', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
 
@@ -64,15 +64,15 @@ const UserProductsOrders = () => {
               </thead>
               {data?.map((item, v) => {
                 const transformOrders = moment(item.create_time).format(
-                  'YYYY/MM/DD'
+                  'YYYY.MM.DD'
                 )
                 return (
-                  <tbody key={item.id}>
+                  <tbody key={item.order_number}>
                     <tr className="text-center">
                       <td>{transformOrders}</td>
                       <td>
                         <Link to="details" className="user_orders_link fw-bold">
-                          {item.product_order_order_number}
+                          {item.order_number}
                         </Link>
                       </td>
                       <td>{item.product_order_name}</td>
@@ -101,16 +101,3 @@ const UserProductsOrders = () => {
   )
 }
 export default UserProductsOrders
-
-/* {data?.map((item, v) => {
-            return (
-              <UserProductsOrders
-                key={item.id}
-                productOrderCreateTime={item.product_order_create_time}
-                productOrderOrderNumber={item.product_order_order_number}
-                productOrderName={item.product_order_name}
-                paymentName={item.payment_name}
-                orderStatusName={item.order_status_name}
-              />
-            )
-          })} */
