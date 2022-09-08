@@ -1,9 +1,20 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 import { act } from 'react-dom/test-utils'
 import { useSelector } from 'react-redux'
+import Proudcts from '../pages/Products'
 
 function doPagination(state) {
-  state.data = state.rawData?.slice(
+  if (state.filter.store.length > 0) {
+    state.data = state.rawData.filter((product) =>
+      state.filter.store.includes(product.store_name)
+    )
+    state.totalPage = Math.ceil(state.data.length / state.itemCount)
+    console.log(current(state))
+  } else {
+    state.data = state.rawData
+  }
+
+  state.data = state.data?.slice(
     (state.currentPage - 1) * state.itemCount,
     state.itemCount * state.currentPage
   )
@@ -17,7 +28,9 @@ function checkPage(page, state) {
 const initialState = {
   rawData: [],
   data: [],
-  filter: {},
+  filter: {
+    store: [],
+  },
   currentPage: 1,
   itemCount: 20,
   totalPage: 1,
@@ -52,9 +65,20 @@ export const paginationSlice = createSlice({
       state.currentPage = page
       doPagination(state)
     },
+    setStoreFilter: (state, action) => {
+      state.filter.store = action.payload
+      state.currentPage = 1
+      doPagination(state)
+    },
   },
 })
 
-export const { pagination, setShowItemCount, changePage, nextPage, prePage } =
-  paginationSlice.actions
+export const {
+  pagination,
+  setShowItemCount,
+  changePage,
+  nextPage,
+  prePage,
+  setStoreFilter,
+} = paginationSlice.actions
 export default paginationSlice.reducer

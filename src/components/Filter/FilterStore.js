@@ -64,10 +64,10 @@ function FilterStore() {
   }, [dispatch, data])
 
   const state = useSelector((state) => state.filterStoreReducer.list)
-  console.log(
-    'filterStore',
-    useSelector((state) => state.filterStoreReducer.filterStores)
-  )
+  // console.log(
+  //   'filterStore',
+  //   useSelector((state) => state.filterStoreReducer.filterStores)
+  // )
   const lists = state
   // console.log('lists', lists)
 

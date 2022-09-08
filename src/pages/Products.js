@@ -3,8 +3,8 @@ import { Row, Col, Container } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../slices/productCard-slice'
-import { pagination } from '../slices/filterPagination-slice'
+// import { addProduct } from '../slices/productCard-slice'
+import { pagination, setStoreFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
 import FilterStore from '../components/Filter/FilterStore'
@@ -20,8 +20,19 @@ function Proudcts() {
   // const productListNoP = useSelector((state) => state.productReducer.product)
   // console.log('normal', productListNoP)
   const productList = useSelector((state) => state.paginationReducer.data)
+  const filterStore = useSelector(
+    (state) => state.filterStoreReducer.filterStores
+  )
+  useEffect(() => {
+    // console.log('product:filterStore', filterStore)
+    dispatch(setStoreFilter(filterStore))
+  }, [dispatch, filterStore])
+  console.log('pagination', productList)
+  console.log(
+    'pagination:filter',
+    useSelector((state) => state.paginationReducer.filter)
+  )
 
-  // console.log('pagination',productList)
   return (
     <>
       <div className="position-relative">
