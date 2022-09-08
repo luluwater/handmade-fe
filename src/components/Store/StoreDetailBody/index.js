@@ -88,8 +88,9 @@ const StoreDetailBody = () => {
               </div>
             </div>
 
+
             <div className="StoreDetailBody_SNS d-flex justify-content-center">
-              <a href={item.FB_url}>
+              <a href={item.FB_url} target="_blank" rel="noreferrer">
                 <FontAwesomeIcon
                   icon={faFacebookF}
                   size="3x"
@@ -98,7 +99,7 @@ const StoreDetailBody = () => {
                 />
               </a>
 
-              <a href={item.IG_url}>
+              <a href={item.IG_url} target="_blank" rel="noreferrer">
                 <FontAwesomeIcon
                   icon={faInstagram}
                   size="3x"
@@ -107,6 +108,7 @@ const StoreDetailBody = () => {
                 />
               </a>
             </div>
+            <div StoreDetailBody_SNSLine></div>
 
             <Row className="StoreDetailBody_recommendBox justify-content-center ">
               <Col xs={12} md={5} className="StoreDetailBody_courseRecommend">

@@ -107,9 +107,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            
+
+            &:hover{
+                color: white;
+            }
         }
+
+
 
         &::before{
             content: '';
@@ -120,20 +124,18 @@
             border-right: 3px solid $secondary;
             border-left: 3px solid $secondary;
             transform: skew(-35deg);
+            z-index: -1000;
             @media screen and (max-width:576px){
                 display: none;
-                // width: 69%;
             }
         }
-
     }
+
     &_recommendBox{
         margin: 6rem 10rem  7rem 10rem;
         @media screen and (max-width:576px){
             margin: 0 0 3rem 0;
-
         }
-
     }
 
     &_courseRecommend,&_productRecommend{
@@ -147,10 +149,5 @@
 
         }
     }
-
-    &_courseRecommend{
-
-    }
-
 
     }
