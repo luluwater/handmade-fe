@@ -64,9 +64,12 @@ function FilterStore() {
   }, [dispatch, data])
 
   const state = useSelector((state) => state.filterStoreReducer.list)
-
+  console.log(
+    'filterStore',
+    useSelector((state) => state.filterStoreReducer.filterStores)
+  )
   const lists = state
-  console.log('lists', lists)
+  // console.log('lists', lists)
 
   return (
     <>
@@ -100,8 +103,13 @@ function FilterStore() {
                       className="filter_input"
                       type="checkbox"
                       onChange={(e) => {
-                        const { checked, name } = e.target
-                        dispatch(handleToggole({ ar, checked, name }))
+                        dispatch(
+                          handleToggole({
+                            category: ar.id,
+                            checked: e.target.checked,
+                            name: e.target.name,
+                          })
+                        )
                       }}
                       checked={inner.completed}
                       name={inner.title}

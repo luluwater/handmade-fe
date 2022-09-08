@@ -1,5 +1,6 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 import { act } from 'react-dom/test-utils'
+import { useSelector } from 'react-redux'
 
 function doPagination(state) {
   state.data = state.rawData?.slice(
@@ -16,7 +17,7 @@ function checkPage(page, state) {
 const initialState = {
   rawData: [],
   data: [],
-  filter: [],
+  filter: {},
   currentPage: 1,
   itemCount: 20,
   totalPage: 1,

@@ -1,9 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { act } from 'react-dom/test-utils'
+
+function removeFilterStores(state, storeName) {
+  state.filterStores = state.filterStores.filter(
+    (filterName) => filterName !== storeName
+  )
+}
+function pushFilterStores(state, storeName) {
+  if (!storeName || !state)
+    return console.error('方法有兩個參數state、storeName')
+  if (state.filterStores.includes(storeName)) return
+
+  state.filterStores.push(storeName)
+}
 
 //EXAMPLE
 const initialState = {
   list: [],
+  filterStores: [],
 }
 
 export const filterSlice = createSlice({
@@ -19,18 +33,25 @@ export const filterSlice = createSlice({
       )
     },
     handleToggole: (state, action) => {
+      // console.log(action.payload)
       state.list = state.list.map((item) =>
-        item.id === action.payload.selectedList.id
+        item.id === action.payload.category
           ? {
               ...item,
-              innerList: item.innerList.map((store) =>
-                store.title === action.payload.name
-                  ? {
-                      ...store,
-                      completed: action.payload.checked,
-                    }
-                  : store
-              ),
+              innerList: item.innerList.map((store) => {
+                if (store.title === action.payload.name) {
+                  //add & remove filterStoresName
+                  action.payload.checked
+                    ? pushFilterStores(state, action.payload.name)
+                    : removeFilterStores(state, store.title)
+                  return {
+                    ...store,
+                    completed: action.payload.checked,
+                  }
+                } else {
+                  return store
+                }
+              }),
             }
           : item
       )
@@ -39,11 +60,17 @@ export const filterSlice = createSlice({
       state.list = state.list.map((item) => {
         if (item.id === action.payload.id) {
           const newChecked = !item.checked
-          const newInnerList = item.innerList.map((v) => ({
-            ...v,
+          const newInnerList = item.innerList.map((store) => ({
+            ...store,
             completed: newChecked,
           }))
-          console.log('newInnerList', newInnerList)
+          //add & remove filterStoresName
+          item.innerList.map((store) =>
+            newChecked
+              ? pushFilterStores(state, store.title)
+              : removeFilterStores(state, store.title)
+          )
+
           const newItem = {
             ...item,
             active: true,

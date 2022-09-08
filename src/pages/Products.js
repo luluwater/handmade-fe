@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
@@ -20,6 +20,7 @@ function Proudcts() {
   // const productListNoP = useSelector((state) => state.productReducer.product)
   // console.log('normal', productListNoP)
   const productList = useSelector((state) => state.paginationReducer.data)
+
   // console.log('pagination',productList)
   return (
     <>
@@ -59,7 +60,7 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row>
           <Col lg={4} xl={3}>
-            <FilterStore/>
+            <FilterStore />
           </Col>
           <Col>
             <div className="d-flex justify-content-center">
@@ -81,23 +82,6 @@ function Proudcts() {
               </Row>
             </div>
             <Paginate />
-
-            {/* <div className="d-flex flex-wrap  justify-content-start gap-5">
-            {products?.map((v, i) => {              
-              return (
-                <ProductCard
-                  key={v.id}
-                  productId={v.id}
-                  imgs={v.img_name}
-                  category={v.category_en_name}
-                  storeName={v.store_name}
-                  name={v.name}
-                  price={v.price}
-                  isFavorite={false}
-                />
-              )
-            })}
-          </div> */}
           </Col>
         </Row>
       </Container>
