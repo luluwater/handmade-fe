@@ -29,7 +29,10 @@ const initialState = {
   rawData: [],
   data: [],
   filter: {
+    keyword: [],
     store: [],
+    price: [],
+    date: [],
   },
   currentPage: 1,
   itemCount: 20,

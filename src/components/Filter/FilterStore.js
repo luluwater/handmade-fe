@@ -82,9 +82,10 @@ function FilterStore() {
               <input
                 type="checkbox"
                 style={{ margin: '0 5px' }}
-                onClick={() => {
+                onChange={() => {
                   dispatch(handleSelecteAll(ar))
                 }}
+                checked={ar.checked}
               />
               <AccordionHeader
                 active={ar.active}
