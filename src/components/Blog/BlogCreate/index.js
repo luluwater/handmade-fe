@@ -45,8 +45,6 @@ const BlogCreate = () => {
    * 5. store ( 建立於category之上 ) --> not yet
    * 6. tag?? ( 感覺有點麻煩 ) --> not yet
    * 7. 發布時間 current time --> ok
-   *
-   * TODO: 創建完畢後直接跳轉到創建的頁面 blog/:blogId
    *  useNavgative
    * @param {event} e
    */
@@ -107,7 +105,85 @@ const BlogCreate = () => {
         </div>
 
         {/* Modal */}
-        <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
+        <Modal
+          className="p-0"
+          show={show}
+          fullscreen={true}
+          onHide={() => setShow(false)}
+        >
+          <Modal.Header className="border-0 mt-4" closeButton></Modal.Header>
+          <div className="d-flex"></div>
+          <Container>
+            <Row className="d-flex flex-column flex-md-row">
+              <Col className="max-w-md-50">
+                <Modal.Body className="py-md-12 px-md-6">
+                  <h4 className="mb-3 fs-5 fw-bolder">部落格預覽</h4>
+                  <div className="bg-primary mb-5" style={{ height: '250px' }}>
+                    <img
+                      class="blog_preview_img w-100 h-100"
+                      src="http://localhost:8080/blog_55b9bc84-1067-4970-a942-0aa0f0702aa3.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <h5 className="border-bottom pb-2 fs-5 fw-bolder">
+                    {addTitle}
+                  </h5>
+                  <div className="py-2 border-bottom ">
+                    <p className="m-0 text-cut text-muted">
+                      {addContent ? parse(addContent) : ''}
+                    </p>
+                  </div>
+                </Modal.Body>
+              </Col>
+              <Col>
+                <Modal.Body className="py-md-12 px-md-6 overflow-hidden">
+                  <h4 className="mb-3 fs-5 ">
+                    <span className="text-muted">發布人：</span>黑色小花貓
+                  </h4>
+                  <div className="d-flex flex-column gap-md-6 gap-5">
+                    <Form.Select
+                      onClick={handleCategoryChange}
+                      className="bg-skin-brighter border-0"
+                      aria-label="Default select example"
+                    >
+                      <option>選擇類別</option>
+                      <option value="1">金工</option>
+                      <option value="2">陶藝</option>
+                      <option value="3">花藝</option>
+                      <option value="4">皮革</option>
+                      <option value="5">烘焙</option>
+                      <option value="6">簇絨</option>
+                    </Form.Select>
+
+                    <Form.Select
+                      onClick={handleStoreChange}
+                      className="bg-skin-brighter border-0"
+                      aria-label="Default select example"
+                    >
+                      <option>選擇店家</option>
+                      <option value="1">以覺學</option>
+                      <option value="2">轉角金工</option>
+                      <option value="3">光在金工</option>
+                      <option value="4">Minifeast</option>
+                      <option value="5">Silver Spring</option>
+                    </Form.Select>
+                  </div>
+                  <div className="text-end ">
+                    <button
+                      onClick={handleSubmit}
+                      type="button"
+                      className="btn btn-primary rounded-5 px-5 text-white  mt-8"
+                    >
+                      確認發布
+                    </button>
+                  </div>
+                </Modal.Body>
+              </Col>
+            </Row>
+          </Container>
+        </Modal>
+        {/* Modal */}
+        {/* <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
           <Modal.Header className="border-0 mt-4" closeButton></Modal.Header>
           <div className="d-flex"></div>
           <Container>
@@ -178,7 +254,7 @@ const BlogCreate = () => {
               </Col>
             </Row>
           </Container>
-        </Modal>
+        </Modal> */}
       </Form>
     </div>
   )
