@@ -4,11 +4,16 @@ import { combineReducers } from 'redux'
 // 狀態 slice
 import replyReducer from '../slices/reply-slice'
 import blogReducer from '../slices/blog-slice'
+import commentReducer from '../slices/comment-slice'
 import storeReducer from '../slices/store-slice'
 import productReducer from '../slices/productCard-slice'
 import paginationReducer from '../slices/filterPagination-slice'
 import filterStoreReducer from '../slices/filterStore-silce'
+
+//Service
 import { blogApiService } from '../services/blogApi'
+import { commentApiService } from '../services/commentAPI'
+import { replyApiService } from '../services/replyApi'
 import { storeApiService } from '../services/storeApi'
 import { productApiService } from '../services/productApi'
 import { categoryApiService } from '../services/categoryApi'
@@ -25,7 +30,12 @@ const reducers = combineReducers({
   paginationReducer,
   filterStoreReducer,
   storeReducer,
+  replyReducer,
+  blogReducer,
+  commentReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
+  [commentApiService.reducerPath]: commentApiService.reducer,
+  [replyApiService.reducerPath]: replyApiService.reducer,
   [productApiService.reducerPath]: productApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
@@ -41,6 +51,8 @@ const store = configureStore({
       .concat(storeApiService.middleware)
       .concat(categoryApiService.middleware)
       .concat(userApiService.middleware)
+      .concat(commentApiService.middleware)
+      .concat(replyApiService.middleware)
   },
 })
 
