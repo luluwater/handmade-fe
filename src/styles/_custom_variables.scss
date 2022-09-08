@@ -60,7 +60,7 @@ $h1-font-size: $font-size-base * 3; // 48px
 $h2-font-size: $font-size-base * 2; // 32px
 $h3-font-size: $font-size-base * 1.75; // 28px
 $h4-font-size: $font-size-base * 1.5; // 24px
-$h5-font-size: $font-size-base * 1.25; // 18px
+$h5-font-size: $font-size-base * 1.25; // 20px
 $h6-font-size: $font-size-base; // 16px
 
 $font-sizes: (
@@ -76,17 +76,10 @@ $font-sizes: (
 $link-decoration: none;
 $link-color: #fff;
 
-// BTN Customized
-// $btn-hover-bg-tint-amount: 100% ;
-// $btn-hover-bg-shade-amount: 15% !default;
-// $btn-hover-bg-tint-amount: 15% !default;
-// $btn-hover-border-shade-amount: 20% !default;
-// $btn-hover-border-tint-amount: 10% !default;
-// $btn-active-bg-shade-amount: 20% !default;
-// $btn-active-bg-tint-amount: 20% !default;
-// $btn-active-border-shade-amount: 25% !default;
-// $btn-active-border-tint-amount: 10% !default;
 $btn-border-radius: 0;
+$link-hover-color: $primary;
+
+$btn-active-box-shadow: none;
 
 // form control
 $input-border-radius: 0;
@@ -97,4 +90,6 @@ $form-select-focus-box-shadow: none;
 //文字是否自適應
 // $enable-rfs: false;
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap');
+$dropdown-link-active-bg: $secondary;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700;900&display=swap');
