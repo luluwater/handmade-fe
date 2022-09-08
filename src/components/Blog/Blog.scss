@@ -27,8 +27,6 @@
   }
 }
 
-
-
 .blog_list {
   &_btn {
     position: relative;
@@ -55,7 +53,14 @@
   }
 
   &_content {
-    letter-spacing: 3px;
+    > .image {
+      display: none;
+    }
+    > h3 {
+      > img {
+        display: none;
+      }
+    }
   }
   &_title {
     display: -webkit-box;
