@@ -8,6 +8,7 @@ import { pagination, setStoreFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
 import FilterStore from '../components/Filter/FilterStore'
+import FilterKeyword from '../components/FIlter/FilterKeyword'
 
 function Proudcts() {
   //api get products data
@@ -71,7 +72,7 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row>
           <Col lg={4} xl={3}>
-            <FilterStore />
+            <FilterStore /><FilterKeyword />
           </Col>
           <Col>
             <div className="d-flex justify-content-center">

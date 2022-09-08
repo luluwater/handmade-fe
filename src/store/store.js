@@ -6,6 +6,7 @@ import paginationReducer from '../slices/filterPagination-slice'
 import filterStoreReducer from '../slices/filterStore-silce'
 import { blogApiService } from '../services/blogApi'
 import { productApiService } from '../services/productApi'
+import filterKeywordReducer from '../slices/filterKeyword-slice'
 import { storeApiService } from '../services/storeApi'
 import { categoryApiService } from '../services/categoryApi'
 // import { userApiService } from '../services/userApi'
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   productReducer,
   paginationReducer,
   filterStoreReducer,
+  filterKeywordReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [productApiService.reducerPath]: productApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
