@@ -3,13 +3,15 @@ import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
+
+
 import CourseCart from './pages/CourseCart'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
 import Login from './pages/Login'
 
-import SignUp from './pages/SignUp'
+import SignUp from './pages/Signup'
 import FindPassword from './pages/FindPassword'
 import ResetPassword from './pages/ResetPassword'
 

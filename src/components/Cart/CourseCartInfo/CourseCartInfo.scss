@@ -1,0 +1,56 @@
+@import '../../../styles/custom_variables';
+
+.CourseCartInfo_logoBox{
+    background-color: $skin-brighter;
+
+    padding: 1rem 2rem 3rem 2rem;
+    img{
+        width: 11rem;
+    }
+}
+
+.CourseCartInfo{
+    height: 100vh;
+    @media screen and (max-width:576px){
+        height: auto;
+    }
+
+    &_leftSide{
+    height: 100vh;
+    
+    }
+
+    &_rightSide{
+        background-color: $skin-bright;
+        height: 100vh;
+        padding: 0;
+
+    }
+    &_previous_page{
+
+        a{
+            color: $gray-darker;
+            font-size: 1.2rem;
+            font-weight: 700;
+            &:hover{
+                color:$primary;
+            }
+        }
+    }
+    &_arrow{
+        padding-left: 3.5rem;
+        padding-right: .5rem;
+
+    }
+    &_inputBox{
+        color: $gray-darker;
+        font-weight: 900;
+        padding-left: 3rem;
+    }
+    &_input{
+        margin-left: 8rem;
+    }
+
+}
+
+

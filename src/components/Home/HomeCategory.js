@@ -1,6 +1,6 @@
 import './HomeCategory.scss'
 import React from 'react'
-import Image1 from '../../assets/store/store_metalwork＿2/金工_轉角金工_kv2.jpg'
+import Image1 from '../../assets/store/store_metalwork_2/金工_轉角金工_kv2.jpg'
 import Image2 from '../../assets/store/store_pottery_7/陶藝_Round-Round_kv_3.jpg'
 import Image3 from '../../assets/store/store_floral_14/花藝＿草地學花＿KV＿1.jpg'
 import Image4 from '../../assets/store/store_leather_16/store_leather_HsuDaughter_kv3.jpg'
