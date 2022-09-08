@@ -5,4 +5,3 @@ import productBanner from './assets/store_banner/store_floral_13.jpg'
 
 export default [image1, image2, image3]
 export { productBanner }
-

@@ -8,12 +8,6 @@ const Blog = () => {
   return (
     <>
       <BlogBanner />
-      <h1
-        style={{ height: '130px' }}
-        className="bg-black text-white text-center mb-8"
-      >
-        這裡是分類
-      </h1>
       <Container className="mb-12">
         <Row>
           <Col className="border-right" lg={3}>

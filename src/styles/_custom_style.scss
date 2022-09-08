@@ -1,85 +1,179 @@
+@import './custom_variables';
 img {
   max-width: 100%;
   height: auto;
 }
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  color: rgb(201, 201, 201);
-}
-.swiper-button-prev:hover.swiper-button-prev::after,
-.swiper-button-next:hover.swiper-button-next::after {
-  color: white;
-}
-.product_list{
-  width: 1230px;
-}
-.banner{
-  width: 100%;
-  height: 450px;
-}
-.banner_title{
-  letter-spacing: 1rem;
-}
-@media screen and (max-width:1660px){
-  .product_list{
-    width: 930px;
+
+@media (min-width: 768px) {
+  .w-md-100 {
+    width: 100% !important;
+  }
+  .w-md-75 {
+    width: 75% !important;
+  }
+  .w-md-70 {
+    width: 70% !important;
+  }
+  .w-md-50 {
+    width: 50% !important;
+  }
+  .w-md-40 {
+    width: 40% !important;
+  }
+  .w-md-30 {
+    width: 30% !important;
+  }
+  .w-md-25 {
+    width: 25% !important;
+  }
+  .w-md-15 {
+    width: 15% !important;
+  }
+  .w-md-0 {
+    width: 0 !important;
+  }
+  .w-md-auto {
+    width: auto !important;
   }
 }
-@media screen and (max-width:1260px){
-  .product_list{
-    width: 610px;
+
+.w-15 {
+  width: 15% !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-35 {
+  width: 35% !important;
+}
+
+//swal2 buttom 樣式
+.swal2-actions {
+  gap: 2.5rem;
+}
+
+.emoji-picker-react {
+  position: absolute !important;
+  right: 0;
+  bottom: 100%;
+  .emoji-scroll-wrapper {
+    &::-webkit-scrollbar {
+      width: 10px !important;
+    }
+
+    /* 網頁捲軸【背景】顏色 */
+    &::-webkit-scrollbar-track {
+      background: $skin-brighter !important;
+    }
+
+    /* 網頁捲軸【把手】顏色 */
+    &::-webkit-scrollbar-thumb {
+      background: $skin-bright !important;
+    }
+
+    /* 網頁捲軸【滑過時】把手的顏色 */
+    &::-webkit-scrollbar-thumb:hover {
+      background: $secondary !important;
+    }
   }
 }
-.storeList_leftSide{
-  @media screen and (max-width:576px){
+
+#dropdown-basic {
+  > #ellipsis::after {
     display: none;
   }
 }
 
-.StorePage_container{
+.StorePage_container {
   padding: 0 5rem;
-  @media screen and (max-width:576px){
-  padding: 0;
+  @media screen and (max-width: 576px) {
+    padding: 0;
   }
 }
-.path-bottom{
-  animation:pathAnim-0 10s;
+.path-bottom {
+  animation: pathAnim-0 10s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite;  
+  animation-iteration-count: infinite;
 }
-@keyframes pathAnim-0{
-  0%{
-    d: path("M 0,400 C 0,400 0,200 0,200 C 123,208 217,216 400,225 C 552,234 733,240 912,232 C 1090,228 1265,223 1440,200 C 1440,200 1440,400 1440,400 Z");
-    }
-    25%{
-    d: path("M 0,400 C 0,400 0,200 0,200 C 176,207 353,214 533,213 C 712,211 893,200 1045,197 C 1196,193 1318,196 1440,200 C 1440,200 1440,400 1440,400 Z");
-    }
-    50%{
-    d: path("M 0,400 C 0,400 0,200 0,200 C 172,188 345,157 515,172 C 684,186 849,218 1003,239 C 1156,243 1298,229 1440,200 C 1440,200 1440,400 1440,400 Z");
-    }
-    75%{
-    d: path("M 0,400 C 0,400 0,200 0,200 C 133,224.8 266,249.6 408,240 C 549,230.4 697,186.4 871,174 C 1044,161.6 1242,170.8 1440,200 C 1440,200 1440,400 1440,400 Z");
-    }
-    100%{
-      d: path("M 0,400 C 0,400 0,200 0,200 C 123,208 217,216 400,225 C 552,234 733,240 912,232 C 1090,228 1265,223 1440,200 C 1440,200 1440,400 1440,400 Z");
-    }
+@keyframes pathAnim-0 {
+  0% {
+    d: path(
+      'M 0,400 C 0,400 0,200 0,200 C 123,208 217,216 400,225 C 552,234 733,240 912,232 C 1090,228 1265,223 1440,200 C 1440,200 1440,400 1440,400 Z'
+    );
+  }
+  25% {
+    d: path(
+      'M 0,400 C 0,400 0,200 0,200 C 176,207 353,214 533,213 C 712,211 893,200 1045,197 C 1196,193 1318,196 1440,200 C 1440,200 1440,400 1440,400 Z'
+    );
+  }
+  50% {
+    d: path(
+      'M 0,400 C 0,400 0,200 0,200 C 172,188 345,157 515,172 C 684,186 849,218 1003,239 C 1156,243 1298,229 1440,200 C 1440,200 1440,400 1440,400 Z'
+    );
+  }
+  75% {
+    d: path(
+      'M 0,400 C 0,400 0,200 0,200 C 133,224.8 266,249.6 408,240 C 549,230.4 697,186.4 871,174 C 1044,161.6 1242,170.8 1440,200 C 1440,200 1440,400 1440,400 Z'
+    );
+  }
+  100% {
+    d: path(
+      'M 0,400 C 0,400 0,200 0,200 C 123,208 217,216 400,225 C 552,234 733,240 912,232 C 1090,228 1265,223 1440,200 C 1440,200 1440,400 1440,400 Z'
+    );
+  }
 }
-.path-top{
-  animation:pathAnim-top 6s;
+.path-top {
+  animation: pathAnim-top 6s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite;  
+  animation-iteration-count: infinite;
 }
-@keyframes pathAnim-top{
-  0%{
-    d: path("M 0,400 C 0,400  0,360  0,365 C 97,370  194,375  328,380 C 461,385  630,380  773,375 C 915,365  1030,355  1137,355 C 1243,360  1341,365  1440,375 C 1440,380 1440,400 1440,400 Z");
-    }
-    35%{
-      d: path("M 0,400 C 0,400  0,390  0,385 C 97,380  194,375  328,370 C 461,360  630,370  773,375 C 915,385  1030,395  1137,395 C 1243,390  1341,385  1440,370 C 1440,400  1440,400  1440,400 Z");
-    }    
-    65%{
-      d: path("M 0,400 C 0,400  0,350  0,350 C 97,355  194,360  328,370 C 461,375  630,380  773,385 C 915,375  1030,370  1137,365 C 1243,360  1341,350  1440,350 C 1440,400  1440,400  1440,400 Z");
-    }
-    100%{
-      d: path("M 0,400 C 0,400  0,360  0,365 C 97,370  194,375  328,380 C 461,385  630,380  773,375 C 915,365  1030,355  1137,355 C 1243,360  1341,365  1440,375 C 1440,380 1440,400 1440,400 Z");
-    }
+@keyframes pathAnim-top {
+  0% {
+    d: path(
+      'M 0,400 C 0,400  0,360  0,365 C 97,370  194,375  328,380 C 461,385  630,380  773,375 C 915,365  1030,355  1137,355 C 1243,360  1341,365  1440,375 C 1440,380 1440,400 1440,400 Z'
+    );
+  }
+  35% {
+    d: path(
+      'M 0,400 C 0,400  0,390  0,385 C 97,380  194,375  328,370 C 461,360  630,370  773,375 C 915,385  1030,395  1137,395 C 1243,390  1341,385  1440,370 C 1440,400  1440,400  1440,400 Z'
+    );
+  }
+  65% {
+    d: path(
+      'M 0,400 C 0,400  0,350  0,350 C 97,355  194,360  328,370 C 461,375  630,380  773,385 C 915,375  1030,370  1137,365 C 1243,360  1341,350  1440,350 C 1440,400  1440,400  1440,400 Z'
+    );
+  }
+  100% {
+    d: path(
+      'M 0,400 C 0,400  0,360  0,365 C 97,370  194,375  328,380 C 461,385  630,380  773,375 C 915,365  1030,355  1137,355 C 1243,360  1341,365  1440,375 C 1440,380 1440,400 1440,400 Z'
+    );
+  }
+}
+// editor
+.ck-editor__editable[role='textbox'] {
+  /* editing area */
+  min-height: 500px;
+}
+
+.ck-content .image {
+  /* block images */
+  max-width: 80%;
+  margin: 20px auto;
+}
+//TODO:這有沒有需要放?
+#add_blog_active {
+  color: #fff;
+  background: var(--main-color);
+}
+
+#add_blog_active a::before {
+  content: '';
+  height: 25px;
+  width: 5px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  transform: translate(-300%, -50%);
 }

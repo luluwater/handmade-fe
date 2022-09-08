@@ -13,6 +13,7 @@
 
   &_img {
     max-height: 300px;
+    object-fit: cover;
     @media (min-width: 576px) {
       max-height: 400px;
     }
@@ -55,13 +56,6 @@
 
   &_content {
     letter-spacing: 3px;
-    // @media (min-width: 768px) {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    // }
   }
   &_title {
     display: -webkit-box;
@@ -73,4 +67,28 @@
       max-width: 75%;
     }
   }
+}
+.text-cut {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_image {
+  width: 32px;
+  height: 32px;
+}
+
+.blog_comment_link:hover {
+  color: $gray-darker !important;
+}
+
+.blog_dropdown_delete {
+  color: $primary;
+}
+
+.blog_preview_img {
+  object-fit: cover;
 }

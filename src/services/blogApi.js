@@ -1,19 +1,13 @@
-// Step1:引入 createApi 和 fetchBaseQuery
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { API_URL } from '../utils/config'
 
-// http://localhost:8080/api/blog
-// Step2:使用 createApi 建立 blogApi 實體
 export const blogApiService = createApi({
   reducerPath: 'blogApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_URL,
+  }),
+  tagTypes: ['blog'],
   endpoints: (builder) => ({
-    // 用上面這ㄍ方法(各個 endpoint 分開寫)
-    // getBlogList: builder.query({
-    //   query: () => 'blog',
-    // }),
-    // getBlogDetail: builder.query({
-    //   query: (blogId) => `blog/${blogId}`,
-    // }),
     getBlog: builder.query({
       query: (blogId) => {
         if (blogId !== 'all') {
@@ -21,8 +15,40 @@ export const blogApiService = createApi({
         }
         return 'blog'
       },
+      providesTags: ['blog'],
+    }),
+    // CREATE Blog
+    createBlog: builder.mutation({
+      query: (data) => ({
+        url: 'blog',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['blog'],
+    }),
+    //TODO: update Blog
+    updateBlog: builder.mutation({
+      query: (data) => {
+        const { blogId } = data
+        return { url: `blog/${blogId}/edit`, method: 'PUT', body: data }
+      },
+      invalidatesTags: ['blog'],
+    }),
+    // DELETE Blog
+    deleteBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `blog/${blogId}`,
+        method: 'delete',
+        body: blogId,
+      }),
+      invalidatesTags: ['blog'],
     }),
   }),
 })
 
-export const { useGetBlogQuery } = blogApiService
+export const {
+  useGetBlogQuery,
+  useCreateBlogMutation,
+  useDeleteBlogMutation,
+  useUpdateBlogMutation,
+} = blogApiService
