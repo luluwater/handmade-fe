@@ -2,12 +2,11 @@ import React from 'react'
 import '../User.scss'
 import { Row, Form, Table } from 'react-bootstrap'
 // import { useGetUserCouponsQuery } from '../../../services/userApi'
-import moment from 'moment'
+// import moment from 'moment'
 export const UserCoupons = () => {
   // const { data, error, isLoading } = useGetUserCouponsQuery()
   // console.log('UserCoupons', data)
-  //TODO: 今年幾月
-  //TODO: data filter 1.已失效 2.可使用
+
   return (
     <>
       <Form.Group>

@@ -10,7 +10,7 @@ import { useGetUserCourseOrdersQuery } from '../../../services/userApi'
 
 const UserCourseOrders = () => {
   const { data, error, isLoading } = useGetUserCourseOrdersQuery()
-  // console.log('dataCourseOrders', data)
+  console.log('dataCourseOrders', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   return (

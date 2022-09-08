@@ -30,10 +30,6 @@ export const userApiService = createApi({
       query: () => 'user/course-orders',
       providesTags: ['User'],
     }),
-    getUserCoupons: builder.query({
-      query: () => 'user/coupons',
-      providesTags: ['User'],
-    }),
   }),
 })
 
@@ -41,5 +37,4 @@ export const {
   useGetUserQuery,
   useGetUserProductOrdersQuery,
   useGetUserCourseOrdersQuery,
-  useGetUserCouponsQuery,
 } = userApiService
