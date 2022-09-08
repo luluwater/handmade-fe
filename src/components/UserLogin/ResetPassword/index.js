@@ -10,7 +10,7 @@ const ResetPassword = () => {
         <div className="border d-flex justify-content-center">
           <img
             className="ResetPasswordPic"
-            src={require('./Login_SignUp_img/login_pic_工作區域_3_1.png')}
+            src={require('../../../assets/login/login_pic.png')}
             alt=""
           />
           <form action="" className="ResetPasswordForm ">

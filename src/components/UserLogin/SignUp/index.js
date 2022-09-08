@@ -11,7 +11,7 @@ const SignUp = () => {
         <div className="border d-flex justify-content-center">
           <img
             className="SignUpPic"
-            src={require('./Login_SignUp_img/login_pic_工作區域_6_1.png')}
+            src={require('../../../assets/login/signup_pic.png')}
             alt=""
           />
           <form action="" className="SignUpForm ">
