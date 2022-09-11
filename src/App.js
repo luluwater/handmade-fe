@@ -150,11 +150,11 @@ const routeConfig = [
         element: <Products />,
       },
       {
-        path: 'ProductDetailPage',
+        path: 'product/detail/:productId',
         element: <ProductDetailPage />,
       },
       {
-        path: 'CourseDetailPage',
+        path: 'course/detail/:courseId',
         element: <CourseDetailPage />,
       },
     ],
