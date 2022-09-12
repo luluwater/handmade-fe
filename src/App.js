@@ -6,6 +6,7 @@ import Layout from './pages/Layout'
 
 
 import CourseCart from './pages/CourseCart'
+import ProductCart from './pages/ProductCart'
 import CheckoutPage from './pages/CheckoutPage'
 
 import BlogLayout from './components/Blog'
@@ -165,6 +166,10 @@ const routeConfig = [
   {
     path: '/course_cart',
     element: <CourseCart />,
+  },
+  {
+    path: '/product_cart',
+    element: <ProductCart />,
   },
   {
     path: '/checkout',
