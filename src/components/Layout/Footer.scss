@@ -1,0 +1,132 @@
+@import '../../styles/custom_variables';
+
+.footer{
+    background: $secondary;
+    height: 527px;
+    // position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+
+    &_icon_ul{
+        li{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: $white;
+            margin: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @media screen and (max-width:576px){
+                width: 40px;
+                height: 40px;
+                margin: 3rem  1.8rem  0 1.8rem ;
+            }
+        }
+
+    }
+    
+    &_awesomeIcon{
+        color: $secondary;
+        line-height: 50px;
+        cursor: pointer;
+    }
+
+    &_row1{
+        margin: 0 25%;
+        padding-bottom: 3%;
+        color: $white;
+        justify-content: center;
+        div{
+            padding: 0;
+        }
+    }
+
+    &_cursor{
+        cursor: pointer;
+    }
+    &_smallWord{
+        p{
+            font-size: 14px;
+            margin-right:1rem;
+            margin-bottom:1rem;
+
+
+            @media screen and (max-width:576px){
+                margin:0;
+                // padding-left: .5rem;
+                padding-bottom: .5rem;
+                
+            }
+        }
+        @media screen and (max-width:576px){
+            flex-flow: column wrap;
+            align-items: flex-start; 
+            margin: 0;
+            
+        }
+        ;
+    }
+    &_detail{
+        margin-top: 2.8rem;
+        margin-bottom: 1rem;
+    }
+
+}
+
+@media screen and (max-width:576px){
+    .footer_row1{
+        height: 300px;
+        margin: 2rem 1.25rem;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        .footer_rwd_m{
+            margin: 0;
+            padding: .4rem 0 .4rem 0;
+        }
+    }
+    .footer_shoppingNote{
+        p{
+            margin: 0;
+            @media screen and (max-width:576px){
+                padding-left: 4rem;
+                
+            }
+    
+        }
+        @media screen and (max-width:576px){
+            margin-top: .5rem;
+            // padding-left: 2rem;
+        }
+
+    }
+    .footer_shoppingNote_detail{
+        p{
+            @media screen and (max-width:576px){
+                padding-left: 4rem;
+            }
+        }
+    }
+
+    @media screen and (max-width:576px){
+        .footerOrder_0{
+            order: 0;
+        }
+        .footerOrder_1{
+            order: 1;
+        }
+        .footerOrder_2{
+            order: 2;
+        }
+        .footerOrder_3{
+            order: 3;
+        }
+    }
+
+
+
+
+
+}

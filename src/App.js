@@ -1,147 +1,167 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.css'
+import './styles/style.scss'
+import Layout from './pages/Layout'
+import CourseCart from './pages/CourseCart'
 
-import ChatRoom from './components/ChatRoom'
 import BlogLayout from './components/Blog'
-
 import Home from './pages/Home'
 import Login from './pages/Login'
-import BlogPage from './pages/BlogPage'
+
+import SignUp from './pages/Signup'
+import FindPassword from './pages/FindPassword'
+import ResetPassword from './pages/ResetPassword'
+
+import About from './pages/AboutPage'
+import AboutLayout from './components/About'
+import News from './pages/NewsPage'
+import NewsLayout from './components/News'
+import UserPage from './pages/UserPage'
+import UserAccountPage from './pages/UserAccountPage'
+import UserOrdersPage from './pages/UserOrdersPage'
+import UserOrderDetailPage from './pages/UserOrderDetailPage'
+import UserLikesPage from './pages/UserLikesPage'
+import UserCouponsPage from './pages/UserCouponsPage'
+import UserBlogsPage from './pages/UserBlogsPage'
+
 import BlogDetailPage from './pages/BlogDetailPage'
+import BlogCreatePage from './pages/BlogCreatePage'
 import BlogEditPage from './pages/BlogEditPage'
+
+import Store from './pages/Store'
+
 import NoFound from './pages/NoFound'
-
-// const routeConfig = [
-//   {
-//     path: '/',
-//     element: <Home />,
-//   },
-//   {
-//     path: '/login',
-//     // element: <Login />,
-//   },
-//   {
-//     path: '/signup',
-//     // element: <Signup />,
-//   },
-//   {
-//     path: '/about',
-//     // element: <About />,
-//   },
-
-//   {
-//     path: '/news',
-//     // element: <News />,
-//   },
-//   {
-//     path: '/brand',
-//     // element: <Brand />,
-//   },
-//   {
-//     path: '/brand/:id',
-//     // element: <BrandDetail />,
-//   },
-//   {
-//     path: '/course',
-//     // element: <Course />,
-//   },
-//   {
-//     path: '/course/:id',
-//     // element: <CourseDetail />,
-//   },
-//   {
-//     path: '/product',
-//     // element: <Product />,
-//   },
-
-//   {
-//     path: '/product/:id',
-//     // element: <ProductDetail />,
-//   },
-
-//   {
-//     path: '/user',
-//     children: [
-//       {
-//         path: '/user/account',
-//         // element: <UserAccount />,
-//       },
-//       {
-//         path: '/user/order',
-//         // element: <UserOrder />,
-//       },
-//       {
-//         path: '/user/like',
-//         // element: <UserLike />,
-//       },
-//       {
-//         path: '/user/blog',
-//         // element: <UserBlog />,
-//       },
-//       {
-//         path: '/user/chatRoom',
-//         element: <ChatRoom />,
-//       },
-//     ],
-//   },
-
-//   {
-//     path: 'blog',
-//     element: <BlogLayout />,
-//     children: [
-//       {
-//         path: 'edit',
-//         element: <BlogEditPage />,
-//       },
-//       {
-//         path: ':id',
-//         element: <BlogDetailPage />,
-//       },
-//     ],
-//   },
-
-//   {
-//     path: '/map',
-//     // element: <Map />,
-//   },
-
-//   {
-//     path: '*',
-//     // element:<NoFound/>
-//   },
-// ]
+import StoreDetail from './pages/StoreDetail'
+import ProductDetailPage from './pages/ProductDetailPage'
+import CourseDetailPage from './pages/CourseDetailPage'
+import Products from './pages/Products'
+import MapSearch from './pages/MapSearch'
 
 const routeConfig = [
   {
     path: '/',
-    element: <Home />,
-
+    element: <Layout />,
     children: [
       {
+        path: '/',
+        element: <Home />,
+      },
+
+      {
         path: 'blog',
-        element: <BlogLayout />, //  --> /blog
+        element: <BlogLayout />,
+      },
+      {
+        path: 'blog/:blogId/edit',
+        element: <BlogEditPage />,
+      },
+      {
+        path: 'blog/:blogId',
+        element: <BlogDetailPage />,
+      },
+      {
+        path: 'blog/create',
+        element: <BlogCreatePage />,
+      },
+      {
+        path: 'map',
+        element: <MapSearch />,
+      },
+      {
+        path: 'store',
+        element: <Store />,
+      },
+      {
+        path: 'store/:storeId',
+        element: <StoreDetail />,
+      },
+      {
+        path: 'user',
+        element: <UserPage />,
         children: [
           {
-            path: 'edit',
-            element: <BlogEditPage />, //  --> /blog/edit
+            path: 'management',
+            element: <UserAccountPage />,
           },
           {
-            path: ':id',
-            element: <BlogDetailPage />, //  --> /blog/:id
+            path: 'orders',
+            element: <UserOrdersPage />,
+          },
+          {
+            path: 'orders/details',
+            element: <UserOrderDetailPage />,
+          },
+          {
+            path: 'likes',
+            element: <UserLikesPage />,
+          },
+          {
+            path: 'coupons',
+            element: <UserCouponsPage />,
+          },
+          {
+            path: 'blogs',
+            element: <UserBlogsPage />,
           },
         ],
       },
+
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'about',
+        element: <AboutLayout />,
+      },
+      {
+        path: 'news',
+        element: <News />,
+      },
+      {
+        path: 'news',
+        element: <NewsLayout />,
+      },
+
+      {
+        path: 'Login',
+        element: <Login />,
+      },
+      {
+        path: 'SignUp',
+        element: <SignUp />,
+      },
+      {
+        path: 'FindPassword',
+        element: <FindPassword />,
+      },
+      {
+        path: 'ResetPassword',
+        element: <ResetPassword />,
+      },
+
+      {
+        path: '*',
+        element: <NoFound />,
+      },
+      {
+        path: 'shop',
+        element: <Products />,
+      },
+      {
+        path: 'ProductDetailPage',
+        element: <ProductDetailPage />,
+      },
+      {
+        path: 'CourseDetailPage',
+        element: <CourseDetailPage />,
+      },
     ],
   },
-
   {
-    path: 'login',
-    element: <Login />,
-  },
-
-  {
-    path: '*',
-    element: <NoFound />,
+    path: '/course_cart',
+    element: <CourseCart />,
   },
 ]
 

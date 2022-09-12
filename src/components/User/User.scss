@@ -1,0 +1,392 @@
+@import '../../styles/custom_variables';
+
+.user_navbar {
+  margin: auto;
+  height: 63px;
+  width: 1320px;
+  text-align: center;
+  .item {
+      letter-spacing: 3px;
+      font-size: $h5-font-size;
+      color: $gray-darker;
+      flex-grow: 1;
+      padding: 15px;
+      border-bottom: 1px solid $gray-darker;
+      &:hover {
+        background-color: $secondary;
+        color: $skin-brighter;
+      }
+      &:focus {
+        background-color: $secondary;
+        color: $skin-brighter;
+      }
+    }
+  }
+
+  .user_profile_card {
+    width: 292px;
+    height: 577px;
+    background-color: $skin-bright;
+    &_img {
+      object-fit: cover;
+      height: 200px;
+      width: 200px;
+    }
+    &_btn {
+      width: 120px;
+      color: $gray-darker;
+      border: none;
+      letter-spacing: 3px;
+      font-size: $h5-font-size;
+    &:hover {
+      background-color: $secondary;
+      color: $skin-brighter;
+    }
+  }
+  &_logout_btn {
+    width: 240px;
+    height: 44px;
+    color: $skin-brighter;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h5-font-size;
+    background-color: $primary;
+    &:hover {
+      background-color: $secondary;
+      color: $skin-brighter;
+    }
+  }
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+.react-datepicker-wrapper {
+  padding: 0 !important;
+}
+.react-datepicker__tab-loop {
+  padding: 0 !important;
+}
+
+.user_account {
+  &_from {
+    width: 950px;
+    height: 577px;
+    background-color: $skin-bright;
+    // margin: 0;
+  }
+  &_table {
+    border-color: $skin-bright !important;
+  }
+  &_title {
+    width: 800px;
+    color: $gray-darker;
+    letter-spacing: 3px;
+    color: $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+    padding-bottom: 10px;
+    display:block;
+    margin: 0 auto 15px ;
+    padding-top: 2rem;
+  }
+  &_header {
+    width: 300px;
+    color: $gray-darker;
+    letter-spacing: 3px;
+    padding: 50px;
+  }
+  &_text {
+    color: $gray-darker;
+    letter-spacing: 3px;
+    // padding: 30px;
+  }
+  &_edit_show {
+    border: none;
+    color: $gray-darker;
+    padding: 0 0 0 10px;
+    &:hover {
+      color: $secondary;
+      border: none;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  &_btn {
+    width: 120px;
+    border: 1px solid $gray-darker;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    color: $gray-darker;
+    background-color: $skin-bright !important;
+    // border: none;
+    &:hover {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary ;
+    }
+    &:active {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary ;
+    }
+  }
+  &_input {
+    width: 350px;
+    background-color: $skin-brighter !important;
+    color: $gray-darker;
+    letter-spacing: 3px;
+  }
+  &_inputBirth {
+    width: 350px;
+    background-color: $skin-brighter !important;
+    border: none;
+    height: 42px;
+    padding: 8px;
+    color: $dark;
+    &:focus {
+      outline: none;
+    }
+  }
+  &_editCheck_btn {
+    width: 130px;
+    height: 40px;
+    color: $skin-brighter;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    background-color: $primary;
+    &:hover {
+      background-color: $secondary;
+      color: $skin-brighter;
+    }
+  }
+}
+
+.user_password {
+    position: absolute;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%);
+  &_card {
+    display: flex;
+    position: absolute;
+    top: 65%;  
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 600px;
+    height: 300px;
+    background-color: $skin-brighter;
+    box-shadow :  10px 10px 15px rgba(129, 129, 129, 0.082);
+    // opacity: .5;
+  }
+  &_update {
+    color: $gray-darker;
+    width: 100px;
+    margin: 0;
+  }
+  &_input {
+    width: 250px;
+    background-color: $skin-brighter;
+  }
+  &_btn {
+    width: 130px;
+    height: 40px;
+    color: $skin-brighter;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    background-color: $primary;
+    &:hover {
+      background-color: $secondary;
+      color: $skin-brighter;
+    }
+  }
+  &_show {
+    border: none;
+    color: $secondary-dark;
+  }
+}
+
+.user_orders {
+  &_form {
+    height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    margin: 0;
+  }
+  &_btn {
+    width: 120px;
+    border: 1px solid $gray-darker;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    color: $gray-darker;
+    background-color: $skin-bright !important;
+    &:hover {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary;
+    }
+    &:focus {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary;
+    }
+  }
+  &_header {
+    color: $gray-darker;
+    letter-spacing: 3px;
+    padding: 15px;
+  }
+  &_date {
+    text-align: center;
+    width: 120px;
+    background-color: $skin-bright !important;
+    border: 1px solid $gray-darker;
+    height: 30px;
+    color: $gray-darker;
+    &:focus {
+      outline: none;
+      // color: $skin-bright;
+      // background-color: $primary !important;
+    }
+  }
+  &_dateBtn {
+    width: 100px;
+    border: 1px solid $gray-darker;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    color: $gray-darker;
+    background-color: $skin-bright !important;
+    &:hover {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: none;
+    }
+  }
+  &_table {
+    color: $gray-darker;
+    border-top: 1px solid $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+    letter-spacing: 3px;
+  }
+  &_pages {
+    // position: fixed;
+    // top: 10%;  
+    // right: 60%;
+    transform: translate(-50%, -50%);
+  }
+  &_link {
+    color: $primary;
+    &:hover {
+      color: $secondary-dark;
+    }
+  }
+}
+
+.user_pages {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  color: $dark;
+  list-style-type: none;
+  &_page {
+    margin: 3px;
+    width: 25px;
+    height: 25px;
+    &:hover {
+      background-color: $dark;
+      color: $skin-bright;
+      border-radius: 50%;
+    }
+  }
+  &_icon {
+    margin: 3px;
+    width: 25px;
+    height: 25px;
+    &:hover {
+      background-color: $dark;
+      border-radius: 50%;
+      color: $skin-bright;
+    }
+  }
+}
+
+.user_order_details {
+  &_title {
+    border-bottom: 1px solid $gray-darker;
+    padding-bottom: 8px;
+  }
+  &_form {
+    // height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+ }
+ &_link {
+  color: $gray-darker;
+  &:hover {
+    color: $secondary-dark;
+  }
+ }
+&_table {
+  width: 850px;
+  color: $gray-darker ;
+  border-bottom: $skin-bright !important;
+}
+}
+
+.user_order_list {
+  &_table {
+    width: 850px;
+    color: $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+  }
+  &_pay {
+    width: 250px;
+    color: $gray-darker;
+    border-bottom: $skin-bright !important;
+    // background-color: $skin-bright !important;
+  }
+  &_td {
+    background-color: $skin-brighter !important;
+  }
+}
+
+.user_blogs {
+  &_form {
+    width: 950px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+ }
+ &_newBtn {
+  width: 120px;
+  border: 1px solid $gray-darker;
+  letter-spacing: 3px;
+  font-size: $h6-font-size;
+  color: $gray-darker;
+  background-color: $skin-bright !important;
+  &:hover {
+    background-color: $primary !important;
+    color: $skin-bright;
+    border: 1px solid $primary;
+  }
+ }
+  &_btn {
+    padding: 0 15px;
+    border: none;
+    &:hover {
+      color: $secondary;
+      border: none;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  &_table {
+      width: 850px;
+      color: $gray-darker;
+      border-bottom: 1px solid $gray-darker;
+  }
+}
