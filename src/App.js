@@ -3,7 +3,10 @@ import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
+
+
 import CourseCart from './pages/CourseCart'
+import CheckoutPage from './pages/CheckoutPage'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
@@ -162,6 +165,10 @@ const routeConfig = [
   {
     path: '/course_cart',
     element: <CourseCart />,
+  },
+  {
+    path: '/checkout',
+    element: <CheckoutPage />,
   },
 ]
 
