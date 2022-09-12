@@ -1,26 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../slices/productCard-slice'
-import { pagination } from '../slices/filterPagination-slice'
+// import { addProduct } from '../slices/productCard-slice'
+import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
-import FilterStore from '../components/Filter/FilterStore'
+import FilterStore from '../components/Filter/FilterStore/FilterStore'
+import FilterKeyword from '../components/Filter/FilterKeyword'
+import FilterPrice from '../components/Filter/FilterPrice'
+import Filter from '../components/Filter/Filter'
 
 function Proudcts() {
   //api get products data
   const { data, error, isLoading } = useGetProductListQuery()
-  // console.log('api', data)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(pagination(data))
   }, [dispatch, data])
-  // const productListNoP = useSelector((state) => state.productReducer.product)
-  // console.log('normal', productListNoP)
   const productList = useSelector((state) => state.paginationReducer.data)
-  // console.log('pagination',productList)
+  const filterStore = useSelector(
+    (state) => state.filterStoreReducer.filterStores
+  )
+  const filterSearchWord = useSelector(
+    (state) => state.filterKeywordReducer.searchWord
+  )
+  const filterPrice = useSelector((state) => state.filterPriceReducer)
+  useEffect(() => {
+    // console.log('product:filterStore', filterStore)
+    dispatch(
+      setFilter({
+        store: filterStore,
+        searchWord: filterSearchWord,
+        price: { min: filterPrice.leftValue, max: filterPrice.rightValue },
+      })
+    )
+  }, [dispatch, filterStore, filterSearchWord, filterPrice])
+  // console.log('pagination', productList)
+  console.log(
+    'pagination:filter',
+    useSelector((state) => state.paginationReducer.filter)
+  )
+
   return (
     <>
       <div className="position-relative">
@@ -59,7 +81,10 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row>
           <Col lg={4} xl={3}>
-            <FilterStore/>
+            {/* <FilterKeyword />
+            <FilterStore />
+            <FilterPrice /> */}
+            <Filter />
           </Col>
           <Col>
             <div className="d-flex justify-content-center">
@@ -81,23 +106,6 @@ function Proudcts() {
               </Row>
             </div>
             <Paginate />
-
-            {/* <div className="d-flex flex-wrap  justify-content-start gap-5">
-            {products?.map((v, i) => {              
-              return (
-                <ProductCard
-                  key={v.id}
-                  productId={v.id}
-                  imgs={v.img_name}
-                  category={v.category_en_name}
-                  storeName={v.store_name}
-                  name={v.name}
-                  price={v.price}
-                  isFavorite={false}
-                />
-              )
-            })}
-          </div> */}
           </Col>
         </Row>
       </Container>
