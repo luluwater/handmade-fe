@@ -3,25 +3,30 @@ import { useEffect, useState } from 'react'
 import { Button, FormControl, FormGroup } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import './FilterKeyword.scss'
-import { setSearchWord } from '../../slices/filterKeyword-slice'
+import { setInputValue, setSearchWord } from '../../slices/filterKeyword-slice'
 
 function FilterKeyword() {
-  const searchWord = useSelector(
-    (state) => state.filterKeywordReducer.searchWord
+  const inputValue = useSelector(
+    (state) => state.filterKeywordReducer.inputValue
   )
   const dispatch = useDispatch()
 
   return (
-    <FormGroup className="d-flex gap-3">
+    <FormGroup className="d-flex gap-3 mb-3">
       <FormControl
         type="text"
         placeholder="keyword"
-        value={searchWord}
+        value={inputValue}
         onChange={(e) => {
-          dispatch(setSearchWord(e.target.value))
+          dispatch(setInputValue(e.target.value))
         }}
       />
-      <Button className="border-gray-dark filterKeyword_search-btn bg-transparent">
+      <Button
+        className="border-gray-dark filterKeyword_search-btn bg-transparent"
+        onClick={() => {
+          dispatch(setSearchWord(inputValue))
+        }}
+      >
         <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
       </Button>
     </FormGroup>

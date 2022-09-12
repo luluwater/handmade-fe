@@ -4,16 +4,23 @@ import { useSelector } from 'react-redux'
 import Proudcts from '../pages/Products'
 
 function doPagination(state) {
+  state.data = state.rawData
+  if (state.filter.searchWord !== '') {
+    state.data = state.data.filter((product) => {
+      // console.log('key', current(product))
+      return (
+        product.name.includes(state.filter.searchWord) ||
+        product.store_name.includes(state.filter.searchWord)
+      )
+    })
+  }
   if (state.filter.store.length > 0) {
-    state.data = state.rawData.filter((product) =>
+    state.data = state.data.filter((product) =>
       state.filter.store.includes(product.store_name)
     )
-    state.totalPage = Math.ceil(state.data.length / state.itemCount)
     console.log(current(state))
-  } else {
-    state.data = state.rawData
   }
-
+  state.totalPage = Math.ceil(state.data?.length / state.itemCount)
   state.data = state.data?.slice(
     (state.currentPage - 1) * state.itemCount,
     state.itemCount * state.currentPage
@@ -29,7 +36,7 @@ const initialState = {
   rawData: [],
   data: [],
   filter: {
-    keyword: [],
+    searchWord: '',
     store: [],
     price: [],
     date: [],
@@ -68,8 +75,10 @@ export const paginationSlice = createSlice({
       state.currentPage = page
       doPagination(state)
     },
-    setStoreFilter: (state, action) => {
-      state.filter.store = action.payload
+    setFilter: (state, action) => {
+      // state.filter.store = action.payload.store
+      // state.filter.searchWord = action.payload.searchWord
+      state.filter = { ...action.payload }
       state.currentPage = 1
       doPagination(state)
     },
@@ -82,6 +91,6 @@ export const {
   changePage,
   nextPage,
   prePage,
-  setStoreFilter,
+  setFilter,
 } = paginationSlice.actions
 export default paginationSlice.reducer

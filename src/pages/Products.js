@@ -4,11 +4,11 @@ import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 // import { addProduct } from '../slices/productCard-slice'
-import { pagination, setStoreFilter } from '../slices/filterPagination-slice'
+import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
 import FilterStore from '../components/Filter/FilterStore'
-import FilterKeyword from '../components/FIlter/FilterKeyword'
+import FilterKeyword from '../components/Filter/FilterKeyword'
 
 function Proudcts() {
   //api get products data
@@ -24,10 +24,13 @@ function Proudcts() {
   const filterStore = useSelector(
     (state) => state.filterStoreReducer.filterStores
   )
+  const filterSearchWord = useSelector(
+    (state) => state.filterKeywordReducer.searchWord
+  )
   useEffect(() => {
     // console.log('product:filterStore', filterStore)
-    dispatch(setStoreFilter(filterStore))
-  }, [dispatch, filterStore])
+    dispatch(setFilter({ store: filterStore, searchWord: filterSearchWord }))
+  }, [dispatch, filterStore, filterSearchWord])
   console.log('pagination', productList)
   console.log(
     'pagination:filter',
@@ -72,7 +75,8 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row>
           <Col lg={4} xl={3}>
-            <FilterStore /><FilterKeyword />
+            <FilterKeyword />
+            <FilterStore />
           </Col>
           <Col>
             <div className="d-flex justify-content-center">
