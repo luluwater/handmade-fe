@@ -7,19 +7,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
-import FilterStore from '../components/Filter/FilterStore'
+import FilterStore from '../components/Filter/FilterStore/FilterStore'
 import FilterKeyword from '../components/Filter/FilterKeyword'
+import FilterPrice from '../components/Filter/FilterPrice'
+import Filter from '../components/Filter/Filter'
 
 function Proudcts() {
   //api get products data
   const { data, error, isLoading } = useGetProductListQuery()
-  // console.log('api', data)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(pagination(data))
   }, [dispatch, data])
-  // const productListNoP = useSelector((state) => state.productReducer.product)
-  // console.log('normal', productListNoP)
   const productList = useSelector((state) => state.paginationReducer.data)
   const filterStore = useSelector(
     (state) => state.filterStoreReducer.filterStores
@@ -27,11 +26,18 @@ function Proudcts() {
   const filterSearchWord = useSelector(
     (state) => state.filterKeywordReducer.searchWord
   )
+  const filterPrice = useSelector((state) => state.filterPriceReducer)
   useEffect(() => {
     // console.log('product:filterStore', filterStore)
-    dispatch(setFilter({ store: filterStore, searchWord: filterSearchWord }))
-  }, [dispatch, filterStore, filterSearchWord])
-  console.log('pagination', productList)
+    dispatch(
+      setFilter({
+        store: filterStore,
+        searchWord: filterSearchWord,
+        price: { min: filterPrice.leftValue, max: filterPrice.rightValue },
+      })
+    )
+  }, [dispatch, filterStore, filterSearchWord, filterPrice])
+  // console.log('pagination', productList)
   console.log(
     'pagination:filter',
     useSelector((state) => state.paginationReducer.filter)
@@ -75,8 +81,10 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row>
           <Col lg={4} xl={3}>
-            <FilterKeyword />
+            {/* <FilterKeyword />
             <FilterStore />
+            <FilterPrice /> */}
+            <Filter />
           </Col>
           <Col>
             <div className="d-flex justify-content-center">

@@ -20,6 +20,11 @@ function doPagination(state) {
     )
     console.log(current(state))
   }
+  state.data = state.data?.filter(
+    (product) =>
+      product.price > state.filter.price.min &&
+      product.price < state.filter.price.max
+  )
   state.totalPage = Math.ceil(state.data?.length / state.itemCount)
   state.data = state.data?.slice(
     (state.currentPage - 1) * state.itemCount,
@@ -38,7 +43,7 @@ const initialState = {
   filter: {
     searchWord: '',
     store: [],
-    price: [],
+    price: { min: 0, max: 10000 },
     date: [],
   },
   currentPage: 1,

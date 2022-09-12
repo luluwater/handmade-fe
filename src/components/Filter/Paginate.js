@@ -8,26 +8,6 @@ import {
   prePage,
 } from '../../slices/filterPagination-slice'
 
-// function renderages(totalPage, currentPage) {
-//   const result = []
-//   for (let i = 1; i <= totalPage; i++) {
-//     result.push(
-//       <li>
-//         <Link
-//           to={'#'}
-//           className={`fw-bold px-2 py-1 rounded ${
-//             currentPage === i ? 'bg-primary text-white' : 'page_number'
-//           }`}
-
-//         >
-//           {i}
-//         </Link>
-//       </li>
-//     )
-//   }
-//   return result
-// }
-
 function Paginate() {
   const paginate = useSelector((state) => state.paginationReducer)
   // console.log('paginate', paginate)

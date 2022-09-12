@@ -3,14 +3,14 @@ import AccordionHeader from './AccordionHeader'
 // import listData from './data'
 import './FilterStore.scss'
 import { useState } from 'react'
-import { useGetStoreListQuery } from '../../services/storeApi'
+import { useGetStoreListQuery } from '../../../services/storeApi'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addFilterStore,
   handleToggoleTitle,
   handleToggole,
   handleSelecteAll,
-} from '../../slices/filterStore-silce'
+} from '../../../slices/filterStore-silce'
 
 function FilterStore() {
   const { data, error, isload } = useGetStoreListQuery()
