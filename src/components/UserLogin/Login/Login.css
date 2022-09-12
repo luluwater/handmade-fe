@@ -1,5 +1,5 @@
-@import url(https://fonts.google.com/noto/specimen/Noto+Sans+TC?query=Not);
-/* @import '../styles/custom_variables'; */
+/* @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap'); */
+/* @import '../../styles/custom_variables'; */
 .LoginFrame {
   margin: 0 auto;
   background: #f4eee8;
@@ -8,7 +8,6 @@
   max-width: 1300px;
   margin-top: 57px;
   margin-bottom: 90px;
-
 }
 .border {
   border-radius: 20px solid #ffffff !important;
@@ -20,14 +19,15 @@
   max-width: auto;
 }
 .LoginTitle {
-  font-family:serif;
-  font-weight: 500;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 30px;
   line-height: 35px;
   letter-spacing: 0.2em;
 
   color: #5f5c51;
-  margin-top: 88px;
+  margin-top: 82px;
 }
 .LoginPic {
   margin-top: 68px;
@@ -65,12 +65,11 @@ input::placeholder {
   padding-left: 0.1em;
   color: #5f5c51;
 }
-
 .ForgetPassword {
   font-family: 'Noto Sans TC', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size:  22px;
+  font-size: 22px;
   line-height: 19px;
   letter-spacing: 0.1em;
   color: #5f5c51;
@@ -102,7 +101,7 @@ input::placeholder {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size:  22px;
+  font-size: 22px;
   line-height: 23px;
   letter-spacing: 0.3em;
   color: #ffffff;
@@ -114,37 +113,54 @@ input::placeholder {
   font-family: 'Noto Sans TC', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size:  22px;
+  font-size: 22px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.1em;
 }
-.icon {
+.Bg{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: #5f5c51;
+  margin-left:9.45em;
+  margin-top: 28px;
+  margin-bottom: 35px;
+}
+.iconEyeTwo{
+  position:relative;
+  color: #5f5c51;
+  top: -60px;
+  left: 300px;
+}
+.icon2 {
+  position: absolute;
+  color:#f4eee8;
   size: 20px;
-  margin-left: 6.85em;
-  margin-top: 18px;
+  margin-left:6.72em;
+  margin-top: 33px;
   margin-bottom: 35px;
 }
 @media screen and (max-width: 576px) {
   img {
-    /* display: none; */
+    display: none;
   }
   .LoginTitle {
     margin-top: 28px;
     margin-bottom: 0;
   }
-  .AccountInput{
-     margin-top: 25px;
+  .AccountInput {
+    margin-top: 25px;
   }
   .ForgetPassword {
     margin-top: 10px;
     font-size: 22px;
   }
-  .LoginForm{
-    margin-top:8px;
+  .LoginForm {
+    margin-top: 8px;
   }
   .LoginFrame {
-   width: 456px;
+    width: 456px;
   }
   .footerLogin {
     margin-top: 27px;
