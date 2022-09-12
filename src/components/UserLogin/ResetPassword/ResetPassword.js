@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ResetPassword.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ShowPassword from '../ShowEye/ShowPassword'
 
 const ResetPassword = () => {
+   const [eye, setEye] = useState(false)
+  const [eyeOne, setEyeOne] = useState(false)
+
   return (
     <>
       <div className="ResetPasswordFrame">
@@ -17,30 +21,33 @@ const ResetPassword = () => {
             <h1 className="ResetPasswordTitle text-center">設置新密碼</h1>
             <input
               className="ResetPasswordInput"
-              type="password"
+              type={eye ? 'text' : 'password'}
               name="ResetPasswordInput"
               placeholder="新密碼"
             />
             <br />
+            <ShowPassword eye={eye} setEye={setEye} />
+{/* 
             <FontAwesomeIcon
               icon="fa-regular fa-eye"
               size="xl"
               className="iconEyeOne"
-            />
+            /> */}
             <br />
             <input
               className="ResetPasswordInputSecond"
-              type="password"
+              type={eyeOne ? 'text' : 'password'}
               name="ResetPasswordInputSecond"
               placeholder="確認新密碼"
             />
             <br />
-
-            <FontAwesomeIcon
+            <ShowPassword eye={eyeOne} setEye={setEyeOne} />
+ 
+            {/* <FontAwesomeIcon
               icon="fa-regular fa-eye"
               size="xl"
-              className="iconEyeTwo"
-            />
+              className="iconEyeTwo" 
+            /> */}
             <br />
 
             <button

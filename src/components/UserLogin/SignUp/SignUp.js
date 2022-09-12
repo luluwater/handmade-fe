@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import { Link } from 'react-router-dom'
 import './SignUp.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ShowPassword from '../ShowEye/ShowPassword'
 
 const SignUp = () => {
+  const [eye, setEye] = useState(false)
+  const [eyeOne, setEyeOne] = useState(false)
+
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
@@ -32,29 +37,32 @@ const SignUp = () => {
             <br />
             <input
               className="PasswordInputSignUp"
-              type="password"
+              type={eye ? 'text' : 'password'}
               name="PasswordInputSignUp"
               placeholder="密碼"
             />
             <br />
-            <FontAwesomeIcon
+            <ShowPassword eye={eye} setEye={setEye} />
+            {/* <FontAwesomeIcon
               icon="fa-regular fa-eye"
               size="xl"
               className="iconEyeOne"
-            />
+            /> */}
             <br />
             <input
               className="RePasswordInputSignUp"
-              type="password"
+              type={eyeOne ? 'text' : 'password'}
               name="RePasswordInputSignUp"
               placeholder="請再次輸入密碼"
             />
             <br />
+            <ShowPassword eye={eyeOne} setEye={setEyeOne} />
+{/* 
             <FontAwesomeIcon
               icon="fa-regular fa-eye"
               size="xl"
               className="iconEyeOne"
-            />
+            /> */}
             <br />
             <input type="submit" value="註冊" className="NewSignUp" />
 

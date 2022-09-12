@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ShowPassword from '../ShowEye/ShowPassword'
 
 const Login = () => {
+  const [eye, setEye] = useState(false)
+
   //往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
@@ -26,16 +29,17 @@ const Login = () => {
 
             <input
               className="PasswordInput"
-              type="password"
+              type={eye ? 'text' : 'password'}
               name="PasswordInput"
               placeholder="會員密碼"
             />
             <br />
-            <FontAwesomeIcon
+            <ShowPassword eye={eye} setEye={setEye} />
+            {/* <FontAwesomeIcon
               icon="fa-regular fa-eye"
               size="xl"
               className="iconEyeTwo"
-            />
+            /> */}
             {/* <Link to="/FindPassword"> */}
             <a href="./FindPassword" className="ForgetPassword">
               忘記密碼?
