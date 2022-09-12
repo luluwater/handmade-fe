@@ -110,7 +110,7 @@ const BlogDetail = () => {
     <>
       <div className="position-relative">
         {data?.blog.map((item) => {
-          console.log(item)
+          console.log(item.tags)
           return (
             <>
               <div className="d-flex align-items-center justify-content-between my-4">
@@ -141,12 +141,17 @@ const BlogDetail = () => {
               </div>
               <div className="container mb-6 mb-lg-8">
                 <div className="text-center ">
-                  <Badge
-                    className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4"
-                    bg="white"
-                  >
-                    {item.tag}
-                  </Badge>
+                  {item.tags.map((item) => {
+                    return (
+                      <Badge
+                        className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4 mx-2"
+                        bg="white"
+                      >
+                        {item.tag_name}
+                      </Badge>
+                    )
+                  })}
+
                   <h1 className="fw-bold fs-3 mb-6">{item.title}</h1>
                   <h5 className="text-muted fs-5 mb-4">
                     {item.name}
