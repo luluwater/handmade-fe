@@ -1,6 +1,6 @@
 import React from 'react'
-import Logo from '../../assets/HANDMADE_LOGO.png'
-import './CourseCartInfo/CourseCartInfo.scss'
+import Logo from '../../../assets/HANDMADE_LOGO.png'
+import '../CourseCartInfo/CourseCartInfo.scss'
 import './Checkout.scss'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'

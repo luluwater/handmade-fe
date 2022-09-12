@@ -1,0 +1,136 @@
+@import '../../styles/custom_variables';
+
+// Cart Item
+.cart_imgBox{
+  img{
+    width: 80px;
+    height: 80px;
+  }
+}
+.CartItem{
+  background: none;
+}
+
+.Cart_amountBox{
+  .detail_amount_minus {
+    margin: 0 2rem 0 0;
+  }
+  .detail_amount_plus{
+    margin: 0 0 0 2rem;
+  }
+  h5{
+    margin: 0;
+  }
+}
+
+
+// Cart
+.Cart{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  color: $gray-darker;
+
+  &_tabContent{
+    background: $skin-brighter;
+  }
+
+  &_NavLink{
+    width: 40%;
+    height: 30%;
+    writing-mode: vertical-lr;
+    letter-spacing: .4rem;
+    line-height: 1.5rem;
+  }
+  .nav-link{
+    border-radius: 20px 0 0 20px;
+    background: $skin-bright;
+    color: $gray-darker;
+  }
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: $gray-darker;
+    background-color: $skin-brighter;
+}
+&_courseRightSide{
+  background: $skin-bright;
+}
+
+&_backToStore{
+  color: $gray-darker;
+}
+&_arrow{
+  margin-left: 2rem;
+  margin-right: .5rem;
+}
+
+&_CourseTitle{
+  margin: 1.5rem 0 2rem 2rem;
+  font-weight: 900;
+}
+&_DetailTitle{
+  margin: 1rem 2rem 1rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid $gray-darker;
+
+}
+&_couponBox{
+  margin: 2rem 0 5rem 2rem;
+  // margin-bottom: ;
+  .Cart_couponSelect{
+    padding: 0;
+    border: 1px solid $gray-darker;
+    option{
+      color: $gray-darker;
+    }
+  }
+}
+&_couponInputBox{
+  padding: 0;
+}
+&_couponInput{
+  .form-control{
+    border: 1px solid $gray-darker;
+    border-right: 0;
+    &::-webkit-input-placeholder{
+      font-size: 1rem;
+    }
+
+
+  }
+  
+}
+&_or{
+  width: 8%;
+}
+
+&_courseRightSide{
+  padding-left: 2rem;
+  padding-right: 2rem;
+  position: relative;
+}
+&_TotalTitle{
+  margin: 1.5rem 0 2rem 0;
+  font-weight: 900;
+}
+&_TotalPrice{
+  width: 85%;
+  position: absolute;
+  top: 30rem;
+}
+&_nextBTN{
+  color: $white;
+  width: 85%;
+  height: 9%;
+  position: absolute;
+  top: 30.8rem;
+  letter-spacing: .5rem;
+  &:hover{
+    color: $white;
+  }
+}
+
+}

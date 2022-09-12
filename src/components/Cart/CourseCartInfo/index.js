@@ -120,8 +120,7 @@ const CourseCartInfo = () => {
                     variant="primary"
                     className="CourseCartInfo_BTN fs-5 mt-6 mb-10 text-center"
                   >
-                    {' '}
-                    結帳{' '}
+                    結帳
                   </Button>
                 </form>
               </Col>
