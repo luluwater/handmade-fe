@@ -42,7 +42,6 @@
 .detail_store{
     font-size: 14px;
     color: $gray-darker;
-    padding-left: 3px;
     
 }
 .detail_name{
@@ -128,7 +127,7 @@
     font-size: 14px;
     color: $gray-darker;
     width: 960px;
-    border-top: 1px solid $gray-darker;
+    border-top: 1px solid $gray-darker !important;
     padding: 20px 0 20px 25px;
     line-height: 25px;
 }

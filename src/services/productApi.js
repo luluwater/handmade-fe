@@ -16,7 +16,7 @@ export const productApiService = createApi({
       providesTags: ['product'],
     }),
     getProductComment: builder.query({
-      query: (productCommentId) => `product/detail/${productCommentId}`,
+      query: (productId) => `product/comment/${productId}`,
       providesTags: ['product'],
     }),
     addUserFavoriteProduct: builder.mutation({
