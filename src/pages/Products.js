@@ -6,11 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { addProduct } from '../slices/productCard-slice'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/Filter/Paginate'
-import FilterStore from '../components/Filter/FilterStore/FilterStore'
-import FilterKeyword from '../components/Filter/FilterKeyword'
-import FilterPrice from '../components/Filter/FilterPrice'
-import Filter from '../components/Filter/Filter'
+import Paginate from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/Filter'
 
 function Proudcts() {
   //api get products data
@@ -80,7 +77,7 @@ function Proudcts() {
       </div>
       <Container fluid className="m-3 mx-auto ">
         <Row>
-          <Col lg={4} xl={3}>
+          <Col md={'auto'}>
             {/* <FilterKeyword />
             <FilterStore />
             <FilterPrice /> */}

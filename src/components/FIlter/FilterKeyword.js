@@ -12,7 +12,7 @@ function FilterKeyword() {
   const dispatch = useDispatch()
 
   return (
-    <FormGroup className="d-flex gap-3 mb-3">
+    <FormGroup className="filter d-flex gap-3 mb-3">
       <FormControl
         type="text"
         placeholder="keyword"

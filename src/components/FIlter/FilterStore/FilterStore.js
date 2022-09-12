@@ -3,7 +3,7 @@ import AccordionHeader from './AccordionHeader'
 // import listData from './data'
 import './FilterStore.scss'
 import { useState } from 'react'
-import { useGetStoreQuery } from '../../services/storeApi'
+import { useGetStoreQuery } from '../../../services/storeApi'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addFilterStore,
