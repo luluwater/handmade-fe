@@ -21,11 +21,11 @@ const RelatedStores = ({
         <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
           / <spna class="mx-2">相關店家 </spna>/
         </div>
-        <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6  mb-7">
+        <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6 mb-7 justify-content-around">
           <div className="position-relative">
             <img
-              className="h-100 mb-5"
               src={require(`../../../../assets/store/store_metalwork_3/${imgName}`)}
+              className=" max-h-md-300"
               alt="store "
             />
             <h5 class="position-absolute top-50 start-50 translate-middle text-white fs-2">
