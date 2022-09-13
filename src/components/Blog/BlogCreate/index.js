@@ -20,7 +20,7 @@ const BlogCreate = () => {
   const [addTitle, setAddTitle] = useState('')
   const [addCategory, setAddCategory] = useState('')
   const [addStore, setAddStore] = useState('')
-  const [addTags, setAddTags] = useState({})
+  const [show, setShow] = useState(false)
   const [addTagName, setAddTagName] = useState([])
 
   const navigate = useNavigate()
@@ -56,6 +56,16 @@ const BlogCreate = () => {
    */
   const blogId = uuidv4()
 
+  const newTags = addTagName.map((tagName) => {
+    const newTag = {
+      tagId: uuidv4(),
+      blog_id: blogId,
+      tag_name: tagName,
+    }
+    return newTag
+  })
+  console.log(newTags)
+
   const insertData = {
     id: blogId,
     //TODO:LOCAL 裡拿
@@ -64,14 +74,14 @@ const BlogCreate = () => {
     content: addContent,
     category_id: addCategory,
     store_id: addStore,
-    // tags: addTags,
+    tags: newTags,
     create_time: moment().format('YYYY-MM-DD h:mm:ss'),
   }
 
   const handleSubmit = async () => {
     try {
       await createBlog(insertData)
-      // await navigate(`/blog/${blogId}`, { replace: true })
+      await navigate(`/blog/${blogId}`, { replace: true })
       await Toast.fire({
         icon: 'success',
         title: '建立成功',
@@ -81,17 +91,9 @@ const BlogCreate = () => {
     }
   }
 
-  const [show, setShow] = useState(false)
-
   function handleShow() {
     setShow(true)
   }
-
-  //TODO 寫一隻 API 把 TAGS 打進後端
-  // addTagName?.map((item) => {
-  //   console.log(item)
-  // })
-  console.log(addTagName)
 
   return (
     <div className="container my-8">

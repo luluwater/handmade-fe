@@ -9,7 +9,7 @@ import parse from 'html-react-parser'
  * @param {data} param
  * @returns
  */
-const BlogItem = ({ content, tag, title, createTime, id, name, category }) => {
+const BlogItem = ({ content, tags, title, createTime, id, name, category }) => {
   const transformTime = moment(createTime).format('MMMM DD YYYY')
 
   return (
@@ -21,18 +21,23 @@ const BlogItem = ({ content, tag, title, createTime, id, name, category }) => {
       </div>
       <div className="blog_list_item d-flex flex-column">
         <div className="d-flex gap-3">
+          {' '}
           <Badge
-            className="rounded-0 mb-2 align-self-start py-2 px-3 text-dark"
-            bg="primary"
-          >
-            {tag}
-          </Badge>
-          <Badge
-            className="rounded-0 mb-2 align-self-start py-2 px-3 text-dark"
+            className="rounded-0 mb-2 align-self-start py-2 px-3 text-white"
             bg="primary"
           >
             {category}
           </Badge>
+          {tags.map((item) => {
+            return (
+              <Badge
+                className="rounded-0 mb-2 align-self-start py-2 px-3 text-white"
+                bg="secondary"
+              >
+                {item.tag_name}
+              </Badge>
+            )
+          })}
         </div>
         <h4 className="fw-bold">{title}</h4>
         <p className="text-muted">

@@ -37,7 +37,7 @@ const BlogList = () => {
               <BlogItem
                 key={item.blog_id}
                 content={item.content}
-                tag={item.tag}
+                tags={item.tags}
                 title={item.title}
                 createTime={item.create_time}
                 id={item.blog_id}
