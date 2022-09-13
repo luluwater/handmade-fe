@@ -16,25 +16,29 @@ import FilterStore from './FilterStore/FilterStore'
 
 function Filter() {
   const { data, error, isload } = useGetStoreQuery()
+  // console.log(data)
   const dispatch = useDispatch()
   const getNewData = () => {
     const result = []
     let obj = {}
+    const init = (obj, item) => {
+      obj['id'] = item.category_en_name
+      obj['category'] = item.category_name
+      obj['active'] = false
+      obj['checked'] = false
+      obj['innerList'] = [
+        {
+          id: item.id,
+          completed: false,
+          title: item.name,
+        },
+      ]
+    }
     // console.log('obj', !!obj)
     for (let item of data) {
       if (Object.keys(obj).length === 0) {
-        obj['id'] = item.category_en_name
-        obj['category'] = item.category_name
-        obj['active'] = false
-        obj['checked'] = false
-        obj['innerList'] = [
-          {
-            id: item.id,
-            completed: false,
-            title: item.name,
-          },
-        ]
-        // console.log('first')
+        init(obj, item)
+        console.log('first')
         continue
       }
       if (obj.category === item.category_name) {
@@ -45,7 +49,9 @@ function Filter() {
         })
       } else {
         result.push({ ...obj })
+        console.log('result', result)
         obj = {}
+        init(obj, item)
       }
       // result.push({ ...obj })
       // console.log('obj', obj)
