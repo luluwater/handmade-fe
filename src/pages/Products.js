@@ -12,7 +12,8 @@ import SortSelect from '../components/FIlter/SortSelect'
 
 function Proudcts() {
   //api get products data
-  const { data, error, isLoading } = useGetProductListQuery()
+  const sort = useSelector((state) => state.sortSelectReducer.sort)
+  const { data, error, isLoading } = useGetProductListQuery(sort)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(pagination(data))
@@ -27,14 +28,16 @@ function Proudcts() {
   const filterPrice = useSelector((state) => state.filterPriceReducer)
   useEffect(() => {
     // console.log('product:filterStore', filterStore)
+    console.log('sort', sort)
     dispatch(
       setFilter({
         store: filterStore,
         searchWord: filterSearchWord,
         price: { min: filterPrice.leftValue, max: filterPrice.rightValue },
+        sort: sort,
       })
     )
-  }, [dispatch, filterStore, filterSearchWord, filterPrice])
+  }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
   // console.log('pagination', productList)
   console.log(
     'pagination:filter',

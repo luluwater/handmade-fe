@@ -15,7 +15,7 @@ function FilterKeyword() {
     <FormGroup className="filter d-flex gap-3 mb-3">
       <FormControl
         type="text"
-        placeholder="keyword"
+        placeholder="請輸入關鍵字"
         value={inputValue}
         onChange={(e) => {
           dispatch(setInputValue(e.target.value))

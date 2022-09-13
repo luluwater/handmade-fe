@@ -1,9 +1,17 @@
+@import '../../../styles/custom_variables';
 :root{
   --product_card_scale:260px
 }
 .product_card{
   width: var(--product_card_scale);
   // height: 23.5rem;  
+  a{
+    color:$gray-dark;
+    &:hover{
+      color: $primary;
+    }
+  }
+  
 }
 .product_card .row{
  height: 90px;

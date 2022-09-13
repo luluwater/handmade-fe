@@ -3,6 +3,12 @@ import { act } from 'react-dom/test-utils'
 import { useSelector } from 'react-redux'
 import Proudcts from '../pages/Products'
 
+function sortData(a, b, sort) {
+  if (sort === 'heighPrice') return b.price - a.price
+  if (sort === 'lowerPrice') return a.price - b.price
+  return b.sold_amount - a.sold_amount
+}
+
 function doPagination(state) {
   state.data = state.rawData
   if (state.filter.searchWord !== '') {
@@ -20,11 +26,14 @@ function doPagination(state) {
     )
     console.log(current(state))
   }
-  state.data = state.data?.filter(
-    (product) =>
-      product.price > state.filter.price.min &&
-      product.price < state.filter.price.max
-  )
+  state.data = state.data
+    ?.filter(
+      (product) =>
+        product.price > state.filter.price.min &&
+        product.price < state.filter.price.max
+    )
+    .sort((a, b) => sortData(a, b, state.filter.sort))
+  // console.log(state.filter.sort)
   state.totalPage = Math.ceil(state.data?.length / state.itemCount)
   state.data = state.data?.slice(
     (state.currentPage - 1) * state.itemCount,
@@ -45,6 +54,7 @@ const initialState = {
     store: [],
     price: { min: 0, max: 10000 },
     date: [],
+    sort: 'hot',
   },
   currentPage: 1,
   itemCount: 20,
