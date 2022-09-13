@@ -1,7 +1,8 @@
-@import '../../styles/custom_variables';
+@import '../../../styles/custom_variables';
 
 .filter{
-    width: 265px;
+    width: 100%;
+    min-width: 250px;
     color: $gray-darker;
 
     .filter_title{
