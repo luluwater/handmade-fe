@@ -12,6 +12,7 @@ import moment from 'moment'
 import { useNavigate } from 'react-router'
 import { Toast } from '../../UI/SwalStyle'
 import Tags from '../../UI/Picker'
+import { useEffect } from 'react'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
@@ -21,6 +22,7 @@ const BlogCreate = () => {
   const [addCategory, setAddCategory] = useState('')
   const [addStore, setAddStore] = useState('')
   const [show, setShow] = useState(false)
+  const [blogId, setBlogId] = useState(uuidv4())
   const [addTagName, setAddTagName] = useState([])
 
   const navigate = useNavigate()
@@ -40,7 +42,7 @@ const BlogCreate = () => {
   }
   // const handleTagsChange = (e) => {
   //   setAddTags(e.target.value)
-  // }
+  // }blogId
 
   /**
    * TODO: 拿到資料!!!
@@ -54,7 +56,6 @@ const BlogCreate = () => {
    *  useNavgative
    * @param {event} e
    */
-  const blogId = uuidv4()
 
   const newTags = addTagName.map((tagName) => {
     const newTag = {

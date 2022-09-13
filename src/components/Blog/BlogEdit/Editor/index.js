@@ -10,17 +10,17 @@ const Editor = ({
   handleTitleChange,
   addContent,
   handleContentChange,
-  editContent,
   blogId,
 }) => {
   /**
-   * TODO 目前是一上傳就把圖片打進路由裡面，現在要把他改成 "按下" 送出按鈕才把檔案送出，並載入。
    * @param {loader} loader
    * @returns 回傳upload 函式
    */
+  console.log('in create editor', blogId)
+
+  console.log(`${API_URL}/api/blog/${blogId}/${UPLOAD_ENDPOINT}`)
 
   const uploadAdapter = (loader) => {
-    console.log(`${API_URL}/api/blog/${blogId}/${UPLOAD_ENDPOINT}`)
     return {
       upload: () => {
         return new Promise((resolve, reject) => {
