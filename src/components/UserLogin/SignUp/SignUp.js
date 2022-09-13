@@ -40,29 +40,15 @@ const SignUp = () => {
               type={eye ? 'text' : 'password'}
               name="PasswordInputSignUp"
               placeholder="密碼"
-            />
-            <br />
+            /> 
             <ShowPassword eye={eye} setEye={setEye} />
-            {/* <FontAwesomeIcon
-              icon="fa-regular fa-eye"
-              size="xl"
-              className="iconEyeOne"
-            /> */}
-            <br />
             <input
               className="RePasswordInputSignUp"
               type={eyeOne ? 'text' : 'password'}
               name="RePasswordInputSignUp"
               placeholder="請再次輸入密碼"
             />
-            <br />
             <ShowPassword eye={eyeOne} setEye={setEyeOne} />
-{/* 
-            <FontAwesomeIcon
-              icon="fa-regular fa-eye"
-              size="xl"
-              className="iconEyeOne"
-            /> */}
             <br />
             <input type="submit" value="註冊" className="NewSignUp" />
 

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
 
 const ResetPassword = () => {
-   const [eye, setEye] = useState(false)
+  const [eye, setEye] = useState(false)
   const [eyeOne, setEyeOne] = useState(false)
 
   return (
@@ -25,31 +25,18 @@ const ResetPassword = () => {
               name="ResetPasswordInput"
               placeholder="新密碼"
             />
-            <br />
             <ShowPassword eye={eye} setEye={setEye} />
-{/* 
-            <FontAwesomeIcon
-              icon="fa-regular fa-eye"
-              size="xl"
-              className="iconEyeOne"
-            /> */}
-            <br />
             <input
               className="ResetPasswordInputSecond"
               type={eyeOne ? 'text' : 'password'}
               name="ResetPasswordInputSecond"
               placeholder="確認新密碼"
             />
-            <br />
-            <ShowPassword eye={eyeOne} setEye={setEyeOne} />
- 
-            {/* <FontAwesomeIcon
-              icon="fa-regular fa-eye"
-              size="xl"
-              className="iconEyeTwo" 
-            /> */}
-            <br />
-
+            <ShowPassword
+              className="iconEyeOne"
+              eye={eyeOne}
+              setEye={setEyeOne}
+            />
             <button
               type="button"
               value="submit"

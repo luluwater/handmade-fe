@@ -33,13 +33,8 @@ const Login = () => {
               name="PasswordInput"
               placeholder="會員密碼"
             />
-            <br />
             <ShowPassword eye={eye} setEye={setEye} />
-            {/* <FontAwesomeIcon
-              icon="fa-regular fa-eye"
-              size="xl"
-              className="iconEyeTwo"
-            /> */}
+
             {/* <Link to="/FindPassword"> */}
             <a href="./FindPassword" className="ForgetPassword">
               忘記密碼?

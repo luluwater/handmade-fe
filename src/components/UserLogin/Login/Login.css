@@ -52,7 +52,7 @@
   height: 57.72px;
   border: 2px solid #5f5c51;
   border-radius: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 0px;
   background: #f4eee8;
   padding: 0.75rem;
 }
@@ -127,7 +127,7 @@ input::placeholder {
   margin-top: 28px;
   margin-bottom: 35px;
 }
-.iconEyeTwo{
+.iconEyeThird{
   position:relative;
   color: #5f5c51;
   top: -60px;
