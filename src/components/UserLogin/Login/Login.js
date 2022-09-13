@@ -1,11 +1,37 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.css'
+// import { useUserRights } from '../../../useConText/UserRights'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
 
 const Login = () => {
+  // const { user, setUser } = useUserRights()
+  // const [loginUser, setLoginUser] = useState({
+  //   account: 'peter',
+  //   password: '123546789',
+  // })
+
+  // password eye
   const [eye, setEye] = useState(false)
+
+  // function handleChange(e) {
+  //   setLoginUser({ ...loginUser, [e.target.name]: e.target.value })
+  // }
+
+  // async function handleSubmit(e) {
+  //   e.preventDefault()
+  //   let response = await axios.post(`${API_URL}/Login`, loginUser, {
+  //     withCredentials: true,
+  //   })
+  //   setUser(response.data)
+  //   // setIsLogin(true);
+  // }
+  // console.log(user)
+  // //TODO:製作記住帳號密碼
+  // if (user) {
+  //   return <Navigate to="/" />
+  // }
 
   //往上一層要加上 "/""，如果是子層則不用加
   return (

@@ -7,11 +7,11 @@ import CourseCart from './pages/CourseCart'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
-import LoginPage from './pages/Login'
+import LoginPage from './pages/LoginPage'
 
-import SignUpPage from './pages/SignUp'
-import FindPasswordPage from './pages/FindPassword'
-import ResetPasswordPage from './pages/ResetPassword'
+import SignUpPage from './pages/SignUpPage'
+import FindPasswordPage from './pages/FindPasswordPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 
 import About from './pages/AboutPage'
 import AboutLayout from './components/About'
