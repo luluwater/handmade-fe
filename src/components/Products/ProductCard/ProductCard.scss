@@ -1,9 +1,17 @@
+@import '../../../styles/custom_variables';
 :root{
   --product_card_scale:260px
 }
 .product_card{
   width: var(--product_card_scale);
   // height: 23.5rem;  
+  a{
+    color:$gray-dark;
+    &:hover{
+      color: $primary;
+    }
+  }
+  
 }
 .product_card .row{
  height: 90px;
@@ -30,6 +38,9 @@
   width: 3rem;
   height: 3rem;
 }
+.product_list {
+  width: 1230px;
+}
 @media screen and (max-width:1660px){
   .product_list{
     width: 930px;
@@ -42,7 +53,7 @@
 }
 @media screen and (max-width:992px){ 
   .product_list{
-    width: 520px;
+    width: 480px;
   }
   .product_card{
     width: 220px;    

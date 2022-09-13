@@ -1,0 +1,12 @@
+@import '../../styles/custom_variables';
+
+.filterKeyword_search-btn{
+  color: $gray-dark;
+  
+}
+.filterKeyword_search-btn:hover{
+  color: $dark;
+}
+.w-90{
+  width: 90% !important;
+}

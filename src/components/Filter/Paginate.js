@@ -8,26 +8,6 @@ import {
   prePage,
 } from '../../slices/filterPagination-slice'
 
-// function renderages(totalPage, currentPage) {
-//   const result = []
-//   for (let i = 1; i <= totalPage; i++) {
-//     result.push(
-//       <li>
-//         <Link
-//           to={'#'}
-//           className={`fw-bold px-2 py-1 rounded ${
-//             currentPage === i ? 'bg-primary text-white' : 'page_number'
-//           }`}
-
-//         >
-//           {i}
-//         </Link>
-//       </li>
-//     )
-//   }
-//   return result
-// }
-
 function Paginate() {
   const paginate = useSelector((state) => state.paginationReducer)
   // console.log('paginate', paginate)
@@ -45,7 +25,7 @@ function Paginate() {
 
   if (totalPage === 1) return
   return (
-    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center">
+    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center mt-6">
       <li
         onClick={() => {
           dispatch(prePage())
@@ -62,7 +42,7 @@ function Paginate() {
               to={'#'}
               className={`fw-bold px-2 py-1 rounded ${
                 currentPage === pageNumber
-                  ? 'bg-primary text-white'
+                  ? 'bg-secondary text-white rounded-circle'
                   : 'page_number'
               }`}
               onClick={() => {
