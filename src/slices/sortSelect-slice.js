@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  sort: 'hot',
+  sortValue: 'hot',
 }
 
 export const sortSelectSlice = createSlice({

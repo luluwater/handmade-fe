@@ -12,8 +12,8 @@ import SortSelect from '../components/FIlter/SortSelect'
 
 function Proudcts() {
   //api get products data
-  const sort = useSelector((state) => state.sortSelectReducer.sort)
-  const { data, error, isLoading } = useGetProductListQuery(sort)
+  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
+  const { data, error, isLoading } = useGetProductListQuery()
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(pagination(data))
@@ -82,13 +82,10 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row className="gx-0 gy-5">
           <Col md={'auto'}>
-            {/* <FilterKeyword />
-            <FilterStore />
-            <FilterPrice /> */}
             <Filter />
           </Col>
           <Col>
-            <SortSelect className></SortSelect>
+            <SortSelect className="d-none d-md-block ms-auto mb-3"></SortSelect>
             <div className="d-flex justify-content-center">
               <Row className="product_list gap-4 gap-lg-6">
                 {productList?.map((v, i) => {

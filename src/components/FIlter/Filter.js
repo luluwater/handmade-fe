@@ -13,6 +13,7 @@ import { addFilterStore } from '../../slices/filterStore-silce'
 import FilterKeyword from './FilterKeyword'
 import FilterPrice from './FilterPrice'
 import FilterStore from './FilterStore/FilterStore'
+import SortSelect from './SortSelect'
 
 function Filter() {
   const { data, error, isload } = useGetStoreQuery()
@@ -93,12 +94,7 @@ function Filter() {
         >
           更多條件
         </Button>
-        <Button
-          onClick={toggleShowFilterOther}
-          className="text-gray-dark filter-store-btn rounded-5 px-3 fw-bold letter-spacing-2 bg-transparent border-0"
-        >
-          排序
-        </Button>
+        <SortSelect className="w-25 me-0"></SortSelect>
       </div>
       <Modal
         show={showFilterStore}

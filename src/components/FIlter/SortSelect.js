@@ -1,12 +1,13 @@
 import { FormSelect } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { setSort } from '../../slices/sortSelect-slice'
+import './SortSelect.scss'
 
 function SortSelect({ className }) {
   const dispatch = useDispatch()
   return (
     <FormSelect
-      className={`sort ms-auto mb-3 ${className}`}
+      className={`sort   ${className}`}
       onChange={(e) => {
         dispatch(setSort(e.target.value))
         // console.log('change',e.target.value)

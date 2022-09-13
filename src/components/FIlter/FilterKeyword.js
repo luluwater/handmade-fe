@@ -12,7 +12,7 @@ function FilterKeyword() {
   const dispatch = useDispatch()
 
   return (
-    <FormGroup className="filter d-flex gap-3 mb-3">
+    <FormGroup className="filter d-flex gap-3 mb-3 mx-auto w-90">
       <FormControl
         type="text"
         placeholder="請輸入關鍵字"
