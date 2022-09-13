@@ -9,19 +9,26 @@ import './ProductDetail.scss'
 const ProductIntro = ({ id, store, name, price, intro }) => {
   const { productId } = useParams()
   const { data } = useGetProductCommentQuery(productId)
+
   let totalSum = 0
+  // console.log('data', data)
 
   let score = data?.map((v) => {
     return Number(v.score)
   })
-  console.log('score', score)
 
   const sumWithInitial = score?.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     totalSum
   )
-  const average = sumWithInitial / data.length
-  console.log('average', average)
+
+  // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
+  const length = score?.length
+
+  let average = sumWithInitial / length
+
+  // console.log('score.length', length)
+  // console.log('average', average)
 
   return (
     <>
@@ -39,7 +46,7 @@ const ProductIntro = ({ id, store, name, price, intro }) => {
               className="detail_score_star"
             />
             <p className="detail_score_title mt-2 mx-2">總評分</p>
-            {/* <h2 className="detail_score_number">{average}</h2> */}
+            <h2 className="detail_score_number">{average.toFixed(1)}</h2>
           </Col>
         </Col>
 

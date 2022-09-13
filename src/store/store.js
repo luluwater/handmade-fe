@@ -16,6 +16,7 @@ import { commentApiService } from '../services/commentAPI'
 import { replyApiService } from '../services/replyApi'
 import { storeApiService } from '../services/storeApi'
 import { productApiService } from '../services/productApi'
+import { courseApiService } from '../services/courseApi'
 import { categoryApiService } from '../services/categoryApi'
 // import { userApiService } from '../services/userApi'
 import { userApiService } from '../services/userApi'
@@ -37,6 +38,7 @@ const reducers = combineReducers({
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,
   [productApiService.reducerPath]: productApiService.reducer,
+  [courseApiService.reducerPath]: courseApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
@@ -48,6 +50,7 @@ const store = configureStore({
     return getCurrentMiddleware()
       .concat(blogApiService.middleware)
       .concat(productApiService.middleware)
+      .concat(courseApiService.middleware)
       .concat(storeApiService.middleware)
       .concat(categoryApiService.middleware)
       .concat(userApiService.middleware)
