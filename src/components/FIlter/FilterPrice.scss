@@ -1,13 +1,22 @@
-@import "../../styles/custom_variables";
-.filter{
+@import '../../styles/custom_variables';
+
+.filter {
   position: relative;
   width: 250px;
-  & .slider{
+  .filter_price_title {
+    font-size: $h5-font-size;
+    font-weight: 600;
+    border-bottom: 3px solid $gray-darker;
+    padding: 5px;
+    letter-spacing: 3px;
+  }
+  .slider {
     position: relative;
     z-index: 1;
     height: 10px;
     margin: 0 10px;
-    & .track{
+
+    .track {
       position: absolute;
       z-index: 1;
       left: 0;
@@ -18,7 +27,8 @@
       background-color: $skin-brighter;
       border: 1px solid $gray-dark;
     }
-    & .range{
+
+    .range {
       position: absolute;
       z-index: 2;
       left: 0;
@@ -26,9 +36,10 @@
       top: 0;
       bottom: 0;
       border-radius: 5px;
-      background: linear-gradient(90deg,#FFBF60,$primary);
+      background: linear-gradient(90deg, #ffbf60, $primary);
     }
-    & .thumb{
+
+    .thumb {
       position: absolute;
       z-index: 3;
       width: 25px;
@@ -37,16 +48,19 @@
       border: 1px solid $gray-dark;
       border-radius: 50%;
     }
-    & .thumb.left{
+
+    .thumb.left {
       left: 0;
-      transform: translate(-15px,-8px);
+      transform: translate(-15px, -8px);
     }
-    & .thumb.right{
+
+    .thumb.right {
       right: 0;
-      transform: translate(15px,-8px);
+      transform: translate(15px, -8px);
     }
   }
-  & input[type=range]{
+
+  & input[type='range'] {
     position: absolute;
     -webkit-appearance: none;
     pointer-events: none;
@@ -55,7 +69,8 @@
     width: 100%;
     opacity: 0;
   }
-  & input[type=range]::-webkit-slider-thumb{
+
+  & input[type='range']::-webkit-slider-thumb {
     pointer-events: all;
     width: 30px;
     height: 30px;
@@ -63,5 +78,23 @@
     border: 0 none;
     background-color: #fff;
     -webkit-appearance: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .filter {
+    .filter_price_title {
+      border-bottom: 2px solid $gray-dark;  
+      width: 90%;
+      margin: auto;
+      color: $gray-dark;
     }
+  }
+  .filter_price {
+    width: 80%;
+    margin: auto;
+    & input[type='range'] {
+      width: 80%;
+    }
+  }
 }

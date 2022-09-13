@@ -30,6 +30,9 @@
   width: 3rem;
   height: 3rem;
 }
+.product_list {
+  width: 1230px;
+}
 @media screen and (max-width:1660px){
   .product_list{
     width: 930px;
@@ -42,7 +45,7 @@
 }
 @media screen and (max-width:992px){ 
   .product_list{
-    width: 520px;
+    width: 480px;
   }
   .product_card{
     width: 220px;    
