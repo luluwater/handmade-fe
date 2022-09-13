@@ -3,8 +3,14 @@ import { Row, Col, Nav, Tab, Form, InputGroup, Button } from 'react-bootstrap'
 import CourseCartItem from './CourseCartItem'
 import ProductCartItem from './ProductCartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch } from 'react-redux'
+import { cartToggle } from '../../slices/cart-ui-slice'
 
 const Cart = () => {
+  const dispatch = useDispatch()
+  const toggleCart = () => {
+    dispatch(cartToggle())
+  }
   return (
     <div className="Cart">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -35,14 +41,15 @@ const Cart = () => {
               <Tab.Pane eventKey="first">
                 <Row>
                   <Col xs={12} md={8}>
-                    <div className="mt-5">
-                      <a href="/" className="Cart_backToStore fs-5">
-                        <FontAwesomeIcon
-                          icon="fa-solid fa-chevron-left"
-                          className="Cart_arrow"
-                        />
-                        回到商店
-                      </a>
+                    <div
+                      className="mt-5 Cart_backToStore fs-5"
+                      onClick={toggleCart}
+                    >
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-chevron-left"
+                        className="Cart_arrow"
+                      />
+                      回到商店
                     </div>
                     <p className="fs-4 Cart_CourseTitle">課程購物車</p>
                     <Row className="text-center Cart_DetailTitle">
@@ -94,10 +101,11 @@ const Cart = () => {
 
                   {/* ===========課程購物車 右側========== */}
                   <Col xs={12} md={4} className="Cart_courseRightSide">
-                    <div className="mt-5 text-end">
-                      <a href="/" className="Cart_backToStore fs-5">
-                        <FontAwesomeIcon icon="fa-solid fa-xmark" />
-                      </a>
+                    <div className="mt-5 text-end Cart_backToStore_x fs-5">
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-xmark"
+                        onClick={toggleCart}
+                      />
                     </div>
                     <p className="fs-4 Cart_TotalTitle">總計</p>
                     <div className="d-flex justify-content-between">
@@ -113,30 +121,28 @@ const Cart = () => {
                       <strong className="fs-5">$2600</strong>
                     </div>
                     <Button
-                    variant="primary"
-                    className="Cart_nextBTN fs-5 mt-6 mb-10 text-center"
-                  >
-                    繼續
-                  </Button>
+                      variant="primary"
+                      className="Cart_nextBTN fs-5 mt-6 mb-10 text-center"
+                    >
+                      繼續
+                    </Button>
                   </Col>
                 </Row>
               </Tab.Pane>
 
-
-
-
               {/* =============商品購物車============== */}
               <Tab.Pane eventKey="second">
-              <Row>
+                <Row>
                   <Col xs={12} md={8}>
-                    <div className="mt-5">
-                      <a href="/" className="Cart_backToStore fs-5">
-                        <FontAwesomeIcon
-                          icon="fa-solid fa-chevron-left"
-                          className="Cart_arrow"
-                        />
-                        回到商店
-                      </a>
+                    <div
+                      className="mt-5 Cart_backToStore fs-5"
+                      onClick={toggleCart}
+                    >
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-chevron-left"
+                        className="Cart_arrow"
+                      />
+                      回到商店
                     </div>
                     <p className="fs-4 Cart_CourseTitle">商品購物車</p>
                     <Row className="text-center Cart_DetailTitle">
@@ -187,10 +193,11 @@ const Cart = () => {
 
                   {/* ========商品購物車  右側========== */}
                   <Col xs={12} md={4} className="Cart_courseRightSide">
-                    <div className="mt-5 text-end">
-                      <a href="/" className="Cart_backToStore fs-5">
-                        <FontAwesomeIcon icon="fa-solid fa-xmark" />
-                      </a>
+                    <div className="mt-5 text-end Cart_backToStore_x fs-5">
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-xmark"
+                        onClick={toggleCart}
+                      />
                     </div>
                     <p className="fs-4 Cart_TotalTitle">總計</p>
                     <div className="d-flex justify-content-between">
@@ -206,11 +213,11 @@ const Cart = () => {
                       <strong className="fs-5">$2600</strong>
                     </div>
                     <Button
-                    variant="primary"
-                    className="Cart_nextBTN fs-5 mt-6 mb-10 text-center"
-                  >
-                    繼續
-                  </Button>
+                      variant="primary"
+                      className="Cart_nextBTN fs-5 mt-6 mb-10 text-center"
+                    >
+                      繼續
+                    </Button>
                   </Col>
                 </Row>
               </Tab.Pane>

@@ -60,7 +60,16 @@
 }
 
 &_backToStore{
+  width: 20%;
   color: $gray-darker;
+  cursor: pointer;
+}
+&_backToStore_x{
+  // width: 20%;
+  color: $gray-darker;
+  svg{
+    cursor: pointer;
+  }
 }
 &_arrow{
   margin-left: 2rem;

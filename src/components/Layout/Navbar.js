@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom'
 import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch } from 'react-redux'
+import { cartToggle } from '../../slices/cart-ui-slice'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const toggleCart = () => {
+    dispatch(cartToggle())
+  }
   return (
     <>
       <nav className="navbar">
@@ -29,14 +35,14 @@ const Navbar = () => {
               </button>
             </form>
 
-            <Link to="cart">
+            <span onClick={toggleCart}>
               <FontAwesomeIcon
                 icon="fa-solid fa-cart-shopping"
                 size="xl"
                 className="mx-3 navbar_awesomeIcon"
                 fixedWidth
               />
-            </Link>
+            </span>
 
             <Link to="login" className="navbar_user">
               <FontAwesomeIcon
