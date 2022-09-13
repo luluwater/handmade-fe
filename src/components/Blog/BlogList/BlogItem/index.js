@@ -22,25 +22,22 @@ const BlogItem = ({
 }) => {
   const transformTime = moment(createTime).format('MMMM DD YYYY')
 
-  // console.log(`${IMG_URL}${images[0]?.img_name}`)
-
   return (
     <div className="mb-2 d-flex flex-column flex-lg-row gap-6 pb-4 mb-6 border-bottom ">
       <div className="blog_list_img w-100">
         <Link to={`/blog/${id}`}>
           <img
             src={`${IMG_URL}${images[0]?.img_name}`}
-            className="h-100 d-flex d-lg-flex img-fluid"
+            className="h-100 object-fit d-flex d-lg-flex img-fluid"
             alt="blog post"
           />
         </Link>
       </div>
-      <div className="blog_list_item d-flex flex-column">
+      <div className="max-w-md-65 d-flex flex-column">
         <div className="d-flex gap-3">
-          {' '}
           <Badge
-            className="rounded-0 mb-2 align-self-start py-2 px-3 text-white"
-            bg="primary"
+            className="rounded-0 mb-2 align-self-start py-2 px-3 text-dark"
+            bg="skin-bright"
           >
             {category}
           </Badge>
@@ -55,7 +52,8 @@ const BlogItem = ({
             )
           })}
         </div>
-        <h4 className="fw-bold">{title}</h4>
+
+        <h4 className="fw-bold text-gray-darker mt-md-3">{title}</h4>
         <p className="text-muted">
           {name} <span className="ms-3">{transformTime}</span>
         </p>

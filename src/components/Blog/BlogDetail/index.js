@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Badge from 'react-bootstrap/Badge'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import BlogDropdown from '../../UI/BlogDropdown'
+import RelatedStores from './RelatedStores'
 
 import parse from 'html-react-parser'
 
@@ -110,6 +111,7 @@ const BlogDetail = () => {
     <>
       <div className="position-relative">
         {data?.blog.map((item) => {
+          console.log(item)
           return (
             <>
               <div className="d-flex align-items-center justify-content-between my-4">
@@ -138,6 +140,7 @@ const BlogDetail = () => {
 
                 <BlogDropdown item={item} handleDeleteBlog={handleDeleteBlog} />
               </div>
+
               <div className="container mb-6 mb-lg-8">
                 <div className="text-center ">
                   {item.tags.map((item) => {
@@ -151,7 +154,9 @@ const BlogDetail = () => {
                     )
                   })}
 
-                  <h1 className="fw-bold fs-3 mb-6">{item.title}</h1>
+                  <h1 className="fw-bold fs-3 mb-6 text-gray-darker">
+                    {item.title}
+                  </h1>
                   <h5 className="text-muted fs-5 mb-4">
                     {item.name}
                     <span className="ms-4">
@@ -166,34 +171,22 @@ const BlogDetail = () => {
                     />
                     <span className="ms-2">收藏數{item.favorite_amount}</span>
                   </div>
-                  <article className="text-start">
+                  <article className="text-ceneter">
                     {parse(item.content)}
                   </article>
                 </div>
               </div>
-              <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
-                / <spna class="mx-2">相關店家 </spna>/
-              </div>
-              <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6  mb-7">
-                <div className="position-relative">
-                  <img
-                    className="h-100 mb-5"
-                    src="https://images.unsplash.com/photo-1657299170237-2d4cd59b5156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                    alt=""
-                  />{' '}
-                  {/* TODO:修改推薦店家 */}
-                  <h5 class="position-absolute top-50 start-50 translate-middle text-white fs-2">
-                    如是著物
-                  </h5>
-                </div>
-                <div>
-                  <div className="my-3 text-cut">{item.intro}</div>
-                  <p>地址：{item.address}</p>
-                  <p>交通方式：{item.route}</p>
-                  <p>連絡電話：{item.phone}</p>
-                  <p>營業時間：{item.opening_hour}</p>
-                </div>
-              </div>
+
+              <RelatedStores
+                name={item.name}
+                intro={item.intro}
+                address={item.address}
+                route={item.route}
+                phone={item.phone}
+                opening_hour={item.opening_hour}
+                storeId={item.store_id}
+              />
+
               <div className="container">
                 <h6 className=" w-100 fs-3 text-md-start text-center mb-0 ">
                   留言區

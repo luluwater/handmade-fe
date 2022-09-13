@@ -56,6 +56,9 @@
     > .image {
       display: none;
     }
+    > p > img {
+      display: none;
+    }
     > h3 {
       > img {
         display: none;
@@ -65,12 +68,6 @@
   &_title {
     display: -webkit-box;
     -webkit-line-clamp: 2;
-  }
-  &_item {
-    max-width: 100%;
-    @media (min-width: 1040px) {
-      max-width: 75%;
-    }
   }
 }
 .text-cut {
@@ -92,8 +89,4 @@
 
 .blog_dropdown_delete {
   color: $primary;
-}
-
-.blog_preview_img {
-  object-fit: cover;
 }

@@ -44,7 +44,7 @@ const TextForm = ({
               type="submit"
               className="rounded-2 border-0 bg-secondary-dark text-white px-4 py-1 d-md-block"
             >
-              送出{' '}
+              送出
               <FontAwesomeIcon
                 icon="fa-solid fa-paper-plane"
                 className="ms-2"
@@ -55,7 +55,7 @@ const TextForm = ({
               type="button"
               className="btn border border-0"
             >
-              😆
+              <FontAwesomeIcon icon="fa-regular fa-face-smile" />
             </button>
           </div>
         </Form.Group>

@@ -159,13 +159,14 @@ const BlogCreate = () => {
                 {/* Modal */}
                 <Modal.Body className="py-md-12 px-md-6 overflow-hidden">
                   <h4 className="mb-3 fs-5 ">
+                    {/* TODO: 從 LOCAL拿 */}
                     <span className="text-muted">發布人：</span>黑色小花貓
                   </h4>
                   <div className="d-flex flex-column gap-md-6 gap-5">
                     <Form.Select
                       onClick={handleCategoryChange}
                       className="bg-skin-brighter border-0"
-                      aria-label="Default select example"
+                      aria-label="選擇類別"
                     >
                       <option>選擇類別</option>
                       <option value="1">金工</option>
@@ -179,7 +180,7 @@ const BlogCreate = () => {
                     <Form.Select
                       onClick={handleStoreChange}
                       className="bg-skin-brighter border-0"
-                      aria-label="Default select example"
+                      aria-label="選擇店家"
                     >
                       <option>選擇店家</option>
                       <option value="1">以覺學</option>
@@ -187,6 +188,7 @@ const BlogCreate = () => {
                       <option value="3">光在金工</option>
                       <option value="4">Minifeast</option>
                       <option value="5">Silver Spring</option>
+                      <option value="30">Hi JOY studio</option>
                     </Form.Select>
                     <Tags
                       className="w-100"
