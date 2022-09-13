@@ -2,8 +2,8 @@ export const API_URL =
   (process.env.NOED_API_URL || 'http://localhost:8080') + '/api'
 
 // // 圖片
-// export const IMG_URL =
-//     (process.env.REACT_APP_API_URL || 'http://localhost:3006') + '/images';
+export const IMG_URL =
+  (process.env.NOED_API_URL || 'http://localhost:8080') + '/'
 // //圖片 去掉images （因為資料庫有寫）
 // export const IMG_URL2 =
 //     process.env.REACT_APP_API_URL || 'http://localhost:3006';

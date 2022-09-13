@@ -110,7 +110,6 @@ const BlogDetail = () => {
     <>
       <div className="position-relative">
         {data?.blog.map((item) => {
-          console.log(item.tags)
           return (
             <>
               <div className="d-flex align-items-center justify-content-between my-4">

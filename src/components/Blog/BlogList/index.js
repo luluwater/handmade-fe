@@ -33,18 +33,21 @@ const BlogList = () => {
       ) : (
         <>
           <ListGroup className="blog_list">
-            {blogList?.map((item) => (
-              <BlogItem
-                key={item.blog_id}
-                content={item.content}
-                tags={item.tags}
-                title={item.title}
-                createTime={item.create_time}
-                id={item.blog_id}
-                name={item.name}
-                category={item.category_name}
-              />
-            ))}
+            {blogList?.map((item) => {
+              return (
+                <BlogItem
+                  key={item.blog_id}
+                  content={item.content}
+                  tags={item.tags}
+                  title={item.title}
+                  images={item.img_url}
+                  createTime={item.create_time}
+                  id={item.blog_id}
+                  name={item.name}
+                  category={item.category_name}
+                />
+              )
+            })}
           </ListGroup>
         </>
       )}

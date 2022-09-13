@@ -64,7 +64,6 @@ const BlogCreate = () => {
     }
     return newTag
   })
-  console.log(newTags)
 
   const insertData = {
     id: blogId,
@@ -99,18 +98,30 @@ const BlogCreate = () => {
     <div className="container my-8">
       <Form>
         <div className="text-end">
-          <button
-            type="button"
-            onClick={() => handleShow()}
-            className="btn btn-primary rounded-5 px-5 text-white"
-          >
-            發布
-          </button>
+          {addContent && addTitle ? (
+            <button
+              type="button"
+              onClick={() => handleShow()}
+              className="btn btn-primary rounded-5 px-5 text-white"
+            >
+              發布
+            </button>
+          ) : (
+            <button
+              type="button"
+              disabled
+              onClick={() => handleShow()}
+              className="btn btn-primary rounded-5 px-5 text-white"
+            >
+              發布
+            </button>
+          )}
         </div>
 
         {/* Title and content editor */}
         <div>
           <Editor
+            blogId={blogId}
             addContent={addContent}
             handleContentChange={handleContentChange}
             addTitle={addTitle}
@@ -132,13 +143,7 @@ const BlogCreate = () => {
               <Col className="max-w-md-50">
                 <Modal.Body className="py-md-12 px-md-6">
                   <h4 className="mb-3 fs-5 fw-bolder">部落格預覽</h4>
-                  <div className="bg-primary mb-5" style={{ height: '250px' }}>
-                    <img
-                      class="blog_preview_img w-100 h-100"
-                      src="http://localhost:8080/blog_55b9bc84-1067-4970-a942-0aa0f0702aa3.jpg"
-                      alt=""
-                    />
-                  </div>
+
                   <h5 className="border-bottom pb-2 fs-5 fw-bolder">
                     {addTitle}
                   </h5>
@@ -182,16 +187,31 @@ const BlogCreate = () => {
                       <option value="4">Minifeast</option>
                       <option value="5">Silver Spring</option>
                     </Form.Select>
-                    <Tags blogId={blogId} setAddTagName={setAddTagName} />
+                    <Tags
+                      className="w-100"
+                      blogId={blogId}
+                      setAddTagName={setAddTagName}
+                    />
                   </div>
                   <div className="text-end ">
-                    <button
-                      onClick={handleSubmit}
-                      type="button"
-                      className="btn btn-primary rounded-5 px-5 text-white  mt-8"
-                    >
-                      確認發布
-                    </button>
+                    {addStore && addCategory ? (
+                      <button
+                        onClick={handleSubmit}
+                        type="button"
+                        className="btn btn-primary rounded-5 px-5 text-white  mt-8"
+                      >
+                        確認發布
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handleSubmit}
+                        disabled
+                        type="button"
+                        className="btn btn-primary rounded-5 px-5 text-white  mt-8"
+                      >
+                        確認發布
+                      </button>
+                    )}
                   </div>
                 </Modal.Body>
               </Col>
