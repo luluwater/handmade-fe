@@ -42,7 +42,6 @@
 .detail_store{
     font-size: 14px;
     color: $gray-darker;
-    padding-left: 3px;
     
 }
 .detail_name{
@@ -233,6 +232,11 @@
     transition: .5s;
     position: relative;
     right: 110px;
+
+}
+.ShowMore_ButtonDiv__uCJeR{    
+    opacity: 1 !important;
+    z-index: initial !important;
 }
 .showmore button:hover{
     color: $skin-bright !important;

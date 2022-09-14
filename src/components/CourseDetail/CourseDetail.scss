@@ -133,13 +133,12 @@
 
     }
 }
-.detail_intro{
+.detail_intro_C{
     font-size: 14px;
     color: $gray-darker;
     width: 960px;
     padding: 20px 0 20px 25px;
     line-height: 25px;
-    border-top: none;
 }
 
 .detail_button:focus{
@@ -187,6 +186,11 @@
 }
 
 // ========== comment ==========
+
+.C_border{
+    border-top: 1px solid $gray-darker;
+    padding-top: 70px;
+}
 
 .detail_comment_title{
     color: $gray-darker;
@@ -243,6 +247,10 @@
     transition: .5s;
     position: relative;
     right: 110px;
+}
+.ShowMore_ButtonDiv__uCJeR{    
+    opacity: 1 !important;
+    z-index: initial !important;
 }
 .showmore button:hover{
     color: $skin-bright !important;
