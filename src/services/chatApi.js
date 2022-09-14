@@ -1,22 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../utils/config'
 
-export const commentApiService = createApi({
-  reducerPath: 'commentApi',
+export const chatApiService = createApi({
+  reducerPath: 'chatApi',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
   }),
-  tagTypes: ['Reply'],
+  tagTypes: ['Chat'],
   endpoints: (builder) => ({
-    comments: builder.query({
-      query: (blogId) => `/comment/${blogId}`,
-      providesTags: ['Comment'],
+    chatRooms: builder.query({
+      query: (blogId) => `chat`,
+      providesTags: ['Chat'],
     }),
   }),
 })
 
-export const {
-  useCommentsQuery,
-  useCreateCommentMutation,
-  useCreateReplyMutation,
-} = commentApiService
+export const { useChatRoomsQuery } = chatApiService

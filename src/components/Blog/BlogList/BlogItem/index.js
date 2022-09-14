@@ -60,7 +60,7 @@ const BlogItem = ({
         <p className="text-cut blog_list_content">{parse(content)}</p>
         <Link
           to={`/blog/${id}`}
-          className="blog_list_btn align-self-end text-gray-darker"
+          className="blog_list_btn fw-blod align-self-end"
         >
           READ MORE
         </Link>

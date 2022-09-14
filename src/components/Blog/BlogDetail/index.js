@@ -6,9 +6,7 @@ import Badge from 'react-bootstrap/Badge'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import BlogDropdown from '../../UI/BlogDropdown'
 import RelatedStores from './RelatedStores'
-
 import parse from 'html-react-parser'
-
 import CommentList from './CommentList'
 import TextForm from './CommentList/TextForm'
 import {
@@ -16,7 +14,6 @@ import {
   useDeleteBlogMutation,
 } from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentAPI'
-
 import { Toast } from '../../UI/SwalStyle'
 
 const BlogDetail = () => {
@@ -117,22 +114,19 @@ const BlogDetail = () => {
               <div className="d-flex align-items-center justify-content-between my-4">
                 <ul className="list-unstyled d-flex text-black m-0 ms-md-4">
                   <li>
-                    <Link className="text-dark p-3" to="/">
+                    <Link className="p-3" to="/">
                       首頁
                     </Link>
                     /
                   </li>
                   <li>
-                    <Link className="text-dark p-3" to="/blog">
+                    <Link className="p-3" to="/blog">
                       部落格
                     </Link>
                     /
                   </li>
                   <li>
-                    <Link
-                      className="text-secondary-dark p-3 "
-                      to={`/blog/${item.blog_id}`}
-                    >
+                    <Link className="p-3 " to={`/blog/${item.blog_id}`}>
                       {item.category_name}
                     </Link>
                   </li>

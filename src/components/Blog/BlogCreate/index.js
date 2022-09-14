@@ -13,9 +13,12 @@ import { useNavigate } from 'react-router'
 import { Toast } from '../../UI/SwalStyle'
 import Tags from '../../UI/Picker'
 import { useEffect } from 'react'
+import { useGetStoreQuery } from '../../../services/storeApi'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
+  //TODO:接後端 getSelect 看看有沒有 api 可接
+  const { data } = useGetStoreQuery()
 
   const [addContent, setAddContent] = useState('')
   const [addTitle, setAddTitle] = useState('')
@@ -51,7 +54,7 @@ const BlogCreate = () => {
    * 3. current User   --> not yet
    * 4. category ( 非必填 ) --> ok
    * 5. store ( 建立於category之上 ) --> not yet
-   * 6. tag?? ( 感覺有點麻煩 ) --> not yet
+   * 6. tag?? ( 感覺有點麻煩 ) --> ok
    * 7. 發布時間 current time --> ok
    *  useNavgative
    * @param {event} e
@@ -188,6 +191,7 @@ const BlogCreate = () => {
                       <option value="3">光在金工</option>
                       <option value="4">Minifeast</option>
                       <option value="5">Silver Spring</option>
+                      <option value="9">雲森陶陶</option>
                       <option value="30">Hi JOY studio</option>
                     </Form.Select>
                     <Tags

@@ -37,6 +37,7 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CourseDetailPage from './pages/CourseDetailPage'
 import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
+import ChatRoomPage from './pages/ChatRoomPage'
 
 const routeConfig = [
   {
@@ -156,6 +157,10 @@ const routeConfig = [
       {
         path: 'CourseDetailPage',
         element: <CourseDetailPage />,
+      },
+      {
+        path: 'chat',
+        element: <ChatRoomPage />,
       },
     ],
   },
