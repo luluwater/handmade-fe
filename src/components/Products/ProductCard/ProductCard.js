@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Card from 'react-bootstrap/Card'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Row, Col } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { addProductCart } from '../../../slices/productCart-slice'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -32,9 +34,15 @@ function ProductCard({
   name,
   price,
   isFavorite,
+  amount,
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+  const dispatch = useDispatch()
+
+  const addToProductCart = () => {
+    dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
+  }
 
   // console.log(isFavorite)
 
@@ -82,7 +90,10 @@ function ProductCard({
               size="lg"
             />
           </button>
-          <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+          <button
+            className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
+            onClick={addToProductCart}
+          >
             <img src={cart} alt="" className="cart" />
             {/* <FontAwesomeIcon
               icon="fa-solid fa-cart-shopping"
