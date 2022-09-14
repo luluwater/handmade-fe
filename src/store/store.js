@@ -6,7 +6,7 @@ import blogReducer from '../slices/blog-slice'
 import commentReducer from '../slices/comment-slice'
 
 import { blogApiService } from '../services/blogApi'
-import { commentApiService } from '../services/commentApi'
+import { commentApiService } from '../services/commentAPI'
 import { replyApiService } from '../services/replyApi'
 
 /**

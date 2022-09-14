@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import CommentItem from './CommentItem'
 import moment from 'moment'
-import { useCommentsQuery } from '../../../../services/commentApi'
+import { useCommentsQuery } from '../../../../services/commentAPI'
 import { useSelector, useDispatch } from 'react-redux'
 import { getComment } from '../../../../slices/comment-slice'
 
