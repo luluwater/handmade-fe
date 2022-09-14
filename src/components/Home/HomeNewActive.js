@@ -23,7 +23,9 @@ function HomeNewActive() {
               手手邀請擁有無與倫比創造力的妳，把自己歸零、擺脫生活中的所有身分，與我們攜手度過愜意放鬆的手做體驗，享受專屬於自己或是與閨蜜們的美好時光。
               <br />
             </div>
-            <Button className="home_newStore_content_button">看更多</Button>
+            <a href="/news">
+              <Button className="home_newStore_content_button">看更多</Button>
+            </a>
           </div>
         </div>
       </div>

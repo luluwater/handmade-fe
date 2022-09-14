@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { addProduct } from '../slices/productCard-slice'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/FIlter/Paginate'
-import Filter from '../components/FIlter/Filter'
-import SortSelect from '../components/FIlter/SortSelect'
+import Paginate from '../components/Filter/Paginate'
+import Filter from '../components/Filter/Filter'
+import SortSelect from '../components/Filter/SortSelect'
 
 function Proudcts() {
   //api get products data

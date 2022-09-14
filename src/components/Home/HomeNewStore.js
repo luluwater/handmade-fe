@@ -18,7 +18,9 @@ function HomeNewStore() {
               <br />
               期盼建立起一個空間用雙手實踐。
             </div>
-            <Button className="home_newStore_content_button">查看店家</Button>
+            <a href="/store/6">
+              <Button className="home_newStore_content_button">查看店家</Button>
+            </a>
           </div>
         </div>
         <div className="home_newStore_content">
@@ -32,7 +34,9 @@ function HomeNewStore() {
               <br />
               進行各種活動、互相分享的地方。
             </div>
-            <Button className="home_newStore_content_button">查看店家</Button>
+            <a href="/store/14">
+              <Button className="home_newStore_content_button">查看店家</Button>
+            </a>
           </div>
         </div>
       </div>
