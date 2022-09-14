@@ -31,8 +31,3 @@ export default function Counter() {
     </Col>
   )
 }
-//  <div>
-//       <h2>{count}</h2>
-//       <button onClick={() => dispatch(increment(1))}>+</button>
-//       <button onClick={() => dispatch(decrement(1))}>-</button>
-//     </div>
