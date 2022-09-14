@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col, Container, FormSelect } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 // import { addProduct } from '../slices/productCard-slice'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/Filter/Paginate'
-import Filter from '../components/Filter/Filter'
+import Paginate from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/Filter'
+import SortSelect from '../components/FIlter/SortSelect'
 
 function Proudcts() {
   //api get products data
+  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
   const { data, error, isLoading } = useGetProductListQuery()
   const dispatch = useDispatch()
   useEffect(() => {
@@ -26,14 +28,16 @@ function Proudcts() {
   const filterPrice = useSelector((state) => state.filterPriceReducer)
   useEffect(() => {
     // console.log('product:filterStore', filterStore)
+    console.log('sort', sort)
     dispatch(
       setFilter({
         store: filterStore,
         searchWord: filterSearchWord,
         price: { min: filterPrice.leftValue, max: filterPrice.rightValue },
+        sort: sort,
       })
     )
-  }, [dispatch, filterStore, filterSearchWord, filterPrice])
+  }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
   // console.log('pagination', productList)
   console.log(
     'pagination:filter',
@@ -76,16 +80,14 @@ function Proudcts() {
         </h1>
       </div>
       <Container fluid className="m-3 mx-auto ">
-        <Row>
+        <Row className="gx-0 gy-5">
           <Col md={'auto'}>
-            {/* <FilterKeyword />
-            <FilterStore />
-            <FilterPrice /> */}
             <Filter />
           </Col>
           <Col>
+            <SortSelect className="d-none d-md-block ms-auto mb-3"></SortSelect>
             <div className="d-flex justify-content-center">
-              <Row className="product_list gap-6">
+              <Row className="product_list gap-4 gap-lg-6">
                 {productList?.map((v, i) => {
                   return (
                     <ProductCard
