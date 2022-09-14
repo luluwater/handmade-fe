@@ -25,7 +25,7 @@ function Paginate() {
 
   if (totalPage === 1) return
   return (
-    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center">
+    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center mt-6">
       <li
         onClick={() => {
           dispatch(prePage())
@@ -42,7 +42,7 @@ function Paginate() {
               to={'#'}
               className={`fw-bold px-2 py-1 rounded ${
                 currentPage === pageNumber
-                  ? 'bg-primary text-white'
+                  ? 'bg-secondary text-white rounded-circle'
                   : 'page_number'
               }`}
               onClick={() => {

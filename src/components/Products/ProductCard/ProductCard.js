@@ -13,6 +13,7 @@ import {
 } from '../../../services/productApi'
 
 import cart from '../../../assets/cart.svg'
+import { Link } from 'react-router-dom'
 
 function getImgsRouter(imgsName, category, productId) {
   const baseRouter = 'assets/product/product'
@@ -35,7 +36,6 @@ function ProductCard({
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
-
   // console.log(isFavorite)
 
   return (
@@ -59,11 +59,13 @@ function ProductCard({
       </Swiper>
       <Row className="justify-content-between align-items-center ">
         <Col xs={6} className="mt-2">
-          <p className="mb-1  text-truncate">
-            <small>| {storeName} |</small>
-          </p>
-          <h6 className="mb-1 text-truncate">{name}</h6>
-          <p className="text-primary fw-bold">${price}</p>
+          <Link to={`/product/detail/${productId}`}>
+            <p className="mb-1  text-truncate">
+              <small>| {storeName} |</small>
+            </p>
+            <h6 className="mb-1 text-truncate">{name}</h6>
+            <p className="text-primary fw-bold">${price}</p>
+          </Link>
         </Col>
         <Col className="text-end d-flex">
           <button
