@@ -20,6 +20,8 @@ const Cart = () => {
     (state) => state.productCartReducer.totalAmount
   )
 
+
+
   useEffect(() => {
     dispatch(getProductTotal())
   }, [ProductItem, dispatch])

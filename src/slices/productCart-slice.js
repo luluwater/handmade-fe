@@ -13,6 +13,7 @@ const productCartSlice = createSlice({
   initialState: initialState,
 
   reducers: {
+    // ============新增項目==========
     addProductCart(state, action) {
       const newItem = action.payload
 
@@ -27,15 +28,18 @@ const productCartSlice = createSlice({
           imgs: newItem.imgs[0],
           price: newItem.price,
           category: newItem.category,
-          quantity: 1,
+          quantity: newItem.quantity ? newItem.quantity : 1,
           totalPrice: newItem.price,
+          amount: newItem.amount,
+          stockWarning: '',
         })
-      } else {
+      } else if (existingItem && existingItem.quantity < existingItem.amount) {
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(newItem.price)
+      } else if (existingItem && existingItem.quantity >= existingItem.amount) {
+        existingItem.stockWarning = '已達庫存上限'
       }
-
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
     },
     // ============減少項目==========
@@ -47,20 +51,12 @@ const productCartSlice = createSlice({
       )
 
       if (existingItem.quantity > 1) {
+        existingItem.stockWarning = ''
         existingItem.quantity--
         existingItem.totalPrice =
           Number(existingItem.totalPrice) - Number(existingItem.price)
       }
 
-      // if (existingItem.quantity === 1) {
-      //   state.productCartItem = state.productCartItem.filter(
-      //     (item) => item.productId !== id
-      //   )
-      // } else {
-      //   existingItem.quantity--
-      //   existingItem.totalPrice =
-      //     Number(existingItem.totalPrice) - Number(existingItem.price)
-      // }
 
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
     },

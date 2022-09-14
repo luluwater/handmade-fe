@@ -11,11 +11,21 @@ import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ProductCartItem = ({ item }) => {
-  const { productId, name, imgs, price, quantity, totalPrice, category } = item
+  const {
+    productId,
+    name,
+    imgs,
+    price,
+    quantity,
+    totalPrice,
+    category,
+    amount,
+    stockWarning,
+  } = item
 
   const dispatch = useDispatch()
   const incrementProduct = () => {
-    dispatch(addProductCart({ productId, name, imgs, price, category }))
+    dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
   }
   const decreaseProduct = () => {
     dispatch(removeProductItem({ productId }))
@@ -37,21 +47,28 @@ const ProductCartItem = ({ item }) => {
 
       <Col
         sm={3}
-        className="d-flex justify-content-center align-items-center Cart_amountBox"
+        className="d-flex flex-column justify-content-center align-items-center Cart_amountBox"
       >
-        <Button
-          className="detail_amount_minus  detail_button"
-          onClick={decreaseProduct}
-        >
-          -
-        </Button>
-        <h5 className="detail_amount_number">{quantity}</h5>
-        <Button
-          className="detail_amount_plus  detail_button"
-          onClick={incrementProduct}
-        >
-          +
-        </Button>
+        <div className="d-flex justify-content-center align-items-center">
+          <Button
+            className="detail_amount_minus  detail_button"
+            onClick={decreaseProduct}
+          >
+            -
+          </Button>
+          <h5 className="detail_amount_number">{quantity}</h5>
+          <Button
+            className="detail_amount_plus  detail_button"
+            onClick={incrementProduct}
+          >
+            +
+          </Button>
+        </div>
+        {stockWarning === '' ? (
+          ''
+        ) : (
+          <div className="text-primary">{stockWarning}</div>
+        )}
       </Col>
       <Col sm={2} className="d-flex justify-content-center align-items-center">
         ${totalPrice}

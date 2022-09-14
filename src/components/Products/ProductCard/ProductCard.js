@@ -34,13 +34,14 @@ function ProductCard({
   name,
   price,
   isFavorite,
+  amount,
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
   const dispatch = useDispatch()
 
   const addToProductCart = () => {
-    dispatch(addProductCart({ productId, name, imgs, price, category }))
+    dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
   }
 
   // console.log(isFavorite)
