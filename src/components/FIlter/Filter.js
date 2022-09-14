@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetStoreQuery } from '../../services/storeApi'
 import { addFilterStore } from '../../slices/filterStore-silce'
+import FilterDate from './FilterDate'
 import FilterKeyword from './FilterKeyword'
 import FilterPrice from './FilterPrice'
 import FilterStore from './FilterStore/FilterStore'
@@ -74,6 +75,7 @@ function Filter() {
     <>
       <FilterKeyword />
       <FilterStore state={state} className="d-none d-md-block" />
+      <FilterDate />
       <FilterPrice className="d-none d-md-block" />
 
       <div className="d-flex justify-content-around">
