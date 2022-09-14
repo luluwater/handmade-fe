@@ -12,7 +12,7 @@ import filterStoreReducer from '../slices/filterStore-silce'
 import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
 import sortSelectReducer from '../slices/sortSelect-slice'
-
+import authReducers from '../slices/auth-slice';
 //Service
 import { blogApiService } from '../services/blogApi'
 import { commentApiService } from '../services/commentAPI'
@@ -29,6 +29,7 @@ const reducers = combineReducers({
   /**
    * Reducer 放這裡
    */
+   authReducers,
   productReducer,
   paginationReducer,
   filterStoreReducer,
