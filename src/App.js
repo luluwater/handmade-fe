@@ -41,6 +41,8 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CourseDetailPage from './pages/CourseDetailPage'
 import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const routeConfig = [
   {
@@ -179,7 +181,9 @@ const routeConfig = [
 
 const App = () => {
   const element = useRoutes(routeConfig)
-  return <>{element}</>
+  return <>
+  <ToastContainer/>
+  {element}</>
 }
 
 export default App

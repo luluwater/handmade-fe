@@ -177,3 +177,13 @@ img {
   top: 50%;
   transform: translate(-300%, -50%);
 }
+
+.toast-addCartMessage{
+  background: $secondary!important;
+  color: $white!important;
+}
+
+.toast-alreadyInCartMessage{
+  background: $primary!important;
+  color: $white!important;
+}

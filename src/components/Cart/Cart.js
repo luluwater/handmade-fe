@@ -5,7 +5,7 @@ import ProductCartItem from './ProductCartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartToggle } from '../../slices/cart-ui-slice'
-import { getProductTotal } from '../../slices/productCart-slice'
+import { getProductTotal, clearCart } from '../../slices/productCart-slice'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -20,17 +20,18 @@ const Cart = () => {
     (state) => state.productCartReducer.totalAmount
   )
 
-
+  const clearProductCart = () => {
+    dispatch(clearCart())
+  }
 
   useEffect(() => {
     dispatch(getProductTotal())
   }, [ProductItem, dispatch])
 
-
   return (
     <div className="Cart">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Row className="justify-content-end ">
+        <Row className="justify-content-end Cart_main">
           <Col sm={1} className="pe-0">
             <Nav variant="pills" className="flex-column">
               <Nav.Item className="d-flex justify-content-end">
@@ -160,7 +161,15 @@ const Cart = () => {
                       />
                       回到商店
                     </div>
-                    <p className="fs-4 Cart_CourseTitle">商品購物車</p>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <p className="fs-4 Cart_CourseTitle">商品購物車</p>
+                      <button
+                        className="btn Cart_emptyCart me-2"
+                        onClick={clearProductCart}
+                      >
+                        清空購物車
+                      </button>
+                    </div>
 
                     {ProductItem.length === 0 ? (
                       <p className="Cart_empty fs-4 my-10">

@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
+import '../styles/style.scss'
 
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
@@ -33,12 +35,30 @@ const productCartSlice = createSlice({
           amount: newItem.amount,
           stockWarning: '',
         })
+        toast(`${action.payload.name} 成功加入購物車！`, {
+          position: 'top-center',
+          autoClose: 500,
+          hideProgressBar: true,
+          className: 'toast-addCartMessage',
+        })
       } else if (existingItem && existingItem.quantity < existingItem.amount) {
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(newItem.price)
+        toast(`${action.payload.name} 已存在於購物車！`, {
+          position: 'top-center',
+          autoClose: 500,
+          hideProgressBar: true,
+          className: 'toast-alreadyInCartMessage',
+        })
       } else if (existingItem && existingItem.quantity >= existingItem.amount) {
         existingItem.stockWarning = '已達庫存上限'
+        toast(`${action.payload.name} 已存在於購物車！`, {
+          position: 'top-center',
+          autoClose: 500,
+          hideProgressBar: true,
+          className: 'toast-alreadyInCartMessage',
+        })
       }
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
     },
@@ -95,6 +115,11 @@ const productCartSlice = createSlice({
       state.totalQuantity = quantity
       state.totalAmount = total
     },
+    // ============清空購物車==========
+    clearCart(state, action) {
+      state.productCartItem = []
+      localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
+    },
   },
 })
 
@@ -103,5 +128,6 @@ export const {
   removeProductItem,
   deleteProductItem,
   getProductTotal,
+  clearCart,
 } = productCartSlice.actions
 export default productCartSlice.reducer
