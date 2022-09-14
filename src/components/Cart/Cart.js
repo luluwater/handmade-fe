@@ -26,7 +26,7 @@ const Cart = () => {
     dispatch(getProductTotal())
   }, [ProductItem, dispatch])
 
-  console.log('ProductItem', ProductItem)
+
   return (
     <div className="Cart">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -52,11 +52,11 @@ const Cart = () => {
             </Nav>
           </Col>
 
-          <Col sm={10} className="ps-0">
+          <Col sm={9} className="ps-0">
             <Tab.Content className="Cart_tabContent">
               <Tab.Pane eventKey="first">
                 <Row>
-                  <Col xs={12} md={8}>
+                  <Col xs={12} md={9} className="Cart_mainContent">
                     <div
                       className="mt-5 Cart_backToStore fs-5"
                       onClick={toggleCart}
@@ -116,7 +116,7 @@ const Cart = () => {
                   </Col>
 
                   {/* ===========課程購物車 右側========== */}
-                  <Col xs={12} md={4} className="Cart_courseRightSide ">
+                  <Col xs={12} md={3} className="Cart_courseRightSide ">
                     <div className="mt-5 text-end Cart_backToStore_x fs-5">
                       <FontAwesomeIcon
                         icon="fa-solid fa-xmark"
@@ -149,7 +149,7 @@ const Cart = () => {
               {/* =============商品購物車============== */}
               <Tab.Pane eventKey="second">
                 <Row>
-                  <Col xs={12} md={8} className="Cart_mainContent">
+                  <Col xs={12} md={9} className="Cart_mainContent">
                     <div
                       className="mt-5 Cart_backToStore fs-5"
                       onClick={toggleCart}
@@ -231,7 +231,7 @@ const Cart = () => {
                   </Col>
 
                   {/* ========商品購物車  右側========== */}
-                  <Col xs={12} md={4} className="Cart_courseRightSide">
+                  <Col xs={12} md={3} className="Cart_courseRightSide">
                     <div className="mt-5 text-end Cart_backToStore_x fs-5">
                       <FontAwesomeIcon
                         icon="fa-solid fa-xmark"
