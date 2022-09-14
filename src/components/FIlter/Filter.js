@@ -17,8 +17,8 @@ import SortSelect from './SortSelect'
 
 function Filter() {
   const { data, error, isload } = useGetStoreQuery()
-  // console.log(data)
-  const dispatch = useDispatch()
+
+  //處理資料格式
   const getNewData = () => {
     const result = []
     let obj = {}
@@ -61,6 +61,8 @@ function Filter() {
     // console.log('getNewData', result)
     return result
   }
+
+  const dispatch = useDispatch()
   useEffect(() => {
     let newData = []
     if (Object.keys(data ?? {}).length !== 0) {
@@ -81,6 +83,7 @@ function Filter() {
       <FilterKeyword />
       <FilterStore state={state} className="d-none d-md-block" />
       <FilterPrice className="d-none d-md-block" />
+
       <div className="d-flex justify-content-around">
         <Button
           onClick={toggleShowFilterStore}
@@ -94,8 +97,9 @@ function Filter() {
         >
           更多條件
         </Button>
-        <SortSelect className="w-25 me-0"></SortSelect>
+        <SortSelect className="w-25 me-0 d-md-none"></SortSelect>
       </div>
+
       <Modal
         show={showFilterStore}
         onHide={toggleShowFilterStore}

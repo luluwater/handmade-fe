@@ -3,21 +3,22 @@ import { Row, Col, Container, FormSelect } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-// import { addProduct } from '../slices/productCard-slice'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/FIlter/Paginate'
-import Filter from '../components/FIlter/Filter'
-import SortSelect from '../components/FIlter/SortSelect'
+import Paginate from '../components/Filter/Paginate'
+import Filter from '../components/Filter/Filter'
+import SortSelect from '../components/Filter/SortSelect'
 
 function Proudcts() {
   //api get products data
-  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
   const { data, error, isLoading } = useGetProductListQuery()
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(pagination(data))
   }, [dispatch, data])
+
+  //取的篩選資料
+  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
   const productList = useSelector((state) => state.paginationReducer.data)
   const filterStore = useSelector(
     (state) => state.filterStoreReducer.filterStores
@@ -26,9 +27,8 @@ function Proudcts() {
     (state) => state.filterKeywordReducer.searchWord
   )
   const filterPrice = useSelector((state) => state.filterPriceReducer)
+  //設定篩選資料
   useEffect(() => {
-    // console.log('product:filterStore', filterStore)
-    console.log('sort', sort)
     dispatch(
       setFilter({
         store: filterStore,
@@ -39,10 +39,10 @@ function Proudcts() {
     )
   }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
   // console.log('pagination', productList)
-  console.log(
-    'pagination:filter',
-    useSelector((state) => state.paginationReducer.filter)
-  )
+  // console.log(
+  //   'pagination:filter',
+  //   useSelector((state) => state.paginationReducer.filter)
+  // )
 
   return (
     <>

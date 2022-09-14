@@ -25,6 +25,7 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     addFilterStore: (state, action) => {
+      if (state.list.length > 0) return
       state.list = action.payload
     },
     handleToggoleTitle: (state, action) => {

@@ -10,20 +10,20 @@ import {
 
 function Paginate() {
   const paginate = useSelector((state) => state.paginationReducer)
-  // console.log('paginate', paginate)
+
   const { totalPage, currentPage } = paginate
   const dispatch = useDispatch()
 
-  const renderPages = (totalPage, currentPage) => {
+  //取得總頁數陣列去map
+  const renderPages = (totalPage) => {
     const result = []
     for (let i = 1; i <= totalPage; i++) {
       result.push(i)
     }
     return result
   }
-  // console.log(totalPage)
 
-  if (totalPage === 1) return
+  if (totalPage < 2) return
   return (
     <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center mt-6">
       <li
@@ -31,15 +31,18 @@ function Paginate() {
           dispatch(prePage())
         }}
       >
-        <Link className="page_number px-2 py-1 rounded" to={'#'}>
+        <Link
+          className="page_number px-2 py-1 rounded"
+          to={`/shop?page=${currentPage - 1 < 1 ? 1 : currentPage - 1}`}
+        >
           <FontAwesomeIcon icon="fa-solid fa-caret-left" />
         </Link>
       </li>
-      {renderPages(totalPage, currentPage)?.map((pageNumber) => {
+      {renderPages(totalPage)?.map((pageNumber) => {
         return (
           <li key={pageNumber}>
             <Link
-              to={'#'}
+              to={`/shop?page=${pageNumber}`}
               className={`fw-bold px-2 py-1 rounded ${
                 currentPage === pageNumber
                   ? 'bg-secondary text-white rounded-circle'
@@ -60,7 +63,12 @@ function Paginate() {
           dispatch(nextPage())
         }}
       >
-        <Link className="page_number px-2 py-1 rounded" to={'#'}>
+        <Link
+          className="page_number px-2 py-1 rounded"
+          to={`/shop?page=${
+            currentPage + 1 > totalPage ? totalPage : currentPage + 1
+          }`}
+        >
           <FontAwesomeIcon icon="fa-solid fa-caret-right" />
         </Link>
       </li>

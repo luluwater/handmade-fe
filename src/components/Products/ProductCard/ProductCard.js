@@ -15,13 +15,13 @@ import {
 import cart from '../../../assets/cart.svg'
 import { Link } from 'react-router-dom'
 
+//取得圖片路徑
 function getImgsRouter(imgsName, category, productId) {
   const baseRouter = 'assets/product/product'
   const router = `${baseRouter}_${category}_${productId}/`
   const routers = imgsName.map((v) => {
     return router + v
   })
-  // console.log(routers)
   return routers
 }
 
@@ -36,7 +36,6 @@ function ProductCard({
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
-  // console.log(isFavorite)
 
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
@@ -86,11 +85,6 @@ function ProductCard({
           </button>
           <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
             <img src={cart} alt="" className="cart" />
-            {/* <FontAwesomeIcon
-              icon="fa-solid fa-cart-shopping"
-              inverse
-              size="lg"
-            /> */}
           </button>
         </Col>
       </Row>
