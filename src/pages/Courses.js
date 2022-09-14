@@ -12,7 +12,7 @@ import { useGetCourseListQuery } from '../services/courseApi'
 function Courses() {
   //api get products data
   const { data, error, isLoading } = useGetCourseListQuery()
-  console.log('data', data)
+  // console.log('data', data)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(pagination(data))

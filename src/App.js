@@ -70,7 +70,7 @@ const routeConfig = [
         element: <MapSearch />,
       },
       {
-        path:'/course',
+        path: '/course',
         element: <Courses />,
       },
       {

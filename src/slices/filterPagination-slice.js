@@ -12,7 +12,7 @@ function sortData(a, b, sort) {
 function doPagination(state) {
   state.data = state.rawData
   if (state.filter.searchWord !== '') {
-    state.data = state.data.filter((product) => {
+    state.data = state.data?.filter((product) => {
       // console.log('key', current(product))
       return (
         product.name.includes(state.filter.searchWord) ||
@@ -21,10 +21,10 @@ function doPagination(state) {
     })
   }
   if (state.filter.store.length > 0) {
-    state.data = state.data.filter((product) =>
+    state.data = state.data?.filter((product) =>
       state.filter.store.includes(product.store_name)
     )
-    console.log(current(state))
+    // console.log(current(state))
   }
   state.data = state.data
     ?.filter(
