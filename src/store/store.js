@@ -10,6 +10,7 @@ import productReducer from '../slices/productCard-slice'
 import paginationReducer from '../slices/filterPagination-slice'
 import filterStoreReducer from '../slices/filterStore-silce'
 import cartUiReducer from '../slices/cart-ui-slice'
+import productCartReducer from '../slices/productCart-slice'
 
 //Service
 import { blogApiService } from '../services/blogApi'
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   blogReducer,
   commentReducer,
   cartUiReducer,
+  productCartReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,

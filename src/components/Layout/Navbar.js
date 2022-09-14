@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { cartToggle } from '../../slices/cart-ui-slice'
 
 const Navbar = () => {
+  const totalQuantity = useSelector(
+    (state) => state.productCartReducer.totalQuantity
+  )
   const dispatch = useDispatch()
   const toggleCart = () => {
     dispatch(cartToggle())

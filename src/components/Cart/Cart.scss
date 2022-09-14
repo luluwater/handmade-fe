@@ -22,6 +22,12 @@
     margin: 0;
   }
 }
+.CartItem_trash{
+  cursor: pointer;
+  &:hover{
+    color: $primary;
+  }
+}
 
 
 // Cart
@@ -54,92 +60,101 @@
   .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: $gray-darker;
     background-color: $skin-brighter;
-}
-&_courseRightSide{
-  background: $skin-bright;
-}
+  }
+  &_courseRightSide{
+    background: $skin-bright;
+  }
 
-&_backToStore{
-  width: 20%;
-  color: $gray-darker;
-  cursor: pointer;
-}
-&_backToStore_x{
-  // width: 20%;
-  color: $gray-darker;
-  svg{
+  &_mainContent{
+    height: 100vh;
+  }
+
+  &_backToStore{
+    width: 20%;
+    color: $gray-darker;
     cursor: pointer;
   }
-}
-&_arrow{
-  margin-left: 2rem;
-  margin-right: .5rem;
-}
+  &_backToStore_x{
+    // width: 20%;
+    color: $gray-darker;
+    svg{
+      cursor: pointer;
+    }
+  }
+  &_arrow{
+    margin-left: 2rem;
+    margin-right: .5rem;
+  }
 
-&_CourseTitle{
-  margin: 1.5rem 0 2rem 2rem;
-  font-weight: 900;
-}
-&_DetailTitle{
-  margin: 1rem 2rem 1rem 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid $gray-darker;
+  &_empty{
+    text-align: center;
+    
+  }
 
-}
-&_couponBox{
-  margin: 2rem 0 5rem 2rem;
-  // margin-bottom: ;
-  .Cart_couponSelect{
+  &_CourseTitle{
+    margin: 1.5rem 0 2rem 2rem;
+    font-weight: 900;
+  }
+  &_DetailTitle{
+    margin: 1rem 2rem 1rem 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $gray-darker;
+
+  }
+  &_couponBox{
+    margin: 2rem 0 5rem 2rem;
+    // margin-bottom: ;
+    .Cart_couponSelect{
+      padding: 0;
+      border: 1px solid $gray-darker;
+      option{
+        color: $gray-darker;
+      }
+    }
+  }
+  &_couponInputBox{
     padding: 0;
-    border: 1px solid $gray-darker;
-    option{
-      color: $gray-darker;
-    }
   }
-}
-&_couponInputBox{
-  padding: 0;
-}
-&_couponInput{
-  .form-control{
-    border: 1px solid $gray-darker;
-    border-right: 0;
-    &::-webkit-input-placeholder{
-      font-size: 1rem;
+  &_couponInput{
+    .form-control{
+      border: 1px solid $gray-darker;
+      border-right: 0;
+      &::-webkit-input-placeholder{
+        font-size: 1rem;
+      }
+
+
     }
-
-
+    
   }
-  
-}
-&_or{
-  width: 8%;
-}
+  &_or{
+    width: 8%;
+  }
 
-&_courseRightSide{
-  padding-left: 2rem;
-  padding-right: 2rem;
-  position: relative;
-}
-&_TotalTitle{
-  margin: 1.5rem 0 2rem 0;
-  font-weight: 900;
-}
-&_TotalPrice{
-  width: 85%;
-  position: absolute;
-  top: 30rem;
-}
-&_nextBTN{
-  color: $white;
-  width: 85%;
-  height: 9%;
-  position: absolute;
-  top: 30.8rem;
-  letter-spacing: .5rem;
-  &:hover{
+  &_courseRightSide{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: relative;
+  }
+  &_TotalTitle{
+    margin: 1.5rem 0 2rem 0;
+    font-weight: 900;
+  }
+  &_TotalPrice{
+    width: 85%;
+    position: absolute;
+    top: 30rem;
+  }
+  &_nextBTN{
     color: $white;
+    width: 85%;
+    height: 9%;
+    position: absolute;
+    top: 30.8rem;
+    letter-spacing: .5rem;
+    &:hover{
+      color: $white;
+    }
   }
-}
 
-}
+  }

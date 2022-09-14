@@ -29,7 +29,7 @@ const CourseCartItem = () => {
         $1200
       </Col>
       <Col sm={1} className="d-flex justify-content-center align-items-center">
-        <FontAwesomeIcon icon="fa-solid fa-trash" />
+        <FontAwesomeIcon icon="fa-solid fa-trash" className='CartItem_trash'/>
       </Col>
     </Row>
   )
