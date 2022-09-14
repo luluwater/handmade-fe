@@ -16,8 +16,8 @@ import cart from '../../../assets/cart.svg'
 import { Link } from 'react-router-dom'
 
 //取得圖片路徑
-function getImgsRouter(imgsName, category, productId) {
-  const baseRouter = 'assets/product/product'
+function getImgsRouter(imgsName, category, productId, type) {
+  const baseRouter = `assets/${type}/${type}`
   const router = `${baseRouter}_${category}_${productId}/`
   const routers = imgsName.map((v) => {
     return router + v
@@ -26,6 +26,7 @@ function getImgsRouter(imgsName, category, productId) {
 }
 
 function ProductCard({
+  type,
   productId,
   imgs,
   category,
@@ -48,10 +49,10 @@ function ProductCard({
         loop
         className="card_swiper rounded shadow"
       >
-        {getImgsRouter(imgs, category, productId).map((v, i) => {
+        {getImgsRouter(imgs, category, productId, type).map((v, i) => {
           return (
             <SwiperSlide key={i}>
-              <img src={require(`../../../${v}`)} alt="" />
+              <img src={require(`../../../${v}`)} alt={name} />
             </SwiperSlide>
           )
         })}

@@ -8,7 +8,7 @@ import {
   prePage,
 } from '../../slices/filterPagination-slice'
 
-function Paginate() {
+function Paginate({ baseUrl }) {
   const paginate = useSelector((state) => state.paginationReducer)
 
   const { totalPage, currentPage } = paginate
@@ -33,7 +33,7 @@ function Paginate() {
       >
         <Link
           className="page_number px-2 py-1 rounded"
-          to={`/shop?page=${currentPage - 1 < 1 ? 1 : currentPage - 1}`}
+          to={`/${baseUrl}?page=${currentPage - 1 < 1 ? 1 : currentPage - 1}`}
         >
           <FontAwesomeIcon icon="fa-solid fa-caret-left" />
         </Link>
@@ -42,7 +42,7 @@ function Paginate() {
         return (
           <li key={pageNumber}>
             <Link
-              to={`/shop?page=${pageNumber}`}
+              to={`/${baseUrl}?page=${pageNumber}`}
               className={`fw-bold px-2 py-1 rounded ${
                 currentPage === pageNumber
                   ? 'bg-secondary text-white rounded-circle'
@@ -65,7 +65,7 @@ function Paginate() {
       >
         <Link
           className="page_number px-2 py-1 rounded"
-          to={`/shop?page=${
+          to={`/${baseUrl}?page=${
             currentPage + 1 > totalPage ? totalPage : currentPage + 1
           }`}
         >

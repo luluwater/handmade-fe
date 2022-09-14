@@ -35,11 +35,9 @@ function Filter() {
         },
       ]
     }
-    // console.log('obj', !!obj)
     for (let item of data) {
       if (Object.keys(obj).length === 0) {
         init(obj, item)
-        console.log('first')
         continue
       }
       if (obj.category === item.category_name) {
@@ -50,15 +48,10 @@ function Filter() {
         })
       } else {
         result.push({ ...obj })
-        console.log('result', result)
         obj = {}
         init(obj, item)
       }
-      // result.push({ ...obj })
-      // console.log('obj', obj)
-      // console.log('obj', Object.keys(obj))
     }
-    // console.log('getNewData', result)
     return result
   }
 
@@ -68,7 +61,6 @@ function Filter() {
     if (Object.keys(data ?? {}).length !== 0) {
       newData = getNewData()
     }
-    console.log('add data')
     dispatch(addFilterStore(newData))
   }, [dispatch, data])
 

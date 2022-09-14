@@ -14,14 +14,7 @@ import {
 
 function FilterStore({ state, className = '' }) {
   const dispatch = useDispatch()
-  // console.log('1', data)
-
-  // console.log(
-  //   'filterStore',
-  //   useSelector((state) => state.filterStoreReducer.filterStores)
-  // )
   const lists = state
-  // console.log('lists', lists)
   return (
     <>
       <div className={`filter ${className}`}>

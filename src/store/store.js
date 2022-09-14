@@ -22,6 +22,7 @@ import { productApiService } from '../services/productApi'
 import { categoryApiService } from '../services/categoryApi'
 // import { userApiService } from '../services/userApi'
 import { userApiService } from '../services/userApi'
+import { courseApiService } from '../services/courseApi'
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
  */
@@ -46,6 +47,7 @@ const reducers = combineReducers({
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
+  [courseApiService.reducerPath]: courseApiService.reducer,
 })
 
 const store = configureStore({
@@ -59,6 +61,7 @@ const store = configureStore({
       .concat(userApiService.middleware)
       .concat(commentApiService.middleware)
       .concat(replyApiService.middleware)
+      .concat(courseApiService.middleware)
   },
 })
 
