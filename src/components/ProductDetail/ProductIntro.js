@@ -1,8 +1,9 @@
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetProductCommentQuery } from '../../services/productApi'
 import { useParams } from 'react-router-dom'
+import Counter from './Counter'
 
 import './ProductDetail.scss'
 
@@ -49,18 +50,7 @@ const ProductIntro = ({ id, store, name, price, intro }) => {
             <h2 className="detail_score_number">{average.toFixed(1)}</h2>
           </Col>
         </Col>
-
-        <Col className="d-flex detail_amount py-4">
-          <div className="detail_amount_title">數量</div>
-          <Button className="detail_amount_minus  detail_button">-</Button>
-          <h5 className="detail_amount_number">1</h5>
-          <Button className="detail_amount_plus  detail_button">+</Button>
-          <Button className="detail_button detail_cart">加入購物車</Button>
-          <Button className="detail_button detail_heart">
-            <FontAwesomeIcon icon={'far fa-heart'} />
-          </Button>
-        </Col>
-
+        <Counter />
         <Col className="detail_intro">
           <div style={{ whiteSpace: 'pre-wrap' }}>{intro}</div>
         </Col>
