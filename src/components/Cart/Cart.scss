@@ -173,5 +173,14 @@
       color: $white;
     }
   }
+  &_userLikeBox{
+    margin: 1.5rem 0 2rem 2rem;
+  }
+  &_userLike{
+    height: 100%;
+    width: 100%;
+    background: $skin-bright;
+    padding: 1.5rem 0;
+  }
 
   }

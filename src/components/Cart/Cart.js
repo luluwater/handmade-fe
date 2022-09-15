@@ -8,6 +8,9 @@ import { cartToggle } from '../../slices/cart-ui-slice'
 import { getProductTotal, clearCart } from '../../slices/productCart-slice'
 import { getCourseTotal, clearCourseCart } from '../../slices/courseCart-slice'
 
+import UserLikeRecommend from './CartRecommend/UserLikeRecomment'
+import { v4 as uuidv4 } from 'uuid'
+
 const Cart = () => {
   const dispatch = useDispatch()
   const toggleCart = () => {
@@ -34,7 +37,6 @@ const Cart = () => {
   const ProductCartTotal = useSelector(
     (state) => state.productCartReducer.totalAmount
   )
-
 
   const clearProductCart = () => {
     dispatch(clearCart())
@@ -116,7 +118,7 @@ const Cart = () => {
                         <div>
                           {CourseItem?.map((item) => (
                             <>
-                              <CourseCartItem item={item} key={item.courseId} />
+                              <CourseCartItem item={item} key={uuidv4()} />
                             </>
                           ))}
                         </div>
@@ -156,8 +158,13 @@ const Cart = () => {
                       </>
                     )}
 
-                    <Row className="">
+                    <Row className="Cart_userLikeBox">
                       <p className="fs-5 text-center">您的收藏清單</p>
+                      <Row className="mb-5">
+                        <Col className="d-flex justify-content-center Cart_userLike">
+                          <UserLikeRecommend />
+                        </Col>
+                      </Row>
                     </Row>
                   </Col>
 
@@ -231,10 +238,7 @@ const Cart = () => {
                         <div>
                           {ProductItem?.map((item) => (
                             <>
-                              <ProductCartItem
-                                item={item}
-                                key={item.productId}
-                              />
+                              <ProductCartItem item={item} key={uuidv4()} />
                             </>
                           ))}
                         </div>
