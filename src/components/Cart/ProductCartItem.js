@@ -40,7 +40,7 @@ const ProductCartItem = ({ item }) => {
         <img
           className="cart_img"
           src={require(`../../assets/product/product_${category}_${productId}/${imgs}`)}
-          alt=""
+          alt={name}
         />
         <p className="ps-3">{name}</p>
       </Col>

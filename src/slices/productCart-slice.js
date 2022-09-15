@@ -22,7 +22,6 @@ const productCartSlice = createSlice({
       const existingItem = state.productCartItem.find(
         (Item) => Item.productId === newItem.productId
       )
-
       if (!existingItem) {
         state.productCartItem.push({
           productId: newItem.productId,
@@ -31,7 +30,8 @@ const productCartSlice = createSlice({
           price: newItem.price,
           category: newItem.category,
           quantity: newItem.quantity ? newItem.quantity : 1,
-          totalPrice: newItem.price,
+      // TODO:修改如果有傳入quantity的話,total要先計算
+          totalPrice: newItem.price, 
           amount: newItem.amount,
           stockWarning: '',
         })

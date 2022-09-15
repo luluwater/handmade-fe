@@ -12,6 +12,7 @@ import filterStoreReducer from '../slices/filterStore-silce'
 import counterReducer from '../slices/counter-slice'
 import cartUiReducer from '../slices/cart-ui-slice'
 import productCartReducer from '../slices/productCart-slice'
+import courseCartReducer from '../slices/courseCart-slice'
 
 //Service
 import { blogApiService } from '../services/blogApi'
@@ -21,7 +22,7 @@ import { storeApiService } from '../services/storeApi'
 import { productApiService } from '../services/productApi'
 import { courseApiService } from '../services/courseApi'
 import { categoryApiService } from '../services/categoryApi'
-// import { userApiService } from '../services/userApi'
+import { userApiService } from '../services/userApi'
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
  */
@@ -39,6 +40,7 @@ const reducers = combineReducers({
   counterReducer,
   cartUiReducer,
   productCartReducer,
+  courseCartReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,
@@ -46,6 +48,7 @@ const reducers = combineReducers({
   [courseApiService.reducerPath]: courseApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
+  [userApiService.reducerPath]: categoryApiService.reducer,
 })
 
 const store = configureStore({
@@ -59,6 +62,7 @@ const store = configureStore({
       .concat(categoryApiService.middleware)
       .concat(commentApiService.middleware)
       .concat(replyApiService.middleware)
+      .concat(userApiService.middleware)
   },
 })
 
