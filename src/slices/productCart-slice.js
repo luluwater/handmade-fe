@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
 
+
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
     ? JSON.parse(localStorage.getItem('ProductCart'))
@@ -35,7 +36,7 @@ const productCartSlice = createSlice({
           amount: newItem.amount,
           stockWarning: '',
         })
-        toast(`${action.payload.name} 成功加入購物車！`, {
+        toast.success(`${action.payload.name} 成功加入購物車！`, {
           position: 'top-center',
           autoClose: 500,
           hideProgressBar: true,
@@ -45,7 +46,7 @@ const productCartSlice = createSlice({
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(newItem.price)
-        toast(`${action.payload.name} 已存在於購物車！`, {
+        toast.info(`${action.payload.name} 已存在於購物車！`, {
           position: 'top-center',
           autoClose: 500,
           hideProgressBar: true,
@@ -53,7 +54,7 @@ const productCartSlice = createSlice({
         })
       } else if (existingItem && existingItem.quantity >= existingItem.amount) {
         existingItem.stockWarning = '已達庫存上限'
-        toast(`${action.payload.name} 已存在於購物車！`, {
+        toast.info(`${action.payload.name} 已存在於購物車！`, {
           position: 'top-center',
           autoClose: 500,
           hideProgressBar: true,
