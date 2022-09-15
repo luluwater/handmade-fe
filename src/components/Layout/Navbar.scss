@@ -60,6 +60,7 @@
 
 .navbar_awesomeIcon{
   color:$secondary;
+  cursor: pointer;
   &:hover{
     color: $primary;
   }

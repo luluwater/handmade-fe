@@ -1,8 +1,41 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
+// import { act } from 'react-dom/test-utils'
+// import { useSelector } from 'react-redux'
+// import Proudcts from '../pages/Products'
+
+function sortData(a, b, sort) {
+  if (sort === 'heighPrice') return b.price - a.price
+  if (sort === 'lowerPrice') return a.price - b.price
+  return b.sold_amount - a.sold_amount
+}
 
 function doPagination(state) {
-  state.data = state.rawData?.slice(
+  state.data = state.rawData
+  if (state.filter.searchWord !== '') {
+    state.data = state.data.filter((product) => {
+      // console.log('key', current(product))
+      return (
+        product.name.includes(state.filter.searchWord) ||
+        product.store_name.includes(state.filter.searchWord)
+      )
+    })
+  }
+  if (state.filter.store.length > 0) {
+    state.data = state.data.filter((product) =>
+      state.filter.store.includes(product.store_name)
+    )
+    // console.log(current(state))
+  }
+  state.data = state.data
+    ?.filter(
+      (product) =>
+        product.price > state.filter.price.min &&
+        product.price < state.filter.price.max
+    )
+    .sort((a, b) => sortData(a, b, state.filter.sort))
+  // console.log(state.filter.sort)
+  state.totalPage = Math.ceil(state.data?.length / state.itemCount)
+  state.data = state.data?.slice(
     (state.currentPage - 1) * state.itemCount,
     state.itemCount * state.currentPage
   )
@@ -16,7 +49,13 @@ function checkPage(page, state) {
 const initialState = {
   rawData: [],
   data: [],
-  filter: [],
+  filter: {
+    searchWord: '',
+    store: [],
+    price: { min: 0, max: 10000 },
+    date: [],
+    sort: 'hot',
+  },
   currentPage: 1,
   itemCount: 20,
   totalPage: 1,
@@ -51,9 +90,22 @@ export const paginationSlice = createSlice({
       state.currentPage = page
       doPagination(state)
     },
+    setFilter: (state, action) => {
+      // state.filter.store = action.payload.store
+      // state.filter.searchWord = action.payload.searchWord
+      state.filter = { ...action.payload }
+      state.currentPage = 1
+      doPagination(state)
+    },
   },
 })
 
-export const { pagination, setShowItemCount, changePage, nextPage, prePage } =
-  paginationSlice.actions
+export const {
+  pagination,
+  setShowItemCount,
+  changePage,
+  nextPage,
+  prePage,
+  setFilter,
+} = paginationSlice.actions
 export default paginationSlice.reducer

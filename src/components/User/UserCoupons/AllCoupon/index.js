@@ -3,6 +3,7 @@ import React from 'react'
 import '../../User.scss'
 import { Row, Col } from 'react-bootstrap'
 import { useGetUserCouponsQuery } from '../../../../services/userApi'
+
 // import { useState } from 'react'
 import moment from 'moment'
 
@@ -30,7 +31,6 @@ const AllCoupon = () => {
             const used = item.state === 0
             return (
               <Col xs={6} key={item.id} className="p-0">
-                {/* <UserPagination /> */}
                 <Row className="user_coupon_card m-1">
                   <Col className="user_coupon_img d-flex align-items-center">
                     {coupon ? (

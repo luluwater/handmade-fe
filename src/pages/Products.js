@@ -75,6 +75,7 @@ function Proudcts() {
                       name={v.name}
                       price={v.price}
                       isFavorite={v.isFavorite}
+                      amount={v.amount}
                     />
                   )
                 })}

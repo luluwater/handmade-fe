@@ -3,7 +3,11 @@ import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
+
+
 import CourseCart from './pages/CourseCart'
+import ProductCart from './pages/ProductCart'
+import CheckoutPage from './pages/CheckoutPage'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
@@ -38,6 +42,8 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CourseDetailPage from './pages/CourseDetailPage'
 import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const routeConfig = [
   {
@@ -155,11 +161,11 @@ const routeConfig = [
         element: <Products />,
       },
       {
-        path: 'ProductDetailPage',
+        path: 'product/detail/:productId',
         element: <ProductDetailPage />,
       },
       {
-        path: 'CourseDetailPage',
+        path: 'course/detail/:courseId',
         element: <CourseDetailPage />,
       },
     ],
@@ -168,11 +174,21 @@ const routeConfig = [
     path: '/course_cart',
     element: <CourseCart />,
   },
+  {
+    path: '/product_cart',
+    element: <ProductCart />,
+  },
+  {
+    path: '/checkout',
+    element: <CheckoutPage />,
+  },
 ]
 
 const App = () => {
   const element = useRoutes(routeConfig)
-  return <>{element}</>
+  return <>
+  <ToastContainer/>
+  {element}</>
 }
 
 export default App

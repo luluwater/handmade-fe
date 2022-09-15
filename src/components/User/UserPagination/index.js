@@ -6,44 +6,47 @@ import {
   changePage,
   nextPage,
   prePage,
-} from '../../../slices/user-filterPagination-slice'
+} from '../../../slices/filterPagination-slice'
 
 function UserPagination() {
   const paginate = useSelector((state) => state.paginationReducer)
-  // console.log('paginate', paginate)
+
   const { totalPage, currentPage } = paginate
   const dispatch = useDispatch()
 
-  const renderPages = (totalPage, currentPage) => {
+  //取得總頁數陣列去map
+  const renderPages = (totalPage) => {
     const result = []
     for (let i = 1; i <= totalPage; i++) {
       result.push(i)
     }
     return result
   }
-  // console.log(totalPage)
 
-  if (totalPage === 1) return
+  if (totalPage < 2) return
   return (
-    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center mt-6">
+    <ul className="d-flex justify-content-center gap-2 list-unstyled text-center mt-6">
       <li
         onClick={() => {
           dispatch(prePage())
         }}
       >
-        <Link className="user_page_number px-2 py-1 rounded" to={'#'}>
+        <Link
+          className="user_page_number px-2 py-1 rounded"
+          to={`/user/coupon?page=${currentPage - 1 < 1 ? 1 : currentPage - 1}`}
+        >
           <FontAwesomeIcon icon="fa-solid fa-caret-left" />
         </Link>
       </li>
-      {renderPages(totalPage, currentPage)?.map((pageNumber) => {
+      {renderPages(totalPage)?.map((pageNumber) => {
         return (
           <li key={pageNumber}>
             <Link
-              to={'#'}
+              to={`/user/coupon?page=${pageNumber}`}
               className={`fw-bold px-2 py-1 rounded ${
                 currentPage === pageNumber
                   ? 'bg-secondary text-white rounded-circle'
-                  : 'user_page_number'
+                  : 'page_number'
               }`}
               onClick={() => {
                 dispatch(changePage(pageNumber))
@@ -60,7 +63,12 @@ function UserPagination() {
           dispatch(nextPage())
         }}
       >
-        <Link className="user_page_number px-2 py-1 rounded" to={'#'}>
+        <Link
+          className="user_page_number px-2 py-1 rounded"
+          to={`/user/coupon?page=${
+            currentPage + 1 > totalPage ? totalPage : currentPage + 1
+          }`}
+        >
           <FontAwesomeIcon icon="fa-solid fa-caret-right" />
         </Link>
       </li>
