@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
-import axios from 'axios'
-import { API_URL } from '../../../utils/config'
+// import axios from 'axios'
+// import { API_URL } from '../../../utils/config'
 import { Link } from 'react-router-dom'
 import './Login.css'
-import { useUserRights } from '../../../useConText/UserRights'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
+import { login } from '../../../slices/auth-slice'
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
   const [account, setAccount] = useState('')
@@ -14,6 +14,18 @@ const Login = () => {
   // password eye
   const [eye, setEye] = useState(false)
 
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e) => {
+    dispatch(
+      login({
+        account: account,
+        password: password,
+        // loggedIn: true,
+      })
+    )
+    e.preventDefault()
+  }
   // 往上一層要加上 "/""，如果是子層則不用加
   return (
     <>
@@ -24,7 +36,11 @@ const Login = () => {
             src={require('../../../assets/login/login_pic.png')}
             alt=""
           />
-          <form action="" className="LoginForm position-relative ">
+          <form
+            action=""
+            className="LoginForm position-relative "
+            onSubmit={(e) => handleSubmit(e)}
+          >
             <h1 className="LoginTitle text-center">會員登入</h1>
             <input
               className="AccountInput"
@@ -43,7 +59,6 @@ const Login = () => {
               placeholder="會員密碼"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-
             />
             <ShowPassword eye={eye} setEye={setEye} />
 
