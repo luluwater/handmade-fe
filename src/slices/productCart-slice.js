@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const initialState = {
@@ -19,6 +20,7 @@ const productCartSlice = createSlice({
     // ============新增項目==========
     addProductCart(state, action) {
       const newItem = action.payload
+      const fw = '<FontAwesomeIcon icon="fa-solid fa-circle-check" />'
 
       const existingItem = state.productCartItem.find(
         (Item) => Item.productId === newItem.productId

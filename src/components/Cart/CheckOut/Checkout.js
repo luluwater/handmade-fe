@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 
-
 const Checkout = () => {
   return (
     <>
@@ -46,21 +45,20 @@ const Checkout = () => {
             <p className="fs-4 CheckoutPage_title mb-3">購買細項</p>
             <div className="d-flex justify-content-between fs-5">
               <p>訂單編號</p>
-              <p className='pe-4'>123456</p>
+              <p className="pe-4">123456</p>
             </div>
             <div className="d-flex justify-content-between fs-5">
               <p>訂購日期</p>
-              <p className='pe-4'>2022.02.02</p>
+              <p className="pe-4">2022.02.02</p>
             </div>
             <div className="d-flex justify-content-between fs-5">
               <p>付款方式</p>
-              <p className='pe-4'>信用卡</p>
+              <p className="pe-4">信用卡</p>
             </div>
 
+            <div className="CheckoutPage_detailHr me-4 my-4"></div>
 
-            <div className='CheckoutPage_detailHr me-4 my-4'></div>
-
-            <div className='fs-5 text-center'>購買項目</div>
+            <div className="fs-5 text-center">購買項目</div>
 
             <div className="mt-4 d-flex justify-content-between">
               <p className="fs-5">
@@ -70,7 +68,6 @@ const Checkout = () => {
               <p className="fs-5 text-center ">x1</p>
               <p className="fs-5 text-center pe-4">$1200</p>
             </div>
-
 
             <div className="CheckoutPage_coupon d-flex justify-content-between">
               <p className="fs-5">折扣券折扣：</p>

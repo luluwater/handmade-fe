@@ -8,61 +8,44 @@ import {
   prePage,
 } from '../../slices/filterPagination-slice'
 
-// function renderages(totalPage, currentPage) {
-//   const result = []
-//   for (let i = 1; i <= totalPage; i++) {
-//     result.push(
-//       <li>
-//         <Link
-//           to={'#'}
-//           className={`fw-bold px-2 py-1 rounded ${
-//             currentPage === i ? 'bg-primary text-white' : 'page_number'
-//           }`}
-
-//         >
-//           {i}
-//         </Link>
-//       </li>
-//     )
-//   }
-//   return result
-// }
-
-function Paginate() {
+function Paginate({ baseUrl }) {
   const paginate = useSelector((state) => state.paginationReducer)
-  // console.log('paginate', paginate)
+
   const { totalPage, currentPage } = paginate
   const dispatch = useDispatch()
 
-  const renderPages = (totalPage, currentPage) => {
+  //取得總頁數陣列去map
+  const renderPages = (totalPage) => {
     const result = []
     for (let i = 1; i <= totalPage; i++) {
       result.push(i)
     }
     return result
   }
-  // console.log(totalPage)
 
-  if (totalPage === 1) return
+  if (totalPage < 2) return
   return (
-    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center">
+    <ul className=" d-flex justify-content-center gap-2 list-unstyled text-center mt-6">
       <li
         onClick={() => {
           dispatch(prePage())
         }}
       >
-        <Link className="page_number px-2 py-1 rounded" to={'#'}>
+        <Link
+          className="page_number px-2 py-1 rounded"
+          to={`/${baseUrl}?page=${currentPage - 1 < 1 ? 1 : currentPage - 1}`}
+        >
           <FontAwesomeIcon icon="fa-solid fa-caret-left" />
         </Link>
       </li>
-      {renderPages(totalPage, currentPage)?.map((pageNumber) => {
+      {renderPages(totalPage)?.map((pageNumber) => {
         return (
           <li key={pageNumber}>
             <Link
-              to={'#'}
+              to={`/${baseUrl}?page=${pageNumber}`}
               className={`fw-bold px-2 py-1 rounded ${
                 currentPage === pageNumber
-                  ? 'bg-primary text-white'
+                  ? 'bg-secondary text-white rounded-circle'
                   : 'page_number'
               }`}
               onClick={() => {
@@ -80,7 +63,12 @@ function Paginate() {
           dispatch(nextPage())
         }}
       >
-        <Link className="page_number px-2 py-1 rounded" to={'#'}>
+        <Link
+          className="page_number px-2 py-1 rounded"
+          to={`/${baseUrl}?page=${
+            currentPage + 1 > totalPage ? totalPage : currentPage + 1
+          }`}
+        >
           <FontAwesomeIcon icon="fa-solid fa-caret-right" />
         </Link>
       </li>

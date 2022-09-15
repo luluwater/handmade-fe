@@ -1,6 +1,6 @@
 import '../User.scss'
 import React from 'react'
-import { Row, Col, Form, Table, Container } from 'react-bootstrap'
+import { Col, Form, Table } from 'react-bootstrap'
 import UserPassword from '../UserPassword'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,17 +8,17 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 
-const UserAccount = ({ account, name, email, phone, birthday, address }) => {
-  console.log(
-    'account, name, email, phone, birthday, address',
-    account,
-    name,
-    email,
-    phone,
-    birthday,
-    address
-  )
-  const transformBirthday = moment(birthday).format('YYYY/MM/DD')
+const UserAccount = ({ account, name, phone, birthday, address }) => {
+  // console.log(
+  //   'account, name, email, phone, birthday, address',
+  //   account,
+  //   name,
+  //   email,
+  //   phone,
+  //   birthday,
+  //   address
+  // )
+  const transformBirthday = moment(birthday).format('YYYY.MM.DD')
   const [showUserPassword, setShowUserPassword] = useState(false)
   const [showUserAccount, setShowUserAccount] = useState(true)
   const [startDate, setStartDate] = useState(new Date())
@@ -26,7 +26,7 @@ const UserAccount = ({ account, name, email, phone, birthday, address }) => {
   return (
     <>
       <Col>
-        <div className="user_account_from mt-8">
+        <div className="user_account_from m-8">
           <h5 className="user_account_title fw-bold">帳號設定</h5>
           <Form.Group className="my-3">
             <Table className="d-flex user_account_table">
@@ -120,7 +120,7 @@ const UserAccount = ({ account, name, email, phone, birthday, address }) => {
                     <td>
                       <DatePicker
                         className="user_account_inputBirth"
-                        dateFormat="yyyy/MM/dd"
+                        dateFormat="yyyy.MM.dd"
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                       />

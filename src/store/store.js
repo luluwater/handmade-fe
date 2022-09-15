@@ -13,6 +13,10 @@ import counterReducer from '../slices/counter-slice'
 import cartUiReducer from '../slices/cart-ui-slice'
 import productCartReducer from '../slices/productCart-slice'
 import courseCartReducer from '../slices/courseCart-slice'
+import filterKeywordReducer from '../slices/filterKeyword-slice'
+import filterPriceReducer from '../slices/filterPrice-slice'
+import sortSelectReducer from '../slices/sortSelect-slice'
+import filterDateReducer from '../slices/filterDate-silce'
 
 //Service
 import { blogApiService } from '../services/blogApi'
@@ -33,6 +37,9 @@ const reducers = combineReducers({
   productReducer,
   paginationReducer,
   filterStoreReducer,
+  filterKeywordReducer,
+  filterPriceReducer,
+  filterDateReducer,
   storeReducer,
   replyReducer,
   blogReducer,
@@ -41,6 +48,7 @@ const reducers = combineReducers({
   cartUiReducer,
   productCartReducer,
   courseCartReducer,
+  sortSelectReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,
@@ -49,6 +57,8 @@ const reducers = combineReducers({
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: categoryApiService.reducer,
+  [userApiService.reducerPath]: userApiService.reducer,
+  [courseApiService.reducerPath]: courseApiService.reducer,
 })
 
 const store = configureStore({
@@ -63,6 +73,7 @@ const store = configureStore({
       .concat(commentApiService.middleware)
       .concat(replyApiService.middleware)
       .concat(userApiService.middleware)
+      .concat(courseApiService.middleware)
   },
 })
 

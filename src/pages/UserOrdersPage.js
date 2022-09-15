@@ -3,17 +3,13 @@ import UserProductsOrders from '../components/User/UserProductsOrders'
 import UserCourseOrders from '../components/User/UserCourseOrders'
 import { Row, Col, Form } from 'react-bootstrap'
 import { useState } from 'react'
-import { useGetUserProductOrdersQuery } from '../services/userApi'
-// import UserPagination from '../components/User/UserPagination'
 
 const UserOrdersPage = () => {
-  const { data, error, isLoading } = useGetUserProductOrdersQuery()
-  console.log('dataProductOrders', data)
   const [showUserProductOrders, setShowUserProductOrders] = useState(false)
   return (
     <>
       <Col>
-        <div className="user_orders_form mt-8">
+        <div className="user_orders_form m-8">
           <Form.Group>
             <Row>
               <div className="my-5 ms-7 d-flex justify-content-start">

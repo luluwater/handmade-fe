@@ -2,9 +2,9 @@ import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap'
 // import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import UserLikesCourses from '../components/User/UserLikesCourses'
-import UserLikesProducts from '../components/User/UserLikesProducts'
-import UserLikesBlogs from '../components/User/UserLikesBlogs'
+import UserLikesCourses from '../components/User/UserLikes/UserLikesCourses'
+import UserLikesProducts from '../components/User/UserLikes/UserLikesProducts'
+import UserLikesBlogs from '../components/User/UserLikes/UserLikesBlogs'
 
 export const UserLikesPage = () => {
   const [showUserLikesCourses, setUserLikesCourses] = useState(true)
@@ -13,7 +13,7 @@ export const UserLikesPage = () => {
   return (
     <>
       <Col>
-        <div className="user_orders_form mt-8">
+        <div className="user_likes_form m-8">
           <Form.Group>
             <Row>
               <div className="my-5 ms-7 d-flex justify-content-start">

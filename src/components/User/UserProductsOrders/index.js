@@ -10,8 +10,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { useGetUserProductOrdersQuery } from '../../../services/userApi'
 
 const UserProductsOrders = () => {
-  const { data, error, isLoading } = useGetUserProductOrdersQuery()
-  console.log('dataProductOrders', data)
+  const { data } = useGetUserProductOrdersQuery()
+  //console.log('dataProductOrders', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
 
@@ -24,7 +24,7 @@ const UserProductsOrders = () => {
             <div className="d-flex align-items-center">
               <DatePicker
                 className="ms-3 me-2 user_orders_date p-0"
-                dateFormat="yyyy/MM/dd"
+                dateFormat="yyyy.MM.dd"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 selectsStart
@@ -34,7 +34,7 @@ const UserProductsOrders = () => {
               <span className="m-1">-</span>
               <DatePicker
                 className="user_orders_date ms-2"
-                dateFormat="yyyy/MM/dd"
+                dateFormat="yyyy.MM.dd"
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 selectsEnd
@@ -55,6 +55,7 @@ const UserProductsOrders = () => {
             <Table className="mt-5 user_orders_table">
               <thead>
                 <tr className="text-center">
+                  <th>訂單項目</th>
                   <th>訂單日期</th>
                   <th>訂單編號</th>
                   <th>收件人</th>
@@ -62,26 +63,38 @@ const UserProductsOrders = () => {
                   <th>訂單狀態</th>
                 </tr>
               </thead>
-              {data?.map((item, v) => {
-                const transformOrders = moment(item.create_time).format(
-                  'YYYY/MM/DD'
-                )
-                return (
-                  <tbody key={item.id}>
-                    <tr className="text-center">
-                      <td>{transformOrders}</td>
-                      <td>
-                        <Link to="details" className="user_orders_link fw-bold">
-                          {item.product_order_order_number}
-                        </Link>
-                      </td>
-                      <td>{item.product_order_name}</td>
-                      <td>{item.payment_name}</td>
-                      <td>{item.order_staus_name}</td>
-                    </tr>
-                  </tbody>
-                )
-              })}
+              {data === 0 ? (
+                <tbody>
+                  <td className="text-center py-3" colSpan={6}>
+                    目前沒有訂單
+                  </td>
+                </tbody>
+              ) : (
+                data?.map((item) => {
+                  const transformOrders = moment(item.create_time).format(
+                    'YYYY.MM.DD'
+                  )
+                  return (
+                    <tbody key={item.id}>
+                      <tr className="text-center">
+                        <td>商品訂單</td>
+                        <td>{transformOrders}</td>
+                        <td>
+                          <Link
+                            to={`products/${item.order_number}`}
+                            className="user_orders_link fw-bold"
+                          >
+                            {item.order_number}
+                          </Link>
+                        </td>
+                        <td>{item.product_order_name}</td>
+                        <td>{item.payment_name}</td>
+                        <td>{item.order_staus_name}</td>
+                      </tr>
+                    </tbody>
+                  )
+                })
+              )}
             </Table>
           </div>
           {/* <div className="user_orders_pages">
@@ -101,16 +114,3 @@ const UserProductsOrders = () => {
   )
 }
 export default UserProductsOrders
-
-/* {data?.map((item, v) => {
-            return (
-              <UserProductsOrders
-                key={item.id}
-                productOrderCreateTime={item.product_order_create_time}
-                productOrderOrderNumber={item.product_order_order_number}
-                productOrderName={item.product_order_name}
-                paymentName={item.payment_name}
-                orderStatusName={item.order_status_name}
-              />
-            )
-          })} */

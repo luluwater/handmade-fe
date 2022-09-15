@@ -24,7 +24,8 @@ import NewsLayout from './components/News'
 import UserPage from './pages/UserPage'
 import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
-import UserOrderDetailPage from './pages/UserOrderDetailPage'
+import UserProductOrderDetailPage from './pages/UserProductOrderDetailPage'
+import UserCoursesOrderDetailPage from './pages/UserCoursesOrderDetailPage'
 import UserLikesPage from './pages/UserLikesPage'
 import UserCouponsPage from './pages/UserCouponsPage'
 import UserBlogsPage from './pages/UserBlogsPage'
@@ -43,6 +44,7 @@ import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Courses from './pages/Courses'
 
 const routeConfig = [
   {
@@ -75,6 +77,10 @@ const routeConfig = [
         element: <MapSearch />,
       },
       {
+        path: '/course',
+        element: <Courses />,
+      },
+      {
         path: 'store',
         element: <Store />,
       },
@@ -95,8 +101,12 @@ const routeConfig = [
             element: <UserOrdersPage />,
           },
           {
-            path: 'orders/details',
-            element: <UserOrderDetailPage />,
+            path: 'orders/products/:orderNumber',
+            element: <UserProductOrderDetailPage />,
+          },
+          {
+            path: 'orders/courses/:orderNumber',
+            element: <UserCoursesOrderDetailPage />,
           },
           {
             path: 'likes',
