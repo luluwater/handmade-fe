@@ -59,7 +59,7 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row>
           <Col lg={4} xl={3}>
-            <FilterStore/>
+            <FilterStore />
           </Col>
           <Col>
             <div className="d-flex justify-content-center">

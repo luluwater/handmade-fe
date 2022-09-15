@@ -1,6 +1,6 @@
 import '../User.scss'
 import React from 'react'
-import { Row, Col, Form, Table, Container } from 'react-bootstrap'
+import { Row, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { useState } from 'react'
 // import { Link } from 'react-router-dom'

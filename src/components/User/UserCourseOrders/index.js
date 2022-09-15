@@ -3,11 +3,15 @@ import React from 'react'
 import { Row, Col, Form, Table } from 'react-bootstrap'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
+import { useGetUserCourseOrdersQuery } from '../../../services/userApi'
 
 const UserCourseOrders = () => {
+  const { data } = useGetUserCourseOrdersQuery()
+  // console.log('dataCourseOrders', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   return (
@@ -19,7 +23,7 @@ const UserCourseOrders = () => {
             <div className="d-flex align-items-center">
               <DatePicker
                 className="ms-3 me-2 user_orders_date p-0"
-                dateFormat="yyyy/MM/dd"
+                dateFormat="yyyy.MM.dd"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 selectsStart
@@ -29,7 +33,7 @@ const UserCourseOrders = () => {
               <span className="m-1">-</span>
               <DatePicker
                 className="user_orders_date ms-2"
-                dateFormat="yyyy/MM/dd"
+                dateFormat="yyyy.MM.dd"
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 selectsEnd
@@ -58,20 +62,38 @@ const UserCourseOrders = () => {
                   <th>訂單狀態</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr className="text-center">
-                  <td>預約課程</td>
-                  <td>2022.08.02</td>
-                  <td>
-                    <Link to="details" className="user_orders_link fw-bold">
-                      我是課程
-                    </Link>
+              {data === 0 ? (
+                <tbody>
+                  <td className="text-center py-3" colSpan={6}>
+                    目前沒有訂單
                   </td>
-                  <td>黑色小花貓</td>
-                  <td>信用卡</td>
-                  <td>已完成</td>
-                </tr>
-              </tbody>
+                </tbody>
+              ) : (
+                data?.map((item, v) => {
+                  const transformOrders = moment(item.create_time).format(
+                    'YYYY.MM.DD'
+                  )
+                  return (
+                    <tbody key={item.id}>
+                      <tr className="text-center">
+                        <th>預約課程</th>
+                        <td>{transformOrders}</td>
+                        <td>
+                          <Link
+                            to={`courses/${item.order_number}`}
+                            className="user_orders_link fw-bold"
+                          >
+                            {item.order_number}
+                          </Link>
+                        </td>
+                        <td>{item.course_order_name}</td>
+                        <td>{item.payment_name}</td>
+                        <td>{item.order_staus_name}</td>
+                      </tr>
+                    </tbody>
+                  )
+                })
+              )}
             </Table>
           </div>
           {/* <div className="user_orders_pages">

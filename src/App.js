@@ -20,7 +20,8 @@ import NewsLayout from './components/News'
 import UserPage from './pages/UserPage'
 import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
-import UserOrderDetailPage from './pages/UserOrderDetailPage'
+import UserProductOrderDetailPage from './pages/UserProductOrderDetailPage'
+import UserCoursesOrderDetailPage from './pages/UserCoursesOrderDetailPage'
 import UserLikesPage from './pages/UserLikesPage'
 import UserCouponsPage from './pages/UserCouponsPage'
 import UserBlogsPage from './pages/UserBlogsPage'
@@ -89,8 +90,12 @@ const routeConfig = [
             element: <UserOrdersPage />,
           },
           {
-            path: 'orders/details',
-            element: <UserOrderDetailPage />,
+            path: 'orders/products/:orderNumber',
+            element: <UserProductOrderDetailPage />,
+          },
+          {
+            path: 'orders/courses/:orderNumber',
+            element: <UserCoursesOrderDetailPage />,
           },
           {
             path: 'likes',

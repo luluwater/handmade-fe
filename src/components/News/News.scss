@@ -133,6 +133,8 @@
 .news_card {
   padding: 1rem;
   @media screen and (max-width: 576px) {
+    overflow: visible;
+    flex-wrap: wrap;
     &_m {
       margin-top: 1rem;
       margin-bottom: 1rem;
@@ -143,7 +145,6 @@
   overflow: hidden;
   &_swiper {
     max-width: 100%;
-    height: var(--product_card_scale);
   }
   &_title {
     letter-spacing: 3px;
@@ -169,15 +170,22 @@
     height: 25px; 
   }
   &_text {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color:$gray-darker;
+    @media screen and (max-width: 576px) {
+        // overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
   }
   &_store {
     color:$gray-darker;
   }
+
 }
 
 .news_card .swiper-button-prev::after,
 .news_card .swiper-button-next::after {
   font-size: 2rem;
 }
+
