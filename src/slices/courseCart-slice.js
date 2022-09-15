@@ -5,7 +5,22 @@ import '../styles/style.scss'
 const initialState = {
   courseCartItem: localStorage.getItem('CourseCart')
     ? JSON.parse(localStorage.getItem('CourseCart'))
-    : [],
+    : [
+        {
+          id: '1',
+          stockId: '1',
+          name: '測試',
+          img: '金工_課程_以覺學_格紋戒指課程_kv1.webp',
+          price: '1000',
+          category: 'metalwork',
+          date: '2022.02.02',
+          time: '14:00',
+          quantity: 1,
+          totalPrice: '1000',
+          stocks: 15,
+          stockWarning: '',
+        },
+      ],
   totalQuantity: 0,
   totalAmount: 0,
 }

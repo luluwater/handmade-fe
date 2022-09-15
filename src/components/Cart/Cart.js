@@ -35,6 +35,7 @@ const Cart = () => {
     (state) => state.productCartReducer.totalAmount
   )
 
+
   const clearProductCart = () => {
     dispatch(clearCart())
   }
