@@ -64,6 +64,14 @@ export const userApiService = createApi({
       query: () => 'user/likes-product',
       providesTags: ['User'],
     }),
+    removeUserFavoriteProduct: builder.mutation({
+      query: (productId) => ({
+        url: `product/${productId}`,
+        method: 'DELETE',
+        body: productId,
+      }),
+      invalidatesTags: ['User'],
+    }),
     userLikesBlog: builder.query({
       query: () => 'user/likes-blog',
       providesTags: ['User'],

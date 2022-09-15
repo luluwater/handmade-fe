@@ -11,6 +11,10 @@ import NewsCardImg7 from '../../../assets/news/News_pic7.jpg'
 import NewsCardImg7_2 from '../../../assets/news/News_pic7_2.jpg'
 import NewsCardImg7_3 from '../../../assets/news/News_pic7_3.jpg'
 
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+} from '../../../services/productApi'
 import { v4 as uuidv4 } from 'uuid'
 import { useDispatch } from 'react-redux'
 import { addProductCart } from '../../../slices/productCart-slice'
@@ -70,7 +74,10 @@ function NewsCard() {
     },
   ]
 
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
   const dispatch = useDispatch()
+  const isFavorite = false
 
   return (
     <>
@@ -122,19 +129,25 @@ function NewsCard() {
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button className="bg-primary news_card_favorite me-2">
+                  <button
+                    className="bg-primary news_card_favorite me-2"
+                    onClick={() => {
+                      if (isFavorite) {
+                        removeUserFavoriteProduct(v.productId)
+                      } else {
+                        addUserFavoriteProduct(v.productId)
+                      }
+                    }}
+                  >
                     <FontAwesomeIcon
-                      icon="far fa-heart"
-                      size="lg"
-                      // icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                      icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
+                      size="lg"
                     />
                   </button>
                   <button
                     className="bg-secondary news_card_favorite border-0 rounded-circle"
                     onClick={() => {
-                      // const { productId, name, imgs, price, category, amount } =
-                      //   { v }
                       dispatch(
                         addProductCart({
                           productId: v.productId,

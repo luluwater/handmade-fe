@@ -247,9 +247,11 @@ img {
 .toast-addCartMessage{
   background: $secondary!important;
   color: $white!important;
+  z-index: 99999;
 }
 
 .toast-alreadyInCartMessage{
   background: $primary!important;
   color: $white!important;
+  z-index: 99999;
 }

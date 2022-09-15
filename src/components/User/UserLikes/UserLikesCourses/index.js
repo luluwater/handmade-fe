@@ -9,6 +9,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { useRemoveUserFavoriteCourseMutation } from '../../../../services/courseApi'
 
 //TODO: link
 //TODO: removeUserFavorite
@@ -22,8 +23,10 @@ function dataImgRouter(img_name, category_en_name, course_id) {
   // console.log(routers)
   return routers
 }
+
 export const UserLikesCourses = () => {
   const { data } = useUserLikesCourseQuery()
+  // const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
   // console.log(data)
   return (
     <>
@@ -73,7 +76,12 @@ export const UserLikesCourses = () => {
                         <p className="text-primary fw-bold">${item.price}</p>
                       </Col>
                       <Col xs={4} className="d-flex align-items-end">
-                        <button className="bg-primary user_like_course_card_favorite border-0 rounded-circle">
+                        <button
+                          className="bg-primary user_like_course_card_favorite border-0 rounded-circle"
+                          // onClick={() => {
+                          //   removeUserFavoriteCourse(item.course_id)
+                          // }}
+                        >
                           <FontAwesomeIcon
                             icon="fa-solid fa-heart"
                             inverse

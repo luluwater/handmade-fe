@@ -8,7 +8,7 @@ import { useGetUserQuery } from '../services/userApi'
 
 const UserPage = () => {
   const { data } = useGetUserQuery()
-  console.log('DATA', data)
+  // console.log('DATA', data)
   return (
     <>
       <FilterPage />
