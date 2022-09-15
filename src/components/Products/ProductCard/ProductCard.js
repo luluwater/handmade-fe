@@ -32,6 +32,8 @@ function getImgsRouter(imgsName, category, productId, type) {
 function ProductCard({
   type,
   productId,
+  storeId,
+  categoryId,
   imgs,
   category,
   storeName,
@@ -79,12 +81,24 @@ function ProductCard({
             onClick={() => {
               if (isFavorite) {
                 type === 'product'
-                  ? removeUserFavoriteProduct({ productId })
-                  : removeUserFavoriteCourse({ courseId: productId })
+                  ? removeUserFavoriteProduct({
+                      productId,
+                      storeId,
+                      categoryId,
+                    })
+                  : removeUserFavoriteCourse({
+                      courseId: productId,
+                      storeId,
+                      categoryId,
+                    })
               } else {
                 type === 'product'
-                  ? addUserFavoriteProduct({ productId })
-                  : addUserFavoriteCourse({ courseId: productId })
+                  ? addUserFavoriteProduct({ productId, storeId, categoryId })
+                  : addUserFavoriteCourse({
+                      courseId: productId,
+                      storeId,
+                      categoryId,
+                    })
               }
             }}
           >

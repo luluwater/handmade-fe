@@ -12,6 +12,7 @@ import filterStoreReducer from '../slices/filterStore-silce'
 import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
 import sortSelectReducer from '../slices/sortSelect-slice'
+import filterDateReducer from '../slices/filterDate-silce'
 
 //Service
 import { blogApiService } from '../services/blogApi'
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   filterStoreReducer,
   filterKeywordReducer,
   filterPriceReducer,
+  filterDateReducer,
   storeReducer,
   replyReducer,
   blogReducer,

@@ -38,7 +38,7 @@ function Proudcts() {
       })
     )
   }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
-  // console.log('pagination', productList)
+  console.log('pagination', productList)
   // console.log(
   //   'pagination:filter',
   //   useSelector((state) => state.paginationReducer.filter)
@@ -82,7 +82,7 @@ function Proudcts() {
       <Container fluid className="m-3 mx-auto ">
         <Row className="gx-0 gy-5">
           <Col md={'auto'}>
-            <Filter />
+            <Filter haveDate={false} />
           </Col>
           <Col>
             <SortSelect className="d-none d-md-block ms-auto mb-3"></SortSelect>
@@ -93,6 +93,8 @@ function Proudcts() {
                     <ProductCard
                       key={v.id}
                       productId={v.id}
+                      storeId={v.store_id}
+                      categoryId={v.category_id}
                       imgs={v.img_name}
                       category={v.category_en_name}
                       storeName={v.store_name}
@@ -105,7 +107,7 @@ function Proudcts() {
                 })}
               </Row>
             </div>
-            <Paginate baseUrl={'shop'}/>
+            <Paginate baseUrl={'shop'} />
           </Col>
         </Row>
       </Container>

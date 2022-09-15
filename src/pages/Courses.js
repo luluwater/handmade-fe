@@ -17,9 +17,7 @@ function Courses() {
   useEffect(() => {
     dispatch(pagination(data))
   }, [dispatch, data])
-
   //取的篩選資料
-  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
   const courseList = useSelector((state) => state.paginationReducer.data)
   const filterStore = useSelector(
     (state) => state.filterStoreReducer.filterStores
@@ -28,6 +26,9 @@ function Courses() {
     (state) => state.filterKeywordReducer.searchWord
   )
   const filterPrice = useSelector((state) => state.filterPriceReducer)
+  const filterDate = useSelector((state) => state.filterDateReducer)
+  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
+  // console.log('date', filterDate)
   //設定篩選資料
   useEffect(() => {
     dispatch(
@@ -35,15 +36,16 @@ function Courses() {
         store: filterStore,
         searchWord: filterSearchWord,
         price: { min: filterPrice.leftValue, max: filterPrice.rightValue },
+        date: filterDate,
         sort: sort,
       })
     )
-  }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
-  // console.log('pagination', productList)
-  // console.log(
-  //   'pagination:filter',
-  //   useSelector((state) => state.paginationReducer.filter)
-  // )
+  }, [dispatch, filterStore, filterSearchWord, filterPrice, filterDate, sort])
+  console.log('pagination', courseList)
+  console.log(
+    'pagination:filter',
+    useSelector((state) => state.paginationReducer.filter)
+  )
 
   return (
     <>
@@ -94,6 +96,8 @@ function Courses() {
                     <ProductCard
                       key={v.id}
                       productId={v.id}
+                      storeId={v.store_id}
+                      categoryId={v.category_id}
                       imgs={v.imgName}
                       category={v.category_en_name}
                       storeName={v.store_name}

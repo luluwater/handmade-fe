@@ -16,7 +16,7 @@ import FilterPrice from './FilterPrice'
 import FilterStore from './FilterStore/FilterStore'
 import SortSelect from './SortSelect'
 
-function Filter() {
+function Filter({ haveDate = true }) {
   const { data, error, isload } = useGetStoreQuery()
 
   //處理資料格式
@@ -75,7 +75,7 @@ function Filter() {
     <>
       <FilterKeyword />
       <FilterStore state={state} className="d-none d-md-block" />
-      <FilterDate />
+      {haveDate ? <FilterDate className="d-none d-md-block" /> : ''}
       <FilterPrice className="d-none d-md-block" />
 
       <div className="d-flex justify-content-around">
@@ -118,6 +118,7 @@ function Filter() {
             更多條件
           </ModalTitle>
           <FilterPrice />
+          {haveDate ? <FilterDate /> : ''}
         </ModalBody>
         <ModalFooter></ModalFooter>
       </Modal>

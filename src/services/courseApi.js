@@ -11,10 +11,12 @@ export const courseApiService = createApi({
       providesTags: ['course'],
     }),
     addUserFavoriteCourse: builder.mutation({
-      query: (courseId) => ({
+      query: (courseId, storeId, categortId) => ({
         url: `course/${courseId}`,
         method: 'POST',
         body: courseId,
+        storeId,
+        categortId,
       }),
       invalidatesTags: ['course'],
     }),
@@ -25,6 +27,9 @@ export const courseApiService = createApi({
         body: courseId,
       }),
       invalidatesTags: ['course'],
+    }),
+    test: builder.query({
+      query: () => 'course/test',
     }),
   }),
 })
