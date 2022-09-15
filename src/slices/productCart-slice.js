@@ -57,7 +57,6 @@ const productCartSlice = createSlice({
           Number(existingItem.totalPrice) - Number(existingItem.price)
       }
 
-
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
     },
 

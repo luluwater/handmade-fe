@@ -1,13 +1,26 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetProductCommentQuery } from '../../services/productApi'
 import { useParams } from 'react-router-dom'
-import Counter from './Counter'
+// import Counter from './Counter'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { increment, decrement } from '../../slices/counter-slice'
+import { addProductCart } from '../../slices/productCart-slice'
 
 import './ProductDetail.scss'
 
-const ProductIntro = ({ store, name, price, intro }) => {
+const ProductIntro = ({
+  store,
+  name,
+  price,
+  intro,
+  imgs,
+  category,
+  amount,
+  storeId,
+}) => {
   const { productId } = useParams()
   const { data } = useGetProductCommentQuery(productId)
 
@@ -26,12 +39,35 @@ const ProductIntro = ({ store, name, price, intro }) => {
   const length = score?.length
   let average = sumWithInitial / length
 
+  ////////// COUNTER //////////
+  const dispatch = useDispatch()
+  const quantity = useSelector((state) => state.counterReducer.value)
+
+  const shopUrl = `/store/${storeId}`
+
+  ////////// 加入購物車 //////////
+  const addToProductCart = () => {
+    dispatch(
+      addProductCart({
+        productId,
+        name,
+        imgs,
+        price,
+        category,
+        quantity,
+        amount,
+      })
+    )
+  }
+
   return (
     <>
       <Row className="d-flex flex-column fw-bold detail_RWD">
         <Col className="d-flex detail_top">
           <Col sm={12} lg={8}>
-            <p className="detail_store">{store}</p>
+            <a href={shopUrl}>
+              <p className="detail_store">{store}</p>
+            </a>
             <h2 className="detail_name">{name}</h2>
             <h4 className="detail_price">NT.{price}</h4>
           </Col>
@@ -45,7 +81,32 @@ const ProductIntro = ({ store, name, price, intro }) => {
             <h2 className="detail_score_number">{average.toFixed(1)}</h2>
           </Col>
         </Col>
-        <Counter />
+        {/* <Counter /> */}
+        <Col className="d-flex detail_amount py-4">
+          <div className="detail_amount_title">數量</div>
+          <Button
+            className="detail_amount_minus  detail_button"
+            onClick={() => dispatch(decrement(1))}
+          >
+            -
+          </Button>
+          <h5 className="detail_amount_number">{quantity}</h5>
+          <Button
+            className="detail_amount_plus  detail_button"
+            onClick={() => dispatch(increment(1))}
+          >
+            +
+          </Button>
+          <Button
+            onClick={addToProductCart}
+            className="detail_button detail_cart"
+          >
+            加入購物車
+          </Button>
+          <Button className="detail_button detail_heart">
+            <FontAwesomeIcon icon={'far fa-heart'} />
+          </Button>
+        </Col>
         <Col className="detail_intro">
           <div style={{ whiteSpace: 'pre-wrap' }}>{intro}</div>
         </Col>

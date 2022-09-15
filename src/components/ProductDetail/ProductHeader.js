@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 const ProductHeader = () => {
   const { productId } = useParams()
   const { data } = useGetProductDetailQuery(productId)
+
   return (
     <>
       <div className="d-flex justify-content-center">
@@ -28,11 +29,15 @@ const ProductHeader = () => {
             return (
               <Col lg={6} sm={12} key={item.id}>
                 <ProductIntro
-                  id={item.id}
+                  productId={item.id}
+                  imgs={item.img_name}
                   store={item.store_name}
                   name={item.name}
                   price={item.price}
                   intro={item.intro}
+                  amount={item.amount}
+                  category={item.category_en_name}
+                  storeId={item.store_id}
                 />
               </Col>
             )

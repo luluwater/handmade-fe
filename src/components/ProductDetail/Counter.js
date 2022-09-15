@@ -7,7 +7,7 @@ import './ProductDetail.scss'
 
 export default function Counter() {
   const dispatch = useDispatch()
-  const count = useSelector((state) => state.counterReducer.value)
+  const amount = useSelector((state) => state.counterReducer.value)
   return (
     <Col className="d-flex detail_amount py-4">
       <div className="detail_amount_title">數量</div>
@@ -17,7 +17,7 @@ export default function Counter() {
       >
         -
       </Button>
-      <h5 className="detail_amount_number">{count}</h5>
+      <h5 className="detail_amount_number">{amount}</h5>
       <Button
         className="detail_amount_plus  detail_button"
         onClick={() => dispatch(increment(1))}

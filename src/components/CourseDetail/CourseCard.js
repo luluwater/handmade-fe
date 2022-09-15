@@ -26,25 +26,29 @@ function CourseCard() {
       img: [Image1_1, Image1_2, Image1_3],
       store: '花貓蛋糕實驗室',
       name: '基礎海綿蛋糕研修班',
-      price: '$ 2200',
+      price: '2200',
+      link: '/course/detail/41',
     },
     {
       img: [Image2_1, Image2_2, Image2_3],
       store: '花曜日 FlowerDays',
       name: '藤編花籃',
-      price: '$ 2080',
+      price: '2080',
+      link: '/course/detail/29',
     },
     {
       img: [Image3_1, Image3_2, Image3_3],
       store: '璐室 Lucid Dream',
       name: '陶藝手捏體驗',
-      price: '$ 1200',
+      price: '1200',
+      link: '/course/detail/11',
     },
     {
       img: [Image4_1, Image4_2, Image4_3],
       store: '小紅花',
       name: '常規-手作地毯課',
-      price: '$ 3300',
+      price: '3300',
+      link: '/course/detail/53',
     },
   ]
 
@@ -64,29 +68,30 @@ function CourseCard() {
               key={v.img}
             >
               {/* ========== 商品照片 ========== */}
-
-              <Swiper
-                modules={[Navigation]}
-                navigation
-                effect={'slide'}
-                speed={800}
-                slidesPerView={1}
-                loop={true}
-                className="course_detail_card_swiper rounded shadow"
-              >
-                {v.img.map((v2, i2) => {
-                  return (
-                    <SwiperSlide>
-                      <img
-                        key={v2[0]}
-                        className="swiper-slide course_detail_card_img"
-                        src={v2}
-                        alt="products"
-                      />
-                    </SwiperSlide>
-                  )
-                })}
-              </Swiper>
+              <a href={v.link}>
+                <Swiper
+                  modules={[Navigation]}
+                  navigation
+                  effect={'slide'}
+                  speed={800}
+                  slidesPerView={1}
+                  loop={true}
+                  className="course_detail_card_swiper rounded shadow"
+                >
+                  {v.img.map((v2, i2) => {
+                    return (
+                      <SwiperSlide>
+                        <img
+                          key={v2[0]}
+                          className="swiper-slide course_detail_card_img"
+                          src={v2}
+                          alt="products"
+                        />
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+              </a>
 
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
@@ -94,13 +99,13 @@ function CourseCard() {
                   <p className="course_detail_card_store m-2 text-truncate">
                     <small>| {v.store} |</small>
                   </p>
-                  <a href="#/">
+                  <a href={v.link}>
                     <h6 className="course_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>
                   </a>
                   <h6 className="course_detail_card_text text-primary fw-bold m-1">
-                    {v.price}
+                    $ {v.price}
                   </h6>
                 </div>
 

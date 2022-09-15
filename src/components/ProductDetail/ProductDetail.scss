@@ -42,7 +42,9 @@
 .detail_store{
     font-size: 14px;
     color: $gray-darker;
-    
+}
+.detail_store:hover{
+    color: $primary;
 }
 .detail_name{
     font-size: 30px;

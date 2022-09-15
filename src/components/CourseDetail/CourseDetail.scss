@@ -304,7 +304,19 @@
 }
 
 // ========== DatePicker ==========
+.react-datepicker__current-month, .react-datepicker__day-name{
+    color: $gray-darker;
 
+}
+.react-datepicker__day{
+    color: $gray-darker;
+}
+.react-datepicker__day--disabled{
+    color: $skin-brighter;
+}
+.react-datepicker__day--selected{
+    color: $skin-brighter;
+}
 .course-total{
     border: 1px $gray-darker solid;
     width: 320px;

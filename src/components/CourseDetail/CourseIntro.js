@@ -4,20 +4,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetCourseCommentQuery } from '../../services/courseApi'
 import { useParams } from 'react-router-dom'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { increment, decrement } from '../../slices/counter-slice'
+
+import moment from 'moment'
+
 import './CourseDetail.scss'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const CourseIntro = ({ id, store, name, price }) => {
+const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
+  console.log('storeId', storeId)
+  ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
 
+  const newStockDate = stock?.map((item) => {
+    return new Date(item.date)
+  })
+  console.log('newStockDate', newStockDate)
+  const stockTime = stock?.map((item) => {
+    const newStockTime = item.time_start
+    return newStockTime
+  })
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
 
   let totalSum = 0
-  // console.log('data', data)
-
   let score = data?.map((v) => {
     return Number(v.score)
   })
@@ -29,18 +42,24 @@ const CourseIntro = ({ id, store, name, price }) => {
 
   // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
   const length = score?.length
-
   let average = sumWithInitial / length
 
-  // console.log('score.length', length)
-  // console.log('average', average)
+  ////////// COUNTER //////////
+  const dispatch = useDispatch()
+  const quantity = useSelector((state) => state.counterReducer.value)
+
+  const shopUrl = `/store/${storeId}`
+  console.log('shopUrl', shopUrl)
+
   return (
     <>
       <Row className="d-flex flex-column fw-bold detail_RWD ">
         {/* ========== */}
         <Col className="d-flex detail_top">
           <Col sm={12} lg={8}>
-            <p className="detail_store">{store}</p>
+            <a href={shopUrl}>
+              <p className="detail_store">{store}</p>
+            </a>
             <h2 className="detail_name">{name}</h2>
             <h4 className="detail_price">NT.{price}</h4>
           </Col>
@@ -60,28 +79,49 @@ const CourseIntro = ({ id, store, name, price }) => {
             <h6 className="course_order_title mt-1 mb-3">預約日期與時段</h6>
             <DatePicker
               selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              onChange={(date) => {
+                setStartDate(date)
+                const GetDate = moment(date).format('YYYY-MM-DD')
+                console.log('GetDate', GetDate)
+              }}
+              includeDates={newStockDate}
+              dateFormat="YYYY-MM-DD"
               inline
             />
           </Col>
           <Col className="d-flex flex-column detail_amount py-4 col-lg-7 align-items-center col-sm-12">
             <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
-              <Button className="col-3 m-2 course_time_btn">10:00</Button>
-              <Button className="col-3 m-2 course_time_btn">11:00</Button>
-              <Button className="col-3 m-2 course_time_btn">13:00</Button>
-              <Button className="col-3 m-2 course_time_btn">15:00</Button>
-              <Button className="col-3 m-2 course_time_btn">17:00</Button>
-              <Button className="col-3 m-2 course_time_btn">19:00</Button>
+              {moment(newStockDate).format('YYYY-MM-DD') === '2022-10-19' &&
+                stock?.map((item) => {
+                  return (
+                    <Button className="col-3 m-2 course_time_btn">
+                      {item.time_start}
+                    </Button>
+                  )
+                })}
             </Col>
+
             <Col className="d-flex mb-2 ms-3">
               <div className="detail_amount_title">人數</div>
-              <Button className="detail_amount_minus  detail_button">-</Button>
-              <h5 className="detail_amount_number">1</h5>
-              <Button className="detail_amount_plus  detail_button">+</Button>
+              <Button
+                onClick={() => dispatch(decrement(1))}
+                className="detail_amount_minus detail_button"
+              >
+                -
+              </Button>
+              <h5 className="detail_amount_number">{quantity}</h5>
+              <Button
+                onClick={() => dispatch(increment(1))}
+                className="detail_amount_plus detail_button"
+              >
+                +
+              </Button>
             </Col>
             <Col className="d-flex course-total align-items-center my-2">
               <h5 className="ms-11 mt-2 col-3 course-total-title">總金額</h5>
-              <h5 className=" mt-2 col-3 course-total-number">$2400</h5>
+              <h5 className=" mt-2 col-3 course-total-number">
+                $ {quantity * price}
+              </h5>
             </Col>
             <Col>
               <Button className="detail_button detail_cart ms-0">

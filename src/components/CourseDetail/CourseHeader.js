@@ -29,9 +29,11 @@ const CourseDetailPage = () => {
               <Col lg={6} sm={12} key={item.id}>
                 <CourseIntro
                   id={item.id}
+                  storeId={item.store_id}
                   store={item.store_name}
                   name={item.name}
                   price={item.price}
+                  stock={item.stock_time}
                 />
               </Col>
             )
