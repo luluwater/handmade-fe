@@ -60,6 +60,14 @@ export const userApiService = createApi({
       query: () => 'user/likes-course',
       providesTags: ['User'],
     }),
+    removeUserFavoriteCourse: builder.mutation({
+      query: (courseId) => ({
+        url: `course/${courseId}`,
+        method: 'DELETE',
+        body: courseId,
+      }),
+      invalidatesTags: ['User'],
+    }),
     userLikesProduct: builder.query({
       query: () => 'user/likes-product',
       providesTags: ['User'],
@@ -93,4 +101,6 @@ export const {
   useUserLikesCourseQuery,
   useUserLikesProductQuery,
   useUserLikesBlogQuery,
+  useRemoveUserFavoriteProductMutation,
+  useRemoveUserFavoriteCourseMutation,
 } = userApiService

@@ -46,12 +46,7 @@ function ProductCard({
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
-  const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()  const dispatch = useDispatch()
-
-  const addToProductCart = () => {
-    dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
-  }
-
+  const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
 
   return (

@@ -28,12 +28,14 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import '../News.scss'
 
-//TODO: link & userlike & cart
+//TODO: link & userlike & coupon
 
 function NewsCard() {
   const Info = [
     {
       productId: '59',
+      storeId: '12',
+      categoryId: '3',
       img: [NewsCardImg4, NewsCardImg4_2, NewsCardImg4_3],
       storeName: '浪花',
       name: '粉橘高架花籃',
@@ -41,9 +43,12 @@ function NewsCard() {
       category: 'floral',
       amount: 5,
       imgs: ['花藝＿商品＿浪花＿粉橘色系高架花籃＿1.jpg'],
+      isFavorite: 'false',
     },
     {
       productId: '35',
+      storeId: '7',
+      categoryId: '2',
       img: [NewsCardImg5, NewsCardImg5_2, NewsCardImg5_3],
       storeName: 'Round Round',
       name: '理容院開張',
@@ -51,9 +56,12 @@ function NewsCard() {
       category: 'pottery',
       amount: 5,
       imgs: ['陶藝_商品_Round_Round_理容院開張_1.jpg'],
+      isFavorite: 'false',
     },
     {
       productId: '127',
+      storeId: '26',
+      categoryId: '6',
       img: [NewsCardImg6, NewsCardImg6_2, NewsCardImg6_3],
       storeName: 'HU A HU 呼啊呼',
       name: '簇絨滿版抱枕',
@@ -61,9 +69,12 @@ function NewsCard() {
       category: 'tufting',
       amount: 5,
       imgs: ['tufing_商品_HU-A-HU-呼阿呼_簇絨單面滿版抱枕_1.jpg'],
+      isFavorite: 'false',
     },
     {
       productId: '18',
+      storeId: '4',
+      categoryId: '1',
       img: [NewsCardImg7, NewsCardImg7_2, NewsCardImg7_3],
       storeName: 'Minifeast',
       name: '白鑽純銀項鍊',
@@ -71,13 +82,13 @@ function NewsCard() {
       category: 'metalwork',
       amount: 5,
       imgs: ['金工_商品_Minifeast_白鑽小草純銀項鍊kv1.jpg'],
+      isFavorite: 'false',
     },
   ]
 
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
   const dispatch = useDispatch()
-  const isFavorite = false
 
   return (
     <>
@@ -87,7 +98,7 @@ function NewsCard() {
       <Container className="news_card mb-12 w-100 d-flex">
         {Info.map((v, i) => {
           return (
-            <Col md={3} xs={6} className="news_card_m px-3" key={uuidv4()}>
+            <Col md={3} xs={6} className="news_card_m px-3" key={v.productId}>
               {/* ========== 商品照片 ========== */}
               <Swiper
                 modules={[Navigation]}
@@ -132,15 +143,21 @@ function NewsCard() {
                   <button
                     className="bg-primary news_card_favorite me-2"
                     onClick={() => {
-                      if (isFavorite) {
-                        removeUserFavoriteProduct(v.productId)
+                      if (v.isFavorite) {
+                        addUserFavoriteProduct({
+                          productId: v.productId,
+                          storeId: v.storeId,
+                          categoryId: v.categoryId,
+                        })
                       } else {
-                        addUserFavoriteProduct(v.productId)
+                        removeUserFavoriteProduct({
+                          productId: v.productId,
+                        })
                       }
                     }}
                   >
                     <FontAwesomeIcon
-                      icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                      icon={v.isFavorite ? 'far fa-heart' : 'fa-solid fa-heart'}
                       inverse
                       size="lg"
                     />

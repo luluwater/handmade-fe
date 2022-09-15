@@ -9,10 +9,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRemoveUserFavoriteProductMutation } from '../../../../services/productApi'
+import { useRemoveUserFavoriteProductMutation } from '../../../../services/userApi'
 
 //TODO: link
-//TODO: removeUserFavorite
 
 function dataImgRouter(img_name, category_en_name, product_id) {
   const baseRouter = 'assets/product/product'

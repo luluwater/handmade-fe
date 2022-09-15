@@ -9,10 +9,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { useRemoveUserFavoriteCourseMutation } from '../../../../services/courseApi'
+import { useRemoveUserFavoriteCourseMutation } from '../../../../services/userApi'
 
 //TODO: link
-//TODO: removeUserFavorite
 
 function dataImgRouter(img_name, category_en_name, course_id) {
   const baseRouter = 'assets/course/course'
@@ -26,7 +25,7 @@ function dataImgRouter(img_name, category_en_name, course_id) {
 
 export const UserLikesCourses = () => {
   const { data } = useUserLikesCourseQuery()
-  // const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+  const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
   // console.log(data)
   return (
     <>
@@ -78,9 +77,11 @@ export const UserLikesCourses = () => {
                       <Col xs={4} className="d-flex align-items-end">
                         <button
                           className="bg-primary user_like_course_card_favorite border-0 rounded-circle"
-                          // onClick={() => {
-                          //   removeUserFavoriteCourse(item.course_id)
-                          // }}
+                          onClick={() => {
+                            removeUserFavoriteCourse({
+                              courseId: item.course_id,
+                            })
+                          }}
                         >
                           <FontAwesomeIcon
                             icon="fa-solid fa-heart"
