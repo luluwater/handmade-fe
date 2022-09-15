@@ -44,6 +44,7 @@ import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Courses from './pages/Courses'
 
 const routeConfig = [
   {
@@ -74,6 +75,10 @@ const routeConfig = [
       {
         path: 'map',
         element: <MapSearch />,
+      },
+      {
+        path: '/course',
+        element: <Courses />,
       },
       {
         path: 'store',

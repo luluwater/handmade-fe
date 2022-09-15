@@ -1,18 +1,20 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-// import { act } from 'react-dom/test-utils'
-// import { useSelector } from 'react-redux'
-// import Proudcts from '../pages/Products'
+import moment from 'moment'
 
 function sortData(a, b, sort) {
   if (sort === 'heighPrice') return b.price - a.price
   if (sort === 'lowerPrice') return a.price - b.price
   return b.sold_amount - a.sold_amount
 }
+function checkData(data) {
+  return !data.length
+}
 
 function doPagination(state) {
+  if (!state.rawData) return
   state.data = state.rawData
   if (state.filter.searchWord !== '') {
-    state.data = state.data.filter((product) => {
+    state.data = state.data?.filter((product) => {
       // console.log('key', current(product))
       return (
         product.name.includes(state.filter.searchWord) ||
@@ -20,19 +22,41 @@ function doPagination(state) {
       )
     })
   }
+  // if (checkData(state.data)) return
   if (state.filter.store.length > 0) {
-    state.data = state.data.filter((product) =>
+    state.data = state.data?.filter((product) =>
       state.filter.store.includes(product.store_name)
     )
     // console.log(current(state))
   }
-  state.data = state.data
-    ?.filter(
-      (product) =>
-        product.price > state.filter.price.min &&
-        product.price < state.filter.price.max
-    )
-    .sort((a, b) => sortData(a, b, state.filter.sort))
+  if (
+    state.filter.date?.startDate !== null &&
+    state.filter.date?.endDate !== null &&
+    state.filter.date?.startDate !== undefined &&
+    state.filter.date?.endDate !== undefined
+  ) {
+    console.log('filtering')
+    state.data = state.data?.filter((product) => {
+      const productDate = moment(product.course_date).format('YYYY-M-D')
+      // console.log(productDate)
+      // console.log('end', state.filter.date.endDate)
+      // console.log(moment(productDate).isBefore(state.filter.date.endDate))
+      return (
+        moment(productDate).isSameOrBefore(state.filter.date.endDate) &&
+        moment(productDate).isSameOrAfter(state.filter.date.startDate)
+      )
+    })
+  }
+  if (state.data.length > 0 && Object.keys(state.data[0]).includes('price')) {
+    state.data = state.data
+      ?.filter(
+        (product) =>
+          product.price > state.filter.price.min &&
+          product.price < state.filter.price.max
+      )
+      .sort((a, b) => sortData(a, b, state.filter.sort))
+  }
+
   // console.log(state.filter.sort)
   state.totalPage = Math.ceil(state.data?.length / state.itemCount)
   state.data = state.data?.slice(
@@ -53,7 +77,7 @@ const initialState = {
     searchWord: '',
     store: [],
     price: { min: 0, max: 10000 },
-    date: [],
+    date: { startDate: null, endDate: null },
     sort: 'hot',
   },
   currentPage: 1,
