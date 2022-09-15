@@ -4,6 +4,9 @@ export const API_URL =
 // // 圖片
 export const IMG_URL =
   (process.env.NOED_API_URL || 'http://localhost:8080') + '/'
+
+export const SOCKET_URL =
+  (process.env.SOCKET_URL || 'http://localhost:8000')
 // //圖片 去掉images （因為資料庫有寫）
 // export const IMG_URL2 =
 //     process.env.REACT_APP_API_URL || 'http://localhost:3006';

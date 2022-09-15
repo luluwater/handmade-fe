@@ -15,6 +15,7 @@ import EmojiPicker from 'emoji-picker-react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import SplitButton from 'react-bootstrap/SplitButton'
+import { SOCKET_URL } from '../../utils/config'
 
 const ChatRoom = () => {
   const { data, isLoading } = useChatRoomsQuery()
@@ -22,8 +23,8 @@ const ChatRoom = () => {
   // TODO:EMOJI
   const [showPicker, setShowPicker] = useState(false)
 
-  const socket = io('http://localhost:8000')
-  const socket2 = io('http://localhost:8000/admin')
+  const socket = io(SOCKET_URL)
+  const socket2 = io(`${SOCKET_URL}`+'/admin')
 
   const [text, setText] = useState('')
 
