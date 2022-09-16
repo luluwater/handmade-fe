@@ -10,15 +10,16 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetStoreQuery } from '../../services/storeApi'
 import { addFilterStore } from '../../slices/filterStore-silce'
+import FilterDate from './FilterDate'
 import FilterKeyword from './FilterKeyword'
 import FilterPrice from './FilterPrice'
 import FilterStore from './FilterStore/FilterStore'
 import SortSelect from './SortSelect'
 
-function Filter() {
+function Filter({ haveDate = true }) {
   const { data, error, isload } = useGetStoreQuery()
-  // console.log(data)
-  const dispatch = useDispatch()
+
+  //處理資料格式
   const getNewData = () => {
     const result = []
     let obj = {}
@@ -35,11 +36,9 @@ function Filter() {
         },
       ]
     }
-    // console.log('obj', !!obj)
     for (let item of data) {
       if (Object.keys(obj).length === 0) {
         init(obj, item)
-        console.log('first')
         continue
       }
       if (obj.category === item.category_name) {
@@ -50,23 +49,19 @@ function Filter() {
         })
       } else {
         result.push({ ...obj })
-        console.log('result', result)
         obj = {}
         init(obj, item)
       }
-      // result.push({ ...obj })
-      // console.log('obj', obj)
-      // console.log('obj', Object.keys(obj))
     }
-    // console.log('getNewData', result)
     return result
   }
+
+  const dispatch = useDispatch()
   useEffect(() => {
     let newData = []
     if (Object.keys(data ?? {}).length !== 0) {
       newData = getNewData()
     }
-    console.log('add data')
     dispatch(addFilterStore(newData))
   }, [dispatch, data])
 
@@ -80,7 +75,9 @@ function Filter() {
     <>
       <FilterKeyword />
       <FilterStore state={state} className="d-none d-md-block" />
+      {haveDate ? <FilterDate className="d-none d-md-block" /> : ''}
       <FilterPrice className="d-none d-md-block" />
+
       <div className="d-flex justify-content-around">
         <Button
           onClick={toggleShowFilterStore}
@@ -94,8 +91,9 @@ function Filter() {
         >
           更多條件
         </Button>
-        <SortSelect className="w-25 me-0"></SortSelect>
+        <SortSelect className="w-25 me-0 d-md-none"></SortSelect>
       </div>
+
       <Modal
         show={showFilterStore}
         onHide={toggleShowFilterStore}
@@ -120,6 +118,7 @@ function Filter() {
             更多條件
           </ModalTitle>
           <FilterPrice />
+          {haveDate ? <FilterDate /> : ''}
         </ModalBody>
         <ModalFooter></ModalFooter>
       </Modal>

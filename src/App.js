@@ -38,6 +38,7 @@ import CourseDetailPage from './pages/CourseDetailPage'
 import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
 import ChatRoomPage from './pages/ChatRoomPage'
+import Courses from './pages/Courses'
 
 const routeConfig = [
   {
@@ -68,6 +69,10 @@ const routeConfig = [
       {
         path: 'map',
         element: <MapSearch />,
+      },
+      {
+        path: '/course',
+        element: <Courses />,
       },
       {
         path: 'store',

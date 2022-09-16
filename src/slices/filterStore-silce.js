@@ -16,6 +16,7 @@ function pushFilterStores(state, storeName) {
 
 //EXAMPLE
 const initialState = {
+  rawData: [],
   list: [],
   filterStores: [],
 }
@@ -25,7 +26,13 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     addFilterStore: (state, action) => {
+      if (state.list.length > 0) return
       state.list = action.payload
+      state.rawData = action.payload
+    },
+    initFilterStore: (state, action) => {
+      state.list = state.rawData
+      state.filterStores = []
     },
     handleToggoleTitle: (state, action) => {
       state.list = state.list.map((item) =>
@@ -90,5 +97,6 @@ export const {
   handleToggoleTitle,
   handleToggole,
   handleSelecteAll,
+  initFilterStore,
 } = filterSlice.actions
 export default filterSlice.reducer

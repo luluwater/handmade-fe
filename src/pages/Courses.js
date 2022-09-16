@@ -1,27 +1,27 @@
 import { useEffect } from 'react'
 import { Row, Col, Container, FormSelect } from 'react-bootstrap'
-import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
-import { productBanner } from '../image'
+import { courseBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
 import Filter from '../components/Filter/Filter'
 import SortSelect from '../components/Filter/SortSelect'
+import { useGetCourseListQuery } from '../services/courseApi'
+import { initFilterStore } from '../slices/filterStore-silce'
 import { initFilterPrice } from '../slices/filterPrice-slice'
 import { initFilterDate } from '../slices/filterDate-silce'
 import { initSearchWord } from '../slices/filterKeyword-slice'
-import { initFilterStore } from '../slices/filterStore-silce'
 
-function Proudcts() {
+function Courses() {
   //api get products data
-  const { data, error, isLoading } = useGetProductListQuery()
+  const { data, error, isLoading } = useGetCourseListQuery()
+  // console.log('data', data)
   const dispatch = useDispatch()
 
   //取的篩選資料
+  const courseList = useSelector((state) => state.paginationReducer.data)
   const rawData = useSelector((state) => state.paginationReducer.rawData)
-  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
-  const productList = useSelector((state) => state.paginationReducer.data)
   const filterStore = useSelector(
     (state) => state.filterStoreReducer.filterStores
   )
@@ -29,6 +29,11 @@ function Proudcts() {
     (state) => state.filterKeywordReducer.searchWord
   )
   const filterPrice = useSelector((state) => state.filterPriceReducer)
+  const filterDate = useSelector((state) => state.filterDateReducer)
+  const sort = useSelector((state) => state.sortSelectReducer.sortValue)
+  // console.log('date', filterDate)
+  // console.log(filterPrice)
+  //設定篩選資料
   useEffect(() => {
     if (rawData === data) return
     // console.log('get rawData')
@@ -38,18 +43,18 @@ function Proudcts() {
     dispatch(initSearchWord())
     dispatch(initFilterStore())
   }, [dispatch, data])
-  //設定篩選資料
   useEffect(() => {
     dispatch(
       setFilter({
         store: filterStore,
         searchWord: filterSearchWord,
         price: { min: filterPrice.leftValue, max: filterPrice.rightValue },
+        date: filterDate,
         sort: sort,
       })
     )
-  }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
-  // console.log('pagination', productList)
+  }, [dispatch, filterStore, filterSearchWord, filterPrice, filterDate, sort])
+  // console.log('pagination', courseList)
   // console.log(
   //   'pagination:filter',
   //   useSelector((state) => state.paginationReducer.filter)
@@ -85,40 +90,40 @@ function Proudcts() {
             className="path-bottom"
           ></path>
         </svg>
-        {/* <img className="banner" src={productBanner} alt="banner"></img> */}
+        <img className="banner" src={courseBanner} alt="banner"></img>
         <h1 className="position-absolute top-50 start-50 translate-middle text-white fw-light banner_title">
-          SHOP
+          COURSE
         </h1>
       </div>
       <Container fluid className="m-3 mx-auto ">
         <Row className="gx-0 gy-5">
           <Col md={'auto'}>
-            <Filter haveDate={false} />
+            <Filter />
           </Col>
           <Col>
             <SortSelect className="d-none d-md-block ms-auto mb-3"></SortSelect>
             <div className="d-flex justify-content-center">
               <Row className="product_list gap-4 gap-lg-6">
-                {productList?.map((v, i) => {
+                {courseList?.map((v, i) => {
                   return (
                     <ProductCard
                       key={v.id}
                       productId={v.id}
                       storeId={v.store_id}
                       categoryId={v.category_id}
-                      imgs={v.img_name}
+                      imgs={v.imgName}
                       category={v.category_en_name}
                       storeName={v.store_name}
                       name={v.name}
                       price={v.price}
                       isFavorite={v.isFavorite}
-                      type={'product'}
+                      type={'course'}
                     />
                   )
                 })}
               </Row>
             </div>
-            <Paginate baseUrl={'shop'} />
+            <Paginate baseUrl={'course'} />
           </Col>
         </Row>
       </Container>
@@ -126,4 +131,4 @@ function Proudcts() {
   )
 }
 
-export default Proudcts
+export default Courses

@@ -1,7 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
-import { useSelector } from 'react-redux'
-import Proudcts from '../pages/Products'
+import moment from 'moment'
 
 function sortData(a, b, sort) {
   if (sort === 'heighPrice') return b.price - a.price
@@ -10,30 +8,54 @@ function sortData(a, b, sort) {
 }
 
 function doPagination(state) {
+  if (!state.rawData) return
   state.data = state.rawData
+  //篩選關鍵字
   if (state.filter.searchWord !== '') {
-    state.data = state.data.filter((product) => {
-      // console.log('key', current(product))
+    state.data = state.data?.filter((product) => {
       return (
         product.name.includes(state.filter.searchWord) ||
         product.store_name.includes(state.filter.searchWord)
       )
     })
   }
+
+  //篩選商店名稱
   if (state.filter.store.length > 0) {
-    state.data = state.data.filter((product) =>
+    state.data = state.data?.filter((product) =>
       state.filter.store.includes(product.store_name)
     )
-    console.log(current(state))
   }
-  state.data = state.data
-    ?.filter(
-      (product) =>
-        product.price > state.filter.price.min &&
-        product.price < state.filter.price.max
-    )
-    .sort((a, b) => sortData(a, b, state.filter.sort))
-  // console.log(state.filter.sort)
+
+  //篩選時間
+  if (
+    state.filter.date?.startDate !== null &&
+    state.filter.date?.startDate !== undefined &&
+    state.filter.date?.endDate !== undefined
+  ) {
+    state.data = state.data?.filter((product) => {
+      const productDate = moment(product.course_date).format('YYYY-M-D')
+      const startDate = state.filter.date.startDate
+      const endDate = state.filter.date.endDate ?? startDate
+      return (
+        moment(productDate).isSameOrBefore(endDate) &&
+        moment(productDate).isSameOrAfter(startDate)
+      )
+    })
+  }
+
+  //篩選價格
+  if (state.data.length > 0 && Object.keys(state.data[0]).includes('price')) {
+    state.data = state.data
+      ?.filter(
+        (product) =>
+          product.price > state.filter.price.min &&
+          product.price < state.filter.price.max
+      )
+      .sort((a, b) => sortData(a, b, state.filter.sort))
+  }
+
+  //計算頁數與分頁
   state.totalPage = Math.ceil(state.data?.length / state.itemCount)
   state.data = state.data?.slice(
     (state.currentPage - 1) * state.itemCount,
@@ -53,7 +75,7 @@ const initialState = {
     searchWord: '',
     store: [],
     price: { min: 0, max: 10000 },
-    date: [],
+    date: { startDate: null, endDate: null },
     sort: 'hot',
   },
   currentPage: 1,
@@ -68,6 +90,10 @@ export const paginationSlice = createSlice({
     pagination: (state, action) => {
       const length = action.payload?.length ?? 1
       state.totalPage = Math.ceil(length / state.itemCount)
+      // if (state.rawData != action.payload) {
+      //   console.log('換頁')
+      //   state.filter = { ...initialState.filter }
+      // }
       state.rawData = action.payload
       doPagination(state)
     },
