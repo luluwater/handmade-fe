@@ -12,7 +12,7 @@ const ProductHeader = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center p-0 w-100">
         <Row style={{ width: '1560px' }} className="py-5 borderButtom">
           {data?.map((item) => {
             return (
@@ -38,6 +38,9 @@ const ProductHeader = () => {
                   amount={item.amount}
                   category={item.category_en_name}
                   storeId={item.store_id}
+                  categoryId={item.category_id}
+                  isFavorite={item.isFavorite}
+                  type={'product'}
                 />
               </Col>
             )

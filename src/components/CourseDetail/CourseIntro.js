@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetCourseCommentQuery } from '../../services/courseApi'
@@ -6,6 +6,12 @@ import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement } from '../../slices/counter-slice'
+import { addCourseCart, getCourseTotal } from '../../slices/courseCart-slice'
+
+import {
+  useAddUserFavoriteCourseMutation,
+  useRemoveUserFavoriteCourseMutation,
+} from '../../services/courseApi'
 
 import moment from 'moment'
 
@@ -14,7 +20,19 @@ import './CourseDetail.scss'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
+const CourseIntro = ({
+  id,
+  store,
+  name,
+  price,
+  storeId,
+  img,
+  category,
+  stock,
+  isFavorite,
+  categoryId,
+  type,
+}) => {
   ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
 
@@ -66,6 +84,46 @@ const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
 
   const shopUrl = `/store/${storeId}`
 
+  const [stockId] = filterResult.map((value) => {
+    return value.id
+  })
+  const [stocks] = filterResult.map((value) => {
+    return value.stock
+  })
+  const date = formatStartDate
+  const [time] = filterResult.map((value) => {
+    return value.time_start
+  })
+
+  ////////// 加入購物車 //////////
+  const addToCourseCart = () => {
+    dispatch(
+      addCourseCart({
+        id,
+        store,
+        stockId,
+        name,
+        img,
+        price,
+        category,
+        date,
+        time,
+        quantity,
+        stocks,
+      })
+    )
+  }
+  const CourseItem = useSelector(
+    (state) => state.courseCartReducer.courseCartItem
+  )
+  useEffect(() => {
+    dispatch(getCourseTotal())
+  }, [CourseItem, dispatch])
+
+  ////////// isFavorite //////////
+  const [aaddUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
+  const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+
   return (
     <>
       <Row className="d-flex flex-column fw-bold detail_RWD ">
@@ -106,9 +164,12 @@ const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
                   {filterResult?.map((item) => {
                     console.log('success')
                     return (
-                      <Button className="col-3 m-2 course_time_btn">
-                        {item.time_start}
-                      </Button>
+                      <div>
+                        <Button className="col-3 m-2 course_time_btn">
+                          {item.time_start}
+                        </Button>
+                        <p>{item.stockId}</p>
+                      </div>
                     )
                   })}
                 </Col>
@@ -158,10 +219,30 @@ const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
               </h5>
             </Col>
             <Col>
-              <Button className="detail_button detail_cart ms-0">
+              <Button
+                className="detail_button detail_cart ms-0"
+                onClick={addToCourseCart}
+              >
                 加入購物車
               </Button>
-              <Button className="detail_button detail_heart">
+              <Button
+                onClick={() => {
+                  if (isFavorite) {
+                    type === 'course'
+                      ? removeUserFavoriteCourse({
+                          courseId: id,
+                          storeId,
+                          categoryId,
+                        })
+                      : aaddUserFavoriteCourse({
+                          courseId: id,
+                          storeId,
+                          categoryId,
+                        })
+                  }
+                }}
+                className="detail_button detail_heart"
+              >
                 <FontAwesomeIcon icon={'far fa-heart'} />
               </Button>
             </Col>

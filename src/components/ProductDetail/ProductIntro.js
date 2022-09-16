@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useEffect } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetProductCommentQuery } from '../../services/productApi'
@@ -7,7 +7,12 @@ import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement } from '../../slices/counter-slice'
-import { addProductCart } from '../../slices/productCart-slice'
+import { addProductCart, getProductTotal } from '../../slices/productCart-slice'
+
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+} from '../../services/productApi'
 
 import './ProductDetail.scss'
 
@@ -20,6 +25,8 @@ const ProductIntro = ({
   category,
   amount,
   storeId,
+  isFavorite,
+  categoryId,
 }) => {
   const { productId } = useParams()
   const { data } = useGetProductCommentQuery(productId)
@@ -59,6 +66,16 @@ const ProductIntro = ({
       })
     )
   }
+  const ProductItem = useSelector(
+    (state) => state.productCartReducer.productCartItem
+  )
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [ProductItem, dispatch])
+
+////////// isFavorite //////////
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
 
   return (
     <>
@@ -103,8 +120,26 @@ const ProductIntro = ({
           >
             加入購物車
           </Button>
-          <Button className="detail_button detail_heart">
-            <FontAwesomeIcon icon={'far fa-heart'} />
+          <Button
+            className="detail_button detail_heart"
+            onClick={() => {
+              if (isFavorite) {
+                removeUserFavoriteProduct({
+                  productId: productId,
+                })
+              } else {
+                addUserFavoriteProduct({
+                  productId: productId,
+                  storeId: storeId,
+                  categoryId: categoryId,
+                })
+              }
+            }}
+          >
+            <FontAwesomeIcon
+              icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+              inverse
+            />
           </Button>
         </Col>
         <Col className="detail_intro">

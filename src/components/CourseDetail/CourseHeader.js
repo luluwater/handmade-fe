@@ -11,7 +11,7 @@ const CourseDetailPage = () => {
   const { data } = useGetCourseDetailQuery(courseId)
   return (
     <>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center p-0 w-100">
         <Row style={{ width: '1560px' }} className="py-5 borderButtom">
           {data?.map((item) => {
             return (
@@ -34,6 +34,11 @@ const CourseDetailPage = () => {
                   name={item.name}
                   price={item.price}
                   stock={item.stock_time}
+                  img={item.img_name[0]}
+                  category={item.category_en_name}
+                  categoryId={item.category_id}
+                  isFavorite={item.isFavorite}
+                  type={'course'}
                 />
               </Col>
             )

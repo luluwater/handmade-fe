@@ -11,7 +11,7 @@ import '../styles/_custom_variables.scss'
 const CourseDetailPage = () => {
   return (
     <>
-      <Row>
+      <Row className="w-100">
         <CourseHeader />
       </Row>
       <Container>

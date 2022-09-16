@@ -43,11 +43,11 @@ const courseCartSlice = createSlice({
           id: newItem.id,
           stockId: newItem.stockId,
           name: newItem.name,
-          img: newItem.img[0],
+          img: newItem.img,
           price: newItem.price,
           category: newItem.category,
           date: newItem.date,
-          time: newItem.time_start,
+          time: newItem.time,
           quantity: newItem.quantity,
           // TODO:修改如果有傳入quantity的話,total要先計算
           totalPrice: newItem.price,
