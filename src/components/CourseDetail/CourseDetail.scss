@@ -150,6 +150,10 @@
     outline: none;
     box-shadow:none;
 }
+.btn:disabled{
+    background-color: $skin-bright;
+    color: $skin-brighter;
+}
 
 .detail_cart:hover{
     width: 250px;
@@ -329,6 +333,7 @@
     background: $skin-bright;
     border: none;
     color: $gray-darker;
+    width: 100px;
 }
 .course_time_btn:focus,.course_time_btn:active:focus{
     outline: none;

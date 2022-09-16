@@ -21,7 +21,7 @@ function CourseBlog() {
 
   return (
     <>
-      <Row className="mt-0 px-5">
+      <Row className="mt-0 px-5 mb-10">
         <h4 className="home_blog_title">推薦文章</h4>
         <div className="d-flex justify-content-between home_blog_card">
           {NewBlog.map((v, i) => {

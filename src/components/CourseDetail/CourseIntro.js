@@ -15,21 +15,36 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
-  console.log('storeId', storeId)
   ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
+
+  ////////// GetDate //////////
+  function handleOnChange(date) {
+    setStartDate(date)
+  }
 
   const newStockDate = stock?.map((item) => {
     return new Date(item.date)
   })
-  console.log('newStockDate', newStockDate)
-  const stockTime = stock?.map((item) => {
-    const newStockTime = item.time_start
-    return newStockTime
+
+  ////////// Filter Date //////////
+  const formatStockDate = stock?.map((item) => {
+    const StockDate = item.date
+    return moment(StockDate).format('YYYY-MM-DD')
   })
+  const formatStartDate = moment(startDate).format('YYYY-MM-DD')
+  console.log('處理過的資料庫時段', formatStockDate)
+  console.log('處理過的選擇時段', formatStartDate)
+
+  const filterResult = stock.filter((value) => {
+    return moment(value.date).format('YYYY-MM-DD') === formatStartDate
+  })
+  console.log('filterResult', filterResult)
+
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
 
+  ////////// SCORE //////////
   let totalSum = 0
   let score = data?.map((v) => {
     return Number(v.score)
@@ -43,13 +58,13 @@ const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
   // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
   const length = score?.length
   let average = sumWithInitial / length
+  ////////// SCORE //////////
 
   ////////// COUNTER //////////
   const dispatch = useDispatch()
   const quantity = useSelector((state) => state.counterReducer.value)
 
   const shopUrl = `/store/${storeId}`
-  console.log('shopUrl', shopUrl)
 
   return (
     <>
@@ -79,28 +94,47 @@ const CourseIntro = ({ id, store, name, price, stock, storeId }) => {
             <h6 className="course_order_title mt-1 mb-3">預約日期與時段</h6>
             <DatePicker
               selected={startDate}
-              onChange={(date) => {
-                setStartDate(date)
-                const GetDate = moment(date).format('YYYY-MM-DD')
-                console.log('GetDate', GetDate)
-              }}
+              onChange={handleOnChange}
               includeDates={newStockDate}
-              dateFormat="YYYY-MM-DD"
               inline
             />
           </Col>
           <Col className="d-flex flex-column detail_amount py-4 col-lg-7 align-items-center col-sm-12">
-            <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
-              {moment(newStockDate).format('YYYY-MM-DD') === '2022-10-19' &&
-                stock?.map((item) => {
-                  return (
-                    <Button className="col-3 m-2 course_time_btn">
-                      {item.time_start}
-                    </Button>
-                  )
-                })}
+            <Col>
+              {filterResult.length > 0 ? (
+                <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
+                  {filterResult?.map((item) => {
+                    console.log('success')
+                    return (
+                      <Button className="col-3 m-2 course_time_btn">
+                        {item.time_start}
+                      </Button>
+                    )
+                  })}
+                </Col>
+              ) : (
+                <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
+                  <Button className="col-3 m-2 course_time_btn" disabled>
+                    10:00
+                  </Button>
+                  <Button className="col-3 m-2 course_time_btn" disabled>
+                    11:00
+                  </Button>
+                  <Button className="col-3 m-2 course_time_btn" disabled>
+                    13:00
+                  </Button>
+                  <Button className="col-3 m-2 course_time_btn" disabled>
+                    15:00
+                  </Button>
+                  <Button className="col-3 m-2 course_time_btn" disabled>
+                    17:00
+                  </Button>
+                  <Button className="col-3 m-2 course_time_btn" disabled>
+                    19:00
+                  </Button>
+                </Col>
+              )}
             </Col>
-
             <Col className="d-flex mb-2 ms-3">
               <div className="detail_amount_title">人數</div>
               <Button
