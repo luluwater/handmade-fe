@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Editor from '../BlogEdit/Editor'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -12,7 +12,7 @@ import moment from 'moment'
 import { useNavigate } from 'react-router'
 import { Toast } from '../../UI/SwalStyle'
 import Tags from '../../UI/Picker'
-import { useGetSelectQuery } from '../../../services/storeApi'
+import { useGetSelectQuery } from '../../../services/untilApi'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
@@ -148,13 +148,13 @@ const BlogCreate = () => {
           <Container>
             <Row className="d-flex flex-column flex-md-row">
               <Col className="max-w-md-50">
-                <Modal.Body className="py-md-12 px-md-6">
+                <Modal.Body className="py-md-12 px-m">
                   <h4 className="mb-3 fs-5 fw-bolder">部落格預覽</h4>
 
-                  <h5 className="border-bottom pb-2 fs-5 fw-bolder">
+                  <h5 className="border-bottom border-gray-dark pb-2 fs-5 fw-bolder">
                     {addTitle}
                   </h5>
-                  <div className="py-2 border-bottom ">
+                  <div className="py-2 border-bottom border-gray-dark">
                     <p className="m-0 text-cut text-muted">
                       {addContent ? parse(addContent) : ''}
                     </p>
@@ -171,7 +171,7 @@ const BlogCreate = () => {
                   <div className="d-flex flex-column gap-md-6 gap-5">
                     <Form.Select
                       onClick={handleCategoryChange}
-                      className="bg-skin-brighter border-0"
+                      className="bg-skin-brighter border-gray-dark"
                       aria-label="選擇類別"
                     >
                       {data?.category.map((v) => {
@@ -181,13 +181,18 @@ const BlogCreate = () => {
 
                     <Form.Select
                       onClick={handleStoreChange}
-                      className="bg-skin-brighter border-0"
+                      className="bg-skin-brighter border-gray-dark"
                       aria-label="選擇店家"
                     >
-                      <option>選擇店家</option>
-                      {filterStore?.map((v) => {
-                        return <option value={v.id}>{v.name}</option>
-                      })}
+                      {filterStore?.length === 0 ? (
+                        <option>選擇店家</option>
+                      ) : (
+                        <>
+                          {filterStore?.map((v) => {
+                            return <option value={v.id}>{v.name}</option>
+                          })}
+                        </>
+                      )}
                     </Form.Select>
                     <Tags
                       className="w-100"

@@ -24,10 +24,6 @@ export const storeApiService = createApi({
       query: (storeId) => `product/${storeId}`,
       providesTags: ['Store'],
     }),
-    getSelect: builder.query({
-      query: () => ({ url: 'store', method: 'POST' }),
-      providesTags: ['store'],
-    }),
   }),
 })
 
@@ -36,5 +32,4 @@ export const {
   useGetStoreDetailQuery,
   useGetStoreCourseQuery,
   useGetProductCourseQuery,
-  useGetSelectQuery,
 } = storeApiService
