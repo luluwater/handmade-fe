@@ -2,17 +2,19 @@ import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { Marker } from 'react-leaflet/Marker'
 import { Popup } from 'react-leaflet/Popup'
+import { GeoJSON } from 'react-leaflet'
 import Leaflet from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import { useMapEvents } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 import './Map.scss'
 import { useSelector } from 'react-redux'
-import StoreCard from './StoreCard'
 import { Col, Row } from 'react-bootstrap'
-import { useMapEvents } from 'react-leaflet'
 import { useEffect, useRef } from 'react'
+import MRT from '../../utils/mrt.json'
+import TRTC from '../../utils/TRTC.json'
 
 //全域事件
 function LocationMarker() {
@@ -25,12 +27,22 @@ function LocationMarker() {
 }
 
 function Map() {
-  //marker defaultIcon
+  //default Marker Icon
   const defaultIcon = Leaflet.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
     iconAnchor: [12.5, 0],
   })
+  //default MRT Marker Icon
+  const MRTIcon = Leaflet.icon({
+    iconUrl:
+      'https://www.newton.com.tw/img/4/eed/nBnauUmYyQTZzQmY4QWOxEGMkhDNzUTYidTZxgTNxQmM4MWOlR2MilDMwQ2LtVGdp9yYpB3LltWahJ2Lt92YuUHZpFmYuMmczdWbp9yL6MHc0RHa.jpg',
+    iconSize: 25,
+  })
+  const MRT_Position = MRT.map((v, i) => {
+    return [v.StationPosition.PositionLat, v.StationPosition.PositionLon]
+  })
+
   Leaflet.Marker.prototype.options.icon = defaultIcon
 
   const storeData = useSelector((state) => state.storeReducer.store)
@@ -60,6 +72,7 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
+        <GeoJSON key="Geometry" data={TRTC} />
         {storeData?.map((v) => {
           return (
             <Marker
@@ -98,6 +111,10 @@ function Map() {
             </Marker>
           )
         })}
+
+        {/* {MRT_Position.map((v, i) => {
+          return <Marker key={i} position={v} icon={MRTIcon}></Marker>
+        })} */}
       </MapContainer>
     </div>
   )
