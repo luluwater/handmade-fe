@@ -8,6 +8,7 @@ import ShowPassword from '../ShowEye/ShowPassword'
 import { login } from '../../../slices/auth-slice'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../services/authApi'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   
@@ -18,6 +19,7 @@ const Login = () => {
   // password eye
   const [eye, setEye] = useState(false)
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
@@ -30,6 +32,7 @@ const Login = () => {
     // )
     e.preventDefault()
     await login({email, password})
+    await navigate('/')
   }
 
   

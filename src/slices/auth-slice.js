@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  googleUserData: {},
-  userData: {},
-  token: '',
-  isLoggedIn: false,
+  loading: false,
+  userInfo: {}, 
+  userToken: null,
+  error: null,
+  success: false
 }
 
 export const userSlice = createSlice({
