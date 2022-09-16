@@ -14,8 +14,8 @@ import moment from 'moment/moment'
 import EmojiPicker from 'emoji-picker-react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import SplitButton from 'react-bootstrap/SplitButton'
 import { SOCKET_URL } from '../../utils/config'
+
 
 const ChatRoom = () => {
   const { data, isLoading } = useChatRoomsQuery()
