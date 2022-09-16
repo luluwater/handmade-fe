@@ -41,11 +41,11 @@ function Courses() {
       })
     )
   }, [dispatch, filterStore, filterSearchWord, filterPrice, filterDate, sort])
-  console.log('pagination', courseList)
-  console.log(
-    'pagination:filter',
-    useSelector((state) => state.paginationReducer.filter)
-  )
+  // console.log('pagination', courseList)
+  // console.log(
+  //   'pagination:filter',
+  //   useSelector((state) => state.paginationReducer.filter)
+  // )
 
   return (
     <>
