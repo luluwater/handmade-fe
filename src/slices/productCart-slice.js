@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
+import '../styles/style.scss'
+
 
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
@@ -20,7 +23,6 @@ const productCartSlice = createSlice({
       const existingItem = state.productCartItem.find(
         (Item) => Item.productId === newItem.productId
       )
-
       if (!existingItem) {
         state.productCartItem.push({
           productId: newItem.productId,
@@ -29,16 +31,35 @@ const productCartSlice = createSlice({
           price: newItem.price,
           category: newItem.category,
           quantity: newItem.quantity ? newItem.quantity : 1,
-          totalPrice: newItem.price,
+      // TODO:修改如果有傳入quantity的話,total要先計算
+          totalPrice: newItem.price, 
           amount: newItem.amount,
           stockWarning: '',
+        })
+        toast.success(`${action.payload.name} 成功加入購物車！`, {
+          position: 'top-center',
+          autoClose: 500,
+          hideProgressBar: true,
+          className: 'toast-addCartMessage',
         })
       } else if (existingItem && existingItem.quantity < existingItem.amount) {
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(newItem.price)
+        toast.info(`${action.payload.name} 已存在於購物車！`, {
+          position: 'top-center',
+          autoClose: 500,
+          hideProgressBar: true,
+          className: 'toast-alreadyInCartMessage',
+        })
       } else if (existingItem && existingItem.quantity >= existingItem.amount) {
         existingItem.stockWarning = '已達庫存上限'
+        toast.info(`${action.payload.name} 已存在於購物車！`, {
+          position: 'top-center',
+          autoClose: 500,
+          hideProgressBar: true,
+          className: 'toast-alreadyInCartMessage',
+        })
       }
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
     },
@@ -95,6 +116,11 @@ const productCartSlice = createSlice({
       state.totalQuantity = quantity
       state.totalAmount = total
     },
+    // ============清空購物車==========
+    clearCart(state, action) {
+      state.productCartItem = []
+      localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
+    },
   },
 })
 
@@ -103,5 +129,6 @@ export const {
   removeProductItem,
   deleteProductItem,
   getProductTotal,
+  clearCart,
 } = productCartSlice.actions
 export default productCartSlice.reducer

@@ -41,6 +41,19 @@
   z-index: 9999;
   color: $gray-darker;
 
+  &_main{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+  }
+
+  &_item_list{
+    overflow-y: scroll;
+  }
+
   &_tabContent{
     background: $skin-brighter;
   }
@@ -61,12 +74,16 @@
     color: $gray-darker;
     background-color: $skin-brighter;
   }
+  &_emptyCart{
+    border: 1px solid $gray-darker;
+  }
   &_courseRightSide{
     background: $skin-bright;
   }
 
   &_mainContent{
     height: 100vh;
+    overflow-y: scroll;
   }
 
   &_backToStore{
@@ -155,6 +172,15 @@
     &:hover{
       color: $white;
     }
+  }
+  &_userLikeBox{
+    margin: 1.5rem 0 2rem 2rem;
+  }
+  &_userLike{
+    height: 100%;
+    width: 100%;
+    background: $skin-bright;
+    padding: 1.5rem 0;
   }
 
   }
