@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from 'uuid'
 
 const UserLikeRecommend = () => {
   const { data } = useUserLikesCourseQuery()
-  console.log(data)
+
+  
   return (
     <>
-      {data?.map((item) => {
-        console.log('123')
-        return (
-          <>
+      {data?.map((item, i) => {
+        if (i < 4) {
+          return (
             <RecommendCard
               key={uuidv4()}
               type="course"
@@ -22,8 +22,8 @@ const UserLikeRecommend = () => {
               img={item.img_name}
               category={item.category_en_name}
             />
-          </>
-        )
+          )
+        }
       })}
     </>
   )

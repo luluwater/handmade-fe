@@ -51,9 +51,14 @@ const Cart = () => {
   }, [CourseItem, dispatch])
 
   return (
-    <div className="Cart">
+    <div className="Cart" onClick={toggleCart}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Row className="justify-content-end Cart_main">
+        <Row
+          className="justify-content-end Cart_main "
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        >
           <Col sm={1} className="pe-0">
             <Nav variant="pills" className="flex-column">
               <Nav.Item className="d-flex justify-content-end">
@@ -159,7 +164,7 @@ const Cart = () => {
                     )}
 
                     <Row className="Cart_userLikeBox">
-                      <p className="fs-5 text-center">您的收藏清單</p>
+                      <p className="fs-5 text-center">您的課程收藏清單</p>
                       <Row className="mb-5">
                         <Col className="d-flex justify-content-center Cart_userLike">
                           <UserLikeRecommend />
