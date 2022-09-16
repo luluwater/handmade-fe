@@ -19,7 +19,8 @@ const CourseRecommend = () => {
               className="d-flex justify-content-center"
             >
               <RecommendCard
-              type='course'
+                type="course"
+                cartIcon=""
                 id={item.id}
                 store={item.store_name}
                 name={item.name}
