@@ -18,8 +18,12 @@ export const filterDateSlice = createSlice({
           ? null
           : moment(action.payload.endDate).format('YYYY-M-D')
     },
+    initFilterDate: (state, action) => {
+      state.startDate = null
+      state.endDate = null
+    },
   },
 })
 
-export const { setState } = filterDateSlice.actions
+export const { setState, initFilterDate } = filterDateSlice.actions
 export default filterDateSlice.reducer
