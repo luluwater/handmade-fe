@@ -1,4 +1,10 @@
 @import './custom_variables';
+:root{
+  --toastify-color-success: #fff!important;
+  --toastify-color-info:#fff!important;
+
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -241,10 +247,14 @@ img {
   background: $secondary!important;
   color: $white!important;
   z-index: 99999;
+
 }
 
 .toast-alreadyInCartMessage{
   background: $primary!important;
   color: $white!important;
   z-index: 99999;
+
 }
+
+

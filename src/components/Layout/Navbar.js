@@ -1,22 +1,57 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartToggle } from '../../slices/cart-ui-slice'
+import { getProductTotal } from '../../slices/productCart-slice'
+import { getCourseTotal } from '../../slices/courseCart-slice'
 
 const Navbar = () => {
-  const totalQuantity = useSelector(
+  const courseCartQuantity = useSelector(
+    (state) => state.courseCartReducer.totalQuantity
+  )
+
+  const productCartQuantity = useSelector(
     (state) => state.productCartReducer.totalQuantity
   )
+
+  const cartTotalQuantity =
+    Number(productCartQuantity) + Number(courseCartQuantity)
+
   const dispatch = useDispatch()
   const toggleCart = () => {
     dispatch(cartToggle())
   }
+
+  const navRef = useRef(null)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (
+        document.body.scrollTop > 152 ||
+        document.documentElement.scrollTop > 152
+      ) {
+        navRef.current.classList.add('navbar_shrink')
+      } else {
+        navRef.current.classList.remove('navbar_shrink')
+      }
+    })
+    return () => window.removeEventListener('scroll')
+  }, [])
+
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [courseCartQuantity, dispatch])
+
+  useEffect(() => {
+    dispatch(getCourseTotal())
+  }, [productCartQuantity, dispatch])
+
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar" ref={navRef}>
         <div className="d-flex align-items-center">
           <Link to="/">
             <img src={Logo} alt="" />
@@ -38,13 +73,20 @@ const Navbar = () => {
               </button>
             </form>
 
-            <span onClick={toggleCart}>
+            <span onClick={toggleCart} className="navbar_cartIcon">
               <FontAwesomeIcon
                 icon="fa-solid fa-cart-shopping"
                 size="xl"
                 className="mx-3 navbar_awesomeIcon"
                 fixedWidth
               />
+              {cartTotalQuantity > 0 ? (
+                <span className="navbar_cartBadge d-flex justify-content-center align-items-center">
+                  {cartTotalQuantity}
+                </span>
+              ) : (
+                ''
+              )}
             </span>
 
             <Link to="login" className="navbar_user">

@@ -12,6 +12,7 @@ import filterStoreReducer from '../slices/filterStore-silce'
 import counterReducer from '../slices/counter-slice'
 import cartUiReducer from '../slices/cart-ui-slice'
 import productCartReducer from '../slices/productCart-slice'
+import courseCartReducer from '../slices/courseCart-slice'
 import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
 import sortSelectReducer from '../slices/sortSelect-slice'
@@ -46,6 +47,7 @@ const reducers = combineReducers({
   counterReducer,
   cartUiReducer,
   productCartReducer,
+  courseCartReducer,
   sortSelectReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
@@ -54,6 +56,7 @@ const reducers = combineReducers({
   [courseApiService.reducerPath]: courseApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
+  [userApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
   [courseApiService.reducerPath]: courseApiService.reducer,
 })

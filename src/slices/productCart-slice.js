@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import '../styles/style.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
     ? JSON.parse(localStorage.getItem('ProductCart'))
@@ -24,7 +25,6 @@ const productCartSlice = createSlice({
       const existingItem = state.productCartItem.find(
         (Item) => Item.productId === newItem.productId
       )
-
       if (!existingItem) {
         state.productCartItem.push({
           productId: newItem.productId,
@@ -33,11 +33,12 @@ const productCartSlice = createSlice({
           price: newItem.price,
           category: newItem.category,
           quantity: newItem.quantity ? newItem.quantity : 1,
-          totalPrice: newItem.price,
+      // TODO:修改如果有傳入quantity的話,total要先計算
+          totalPrice: newItem.price, 
           amount: newItem.amount,
           stockWarning: '',
         })
-        toast(`${action.payload.name} 成功加入購物車！`, {
+        toast.success(`${action.payload.name} 成功加入購物車！`, {
           position: 'top-center',
           autoClose: 500,
           hideProgressBar: true,
@@ -47,7 +48,7 @@ const productCartSlice = createSlice({
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(newItem.price)
-        toast(`${action.payload.name} 已存在於購物車！`, {
+        toast.info(`${action.payload.name} 已存在於購物車！`, {
           position: 'top-center',
           autoClose: 500,
           hideProgressBar: true,
@@ -55,7 +56,7 @@ const productCartSlice = createSlice({
         })
       } else if (existingItem && existingItem.quantity >= existingItem.amount) {
         existingItem.stockWarning = '已達庫存上限'
-        toast(`${action.payload.name} 已存在於購物車！`, {
+        toast.info(`${action.payload.name} 已存在於購物車！`, {
           position: 'top-center',
           autoClose: 500,
           hideProgressBar: true,

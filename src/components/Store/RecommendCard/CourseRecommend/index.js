@@ -7,7 +7,7 @@ import { useGetStoreCourseQuery } from '../../../../services/storeApi'
 const CourseRecommend = () => {
   const { storeId } = useParams()
   const { data } = useGetStoreCourseQuery(storeId)
-  // console.log(data)
+
   return (
     <>
       <Row className="mb-5">
