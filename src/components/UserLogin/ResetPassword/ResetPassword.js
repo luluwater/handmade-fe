@@ -41,6 +41,7 @@ const ResetPassword = () => {
               type="button"
               value="submit"
               className="ResetPasswordSubmit"
+              Link="/home"
             >
               送出
             </button>

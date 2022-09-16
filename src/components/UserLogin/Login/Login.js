@@ -7,26 +7,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
 import { login } from '../../../slices/auth-slice'
 import { useDispatch } from 'react-redux'
+import { useLoginMutation } from '../../../services/authApi'
 
 const Login = () => {
-  const [account, setAccount] = useState('')
+  
+  const [login] = useLoginMutation() 
+  
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   // password eye
   const [eye, setEye] = useState(false)
 
   const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-    dispatch(
-      login({
-        account: account,
-        password: password,
-        // loggedIn: true,
-      })
-    )
+  const handleSubmit = async (e) => {
+    // dispatch(
+    //   login({
+    //     account: account,
+    //     password: password,
+    //     // loggedIn: true,
+    //   })
+    // )
     e.preventDefault()
+    await login({email, password})
   }
-  // 往上一層要加上 "/""，如果是子層則不用加
+
+  
   return (
     <>
       <div className="LoginFrame">
@@ -39,7 +45,7 @@ const Login = () => {
           <form
             action=""
             className="LoginForm position-relative "
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={handleSubmit}
           >
             <h1 className="LoginTitle text-center">會員登入</h1>
             <input
@@ -47,8 +53,8 @@ const Login = () => {
               type="text"
               name="AccountInput"
               placeholder="會員帳號"
-              value={account}
-              onChange={(e) => setAccount(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <br />
 
