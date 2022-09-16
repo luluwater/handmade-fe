@@ -48,7 +48,9 @@
     }
   }
   &_img {
-    width: 250px;
+    @media (min-width: 768px) {
+      width: 400px;
+    }
   }
 
   &_content {

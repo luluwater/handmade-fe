@@ -24,10 +24,10 @@ const BlogItem = ({
 
   return (
     <div className="mb-2 d-flex flex-column flex-lg-row gap-6 pb-4 mb-6 border-bottom ">
-      <div className="blog_list_img w-100">
+      <div className="blog_list_img">
         <Link to={`/blog/${id}`}>
           <img
-            src={`${IMG_URL}${images[0]?.img_name}`}
+            src={`${IMG_URL}/${images[0]?.img_name}`}
             className="h-100 object-fit d-flex d-lg-flex img-fluid"
             alt="blog post"
           />

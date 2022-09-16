@@ -12,13 +12,12 @@ import moment from 'moment'
 import { useNavigate } from 'react-router'
 import { Toast } from '../../UI/SwalStyle'
 import Tags from '../../UI/Picker'
-import { useEffect } from 'react'
-import { useGetStoreQuery } from '../../../services/storeApi'
+import { useGetSelectQuery } from '../../../services/storeApi'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
-  //TODO:接後端 getSelect 看看有沒有 api 可接
-  const { data } = useGetStoreQuery()
+
+  const { data } = useGetSelectQuery()
 
   const [addContent, setAddContent] = useState('')
   const [addTitle, setAddTitle] = useState('')
@@ -48,12 +47,11 @@ const BlogCreate = () => {
   // }blogId
 
   /**
-   * TODO: 拿到資料!!!
    * 1. Title     --> ok
    * 2. content    --> ok
    * 3. current User   --> not yet
    * 4. category ( 非必填 ) --> ok
-   * 5. store ( 建立於category之上 ) --> not yet
+   * 5. store ( 建立於category之上 ) --> ok
    * 6. tag?? ( 感覺有點麻煩 ) --> ok
    * 7. 發布時間 current time --> ok
    *  useNavgative
@@ -80,6 +78,11 @@ const BlogCreate = () => {
     tags: newTags,
     create_time: moment().format('YYYY-MM-DD h:mm:ss'),
   }
+
+  const filterStore = data?.store.filter((item) => {
+    return item.category_id.toString() === addCategory
+  })
+  console.log(filterStore)
 
   const handleSubmit = async () => {
     try {
@@ -171,13 +174,9 @@ const BlogCreate = () => {
                       className="bg-skin-brighter border-0"
                       aria-label="選擇類別"
                     >
-                      <option>選擇類別</option>
-                      <option value="1">金工</option>
-                      <option value="2">陶藝</option>
-                      <option value="3">花藝</option>
-                      <option value="4">皮革</option>
-                      <option value="5">烘焙</option>
-                      <option value="6">簇絨</option>
+                      {data?.category.map((v) => {
+                        return <option value={v.id}>{v.category_name}</option>
+                      })}
                     </Form.Select>
 
                     <Form.Select
@@ -186,13 +185,9 @@ const BlogCreate = () => {
                       aria-label="選擇店家"
                     >
                       <option>選擇店家</option>
-                      <option value="1">以覺學</option>
-                      <option value="2">轉角金工</option>
-                      <option value="3">光在金工</option>
-                      <option value="4">Minifeast</option>
-                      <option value="5">Silver Spring</option>
-                      <option value="9">雲森陶陶</option>
-                      <option value="30">Hi JOY studio</option>
+                      {filterStore?.map((v) => {
+                        return <option value={v.id}>{v.name}</option>
+                      })}
                     </Form.Select>
                     <Tags
                       className="w-100"
