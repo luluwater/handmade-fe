@@ -29,7 +29,7 @@ const Blog = () => {
               const imgUrl = item.img_url[0].img_name
               console.log(item)
               return (
-                <Row className="mb-md-5">
+                <Row className="mb-5">
                   <Col className="d-flex align-items-center">
                     <Link to={`/blog/${item.blog_id}`}>
                       <img src={`${IMG_URL}/${imgUrl}`} alt="new blog" />
