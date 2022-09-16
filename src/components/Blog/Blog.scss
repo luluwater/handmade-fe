@@ -79,6 +79,14 @@
   text-overflow: ellipsis;
 }
 
+.text-cut-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .user_image {
   width: 32px;
   height: 32px;
