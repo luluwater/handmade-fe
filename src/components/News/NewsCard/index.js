@@ -43,7 +43,7 @@ function NewsCard() {
       category: 'floral',
       amount: 5,
       imgs: ['花藝＿商品＿浪花＿粉橘色系高架花籃＿1.jpg'],
-      isFavorite: 'false',
+      isFavorite: false,
     },
     {
       productId: '35',
@@ -56,7 +56,7 @@ function NewsCard() {
       category: 'pottery',
       amount: 5,
       imgs: ['陶藝_商品_Round_Round_理容院開張_1.jpg'],
-      isFavorite: 'false',
+      isFavorite: false,
     },
     {
       productId: '127',
@@ -69,7 +69,7 @@ function NewsCard() {
       category: 'tufting',
       amount: 5,
       imgs: ['tufing_商品_HU-A-HU-呼阿呼_簇絨單面滿版抱枕_1.jpg'],
-      isFavorite: 'false',
+      isFavorite: false,
     },
     {
       productId: '18',
@@ -82,7 +82,7 @@ function NewsCard() {
       category: 'metalwork',
       amount: 5,
       imgs: ['金工_商品_Minifeast_白鑽小草純銀項鍊kv1.jpg'],
-      isFavorite: 'false',
+      isFavorite: false,
     },
   ]
 
@@ -93,7 +93,7 @@ function NewsCard() {
   return (
     <>
       <h4 className="mb-5 news_card_title text-center mt-8 fw-bold">
-        限定課程推薦
+        限定商品推薦
       </h4>
       <Container className="news_card mb-12 w-100 d-flex">
         {Info.map((v, i) => {
@@ -144,20 +144,20 @@ function NewsCard() {
                     className="bg-primary news_card_favorite me-2"
                     onClick={() => {
                       if (v.isFavorite) {
+                        removeUserFavoriteProduct({
+                          productId: v.productId,
+                        })
+                      } else {
                         addUserFavoriteProduct({
                           productId: v.productId,
                           storeId: v.storeId,
                           categoryId: v.categoryId,
                         })
-                      } else {
-                        removeUserFavoriteProduct({
-                          productId: v.productId,
-                        })
                       }
                     }}
                   >
                     <FontAwesomeIcon
-                      icon={v.isFavorite ? 'far fa-heart' : 'fa-solid fa-heart'}
+                      icon={v.isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
                       size="lg"
                     />

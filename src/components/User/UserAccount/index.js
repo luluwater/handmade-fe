@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
+// import {ZipCodeTW} from "zipcode-tw-react"
 
 const UserAccount = ({ account, name, phone, birthday, address }) => {
   // console.log(
@@ -118,12 +119,14 @@ const UserAccount = ({ account, name, phone, birthday, address }) => {
                     </td>
                   ) : (
                     <td>
-                      <DatePicker
-                        className="user_account_inputBirth"
-                        dateFormat="yyyy.MM.dd"
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                      />
+                      <div className="user_account_inputBirth">
+                        <DatePicker
+                          className="user_account_inputBirth"
+                          dateFormat="yyyy.MM.dd"
+                          selected={startDate}
+                          onChange={(date) => setStartDate(date)}
+                        />
+                      </div>
                       {/* <DatePicker
                     // selected={date}
                     onSelect={handleDateSelect} 
