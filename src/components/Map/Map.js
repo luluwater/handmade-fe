@@ -11,9 +11,21 @@ import './Map.scss'
 import { useSelector } from 'react-redux'
 import StoreCard from './StoreCard'
 import { Col, Row } from 'react-bootstrap'
-import { useState } from 'react'
+import { useMapEvents } from 'react-leaflet'
+import { useEffect, useRef } from 'react'
+
+//全域事件
+function LocationMarker() {
+  const map = useMapEvents({
+    popupopen(e) {
+      console.log(e.popup._latlng)
+      map.flyTo(e.popup._latlng)
+    },
+  })
+}
 
 function Map() {
+  //marker defaultIcon
   const defaultIcon = Leaflet.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
@@ -21,10 +33,23 @@ function Map() {
   })
   Leaflet.Marker.prototype.options.icon = defaultIcon
 
-  const [storeData] = useSelector((state) => state.storeReducer.store)
+  const storeData = useSelector((state) => state.storeReducer.store)
+  const center = useSelector((state) => state.storeReducer.center)
   console.log('map', storeData)
+  useEffect(() => {
+    markerRef.current?.openPopup()
+  }, [center])
+
+  const markerRef = useRef(null)
   return (
     <div className="border border-gray-dark map">
+      {/* <button
+        onClick={() => {
+          markerRef.current.openPopup()
+        }}
+      >
+        132456798
+      </button> */}
       <MapContainer
         center={[25.0478641, 121.5429378]}
         zoom={13}
@@ -34,16 +59,26 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <LocationMarker />
         {storeData?.map((v) => {
           return (
-            <Marker key={v.id} position={[v.store_lat, v.store_lng]}>
-              <Popup>
+            <Marker
+              key={v.id}
+              position={[v.store_lat, v.store_lng]}
+              ref={
+                v.store_lat === center[0] && v.store_lng === center[1]
+                  ? markerRef
+                  : null
+              }
+            >
+              <Popup closeButton={false}>
                 <Row className="align-items-center">
-                  <Col sm={'auto'}>
-                    <div
-                      style={{ width: '80px', height: '80px' }}
+                  <Col sm={5}>
+                    <img
                       className="border"
-                    ></div>
+                      src={require(`../../assets/store/store_${v.category_en_name}_${v.id}/${v.img}`)}
+                      alt={v.name}
+                    />
                   </Col>
                   <Col>
                     <h5 className="fw-bold">{v.name}</h5>
@@ -58,19 +93,7 @@ function Map() {
                   </Col>
                 </Row>
 
-                <p>{v.intro}</p>
-                {/* <StoreCard
-                    key={v.id}
-                    name={v.name}
-                    intro={v.intro}
-                    address={v.address}
-                    phone={v.phone}
-                    openingHour={v.opening_hour}
-                    fbUrl={v.FB_url}
-                    igUrl={v.IG_url}
-                    lng={v.store_lng}
-                    lat={v.store_lat}
-                  ></StoreCard> */}
+                <p className="line-clamp">{v.intro}</p>
               </Popup>
             </Marker>
           )

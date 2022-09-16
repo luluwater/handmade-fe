@@ -2,8 +2,14 @@ import { CardImg, Col, Row } from 'react-bootstrap'
 import Card from 'react-bootstrap/Card'
 import CardHeader from 'react-bootstrap/esm/CardHeader'
 import './Map.scss'
+import Leaflet from 'leaflet'
+import { useDispatch } from 'react-redux'
+import { setCenter } from '../../slices/store-slice'
 function StoreCard({
+  id,
   name,
+  img,
+  category,
   intro,
   address,
   phone,
@@ -13,15 +19,23 @@ function StoreCard({
   lng,
   lat,
   isActive,
-
 }) {
+  const dispatch = useDispatch()
   return (
-    <Card className="map_storeCard m-1">
+    <Card
+      className="map_storeCard m-1"
+      onClick={() => {
+        dispatch(setCenter([lat, lng]))
+      }}
+    >
       {/* <CardHeader className="fw-bold">{name}</CardHeader> */}
-      <Card.Body>
-        <Row className="g-2">
+      <Card.Body className=" ps-0">
+        <Row className="g-0">
           <Col sm={4} className="text-center">
-            <CardImg className="border" />
+            <CardImg
+              className="border"
+              src={require(`../../assets/store/store_${category}_${id}/${img}`)}
+            />
 
             <Card.Link href={fbUrl}>FB</Card.Link>
             <Card.Link href={igUrl}>IG</Card.Link>
