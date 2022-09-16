@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useGetCourseListQuery } from '../../../services/courseApi'
 import RecommendCard from '../../Store/RecommendCard'
 import CartRecommendCard from './CartRecommendCard'
@@ -7,17 +7,15 @@ import { v4 as uuidv4 } from 'uuid'
 const YouWillLikeCourse = () => {
   const { data, error, isLoading } = useGetCourseListQuery()
 
-  const [randomData, setRandomData] = useState()
+  let newData = []
 
-  if (!randomData) {
-    let newData = []
+  if (data) {
     newData = [...data]?.sort(() => 0.5 - Math.random())
-    setRandomData(newData)
   }
 
   return (
     <>
-      {randomData?.map((item, i) => {
+      {newData?.map((item, i) => {
         if (i < 3) {
           return (
             <div key={uuidv4()}>
