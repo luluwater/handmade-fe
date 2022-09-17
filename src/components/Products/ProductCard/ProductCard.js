@@ -128,8 +128,12 @@ function ProductCard({
               size="lg"
             />
           </button>
+
           {type === 'product' ? (
-            <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+            <button
+              className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
+              onClick={addToProductCart}
+            >
               <img src={cart} alt="" className="cart" />
             </button>
           ) : (
