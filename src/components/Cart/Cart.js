@@ -8,7 +8,10 @@ import { cartToggle } from '../../slices/cart-ui-slice'
 import { getProductTotal, clearCart } from '../../slices/productCart-slice'
 import { getCourseTotal, clearCourseCart } from '../../slices/courseCart-slice'
 
-import UserLikeRecommend from './CartRecommend/UserLikeRecomment'
+import UserLikeCourse from './CourseCartRecommend/UserLikeCourse'
+import YouWillLikeCourse from './CourseCartRecommend/YouWillLikeCourse'
+import UserLikeProduct from './CourseCartRecommend/UserLikeProduct'
+import YouWillLikeProduct from './CourseCartRecommend/YouWillLikeProduct'
 import { v4 as uuidv4 } from 'uuid'
 
 const Cart = () => {
@@ -51,20 +54,25 @@ const Cart = () => {
   }, [CourseItem, dispatch])
 
   return (
-    <div className="Cart">
+    <div className="Cart" onClick={toggleCart}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Row className="justify-content-end Cart_main">
-          <Col sm={1} className="pe-0">
-            <Nav variant="pills" className="flex-column">
-              <Nav.Item className="d-flex justify-content-end">
+        <Row
+          className="justify-content-end Cart_main "
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        >
+          <Col className="pe-0 Cart_tabChooseBox" sm={12}>
+            <Nav variant="pills" className="flex-column Cart_tabChoose">
+              <Nav.Item className="">
                 <Nav.Link
-                  className="Cart_NavLink text-center fs-5"
+                  className="Cart_NavLink text-center fs-5 "
                   eventKey="first"
                 >
                   課程購物車
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item className="d-flex justify-content-end mt-2">
+              <Nav.Item className="mt-2">
                 <Nav.Link
                   className="Cart_NavLink text-center fs-5"
                   eventKey="second"
@@ -75,7 +83,7 @@ const Cart = () => {
             </Nav>
           </Col>
 
-          <Col sm={9} className="ps-0">
+          <Col className="ps-0">
             <Tab.Content className="Cart_tabContent">
               {/* =============課程購物車============== */}
               <Tab.Pane eventKey="first">
@@ -159,10 +167,18 @@ const Cart = () => {
                     )}
 
                     <Row className="Cart_userLikeBox">
-                      <p className="fs-5 text-center">您的收藏清單</p>
+                      <p className="fs-5 text-center">您的課程收藏清單</p>
                       <Row className="mb-5">
                         <Col className="d-flex justify-content-center Cart_userLike">
-                          <UserLikeRecommend />
+                          <UserLikeCourse />
+                        </Col>
+                      </Row>
+                    </Row>
+                    <Row className="Cart_youMightLikeBox">
+                      <p className="fs-5 text-center">您可能會喜歡</p>
+                      <Row className="mb-5">
+                        <Col className="d-flex justify-content-center Cart_userLike">
+                          <YouWillLikeCourse />
                         </Col>
                       </Row>
                     </Row>
@@ -283,8 +299,21 @@ const Cart = () => {
                       <ProductCartItem />
                     </div> */}
 
-                    <Row className="">
-                      <p className="fs-5 text-center">您的收藏清單</p>
+                    <Row className="Cart_userLikeBox">
+                      <p className="fs-5 text-center">您的商品收藏清單</p>
+                      <Row className="mb-5">
+                        <Col className="d-flex justify-content-center Cart_userLike">
+                          <UserLikeProduct />
+                        </Col>
+                      </Row>
+                    </Row>
+                    <Row className="Cart_youMightLikeBox">
+                      <p className="fs-5 text-center">您可能會喜歡</p>
+                      <Row className="mb-5">
+                        <Col className="d-flex justify-content-center Cart_userLike">
+                          <YouWillLikeProduct />
+                        </Col>
+                      </Row>
                     </Row>
                   </Col>
 

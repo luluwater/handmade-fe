@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
