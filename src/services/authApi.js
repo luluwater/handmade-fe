@@ -11,27 +11,22 @@ export const authApiService = createApi({
     //     const token = (getState() as RootState).auth.token;
     //     if (token) {
     //       headers.set("authentication", `Bearer ${token}`);
-    //     }git 
+    //     }git
     //     return headers;
     //   }
   }),
 
   tagTypes: ['auth'],
   endpoints: (builder) => ({
-
     login: builder.mutation({
-        query: (data) => ({
-            url: '/auth/login',
-            method: 'POST',
-            body: data,
-          }),
-        providesTags: ['auth'],
+      query: (data) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body: data,
       }),
-    })
-
+      providesTags: ['auth'],
+    }),
+  }),
 })
 
-
-export const {
-  useLoginMutation
-  } = authApiService
+export const { useLoginMutation } = authApiService

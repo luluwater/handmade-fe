@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom'
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
-import { login } from '../../../slices/auth-slice'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../services/authApi'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  
-  const [login] = useLoginMutation() 
-  
+  const [login] = useLoginMutation()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   // password eye
@@ -21,6 +19,15 @@ const Login = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const [user, setUser] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+  })
 
   const handleSubmit = async (e) => {
     // dispatch(
@@ -31,11 +38,10 @@ const Login = () => {
     //   })
     // )
     e.preventDefault()
-    await login({email, password})
+    await login({ email, password })
     await navigate('/')
   }
 
-  
   return (
     <>
       <div className="LoginFrame">
@@ -58,6 +64,7 @@ const Login = () => {
               placeholder="會員帳號"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <br />
 
@@ -68,6 +75,7 @@ const Login = () => {
               placeholder="會員密碼"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <ShowPassword eye={eye} setEye={setEye} />
 
