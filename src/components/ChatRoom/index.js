@@ -17,21 +17,17 @@ import EmojiPicker from 'emoji-picker-react'
 
 import RoomNav from './RoomNav'
 import io from 'socket.io-client'
-import { SOCKET_URL } from '../../utils/config'
+import { BASE_URL } from '../../utils/config'
 
 const ChatRoom = () => {
   const [open, setOpen] = useState(false)
   // TODO:EMOJI
   const [showPicker, setShowPicker] = useState(false)
 
-  console.log(SOCKET_URL)
-  const socket = io(SOCKET_URL)
+  const socket = io(BASE_URL)
 
   const [text, setText] = useState('')
 
-  socket.on('rooms', (roomData) => {
-    console.log('roomData', roomData)
-  })
   socket.on('messageToClient', (msg) => {
     console.log('msg', msg)
   })
@@ -45,13 +41,16 @@ const ChatRoom = () => {
     setShowPicker((prev) => !prev)
   }
 
+  // const handleJoinRoom = (roomData) => {
+  //   console.log(roomData)
+  // }
+
   const [roomList, setRoomList] = useState([])
   const [chatBody, setChatBody] = useState([])
 
   // 3. 從後端拿到 rooms 的資料
   useEffect(() => {
     socket.on('rooms', (roomData) => {
-      console.log(roomData)
       setRoomList(
         roomData?.map((room) => {
           return (
@@ -59,12 +58,15 @@ const ChatRoom = () => {
               key={room.id}
               className="d-flex align-items-center justify-content-between border-0 "
               action
+              onClick={() => {
+                socket.emit('joinRoom', room)
+              }}
               href={`#${room.endpoint}`}
             >
               <img
                 className="chat_avatar rounded-2"
                 src={room.img_url}
-                alt=""
+                alt="room pic"
               />
               <div>{room.room_title}</div>
               <FontAwesomeIcon icon="fa-solid fa-angle-right" />
