@@ -37,6 +37,7 @@ function Filter({ haveDate = true }) {
       ]
     }
     for (let item of data) {
+      // console.log(item)
       if (Object.keys(obj).length === 0) {
         init(obj, item)
         continue
@@ -52,7 +53,9 @@ function Filter({ haveDate = true }) {
         obj = {}
         init(obj, item)
       }
+      if (item.id === data.length) result.push({ ...obj })
     }
+
     return result
   }
 
@@ -63,6 +66,8 @@ function Filter({ haveDate = true }) {
       newData = getNewData()
     }
     dispatch(addFilterStore(newData))
+    // console.log('rawData', data)
+    // console.log('newData', newData)
   }, [dispatch, data])
 
   const state = useSelector((state) => state.filterStoreReducer.list)
