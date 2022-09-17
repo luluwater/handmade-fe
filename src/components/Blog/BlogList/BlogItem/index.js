@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import moment from 'moment'
 import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'

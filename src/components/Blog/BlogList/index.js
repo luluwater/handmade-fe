@@ -2,7 +2,7 @@ import BlogItem from './BlogItem'
 import React, { useEffect } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { getBlog } from '../../../slices/blog-slice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useGetBlogQuery } from '../../../services/blogApi'
 import BlogItemSkeleton from './BlogItemSkeleton'
 
