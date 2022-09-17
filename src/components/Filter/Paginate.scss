@@ -3,6 +3,7 @@
   color: $gray-darker;
   &:hover{
     color:white;
-    background-color: $primary;
+    background-color: $secondary;
+    border-radius: 50% !important;
   }
 }

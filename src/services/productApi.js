@@ -20,10 +20,12 @@ export const productApiService = createApi({
       providesTags: ['product'],
     }),
     addUserFavoriteProduct: builder.mutation({
-      query: (productId) => ({
+      query: (productId, storeId, categoryId) => ({
         url: `product/${productId}`,
         method: 'POST',
         body: productId,
+        storeId,
+        categoryId,
       }),
       invalidatesTags: ['product'],
     }),
