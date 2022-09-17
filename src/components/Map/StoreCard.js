@@ -5,6 +5,7 @@ import './Map.scss'
 import Leaflet from 'leaflet'
 import { useDispatch } from 'react-redux'
 import { setCenter } from '../../slices/store-slice'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function StoreCard({
   id,
   name,
@@ -27,18 +28,33 @@ function StoreCard({
       onClick={() => {
         dispatch(setCenter([lat, lng]))
       }}
+      role="button"
     >
       {/* <CardHeader className="fw-bold">{name}</CardHeader> */}
       <Card.Body className=" ps-0">
         <Row className="g-0">
           <Col sm={4} className="text-center">
-            <CardImg
-              className="border"
-              src={require(`../../assets/store/store_${category}_${id}/${img}`)}
-            />
+            <div className="w-100">
+              <CardImg
+                className="border"
+                src={require(`../../assets/store/store_${category}_${id}/${img}`)}
+              />
+            </div>
 
-            <Card.Link href={fbUrl}>FB</Card.Link>
-            <Card.Link href={igUrl}>IG</Card.Link>
+            <Card.Link href={fbUrl} target={'_blank'}>
+              <FontAwesomeIcon
+                icon="fa-brands fa-square-facebook"
+                size={'lg'}
+                className="mt-1"
+              />
+            </Card.Link>
+            <Card.Link href={igUrl} target={'_blank'}>
+              <FontAwesomeIcon
+                icon="fa-brands fa-square-instagram"
+                size={'lg'}
+                className="mt-1"
+              />
+            </Card.Link>
           </Col>
           <Col>
             <CardHeader className="fw-bold h6 ">{name}</CardHeader>

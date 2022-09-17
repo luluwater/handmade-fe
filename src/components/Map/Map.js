@@ -2,7 +2,7 @@ import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { Marker } from 'react-leaflet/Marker'
 import { Popup } from 'react-leaflet/Popup'
-import { GeoJSON } from 'react-leaflet'
+import { GeoJSON, Tooltip } from 'react-leaflet'
 import Leaflet from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -13,7 +13,8 @@ import './Map.scss'
 import { useSelector } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { useEffect, useRef } from 'react'
-import MRT from '../../utils/mrt.json'
+import MRT from '../../utils/TRTC-Station.json'
+import MRT_Line from '../../utils/TRTC-Line.json'
 import TRTC from '../../utils/TRTC.json'
 
 //全域事件
@@ -27,6 +28,10 @@ function LocationMarker() {
 }
 
 function Map() {
+  const storeData = useSelector((state) => state.storeReducer.store)
+  const center = useSelector((state) => state.storeReducer.center)
+  const category = useSelector((state) => state.storeReducer.category)
+  const mrt_line = useSelector((state) => state.storeReducer.mrt_line)
   //default Marker Icon
   const defaultIcon = Leaflet.icon({
     iconUrl: icon,
@@ -37,17 +42,10 @@ function Map() {
   const MRTIcon = Leaflet.icon({
     iconUrl:
       'https://www.newton.com.tw/img/4/eed/nBnauUmYyQTZzQmY4QWOxEGMkhDNzUTYidTZxgTNxQmM4MWOlR2MilDMwQ2LtVGdp9yYpB3LltWahJ2Lt92YuUHZpFmYuMmczdWbp9yL6MHc0RHa.jpg',
-    iconSize: 25,
+    iconSize: mrt_line != 'all' ? 25 : 20,
   })
-  const MRT_Position = MRT.map((v, i) => {
-    return [v.StationPosition.PositionLat, v.StationPosition.PositionLon]
-  })
-
   Leaflet.Marker.prototype.options.icon = defaultIcon
 
-  const storeData = useSelector((state) => state.storeReducer.store)
-  const center = useSelector((state) => state.storeReducer.center)
-  console.log('map', storeData)
   useEffect(() => {
     markerRef.current?.openPopup()
   }, [center])
@@ -55,13 +53,6 @@ function Map() {
   const markerRef = useRef(null)
   return (
     <div className="border border-gray-dark map">
-      {/* <button
-        onClick={() => {
-          markerRef.current.openPopup()
-        }}
-      >
-        132456798
-      </button> */}
       <MapContainer
         center={[25.0478641, 121.5429378]}
         zoom={13}
@@ -72,7 +63,7 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
-        <GeoJSON key="Geometry" data={TRTC} />
+        {/* <GeoJSON key="Geometry" data={test} /> */}
         {storeData?.map((v) => {
           return (
             <Marker
@@ -83,6 +74,7 @@ function Map() {
                   ? markerRef
                   : null
               }
+              zIndexOffset={1000}
             >
               <Popup closeButton={false}>
                 <Row className="align-items-center">
@@ -112,9 +104,25 @@ function Map() {
           )
         })}
 
-        {/* {MRT_Position.map((v, i) => {
-          return <Marker key={i} position={v} icon={MRTIcon}></Marker>
-        })} */}
+        {MRT.map((v, i) => {
+          if (
+            mrt_line !== 'all' &&
+            v.StationID.substring(0, mrt_line.length) !== mrt_line
+          )
+            return
+          return (
+            <Marker
+              key={i}
+              position={[
+                v.StationPosition.PositionLat,
+                v.StationPosition.PositionLon,
+              ]}
+              icon={MRTIcon}
+            >
+              <Tooltip direction={'top'}>{v.StationName.Zh_tw}</Tooltip>
+            </Marker>
+          )
+        })}
       </MapContainer>
     </div>
   )

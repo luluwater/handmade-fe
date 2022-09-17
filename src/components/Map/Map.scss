@@ -13,8 +13,12 @@
   color: $gray-darker;
 }
 .map_storeCard:hover {
-  background-color: rgba(255, 255, 255, 0.89);
+  background-color: rgba(238, 237, 237, 0.89);
   color: $dark;
+}
+.map_storeCard:active {
+  background-color: white;
+  color: $gray-darker;
 }
 .map_storeCard img {
   width: 80px;
