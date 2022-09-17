@@ -1,5 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
 
 function removeFilterStores(state, storeName) {
   state.filterStores = state.filterStores.filter(

@@ -28,7 +28,7 @@ const BlogItem = ({
         <Link to={`/blog/${id}`}>
           <img
             src={`${IMG_URL}/${images[0]?.img_name}`}
-            className="h-100 object-fit d-flex d-lg-flex img-fluid"
+            className="h-100 object-fit d-flex d-lg-flex img-fluid scale_img opacity_img"
             alt="blog post"
           />
         </Link>

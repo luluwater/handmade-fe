@@ -7,7 +7,7 @@ function sortData(a, b, sort) {
   return b.sold_amount - a.sold_amount
 }
 
-function doPagination(state) {
+function product(state) {
   if (!state.rawData) return
   state.data = state.rawData
   //篩選關鍵字
@@ -62,6 +62,68 @@ function doPagination(state) {
     state.itemCount * state.currentPage
   )
 }
+
+function blog(state) {
+  if (!state.rawData) return
+  state.data = state.rawData
+
+  if (state.filter.searchWord !== '') {
+    state.data = state.data?.filter(
+      (blog) =>
+        blog.title.includes(state.filter.searchWord) ||
+        blog.store_name.includes(state.filter.searchWord) ||
+        blog.category_name.includes(state.filter.searchWord) ||
+        blog.content.includes(state.filter.searchWord)
+    )
+  }
+
+  if (state.filter.store.length > 0) {
+    console.log('state.data', state.data)
+    state.data = state.data?.filter((blog) =>
+      state.filter.store.includes(blog.store_name)
+    )
+  }
+
+  //篩選時間
+  console.log('fuck', state.filter.date)
+  if (
+    state.filter.date?.startDate !== null &&
+    state.filter.date?.startDate !== undefined &&
+    state.filter.date?.endDate !== undefined
+  ) {
+    state.data = state.data?.filter((blog) => {
+      const blogDate = moment(blog.blog_create_time).format('YYYY-M-D')
+      console.log('blogDate', blogDate)
+      const startDate = state.filter.date.startDate
+      const endDate = state.filter.date.endDate ?? startDate
+      return (
+        moment(blogDate).isSameOrBefore(endDate) &&
+        moment(blogDate).isSameOrAfter(startDate)
+      )
+    })
+  }
+  //計算頁數與分頁
+  state.totalPage = Math.ceil(state.data?.length / state.itemCount)
+  state.data = state.data?.slice(
+    (state.currentPage - 1) * state.itemCount,
+    state.itemCount * state.currentPage
+  )
+}
+
+function doPagination(state) {
+  switch (state.type) {
+    case 'product':
+      product(state)
+      break
+    case 'blog':
+      blog(state)
+      break
+
+    default:
+      break
+  }
+}
+
 function checkPage(page, state) {
   if (page > state.totalPage) return state.totalPage
   if (page < 1) return 1
@@ -81,6 +143,7 @@ const initialState = {
   currentPage: 1,
   itemCount: 20,
   totalPage: 1,
+  type: 'product',
 }
 
 export const paginationSlice = createSlice({
@@ -123,6 +186,9 @@ export const paginationSlice = createSlice({
       state.currentPage = 1
       doPagination(state)
     },
+    setType: (state, action) => {
+      state.type = action.payload
+    },
   },
 })
 
@@ -133,5 +199,6 @@ export const {
   nextPage,
   prePage,
   setFilter,
+  setType,
 } = paginationSlice.actions
 export default paginationSlice.reducer

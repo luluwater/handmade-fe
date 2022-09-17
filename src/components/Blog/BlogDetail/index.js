@@ -108,7 +108,6 @@ const BlogDetail = () => {
     <>
       <div className="position-relative">
         {data?.blog.map((item) => {
-          console.log(item)
           return (
             <>
               <div className="d-flex align-items-center justify-content-between my-4">
@@ -179,6 +178,7 @@ const BlogDetail = () => {
                 phone={item.phone}
                 opening_hour={item.opening_hour}
                 storeId={item.store_id}
+                storeImg={item.img_url}
               />
 
               <div className="container">

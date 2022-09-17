@@ -16,51 +16,53 @@ import FilterPrice from './FilterPrice'
 import FilterStore from './FilterStore/FilterStore'
 import SortSelect from './SortSelect'
 
+export const getNewData = (data) => {
+  const result = []
+  let obj = {}
+  const init = (obj, item) => {
+    obj['id'] = item.category_en_name
+    obj['category'] = item.category_name
+    obj['active'] = false
+    obj['checked'] = false
+    obj['innerList'] = [
+      {
+        id: item.id,
+        completed: false,
+        title: item.name,
+      },
+    ]
+  }
+  for (let item of data) {
+    if (Object.keys(obj).length === 0) {
+      init(obj, item)
+      continue
+    }
+    if (obj.category === item.category_name) {
+      obj.innerList.push({
+        id: item.id,
+        completed: false,
+        title: item.name,
+      })
+    } else {
+      result.push({ ...obj })
+      obj = {}
+      init(obj, item)
+    }
+  }
+  return result
+}
+
 function Filter({ haveDate = true }) {
   const { data, error, isload } = useGetStoreQuery()
 
   //處理資料格式
-  const getNewData = () => {
-    const result = []
-    let obj = {}
-    const init = (obj, item) => {
-      obj['id'] = item.category_en_name
-      obj['category'] = item.category_name
-      obj['active'] = false
-      obj['checked'] = false
-      obj['innerList'] = [
-        {
-          id: item.id,
-          completed: false,
-          title: item.name,
-        },
-      ]
-    }
-    for (let item of data) {
-      if (Object.keys(obj).length === 0) {
-        init(obj, item)
-        continue
-      }
-      if (obj.category === item.category_name) {
-        obj.innerList.push({
-          id: item.id,
-          completed: false,
-          title: item.name,
-        })
-      } else {
-        result.push({ ...obj })
-        obj = {}
-        init(obj, item)
-      }
-    }
-    return result
-  }
 
   const dispatch = useDispatch()
+
   useEffect(() => {
     let newData = []
     if (Object.keys(data ?? {}).length !== 0) {
-      newData = getNewData()
+      newData = getNewData(data)
     }
     dispatch(addFilterStore(newData))
   }, [dispatch, data])

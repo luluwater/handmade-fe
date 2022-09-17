@@ -10,15 +10,13 @@ import BlogItemSkeleton from './BlogItemSkeleton'
  * 跟後端拿資料到這裡渲染
  * @returns
  */
-const BlogList = () => {
+const BlogList = ({ blogList }) => {
   const { data, isLoading } = useGetBlogQuery('all')
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getBlog(data))
   }, [data, dispatch])
-
-  const blogList = useSelector((state) => state.blogReducer.blog)
 
   return (
     <>
@@ -41,7 +39,7 @@ const BlogList = () => {
                   tags={item.tags}
                   title={item.title}
                   images={item.img_url}
-                  createTime={item.create_time}
+                  createTime={item.blog_create_time}
                   id={item.blog_id}
                   name={item.name}
                   category={item.category_name}
