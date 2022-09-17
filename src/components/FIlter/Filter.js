@@ -10,64 +10,64 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetStoreQuery } from '../../services/storeApi'
 import { addFilterStore } from '../../slices/filterStore-silce'
+import FilterDate from './FilterDate'
 import FilterKeyword from './FilterKeyword'
 import FilterPrice from './FilterPrice'
 import FilterStore from './FilterStore/FilterStore'
 import SortSelect from './SortSelect'
 
-function Filter() {
-  const { data, error, isload } = useGetStoreQuery()
-  // console.log(data)
-  const dispatch = useDispatch()
-  const getNewData = () => {
-    const result = []
-    let obj = {}
-    const init = (obj, item) => {
-      obj['id'] = item.category_en_name
-      obj['category'] = item.category_name
-      obj['active'] = false
-      obj['checked'] = false
-      obj['innerList'] = [
-        {
-          id: item.id,
-          completed: false,
-          title: item.name,
-        },
-      ]
-    }
-    // console.log('obj', !!obj)
-    for (let item of data) {
-      if (Object.keys(obj).length === 0) {
-        init(obj, item)
-        console.log('first')
-        continue
-      }
-      if (obj.category === item.category_name) {
-        obj.innerList.push({
-          id: item.id,
-          completed: false,
-          title: item.name,
-        })
-      } else {
-        result.push({ ...obj })
-        console.log('result', result)
-        obj = {}
-        init(obj, item)
-      }
-      // result.push({ ...obj })
-      // console.log('obj', obj)
-      // console.log('obj', Object.keys(obj))
-    }
-    // console.log('getNewData', result)
-    return result
+export const getNewData = (data) => {
+  const result = []
+  let obj = {}
+  const init = (obj, item) => {
+    obj['id'] = item.category_en_name
+    obj['category'] = item.category_name
+    obj['active'] = false
+    obj['checked'] = false
+    obj['innerList'] = [
+      {
+        id: item.id,
+        completed: false,
+        title: item.name,
+      },
+    ]
   }
+  for (let item of data) {
+    if (Object.keys(obj).length === 0) {
+      init(obj, item)
+      continue
+    }
+    if (obj.category === item.category_name) {
+      obj.innerList.push({
+        id: item.id,
+        completed: false,
+        title: item.name,
+      })
+    } else {
+      result.push({ ...obj })
+      obj = {}
+      init(obj, item)
+    }
+    if (item.id === data.length) result.push({ ...obj })
+  }
+  return result
+}
+
+function Filter({ haveDate = true }) {
+  const { data, error, isload } = useGetStoreQuery()
+
+  //處理資料格式
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
     let newData = []
     if (Object.keys(data ?? {}).length !== 0) {
-      newData = getNewData()
+      newData = getNewData(data)
     }
-    console.log('add data')
     dispatch(addFilterStore(newData))
+    // console.log('rawData', data)
+    // console.log('newData', newData)
   }, [dispatch, data])
 
   const state = useSelector((state) => state.filterStoreReducer.list)
@@ -80,7 +80,9 @@ function Filter() {
     <>
       <FilterKeyword />
       <FilterStore state={state} className="d-none d-md-block" />
+      {haveDate ? <FilterDate className="d-none d-md-block" /> : ''}
       <FilterPrice className="d-none d-md-block" />
+
       <div className="d-flex justify-content-around">
         <Button
           onClick={toggleShowFilterStore}
@@ -94,8 +96,9 @@ function Filter() {
         >
           更多條件
         </Button>
-        <SortSelect className="w-25 me-0"></SortSelect>
+        <SortSelect className="w-25 me-0 d-md-none"></SortSelect>
       </div>
+
       <Modal
         show={showFilterStore}
         onHide={toggleShowFilterStore}
@@ -120,6 +123,7 @@ function Filter() {
             更多條件
           </ModalTitle>
           <FilterPrice />
+          {haveDate ? <FilterDate /> : ''}
         </ModalBody>
         <ModalFooter></ModalFooter>
       </Modal>

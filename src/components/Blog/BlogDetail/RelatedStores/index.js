@@ -1,5 +1,4 @@
 import React from 'react'
-import { useGetStoreQuery } from '../../../../services/storeApi'
 
 const RelatedStores = ({
   name,
@@ -8,46 +7,27 @@ const RelatedStores = ({
   route,
   phone,
   opening_hour,
-  storeId,
+  storeImg,
 }) => {
-  const { data } = useGetStoreQuery()
-  const currentStore = data?.filter((store) => store.id === storeId)
-  const imgName = currentStore?.[0]?.kv_name[0]
-  console.log(imgName)
-
-  if (imgName) {
-    return (
-      <>
-        <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
-          / <spna class="mx-2">相關店家 </spna>/
+  return (
+    <>
+      <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
+        / <spna class="mx-2">詳細資訊</spna>/
+      </div>
+      <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6 mb-7 justify-content-around">
+        <div className="position-relative">
+          <img src={storeImg} className=" max-h-md-300" alt="store " />
         </div>
-        <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6 mb-7 justify-content-around">
-          <div className="position-relative">
-            {/* <img
-              src={require(`../../../../assets/store/store_metalwork_3/${imgName}`)}
-              className=" max-h-md-300"
-              alt="store "
-            /> */}
-            <img
-              src="https://images.unsplash.com/photo-1661956603025-8310b2e3036d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              className=" max-h-md-300"
-              alt="store "
-            />
-            <h5 class="position-absolute top-50 start-50 translate-middle text-white fs-2">
-              {name}
-            </h5>
-          </div>
-          <div className="max-w-md-65">
-            <div className="my-3 text-cut">{intro}</div>
-            <p>地址：{address}</p>
-            <p>交通方式：{route}</p>
-            <p>連絡電話：{phone}</p>
-            <p>營業時間：{opening_hour}</p>
-          </div>
+        <div className="max-w-md-65">
+          <div className="my-3 text-cut">{intro}</div>
+          <p>地址：{address}</p>
+          <p>交通方式：{route}</p>
+          <p>連絡電話：{phone}</p>
+          <p>營業時間：{opening_hour}</p>
         </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  )
 }
 
 export default RelatedStores

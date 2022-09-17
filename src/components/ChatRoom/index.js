@@ -1,27 +1,27 @@
-import React, { useState } from 'react'
-import io from 'socket.io-client'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import './ChatRoom.scss'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Link } from 'react-router-dom'
-import './ChatRoom.scss'
 import ListGroup from 'react-bootstrap/ListGroup'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tab from 'react-bootstrap/Tab'
 import { Button, Form, InputGroup } from 'react-bootstrap'
-import { useChatRoomsQuery } from '../../services/chatApi'
-import moment from 'moment/moment'
-import EmojiPicker from 'emoji-picker-react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import useSocket from '../../hooks/socketConnect'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import moment from 'moment/moment'
+import EmojiPicker from 'emoji-picker-react'
+
+import RoomNav from './RoomNav'
+import io from 'socket.io-client'
+import { BASE_URL } from '../../utils/config'
 
 const ChatRoom = () => {
-  const { data, isLoading } = useChatRoomsQuery()
   const [open, setOpen] = useState(false)
+
   // TODO:EMOJI
   const [showPicker, setShowPicker] = useState(false)
 
@@ -42,6 +42,123 @@ const ChatRoom = () => {
     setShowPicker((prev) => !prev)
   }
 
+  /**
+   * SOCKET TODO
+   * TODO:事件
+   * 1. 加入 ROOM
+   * 2. 離開 ROOM
+   * 3. 發送訊息
+   */
+  // const handleJoinRoom = (roomData) => {
+  //   console.log(roomData)
+  // }
+
+  const [roomList, setRoomList] = useState([])
+  const [chatBody, setChatBody] = useState([])
+
+  const socket = io(BASE_URL, {
+    withCredentials: true,
+  })
+
+  socket.on('messageToClient', (msg) => {
+    console.log('msg', msg)
+  })
+
+  // 3. 從後端拿到 rooms 的資料
+  useEffect(() => {
+    socket.on('rooms', (roomData) => {
+      setRoomList(
+        roomData?.map((room) => {
+          return (
+            <ListGroup.Item
+              key={room.id}
+              className="d-flex align-items-center justify-content-between border-0 "
+              action
+              onClick={() => {
+                socket.emit('joinRoom', room)
+              }}
+              href={`#${room.endpoint}`}
+            >
+              <img
+                className="chat_avatar rounded-2"
+                src={room.img_url}
+                alt="room pic"
+              />
+              <div>{room.room_title}</div>
+              <FontAwesomeIcon icon="fa-solid fa-angle-right" />
+            </ListGroup.Item>
+          )
+        })
+      )
+      setChatBody(
+        roomData?.map((room) => {
+          return (
+            <Tab.Pane key={room.id} eventKey={`#${room.endpoint}`}>
+              {/* header */}
+              <div className="position-relative text-center mt-3 ">
+                {/* TODO:大廳畫面要漲怎樣?? */}
+                <Link
+                  to="#"
+                  className="position-absolute bottom-0 start-0 fs-1 d-md-none"
+                >
+                  <FontAwesomeIcon icon="fa-solid fa-angle-left" />
+                </Link>
+                <h5>{room.room_title}</h5>
+                {/* TODO: 從 SOCKET 裡面拿 */}
+                <div>xx人在線上</div>
+                <Link
+                  to="#"
+                  className="position-absolute bottom-0 end-0 d-none d-md-block"
+                >
+                  <FontAwesomeIcon icon="fa-solid fa-door-open" />
+                  {/* TODO:大廳畫面要漲怎樣?? */}
+                  <spna className="ms-md-2">離開</spna>
+                </Link>
+              </div>
+              <hr />
+
+              <ListGroup className="chat_body d-flex flex-column gap-3 my-5">
+                {room.msg.map((m) => {
+                  return (
+                    <div key={m.id}>
+                      <div className="d-flex align-items-start gap-3">
+                        <img
+                          className="chat_avatar"
+                          src={require('../../assets/user/profile_2.png')}
+                          alt="user avatar"
+                        />
+                        <ListGroup.Item className="chat_body_text-others w-25 rounded-2 ">
+                          {m.content}
+                        </ListGroup.Item>
+                        <div className="text-muted fs-7 text-center align-self-end">
+                          {moment(m.created_at).format('LT')}
+                        </div>
+                      </div>
+                      {/* TODO: SELF SIDE style 判斷訊息使用者的 ID 是否與 SESSION 一致，上下的區分 */}
+                      <div className="d-flex align-items-start gap-3 justify-content-end">
+                        <div className="text-muted fs-7 text-center align-self-end">
+                          {moment(m.created_at).format('LT')}
+                        </div>
+                        <ListGroup.Item className="chat_body_text-self w-25 rounded-2">
+                          Cras justo o Cras justo o Cras justo o
+                        </ListGroup.Item>{' '}
+                        <img
+                          className="chat_avatar"
+                          src={require('../../assets/user/profile_2.png')}
+                          alt="user avatar"
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </ListGroup>
+            </Tab.Pane>
+          )
+        })
+      )
+    })
+  }, [])
+
   return (
     <>
       <Container className="my-md-8 my-4">
@@ -50,7 +167,7 @@ const ChatRoom = () => {
             <Col className="bg-skin-dark" lg={3}>
               <div className="d-flex align-items-center gap-3 p-1 m-3 bg-skin-brighter">
                 <img
-                  style={{ width: '50px' }}
+                  className="chat_avatar"
                   src={require('../../assets/user/profile_2.png')}
                   alt="user avatar"
                 />
@@ -61,105 +178,21 @@ const ChatRoom = () => {
                 <div className="d-flex align-items-center">
                   <h5 className="text-gray-darker m-0">聊天室</h5>
                   <div className="chat_amount fs-6 fw-bold ms-2 p-1 bg-dark rounded-circle text-white d-flex justify-content-center align-items-center">
-                    {data?.length}
+                    {roomList.length}
                   </div>
                 </div>
                 <hr />
 
                 <ListGroup className="d-flex gap-3 rounded-0">
-                  {/* TODO:LOADING的動畫 */}
-                  {isLoading ? (
-                    <div>Loading...</div>
-                  ) : (
-                    data?.map((room) => {
-                      return (
-                        <ListGroup.Item
-                          key={room.id}
-                          className="d-flex align-items-center justify-content-between border-0 "
-                          action
-                          href={`#${room.id}`}
-                        >
-                          <div>{room.room_title}</div>
-                          <FontAwesomeIcon icon="fa-solid fa-angle-right" />
-                        </ListGroup.Item>
-                      )
-                    })
-                  )}
+                  {roomList}
                 </ListGroup>
               </div>
             </Col>
-
             <Col
               className="chat_wrapper bg-skin-bright position-absolute position-md-relative"
               lg={9}
             >
-              <Tab.Content>
-                {data?.map((item) => {
-                  console.log()
-                  return (
-                    <Tab.Pane key={item.id} eventKey={`#${item.id}`}>
-                      {/* header */}
-                      <div className="position-relative text-center mt-3 ">
-                        {/* TODO:大廳畫面要漲怎樣?? */}
-                        <Link
-                          to="#"
-                          className="position-absolute bottom-0 start-0 fs-1 d-md-none"
-                        >
-                          <FontAwesomeIcon icon="fa-solid fa-angle-left" />
-                        </Link>
-                        <h5>{item.room_title}</h5>
-                        {/* TODO: 從 SOCKET 裡面拿 */}
-                        <div>xx人在線上</div>
-                        <Link
-                          to="#"
-                          className="position-absolute bottom-0 end-0 d-none d-md-block"
-                        >
-                          <FontAwesomeIcon icon="fa-solid fa-door-open" />
-                          {/* TODO:大廳畫面要漲怎樣?? */}
-                          <spna className="ms-md-2">離開</spna>
-                        </Link>
-                      </div>
-                      <hr />
-
-                      <ListGroup className="chat_body d-flex flex-column gap-3 my-5">
-                        {item.msg.map((m) => {
-                          return (
-                            <>
-                              <div className="d-flex align-items-start gap-3">
-                                <img
-                                  className="chat_avatar"
-                                  src={require('../../assets/user/profile_2.png')}
-                                  alt="user avatar"
-                                />
-                                <ListGroup.Item className="chat_body_text-others w-25 rounded-2 ">
-                                  {m.content}
-                                </ListGroup.Item>
-                                <div className="text-muted fs-7 text-center align-self-end">
-                                  {moment(m.created_at).format('LT')}
-                                </div>
-                              </div>
-                              {/* TODO: SELF SIDE style 判斷訊息使用者的 ID 是否與 SESSION 一致，上下的區分 */}
-                              <div className="d-flex align-items-start gap-3 justify-content-end">
-                                <div className="text-muted fs-7 text-center align-self-end">
-                                  {moment(m.created_at).format('LT')}
-                                </div>
-                                <ListGroup.Item className="chat_body_text-self w-25 rounded-2">
-                                  Cras justo o Cras justo o Cras justo o
-                                </ListGroup.Item>{' '}
-                                <img
-                                  className="chat_avatar"
-                                  src={require('../../assets/user/profile_2.png')}
-                                  alt="user avatar"
-                                />
-                              </div>
-                            </>
-                          )
-                        })}
-                      </ListGroup>
-                    </Tab.Pane>
-                  )
-                })}
-              </Tab.Content>
+              <Tab.Content>{chatBody}</Tab.Content>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-2 d-flex align-items-center">
                   <InputGroup>

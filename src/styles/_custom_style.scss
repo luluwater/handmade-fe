@@ -122,7 +122,6 @@ img {
   max-width: 80%;
   margin: 20px auto;
 }
-//TODO:這有沒有需要放?
 #add_blog_active {
   color: #fff;
   background: var(--main-color);
@@ -223,4 +222,20 @@ img {
 
 .object-fit {
   object-fit: cover;
+}
+
+.scale_img {
+  overflow: hidden;
+  transform: scale(0.95, 0.95);
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: scale(1, 1);
+  }
+}
+.opacity_img {
+  opacity: 1;
+  transition: all 0.2s ease-out;
+  &:hover {
+    opacity: 0.8;
+  }
 }

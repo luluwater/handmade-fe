@@ -16,9 +16,6 @@ const Editor = ({
    * @param {loader} loader
    * @returns 回傳upload 函式
    */
-  console.log('in create editor', blogId)
-
-  console.log(`${API_URL}/api/blog/${blogId}/${UPLOAD_ENDPOINT}`)
 
   const uploadAdapter = (loader) => {
     return {

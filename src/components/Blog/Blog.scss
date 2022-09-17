@@ -48,7 +48,9 @@
     }
   }
   &_img {
-    width: 250px;
+    @media (min-width: 768px) {
+      width: 400px;
+    }
   }
 
   &_content {
@@ -72,6 +74,14 @@
 .text-cut {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-cut-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

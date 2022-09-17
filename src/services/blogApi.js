@@ -26,7 +26,6 @@ export const blogApiService = createApi({
       }),
       invalidatesTags: ['blog'],
     }),
-    //TODO: update Blog
     updateBlog: builder.mutation({
       query: (data) => {
         const { blogId } = data
