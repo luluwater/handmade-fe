@@ -186,6 +186,7 @@
     background: $skin-bright;
     padding: 1.5rem 0;
   }
+  
 
   }
   .Cart_tabChooseBox{
@@ -195,4 +196,41 @@
   .Cart_tabChoose{
     position: absolute;
     right: 0;
+  }
+
+
+  // recommend Card
+
+  .cartRecommend{
+    width: 210px;
+
+    .row{
+      height: 90px;
+    }
+    .cart{
+      width: 20px;
+      height: 20px;
+    }
+    .swiper-button-prev::after,.swiper-button-next::after{
+      font-size: 2rem;
+  }
+  .card_swiper{
+      max-width: 210px;
+      max-height: 210px;
+
+      .swiperslide{    
+        img{
+          width: 100%;
+          height: auto;      
+        }
+      }
+    }
+    .card_favorite{  
+      width: 2.5rem;
+      height: 2.5rem;
+
+    }
+    &_storeName{
+      font-size: .9rem;
+    }
   }

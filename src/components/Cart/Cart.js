@@ -10,6 +10,8 @@ import { getCourseTotal, clearCourseCart } from '../../slices/courseCart-slice'
 
 import UserLikeCourse from './CourseCartRecommend/UserLikeCourse'
 import YouWillLikeCourse from './CourseCartRecommend/YouWillLikeCourse'
+import UserLikeProduct from './CourseCartRecommend/UserLikeProduct'
+import YouWillLikeProduct from './CourseCartRecommend/YouWillLikeProduct'
 import { v4 as uuidv4 } from 'uuid'
 
 const Cart = () => {
@@ -81,7 +83,7 @@ const Cart = () => {
             </Nav>
           </Col>
 
-          <Col  className="ps-0">
+          <Col className="ps-0">
             <Tab.Content className="Cart_tabContent">
               {/* =============課程購物車============== */}
               <Tab.Pane eventKey="first">
@@ -297,8 +299,21 @@ const Cart = () => {
                       <ProductCartItem />
                     </div> */}
 
-                    <Row className="">
-                      <p className="fs-5 text-center">您的收藏清單</p>
+                    <Row className="Cart_userLikeBox">
+                      <p className="fs-5 text-center">您的商品收藏清單</p>
+                      <Row className="mb-5">
+                        <Col className="d-flex justify-content-center Cart_userLike">
+                          <UserLikeProduct />
+                        </Col>
+                      </Row>
+                    </Row>
+                    <Row className="Cart_youMightLikeBox">
+                      <p className="fs-5 text-center">您可能會喜歡</p>
+                      <Row className="mb-5">
+                        <Col className="d-flex justify-content-center Cart_userLike">
+                          <YouWillLikeProduct />
+                        </Col>
+                      </Row>
                     </Row>
                   </Col>
 

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { useUserLikesCourseQuery } from '../../../services/userApi'
-// import RecommendCard from '../../Store/RecommendCard'
+import { useGetProductListQuery } from '../../../services/productApi'
 import CartRecommendCard from './CartRecommendCard'
 import { v4 as uuidv4 } from 'uuid'
 
-const UserLikeCourse = () => {
-  const { data } = useUserLikesCourseQuery()
+const YouWillLikeProduct = () => {
+  const { data, error, isLoading } = useGetProductListQuery()
 
   let newData = []
 
@@ -20,11 +19,11 @@ const UserLikeCourse = () => {
           return (
             <div key={uuidv4()}>
               <CartRecommendCard
-                type="course"
-                cartIcon=""
-                id={item.course_id}
+                type="product"
+                cartIcon="true"
+                id={item.id}
                 store={item.store_name}
-                name={item.course_name}
+                name={item.name}
                 price={item.price}
                 img={item.img_name}
                 category={item.category_en_name}
@@ -37,4 +36,4 @@ const UserLikeCourse = () => {
   )
 }
 
-export default UserLikeCourse
+export default YouWillLikeProduct

@@ -16,7 +16,7 @@ const YouWillLikeCourse = () => {
   return (
     <>
       {newData?.map((item, i) => {
-        if (i < 3) {
+        if (i < 4) {
           return (
             <div key={uuidv4()}>
               <CartRecommendCard

@@ -7,6 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import '../../Store/RecommendCard/recommendCard.scss'
+import '../Cart.scss'
 
 // 資料
 const CartRecommendCard = ({
@@ -21,7 +22,7 @@ const CartRecommendCard = ({
 }) => {
   return (
     <>
-      <Card className="recommendCard border-0 bg-transparent mx-1 p-0 text-gray-darker">
+      <Card className="cartRecommend border-0 bg-transparent mx-1 p-0 text-gray-darker">
         <Swiper
           modules={[Navigation]}
           navigation
