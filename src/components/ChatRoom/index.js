@@ -21,16 +21,11 @@ import { BASE_URL } from '../../utils/config'
 
 const ChatRoom = () => {
   const [open, setOpen] = useState(false)
+
   // TODO:EMOJI
   const [showPicker, setShowPicker] = useState(false)
 
-  const socket = io(BASE_URL)
-
   const [text, setText] = useState('')
-
-  socket.on('messageToClient', (msg) => {
-    console.log('msg', msg)
-  })
 
   //TODO:把訊息傳出去
   const handleSubmit = (e) => {
@@ -41,12 +36,27 @@ const ChatRoom = () => {
     setShowPicker((prev) => !prev)
   }
 
+  /**
+   * SOCKET TODO
+   * TODO:事件
+   * 1. 加入 ROOM
+   * 2. 離開 ROOM
+   * 3. 發送訊息
+   */
   // const handleJoinRoom = (roomData) => {
   //   console.log(roomData)
   // }
 
   const [roomList, setRoomList] = useState([])
   const [chatBody, setChatBody] = useState([])
+
+  const socket = io(BASE_URL, {
+    withCredentials: true,
+  })
+
+  socket.on('messageToClient', (msg) => {
+    console.log('msg', msg)
+  })
 
   // 3. 從後端拿到 rooms 的資料
   useEffect(() => {
