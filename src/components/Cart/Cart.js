@@ -62,7 +62,7 @@ const Cart = () => {
             e.stopPropagation()
           }}
         >
-          <Col className="pe-0 Cart_tabChooseBox" sm={1}>
+          <Col className="pe-0 Cart_tabChooseBox" sm={12}>
             <Nav variant="pills" className="flex-column Cart_tabChoose">
               <Nav.Item className="">
                 <Nav.Link
