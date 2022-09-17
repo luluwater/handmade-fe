@@ -38,7 +38,6 @@ const CourseDetailPage = () => {
                   category={item.category_en_name}
                   categoryId={item.category_id}
                   isFavorite={item.isFavorite}
-                  type={'course'}
                 />
               </Col>
             )

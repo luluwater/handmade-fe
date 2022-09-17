@@ -31,7 +31,6 @@ const CourseIntro = ({
   stock,
   isFavorite,
   categoryId,
-  type,
 }) => {
   ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
@@ -228,17 +227,17 @@ const CourseIntro = ({
               <Button
                 onClick={() => {
                   if (isFavorite) {
-                    type === 'course'
-                      ? removeUserFavoriteCourse({
-                          courseId: id,
-                          storeId,
-                          categoryId,
-                        })
-                      : aaddUserFavoriteCourse({
-                          courseId: id,
-                          storeId,
-                          categoryId,
-                        })
+                    removeUserFavoriteCourse({
+                      courseId: id,
+                      storeId,
+                      categoryId,
+                    })
+                  } else {
+                    aaddUserFavoriteCourse({
+                      courseId: id,
+                      storeId,
+                      categoryId,
+                    })
                   }
                 }}
                 className="detail_button detail_heart"
