@@ -14,6 +14,9 @@ const UserProductsOrders = () => {
   //console.log('dataProductOrders', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
+  // const formatStartDate = moment(startDate).format('YYYY.MM.DD')
+  // const formatEndDate = moment(endDate).format('YYYY.MM.DD')
+  // console.log(formatStartDate, formatEndDate)
 
   return (
     <>
@@ -97,17 +100,6 @@ const UserProductsOrders = () => {
               )}
             </Table>
           </div>
-          {/* <div className="user_orders_pages">
-            <ul className="user_pages d-flex justify-content-center">
-              <li className="user_pages_icon text-center">
-                <FontAwesomeIcon icon="fa-solid fa-caret-left" />
-              </li>
-              <li className="user_pages_page text-center fw-bold">1</li>
-              <li className="user_pages_icon text-center">
-                <FontAwesomeIcon icon="fa-solid fa-caret-right" />
-              </li>
-            </ul>
-          </div> */}
         </div>
       </Col>
     </>

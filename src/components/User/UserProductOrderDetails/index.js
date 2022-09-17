@@ -1,32 +1,45 @@
 import '../User.scss'
 import React from 'react'
-import { Col, Table } from 'react-bootstrap'
+import { Button, Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
-import { Link } from 'react-router-dom'
-// import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useGetUserProductOrderDetailsQuery } from '../../../services/userApi'
 import ProductsDetails from './ProductsDetails'
 import PaymentsDetails from './PaymentsDetails'
+import { product, backToPage } from '../../../slices/userProductDetails-slice'
+import { useNavigate } from 'react-router-dom'
 
-//TODO: 回到商品訂單頁
 const UserProductsOrderDetails = () => {
   const { orderNumber } = useParams()
   const { data } = useGetUserProductOrderDetailsQuery(orderNumber)
-  // const [showUserProductOrders, setShowUserProductOrders] = useState(true)
   // console.log("data:", data )
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const backToUserPage = () => {
+    dispatch(backToPage())
+    dispatch(product(true))
+    navigate(-1)
+  }
   return (
     <>
       <Col>
         <div className="user_order_details_form mt-8">
-          <Link
-            to="/user/orders"
+          <Button
+            onClick={backToUserPage}
             className="user_order_details_link pt-5 m-7 d-flex"
           >
             <FontAwesomeIcon icon="fa-solid fa-angle-left" />
-            <h6 className="ms-2 fw-bold">回所有訂單</h6>
-          </Link>
+            <h6 className="ms-2 fw-bold">回到商品訂單</h6>
+          </Button>
+          {/* <Link
+            to={'/user/orders'}
+            className="user_order_details_link pt-5 m-7 d-flex"
+          >
+            <FontAwesomeIcon icon="fa-solid fa-angle-left" />
+            <h6 className="ms-2 fw-bold">回到商品訂單</h6>
+          </Link> */}
           {data?.map((item) => {
             return (
               <div

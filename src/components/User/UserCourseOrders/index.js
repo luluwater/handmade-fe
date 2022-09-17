@@ -8,15 +8,18 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import { useGetUserCourseOrdersQuery } from '../../../services/userApi'
+// import { useDispatch } from 'react-redux'
+// import { useEffect } from 'react'
+// import { initFilterDate } from '../../../slices/filterDate-silce'
 
 const UserCourseOrders = () => {
   const { data } = useGetUserCourseOrdersQuery()
-  // console.log('dataCourseOrders', data)
+  // const dispatch = useDispatch()
+  // const filterOrder = () => {
+  //   dispatch(initFilterDate())
+  // }
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
-  // console.log(startDate, endDate)
-
-  // const filterOrder = 
   return (
     <>
       <Form.Group>
@@ -46,7 +49,12 @@ const UserCourseOrders = () => {
               />
             </div>
             <div className="d-flex align-items-center ms-5">
-              <button className="user_orders_dateBtn fw-bold">確定送出</button>
+              <button
+                className="user_orders_dateBtn fw-bold"
+                // onClick={filterOrder}
+              >
+                確定送出
+              </button>
             </div>
           </div>
         </Row>

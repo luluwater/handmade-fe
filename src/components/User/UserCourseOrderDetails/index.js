@@ -22,7 +22,7 @@ const UserCoursesOrderDetails = () => {
             className="user_order_details_link pt-5 m-7 d-flex"
           >
             <FontAwesomeIcon icon="fa-solid fa-angle-left" />
-            <h6 className="ms-2 fw-bold">回所有訂單</h6>
+            <h6 className="ms-2 fw-bold">回到課程訂單</h6>
           </Link>
           {data?.map((item) => {
             return (

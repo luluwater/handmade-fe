@@ -166,10 +166,10 @@
 }
 
 .user_password {
-    position: absolute;
-    top: 50%;  
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%);
   &_card {
     display: flex;
     position: absolute;
@@ -181,7 +181,6 @@
     height: 300px;
     background-color: $skin-brighter;
     box-shadow :  10px 10px 15px rgba(129, 129, 129, 0.082);
-    // opacity: .5;
   }
   &_update {
     color: $gray-darker;
@@ -217,6 +216,8 @@
     width: 950px;
     background-color: $skin-bright;
     margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   &_btn {
     width: 120px;
@@ -250,8 +251,6 @@
     color: $gray-darker;
     &:focus {
       outline: none;
-      // color: $skin-bright;
-      // background-color: $primary !important;
     }
   }
   &_dateBtn {
@@ -274,9 +273,6 @@
     letter-spacing: 3px;
   }
   &_pages {
-    // position: fixed;
-    // top: 10%;  
-    // right: 60%;
     transform: translate(-50%, -50%);
   }
   &_link {
@@ -285,6 +281,19 @@
       color: $secondary-dark;
     }
   }
+}
+
+.user_order_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_order_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_order_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_order_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
 }
 
 .user_pages {
@@ -327,9 +336,27 @@
     color: $gray-darker;
   }
   &_link {
+    background-color: $skin-bright;
+    border: $skin-bright;
     color: $gray-darker;
       &:hover {
         color: $secondary-dark;
+        background-color: $skin-bright;
+        border: $skin-bright;
+      }
+      &:focus {
+        color: $secondary-dark;
+        background-color: $skin-bright;
+        border: $skin-bright;
+        outline: none;
+        box-shadow:none;
+      }
+      &:active:focus  {
+        color: $secondary-dark;
+        background-color: $skin-bright;
+        border: $skin-bright;
+        outline: none;
+        box-shadow:none;
       }
   }
   &_table {
@@ -404,7 +431,7 @@
   background: $skin-bright;
 }
 .user_coupon_scroll::-webkit-scrollbar-thumb {
-  background-color: $primary;
+  background-color: #5f5c514f;
 }
 
 .user_coupon {
@@ -447,12 +474,44 @@
   }
 }
 
-.user_likes_form {
-  height: 700px;
-  width: 950px;
-  background-color: $skin-bright;
-  margin: 0;
+.user_likes {
+  &_form {
+    height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    position: relative;
+  }
+  &_sticky {
+    background-color: $skin-bright;
+    z-index: 2;
+    position: relative;
+  }
+  &_bottom {
+    z-index: -1;
+    position: absolute;
+  }
+  &_table {
+    width: 850px;
+    color: $gray-darker;
+    border-top: 1px solid $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+    letter-spacing: 3px;
+  }
+  &_blogTitle {
+    max-width: 350px;
+  }
+  &_ellipsis {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $primary !important;
+    }
 }
+
 .user_like {
   width: 900px;
   &_card {
@@ -477,28 +536,10 @@
     height: auto;      
   }
 }
+
 .user_like_card .swiper-button-prev::after,
 .user_like_card .swiper-button-next::after {
   font-size: 1.5rem;
-}
-
-.user_likes {
-  &_table {
-    width: 850px;
-    color: $gray-darker;
-    border-top: 1px solid $gray-darker;
-    border-bottom: 1px solid $gray-darker;
-    letter-spacing: 3px;
-  }
-  &_blogTitle {
-    max-width: 350px;
-  }
-  &_ellipsis {
-    overflow:hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: $primary !important;
-    }
 }
 
 .user_page_number {
@@ -508,4 +549,17 @@
     background-color: $secondary;
     border-radius: 50% !important;
   }
+}
+
+.user_likes_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_likes_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_likes_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_likes_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
 }
