@@ -48,6 +48,7 @@ export const getNewData = (data) => {
       obj = {}
       init(obj, item)
     }
+    if (item.id === data.length) result.push({ ...obj })
   }
   return result
 }
@@ -65,6 +66,8 @@ function Filter({ haveDate = true }) {
       newData = getNewData(data)
     }
     dispatch(addFilterStore(newData))
+    // console.log('rawData', data)
+    // console.log('newData', newData)
   }, [dispatch, data])
 
   const state = useSelector((state) => state.filterStoreReducer.list)
