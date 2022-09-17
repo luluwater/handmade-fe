@@ -60,7 +60,9 @@ function MapSearchBar() {
             >
               <option value="all">全部</option>
               {MRT_Line.map((v) => (
-                <option value={v.LineNo}>{v.LineName.Zh_tw}</option>
+                <option key={v.LineNo} value={v.LineNo}>
+                  {v.LineName.Zh_tw}
+                </option>
               ))}
             </FormSelect>
           </Col>
