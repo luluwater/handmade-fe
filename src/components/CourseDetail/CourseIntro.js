@@ -163,12 +163,9 @@ const CourseIntro = ({
                   {filterResult?.map((item) => {
                     console.log('success')
                     return (
-                      <div>
-                        <Button className="col-3 m-2 course_time_btn">
-                          {item.time_start}
-                        </Button>
-                        <p>{item.stockId}</p>
-                      </div>
+                      <Button className="col-3 m-2 course_time_btn">
+                        {item.time_start}
+                      </Button>
                     )
                   })}
                 </Col>
@@ -242,7 +239,10 @@ const CourseIntro = ({
                 }}
                 className="detail_button detail_heart"
               >
-                <FontAwesomeIcon icon={'far fa-heart'} />
+                <FontAwesomeIcon
+                  icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                  inverse
+                />
               </Button>
             </Col>
           </Col>

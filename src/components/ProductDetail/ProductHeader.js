@@ -40,7 +40,6 @@ const ProductHeader = () => {
                   storeId={item.store_id}
                   categoryId={item.category_id}
                   isFavorite={item.isFavorite}
-                  type={'product'}
                 />
               </Col>
             )

@@ -21,37 +21,83 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './ProductCard.scss'
 
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+} from '../../services/productApi'
+
+import { useDispatch } from 'react-redux'
+import { addProductCart } from '../../slices/productCart-slice'
+
+import { useGetProductListQuery } from '../../services/productApi'
+
 function ProductCard() {
+  const { data } = useGetProductListQuery()
+  const getData = data?.map((item) => {
+    return item.isFavorite
+  })
+  console.log('gatData', getData?.[38])
   const Info = [
     {
+      productId: '39',
+      storeId: '8',
+      categoryId: '2',
       img: [Image1_1, Image1_2, Image1_3],
       store: '歡樂陶一家',
       name: '造型把手杯',
+      category: 'pottery',
       price: '1500',
       link: '/product/detail/39',
+      amount: 5,
+      isFavorite: getData?.[38],
+      imgs: ['陶藝_商品_歡樂陶一家_造型把手杯_1.jpg'],
     },
     {
+      productId: '49',
+      storeId: '10',
+      categoryId: '2',
       img: [Image2_1, Image2_2, Image2_3],
       store: '純 Object',
       name: '夜 - 手作陶盤器',
+      category: 'pottery',
       price: '1750',
       link: '/product/detail/49',
+      amount: 5,
+      isFavorite: getData?.[48],
+      imgs: ['陶藝_商品_純Object_夜_1.jpg'],
     },
     {
+      productId: '106',
+      storeId: '22',
+      categoryId: '5',
       img: [Image3_1, Image3_2, Image3_3],
       store: 'Welcome_Bake',
       name: '阿爾薩斯蘋果塔',
+      category: 'bakery',
       price: '780',
       link: '/product/detail/106',
+      amount: 5,
+      isFavorite: getData?.[105],
+      imgs: ['商品_Welcome_bake來約會吧_阿爾薩斯蘋果塔_1.jpg'],
     },
     {
+      productId: '69',
+      storeId: '14',
+      categoryId: '3',
       img: [Image4_1, Image4_2, Image4_3],
       store: '草地學花',
       name: '乾燥花玻璃盒',
+      category: 'floral',
       price: '1400',
       link: '/product/detail/69',
+      amount: 5,
+      isFavorite: getData?.[68],
+      imgs: ['花藝＿商品＿草地學花＿乾燥花玻璃盒＿1.jpg'],
     },
   ]
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -113,15 +159,43 @@ function ProductCard() {
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button className="bg-primary product_detail_card_favorite me-2">
+                  <button
+                    onClick={() => {
+                      if (v.isFavorite) {
+                        removeUserFavoriteProduct({
+                          productId: v.productId,
+                        })
+                      } else {
+                        addUserFavoriteProduct({
+                          productId: v.productId,
+                          storeId: v.storeId,
+                          categoryId: v.categoryId,
+                        })
+                      }
+                    }}
+                    className="bg-primary product_detail_card_favorite me-2"
+                  >
                     <FontAwesomeIcon
-                      icon="far fa-heart"
-                      size="lg"
-                      // icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                      icon={v.isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
                     />
                   </button>
-                  <button className="bg-secondary product_detail_card_favorite border-0 rounded-circle">
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        addProductCart({
+                          productId: v.productId,
+                          name: v.name,
+                          imgs: v.imgs,
+                          price: Number(v.price),
+                          category: v.category,
+                          amount: v.amount,
+                          quantity: 1,
+                        })
+                      )
+                    }}
+                    className="bg-secondary product_detail_card_favorite border-0 rounded-circle"
+                  >
                     <img
                       src={cart}
                       alt=""

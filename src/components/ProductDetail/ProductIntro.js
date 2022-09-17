@@ -42,7 +42,7 @@ const ProductIntro = ({
     totalSum
   )
 
-  // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
+  // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefined
   const length = score?.length
   let average = sumWithInitial / length
 
