@@ -6,9 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const UserLikeCourse = () => {
   const { data } = useUserLikesCourseQuery()
-
   let newData = []
-
   if (data) {
     newData = [...data]?.sort(() => 0.5 - Math.random())
   }
