@@ -14,7 +14,9 @@ import moment from 'moment/moment'
 import EmojiPicker from 'emoji-picker-react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import { SOCKET_URL } from '../../utils/config'
+import useSocket from '../../hooks/socketConnect'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 
 const ChatRoom = () => {
@@ -23,29 +25,13 @@ const ChatRoom = () => {
   // TODO:EMOJI
   const [showPicker, setShowPicker] = useState(false)
 
-  const socket = io(SOCKET_URL)
-  const socket2 = io(`${SOCKET_URL}`+'/admin')
-
   const [text, setText] = useState('')
 
-  socket.on('messageFormServer', (dataFormServer) => {
-    console.log(dataFormServer)
-    socket.emit('dataToServer', { data: 'Data from the client' })
-  })
 
-  socket.on('joined', (msg) => {
-    console.log(msg)
-  })
-
-  socket2.on('welcome', (dataFormServer) => {
-    console.log(dataFormServer)
-  })
 
   const handleClick = (e) => {
-    console.log(e)
-    const newMessage = '12314'
-    socket.emit('dataToServer', { data: `${newMessage}data from the client` })
   }
+
 
   //TODO:把訊息傳出去
   const handleSubmit = (e) => {

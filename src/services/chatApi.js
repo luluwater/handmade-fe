@@ -9,10 +9,13 @@ export const chatApiService = createApi({
   tagTypes: ['Chat'],
   endpoints: (builder) => ({
     chatRooms: builder.query({
-      query: (blogId) => `chat`,
+      query: () => `chat`,
       providesTags: ['Chat'],
     }),
   }),
 })
 
 export const { useChatRoomsQuery } = chatApiService
+
+
+
