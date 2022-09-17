@@ -40,12 +40,12 @@ const Blog = () => {
 
   useEffect(() => {
     if (rawData === data) return
-    dispatch(pagination(data))
-    dispatch(setShowItemCount(4))
+    dispatch(setType('blog'))
     dispatch(initFilterDate())
     dispatch(initSearchWord())
     dispatch(initFilterStore())
-    dispatch(setType('blog'))
+    dispatch(setShowItemCount(4))
+    dispatch(pagination(data))
   }, [dispatch, data])
 
   useEffect(() => {

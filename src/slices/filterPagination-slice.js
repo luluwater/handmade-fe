@@ -67,6 +67,8 @@ function blog(state) {
   if (!state.rawData) return
   state.data = state.rawData
 
+  console.log('state.data', state.data)
+
   if (state.filter.searchWord !== '') {
     state.data = state.data?.filter(
       (blog) =>
@@ -85,7 +87,6 @@ function blog(state) {
   }
 
   //篩選時間
-  console.log('fuck', state.filter.date)
   if (
     state.filter.date?.startDate !== null &&
     state.filter.date?.startDate !== undefined &&
@@ -143,7 +144,7 @@ const initialState = {
   currentPage: 1,
   itemCount: 20,
   totalPage: 1,
-  type: 'product',
+  type: '',
 }
 
 export const paginationSlice = createSlice({

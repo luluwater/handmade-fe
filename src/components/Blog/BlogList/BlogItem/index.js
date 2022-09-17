@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import moment from 'moment'
 import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
@@ -22,12 +22,14 @@ const BlogItem = ({
 }) => {
   const transformTime = moment(createTime).format('MMMM DD YYYY')
 
+  if (content === undefined) return
+
   return (
     <div className="mb-2 d-flex flex-column flex-lg-row gap-6 pb-4 mb-6 border-bottom ">
       <div className="blog_list_img">
         <Link to={`/blog/${id}`}>
           <img
-            src={`${IMG_URL}/${images[0]?.img_name}`}
+            src={`${IMG_URL}/${images?.[0]?.img_name}`}
             className="h-100 object-fit d-flex d-lg-flex img-fluid scale_img opacity_img"
             alt="blog post"
           />
@@ -41,7 +43,7 @@ const BlogItem = ({
           >
             {category}
           </Badge>
-          {tags.map((item) => {
+          {tags?.map((item) => {
             return (
               <Badge
                 className="rounded-0 mb-2 align-self-start py-2 px-3 text-white"

@@ -85,7 +85,7 @@ function Proudcts() {
             className="path-bottom"
           ></path>
         </svg>
-        {/* <img className="banner" src={productBanner} alt="banner"></img> */}
+        <img className="banner" src={productBanner} alt="banner"></img>
         <h1 className="position-absolute top-50 start-50 translate-middle text-white fw-light banner_title">
           SHOP
         </h1>
