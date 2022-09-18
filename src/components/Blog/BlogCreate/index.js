@@ -82,7 +82,6 @@ const BlogCreate = () => {
   const filterStore = data?.store.filter((item) => {
     return item.category_id.toString() === addCategory
   })
-  console.log(filterStore)
 
   const handleSubmit = async () => {
     try {

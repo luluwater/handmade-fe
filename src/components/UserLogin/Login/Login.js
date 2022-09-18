@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,9 +6,12 @@ import ShowPassword from '../ShowEye/ShowPassword'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../services/authApi'
 import { useNavigate } from 'react-router-dom'
+import { Toast } from '../../UI/SwalStyle'
 
 const Login = () => {
-  const [login] = useLoginMutation()
+  const [login, { data, isSuccess: isLoginSucess }] = useLoginMutation()
+
+  console.log(data)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -29,9 +32,25 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await login({ email, password })
-    await navigate('/')
+    if (email && password) {
+      await login({ email, password })
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: '缺少 email or password',
+      })
+    }
   }
+
+  useEffect(() => {
+    if (isLoginSucess) {
+      Toast.fire({
+        icon: 'success',
+        title: '登入成功',
+      })
+      // navigate('/')
+    }
+  }, [isLoginSucess])
 
   return (
     <>
@@ -55,7 +74,6 @@ const Login = () => {
               placeholder="會員帳號"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
             <br />
 
@@ -66,7 +84,6 @@ const Login = () => {
               placeholder="會員密碼"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
             <ShowPassword eye={eye} setEye={setEye} />
 
