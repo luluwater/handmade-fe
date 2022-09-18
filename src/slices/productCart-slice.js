@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
 
-
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
     ? JSON.parse(localStorage.getItem('ProductCart'))

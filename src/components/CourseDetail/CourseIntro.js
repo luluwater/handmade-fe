@@ -80,6 +80,7 @@ const CourseIntro = ({
   ////////// COUNTER //////////
   const dispatch = useDispatch()
   const quantity = useSelector((state) => state.counterReducer.value)
+  const stockWarning = useSelector((state) => state.counterReducer.stockWarning)
 
   const shopUrl = `/store/${storeId}`
 
@@ -125,7 +126,7 @@ const CourseIntro = ({
 
   return (
     <>
-      <Row className="d-flex flex-column fw-bold detail_RWD ">
+      <Row className="d-flex flex-column fw-bold detail_RWD align-items-center m-0">
         {/* ========== */}
         <Col className="d-flex detail_top">
           <Col sm={12} lg={8}>
@@ -157,36 +158,36 @@ const CourseIntro = ({
             />
           </Col>
           <Col className="d-flex flex-column detail_amount py-4 col-lg-7 align-items-center col-sm-12">
-            <Col>
+            <Col className="course_time_button">
               {filterResult.length > 0 ? (
-                <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
+                <Col className="mt-lg-6 ms-lg-5 my-lg-2 mb-sm-2">
                   {filterResult?.map((item) => {
                     console.log('success')
                     return (
-                      <Button className="col-3 m-2 course_time_btn">
+                      <Button className="col-3 me-3 mb-3 course_time_btn">
                         {item.time_start}
                       </Button>
                     )
                   })}
                 </Col>
               ) : (
-                <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
-                  <Button className="col-3 m-2 course_time_btn" disabled>
+                <Col className="mt-lg-6 ms-lg-5 my-lg-2">
+                  <Button className="col-3 me-3 mb-3 course_time_btn" disabled>
                     10:00
                   </Button>
-                  <Button className="col-3 m-2 course_time_btn" disabled>
+                  <Button className="col-3 me-3 mb-3 course_time_btn" disabled>
                     11:00
                   </Button>
-                  <Button className="col-3 m-2 course_time_btn" disabled>
+                  <Button className="col-3 me-3 mb-3 course_time_btn" disabled>
                     13:00
                   </Button>
-                  <Button className="col-3 m-2 course_time_btn" disabled>
+                  <Button className="col-3 me-3 mb-3 course_time_btn" disabled>
                     15:00
                   </Button>
-                  <Button className="col-3 m-2 course_time_btn" disabled>
+                  <Button className="col-3 me-3 mb-3 course_time_btn" disabled>
                     17:00
                   </Button>
-                  <Button className="col-3 m-2 course_time_btn" disabled>
+                  <Button className="col-3 me-3 mb-3 course_time_btn" disabled>
                     19:00
                   </Button>
                 </Col>
@@ -208,6 +209,13 @@ const CourseIntro = ({
                 +
               </Button>
             </Col>
+            {stockWarning === '' ? (
+              ''
+            ) : (
+              <div className="text-primary course_detail_stockWarning">
+                {stockWarning}
+              </div>
+            )}
             <Col className="d-flex course-total align-items-center my-2">
               <h5 className="ms-11 mt-2 col-3 course-total-title">總金額</h5>
               <h5 className=" mt-2 col-3 course-total-number">

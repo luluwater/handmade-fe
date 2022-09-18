@@ -34,6 +34,10 @@
 }
 
 // ===== intro =====
+
+.course_detail_stockWarning{
+    margin: 0px 0px 10px 80px;
+}
 .detail_top{
     border-top: 1px solid $gray-darker;
     border-bottom: 1px solid $gray-darker;
@@ -263,8 +267,16 @@
 }
 
 @media screen and (max-width: 576px) {
+    .course_detail_stockWarning{
+        margin: 0px 0px 10px 15px;
+    }
+    .course_time_button{
+        text-align: center;
+        margin: 0 20px 0 40px;
+    }
     .detail_swiperL{
         display: none;
+
     }
     .detail_RWD{
         width: 530px;
@@ -306,12 +318,17 @@
     .react-datepicker__month-container{
         width: 370px;
     }
+    .detail_swiperR{
+        .swiper{
+            margin-left: 50px;
+        }
+    }
 }
 
 // ========== DatePicker ==========
+.course_date{
 .react-datepicker__current-month, .react-datepicker__day-name{
     color: $gray-darker;
-
 }
 .react-datepicker__day{
     color: $gray-darker;
@@ -321,6 +338,7 @@
 }
 .react-datepicker__day--selected{
     color: $skin-brighter;
+}
 }
 .course-total{
     border: 1px $gray-darker solid;

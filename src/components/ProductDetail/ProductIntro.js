@@ -49,6 +49,7 @@ const ProductIntro = ({
   ////////// COUNTER //////////
   const dispatch = useDispatch()
   const quantity = useSelector((state) => state.counterReducer.value)
+  const stockWarning = useSelector((state) => state.counterReducer.stockWarning)
 
   const shopUrl = `/store/${storeId}`
 
@@ -73,7 +74,7 @@ const ProductIntro = ({
     dispatch(getProductTotal())
   }, [ProductItem, dispatch])
 
-////////// isFavorite //////////
+  ////////// isFavorite //////////
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
 
@@ -102,14 +103,14 @@ const ProductIntro = ({
         <Col className="d-flex detail_amount py-4">
           <div className="detail_amount_title">數量</div>
           <Button
-            className="detail_amount_minus  detail_button"
+            className="detail_amount_minus detail_button"
             onClick={() => dispatch(decrement(1))}
           >
             -
           </Button>
           <h5 className="detail_amount_number">{quantity}</h5>
           <Button
-            className="detail_amount_plus  detail_button"
+            className="detail_amount_plus detail_button"
             onClick={() => dispatch(increment(1))}
           >
             +
@@ -120,6 +121,7 @@ const ProductIntro = ({
           >
             加入購物車
           </Button>
+
           <Button
             className="detail_button detail_heart"
             onClick={() => {
@@ -142,6 +144,11 @@ const ProductIntro = ({
             />
           </Button>
         </Col>
+        {stockWarning === '' ? (
+          ''
+        ) : (
+          <div className="text-primary detail_stockWarning">{stockWarning}</div>
+        )}
         <Col className="detail_intro">
           <div style={{ whiteSpace: 'pre-wrap' }}>{intro}</div>
         </Col>

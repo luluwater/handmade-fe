@@ -25,6 +25,9 @@
         margin: 20px 0;
         line-height: 30px;
     }
+    &_name:hover{
+        color: $primary;
+    }
 
     &_date{
         margin: 10px 0;

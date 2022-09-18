@@ -34,6 +34,9 @@
 }
 
 // ===== intro =====
+.detail_stockWarning{
+    margin: -20px 0 10px 133px;
+}
 .detail_top{
     border-top: 1px solid $gray-darker;
     border-bottom: 1px solid $gray-darker;
@@ -220,7 +223,7 @@
     }
 }
 
-// ========== ==========
+// ========== showmore ==========
 
 .showmore{
     background: transparent !important;
@@ -237,6 +240,7 @@
     right: 110px;
 
 }
+
 .ShowMore_ButtonDiv__uCJeR{    
     opacity: 1 !important;
     z-index: initial !important;
@@ -247,6 +251,9 @@
 }
 
 @media screen and (max-width: 576px) {
+    .detail_stockWarning{
+        margin: -20px 0 10px 45px;
+    }
     .detail_swiperL{
         display: none;
     }

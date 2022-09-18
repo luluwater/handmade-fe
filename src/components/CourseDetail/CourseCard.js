@@ -20,38 +20,70 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './CourseCard.scss'
 
+import {
+  useAddUserFavoriteCourseMutation,
+  useRemoveUserFavoriteCourseMutation,
+  useGetCourseListQuery,
+} from '../../services/courseApi'
+
 function CourseCard() {
+  const { data } = useGetCourseListQuery()
+  const getData = data?.map((item) => {
+    return item.isFavorite
+  })
   const Info = [
     {
+      courseId: '41',
+      storeId: '21',
+      categoryId: '5',
       img: [Image1_1, Image1_2, Image1_3],
       store: '花貓蛋糕實驗室',
       name: '基礎海綿蛋糕研修班',
       price: '2200',
       link: '/course/detail/41',
+      storeLink: '/store/21',
+      isFavorite: getData?.[40],
     },
     {
+      courseId: '29',
+      storeId: '15',
+      categoryId: '3',
       img: [Image2_1, Image2_2, Image2_3],
       store: '花曜日 FlowerDays',
       name: '藤編花籃',
       price: '2080',
       link: '/course/detail/29',
+      storeLink: '/store/15',
+      isFavorite: getData?.[28],
     },
     {
+      courseId: '11',
+      storeId: '6',
+      categoryId: '2',
       img: [Image3_1, Image3_2, Image3_3],
       store: '璐室 Lucid Dream',
       name: '陶藝手捏體驗',
       price: '1200',
       link: '/course/detail/11',
+      storeLink: '/store/6',
+      isFavorite: getData?.[10],
     },
     {
+      courseId: '53',
+      storeId: '27',
+      categoryId: '6',
       img: [Image4_1, Image4_2, Image4_3],
       store: '小紅花',
       name: '常規-手作地毯課',
       price: '3300',
       link: '/course/detail/53',
+      storeLink: '/store/27',
+      isFavorite: getData?.[52],
     },
   ]
-
+  ////////// isFavorite //////////
+  const [aaddUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
+  const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
   return (
     <>
       <h4 className="mb-5 course_detail_card_title text-center mt-10 mb-8 fw-bold">
@@ -96,9 +128,11 @@ function CourseCard() {
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <p className="course_detail_card_store m-2 text-truncate">
-                    <small>| {v.store} |</small>
-                  </p>
+                  <a href={v.storeLink}>
+                    <p className="course_detail_card_store m-2 text-truncate">
+                      <small>| {v.store} |</small>
+                    </p>
+                  </a>
                   <a href={v.link}>
                     <h6 className="course_detail_card_text m-1 fw-bold">
                       {v.name}
@@ -112,11 +146,27 @@ function CourseCard() {
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button className="bg-primary course_detail_card_favorite me-2">
+                  <button
+                    onClick={() => {
+                      if (v.isFavorite) {
+                        removeUserFavoriteCourse({
+                          courseId: v.courseId,
+                          storeId: v.storeId,
+                          categoryId: v.categoryId,
+                        })
+                      } else {
+                        aaddUserFavoriteCourse({
+                          courseId: v.courseId,
+                          storeId: v.storeId,
+                          categoryId: v.categoryId,
+                        })
+                      }
+                    }}
+                    className="bg-primary course_detail_card_favorite me-2"
+                  >
                     <FontAwesomeIcon
-                      icon="far fa-heart"
                       size="lg"
-                      // icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                      icon={v.isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
                     />
                   </button>

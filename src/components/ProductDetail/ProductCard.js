@@ -24,12 +24,11 @@ import './ProductCard.scss'
 import {
   useAddUserFavoriteProductMutation,
   useRemoveUserFavoriteProductMutation,
+  useGetProductListQuery,
 } from '../../services/productApi'
 
 import { useDispatch } from 'react-redux'
 import { addProductCart } from '../../slices/productCart-slice'
-
-import { useGetProductListQuery } from '../../services/productApi'
 
 function ProductCard() {
   const { data } = useGetProductListQuery()
@@ -48,6 +47,7 @@ function ProductCard() {
       category: 'pottery',
       price: '1500',
       link: '/product/detail/39',
+      storeLink: '/store/8',
       amount: 5,
       isFavorite: getData?.[38],
       imgs: ['陶藝_商品_歡樂陶一家_造型把手杯_1.jpg'],
@@ -62,6 +62,7 @@ function ProductCard() {
       category: 'pottery',
       price: '1750',
       link: '/product/detail/49',
+      storeLink: '/store/10',
       amount: 5,
       isFavorite: getData?.[48],
       imgs: ['陶藝_商品_純Object_夜_1.jpg'],
@@ -76,6 +77,7 @@ function ProductCard() {
       category: 'bakery',
       price: '780',
       link: '/product/detail/106',
+      storeLink: '/store/22',
       amount: 5,
       isFavorite: getData?.[105],
       imgs: ['商品_Welcome_bake來約會吧_阿爾薩斯蘋果塔_1.jpg'],
@@ -90,6 +92,7 @@ function ProductCard() {
       category: 'floral',
       price: '1400',
       link: '/product/detail/69',
+      storeLink: '/store/14',
       amount: 5,
       isFavorite: getData?.[68],
       imgs: ['花藝＿商品＿草地學花＿乾燥花玻璃盒＿1.jpg'],
@@ -143,9 +146,11 @@ function ProductCard() {
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <p className="product_detail_card_store m-2 text-truncate">
-                    <small>| {v.store} |</small>
-                  </p>
+                  <a href={v.storeLink}>
+                    <p className="product_detail_card_store m-2 text-truncate">
+                      <small>| {v.store} |</small>
+                    </p>
+                  </a>
                   <a href={v.link}>
                     <h6 className="product_detail_card_text m-1 fw-bold">
                       {v.name}
