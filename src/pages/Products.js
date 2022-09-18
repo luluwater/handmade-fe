@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 // import { addProduct } from '../slices/productCard-slice'
 import { pagination, setFilter } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/Filter/Paginate'
-import Filter from '../components/Filter/Filter'
+import Paginate from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/Filter'
 
 function Proudcts() {
   //api get products data
