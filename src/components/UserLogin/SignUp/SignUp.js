@@ -21,23 +21,6 @@ const Signup = () => {
   const [eye, setEye] = useState(false)
   const [eyeOne, setEyeOne] = useState(false)
 
-  // function handleChange(e) {
-  //   setSignUpUser({ ...SignUpUser, [e.target.name]: e.target.value })
-  // }
-
-  // async function handleSubmit(e) {
-  //   e.preventDefault()
-  //   let response = await axios.post(`${API_URL}/Signup`, SignUpUser, {
-  //     withCredentials: true,
-  //   })
-  //   setSignUpUser(response.data)
-  //   // setIsLogin(true);
-  // }
-  // console.log(user)
-  // //TODO:製作記住帳號密碼
-  // if (user) {
-  //   return <Navigate to="/" />
-  // }
 
   //往上一層要加上 "/""，如果是子層則不用加
   return (
@@ -87,6 +70,7 @@ const Signup = () => {
             />
             <ShowPassword eye={eyeOne} setEye={setEyeOne} />
             <br />
+            <Link to="/login">
             <button
               type="submit"
               value="submit"
@@ -95,6 +79,7 @@ const Signup = () => {
             >
               註冊
             </button>
+            </Link>
             <h2 className="footerLogin text-center">Or Login With</h2>
             <Link to="/https://www.google.com.tw/webhp?tabrw">
               <FontAwesomeIcon

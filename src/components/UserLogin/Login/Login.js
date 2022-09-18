@@ -4,7 +4,7 @@ import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
 import { useDispatch } from 'react-redux'
-import { useLoginMutation } from '../../../services/'
+import { useLoginMutation } from '../../../services/authApi'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -28,7 +28,6 @@ const Login = () => {
   })
 
   const handleSubmit = async (e) => {
-
     e.preventDefault()
     await login({ email, password })
     await navigate('/')

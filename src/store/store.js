@@ -11,7 +11,8 @@ import paginationReducer from '../slices/filterPagination-slice'
 import filterStoreReducer from '../slices/filterStore-silce'
 import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
-
+import sortSelectReducer from '../slices/sortSelect-slice'
+import authReducers from '../slices/auth-slice'
 //Service
 import { blogApiService } from '../services/blogApi'
 import { commentApiService } from '../services/commentAPI'
@@ -19,8 +20,9 @@ import { replyApiService } from '../services/replyApi'
 import { storeApiService } from '../services/storeApi'
 import { productApiService } from '../services/productApi'
 import { categoryApiService } from '../services/categoryApi'
-// import { userApiService } from '../services/userApi'
+import { authApiService } from '../services/authApi'
 import { userApiService } from '../services/userApi'
+
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
  */
@@ -28,6 +30,7 @@ const reducers = combineReducers({
   /**
    * Reducer 放這裡
    */
+   authReducers,
   productReducer,
   paginationReducer,
   filterStoreReducer,
@@ -37,6 +40,7 @@ const reducers = combineReducers({
   replyReducer,
   blogReducer,
   commentReducer,
+  sortSelectReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,
@@ -44,6 +48,7 @@ const reducers = combineReducers({
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
+  [authApiService.reducerPath]: authApiService.reducer,
 })
 
 const store = configureStore({
@@ -57,6 +62,7 @@ const store = configureStore({
       .concat(userApiService.middleware)
       .concat(commentApiService.middleware)
       .concat(replyApiService.middleware)
+      .concat(authApiService.middleware)
   },
 })
 
