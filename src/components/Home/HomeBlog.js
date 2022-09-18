@@ -41,7 +41,9 @@ function HomeBlog() {
         {NewBlog.map((v, i) => {
           return (
             <div key={v.name} className="home_blog">
-              <img className="home_blog_pic" src={v.img} alt="" />
+              <a href={v.link}>
+                <img className="home_blog_pic" src={v.img} alt="" />
+              </a>
               <a href={v.link}>
                 <h5 className="home_blog_name">{v.name}</h5>
               </a>
@@ -55,7 +57,9 @@ function HomeBlog() {
         {HotBlog.map((v, i) => {
           return (
             <div key={v.name} className="home_blog2">
-              <img className="home_blog_pic" src={v.img} alt="" />
+              <a href={v.link}>
+                <img className="home_blog_pic" src={v.img} alt="" />
+              </a>
               <a href={v.link}>
                 <h5 className="home_blog_name">{v.name}</h5>
               </a>

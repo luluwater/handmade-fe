@@ -35,7 +35,9 @@ function Video() {
         height="100%"
         className="home_video"
       />
-      <Button className="home_video_button">DISCOVER MORE</Button>
+      <Button href="/shop" className="home_video_button">
+        DISCOVER MORE
+      </Button>
 
       <div className="home_svg_bottom">
         <svg
