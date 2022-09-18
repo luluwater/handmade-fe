@@ -7,11 +7,10 @@ import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../services/authApi'
 import { useNavigate } from 'react-router-dom'
 import { Toast } from '../../UI/SwalStyle'
+import GoogleLogin from '../GoogleLogin'
 
 const Login = () => {
   const [login, { data, isSuccess: isLoginSucess }] = useLoginMutation()
-
-  console.log(data)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -107,20 +106,8 @@ const Login = () => {
               </button>
             </Link>
             <h2 className="footerLogin text-center">Or Login With</h2>
-            <Link to="/https://www.google.com.tw/webhp?tabrw">
-              <FontAwesomeIcon
-                icon="fa-brands fa-google"
-                size="xl"
-                className="icon2"
-                fixedWidth
-              />
-            </Link>
-
-            <div className="Bg"></div>
+            <GoogleLogin />
           </form>
-          {/* <Link className="text-primary btn" to="/blog">
-          會員登入
-        </Link> */}
         </div>
       </div>
     </>
