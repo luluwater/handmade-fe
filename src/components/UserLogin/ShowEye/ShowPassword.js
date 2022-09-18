@@ -1,17 +1,17 @@
 import React from 'react'
 import { FaEye } from 'react-icons/fa'
-import { FaEyeSlash, RiEyeLine } from 'react-icons/fa'
+import { FaEyeSlash } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 
-const ShowPassword = ({ eye, setEye }) => {
+const ShowPassword = ({ showPassword, setShowPassword }) => {
   function clickEye() {
-    setEye(eye ? false : true)
+    setShowPassword(showPassword ? false : true)
   }
   return (
     <>
       <div className="iconEyeTwo" onClick={clickEye}>
         <IconContext.Provider value={{ className: 'eye' }}>
-          {eye ? <FaEye /> : <FaEyeSlash />}
+          {showPassword ? <FaEye /> : <FaEyeSlash />}
         </IconContext.Provider>
       </div>
     </>

@@ -35,7 +35,7 @@ const reducers = combineReducers({
   /**
    * Reducer 放這裡
    */
-   authReducers,
+  authReducers,
   productReducer,
   paginationReducer,
   filterStoreReducer,

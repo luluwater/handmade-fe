@@ -1,55 +1,60 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 import ShowPassword from '../ShowEye/ShowPassword'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../services/authApi'
 import { useNavigate } from 'react-router-dom'
 import { Toast } from '../../UI/SwalStyle'
 import GoogleLogin from '../GoogleLogin'
+import { setUser } from '../../../slices/auth-slice'
 
 const Login = () => {
   const [login, { data, isSuccess: isLoginSucess }] = useLoginMutation()
+  let email = '22222'
+  let password = '2222'
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  // password eye
-  const [eye, setEye] = useState(false)
-
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const [user, setUser] = useState({
-    fullName: '',
-    phone: '',
-    email: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-  })
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (email && password) {
-      await login({ email, password })
-    } else {
-      Toast.fire({
-        icon: 'error',
-        title: '缺少 email or password',
-      })
-    }
-  }
-
   useEffect(() => {
+    if (data?.error)
+      return Toast.fire({
+        icon: 'error',
+        title: data.error,
+      })
+
     if (isLoginSucess) {
       Toast.fire({
         icon: 'success',
         title: '登入成功',
       })
-      // navigate('/')
+      dispatch(setUser({ user: data }))
+      navigate('/')
     }
-  }, [isLoginSucess])
+  }, [dispatch, data, navigate])
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Please enter a valid email.')
+        .required('Email must not be empty.'),
+      password: Yup.string().required('Password must not be empty.').min(6),
+    }),
+    onSubmit: async (values) => {
+      await login({ email: values.email, password: values.password })
+    },
+  })
+
+  const showEmailError = formik.touched.email && formik.errors.email
+  const showPasswordError = formik.touched.password && formik.errors.password
 
   return (
     <>
@@ -61,30 +66,41 @@ const Login = () => {
             alt=""
           />
           <form
-            action=""
             className="LoginForm position-relative "
-            onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
           >
             <h1 className="LoginTitle text-center">會員登入</h1>
+            <label htmlFor="email"></label>
             <input
               className="AccountInput"
               type="text"
-              name="AccountInput"
-              placeholder="會員帳號"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              placeholder="輸入帳號..."
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
             />
-            <br />
+            {showEmailError && (
+              <p className="mt-2 text-danger mb-0">信箱格式錯誤</p>
+            )}
 
+            <label htmlFor="password"></label>
             <input
               className="PasswordInput"
-              type={eye ? 'text' : 'password'}
-              name="PasswordInput"
-              placeholder="會員密碼"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="輸入密碼..."
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
             />
-            <ShowPassword eye={eye} setEye={setEye} />
+            {showPasswordError && (
+              <p className="mt-2 text-danger mb-0">密碼格式錯誤</p>
+            )}
+            <ShowPassword
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+            />
 
             {/* <Link to="/FindPassword"> */}
             <a href="./FindPassword" className="ForgetPassword">
@@ -97,11 +113,7 @@ const Login = () => {
             </button>
             <br />
             <Link to="/SignUp">
-              <button
-                type="submit"
-                className="SignUp"
-                // onClick={handleSubmit}
-              >
+              <button type="submit" className="SignUp">
                 註冊
               </button>
             </Link>

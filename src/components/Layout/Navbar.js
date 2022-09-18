@@ -3,8 +3,15 @@ import { Link } from 'react-router-dom'
 import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
+  const userData = JSON.parse(localStorage.getItem('user'))
+
+  const authReducers = useSelector((state) => state.authReducers)
+
+  const isLogin = authReducers.isLogin
+
   return (
     <>
       <nav className="navbar">
@@ -38,14 +45,37 @@ const Navbar = () => {
               />
             </Link>
 
-            <Link to="login" className="navbar_user">
-              <FontAwesomeIcon
-                icon="fa-solid fa-user"
-                size="xl"
-                className="mx-3 navbar_awesomeIcon"
-                fixedWidth
-              />
-            </Link>
+            {isLogin || userData ? (
+              <>
+                <Link to="/user/management">
+                  {userData.user.avatar ? (
+                    <div className="avatar ">
+                      <img
+                        src={userData.user.avatar}
+                        className="rounded-circle"
+                        alt="user img"
+                      />
+                    </div>
+                  ) : (
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-user"
+                      size="xl"
+                      className="mx-3 navbar_awesomeIcon"
+                      fixedWidth
+                    />
+                  )}
+                </Link>
+              </>
+            ) : (
+              <Link to="login" className="navbar_user">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-user"
+                  size="xl"
+                  className="mx-3 navbar_awesomeIcon"
+                  fixedWidth
+                />
+              </Link>
+            )}
 
             <Link to="/" className="navbar_bars">
               <FontAwesomeIcon
