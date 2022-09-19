@@ -72,6 +72,7 @@ const ChatRoom = () => {
   const socket = io(BASE_URL, {
     withCredentials: true,
   })
+  console.log(BASE_URL)
 
   //TODO: 用 redux 來拿到這些資料，並渲染到葉面上
   const joinRoom = (room) => {
