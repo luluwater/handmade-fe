@@ -1,0 +1,150 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap'); */
+/* @import '../../styles/custom_variables'; */
+.SignUpFrame {
+  margin: 0 auto;
+  background: #f4eee8;
+  border: 10px solid #ffffff;
+  border-radius: 20px;
+  max-width: 1300px;
+  margin-top: 57px;
+  margin-bottom: 90px;
+}
+.border {
+  border-radius: 20px solid #ffffff !important;
+  border: transparent !important;
+  position: relative;
+}
+.SignUpPic {
+  width: 610px;
+  height: 611px;
+  margin-right: 138px;
+  margin-top: 104px;
+  margin-bottom: 69.74px;
+}
+.SignUpForm {
+  padding-top: 20px;
+  position: relative;
+  max-width: auto;
+}
+.SignUpTitle {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 35px;
+  letter-spacing: 0.2em;
+
+  color: #5f5c51;
+  margin-top: 82px;
+}
+.AccountInputSignUp {
+  margin-top: 32px;
+  width: 352px;
+  height: 57.72px;
+  padding: 0.75rem;
+  border: 2px solid #5f5c51;
+  border-radius: 10px;
+  background: #f4eee8;
+}
+.EmailInputSignUp {
+  margin-top: 31.28px;
+  width: 352px;
+  height: 57.72px;
+  border: 2px solid #5f5c51;
+  border-radius: 10px;
+  background: #f4eee8;
+  padding: 0.75rem;
+}
+.PasswordInputSignUp {
+  margin-top: 31.28px;
+  width: 352px;
+  height: 57.72px;
+  border: 2px solid #5f5c51;
+  border-radius: 10px;
+  background: #f4eee8;
+  padding: 0.75rem;
+  line-height: 25px;
+  letter-spacing: 0.1em;
+  color: #5f5c51;
+}
+.RePasswordInputSignUp {
+  margin-top: 8.28px;
+  width: 352px;
+  height: 57.72px;
+  border: 2px solid #5f5c51;
+  border-radius: 10px;
+  background: #f4eee8;
+  padding: 0.75rem;
+  padding-left: 12px;
+  letter-spacing: 0.1em;
+
+}
+::placeholder {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  color: #5f5c51;
+}
+.NewSignUp {
+  margin-top: 8.28px;
+  width: 352px;
+  height: 57.72px;
+  background: #e77656;
+  border: 2px solid #e77656;
+  border-radius: 10px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  color: #ffffff;
+}
+.footerLogin {
+  margin-top: 38.75px;
+  color: #5f5c51;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+.Bg{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: #5f5c51;
+  margin-left:9.45em;
+  margin-top: 28px;
+  margin-bottom: 35px;
+}
+.iconEyeTwo{
+  position:relative;
+  color: #5f5c51;
+  top: -40px;
+  left: 300px;
+}
+
+
+@media screen and (max-width: 576px) {
+  .SignUpPic {
+    display: none;
+  }
+  .SignUpForm{
+    padding-top: 0px;
+  }
+  .SignUpTitle{
+    margin-top: 29px;
+    margin-bottom: 0;
+  }
+  .SignUpFrame {
+    width: 456px;
+  }
+  .footerLogin {
+    margin-top: 27px;
+  }
+}
