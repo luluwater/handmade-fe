@@ -42,21 +42,6 @@ const BlogCreate = () => {
   const handleStoreChange = (e) => {
     setAddStore(e.target.value)
   }
-  // const handleTagsChange = (e) => {
-  //   setAddTags(e.target.value)
-  // }blogId
-
-  /**
-   * 1. Title     --> ok
-   * 2. content    --> ok
-   * 3. current User   --> not yet
-   * 4. category ( 非必填 ) --> ok
-   * 5. store ( 建立於category之上 ) --> ok
-   * 6. tag?? ( 感覺有點麻煩 ) --> ok
-   * 7. 發布時間 current time --> ok
-   *  useNavgative
-   * @param {event} e
-   */
 
   const newTags = addTagName.map((tagName) => {
     const newTag = {
