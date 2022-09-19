@@ -49,10 +49,10 @@
         margin: 2px 7px 1px 5px;
         position: relative;
         display: inline-block;
-        width: 18px;
-        height: 18px;
-        border: 1.5px solid rgb(212, 212, 212);
-        border-radius: 5px;
+        width: 17px;
+        height: 17px;
+        border: 1.5px solid #878787;
+        border-radius: 4px;
         transition: background-color .1s ease-in;
         -moz-transition: background-color .1s ease-in;
         -webkit-transition: background-color .1s ease-in;
@@ -70,10 +70,10 @@
             opacity: 0;
         }
         &::before{
-            height: 7px;
-            top: 6px;
-            left: 2.5px;
-            border-radius: 5px;
+            height: 5px;
+            top:5.7px;
+            left: 3.6px;
+            border-radius: 10px;
             transform: rotate(-45deg);
             -moz-transform: rotate(-45deg);
             -webkit-transform: rotate(-45deg);
@@ -82,10 +82,10 @@
         }
         &::after{
 
-            height: 11px;
-            top: 2.3px;
-            left: 8.1px;
-            border-radius: 5px;
+            height: 8px;
+            top: 2.8px;
+            left: 7.6px;
+            border-radius: 10px;
             transform: rotate(41deg);
             -moz-transform: rotate(41deg);
             -webkit-transform: rotate(41deg);
@@ -104,7 +104,10 @@
         width: 40%;
         height: 60px;
         margin-left: 2rem;
+        display: flex;
+        align-items: center;
     }
+
     &_borderGray{
         border: 1px solid $gray-darker;
     }

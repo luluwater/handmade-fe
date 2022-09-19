@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
+import { ZipCodeTW } from 'zipcode-tw-react'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductTotal } from '../../../slices/productCart-slice'
@@ -27,12 +28,20 @@ const ProductCartInfo = () => {
   const [atmAccount, setAtmAccount] = useState('')
   const [creditCard, setCreditCard] = useState('')
 
+  // ===========payment checked===========
+  const [cashchecked, setCashchecked] = useState('')
+  const [atmChecked, setAtmChecked] = useState('')
+  const [creditCardChecked, setCreditCardChecked] = useState('')
+
   // ===========input===========
   const [orderName, setOrderName] = useState('')
   const [orderPhone, setOrderPhone] = useState('')
   const [delivery, setDelivery] = useState('')
   const [payment, setPayment] = useState('')
+  const [zipCode,setZipCode] = useState('')
+  const [address,setAddress] = useState('')
   const [note, setNote] = useState('')
+
 
   const dispatch = useDispatch()
 
@@ -51,6 +60,7 @@ const ProductCartInfo = () => {
   // console.log('ProductItem', ProductItem)
 
   return (
+    
     <>
       <Container fluid className="ProductCartInfo">
         <Row>
@@ -153,7 +163,8 @@ const ProductCartInfo = () => {
                       <label
                         className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
                         for="seven-eleven-pay"
-                      ></label>7-11超商 取貨付款
+                      ></label>
+                      7-11超商 取貨付款
                     </label>
 
                     <label
@@ -168,29 +179,27 @@ const ProductCartInfo = () => {
                         setCreditCard('')
                       }}
                       className={
-                        'ProductCartInfo_deliveryHome ps-4 pt-3 ' +
-                        sevenPaidBorder
+                        'ProductCartInfo_deliveryHome ps-2 ' + sevenPaidBorder
                       }
                     >
                       <input
                         type="radio"
-                        className="form-check-input"
+                        className="form-check-input ProductCartInfo_radioStyle"
                         name="delivery"
                         id="seven-eleven-paid"
                         value="3"
                       />
                       <label
-                        className="form-check-label ps-2"
+                        className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
                         for="seven-eleven-paid"
-                      >
-                        7-11超商 取貨不付款
-                      </label>
+                      ></label>
+                      7-11超商 取貨不付款
                     </label>
 
                     <label
                       for="home_delivery"
                       className={
-                        'ProductCartInfo_deliveryHome ps-4 pt-3 ' + homeBorder
+                        'ProductCartInfo_deliveryHome ps-2 ' + homeBorder
                       }
                       onClick={() => {
                         setSevenBorder('ProductCartInfo_borderGray')
@@ -204,17 +213,16 @@ const ProductCartInfo = () => {
                     >
                       <input
                         type="radio"
-                        className="form-check-input"
+                        className="form-check-input ProductCartInfo_radioStyle"
                         name="delivery"
                         id="home_delivery"
                         value="1"
                       />
                       <label
-                        className="form-check-label ps-2"
+                        className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
                         for="home_delivery"
-                      >
-                        黑貓宅急便
-                      </label>
+                      ></label>
+                      黑貓宅急便
                     </label>
                   </div>
 
@@ -247,48 +255,69 @@ const ProductCartInfo = () => {
                   )}
 
                   <p className="fs-4 ProductCartInfo_inputTitle">付款方式</p>
+
                   <div className="ProductCartInfo_input mt-4">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      value="1"
-                      id="ProductCart"
-                      disabled={cashOnDelivery}
-                      onChange={(e) => setDelivery(e.target.value)}
-                    />
-                    <label className="form-check-label ps-1" for="ProductCart">
+                    <label
+                      for="ProductCart"
+                      className="d-flex align-items-center"
+                    >
+                      <input
+                        type="radio"
+                        className="form-check-input ProductCartInfo_radioStyle"
+                        value="1"
+                        name="payment"
+                        id="ProductCart"
+                        disabled={cashOnDelivery}
+                        onChange={(e) => setDelivery(e.target.value)}
+                      />
+                      <label
+                        className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                        for="ProductCart"
+                      ></label>
                       貨到付款
                     </label>
                   </div>
+
                   <div className="ProductCartInfo_input mt-3">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      value="3"
-                      id="ProductCartATM"
-                      disabled={atmAccount}
-                      onChange={(e) => setDelivery(e.target.value)}
-                    />
                     <label
-                      className="form-check-label ps-1"
                       for="ProductCartATM"
+                      className="d-flex align-items-center"
                     >
+                      <input
+                        type="radio"
+                        className="form-check-input ProductCartInfo_radioStyle"
+                        value="3"
+                        name="payment"
+                        id="ProductCartATM"
+                        disabled={atmAccount}
+                        onChange={(e) => setDelivery(e.target.value)}
+                      />
+                      <label
+                        className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                        for="ProductCartATM"
+                      ></label>
                       ATM匯款轉帳
                     </label>
                   </div>
+
                   <div className="ProductCartInfo_input my-3">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      value="2"
-                      id="ProductCartCard"
-                      disabled={creditCard}
-                      onChange={(e) => setDelivery(e.target.value)}
-                    />
                     <label
-                      className="form-check-label ps-1"
                       for="ProductCartCard"
+                      className="d-flex align-items-center"
                     >
+                      <input
+                        type="radio"
+                        className="form-check-input ProductCartInfo_radioStyle"
+                        value="2"
+                        name="payment"
+                        id="ProductCartCard"
+                        disabled={creditCard}
+                        onChange={(e) => setDelivery(e.target.value)}
+                      />
+                      <label
+                        className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                        for="ProductCartCard"
+                      ></label>
                       信用卡支付（綠界金流）
                     </label>
                   </div>
