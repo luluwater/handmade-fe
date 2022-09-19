@@ -2,7 +2,7 @@ import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { Marker } from 'react-leaflet/Marker'
 import { Popup } from 'react-leaflet/Popup'
-import { GeoJSON, Tooltip } from 'react-leaflet'
+import { GeoJSON, Tooltip, Polyline } from 'react-leaflet'
 import Leaflet from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
@@ -21,16 +21,65 @@ import TRTC from '../../utils/TRTC.json'
 function LocationMarker() {
   const map = useMapEvents({
     popupopen(e) {
-      console.log(e.popup._latlng)
+      // console.log(e.popup._latlng)
       map.flyTo(e.popup._latlng)
     },
   })
+}
+function getLineMULTILINESTRING(data) {
+  let allPolyline = []
+  const motify = data
+    .replace('MULTILINESTRING(', '')
+    .replace('))', ')')
+    .split('),')
+    .map((v) => v.replace('(', ''))
+    .map((v) => v.replace(')', ''))
+    .map((v) => v.split(','))
+    .map((v) =>
+      v.map((v2) => allPolyline.push([v2.split(' ')[1], v2.split(' ')[0]]))
+    )
+  // console.log('motify', motify)
+  // console.log('allPolyline', allPolyline)
+  return allPolyline
+}
+
+function getLineLINESTRING(data) {
+  const motify = data
+    .replace('LINESTRING(', '')
+    .replace(')', '')
+    .split(',')
+    .map((v) => v.split(' '))
+    .map((v) => [v[1], v[0]])
+  // console.log('motify', motify)
+  return motify
+}
+
+function getLineMULTILINESTRING_2(data) {
+  let allPolyline = []
+  const motify = data
+    .replace('MULTILINESTRING(', '')
+    .replace('))', ')')
+    .split('),')
+    .map((v) => v.replace('(', ''))
+    .map((v) => v.replace(')', ''))
+    .map((v) => v.split(','))
+    .map((v) => {
+      const temp = [...v[0]]
+      v[0] = v[1]
+      v[1] = v[0]
+      return v
+    })
+    .map((v) => v.map((v2) => [v2.split(' ')[1], v2.split(' ')[0]]))
+  // .map((v) =>
+  //   v.map((v2) => allPolyline.push([v2.split(' ')[1], v2.split(' ')[0]]))
+  // )
+  console.log('motify', motify)
+  return motify
 }
 
 function Map() {
   const storeData = useSelector((state) => state.storeReducer.store)
   const center = useSelector((state) => state.storeReducer.center)
-  const category = useSelector((state) => state.storeReducer.category)
   const mrt_line = useSelector((state) => state.storeReducer.mrt_line)
   //default Marker Icon
   const defaultIcon = Leaflet.icon({
@@ -51,6 +100,14 @@ function Map() {
   }, [center])
 
   const markerRef = useRef(null)
+
+  const BL_Line = getLineMULTILINESTRING(TRTC[0].Geometry)
+  const BR_Line = getLineLINESTRING(TRTC[1].Geometry)
+  const Y_Line = getLineLINESTRING(TRTC[5].Geometry)
+  const G_Line = getLineMULTILINESTRING(TRTC[2].Geometry)
+  const O_line_1 = getLineMULTILINESTRING_2(TRTC[3].Geometry)
+  const R_line_1 = getLineMULTILINESTRING_2(TRTC[4].Geometry)
+
   return (
     <div className="border border-gray-dark map">
       <MapContainer
@@ -62,8 +119,14 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <Polyline pathOptions={{ color: 'blue' }} positions={BL_Line} />
+        <Polyline pathOptions={{ color: 'brown' }} positions={BR_Line} />
+        <Polyline pathOptions={{ color: 'yellow' }} positions={Y_Line} />
+        <Polyline pathOptions={{ color: 'green' }} positions={G_Line} />
+        <Polyline pathOptions={{ color: 'orange' }} positions={O_line_1} />
+        <Polyline pathOptions={{ color: 'red' }} positions={R_line_1} />
+
         <LocationMarker />
-        {/* <GeoJSON key="Geometry" data={test} /> */}
         {storeData?.map((v) => {
           return (
             <Marker

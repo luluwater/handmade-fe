@@ -3,7 +3,7 @@ import { Row, Col, Container, FormSelect } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { pagination, setFilter } from '../slices/filterPagination-slice'
+import { pagination, setFilter, setType } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
 import Filter from '../components/Filter/Filter'
@@ -37,6 +37,7 @@ function Proudcts() {
     dispatch(initFilterDate())
     dispatch(initSearchWord())
     dispatch(initFilterStore())
+    dispatch(setType('product'))
   }, [dispatch, data])
   //設定篩選資料
   useEffect(() => {
