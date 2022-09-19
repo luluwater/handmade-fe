@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './SignUp.css'
 import ShowPassword from '../ShowEye/ShowPassword'
 import { Button } from 'react-bootstrap'
-import GoogleLogin from '../GoogleLogin'
+// import GoogleLogin from '../GoogleLogin'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useRegisterMutation } from '../../../services/authApi'
@@ -39,6 +39,7 @@ const Signup = () => {
 
     onSubmit: (values) => {
       register({
+        id: Date.now(),
         account: values.account,
         email: values.email,
         password: values.password,
@@ -160,7 +161,7 @@ const Signup = () => {
             )}
 
             <h2 className="footerLogin text-center mb-5">Or Login With</h2>
-            <GoogleLogin />
+            {/* <GoogleLogin /> */}
           </form>
         </div>
       </div>
