@@ -30,7 +30,7 @@ function FilterStore({ state, className = '' }) {
                 type="checkbox"
                 style={{ margin: '0 5px' }}
                 onChange={() => {
-                  dispatch(handleSelecteAll(ar))
+                  dispatch(handleSelecteAll(ar.id))
                 }}
                 checked={ar.checked}
               />

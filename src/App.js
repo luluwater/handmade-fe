@@ -3,8 +3,6 @@ import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
-
-
 import CourseCart from './pages/CourseCart'
 import ProductCart from './pages/ProductCart'
 import CheckoutPage from './pages/CheckoutPage'
@@ -43,6 +41,7 @@ import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ChatRoomPage from './pages/ChatRoomPage'
 import Courses from './pages/Courses'
 
 const routeConfig = [
@@ -167,6 +166,10 @@ const routeConfig = [
       {
         path: 'course/detail/:courseId',
         element: <CourseDetailPage />,
+      },
+      {
+        path: 'chat',
+        element: <ChatRoomPage />,
       },
     ],
   },

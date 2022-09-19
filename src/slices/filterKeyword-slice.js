@@ -15,8 +15,13 @@ export const filterKeywordSilce = createSlice({
     setSearchWord: (state, action) => {
       state.searchWord = action.payload
     },
+    initSearchWord: (state, action) => {
+      state.inputValue = ''
+      state.searchWord = ''
+    },
   },
 })
 
-export const { setInputValue, setSearchWord } = filterKeywordSilce.actions
+export const { setInputValue, setSearchWord, initSearchWord } =
+  filterKeywordSilce.actions
 export default filterKeywordSilce.reducer

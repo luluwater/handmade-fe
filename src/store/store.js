@@ -24,9 +24,11 @@ import { commentApiService } from '../services/commentAPI'
 import { replyApiService } from '../services/replyApi'
 import { storeApiService } from '../services/storeApi'
 import { productApiService } from '../services/productApi'
-import { courseApiService } from '../services/courseApi'
 import { categoryApiService } from '../services/categoryApi'
 import { userApiService } from '../services/userApi'
+import { chatApiService } from '../services/chatApi'
+import { utilApiService } from '../services/untilApi'
+import { courseApiService } from '../services/courseApi'
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
  */
@@ -56,7 +58,10 @@ const reducers = combineReducers({
   [courseApiService.reducerPath]: courseApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
-  [userApiService.reducerPath]: categoryApiService.reducer,
+  [userApiService.reducerPath]: userApiService.reducer,
+  [chatApiService.reducerPath]: chatApiService.reducer,
+  [utilApiService.reducerPath]: utilApiService.reducer,
+  [courseApiService.reducerPath]: courseApiService.reducer,
 })
 
 const store = configureStore({
@@ -70,6 +75,8 @@ const store = configureStore({
       .concat(categoryApiService.middleware)
       .concat(commentApiService.middleware)
       .concat(replyApiService.middleware)
+      .concat(chatApiService.middleware)
+      .concat(utilApiService.middleware)
       .concat(userApiService.middleware)
   },
 })

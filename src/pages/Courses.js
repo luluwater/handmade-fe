@@ -2,23 +2,31 @@ import { useEffect } from 'react'
 import { Row, Col, Container, FormSelect } from 'react-bootstrap'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { pagination, setFilter } from '../slices/filterPagination-slice'
+import {
+  pagination,
+  setFilter,
+  setShowItemCount,
+  setType,
+} from '../slices/filterPagination-slice'
 import { courseBanner } from '../image'
 import Paginate from '../components/Filter/Paginate'
 import Filter from '../components/Filter/Filter'
 import SortSelect from '../components/Filter/SortSelect'
 import { useGetCourseListQuery } from '../services/courseApi'
+import { initFilterStore } from '../slices/filterStore-silce'
+import { initFilterPrice } from '../slices/filterPrice-slice'
+import { initFilterDate } from '../slices/filterDate-silce'
+import { initSearchWord } from '../slices/filterKeyword-slice'
 
 function Courses() {
   //api get products data
   const { data, error, isLoading } = useGetCourseListQuery()
   // console.log('data', data)
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(pagination(data))
-  }, [dispatch, data])
+
   //取的篩選資料
   const courseList = useSelector((state) => state.paginationReducer.data)
+  const rawData = useSelector((state) => state.paginationReducer.rawData)
   const filterStore = useSelector(
     (state) => state.filterStoreReducer.filterStores
   )
@@ -29,7 +37,19 @@ function Courses() {
   const filterDate = useSelector((state) => state.filterDateReducer)
   const sort = useSelector((state) => state.sortSelectReducer.sortValue)
   // console.log('date', filterDate)
+  // console.log(filterPrice)
   //設定篩選資料
+  useEffect(() => {
+    if (rawData === data) return
+    // dispatch(initFilterPrice())
+    // dispatch(initFilterDate())
+    // dispatch(initSearchWord())
+    // dispatch(initFilterStore())
+    dispatch(setShowItemCount(20))
+    dispatch(pagination(data))
+    dispatch(setType('product'))
+  }, [dispatch, data])
+
   useEffect(() => {
     dispatch(
       setFilter({
@@ -41,11 +61,11 @@ function Courses() {
       })
     )
   }, [dispatch, filterStore, filterSearchWord, filterPrice, filterDate, sort])
-  console.log('pagination', courseList)
-  console.log(
-    'pagination:filter',
-    useSelector((state) => state.paginationReducer.filter)
-  )
+  // console.log('pagination', courseList)
+  // console.log(
+  //   'pagination:filter',
+  //   useSelector((state) => state.paginationReducer.filter)
+  // )
 
   return (
     <>

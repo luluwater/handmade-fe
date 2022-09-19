@@ -24,7 +24,7 @@ export const FilterPage = () => {
             <Link to="blogs" className="item">
               我的部落格
             </Link>
-            <Link to="/" className="item">
+            <Link to="/chat" className="item">
               聊天室
             </Link>
           </nav>

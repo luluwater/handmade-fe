@@ -44,6 +44,16 @@ img {
   .max-w-md-50 {
     max-width: 50%;
   }
+  .max-w-md-65 {
+    max-width: 65%;
+  }
+
+  .max-h-md-300 {
+    max-height: 300px;
+  }
+  .position-md-relative {
+    position: relative !important;
+  }
 }
 
 .w-15 {
@@ -118,7 +128,6 @@ img {
   max-width: 80%;
   margin: 20px auto;
 }
-//TODO:這有沒有需要放?
 #add_blog_active {
   color: #fff;
   background: var(--main-color);
@@ -214,6 +223,26 @@ img {
     d: path(
       'M 0,400 C 0,400  0,360  0,365 C 97,370  194,375  328,380 C 461,385  630,380  773,375 C 915,365  1030,355  1137,355 C 1243,360  1341,365  1440,375 C 1440,380 1440,400 1440,400 Z'
     );
+  }
+}
+
+.object-fit {
+  object-fit: cover;
+}
+
+.scale_img {
+  overflow: hidden;
+  transform: scale(0.95, 0.95);
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: scale(1, 1);
+  }
+}
+.opacity_img {
+  opacity: 1;
+  transition: all 0.2s ease-out;
+  &:hover {
+    opacity: 0.8;
   }
 }
 

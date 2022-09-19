@@ -26,8 +26,16 @@ export const filterSlice = createSlice({
       const percent = Math.floor(100 - ((value - state.min) / state.max) * 100)
       state.rightStyle = percent + '%'
     },
+    initFilterPrice: (state, action) => {
+      state.leftStyle = '0%'
+      state.rightStyle = '0%'
+      state.leftValue = 0
+      state.rightValue = 10000
+      // console.log('price', state)
+    },
   },
 })
 
-export const { setLeftValue, setRightValue } = filterSlice.actions
+export const { setLeftValue, setRightValue, initFilterPrice } =
+  filterSlice.actions
 export default filterSlice.reducer

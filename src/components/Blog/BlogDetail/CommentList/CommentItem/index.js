@@ -13,7 +13,6 @@ import Swal from 'sweetalert2'
 import Form from 'react-bootstrap/Form'
 import { Toast, swalButtons } from '../../../../UI/SwalStyle'
 
-//TODO:再多建立一個資料表紀錄修改後的時間
 const CommentItem = ({
   commentId,
   user,

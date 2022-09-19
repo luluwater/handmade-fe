@@ -1,25 +1,31 @@
-import { margin } from '@mui/system'
 import moment from 'moment'
-import { useState } from 'react'
 import ReactDatePicker, { CalendarContainer } from 'react-datepicker'
 import { useDispatch, useSelector } from 'react-redux'
 import { setState } from '../../slices/filterDate-silce'
 import './FilterDate.scss'
 
 function FilterDate({ className = '' }) {
-  // const [startDate, setStartDate] = useState(new Date())
-  // const [endDate, setEndDate] = useState(null)
-  const startDate = useSelector((state) => state.filterDateReducer.startPicker)
-  const endDate = useSelector((state) => state.filterDateReducer.endPicker)
+  const momentStartDate = useSelector(
+    (state) => state.filterDateReducer.startDate
+  )
+  const momentEndDate = useSelector((state) => state.filterDateReducer.endDate)
+
+  //整理、轉換資料格式 moment -> Date物件
+  const startDate = momentStartDate ? new Date(momentStartDate) : new Date()
+  const endDate =
+    momentEndDate === 'Invalid date' || !momentEndDate
+      ? null
+      : new Date(momentEndDate)
+
   const dispatch = useDispatch()
   const onChange = (dates) => {
     const [start, end] = dates
-    // setStartDate(start)
-    // setEndDate(end)
+
+    //轉換資料格式  Date物件 -> moment
     dispatch(
       setState({
-        startDate: start,
-        endDate: end,
+        startDate: moment(start).format('YYYY-M-D'),
+        endDate: end ? moment(end).format('YYYY-M-D') : null,
       })
     )
   }
