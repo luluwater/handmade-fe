@@ -138,7 +138,7 @@ input::placeholder {
   margin-bottom: 35px;
 }
 @media screen and (max-width: 576px) {
-  img {
+  .LoginPic {
     display: none;
   }
   .LoginTitle {
