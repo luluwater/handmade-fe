@@ -7,7 +7,8 @@ import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
-import { ZipCodeTW } from 'zipcode-tw-react'
+import moment from 'moment'
+import SevenStore from './SevenStore'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductTotal } from '../../../slices/productCart-slice'
@@ -15,7 +16,7 @@ import { getProductTotal } from '../../../slices/productCart-slice'
 import { v4 as uuidv4 } from 'uuid'
 
 const ProductCartInfo = () => {
-  // ===========delivery==========
+  // ===========delivery border==========
   const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderGray')
   const [sevenPaidBorder, setSevenPaidBorder] = useState(
     'ProductCartInfo_borderGray'
@@ -38,10 +39,40 @@ const ProductCartInfo = () => {
   const [orderPhone, setOrderPhone] = useState('')
   const [delivery, setDelivery] = useState('')
   const [payment, setPayment] = useState('')
-  const [zipCode,setZipCode] = useState('')
-  const [address,setAddress] = useState('')
+  const [zipCode, setZipCode] = useState('')
+  const [address, setAddress] = useState('')
   const [note, setNote] = useState('')
+  const [paymentState, setPaymentState] = useState('')
 
+  // ===========popup==============
+  const [openSeven, setOpenSeven] = useState(false)
+
+  const shoppingInfo = []
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const ProductOrder = {
+      orderNumber: Date.now(),
+      // TODO:抓取userid
+      user_id: 1,
+      // TODO:抓取couponid,有的話顯示，沒有給null
+      coupon_id: 0,
+      cueate_time: moment(new Date()).format('YYYY-MM-DD'),
+      name: orderName,
+      Phone: orderPhone,
+      delivery_id: delivery,
+      payment_id: payment,
+      address: zipCode + address,
+      note: note,
+      // TODO:total_amount要再減掉折價券金額
+      total_amount: ProductCartTotal,
+      payment_state_id: paymentState,
+      order_state_id: '1',
+      valid: '1',
+      order_detail: [...ProductItem],
+    }
+    shoppingInfo.push(ProductOrder)
+    // console.log('shoppingInfo', shoppingInfo)
+  }
 
   const dispatch = useDispatch()
 
@@ -57,10 +88,7 @@ const ProductCartInfo = () => {
     dispatch(getProductTotal())
   }, [])
 
-  // console.log('ProductItem', ProductItem)
-
   return (
-    
     <>
       <Container fluid className="ProductCartInfo">
         <Row>
@@ -159,6 +187,7 @@ const ProductCartInfo = () => {
                         name="delivery"
                         id="seven-eleven-pay"
                         value="2"
+                        onChange={(e) => setDelivery(e.target.value)}
                       />
                       <label
                         className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
@@ -188,6 +217,7 @@ const ProductCartInfo = () => {
                         name="delivery"
                         id="seven-eleven-paid"
                         value="3"
+                        onChange={(e) => setDelivery(e.target.value)}
                       />
                       <label
                         className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
@@ -217,6 +247,7 @@ const ProductCartInfo = () => {
                         name="delivery"
                         id="home_delivery"
                         value="1"
+                        onChange={(e) => setDelivery(e.target.value)}
                       />
                       <label
                         className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
@@ -227,9 +258,13 @@ const ProductCartInfo = () => {
                   </div>
 
                   {deliveryInfo ? (
-                    <div className="ProductCartInfo_chooseStore text-center mt-5">
-                      <a href="/">選擇取貨門市</a>
-                    </div>
+                    <button
+                    type='button'
+                      onClick={() => setOpenSeven(true)}
+                      className="ProductCartInfo_chooseStore text-center mt-5"
+                    >
+                      選擇取貨門市
+                    </button>
                   ) : (
                     <>
                       <div className="ProductCartInfo_Postal_code mt-2">
@@ -238,7 +273,11 @@ const ProductCartInfo = () => {
                           label="郵遞區號"
                           className="mb-3"
                         >
-                          <Form.Control type="text" placeholder=" " />
+                          <Form.Control
+                            type="text"
+                            placeholder=" "
+                            onChange={(e) => setZipCode(e.target.value)}
+                          />
                         </FloatingLabel>
                       </div>
 
@@ -248,11 +287,16 @@ const ProductCartInfo = () => {
                           label="收件地址"
                           className="mb-3"
                         >
-                          <Form.Control type="text" placeholder=" " />
+                          <Form.Control
+                            type="text"
+                            placeholder=" "
+                            onChange={(e) => setAddress(e.target.value)}
+                          />
                         </FloatingLabel>
                       </div>
                     </>
                   )}
+                  <SevenStore open={openSeven} />
 
                   <p className="fs-4 ProductCartInfo_inputTitle">付款方式</p>
 
@@ -268,7 +312,10 @@ const ProductCartInfo = () => {
                         name="payment"
                         id="ProductCart"
                         disabled={cashOnDelivery}
-                        onChange={(e) => setDelivery(e.target.value)}
+                        onChange={(e) => {
+                          setPayment(e.target.value)
+                          setPaymentState('2')
+                        }}
                       />
                       <label
                         className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
@@ -290,7 +337,10 @@ const ProductCartInfo = () => {
                         name="payment"
                         id="ProductCartATM"
                         disabled={atmAccount}
-                        onChange={(e) => setDelivery(e.target.value)}
+                        onChange={(e) => {
+                          setPayment(e.target.value)
+                          setPaymentState('2')
+                        }}
                       />
                       <label
                         className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
@@ -312,7 +362,10 @@ const ProductCartInfo = () => {
                         name="payment"
                         id="ProductCartCard"
                         disabled={creditCard}
-                        onChange={(e) => setDelivery(e.target.value)}
+                        onChange={(e) => {
+                          setPayment(e.target.value)
+                          setPaymentState('1')
+                        }}
                       />
                       <label
                         className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
@@ -328,12 +381,15 @@ const ProductCartInfo = () => {
                         as="textarea"
                         placeholder=" "
                         style={{ height: '120px' }}
+                        onChange={(e) => setNote(e.target.value)}
                       />
                     </FloatingLabel>
                   </div>
                   <Button
                     variant="primary"
                     className="ProductCartInfo_BTN fs-5 mb-10 text-center"
+                    type="submit"
+                    onClick={submitHandler}
                   >
                     結帳
                   </Button>
