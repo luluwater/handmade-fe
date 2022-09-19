@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Editor from '../BlogEdit/Editor'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -52,9 +52,11 @@ const BlogCreate = () => {
     return newTag
   })
 
+  // const localUser = JSON.parse(localStorage.getItem('user')).user
+
+  //TODO: 目前 LOCAL 的 USER 不然就是SLICE 裡的 USER
   const insertData = {
     id: blogId,
-    //TODO:LOCAL 裡拿
     user_id: '2',
     title: addTitle,
     content: addContent,
@@ -149,8 +151,8 @@ const BlogCreate = () => {
                 {/* Modal */}
                 <Modal.Body className="py-md-12 px-md-6 overflow-hidden">
                   <h4 className="mb-3 fs-5 ">
-                    {/* TODO: 從 LOCAL拿 */}
-                    <span className="text-muted">發布人：</span>黑色小花貓
+                    <span className="text-muted">發布人：</span>
+                    {/* {localUser.account} */}
                   </h4>
                   <div className="d-flex flex-column gap-md-6 gap-5">
                     <Form.Select

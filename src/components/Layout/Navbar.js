@@ -99,20 +99,14 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              {/* <Link to="course" className="navbar_link">
+              <Link to="course" className="navbar_link">
                 COURSE
-              </Link> */}
-              <a href="/course" className="navbar_link">
-                COURSE
-              </a>
+              </Link>
             </li>
             <li>
-              {/* <Link to="shop" className="navbar_link">
+              <Link to="shop" className="navbar_link">
                 SHOP
-              </Link> */}
-              <a href="/shop" className="navbar_link">
-                SHOP
-              </a>
+              </Link>
             </li>
             <li>
               <Link to="map" className="navbar_link">

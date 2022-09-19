@@ -46,7 +46,7 @@ const Blog = () => {
     dispatch(initFilterStore())
     dispatch(setShowItemCount(4))
     dispatch(pagination(data))
-  }, [dispatch, data])
+  }, [dispatch, data, rawData])
 
   useEffect(() => {
     dispatch(
