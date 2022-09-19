@@ -27,7 +27,7 @@ const Home = () => {
           }}
         </Sticky>
         <Container>
-          <Row id="home_news" className="pt-lg-12">
+          <Row id="home_news">
             <Col>
               <HomeNewStore />
             </Col>

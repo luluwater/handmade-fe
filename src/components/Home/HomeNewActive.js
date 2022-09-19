@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function HomeNewActive() {
   return (
     <>
-      <div className="home_newStore d-flex flex-column align-items-center mb-10">
+      <div className="home_newStore d-flex flex-column align-items-center">
         <h4 className="home_newStore_title">活動資訊</h4>
         <div className="home_newStore_content ">
           <img className="home_newStore_content_pic2" src={Image1} alt="" />

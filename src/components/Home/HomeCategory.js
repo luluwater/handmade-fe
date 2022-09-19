@@ -24,7 +24,7 @@ function HomeCategory() {
   ]
   return (
     <>
-      <div className="d-flex justify-content-between home_category mb-10">
+      <div className="d-flex justify-content-between home_category ">
         {Category.map((v, i) => {
           return (
             <div key={v.img} className="home_category_box">
