@@ -3,7 +3,12 @@ import { Row, Col, Container, FormSelect } from 'react-bootstrap'
 import { useGetProductListQuery } from '../services/productApi'
 import ProductCard from '../components/Products/ProductCard/ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { pagination, setFilter } from '../slices/filterPagination-slice'
+import {
+  pagination,
+  setFilter,
+  setShowItemCount,
+  setType,
+} from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
 import Paginate from '../components/FIlter/Paginate'
 import Filter from '../components/FIlter/Filter'
@@ -33,10 +38,12 @@ function Proudcts() {
     if (rawData === data) return
     // console.log('get rawData')
     dispatch(pagination(data))
-    dispatch(initFilterPrice())
-    dispatch(initFilterDate())
-    dispatch(initSearchWord())
-    dispatch(initFilterStore())
+    // dispatch(initFilterPrice())
+    // dispatch(initFilterDate())
+    // dispatch(initSearchWord())
+    // dispatch(initFilterStore())
+    dispatch(setShowItemCount(20))
+    dispatch(setType('product'))
   }, [dispatch, data])
   //設定篩選資料
   useEffect(() => {

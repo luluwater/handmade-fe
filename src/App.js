@@ -7,11 +7,11 @@ import CourseCart from './pages/CourseCart'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
-import Login from './pages/Login'
 
-import SignUp from './pages/Signup'
-import FindPassword from './pages/FindPassword'
-import ResetPassword from './pages/ResetPassword'
+import FindPasswordPage from './pages/FindPasswordPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 
 import About from './pages/AboutPage'
 import AboutLayout from './components/About'
@@ -50,7 +50,14 @@ const routeConfig = [
         path: '/',
         element: <Home />,
       },
-
+      {
+        path: 'Login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'SignUp',
+        element: <SignUpPage />,
+      },
       {
         path: 'blog',
         element: <BlogLayout />,
@@ -142,20 +149,12 @@ const routeConfig = [
       },
 
       {
-        path: 'Login',
-        element: <Login />,
-      },
-      {
-        path: 'SignUp',
-        element: <SignUp />,
-      },
-      {
         path: 'FindPassword',
-        element: <FindPassword />,
+        element: <FindPasswordPage />,
       },
       {
         path: 'ResetPassword',
-        element: <ResetPassword />,
+        element: <ResetPasswordPage />,
       },
 
       {
