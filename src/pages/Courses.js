@@ -41,11 +41,11 @@ function Courses() {
   //設定篩選資料
   useEffect(() => {
     if (rawData === data) return
-    dispatch(initFilterPrice())
-    dispatch(initFilterDate())
+    // dispatch(initFilterPrice())
+    // dispatch(initFilterDate())
+    // dispatch(initSearchWord())
+    // dispatch(initFilterStore())
     dispatch(setShowItemCount(20))
-    dispatch(initSearchWord())
-    dispatch(initFilterStore())
     dispatch(pagination(data))
     dispatch(setType('product'))
   }, [dispatch, data])

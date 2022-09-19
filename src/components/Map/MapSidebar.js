@@ -6,13 +6,13 @@ import { useEffect } from 'react'
 
 function MapSidebar() {
   const { data, error, isLoading } = useGetStoreQuery()
-  console.log(data)
+  // console.log(data)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getStore(data))
   }, [data])
   const storeData = useSelector((state) => state.storeReducer.store)
-  console.log(storeData)
+  // console.log(storeData)
   return (
     <div className="map_Sidebar">
       <h2 className="text-center text-light fw-bold mt-2">商家資訊</h2>
