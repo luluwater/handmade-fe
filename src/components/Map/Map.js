@@ -16,6 +16,7 @@ import { useEffect, useRef } from 'react'
 import MRT from '../../utils/TRTC-Station.json'
 import MRT_Line from '../../utils/TRTC-Line.json'
 import TRTC from '../../utils/TRTC.json'
+import { color } from '@mui/system'
 
 //全域事件
 function LocationMarker() {
@@ -73,7 +74,7 @@ function getLineMULTILINESTRING_2(data) {
   // .map((v) =>
   //   v.map((v2) => allPolyline.push([v2.split(' ')[1], v2.split(' ')[0]]))
   // )
-  console.log('motify', motify)
+  // console.log('motify', motify)
   return motify
 }
 
@@ -89,9 +90,8 @@ function Map() {
   })
   //default MRT Marker Icon
   const MRTIcon = Leaflet.icon({
-    iconUrl:
-      'https://www.newton.com.tw/img/4/eed/nBnauUmYyQTZzQmY4QWOxEGMkhDNzUTYidTZxgTNxQmM4MWOlR2MilDMwQ2LtVGdp9yYpB3LltWahJ2Lt92YuUHZpFmYuMmczdWbp9yL6MHc0RHa.jpg',
-    iconSize: mrt_line != 'all' ? 25 : 20,
+    iconUrl: require('../../assets/mrt_icon.png'),
+    iconSize: mrt_line != 'all' ? 20 : 15,
   })
   Leaflet.Marker.prototype.options.icon = defaultIcon
 
@@ -101,12 +101,27 @@ function Map() {
 
   const markerRef = useRef(null)
 
+  //get mrt line lat lng array
   const BL_Line = getLineMULTILINESTRING(TRTC[0].Geometry)
   const BR_Line = getLineLINESTRING(TRTC[1].Geometry)
   const Y_Line = getLineLINESTRING(TRTC[5].Geometry)
   const G_Line = getLineMULTILINESTRING(TRTC[2].Geometry)
-  const O_line_1 = getLineMULTILINESTRING_2(TRTC[3].Geometry)
-  const R_line_1 = getLineMULTILINESTRING_2(TRTC[4].Geometry)
+  const O_line = getLineMULTILINESTRING_2(TRTC[3].Geometry)
+  const R_line = getLineMULTILINESTRING_2(TRTC[4].Geometry)
+
+  const lineColor = (color) => {
+    return { color: color, weight: 5 }
+  }
+  console.log(MRT)
+
+  const mrtLineArr = [
+    { pathOptions: lineColor('blue'), position: BL_Line, lineNo: 'BL' },
+    { pathOptions: lineColor('brown'), position: BR_Line, lineNo: 'BR' },
+    { pathOptions: lineColor('yellow'), position: Y_Line, lineNo: 'Y' },
+    { pathOptions: lineColor('green'), position: G_Line, lineNo: 'G' },
+    { pathOptions: lineColor('orange'), position: O_line, lineNo: 'O' },
+    { pathOptions: lineColor('red'), position: R_line, lineNo: 'R' },
+  ]
 
   return (
     <div className="border border-gray-dark map">
@@ -119,12 +134,22 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Polyline pathOptions={{ color: 'blue' }} positions={BL_Line} />
-        <Polyline pathOptions={{ color: 'brown' }} positions={BR_Line} />
-        <Polyline pathOptions={{ color: 'yellow' }} positions={Y_Line} />
-        <Polyline pathOptions={{ color: 'green' }} positions={G_Line} />
-        <Polyline pathOptions={{ color: 'orange' }} positions={O_line_1} />
-        <Polyline pathOptions={{ color: 'red' }} positions={R_line_1} />
+        {/* <Polyline pathOptions={lineColor('blue')} positions={BL_Line} />
+        <Polyline pathOptions={lineColor('brown')} positions={BR_Line} />
+        <Polyline pathOptions={lineColor('yellow')} positions={Y_Line} />
+        <Polyline pathOptions={lineColor('green')} positions={G_Line} />
+        <Polyline pathOptions={lineColor('orange')} positions={O_line} />
+        <Polyline pathOptions={lineColor('red')} positions={R_line} /> */}
+        {mrtLineArr.map((v) => {
+          if (mrt_line !== 'all' && v.lineNo !== mrt_line) return
+          return (
+            <Polyline
+              key={v.lineNo}
+              pathOptions={v.pathOptions}
+              positions={v.position}
+            />
+          )
+        })}
 
         <LocationMarker />
         {storeData?.map((v) => {

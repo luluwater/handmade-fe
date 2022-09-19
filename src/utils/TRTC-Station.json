@@ -320,8 +320,8 @@
   "UpdateTime": "2020-11-05T00:00:00+08:00",
   "VersionID": 4,
   "StationPosition": {
-  "PositionLon": 121.545026,
-  "PositionLat": 25.041749,
+    "PositionLon": 121.54378616208986,
+    "PositionLat": 25.04164102455538,
   "GeoHash": "wsqqmydqu"
   },
   "LocationCity": "臺北市",
@@ -694,8 +694,8 @@
   "UpdateTime": "2020-11-05T00:00:00+08:00",
   "VersionID": 4,
   "StationPosition": {
-  "PositionLon": 121.54237,
-  "PositionLat": 25.033311,
+  "PositionLon": 121.54358351301158,
+  "PositionLat": 25.03323668888638, 
   "GeoHash": "wsqqmv0mw"
   },
   "LocationCity": "臺北市",
@@ -716,8 +716,8 @@
   "UpdateTime": "2020-11-05T00:00:00+08:00",
   "VersionID": 4,
   "StationPosition": {
-  "PositionLon": 121.545026,
-  "PositionLat": 25.041749,
+  "PositionLon": 121.54378616208986,
+  "PositionLat": 25.04164102455538,
   "GeoHash": "wsqqmydqu"
   },
   "LocationCity": "臺北市",
@@ -2124,8 +2124,8 @@
   "UpdateTime": "2020-11-05T00:00:00+08:00",
   "VersionID": 4,
   "StationPosition": {
-  "PositionLon": 121.54237,
-  "PositionLat": 25.033311,
+  "PositionLon": 121.54358351301158,
+  "PositionLat": 25.03323668888638, 
   "GeoHash": "wsqqmv0mw"
   },
   "LocationCity": "臺北市",
