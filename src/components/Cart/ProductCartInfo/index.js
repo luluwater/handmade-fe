@@ -14,9 +14,25 @@ import { getProductTotal } from '../../../slices/productCart-slice'
 import { v4 as uuidv4 } from 'uuid'
 
 const ProductCartInfo = () => {
-  const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderOrange')
+  // ===========delivery==========
+  const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderGray')
+  const [sevenPaidBorder, setSevenPaidBorder] = useState(
+    'ProductCartInfo_borderGray'
+  )
   const [homeBorder, setHomeBorder] = useState('ProductCartInfo_borderGray')
   const [deliveryInfo, setDeliveryInfo] = useState(true)
+
+  // ===========payment===========
+  const [cashOnDelivery, setCashOnDelivery] = useState('')
+  const [atmAccount, setAtmAccount] = useState('')
+  const [creditCard, setCreditCard] = useState('')
+
+  // ===========input===========
+  const [orderName, setOrderName] = useState('')
+  const [orderPhone, setOrderPhone] = useState('')
+  const [delivery, setDelivery] = useState('')
+  const [payment, setPayment] = useState('')
+  const [note, setNote] = useState('')
 
   const dispatch = useDispatch()
 
@@ -32,7 +48,7 @@ const ProductCartInfo = () => {
     dispatch(getProductTotal())
   }, [])
 
-  console.log('ProductItem', ProductItem)
+  // console.log('ProductItem', ProductItem)
 
   return (
     <>
@@ -80,7 +96,14 @@ const ProductCartInfo = () => {
                       label="姓名"
                       className="mb-3"
                     >
-                      <Form.Control type="text" placeholder="" />
+                      <Form.Control
+                        type="text"
+                        placeholder=" "
+                        required
+                        onChange={(e) => {
+                          setOrderName(e.target.value)
+                        }}
+                      />
                     </FloatingLabel>
                     <p className="ProductCartInfo_inputNotic pt-1">
                       ※若使用超商取貨不付款，『取貨人務必填寫與身份證件相符之真實姓名』
@@ -91,33 +114,77 @@ const ProductCartInfo = () => {
 
                   <div className="ProductCartInfo_input">
                     <FloatingLabel controlId="floatingPassword" label="電話">
-                      <Form.Control type="tel" placeholder="" />
+                      <Form.Control
+                        type="tel"
+                        placeholder=" "
+                        required
+                        onChange={(e) => {
+                          setOrderPhone(e.target.value)
+                        }}
+                      />
                     </FloatingLabel>
                   </div>
 
-                  <p className="fs-4 ProductCartInfo_inputTitle mt-5">
+                  <p className="fs-4 ProductCartInfo_inputTitle  mt-5">
                     運送方式
                   </p>
 
-                  <div className="d-flex ProductCartInfo_deliveryBox">
+                  <div className="d-flex  ProductCartInfo_deliveryBox">
                     <label
-                      for="seven-eleven"
-                      className={
-                        'ProductCartInfo_delivery ps-4 pt-3 ' + sevenBorder
-                      }
+                      for="seven-eleven-pay"
                       onClick={() => {
                         setSevenBorder('ProductCartInfo_borderOrange')
+                        setSevenPaidBorder('ProductCartInfo_borderGray')
                         setHomeBorder('ProductCartInfo_borderGray')
                         setDeliveryInfo(true)
+                        setCashOnDelivery('')
+                        setAtmAccount('disabled')
+                        setCreditCard('disabled')
                       }}
+                      className={'ProductCartInfo_delivery ps-2 ' + sevenBorder}
                     >
-                      <Form.Check
-                        label="7-11超商"
-                        name="delivery"
+                      <input
                         type="radio"
-                        id="seven-eleven"
-                        checked
+                        className="form-check-input  ProductCartInfo_radioStyle "
+                        name="delivery"
+                        id="seven-eleven-pay"
+                        value="2"
                       />
+                      <label
+                        className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
+                        for="seven-eleven-pay"
+                      ></label>7-11超商 取貨付款
+                    </label>
+
+                    <label
+                      for="seven-eleven-paid"
+                      onClick={() => {
+                        setSevenPaidBorder('ProductCartInfo_borderOrange')
+                        setSevenBorder('ProductCartInfo_borderGray')
+                        setHomeBorder('ProductCartInfo_borderGray')
+                        setDeliveryInfo(true)
+                        setCashOnDelivery('disabled')
+                        setAtmAccount('')
+                        setCreditCard('')
+                      }}
+                      className={
+                        'ProductCartInfo_deliveryHome ps-4 pt-3 ' +
+                        sevenPaidBorder
+                      }
+                    >
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        name="delivery"
+                        id="seven-eleven-paid"
+                        value="3"
+                      />
+                      <label
+                        className="form-check-label ps-2"
+                        for="seven-eleven-paid"
+                      >
+                        7-11超商 取貨不付款
+                      </label>
                     </label>
 
                     <label
@@ -127,16 +194,27 @@ const ProductCartInfo = () => {
                       }
                       onClick={() => {
                         setSevenBorder('ProductCartInfo_borderGray')
+                        setSevenPaidBorder('ProductCartInfo_borderGray')
                         setHomeBorder('ProductCartInfo_borderOrange')
                         setDeliveryInfo(false)
+                        setCashOnDelivery('')
+                        setAtmAccount('')
+                        setCreditCard('')
                       }}
                     >
-                      <Form.Check
-                        label="宅配"
-                        name="delivery"
+                      <input
                         type="radio"
+                        className="form-check-input"
+                        name="delivery"
                         id="home_delivery"
+                        value="1"
                       />
+                      <label
+                        className="form-check-label ps-2"
+                        for="home_delivery"
+                      >
+                        黑貓宅急便
+                      </label>
                     </label>
                   </div>
 
@@ -152,10 +230,7 @@ const ProductCartInfo = () => {
                           label="郵遞區號"
                           className="mb-3"
                         >
-                          <Form.Control
-                            type="text"
-                            placeholder=""
-                          />
+                          <Form.Control type="text" placeholder=" " />
                         </FloatingLabel>
                       </div>
 
@@ -165,10 +240,7 @@ const ProductCartInfo = () => {
                           label="收件地址"
                           className="mb-3"
                         >
-                          <Form.Control
-                            type="text"
-                            placeholder=""
-                          />
+                          <Form.Control type="text" placeholder=" " />
                         </FloatingLabel>
                       </div>
                     </>
@@ -179,8 +251,10 @@ const ProductCartInfo = () => {
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      value=""
+                      value="1"
                       id="ProductCart"
+                      disabled={cashOnDelivery}
+                      onChange={(e) => setDelivery(e.target.value)}
                     />
                     <label className="form-check-label ps-1" for="ProductCart">
                       貨到付款
@@ -190,8 +264,10 @@ const ProductCartInfo = () => {
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      value=""
+                      value="3"
                       id="ProductCartATM"
+                      disabled={atmAccount}
+                      onChange={(e) => setDelivery(e.target.value)}
                     />
                     <label
                       className="form-check-label ps-1"
@@ -204,8 +280,10 @@ const ProductCartInfo = () => {
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      value=""
+                      value="2"
                       id="ProductCartCard"
+                      disabled={creditCard}
+                      onChange={(e) => setDelivery(e.target.value)}
                     />
                     <label
                       className="form-check-label ps-1"
@@ -219,7 +297,7 @@ const ProductCartInfo = () => {
                     <FloatingLabel controlId="floatingTextarea2" label="備註">
                       <Form.Control
                         as="textarea"
-                        placeholder=""
+                        placeholder=" "
                         style={{ height: '120px' }}
                       />
                     </FloatingLabel>

@@ -34,10 +34,71 @@
     &_deliveryBox{
         width: 71%;
     }
+    &_radioStyle{
+        display: none;
+
+
+        &:checked + .ProductCartInfo_radioStyleLabel{
+            background-color: $primary;
+            border: 2px solid $primary;
+        }
+    }
+
+    &_radioStyleLabel{
+        vertical-align: middle;
+        margin: 2px 7px 1px 5px;
+        position: relative;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid rgb(212, 212, 212);
+        border-radius: 5px;
+        transition: background-color .1s ease-in;
+        -moz-transition: background-color .1s ease-in;
+        -webkit-transition: background-color .1s ease-in;
+        -o-transition: background-color .1s ease-in;
+
+        &::after,&::before{
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: $white;
+            transition: opacity .1s ease-in;
+            -moz-transition: opacity .1s ease-in;
+            -webkit-transition: opacity .1s ease-in;
+            -o-transition: opacity .1s ease-in;
+            opacity: 0;
+        }
+        &::before{
+            height: 7px;
+            top: 6px;
+            left: 2.5px;
+            border-radius: 5px;
+            transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+
+        }
+        &::after{
+
+            height: 11px;
+            top: 2.3px;
+            left: 8.1px;
+            border-radius: 5px;
+            transform: rotate(41deg);
+            -moz-transform: rotate(41deg);
+            -webkit-transform: rotate(41deg);
+            -o-transform: rotate(41deg);
+        }
+    }
+
     &_delivery{
         width: 40%;
         height: 60px;
         margin-left: 8rem;
+        display: flex;
+        align-items: center;
     }
     &_deliveryHome{
         width: 40%;
@@ -123,4 +184,9 @@
         position: absolute;
         top: 55rem;
     }
+    
+
 }
+.ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:before,
+.ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:after{
+    opacity:1;}

@@ -18,7 +18,6 @@ const productCartSlice = createSlice({
     // ============新增項目==========
     addProductCart(state, action) {
       const newItem = action.payload
-      const fw = '<FontAwesomeIcon icon="fa-solid fa-circle-check" />'
 
       const existingItem = state.productCartItem.find(
         (Item) => Item.productId === newItem.productId
