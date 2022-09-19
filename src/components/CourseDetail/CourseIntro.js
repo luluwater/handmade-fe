@@ -34,6 +34,7 @@ const CourseIntro = ({
 }) => {
   ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
+  const [startTime, setStartTime] = useState('')
 
   ////////// GetDate //////////
   function handleOnChange(date) {
@@ -91,10 +92,8 @@ const CourseIntro = ({
     return value.stock
   })
   const date = formatStartDate
-  const [time] = filterResult.map((value) => {
-    return value.time_start
-  })
-
+  const time = startTime
+  console.log('TOEFEF', time)
   ////////// 加入購物車 //////////
   const addToCourseCart = () => {
     dispatch(
@@ -164,7 +163,12 @@ const CourseIntro = ({
                   {filterResult?.map((item) => {
                     console.log('success')
                     return (
-                      <Button className="col-3 me-3 mb-3 course_time_btn">
+                      <Button
+                        className="col-3 me-3 mb-3 course_time_btn"
+                        onClick={() => {
+                          setStartTime(item.time_start)
+                        }}
+                      >
                         {item.time_start}
                       </Button>
                     )
@@ -222,13 +226,20 @@ const CourseIntro = ({
                 $ {quantity * price}
               </h5>
             </Col>
-            <Col>
-              <Button
-                className="detail_button detail_cart ms-0"
-                onClick={addToCourseCart}
-              >
-                加入購物車
-              </Button>
+            <Col className="mt-1">
+              {time !== '' ? (
+                <Button
+                  className="detail_button detail_cart ms-0"
+                  onClick={addToCourseCart}
+                >
+                  加入購物車
+                </Button>
+              ) : (
+                <Button className="detail_button detail_cart ms-0" disabled>
+                  請選擇時段
+                </Button>
+              )}
+
               <Button
                 onClick={() => {
                   if (isFavorite) {
