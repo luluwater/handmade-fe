@@ -13,8 +13,6 @@ const GoogleLogin = () => {
     console.log('Encode JWT ID token ' + res.credential)
     const rawData = jwt_decode(res.credential)
 
-    //TODO:註冊時把這些 DATA 傳到 DB
-    //! PASSWORD 比對上可能會錯
     const userObject = {
       account: rawData.name,
       name: rawData.name,
@@ -40,8 +38,6 @@ const GoogleLogin = () => {
         size: 'large',
         width: 50,
         height: 50,
-        longtitle: true,
-        theme: 'dark',
       }
     )
   }, [])
@@ -49,13 +45,3 @@ const GoogleLogin = () => {
 }
 
 export default GoogleLogin
-
-// .Bg{
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 100%;
-//   background-color: #5f5c51;
-//   margin-left:9.45em;
-//   margin-top: 28px;
-//   margin-bottom: 35px;
-// }
