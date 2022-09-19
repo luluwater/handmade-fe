@@ -14,7 +14,9 @@ const UserPage = () => {
       <FilterPage />
       <Container className="d-flex">
         {data?.map((item, v) => {
-          return <UserCard key={item.id} name={item.name} email={item.email} />
+          return (
+            <UserCard key={item.id} account={item.account} email={item.email} />
+          )
         })}
         <Outlet />
       </Container>

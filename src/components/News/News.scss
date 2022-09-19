@@ -117,16 +117,19 @@
       color: $skin-bright;
     }
     &:focus {
-      // border: none;
-      // outline: none;
+      outline: none;
+      box-shadow:none;
+      border: none;
       background-color: $secondary-dark;
       color: $skin-bright;
     }
-    //   &:active {
-    //     border: none!important;
-    //     outline: none!important
-        
-    //   }
+    &:active:focus  {
+      border: none;
+      background-color: $secondary-dark;
+      color: $skin-bright;
+      outline: none;
+      box-shadow:none;
+    }
   }
 }
 

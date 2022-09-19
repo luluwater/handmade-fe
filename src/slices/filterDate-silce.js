@@ -5,8 +5,6 @@ import moment from 'moment/moment'
 const initialState = {
   startDate: null,
   endDate: null,
-  startPicker: new Date(),
-  endPicker: null,
 }
 
 export const filterDateSlice = createSlice({
@@ -14,17 +12,18 @@ export const filterDateSlice = createSlice({
   initialState,
   reducers: {
     setState: (state, action) => {
-      state.startDate = moment(action.payload.startDate).format('YYYY-M-D')
+      state.startDate = action.payload.startDate
       state.endDate =
         action.payload.endDate === 'Invalid date'
-          ? state.startDate
+          ? null
           : moment(action.payload.endDate).format('YYYY-M-D')
-      state.startPicker = action.payload.startDate
-      state.endPicker = action.payload.endDate
-      // console.log(current(state))
+    },
+    initFilterDate: (state, action) => {
+      state.startDate = null
+      state.endDate = null
     },
   },
 })
 
-export const { setState } = filterDateSlice.actions
+export const { setState, initFilterDate } = filterDateSlice.actions
 export default filterDateSlice.reducer

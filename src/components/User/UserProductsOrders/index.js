@@ -8,15 +8,30 @@ import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useGetUserProductOrdersQuery } from '../../../services/userApi'
+import { OrderSetState } from '../../../slices/orderFilterDate-slice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const UserProductsOrders = () => {
   const { data } = useGetUserProductOrdersQuery()
   //console.log('dataProductOrders', data)
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
-  // const formatStartDate = moment(startDate).format('YYYY.MM.DD')
-  // const formatEndDate = moment(endDate).format('YYYY.MM.DD')
-  // console.log(formatStartDate, formatEndDate)
+  // const [startDate, setStartDate] = useState(new Date())
+  // const [endDate, setEndDate] = useState(new Date())
+  const startDate = useSelector(
+    (state) => state.orderFilterDateReducer.startPicker
+  )
+  const endDate = useSelector((state) => state.orderFilterDateReducer.endPicker)
+  const dispatch = useDispatch()
+  const onChangeDate = (dates) => {
+    const [start, end] = dates
+    // setStartDate(start)
+    // setEndDate(end)
+    dispatch(
+      OrderSetState({
+        startDate: start,
+        endDate: end,
+      })
+    )
+  }
 
   return (
     <>
@@ -29,7 +44,7 @@ const UserProductsOrders = () => {
                 className="ms-3 me-2 user_orders_date p-0"
                 dateFormat="yyyy.MM.dd"
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                oonChange={onChangeDate}
                 selectsStart
                 startDate={startDate}
                 endDate={endDate}
@@ -39,7 +54,7 @@ const UserProductsOrders = () => {
                 className="user_orders_date ms-2"
                 dateFormat="yyyy.MM.dd"
                 selected={endDate}
-                onChange={(date) => setEndDate(date)}
+                onChange={onChangeDate}
                 selectsEnd
                 startDate={startDate}
                 endDate={endDate}
@@ -53,7 +68,7 @@ const UserProductsOrders = () => {
         </Row>
       </Form.Group>
       <Col>
-        <div className="mt-8">
+        <div className="mt-3">
           <div className="mx-7">
             <Table className="mt-5 user_orders_table">
               <thead>

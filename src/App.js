@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
 
-
 import CourseCart from './pages/CourseCart'
 import ProductCart from './pages/ProductCart'
 import CheckoutPage from './pages/CheckoutPage'
@@ -191,9 +190,12 @@ const routeConfig = [
 
 const App = () => {
   const element = useRoutes(routeConfig)
-  return <>
-  <ToastContainer/>
-  {element}</>
+  return (
+    <>
+      <ToastContainer />
+      {element}
+    </>
+  )
 }
 
 export default App

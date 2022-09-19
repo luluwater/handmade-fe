@@ -6,7 +6,14 @@ export const userApiService = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   tagTypes: ['User'],
   endpoints: (builder) => ({
-    //read
+    createCoupon: builder.mutation({
+      query: (user_id) => ({
+        url: '/user/get-coupon',
+        method: 'POST',
+        body: user_id,
+      }),
+      invalidatesTags: ['User'],
+    }),
     getUser: builder.query({
       query: () => 'user',
       providesTags: ['User'],
@@ -75,19 +82,48 @@ export const userApiService = createApi({
     removeUserFavoriteProduct: builder.mutation({
       query: (productId) => ({
         url: `product/${productId}`,
-        method: 'DELETE',
+        method: 'delete',
         body: productId,
       }),
       invalidatesTags: ['User'],
     }),
-    userLikesBlog: builder.query({
-      query: () => 'user/likes-blog',
+    getUserBlog: builder.query({
+      query: () => 'user/blog',
       providesTags: ['User'],
     }),
+    deleteBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `blog/${blogId}`,
+        method: 'delete',
+        body: blogId,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    hideBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `blog/${blogId}/hide`,
+        method: 'put',
+        body: blogId,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    showBlog: builder.mutation({
+      query: (blogId) => ({
+        url: `blog/${blogId}/show`,
+        method: 'put',
+        body: blogId,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    // userLikesBlog: builder.query({
+    //   query: () => 'user/likes-blog',
+    //   providesTags: ['User'],
+    // }),
   }),
 })
 
 export const {
+  useCreateCouponMutation,
   useGetUserQuery,
   useGetUserProductOrdersQuery,
   useGetUserProductOrderDetailsQuery,
@@ -100,7 +136,10 @@ export const {
   useGetUserCouponsQuery,
   useUserLikesCourseQuery,
   useUserLikesProductQuery,
-  useUserLikesBlogQuery,
   useRemoveUserFavoriteProductMutation,
   useRemoveUserFavoriteCourseMutation,
+  useGetUserBlogQuery,
+  useDeleteBlogMutation,
+  useHideBlogMutation,
+  useShowBlogMutation,
 } = userApiService

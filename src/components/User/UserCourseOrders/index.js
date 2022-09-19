@@ -3,23 +3,29 @@ import React from 'react'
 import { Row, Col, Form, Table } from 'react-bootstrap'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { useParams } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import { useGetUserCourseOrdersQuery } from '../../../services/userApi'
+// import { useParams } from 'react-router-dom'
 // import { useDispatch } from 'react-redux'
 // import { useEffect } from 'react'
 // import { initFilterDate } from '../../../slices/filterDate-silce'
 
 const UserCourseOrders = () => {
   const { data } = useGetUserCourseOrdersQuery()
-  // const dispatch = useDispatch()
-  // const filterOrder = () => {
-  //   dispatch(initFilterDate())
-  // }
+  // console.log('data', data)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
+  const filterDate = data?.map((v) => ({
+    ...v,
+    create_time: moment(v.create_time).format('YYYY.MM.DD'),
+  }))
+  // console.log('filterDate', filterDate)
+  // const newData = filterDate.filter(
+  //   (v2) => v2.create_time >= startDate && v2.create_time <= endDate
+  // )
+
   return (
     <>
       <Form.Group>
@@ -60,7 +66,7 @@ const UserCourseOrders = () => {
         </Row>
       </Form.Group>
       <Col>
-        <div className="mt-8">
+        <div className="mt-3">
           <div className="mx-7">
             <Table className="mt-5 user_orders_table">
               <thead>

@@ -15,7 +15,7 @@ const UsableCoupon = () => {
       </p>
     )
   // console.log('test')
-  const usableProductDetails = data.map((v) => ({
+  const usableProductDetails = data?.map((v) => ({
     ...v,
     end_date: moment(v.end_date).format('YYYY.MM.DD'),
     start_date: moment(v.start_date).format('YYYY.MM.DD'),

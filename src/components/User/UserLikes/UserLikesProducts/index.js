@@ -2,14 +2,16 @@ import React from 'react'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Row, Col, Card } from 'react-bootstrap'
-import { useUserLikesProductQuery } from '../../../../services/userApi'
+import {
+  useUserLikesProductQuery,
+  useRemoveUserFavoriteProductMutation,
+} from '../../../../services/userApi'
 import { v4 as uuidv4 } from 'uuid'
 import '../../User.scss'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRemoveUserFavoriteProductMutation } from '../../../../services/userApi'
 
 //TODO: link
 

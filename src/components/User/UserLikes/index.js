@@ -10,7 +10,7 @@ import StickyBox from 'react-sticky-box'
 export const UserLikes = () => {
   const [showUserLikesCourses, setUserLikesCourses] = useState(true)
   const [showUserLikesProducts, setUserLikesProducts] = useState(false)
-  const [showUserLikesBlogs, setUserLikesBlogs] = useState(false)
+  // const [showUserLikesBlogs, setUserLikesBlogs] = useState(false)
   return (
     <>
       <StickyBox>
@@ -22,7 +22,7 @@ export const UserLikes = () => {
                 onClick={() => {
                   setUserLikesCourses(true)
                   setUserLikesProducts(false)
-                  setUserLikesBlogs(false)
+                  // setUserLikesBlogs(false)
                 }}
               >
                 課程收藏
@@ -32,12 +32,12 @@ export const UserLikes = () => {
                 onClick={() => {
                   setUserLikesCourses(false)
                   setUserLikesProducts(true)
-                  setUserLikesBlogs(false)
+                  // setUserLikesBlogs(false)
                 }}
               >
                 商品收藏
               </button>
-              <button
+              {/* <button
                 className="user_orders_btn fw-bold me-5"
                 onClick={() => {
                   setUserLikesCourses(false)
@@ -46,7 +46,7 @@ export const UserLikes = () => {
                 }}
               >
                 文章收藏
-              </button>
+              </button> */}
             </div>
           </Row>
         </Form.Group>
@@ -58,9 +58,9 @@ export const UserLikes = () => {
         {showUserLikesProducts && (
           <UserLikesProducts closeUserLikesCourses={setUserLikesProducts} />
         )}
-        {showUserLikesBlogs && (
+        {/* {showUserLikesBlogs && (
           <UserLikesBlogs closeUserLikesCourses={setUserLikesBlogs} />
-        )}
+        )} */}
       </Row>
     </>
   )

@@ -383,44 +383,6 @@
   }
 }
 
-
-.user_blogs {
-  &_form {
-    width: 950px;
-    background-color: $skin-bright;
-    color: $gray-darker;
- }
- &_newBtn {
-  width: 120px;
-  border: 1px solid $gray-darker;
-  letter-spacing: 3px;
-  font-size: $h6-font-size;
-  color: $gray-darker;
-  background-color: $skin-bright !important;
-  &:hover {
-    background-color: $primary !important;
-    color: $skin-bright;
-    border: 1px solid $primary;
-  }
- }
-  &_btn {
-    padding: 0 15px;
-    border: none;
-    &:hover {
-      color: $secondary;
-      border: none;
-    }
-    &:active {
-      border: none;
-    }
-  }
-  &_table {
-      width: 850px;
-      color: $gray-darker;
-      border-bottom: 1px solid $gray-darker;
-  }
-}
-
 .user_coupon_scroll::-webkit-scrollbar {
   width: 1em;
 }
@@ -562,4 +524,81 @@
 }
 .user_likes_scroll::-webkit-scrollbar-thumb {
   background-color: #5f5c514f;
+}
+
+.user_blogs_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_blogs_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_blogs_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_blogs_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
+}
+
+.user_blogs {
+  &_form {
+    width: 950px;
+    height: 577px;
+    background-color: $skin-bright;
+    color: $gray-darker;
+    overflow-y: auto;
+    overflow-x: hidden;
+ }
+ &_newBtn {
+  width: 120px;
+  border: 1px solid $gray-darker;
+  letter-spacing: 3px;
+  font-size: $h6-font-size;
+  color: $gray-darker;
+  background-color: $skin-bright !important;
+  &:hover {
+    background-color: $primary !important;
+    color: $skin-bright;
+    border: 1px solid $primary;
+  }
+ }
+  &_link {
+    color: $gray-darker;
+ }
+  &_btn {
+    padding: 0 8px;
+    border: none;
+    &:hover {
+      color: $secondary;
+      border: none;
+    }
+    &:active {
+      border: none;
+    }
+  }
+  &_table {
+      width: 850px;
+      color: $gray-darker;
+      letter-spacing: 3px;
+      border-bottom: 1px solid $gray-darker;
+  }
+  &_eyeBtn {
+    background-color: $skin-bright;
+    border: none;
+    &:hover {
+      background-color: $skin-bright !important;
+      border: none !important;
+    }
+    &:active {
+      border: none !important;
+      background-color: $skin-bright !important;
+      outline: none !important;
+      box-shadow:none !important;
+    }
+    &:focus {
+      border: none !important;
+      background-color: $skin-bright !important;
+      outline: none !important;
+      box-shadow:none !important;
+    }
+  }
 }
