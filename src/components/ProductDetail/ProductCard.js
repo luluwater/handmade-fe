@@ -21,33 +21,86 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './ProductCard.scss'
 
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+  useGetProductListQuery,
+} from '../../services/productApi'
+
+import { useDispatch } from 'react-redux'
+import { addProductCart } from '../../slices/productCart-slice'
+
 function ProductCard() {
+  const { data } = useGetProductListQuery()
+  const getData = data?.map((item) => {
+    return item.isFavorite
+  })
+  console.log('gatData', getData?.[38])
   const Info = [
     {
+      productId: '39',
+      storeId: '8',
+      categoryId: '2',
       img: [Image1_1, Image1_2, Image1_3],
       store: '歡樂陶一家',
       name: '造型把手杯',
-      price: '$ 1500',
+      category: 'pottery',
+      price: '1500',
+      link: '/product/detail/39',
+      storeLink: '/store/8',
+      amount: 5,
+      isFavorite: getData?.[38],
+      imgs: ['陶藝_商品_歡樂陶一家_造型把手杯_1.jpg'],
     },
     {
+      productId: '49',
+      storeId: '10',
+      categoryId: '2',
       img: [Image2_1, Image2_2, Image2_3],
       store: '純 Object',
       name: '夜 - 手作陶盤器',
-      price: '$ 1750',
+      category: 'pottery',
+      price: '1750',
+      link: '/product/detail/49',
+      storeLink: '/store/10',
+      amount: 5,
+      isFavorite: getData?.[48],
+      imgs: ['陶藝_商品_純Object_夜_1.jpg'],
     },
     {
+      productId: '106',
+      storeId: '22',
+      categoryId: '5',
       img: [Image3_1, Image3_2, Image3_3],
       store: 'Welcome_Bake',
       name: '阿爾薩斯蘋果塔',
-      price: '$ 780',
+      category: 'bakery',
+      price: '780',
+      link: '/product/detail/106',
+      storeLink: '/store/22',
+      amount: 5,
+      isFavorite: getData?.[105],
+      imgs: ['商品_Welcome_bake來約會吧_阿爾薩斯蘋果塔_1.jpg'],
     },
     {
+      productId: '69',
+      storeId: '14',
+      categoryId: '3',
       img: [Image4_1, Image4_2, Image4_3],
       store: '草地學花',
       name: '乾燥花玻璃盒',
-      price: '$ 1400',
+      category: 'floral',
+      price: '1400',
+      link: '/product/detail/69',
+      storeLink: '/store/14',
+      amount: 5,
+      isFavorite: getData?.[68],
+      imgs: ['花藝＿商品＿草地學花＿乾燥花玻璃盒＿1.jpg'],
     },
   ]
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -65,58 +118,89 @@ function ProductCard() {
               key={v.name}
             >
               {/* ========== 商品照片 ========== */}
-
-              <Swiper
-                modules={[Navigation]}
-                navigation
-                effect={'slide'}
-                speed={800}
-                slidesPerView={1}
-                loop={true}
-                className="product_detail_card_swiper rounded shadow"
-              >
-                {v.img.map((v2, i2) => {
-                  return (
-                    <SwiperSlide>
-                      <img
-                        key={v2[0]}
-                        className="swiper-slide product_detail_card_img"
-                        src={v2}
-                        alt="products"
-                      />
-                    </SwiperSlide>
-                  )
-                })}
-              </Swiper>
+              <a href={v.link}>
+                <Swiper
+                  modules={[Navigation]}
+                  navigation
+                  effect={'slide'}
+                  speed={800}
+                  slidesPerView={1}
+                  loop={true}
+                  className="product_detail_card_swiper rounded shadow"
+                >
+                  {v.img.map((v2, i2) => {
+                    return (
+                      <SwiperSlide>
+                        <img
+                          key={v2[0]}
+                          className="swiper-slide product_detail_card_img"
+                          src={v2}
+                          alt="products"
+                        />
+                      </SwiperSlide>
+                    )
+                  })}
+                </Swiper>
+              </a>
 
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <p className="product_detail_card_store m-2 text-truncate">
-                    <small>| {v.store} |</small>
-                  </p>
-                  <a href="#/">
+                  <a href={v.storeLink}>
+                    <p className="product_detail_card_store m-2 text-truncate">
+                      <small>| {v.store} |</small>
+                    </p>
+                  </a>
+                  <a href={v.link}>
                     <h6 className="product_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>
                   </a>
                   <h6 className="product_detail_card_text text-primary fw-bold m-1">
-                    {v.price}
+                    $ {v.price}
                   </h6>
                 </div>
 
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button className="bg-primary product_detail_card_favorite me-2">
+                  <button
+                    onClick={() => {
+                      if (v.isFavorite) {
+                        removeUserFavoriteProduct({
+                          productId: v.productId,
+                        })
+                      } else {
+                        addUserFavoriteProduct({
+                          productId: v.productId,
+                          storeId: v.storeId,
+                          categoryId: v.categoryId,
+                        })
+                      }
+                    }}
+                    className="bg-primary product_detail_card_favorite me-2"
+                  >
                     <FontAwesomeIcon
-                      icon="far fa-heart"
-                      size="lg"
-                      // icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                      icon={v.isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
                     />
                   </button>
-                  <button className="bg-secondary product_detail_card_favorite border-0 rounded-circle">
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        addProductCart({
+                          productId: v.productId,
+                          name: v.name,
+                          imgs: v.imgs,
+                          price: Number(v.price),
+                          category: v.category,
+                          amount: v.amount,
+                          quantity: 1,
+                        })
+                      )
+                    }}
+                    className="bg-secondary product_detail_card_favorite border-0 rounded-circle"
+                  >
                     <img
                       src={cart}
                       alt=""

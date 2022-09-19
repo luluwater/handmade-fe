@@ -1,22 +1,29 @@
 // Step1:引入 createApi 和 fetchBaseQuery
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { API_URL } from '../utils/config'
 
 export const courseApiService = createApi({
   reducerPath: 'courseApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   tagTypes: ['course'],
   endpoints: (builder) => ({
     getCourseList: builder.query({
       query: () => 'course',
       providesTags: ['course'],
     }),
+    getCourseDetail: builder.query({
+      query: (courseId) => `course/detail/${courseId}`,
+      providesTags: ['course'],
+    }),
+    getCourseComment: builder.query({
+      query: (courseId) => `course/comment/${courseId}`,
+      providesTags: ['course'],
+    }),
     addUserFavoriteCourse: builder.mutation({
-      query: (courseId, storeId, categortId) => ({
+      query: (courseId) => ({
         url: `course/${courseId}`,
         method: 'POST',
         body: courseId,
-        storeId,
-        categortId,
       }),
       invalidatesTags: ['course'],
     }),
@@ -28,14 +35,13 @@ export const courseApiService = createApi({
       }),
       invalidatesTags: ['course'],
     }),
-    test: builder.query({
-      query: () => 'course/test',
-    }),
   }),
 })
 
 export const {
   useGetCourseListQuery,
+  useGetCourseDetailQuery,
+  useGetCourseCommentQuery,
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } = courseApiService

@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import { Navigation } from 'swiper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Card from 'react-bootstrap/Card'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProductCart } from '../../../slices/productCart-slice'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -13,6 +16,7 @@ import {
 } from '../../../services/productApi'
 
 import cart from '../../../assets/cart.svg'
+import { getProductTotal } from '../../../slices/productCart-slice'
 import { Link } from 'react-router-dom'
 import {
   useAddUserFavoriteCourseMutation,
@@ -40,9 +44,23 @@ function ProductCard({
   name,
   price,
   isFavorite,
+  amount,
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+  const dispatch = useDispatch()
+
+  const addToProductCart = () => {
+    dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
+  }
+
+  const ProductItem = useSelector(
+    (state) => state.productCartReducer.productCartItem
+  )
+
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [ProductItem, dispatch])
   const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
 
@@ -109,7 +127,10 @@ function ProductCard({
             />
           </button>
           {type === 'product' ? (
-            <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+            <button
+              className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
+              onClick={addToProductCart}
+            >
               <img src={cart} alt="" className="cart" />
             </button>
           ) : (
