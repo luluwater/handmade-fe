@@ -39,6 +39,7 @@ import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
 import ChatRoomPage from './pages/ChatRoomPage'
 import Courses from './pages/Courses'
+import RoomBody from './components/ChatRoom/RoomBody'
 
 const routeConfig = [
   {
@@ -81,6 +82,16 @@ const routeConfig = [
       {
         path: 'store/:storeId',
         element: <StoreDetail />,
+      },
+      {
+        path: 'chat',
+        element: <ChatRoomPage />,
+        children: [
+          {
+            path: ':chatId',
+            element: <RoomBody />,
+          },
+        ],
       },
       {
         path: 'user',
@@ -162,10 +173,6 @@ const routeConfig = [
       {
         path: 'CourseDetailPage',
         element: <CourseDetailPage />,
-      },
-      {
-        path: 'chat',
-        element: <ChatRoomPage />,
       },
     ],
   },

@@ -1,16 +1,16 @@
-import { useEffect } from "react";
-import io from 'socket.io-client';
-import { SOCKET_URL } from '../utils/config'
+// import { useEffect } from "react";
+// import io from 'socket.io-client';
+// import { SOCKET_URL } from '../utils/config'
 
-function useSocket (user, dispatch){
+// function useSocket (user, dispatch){
 
-  useEffect(()=>{
+//   useEffect(()=>{
 
-    const socket = io(SOCKET_URL)
+//     const socket = io(SOCKET_URL)
 
-    socket.emit('join', user)
+//     socket.emit('join', user)
 
-  },[dispatch])
-}
+//   },[dispatch])
+// }
 
-export default useSocket
+// export default useSocket
