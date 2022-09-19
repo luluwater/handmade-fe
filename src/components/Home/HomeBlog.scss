@@ -42,6 +42,9 @@
     position: relative;
     border-bottom: 1px solid $gray-darker;
 }
+.home_blog_name:hover{
+    color: $primary;
+}
 
 @media screen and (max-width:576px) {
     .home_blog_card{

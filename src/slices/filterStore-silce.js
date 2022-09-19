@@ -59,7 +59,7 @@ export const filterSlice = createSlice({
     },
     handleSelecteAll: (state, action) => {
       state.list = state.list.map((item) => {
-        if (item.id !== action.payload.id) return item
+        if (item.id !== action.payload) return item
 
         const newChecked = !item.checked
         const newInnerList = item.innerList.map((store) => ({
