@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ProductCartInfo.scss'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import { Link } from 'react-router-dom'
@@ -8,10 +8,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { getProductTotal } from '../../../slices/productCart-slice'
+
+import { v4 as uuidv4 } from 'uuid'
+
 const ProductCartInfo = () => {
   const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderOrange')
   const [homeBorder, setHomeBorder] = useState('ProductCartInfo_borderGray')
   const [deliveryInfo, setDeliveryInfo] = useState(true)
+
+  const dispatch = useDispatch()
+
+  const ProductItem = useSelector(
+    (state) => state.productCartReducer.productCartItem
+  )
+
+  const ProductCartTotal = useSelector(
+    (state) => state.productCartReducer.totalAmount
+  )
+
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [])
+
+  console.log('ProductItem', ProductItem)
 
   return (
     <>
@@ -59,10 +80,7 @@ const ProductCartInfo = () => {
                       label="姓名"
                       className="mb-3"
                     >
-                      <Form.Control
-                        type="text"
-                        placeholder="請輸入收件人姓名"
-                      />
+                      <Form.Control type="text" placeholder="" />
                     </FloatingLabel>
                     <p className="ProductCartInfo_inputNotic pt-1">
                       ※若使用超商取貨不付款，『取貨人務必填寫與身份證件相符之真實姓名』
@@ -73,7 +91,7 @@ const ProductCartInfo = () => {
 
                   <div className="ProductCartInfo_input">
                     <FloatingLabel controlId="floatingPassword" label="電話">
-                      <Form.Control type="tel" placeholder="請輸入電話" />
+                      <Form.Control type="tel" placeholder="" />
                     </FloatingLabel>
                   </div>
 
@@ -136,7 +154,7 @@ const ProductCartInfo = () => {
                         >
                           <Form.Control
                             type="text"
-                            placeholder="請輸入郵遞區號"
+                            placeholder=""
                           />
                         </FloatingLabel>
                       </div>
@@ -149,7 +167,7 @@ const ProductCartInfo = () => {
                         >
                           <Form.Control
                             type="text"
-                            placeholder="請輸入收件地址"
+                            placeholder=""
                           />
                         </FloatingLabel>
                       </div>
@@ -197,12 +215,11 @@ const ProductCartInfo = () => {
                     </label>
                   </div>
 
-
                   <div className="ProductCartInfo_textArea mt-5">
                     <FloatingLabel controlId="floatingTextarea2" label="備註">
                       <Form.Control
                         as="textarea"
-                        placeholder="Leave a comment here"
+                        placeholder=""
                         style={{ height: '120px' }}
                       />
                     </FloatingLabel>
@@ -217,15 +234,27 @@ const ProductCartInfo = () => {
               </Col>
             </Row>
           </Col>
+
+          {/*==========右側細項========= */}
+
           <Col xs={12} md={3} className="ProductCartInfo_rightSide">
             <p className="fs-4 ProductCartInfo_inputTitle mb-6">購買細項</p>
-            <div className="ProductCartInfo_shoppingDetail mt-4 d-flex justify-content-between">
-              <p className="fs-5">
-              歲月 <br />
-              </p>
-              <p className="fs-5 text-center ">x1</p>
-              <p className="fs-5 text-center pe-4">$1200</p>
-            </div>
+
+            {ProductItem?.map((item) => {
+              return (
+                <div
+                  className="ProductCartInfo_shoppingDetail mt-1 d-flex justify-content-between"
+                  key={uuidv4()}
+                >
+                  <p className="fs-5">
+                    {item.name} <br />
+                  </p>
+                  <p className="fs-5 text-center pe-4">
+                    <span className="me-6">${item.price}</span>x{item.quantity}
+                  </p>
+                </div>
+              )
+            })}
 
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_coupon d-flex justify-content-between">
               <p className="fs-5">折扣券折扣：</p>
@@ -233,7 +262,7 @@ const ProductCartInfo = () => {
             </div>
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_total d-flex justify-content-between">
               <strong className="fs-5">實付金額</strong>
-              <strong className="fs-5">$2600</strong>
+              <strong className="fs-5">${ProductCartTotal}</strong>
             </div>
           </Col>
         </Row>

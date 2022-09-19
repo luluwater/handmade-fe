@@ -17,6 +17,8 @@ import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
 import sortSelectReducer from '../slices/sortSelect-slice'
 import filterDateReducer from '../slices/filterDate-silce'
+import userProductDetailsReducer from '../slices/userProductDetails-slice'
+import orderFilterDateReducer from '../slices/orderFilterDate-slice'
 
 import authReducers from '../slices/auth-slice'
 //Service
@@ -55,6 +57,8 @@ const reducers = combineReducers({
   productCartReducer,
   courseCartReducer,
   sortSelectReducer,
+  userProductDetailsReducer,
+  orderFilterDateReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,
@@ -62,6 +66,7 @@ const reducers = combineReducers({
   [courseApiService.reducerPath]: courseApiService.reducer,
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
+  [userApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
   [chatApiService.reducerPath]: chatApiService.reducer,
   [utilApiService.reducerPath]: utilApiService.reducer,
@@ -83,6 +88,7 @@ const store = configureStore({
       .concat(chatApiService.middleware)
       .concat(utilApiService.middleware)
       .concat(userApiService.middleware)
+      .concat(courseApiService.middleware)
       .concat(authApiService.middleware)
   },
 })

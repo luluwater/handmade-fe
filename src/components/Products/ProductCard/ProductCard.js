@@ -61,6 +61,8 @@ function ProductCard({
   useEffect(() => {
     dispatch(getProductTotal())
   }, [ProductItem, dispatch])
+
+  // console.log(isFavorite)
   const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
 
@@ -126,6 +128,7 @@ function ProductCard({
               size="lg"
             />
           </button>
+
           {type === 'product' ? (
             <button
               className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"

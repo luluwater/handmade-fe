@@ -7,14 +7,16 @@ import { useGetUserQuery } from '../services/userApi'
 // import UserAccount from '../components/User/UserAccount'
 
 const UserPage = () => {
-  const { data, error, isLoading } = useGetUserQuery()
-  console.log('DATA', data)
+  const { data } = useGetUserQuery()
+  // console.log('DATA', data)
   return (
     <>
       <FilterPage />
       <Container className="d-flex">
         {data?.map((item, v) => {
-          return <UserCard key={item.id} name={item.name} email={item.email} />
+          return (
+            <UserCard key={item.id} account={item.account} email={item.email} />
+          )
         })}
         <Outlet />
       </Container>

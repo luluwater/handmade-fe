@@ -41,11 +41,12 @@
   z-index: 9999;
   color: $gray-darker;
 
+
   &_main{
     position: absolute;
     top: 0;
     right: 0;
-    width: 100%;
+    width: 75%;
     height: 100%;
     z-index: 99999;
   }
@@ -59,8 +60,8 @@
   }
 
   &_NavLink{
-    width: 40%;
-    height: 30%;
+    width: 100%;
+    height: 13rem;
     writing-mode: vertical-lr;
     letter-spacing: .4rem;
     line-height: 1.5rem;
@@ -119,7 +120,7 @@
 
   }
   &_couponBox{
-    margin: 2rem 0 5rem 2rem;
+    margin: 2rem 0 3.5rem 2rem;
     // margin-bottom: ;
     .Cart_couponSelect{
       padding: 0;
@@ -158,14 +159,14 @@
     font-weight: 900;
   }
   &_TotalPrice{
-    width: 85%;
+    width: 80%;
     position: absolute;
     top: 30rem;
   }
   &_nextBTN{
     color: $white;
-    width: 85%;
-    height: 9%;
+    width: 80%;
+    height: 6%;
     position: absolute;
     top: 30.8rem;
     letter-spacing: .5rem;
@@ -174,7 +175,10 @@
     }
   }
   &_userLikeBox{
-    margin: 1.5rem 0 2rem 2rem;
+    margin: 1rem 0 1rem 2rem;
+  }
+  &_youMightLikeBox{
+    margin: .5rem 0 2rem 2rem;
   }
   &_userLike{
     height: 100%;
@@ -182,5 +186,51 @@
     background: $skin-bright;
     padding: 1.5rem 0;
   }
+  
 
+  }
+  .Cart_tabChooseBox{
+    position: relative;
+    width: 110px;
+  }
+  .Cart_tabChoose{
+    position: absolute;
+    right: 0;
+  }
+
+
+  // recommend Card
+
+  .cartRecommend{
+    width: 210px;
+
+    .row{
+      height: 90px;
+    }
+    .cart{
+      width: 20px;
+      height: 20px;
+    }
+    .swiper-button-prev::after,.swiper-button-next::after{
+      font-size: 2rem;
+  }
+  .card_swiper{
+      max-width: 210px;
+      max-height: 210px;
+
+      .swiperslide{    
+        img{
+          width: 100%;
+          height: auto;      
+        }
+      }
+    }
+    .card_favorite{  
+      width: 2.5rem;
+      height: 2.5rem;
+
+    }
+    &_storeName{
+      font-size: .9rem;
+    }
   }
