@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../../slices/auth-slice'
+import './Button.scss'
 
 const GoogleLogin = () => {
   const navigate = useNavigate()
@@ -12,8 +13,6 @@ const GoogleLogin = () => {
     console.log('Encode JWT ID token ' + res.credential)
     const rawData = jwt_decode(res.credential)
 
-    //TODO:註冊時把這些 DATA 傳到 DB
-    //! PASSWORD 比對上可能會錯
     const userObject = {
       account: rawData.name,
       name: rawData.name,
@@ -37,10 +36,12 @@ const GoogleLogin = () => {
       {
         theme: 'outline',
         size: 'large',
+        width: 50,
+        height: 50,
       }
     )
   }, [])
-  return <div id="signInDiv"></div>
+  return <div className="text-center" id="signInDiv"></div>
 }
 
 export default GoogleLogin

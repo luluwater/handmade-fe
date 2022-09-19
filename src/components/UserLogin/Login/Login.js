@@ -12,20 +12,20 @@ import GoogleLogin from '../GoogleLogin'
 import { setUser } from '../../../slices/auth-slice'
 
 const Login = () => {
-  const [login, { data, isSuccess: isLoginSucess }] = useLoginMutation()
-  let email = '22222'
-  let password = '2222'
+  const [login, { data, isSuccess: isLoginSucess, isError }] =
+    useLoginMutation()
 
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (data?.error)
-      return Toast.fire({
+    if (isError) {
+      Toast.fire({
         icon: 'error',
-        title: data.error,
+        title: '帳號或密碼錯誤',
       })
+    }
 
     if (isLoginSucess) {
       Toast.fire({
@@ -35,7 +35,7 @@ const Login = () => {
       dispatch(setUser({ user: data }))
       navigate('/')
     }
-  }, [dispatch, data, navigate])
+  }, [dispatch, data, navigate, isError, isLoginSucess])
 
   const formik = useFormik({
     initialValues: {
@@ -43,10 +43,8 @@ const Login = () => {
       password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email('Please enter a valid email.')
-        .required('Email must not be empty.'),
-      password: Yup.string().required('Password must not be empty.').min(6),
+      email: Yup.string().email('無效的信箱').required('請輸入有效帳號'),
+      password: Yup.string().required('請輸入密碼').min(8, '密碼至少 8 字元'),
     }),
     onSubmit: async (values) => {
       await login({ email: values.email, password: values.password })
@@ -70,54 +68,56 @@ const Login = () => {
             onSubmit={formik.handleSubmit}
           >
             <h1 className="LoginTitle text-center">會員登入</h1>
-            <label htmlFor="email"></label>
-            <input
-              className="AccountInput"
-              type="text"
-              name="email"
-              placeholder="輸入帳號..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-            />
+            <div className="mt-md-5">
+              <label htmlFor="email"></label>
+              <input
+                className="AccountInput"
+                type="text"
+                name="email"
+                placeholder="輸入帳號..."
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+              />
+            </div>
             {showEmailError && (
-              <p className="mt-2 text-danger mb-0">信箱格式錯誤</p>
+              <p className="mt-2 text-danger mb-0">{formik.errors.email}</p>
             )}
-
-            <label htmlFor="password"></label>
-            <input
-              className="PasswordInput"
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="輸入密碼..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
+            <div className="position-relative mt-md-5">
+              <label htmlFor="password"></label>
+              <input
+                className="PasswordInput"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="輸入密碼..."
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              <ShowPassword
+                showPassword={showPassword}
+                setShowPassword={setShowPassword}
+              />
+            </div>
             {showPasswordError && (
-              <p className="mt-2 text-danger mb-0">密碼格式錯誤</p>
+              <p className="mt-2 text-danger mb-0">{formik.errors.password}</p>
             )}
-            <ShowPassword
-              showPassword={showPassword}
-              setShowPassword={setShowPassword}
-            />
+            {isError && (
+              <div className="text-end mt-3 text-danger">
+                <Link className="text-danger" to="/FindPassword">
+                  忘記密碼?
+                </Link>
+              </div>
+            )}
 
-            {/* <Link to="/FindPassword"> */}
-            <a href="./FindPassword" className="ForgetPassword">
-              忘記密碼?
-            </a>
-            {/* </Link> */}
-            <br />
-            <button type="submit" value="submit" className="Login">
-              登入
-            </button>
+            <button className="Login">登入</button>
             <br />
             <Link to="/SignUp">
               <button type="submit" className="SignUp">
                 註冊
               </button>
             </Link>
-            <h2 className="footerLogin text-center">Or Login With</h2>
+            <h2 className="footerLogin text-center mb-5">Or Login With</h2>
             <GoogleLogin />
           </form>
         </div>
