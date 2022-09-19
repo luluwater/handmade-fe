@@ -1,0 +1,126 @@
+@import '../../../styles/custom_variables';
+
+.ProductCartInfo{
+    &_inputBox{
+        color: $gray-darker;
+        padding-left: 3rem;
+
+    }
+    &_inputBox{
+        color: $gray-darker;
+        padding-left: 3rem;
+
+    }
+    &_inputTitle{
+        font-weight: 900;
+
+    }
+    &_input{
+        margin-left: 8rem;
+        width: 60%;
+
+        .form-control{
+            height:70px;
+            border: none;
+            border-bottom: 1px solid $gray-dark;
+            color:$gray-dark;
+        }
+    }
+    &_inputNotic{
+        padding-left: 12px;
+        font-size: .8rem;
+        letter-spacing: .05rem;
+    }
+    &_deliveryBox{
+        width: 71%;
+    }
+    &_delivery{
+        width: 40%;
+        height: 60px;
+        margin-left: 8rem;
+    }
+    &_deliveryHome{
+        width: 40%;
+        height: 60px;
+        margin-left: 2rem;
+    }
+    &_borderGray{
+        border: 1px solid $gray-darker;
+    }
+    &_borderOrange{
+        border: 1px solid $primary;
+    }
+    &_chooseStore{
+        background: $gray-darker;
+        color: $white;
+        width: calc(71% - 8rem);
+        height: 45px;
+        margin-left: 8rem;
+        line-height: 45px;
+
+        a{
+            &:hover{
+                color: $white;
+            }
+        }
+    }
+    &_Postal_code{
+        margin-left: 8rem;
+        width: 10%;
+
+        .form-control{
+            height:70px;
+            border: none;
+            border-bottom: 1px solid $gray-dark;
+            color:$gray-dark;
+        }
+    }
+
+
+    &_textArea{
+        margin-left: 8rem;
+        width: 60%;
+        height: 200px;
+        textarea{
+            border: 1px solid $gray-dark;
+            resize:none;
+        }
+        
+    }
+    &_BTN{
+        
+        color: $white;
+        width: 25%;
+        height:4rem;
+        letter-spacing: .5rem;
+        margin-left: calc(8rem + 35%); 
+        &:hover{
+            color: $white;
+        }
+
+    }
+    &_rightSide{
+        background-color: $skin-bright;
+        color: $gray-darker;
+        padding: 0;
+        position: relative;
+        .ProductCartInfo_inputTitle{
+            margin:5rem 0 0 2rem;
+        }
+
+    }
+    &_shoppingDetail{
+        margin-left: 2rem;
+    }
+    &_coupon{
+        width: 85%;
+        position: absolute;
+        top: 52rem;
+    }
+
+    &_total{
+        width: 85%;
+        position: absolute;
+        top: 55rem;
+    }
+}

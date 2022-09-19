@@ -1,53 +1,62 @@
 import { React, useState } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useGetCourseCommentQuery } from '../../services/courseApi'
+import { useParams } from 'react-router-dom'
 
 import './CourseDetail.scss'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function CourseIntro() {
-  const info = [
-    {
-      id: 1,
-      store: 'Round Round 陶藝工作室',
-      name: '石丸波佐見燒 - 森之歌陶杯',
-      price: 'NT.880',
-      score: '4.8',
-    },
-  ]
-  // const order = [{ date: '', time: [] }]
-
+const CourseIntro = ({ id, store, name, price }) => {
   const [startDate, setStartDate] = useState(new Date())
 
+  const { courseId } = useParams()
+  const { data } = useGetCourseCommentQuery(courseId)
+
+  let totalSum = 0
+  // console.log('data', data)
+
+  let score = data?.map((v) => {
+    return Number(v.score)
+  })
+
+  const sumWithInitial = score?.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    totalSum
+  )
+
+  // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
+  const length = score?.length
+
+  let average = sumWithInitial / length
+
+  // console.log('score.length', length)
+  // console.log('average', average)
   return (
     <>
-      <Row className="d-flex flex-column fw-bold detail_RWD">
+      <Row className="d-flex flex-column fw-bold detail_RWD ">
         {/* ========== */}
-        {info.map((v, i) => {
-          return (
-            <Col className="d-flex detail_top" key={v.id}>
-              <Col sm={12} lg={8}>
-                <p className="detail_store">{v.store}</p>
-                <h2 className="detail_name">{v.name}</h2>
-                <h4 className="detail_price">{v.price}</h4>
-              </Col>
-              <Col className="d-flex detail_score mt-6 ms-lg-12 col-sm-12 me-sm-0">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-star"
-                  size="sm"
-                  className="detail_score_star"
-                />
-                <p className="detail_score_title mt-2 mx-2">總評分</p>
-                <h2 className="detail_score_number">{v.score}</h2>
-              </Col>
-            </Col>
-          )
-        })}
+        <Col className="d-flex detail_top">
+          <Col sm={12} lg={8}>
+            <p className="detail_store">{store}</p>
+            <h2 className="detail_name">{name}</h2>
+            <h4 className="detail_price">NT.{price}</h4>
+          </Col>
+          <Col className="d-flex detail_score mt-6 ms-lg-12 col-sm-12 me-sm-0">
+            <FontAwesomeIcon
+              icon="fa-solid fa-star"
+              size="sm"
+              className="detail_score_star"
+            />
+            <p className="detail_score_title mt-2 mx-2">總評分</p>
+            <h2 className="detail_score_number">{average.toFixed(1)}</h2>
+          </Col>
+        </Col>
         {/* ========== */}
         <Row className="d-flex">
-          <Col className="d-flex flex-column mt-4 course_date col-lg-4 col-sm-12 align-items-center">
+          <Col className="d-flex flex-column mt-5 course_date col-lg-4 col-sm-12 align-items-center">
             <h6 className="course_order_title mt-1 mb-3">預約日期與時段</h6>
             <DatePicker
               selected={startDate}
@@ -56,7 +65,7 @@ function CourseIntro() {
             />
           </Col>
           <Col className="d-flex flex-column detail_amount py-4 col-lg-7 align-items-center col-sm-12">
-            <Col className="mt-lg-5 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
+            <Col className="mt-lg-6 ms-lg-5 my-lg-2 ms-sm-9 mb-sm-2">
               <Button className="col-3 m-2 course_time_btn">10:00</Button>
               <Button className="col-3 m-2 course_time_btn">11:00</Button>
               <Button className="col-3 m-2 course_time_btn">13:00</Button>

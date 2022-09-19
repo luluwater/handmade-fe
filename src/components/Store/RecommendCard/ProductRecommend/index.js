@@ -21,6 +21,7 @@ const ProductRecommend = () => {
               >
                 <RecommendCard
                   type="product"
+                  cartIcon="true"
                   id={item.id}
                   store={item.store_name}
                   name={item.name}
