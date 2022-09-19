@@ -8,6 +8,7 @@ import Image6 from '../../assets/course/course_floral_28/花藝＿課程＿草�
 
 import { Button } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from 'react-router-dom'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -84,11 +85,11 @@ function HomeHotCourse() {
                       <img className="home_hotCard_pic" src={v.img} alt="" />
                       <h5 className="home_hotCard_name">{v.name}</h5>
                       <div className="home_hotCard_text">{v.text}</div>
-                      <a href={v.link}>
+                      <Link to={v.link}>
                         <Button className="home_hotCard_button">
                           {v.price}
                         </Button>
-                      </a>
+                      </Link>
                     </div>
                   </SwiperSlide>
                 </>

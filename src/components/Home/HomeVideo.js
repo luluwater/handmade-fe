@@ -35,7 +35,7 @@ function Video() {
         height="100%"
         className="home_video"
       />
-      <Button href="/shop" className="home_video_button">
+      <Button href="/course" className="home_video_button">
         DISCOVER MORE
       </Button>
 

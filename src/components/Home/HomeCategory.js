@@ -9,6 +9,7 @@ import Image6 from '../../assets/store/store_tufting_28/tufting_Nu-Studio_kv_4.j
 
 import { useDispatch } from 'react-redux'
 import { handleSelecteAll } from '../../slices/filterStore-silce'
+import { Link } from 'react-router-dom'
 
 function HomeCategory() {
   const dispatch = useDispatch()
@@ -27,16 +28,15 @@ function HomeCategory() {
         {Category.map((v, i) => {
           return (
             <div key={v.img} className="home_category_box">
-              <a
-                href="/shop"
+              <Link
+                to="/course"
                 onClick={() => {
                   dispatch(handleSelecteAll(v.category))
-                  console.log('click')
                 }}
               >
                 <img className="home_category_pic" src={v.img} alt="" />
                 <h5 className="home_category_name">{v.name}</h5>
-              </a>
+              </Link>
             </div>
           )
         })}

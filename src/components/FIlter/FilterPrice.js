@@ -5,7 +5,6 @@ import './FilterPrice.scss'
 function FilterPrice({ className }) {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.filterPriceReducer)
-  // console.log(data)
   return (
     <div className={`filter  ${className}`}>
       <div className="filter_price_title mb-2">價格區間</div>

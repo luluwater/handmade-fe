@@ -2,6 +2,8 @@ import './HomeNews.scss'
 import Image1 from '../../assets/store/store_pottery_6/陶藝_璐室_logo.jpg'
 import Image2 from '../../assets/store/store_floral_14/花藝＿草地學花＿LOGO.png'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
 function HomeNewStore() {
   return (
     <>
@@ -34,9 +36,9 @@ function HomeNewStore() {
               <br />
               進行各種活動、互相分享的地方。
             </div>
-            <a href="/store/14">
+            <Link to="/store/14">
               <Button className="home_newStore_content_button">查看店家</Button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

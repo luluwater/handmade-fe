@@ -1,6 +1,7 @@
 import React from 'react'
 import './HomeSticky.scss'
-import Logo from '../../../src/assets/HANDMADE_LOGO.png'
+// import Logo from '../../../src/assets/HANDMADE_LOGO.png'
+import { Link } from 'react-router-dom'
 
 const HomeSticky = () => {
   return (

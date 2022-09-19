@@ -7,6 +7,7 @@ import Image5 from '../../assets/product/product_floral_71/花藝＿商品＿花
 import Image6 from '../../assets/product/product_metalwork_1/金工_商品_以覺學_流水純銀耳扣 Flow Silver EarCuff_kv2.webp'
 import { Button } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from 'react-router-dom'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -83,11 +84,11 @@ function HomeHotProduct() {
                       <img className="home_hotCard_pic" src={v.img} alt="" />
                       <h5 className="home_hotCard_name">{v.name}</h5>
                       <div className="home_hotCard_text">{v.text}</div>
-                      <a href={v.link}>
+                      <Link to={v.link}>
                         <Button className="home_hotCard_button">
                           {v.price}
                         </Button>
-                      </a>
+                      </Link>
                     </div>
                   </SwiperSlide>
                 </>
