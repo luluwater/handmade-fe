@@ -7,11 +7,11 @@ import CourseCart from './pages/CourseCart'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
-import LoginPage from './pages/LoginPage'
 
-import SignUpPage from './pages/SignUpPage'
 import FindPasswordPage from './pages/FindPasswordPage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 
 import About from './pages/AboutPage'
 import AboutLayout from './components/About'
@@ -37,6 +37,8 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CourseDetailPage from './pages/CourseDetailPage'
 import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
+import ChatRoomPage from './pages/ChatRoomPage'
+import Courses from './pages/Courses'
 
 const routeConfig = [
   {
@@ -47,7 +49,14 @@ const routeConfig = [
         path: '/',
         element: <Home />,
       },
-
+      {
+        path: 'Login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'SignUp',
+        element: <SignUpPage />,
+      },
       {
         path: 'blog',
         element: <BlogLayout />,
@@ -67,6 +76,10 @@ const routeConfig = [
       {
         path: 'map',
         element: <MapSearch />,
+      },
+      {
+        path: '/course',
+        element: <Courses />,
       },
       {
         path: 'store',
@@ -125,14 +138,6 @@ const routeConfig = [
       },
 
       {
-        path: 'Login',
-        element: <LoginPage />,
-      },
-      {
-        path: 'SignUp',
-        element: <SignUpPage />,
-      },
-      {
         path: 'FindPassword',
         element: <FindPasswordPage />,
       },
@@ -156,6 +161,10 @@ const routeConfig = [
       {
         path: 'CourseDetailPage',
         element: <CourseDetailPage />,
+      },
+      {
+        path: 'chat',
+        element: <ChatRoomPage />,
       },
     ],
   },

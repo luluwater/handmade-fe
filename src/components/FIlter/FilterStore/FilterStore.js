@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import AccordionHeader from './AccordionHeader'
 // import listData from './data'
 import './FilterStore.scss'
-import { useState } from 'react'
-import { useGetStoreQuery } from '../../../services/storeApi'
-import { useDispatch, useSelector } from 'react-redux'
+
+import { useDispatch } from 'react-redux'
 import {
-  addFilterStore,
   handleToggoleTitle,
   handleToggole,
   handleSelecteAll,
 } from '../../../slices/filterStore-silce'
-
 function FilterStore({ state, className = '' }) {
   const dispatch = useDispatch()
-  // console.log('1', data)
-
-  // console.log(
-  //   'filterStore',
-  //   useSelector((state) => state.filterStoreReducer.filterStores)
-  // )
   const lists = state
-  // console.log('lists', lists)
+
   return (
     <>
       <div className={`filter ${className}`}>

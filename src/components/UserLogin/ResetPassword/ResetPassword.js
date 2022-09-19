@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ResetPassword.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowPassword from '../ShowEye/ShowPassword'
 
 const ResetPassword = () => {
@@ -37,13 +36,16 @@ const ResetPassword = () => {
               eye={eyeOne}
               setEye={setEyeOne}
             />
-            <button
-              type="button"
-              value="submit"
-              className="ResetPasswordSubmit"
-            >
-              送出
-            </button>
+            <Link to="/login">
+              <button
+                type="button"
+                value="submit"
+                className="ResetPasswordSubmit"
+                Link="/home"
+              >
+                送出
+              </button>
+            </Link>
             <br />
           </form>
           {/* <Link className="text-primary btn" to="/blog">

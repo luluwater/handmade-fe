@@ -12,7 +12,9 @@ import filterStoreReducer from '../slices/filterStore-silce'
 import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
 import sortSelectReducer from '../slices/sortSelect-slice'
+import filterDateReducer from '../slices/filterDate-silce'
 
+import authReducers from '../slices/auth-slice'
 //Service
 import { blogApiService } from '../services/blogApi'
 import { commentApiService } from '../services/commentAPI'
@@ -20,8 +22,12 @@ import { replyApiService } from '../services/replyApi'
 import { storeApiService } from '../services/storeApi'
 import { productApiService } from '../services/productApi'
 import { categoryApiService } from '../services/categoryApi'
-// import { userApiService } from '../services/userApi'
+import { chatApiService } from '../services/chatApi'
+import { utilApiService } from '../services/untilApi'
+import { courseApiService } from '../services/courseApi'
+import { authApiService } from '../services/authApi'
 import { userApiService } from '../services/userApi'
+
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
  */
@@ -29,11 +35,13 @@ const reducers = combineReducers({
   /**
    * Reducer 放這裡
    */
+  authReducers,
   productReducer,
   paginationReducer,
   filterStoreReducer,
   filterKeywordReducer,
   filterPriceReducer,
+  filterDateReducer,
   storeReducer,
   replyReducer,
   blogReducer,
@@ -46,6 +54,10 @@ const reducers = combineReducers({
   [storeApiService.reducerPath]: storeApiService.reducer,
   [categoryApiService.reducerPath]: categoryApiService.reducer,
   [userApiService.reducerPath]: userApiService.reducer,
+  [chatApiService.reducerPath]: chatApiService.reducer,
+  [utilApiService.reducerPath]: utilApiService.reducer,
+  [courseApiService.reducerPath]: courseApiService.reducer,
+  [authApiService.reducerPath]: authApiService.reducer,
 })
 
 const store = configureStore({
@@ -59,6 +71,10 @@ const store = configureStore({
       .concat(userApiService.middleware)
       .concat(commentApiService.middleware)
       .concat(replyApiService.middleware)
+      .concat(chatApiService.middleware)
+      .concat(utilApiService.middleware)
+      .concat(courseApiService.middleware)
+      .concat(authApiService.middleware)
   },
 })
 

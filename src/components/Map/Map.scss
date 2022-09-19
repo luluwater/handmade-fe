@@ -1,43 +1,51 @@
-@import "../../styles/custom_variables";
+@import '../../styles/custom_variables';
 .map {
   height: 100vh;
   width: 100%;
 }
 //important
-.leaflet-container{
+.leaflet-container {
   width: 100%;
   height: 100%;
 }
-.map_storeCard{
+.map_storeCard {
   max-height: 10rem;
   color: $gray-darker;
 }
-.map_storeCard:hover{
-  background-color: rgba(255, 255, 255, 0.89);  
+.map_storeCard:hover {
+  background-color: rgba(238, 237, 237, 0.89);
   color: $dark;
-
 }
-.map_storeCard img{
+.map_storeCard:active {
+  background-color: white;
+  color: $gray-darker;
+}
+.map_storeCard img {
   width: 80px;
   height: 80px;
 }
-.map_storeCard .card-text{
+.map_storeCard .card-text {
   margin-bottom: 0;
 }
-.map_storeCard .map_storeCard_intro{
+.line-clamp {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   overflow: hidden;
 }
-.map_storeCard a{  
+.map_storeCard a {
   color: $secondary;
 }
-.map_storeCard a:hover{
+.map_storeCard a:hover {
   color: $primary;
 }
-.map_Sidebar{
+.map_Sidebar {
   height: 100vh;
   width: 400px;
   overflow-y: scroll;
+}
+.mapSearchBar {
+  width: 100%;
+  height: 3rem;
+  background-color: $secondary;
 }

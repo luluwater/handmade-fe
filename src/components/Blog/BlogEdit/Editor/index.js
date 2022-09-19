@@ -4,19 +4,19 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import BalloonEditor from '@ckeditor/ckeditor5-build-balloon'
 
 const API_URL = 'http://localhost:8080'
-const UPLOAD_ENDPOINT = 'api/upload_files'
+const UPLOAD_ENDPOINT = 'upload_files'
 const Editor = ({
   addTitle,
   handleTitleChange,
   addContent,
   handleContentChange,
-  editContent,
+  blogId,
 }) => {
   /**
-   * TODO 目前是一上傳就把圖片打進路由裡面，現在要把他改成 "按下" 送出按鈕才把檔案送出，並載入。
    * @param {loader} loader
    * @returns 回傳upload 函式
    */
+
   const uploadAdapter = (loader) => {
     return {
       upload: () => {
@@ -24,7 +24,7 @@ const Editor = ({
           const body = new FormData()
           loader.file.then((file) => {
             body.append('files', file)
-            fetch(`${API_URL}/${UPLOAD_ENDPOINT}`, {
+            fetch(`${API_URL}/api/blog/${blogId}/${UPLOAD_ENDPOINT}`, {
               method: 'post',
               body: body,
             })
@@ -64,7 +64,7 @@ const Editor = ({
         <CKEditor
           editor={BalloonEditor}
           config={{ placeholder: '輸入內容...', extraPlugins: [uploadPlugin] }}
-          data={addContent ? addContent : editContent}
+          data={addContent ? addContent : ''}
           onReady={(editor) => {
             console.log('Editor is ready to use!', editor)
           }}

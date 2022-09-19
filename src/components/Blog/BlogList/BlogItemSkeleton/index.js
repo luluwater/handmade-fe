@@ -3,7 +3,6 @@ import Skeleton from '@mui/material/Skeleton'
 const BlogItemSkeleton = () => {
   return (
     <>
-      {' '}
       <div className="mb-2 d-flex flex-column flex-lg-row gap-4 pb-4 mb-6 border-bottom">
         <div className="w-100 w-md-25">
           <Skeleton
@@ -27,9 +26,8 @@ const BlogItemSkeleton = () => {
           </div>
           <Skeleton animation="wave" className="py-2 w-35 " />
           <Skeleton animation="wave" className="w-20" />
-          <Skeleton animation="wave" className="" />{' '}
-          <Skeleton animation="wave" className="" />{' '}
-          <Skeleton animation="wave" className="" />
+          <Skeleton animation="wave" /> <Skeleton animation="wave" />
+          <Skeleton animation="wave" />
         </div>
       </div>
     </>

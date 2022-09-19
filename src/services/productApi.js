@@ -15,21 +15,23 @@ export const productApiService = createApi({
       providesTags: ['product'],
     }),
     addUserFavoriteProduct: builder.mutation({
-      query: (productId) => ({
+      query: (productId, storeId, categoryId) => ({
         url: `product/${productId}`,
         method: 'POST',
         body: productId,
+        storeId,
+        categoryId,
       }),
       invalidatesTags: ['product'],
     }),
-    removeUserFavoriteProduct:builder.mutation({
+    removeUserFavoriteProduct: builder.mutation({
       query: (productId) => ({
         url: `product/${productId}`,
         method: 'DELETE',
         body: productId,
       }),
       invalidatesTags: ['product'],
-    })
+    }),
   }),
 })
 
@@ -37,5 +39,5 @@ export const {
   useGetProductListQuery,
   useGetProductDetailQuery,
   useAddUserFavoriteProductMutation,
-  useRemoveUserFavoriteProductMutation
+  useRemoveUserFavoriteProductMutation,
 } = productApiService

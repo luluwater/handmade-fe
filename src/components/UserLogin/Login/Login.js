@@ -1,113 +1,128 @@
-import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
-import axios from 'axios'
-import { API_URL } from '../../../utils/config'
-
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Login.css'
-import { useUserRights } from '../../../useConText/UserRights'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 import ShowPassword from '../ShowEye/ShowPassword'
+import { useDispatch } from 'react-redux'
+import { useLoginMutation } from '../../../services/authApi'
+import { useNavigate } from 'react-router-dom'
+import { Toast } from '../../UI/SwalStyle'
+import GoogleLogin from '../GoogleLogin'
+import { setUser } from '../../../slices/auth-slice'
 
 const Login = () => {
-  const { user, setUser } = useUserRights()
-  const [loginUser, setLoginUser] = useState({
-    account: 'peter',
-    password: '123546789',
-  })
+  const [login, { data, isSuccess: isLoginSucess, isError }] =
+    useLoginMutation()
 
-  // password eye
-  const [eye, setEye] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  function handleChange(e) {
-    setLoginUser({ ...loginUser, [e.target.name]: e.target.value })
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault()
-    let response = await axios.post(`${API_URL}/login`, loginUser, {
-      withCredentials: true,
-    })
-    setUser(response.data)
-    // setIsLogin(true);
-    // }
-    console.log(user)
-    //TODO:製作記住帳號密碼
-    if (user) {
-      return <Navigate to="/" />
+  useEffect(() => {
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: '帳號或密碼錯誤',
+      })
     }
 
-    //往上一層要加上 "/""，如果是子層則不用加
-    return (
-      <>
-        <div className="LoginFrame">
-          <div className="border d-flex justify-content-center">
-            <img
-              className="LoginPic"
-              src={require('../../../assets/login/login_pic.png')}
-              alt=""
-            />
-            <form action="" className="LoginForm position-relative ">
-              <h1 className="LoginTitle text-center">會員登入</h1>
+    if (isLoginSucess) {
+      Toast.fire({
+        icon: 'success',
+        title: '登入成功',
+      })
+      dispatch(setUser({ user: data }))
+      navigate('/')
+    }
+  }, [dispatch, data, navigate, isError, isLoginSucess])
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('無效的信箱').required('請輸入有效帳號'),
+      password: Yup.string().required('請輸入密碼').min(8, '密碼至少 8 字元'),
+    }),
+    onSubmit: async (values) => {
+      await login({ email: values.email, password: values.password })
+    },
+  })
+
+  const showEmailError = formik.touched.email && formik.errors.email
+  const showPasswordError = formik.touched.password && formik.errors.password
+
+  return (
+    <>
+      <div className="LoginFrame">
+        <div className="border d-flex justify-content-center">
+          <img
+            className="LoginPic"
+            src={require('../../../assets/login/login_pic.png')}
+            alt=""
+          />
+          <form
+            className="LoginForm position-relative "
+            onSubmit={formik.handleSubmit}
+          >
+            <h1 className="LoginTitle text-center">會員登入</h1>
+            <div className="mt-md-5">
+              <label htmlFor="email"></label>
               <input
                 className="AccountInput"
                 type="text"
-                name="AccountInput"
-                placeholder="會員帳號"
-                value={loginUser.account}
-                onChange={handleChange}
+                name="email"
+                placeholder="輸入帳號..."
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
               />
-              <br />
-
+            </div>
+            {showEmailError && (
+              <p className="mt-2 text-danger mb-0">{formik.errors.email}</p>
+            )}
+            <div className="position-relative mt-md-5">
+              <label htmlFor="password"></label>
               <input
                 className="PasswordInput"
-                type={eye ? 'text' : 'password'}
-                name="PasswordInput"
-                placeholder="會員密碼"
-                value={loginUser.password}
-                onChange={handleChange}
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="輸入密碼..."
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
               />
-              <ShowPassword eye={eye} setEye={setEye} />
+              <ShowPassword
+                showPassword={showPassword}
+                setShowPassword={setShowPassword}
+              />
+            </div>
+            {showPasswordError && (
+              <p className="mt-2 text-danger mb-0">{formik.errors.password}</p>
+            )}
+            {isError && (
+              <div className="text-end mt-3 text-danger">
+                <Link className="text-danger" to="/FindPassword">
+                  忘記密碼?
+                </Link>
+              </div>
+            )}
 
-              {/* <Link to="/FindPassword"> */}
-              <a href="./FindPassword" className="ForgetPassword">
-                忘記密碼?
-              </a>
-              {/* </Link> */}
-              <br />
-              <button type="submit" value="submit" className="Login">
-                登入
+            <button className="Login">登入</button>
+            <br />
+            <Link to="/SignUp">
+              <button type="submit" className="SignUp">
+                註冊
               </button>
-              <br />
-              <Link to="/SignUp">
-                <button
-                  type="submit"
-                  value="submit"
-                  className="SignUp"
-                  onClick={handleSubmit}
-                >
-                  註冊
-                </button>
-              </Link>
-              <h2 className="footerLogin text-center">Or Login With</h2>
-              <Link to="/https://www.google.com.tw/webhp?tabrw">
-                <FontAwesomeIcon
-                  icon="fa-brands fa-google"
-                  size="xl"
-                  className="icon2"
-                  fixedWidth
-                />
-              </Link>
-
-              <div className="Bg"></div>
-            </form>
-            {/* <Link className="text-primary btn" to="/blog">
-          會員登入
-        </Link> */}
-          </div>
+            </Link>
+            <h2 className="footerLogin text-center mb-5">Or Login With</h2>
+            <GoogleLogin />
+          </form>
         </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  )
 }
 export default Login
