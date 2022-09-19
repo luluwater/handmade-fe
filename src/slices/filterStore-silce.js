@@ -1,5 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
 
 function removeFilterStores(state, storeName) {
   state.filterStores = state.filterStores.filter(
@@ -66,7 +65,7 @@ export const filterSlice = createSlice({
     },
     handleSelecteAll: (state, action) => {
       state.list = state.list.map((item) => {
-        if (item.id !== action.payload.id) return item
+        if (item.id !== action.payload) return item
 
         const newChecked = !item.checked
         const newInnerList = item.innerList.map((store) => ({
@@ -89,6 +88,31 @@ export const filterSlice = createSlice({
         return newItem
       })
     },
+    // handleFilterCategory: (state,action) => {
+    //   state.list = state.list.map((item) => {
+    //     if (item.id !== action.payload) return item
+
+    //     const newChecked = !item.checked
+    //     const newInnerList = item.innerList.map((store) => ({
+    //       ...store,
+    //       completed: newChecked,
+    //     }))
+    //     //add & remove filterStoresName
+    //     item.innerList.map((store) =>
+    //       newChecked
+    //         ? pushFilterStores(state, store.title)
+    //         : removeFilterStores(state, store.title)
+    //     )
+
+    //     const newItem = {
+    //       ...item,
+    //       active: true,
+    //       checked: newChecked,
+    //       innerList: newInnerList,
+    //     }
+    //     return newItem
+    //   })
+    // }
   },
 })
 

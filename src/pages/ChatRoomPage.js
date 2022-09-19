@@ -1,8 +1,13 @@
 import React from 'react'
 import ChatRoom from '../components/ChatRoom'
+import FilterPage from '../components/User/FilterPage'
 
 const ChatRoomPage = () => {
-  return <ChatRoom />
+  return (
+    <>
+      <FilterPage />
+      <ChatRoom />
+    </>
+  )
 }
-
 export default ChatRoomPage

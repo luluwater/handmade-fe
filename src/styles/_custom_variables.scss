@@ -8,6 +8,7 @@ $skin-bright: #e2dad2;
 $gray-dark: #878787;
 $gray-light: #d9d9d9;
 $gray-darker: #5f5c51;
+$skin-dark: #cbbdaf;
 
 $theme-colors: (
   'primary': $primary,
@@ -20,6 +21,7 @@ $theme-colors: (
   'gray-dark': $gray-dark,
   'gray-light': $gray-light,
   'gray-darker': $gray-darker,
+  'skin-dark': $skin-dark,
 );
 
 $spacer: 1rem;
@@ -70,11 +72,23 @@ $font-sizes: (
   4: $h4-font-size,
   5: $h5-font-size,
   6: $h6-font-size,
+  7: $font-size-base * 0.6,
   xl: $xl-font-size,
 );
 
+$position-values: (
+  0: 0,
+  30: 30%,
+  50: 50%,
+  70: 70%,
+  90: 90%,
+  95: 95%,
+  98: 98%,
+  100: 100%,
+);
+
 $link-decoration: none;
-$link-color: #fff;
+$link-color: $gray-dark;
 
 $btn-border-radius: 0;
 $link-hover-color: $primary;
@@ -89,6 +103,8 @@ $input-focus-border-color: $gray-dark;
 $form-select-focus-box-shadow: none;
 //文字是否自適應
 // $enable-rfs: false;
+
+$modal-content-bg: $skin-brighter;
 
 $dropdown-link-active-bg: $secondary;
 

@@ -11,16 +11,19 @@ function MapSidebar() {
   useEffect(() => {
     dispatch(getStore(data))
   }, [data])
-  const [storeData] = useSelector((state) => state.storeReducer.store)
-  console.log(storeData);
+  const storeData = useSelector((state) => state.storeReducer.store)
+  // console.log(storeData)
   return (
     <div className="map_Sidebar">
-      <h1>List</h1>
+      <h2 className="text-center text-light fw-bold mt-2">商家資訊</h2>
       {storeData?.map((v) => {
         return (
           <StoreCard
             key={v.id}
+            id={v.id}
             name={v.name}
+            img={v.img}
+            category={v.category_en_name}
             intro={v.intro}
             address={v.address}
             phone={v.phone}
