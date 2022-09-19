@@ -82,7 +82,8 @@
     "web-vitals": "^2.1.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zipcode-tw-react": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
