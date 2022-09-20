@@ -89,7 +89,7 @@ function ProductCard({
       </Swiper>
       <Row className="justify-content-between align-items-center ">
         <Col xs={6} className="mt-2">
-          <Link to={`/product/detail/${productId}`}>
+          <Link to={`/${type}/detail/${productId}`}>
             <p className="mb-1  text-truncate">
               <small>| {storeName} |</small>
             </p>
