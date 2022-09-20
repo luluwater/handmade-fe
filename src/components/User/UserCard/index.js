@@ -5,7 +5,6 @@ import user1 from '../../../assets/user/profile_1.png'
 // import { useParams } from 'react-router-dom'
 
 const UserCard = ({ name, email }) => {
-  console.log('name, email', name, email)
   return (
     <>
       <Col className="d-flex">

@@ -8,9 +8,17 @@ import { useGetRoomsQuery } from '../../services/chatApi'
 import FilterPage from '../User/FilterPage'
 import RoomCard from './RoomCard'
 import UserCard from '../User/UserCard'
+import useSocket from '../../hooks/socketConnect'
+
+import { useSelector, useDispatch } from 'react-redux'
 
 const ChatRoom = () => {
   const { data } = useGetRoomsQuery('all')
+  // const sliceAuth = useSelector((state) => state.authReducers)
+  // const dispatch = useDispatch()
+  // const userData = JSON.parse(localStorage.getItem('user'))?.user
+
+  // useSocket(userData || sliceAuth?.user, dispatch)
 
   return (
     <>
@@ -24,7 +32,7 @@ const ChatRoom = () => {
             <Row className="gap-4 gap-md-0 gap-bottom-4 mt-8">
               {data?.map((room) => {
                 return (
-                  <Col className="mt-0 mb-5" md={4}>
+                  <Col key={room.id} className="mt-0 mb-5" md={4}>
                     <RoomCard
                       endpoint={room.endpoint}
                       roomName={room.room_title}

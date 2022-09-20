@@ -9,9 +9,8 @@ const RoomBody = ({ data }) => {
   return (
     <>
       {data?.map((currentChat) => {
-        console.log(currentChat)
         return (
-          <>
+          <div key={currentChat.id}>
             <div className="position-relative text-center mt-3 ">
               {/* TODO:大廳畫面要漲怎樣?? */}
               <Link
@@ -67,7 +66,7 @@ const RoomBody = ({ data }) => {
                 )
               })}
             </ListGroup>
-          </>
+          </div>
         )
       })}
     </>

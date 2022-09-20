@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 /**
  * 1. 目前線上的人數
  * 2. 目前使用者是誰
@@ -7,27 +7,29 @@ import { createSlice } from '@reduxjs/toolkit'
  */
 
 const initialState = {
-  inputValue: '',
-  searchWord: '',
+  chats: [],
+  currentChat: {},
+  socket: {},
+  newMessage: { chatId: null, seen: null },
+  scrollBottom: 0,
+  senderTyping: { typing: false },
 }
 
-export const filterKeywordSilce = createSlice({
-  name: 'filterKeyword',
+export const chatSilce = createSlice({
+  name: 'chat',
   initialState,
   reducers: {
-    setInputValue: (state, action) => {
-      state.inputValue = action.payload
-    },
-    setSearchWord: (state, action) => {
-      state.searchWord = action.payload
-    },
-    initSearchWord: (state, action) => {
-      state.inputValue = ''
-      state.searchWord = ''
+    setSocket: (state, action) => {
+      // console.log('state', current(state))
+      // console.log(action.payload)
+
+      return {
+        ...state,
+        socket: action.payload,
+      }
     },
   },
 })
 
-export const { setInputValue, setSearchWord, initSearchWord } =
-  filterKeywordSilce.actions
-export default filterKeywordSilce.reducer
+export const { setSocket } = chatSilce.actions
+export default chatSilce.reducer

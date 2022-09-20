@@ -13,7 +13,7 @@ import filterKeywordReducer from '../slices/filterKeyword-slice'
 import filterPriceReducer from '../slices/filterPrice-slice'
 import sortSelectReducer from '../slices/sortSelect-slice'
 import filterDateReducer from '../slices/filterDate-silce'
-// import chatReducer from '../slices/chat-slice'
+import chatReducer from '../slices/chat-slice'
 
 import authReducers from '../slices/auth-slice'
 //Service
@@ -48,7 +48,7 @@ const reducers = combineReducers({
   blogReducer,
   commentReducer,
   sortSelectReducer,
-  // chatReducer,
+  chatReducer,
   [blogApiService.reducerPath]: blogApiService.reducer,
   [commentApiService.reducerPath]: commentApiService.reducer,
   [replyApiService.reducerPath]: replyApiService.reducer,

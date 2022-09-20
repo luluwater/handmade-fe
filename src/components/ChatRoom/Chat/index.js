@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Tab from 'react-bootstrap/Tab'
 import { Button, Form, InputGroup, Container } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -15,24 +14,33 @@ import {
   useSendMessageMutation,
 } from '../../../services/chatApi'
 import { v4 as uuidv4 } from 'uuid'
-import io from 'socket.io-client'
-import { BASE_URL } from '../../../utils/config'
-import { useSelector } from 'react-redux'
 import moment from 'moment'
+import { useSelector, useDispatch } from 'react-redux'
+import useSocket from '../../../hooks/socketConnect'
 
 const Chat = () => {
   const { chatId } = useParams()
   const { data } = useGetRoomsQuery('all')
-
-  //!可能不能這樣拿資料改後端篩選
+  const dispatch = useDispatch()
   const currentChat = data?.filter((room) => {
     return room.endpoint === `/${chatId}`
   })
+
   //兩個 user
   const sliceAuth = useSelector((state) => state.authReducers)
   const userData = JSON.parse(localStorage.getItem('user'))?.user
 
+  useSocket(userData || sliceAuth?.user, dispatch)
+
+  //.socket
+  // const socket = useSelector((state) => state.chatReducer.socket)
+
+  // socket.emit('join', `${userData} join use slice`)
+  console.log()
+
   const [message, setMessage] = useState('')
+
+  //todo:不確定是不是放這
 
   const [sendMessage, { isLoading }] = useSendMessageMutation()
   // TODO:EMOJI
@@ -48,10 +56,10 @@ const Chat = () => {
 
   //send msg
   const handleSendMsg = (imgUpload) => {
+    //考慮一下這裡要不要放imgupload
     if (message.length < 1 && !imgUpload) return
-    console.log(currentChat?.[0].id)
 
-    let msg = {
+    const msg = {
       id: uuidv4(),
       content: message,
       user_id: userData?.id || sliceAuth?.user.id,
@@ -59,8 +67,6 @@ const Chat = () => {
       room_id: currentChat?.[0].id,
     }
 
-    //送到 DB 裡面
-    console.log(msg)
     sendMessage(msg)
     setMessage('')
   }
@@ -68,42 +74,6 @@ const Chat = () => {
   const handleShowPicker = () => {
     setShowPicker((prev) => !prev)
   }
-
-  /**
-   * SOCKET TODO
-   * TODO:事件
-   * 1. 加入 ROOM
-   * 2. 離開 ROOM
-   * 3. 發送訊息
-   */
-  // useEffect(() => {
-  //   const socket = io(BASE_URL, {
-  //     withCredentials: true,
-  //   })
-
-  //   socket.on('message', (message) => {
-  //     console.log('message 920', message)
-  //   })
-  //   //TODO: 用 redux 來拿到這些資料，並渲染到葉面上
-  //   const joinRoom = (room) => {
-  //     socket.emit('joinRoom', room)
-
-  //     //加入房間的 msg
-  //     socket.on('join-room-message', (msg) => {
-  //       console.log('join-room-message', msg)
-  //     })
-  //     //歡迎加入房間的 msg 顯示是哪個使用者加入
-  //     socket.on('room-broadcast', (msg) => {
-  //       console.log('broadcast msg', msg)
-  //     })
-  //     //使用者在打字的 msg 搭配 input focus 來用
-  //     socket.on('typing', (msg) => {
-  //       console.log('typing', msg)
-  //     })
-  //   }
-
-  // TODO: JOIN ROOM 後再該 ROOM 裡面EMIT
-  // }, [])
 
   return (
     <Container className="my-8">
@@ -128,7 +98,7 @@ const Chat = () => {
             </div>
             <hr />
 
-            {/* TODO: 用來顯示目前連線的使用者 */}
+            {/* TODO: socket 裡拿用來顯示目前連線的使用者 */}
             <ListGroup className="d-flex gap-3 rounded-0">
               {/* {data?.map((room) => {
                 return (
@@ -155,7 +125,7 @@ const Chat = () => {
           </div>
         </Col>
         <Col
-          className="chat_wrapper bg-skin-bright position-absolute position-md-relative"
+          className="chat_wrapper bg-skin-bright position-absolute position-md-relative py-3"
           lg={9}
         >
           <RoomBody data={currentChat} />
