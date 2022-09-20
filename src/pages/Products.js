@@ -13,10 +13,13 @@ import { productBanner } from '../image'
 import Paginate from '../components/FIlter/Paginate'
 import Filter from '../components/FIlter/Filter'
 import SortSelect from '../components/FIlter/SortSelect'
+<<<<<<< HEAD
+=======
 import { initFilterPrice } from '../slices/filterPrice-slice'
 import { initFilterDate } from '../slices/filterDate-silce'
 import { initSearchWord } from '../slices/filterKeyword-slice'
 import { initFilterStore } from '../slices/filterStore-silce'
+>>>>>>> c79a18f0d78e90101ba1083e962a6955616f6bcd
 
 function Proudcts() {
   //api get products data
