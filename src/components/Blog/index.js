@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import BlogList from './BlogList'
 import { Link } from 'react-router-dom'
 import FilterKeyword from '../FIlter/FilterKeyword'
-import Paginate from '../FIlter/Paginate'
+// import Paginate from '../FIlter/Paginate'
 import { useGetBlogQuery } from '../../services/blogApi'
 import { IMG_URL } from '../../utils/config'
 import BlogFilter from './BlogFilter'
@@ -95,7 +95,7 @@ const Blog = () => {
           </Col>
           <Col lg={9}>
             <BlogList blogList={blogList} />
-            <Paginate baseUrl={'blog'} />
+            {/* <Paginate baseUrl={'blog'} /> */}
           </Col>
         </Row>
       </Container>
