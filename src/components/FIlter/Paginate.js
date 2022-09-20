@@ -8,7 +8,7 @@ import {
   prePage,
 } from '../../slices/filterPagination-slice'
 
-function scrollToTop() {
+export function scrollToTop() {
   window.scrollTo(0, 0)
 }
 
