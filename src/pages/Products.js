@@ -10,9 +10,9 @@ import {
   setType,
 } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/Filter/Paginate'
-import Filter from '../components/Filter/Filter'
-import SortSelect from '../components/Filter/SortSelect'
+import Paginate from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/FIlter'
+import SortSelect from '../components/FIlter/SortSelect'
 import { initFilterPrice } from '../slices/filterPrice-slice'
 import { initFilterDate } from '../slices/filterDate-silce'
 import { initSearchWord } from '../slices/filterKeyword-slice'
