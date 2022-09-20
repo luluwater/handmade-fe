@@ -14,9 +14,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const ChatRoom = () => {
   const { data } = useGetRoomsQuery('all')
-  // const sliceAuth = useSelector((state) => state.authReducers)
-  // const dispatch = useDispatch()
-  // const userData = JSON.parse(localStorage.getItem('user'))?.user
+  const sliceAuth = useSelector((state) => state.authReducers)
+  const dispatch = useDispatch()
+  const userData = JSON.parse(localStorage.getItem('user'))?.user
 
   // useSocket(userData || sliceAuth?.user, dispatch)
 

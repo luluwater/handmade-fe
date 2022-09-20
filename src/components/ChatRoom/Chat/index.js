@@ -32,11 +32,8 @@ const Chat = () => {
 
   useSocket(userData || sliceAuth?.user, dispatch)
 
-  //.socket
-  // const socket = useSelector((state) => state.chatReducer.socket)
-
-  // socket.emit('join', `${userData} join use slice`)
-  console.log()
+  //socket
+  const socket = useSelector((state) => state.chatReducer.socket)
 
   const [message, setMessage] = useState('')
 
@@ -66,8 +63,9 @@ const Chat = () => {
       created_at: moment().format('YYYY-MM-DD h:mm:ss'),
       room_id: currentChat?.[0].id,
     }
-
     sendMessage(msg)
+    //TODO: SNEDMSG
+    socket.emit('sendMsg', msg)
     setMessage('')
   }
 

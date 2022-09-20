@@ -10,9 +10,11 @@ const initialState = {
   chats: [],
   currentChat: {},
   socket: {},
-  newMessage: { chatId: null, seen: null },
+  newMessage: [],
   scrollBottom: 0,
   senderTyping: { typing: false },
+  //TODO:加入 HISTORY 的欄位，這個拿來抓後端資料
+  history: [],
 }
 
 export const chatSilce = createSlice({
@@ -20,16 +22,19 @@ export const chatSilce = createSlice({
   initialState,
   reducers: {
     setSocket: (state, action) => {
-      // console.log('state', current(state))
-      // console.log(action.payload)
-
       return {
         ...state,
         socket: action.payload,
       }
     },
+    addMesssage: (state, action) => {
+      return {
+        ...state,
+        newMessage: state.newMessage.concat(action.payload),
+      }
+    },
   },
 })
 
-export const { setSocket } = chatSilce.actions
+export const { setSocket, addMesssage } = chatSilce.actions
 export default chatSilce.reducer

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import io from 'socket.io-client'
 import { BASE_URL } from '../utils/config'
 import { useGetRoomsQuery } from '../services/chatApi'
-import { setSocket } from '../slices/chat-slice'
+import { setSocket, addMesssage } from '../slices/chat-slice'
 
 /**
  * SOCKET TODO
@@ -52,11 +52,20 @@ function useSocket(user, dispatch) {
     })
 
     dispatch(setSocket(socket))
+    console.log(user)
 
-    // socket.emit('join', user)
+    socket.emit('join', user)
+
     socket.on('message', (msg) => {
       console.log(msg)
     })
+
+    //用 disptch 傳到狀態中
+    socket.on('responseMsg', (msg) => {
+      dispatch(addMesssage(msg))
+      // console.log('responseMsg', msg)
+    })
+
     socket.on('typing', (user) => {
       console.log(user)
     })
