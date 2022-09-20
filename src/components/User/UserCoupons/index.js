@@ -1,30 +1,64 @@
 import React from 'react'
 import '../User.scss'
-import { Row, Col, Form, Table, Container } from 'react-bootstrap'
+import { Row, Form } from 'react-bootstrap'
+import { useState } from 'react'
+import AllCoupon from './AllCoupon'
+import FailedCoupon from './failedCoupon'
+import UsableCoupon from './usableCoupon'
+import StickyBox from 'react-sticky-box'
 
 export const UserCoupons = () => {
+  const [showAllCoupon, setAllCoupon] = useState(true)
+  const [showUsableCoupon, setUsableCoupon] = useState(false)
   return (
     <>
-      <Table className="ms-8 user_order_list_table">
-        <thead>
-          <tr className="text-center">
-            <th>領取日期</th>
-            <th>有效日期</th>
-            <th>折扣碼</th>
-            <th>活動內容</th>
-            <th>使用狀態</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="text-center">
-            <td>2022.08.02</td>
-            <td>2022.08.10</td>
-            <td>LUCKY77</td>
-            <td>全館八五折</td>
-            <td>$已失效</td>
-          </tr>
-        </tbody>
-      </Table>
+      <StickyBox>
+        <Form.Group>
+          <Row className="user_coupon_sticky">
+            <div className="my-5 ms-7 d-flex justify-content-start">
+              <button
+                className="user_orders_btn fw-bold me-5"
+                onClick={() => {
+                  setAllCoupon(true)
+                  setUsableCoupon(false)
+                }}
+              >
+                全部
+              </button>
+              <button
+                className="user_orders_btn fw-bold me-5"
+                onClick={() => {
+                  setAllCoupon(false)
+                  setUsableCoupon(true)
+                }}
+              >
+                可使用
+              </button>
+              <button
+                className="user_orders_btn fw-bold me-5"
+                onClick={() => {
+                  setAllCoupon(false)
+                  setUsableCoupon(false)
+                }}
+              >
+                已失效
+              </button>
+            </div>
+          </Row>
+        </Form.Group>
+      </StickyBox>
+      <Row className="user_coupon_row m-auto">
+        {showAllCoupon ? (
+          <AllCoupon />
+        ) : showUsableCoupon ? (
+          <UsableCoupon />
+        ) : (
+          <FailedCoupon />
+        )}
+      </Row>
+      <StickyBox offsetBottom={20}>
+        <div className="user_coupon_stickyBox" />
+      </StickyBox>
     </>
   )
 }

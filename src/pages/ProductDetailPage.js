@@ -9,7 +9,7 @@ import '../styles/_custom_variables.scss'
 const ProductDetailPage = () => {
   return (
     <>
-      <Row>
+      <Row className="w-100">
         <ProductHeader />
       </Row>
       <Container>
