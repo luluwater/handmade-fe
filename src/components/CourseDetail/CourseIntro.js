@@ -5,7 +5,7 @@ import { useGetCourseCommentQuery } from '../../services/courseApi'
 import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '../../slices/counter-slice'
+import { increment, decrement, maxStock } from '../../slices/counter-slice'
 import { addCourseCart, getCourseTotal } from '../../slices/courseCart-slice'
 
 import {
@@ -73,7 +73,6 @@ const CourseIntro = ({
     totalSum
   )
 
-  // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
   const length = score?.length
   let average = sumWithInitial / length
   ////////// SCORE //////////
@@ -82,6 +81,7 @@ const CourseIntro = ({
   const dispatch = useDispatch()
   const quantity = useSelector((state) => state.counterReducer.value)
   const stockWarning = useSelector((state) => state.counterReducer.stockWarning)
+  ////////// COUNTER //////////
 
   const shopUrl = `/store/${storeId}`
 
@@ -93,7 +93,7 @@ const CourseIntro = ({
   })
   const date = formatStartDate
   const time = startTime
-  console.log('TOEFEF', time)
+
   ////////// 加入購物車 //////////
   const addToCourseCart = () => {
     dispatch(

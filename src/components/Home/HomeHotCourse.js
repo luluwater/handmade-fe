@@ -8,6 +8,7 @@ import Image6 from '../../assets/course/course_floral_28/花藝＿課程＿草�
 
 import { Button } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from 'react-router-dom'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -21,36 +22,42 @@ function HomeHotCourse() {
       name: '陶藝拉坯體驗',
       text: '自己製作的生活陶器皿，自用或作為贈禮都充滿獨特性。',
       price: '$1,400',
+      link: '/course/detail/12',
     },
     {
       img: Image6,
       name: '原木乾燥桌花',
       text: '一起在乾燥花的陪伴下，享受一個愜意的手作時光吧！',
       price: '$1,600',
+      link: '/course/detail/28',
     },
     {
       img: Image3,
       name: '常規手做地毯課',
       text: '在這裡人人都可以是藝術家，絕對讓您收穫滿滿的成就感！',
       price: '$3,300',
+      link: '/course/detail/53',
     },
     {
       img: Image5,
       name: '基礎海綿蛋糕研修班',
       text: '探討甜點界的學問。不用再看烤箱的臉色玩烘培！',
       price: '$2,200',
+      link: '/course/detail/41',
     },
     {
       img: Image2,
       name: '春日花籃手作課程',
       text: '用一個早晨或午後的時光，享受花的陪伴。',
       price: '$2,480',
+      link: '/course/detail/21',
     },
     {
       img: Image4,
       name: '十二生肖吊飾',
       text: '開運十二生肖可愛吊飾，招財納福平安快樂。',
       price: '$1,500',
+      link: '/course/detail/33',
     },
   ]
   return (
@@ -78,7 +85,11 @@ function HomeHotCourse() {
                       <img className="home_hotCard_pic" src={v.img} alt="" />
                       <h5 className="home_hotCard_name">{v.name}</h5>
                       <div className="home_hotCard_text">{v.text}</div>
-                      <Button className="home_hotCard_button">{v.price}</Button>
+                      <Link to={v.link}>
+                        <Button className="home_hotCard_button">
+                          {v.price}
+                        </Button>
+                      </Link>
                     </div>
                   </SwiperSlide>
                 </>

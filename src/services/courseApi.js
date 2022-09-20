@@ -1,14 +1,14 @@
 // Step1:引入 createApi 和 fetchBaseQuery
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../utils/config'
-
+const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 export const courseApiService = createApi({
   reducerPath: 'courseApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   tagTypes: ['course'],
   endpoints: (builder) => ({
     getCourseList: builder.query({
-      query: () => 'course',
+      query: () => `course?userId=${userId}`,
       providesTags: ['course'],
     }),
     getCourseDetail: builder.query({
@@ -20,16 +20,18 @@ export const courseApiService = createApi({
       providesTags: ['course'],
     }),
     addUserFavoriteCourse: builder.mutation({
-      query: (courseId) => ({
-        url: `course/${courseId}`,
+      query: (courseId, storeId, categortId) => ({
+        url: `course/${courseId}?userId=${userId}`,
         method: 'POST',
         body: courseId,
+        storeId,
+        categortId,
       }),
       invalidatesTags: ['course'],
     }),
     removeUserFavoriteCourse: builder.mutation({
       query: (courseId) => ({
-        url: `course/${courseId}`,
+        url: `course/${courseId}?userId=${userId}`,
         method: 'DELETE',
         body: courseId,
       }),

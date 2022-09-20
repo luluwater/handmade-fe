@@ -3,17 +3,18 @@ import { useRoutes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/style.scss'
 import Layout from './pages/Layout'
+
 import CourseCart from './pages/CourseCart'
 import ProductCart from './pages/ProductCart'
 import CheckoutPage from './pages/CheckoutPage'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
-import Login from './pages/Login'
 
-import SignUp from './pages/Signup'
-import FindPassword from './pages/FindPassword'
-import ResetPassword from './pages/ResetPassword'
+import FindPasswordPage from './pages/FindPasswordPage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 
 import About from './pages/AboutPage'
 import AboutLayout from './components/About'
@@ -22,7 +23,8 @@ import NewsLayout from './components/News'
 import UserPage from './pages/UserPage'
 import UserAccountPage from './pages/UserAccountPage'
 import UserOrdersPage from './pages/UserOrdersPage'
-import UserOrderDetailPage from './pages/UserOrderDetailPage'
+import UserProductOrderDetailPage from './pages/UserProductOrderDetailPage'
+import UserCoursesOrderDetailPage from './pages/UserCoursesOrderDetailPage'
 import UserLikesPage from './pages/UserLikesPage'
 import UserCouponsPage from './pages/UserCouponsPage'
 import UserBlogsPage from './pages/UserBlogsPage'
@@ -53,7 +55,14 @@ const routeConfig = [
         path: '/',
         element: <Home />,
       },
-
+      {
+        path: 'Login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'SignUp',
+        element: <SignUpPage />,
+      },
       {
         path: 'blog',
         element: <BlogLayout />,
@@ -99,8 +108,12 @@ const routeConfig = [
             element: <UserOrdersPage />,
           },
           {
-            path: 'orders/details',
-            element: <UserOrderDetailPage />,
+            path: 'orders/products/:orderNumber',
+            element: <UserProductOrderDetailPage />,
+          },
+          {
+            path: 'orders/courses/:orderNumber',
+            element: <UserCoursesOrderDetailPage />,
           },
           {
             path: 'likes',
@@ -135,20 +148,12 @@ const routeConfig = [
       },
 
       {
-        path: 'Login',
-        element: <Login />,
-      },
-      {
-        path: 'SignUp',
-        element: <SignUp />,
-      },
-      {
         path: 'FindPassword',
-        element: <FindPassword />,
+        element: <FindPasswordPage />,
       },
       {
         path: 'ResetPassword',
-        element: <ResetPassword />,
+        element: <ResetPasswordPage />,
       },
 
       {
@@ -189,9 +194,12 @@ const routeConfig = [
 
 const App = () => {
   const element = useRoutes(routeConfig)
-  return <>
-  <ToastContainer/>
-  {element}</>
+  return (
+    <>
+      <ToastContainer />
+      {element}
+    </>
+  )
 }
 
 export default App

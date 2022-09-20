@@ -9,7 +9,16 @@ import 'swiper/css/effect-fade'
 import './recommendCard.scss'
 
 // 資料
-const RecommendCard = ({ type, id, store, name, price, img, category }) => {
+const RecommendCard = ({
+  type,
+  cartIcon,
+  id,
+  store,
+  name,
+  price,
+  img,
+  category,
+}) => {
   return (
     <>
       <Card className="recommendCard border-0 bg-transparent mx-1 p-0 text-gray-darker">
@@ -42,18 +51,18 @@ const RecommendCard = ({ type, id, store, name, price, img, category }) => {
             <h6 className="mb-1 text-truncate ps-1">{name}</h6>
             <p className="text-primary fw-bold ps-1">${price}</p>
           </Col>
-          <Col className="text-end d-flex">
+          <Col className="text-end d-flex justify-content-end">
             <button className="bg-primary card_favorite border-0  rounded-circle me-2">
               <FontAwesomeIcon icon="far fa-heart" inverse size="lg" />
             </button>
-            <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
-              <img src={cart} alt="" className="cart" />
-              {/* <FontAwesomeIcon
-              icon="fa-solid fa-cart-shopping"
-              inverse
-              size="lg"
-            /> */}
-            </button>
+
+            {cartIcon ? (
+              <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+                <img src={cart} alt="" className="cart" />
+              </button>
+            ) : (
+              ''
+            )}
           </Col>
         </Row>
       </Card>

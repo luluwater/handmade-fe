@@ -34,16 +34,80 @@
     &_deliveryBox{
         width: 71%;
     }
+    &_radioStyle{
+        display: none;
+
+
+        &:checked + .ProductCartInfo_radioStyleLabel{
+            background-color: $primary;
+            border: 2px solid $primary;
+        }
+    }
+
+    &_radioStyleLabel{
+        vertical-align: middle;
+        margin: 2px 7px 1px 5px;
+        position: relative;
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        border: 1.5px solid #878787;
+        border-radius: 4px;
+        transition: background-color .1s ease-in;
+        -moz-transition: background-color .1s ease-in;
+        -webkit-transition: background-color .1s ease-in;
+        -o-transition: background-color .1s ease-in;
+
+        &::after,&::before{
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: $white;
+            transition: opacity .1s ease-in;
+            -moz-transition: opacity .1s ease-in;
+            -webkit-transition: opacity .1s ease-in;
+            -o-transition: opacity .1s ease-in;
+            opacity: 0;
+        }
+        &::before{
+            height: 5px;
+            top:5.7px;
+            left: 3.6px;
+            border-radius: 10px;
+            transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+
+        }
+        &::after{
+
+            height: 8px;
+            top: 2.8px;
+            left: 7.6px;
+            border-radius: 10px;
+            transform: rotate(41deg);
+            -moz-transform: rotate(41deg);
+            -webkit-transform: rotate(41deg);
+            -o-transform: rotate(41deg);
+        }
+    }
+
     &_delivery{
         width: 40%;
         height: 60px;
         margin-left: 8rem;
+        display: flex;
+        align-items: center;
     }
     &_deliveryHome{
         width: 40%;
         height: 60px;
         margin-left: 2rem;
+        display: flex;
+        align-items: center;
     }
+
     &_borderGray{
         border: 1px solid $gray-darker;
     }
@@ -115,12 +179,17 @@
     &_coupon{
         width: 85%;
         position: absolute;
-        bottom: 25rem;
+        top: 52rem;
     }
 
     &_total{
         width: 85%;
         position: absolute;
-        bottom: 23rem;
+        top: 55rem;
     }
+    
+
 }
+.ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:before,
+.ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:after{
+    opacity:1;}

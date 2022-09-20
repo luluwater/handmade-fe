@@ -61,8 +61,12 @@ function ProductCard({
   useEffect(() => {
     dispatch(getProductTotal())
   }, [ProductItem, dispatch])
+
+  // console.log(isFavorite)
   const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
@@ -85,7 +89,7 @@ function ProductCard({
       </Swiper>
       <Row className="justify-content-between align-items-center ">
         <Col xs={6} className="mt-2">
-          <Link to={`/product/detail/${productId}`}>
+          <Link to={`/${type}/detail/${productId}`}>
             <p className="mb-1  text-truncate">
               <small>| {storeName} |</small>
             </p>
@@ -97,6 +101,7 @@ function ProductCard({
           <button
             className="bg-primary card_favorite border-0  rounded-circle me-2"
             onClick={() => {
+              if (!userId) return (window.location.href = '/login')
               if (isFavorite) {
                 type === 'product'
                   ? removeUserFavoriteProduct({
@@ -126,6 +131,7 @@ function ProductCard({
               size="lg"
             />
           </button>
+
           {type === 'product' ? (
             <button
               className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"

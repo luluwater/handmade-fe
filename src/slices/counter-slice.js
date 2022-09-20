@@ -11,10 +11,10 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state, action) => {
-      if (state.value < 5) {
+      if (state.value < state.stocks) {
         state.value += action.payload
       }
-      if (state.value >= initialState.stocks) {
+      if (state.value >= state.stocks) {
         state.stockWarning = '庫存已達上限'
       }
     },
@@ -22,12 +22,15 @@ export const counterSlice = createSlice({
       if (state.value > 1) {
         state.value -= action.payload
       }
-      if (state.value < 5) {
+      if (state.value < state.stocks) {
         state.stockWarning = ''
       }
+    },
+    stocks: (state, action) => {
+      state.stocks = action.payload
     },
   },
 })
 
-export const { increment, decrement } = counterSlice.actions
+export const { increment, decrement, maxStock } = counterSlice.actions
 export default counterSlice.reducer
