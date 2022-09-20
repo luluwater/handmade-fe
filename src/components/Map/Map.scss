@@ -49,3 +49,17 @@
   height: 3rem;
   background-color: $secondary;
 }
+@media screen and (max-width: 768px) {
+  .map {
+    width: 100vw;
+    height: 50vh;
+  }
+  .map_Sidebar {
+    width: 100%;
+    height: 100%;
+    overflow-y: visible;
+  }
+  .line-clamp{
+    -webkit-line-clamp: 3;
+  }
+}

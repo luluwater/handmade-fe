@@ -1,10 +1,4 @@
 import React, { useState } from 'react'
-import Image1 from '../../assets/store/store_metalwork_2/金工_轉角金工_kv2.jpg'
-import Image2 from '../../assets/store/store_pottery_7/陶藝_Round-Round_kv_3.jpg'
-import Image3 from '../../assets/store/store_floral_14/花藝＿草地學花＿KV＿1.jpg'
-import Image4 from '../../assets/store/store_leather_16/store_leather_HsuDaughter_kv3.jpg'
-import Image5 from '../../assets/store/store_bakery_21/烘焙_花貓_kv_4.jpg'
-import Image6 from '../../assets/store/store_tufting_28/tufting_Nu-Studio_kv_4.jpg'
 
 import { Row, Col } from 'react-bootstrap'
 
@@ -17,17 +11,9 @@ import 'swiper/css/thumbs'
 
 import './CourseDetail.scss'
 
-function CoursePic() {
+function CoursePic({ id, category, store, img }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
-  const Pics = [
-    { id: 1, img: Image1 },
-    { id: 2, img: Image2 },
-    { id: 3, img: Image3 },
-    { id: 4, img: Image4 },
-    { id: 5, img: Image5 },
-    { id: 6, img: Image6 },
-  ]
   return (
     <>
       <Row>
@@ -40,12 +26,16 @@ function CoursePic() {
             className="mySwiper"
             direction={'vertical'}
           >
-            {Pics.map((v, i) => {
+            {img?.map((item) => {
               return (
                 <SwiperSlide>
-                  <Row>
-                    <Col key={v.id}>
-                      <img src={v.img} alt="" className="detail_swiperL_pic" />
+                  <Row key={id}>
+                    <Col>
+                      <img
+                        src={require(`../../assets/course/course_${category}_${id}/${item}`)}
+                        alt=""
+                        className="detail_swiperL_pic"
+                      />
                     </Col>
                   </Row>
                 </SwiperSlide>
@@ -67,11 +57,15 @@ function CoursePic() {
             modules={[Navigation, Thumbs]}
             className="mySwiper2"
           >
-            {Pics.map((v, i) => {
+            {img?.map((item) => {
               return (
                 <SwiperSlide>
-                  <div key={v.id}>
-                    <img src={v.img} alt="" className="detail_swiperR_pic" />
+                  <div key={id}>
+                    <img
+                      src={require(`../../assets/course/course_${category}_${id}/${item}`)}
+                      alt=""
+                      className="detail_swiperR_pic"
+                    />
                   </div>
                 </SwiperSlide>
               )

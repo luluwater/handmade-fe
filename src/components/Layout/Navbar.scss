@@ -53,6 +53,25 @@
       margin: 0 .5rem;
     }
   }
+  &_cartIcon{
+    position: relative;
+  }
+  &_cartBadge{
+    position: absolute;
+    top: -12px;
+    right: 5px;
+    background: $primary;
+    color: $white;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    font-size: .8rem;
+    font-weight: 500;
+    
+
+
+
+  }
 
 
 }
@@ -60,6 +79,7 @@
 
 .navbar_awesomeIcon{
   color:$secondary;
+  cursor: pointer;
   &:hover{
     color: $primary;
   }
@@ -91,5 +111,11 @@
   letter-spacing:1px;
 }
 
-
+.navbar_shrink{
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 8000;
+  box-shadow: 5px 5px 15px -5px $skin-bright;
+}
 

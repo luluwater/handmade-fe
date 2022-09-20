@@ -16,7 +16,15 @@ export const authApiService = createApi({
       }),
       providesTags: ['auth'],
     }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: '/auth/register',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['auth'],
+    }),
   }),
 })
 
-export const { useLoginMutation } = authApiService
+export const { useLoginMutation, useRegisterMutation } = authApiService

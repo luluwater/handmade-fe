@@ -9,9 +9,9 @@ import {
   setType,
 } from '../slices/filterPagination-slice'
 import { courseBanner } from '../image'
-import Paginate from '../components/FIlter/Paginate'
-import Filter from '../components/FIlter/Filter'
-import SortSelect from '../components/FIlter/SortSelect'
+import Paginate from '../components/Filter/Paginate'
+import Filter from '../components/Filter/Filter'
+import SortSelect from '../components/Filter/SortSelect'
 import { useGetCourseListQuery } from '../services/courseApi'
 import { initFilterStore } from '../slices/filterStore-silce'
 import { initFilterPrice } from '../slices/filterPrice-slice'
@@ -41,11 +41,11 @@ function Courses() {
   //設定篩選資料
   useEffect(() => {
     if (rawData === data) return
-    dispatch(initFilterPrice())
-    dispatch(initFilterDate())
+    // dispatch(initFilterPrice())
+    // dispatch(initFilterDate())
+    // dispatch(initSearchWord())
+    // dispatch(initFilterStore())
     dispatch(setShowItemCount(20))
-    dispatch(initSearchWord())
-    dispatch(initFilterStore())
     dispatch(pagination(data))
     dispatch(setType('product'))
   }, [dispatch, data])

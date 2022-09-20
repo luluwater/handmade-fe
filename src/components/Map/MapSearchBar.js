@@ -20,10 +20,10 @@ function MapSearchBar() {
   const { data } = useGetcategoryListQuery()
   const dispatch = useDispatch()
   const mrt_line = useSelector((state) => state.storeReducer.mrt_line)
-  console.log('line', mrt_line)
-  console.log('category', data)
+  // console.log('line', mrt_line)
+  // console.log('category', data)
   return (
-    <Row className="mapSearchBar align-items-center px-5 m-0">
+    <Row id="map" className="mapSearchBar align-items-center px-5 m-0">
       <Col sm={'auto'}>
         <FormGroup as={Row} className="align-items-center g-2">
           <FormLabel column sm={'auto'} className="fw-bold text-light fs-5">
@@ -46,7 +46,7 @@ function MapSearchBar() {
           </Col>
         </FormGroup>
       </Col>
-      <Col sm={2}>
+      <Col sm={'auto'}>
         <FormGroup as={Row} className="align-items-center g-2">
           <FormLabel column sm={'auto'} className="fw-bold text-light fs-5">
             捷運線:
