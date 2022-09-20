@@ -22,6 +22,7 @@ import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
+import { scrollToTop } from '../../Filter/Paginate'
 
 //取得圖片路徑
 function getImgsRouter(imgsName, category, productId, type) {
@@ -89,7 +90,7 @@ function ProductCard({
       </Swiper>
       <Row className="justify-content-between align-items-center ">
         <Col xs={6} className="mt-2">
-          <Link to={`/${type}/detail/${productId}`}>
+          <Link to={`/${type}/detail/${productId}`} onClick={scrollToTop}>
             <p className="mb-1  text-truncate">
               <small>| {storeName} |</small>
             </p>

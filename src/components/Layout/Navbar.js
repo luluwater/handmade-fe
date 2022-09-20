@@ -32,19 +32,19 @@ const Navbar = () => {
   }
 
   const navRef = useRef(null)
-
+  const scrollFunction = () => {
+    if (
+      document.body.scrollTop > 152 ||
+      document.documentElement.scrollTop > 152
+    ) {
+      navRef.current.classList.add('navbar_shrink')
+    } else {
+      navRef.current.classList.remove('navbar_shrink')
+    }
+  }
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (
-        document.body.scrollTop > 152 ||
-        document.documentElement.scrollTop > 152
-      ) {
-        navRef.current.classList.add('navbar_shrink')
-      } else {
-        navRef.current.classList.remove('navbar_shrink')
-      }
-    })
-    return () => window.removeEventListener('scroll')
+    window.addEventListener('scroll', scrollFunction)
+    return () => window.removeEventListener('scroll', scrollFunction)
   }, [])
 
   useEffect(() => {

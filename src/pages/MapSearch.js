@@ -12,7 +12,7 @@ const MapSearch = () => {
         <Col>
           <Map />
         </Col>
-        <Col sm={'auto'} className="bg-skin-bright">
+        <Col md={'auto'} className="bg-skin-bright">
           <MapSidebar />
         </Col>
       </Row>
