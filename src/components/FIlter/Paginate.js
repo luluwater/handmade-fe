@@ -8,6 +8,10 @@ import {
   prePage,
 } from '../../slices/filterPagination-slice'
 
+export function scrollToTop() {
+  window.scrollTo(0, 0)
+}
+
 function Paginate({ baseUrl }) {
   const paginate = useSelector((state) => state.paginationReducer)
 
@@ -34,6 +38,7 @@ function Paginate({ baseUrl }) {
         <Link
           className="page_number px-2 py-1 rounded"
           to={`/${baseUrl}?page=${currentPage - 1 < 1 ? 1 : currentPage - 1}`}
+          onClick={scrollToTop}
         >
           <FontAwesomeIcon icon="fa-solid fa-caret-left" />
         </Link>
@@ -50,6 +55,7 @@ function Paginate({ baseUrl }) {
               }`}
               onClick={() => {
                 dispatch(changePage(pageNumber))
+                scrollToTop()
               }}
             >
               {pageNumber}
@@ -68,6 +74,7 @@ function Paginate({ baseUrl }) {
           to={`/${baseUrl}?page=${
             currentPage + 1 > totalPage ? totalPage : currentPage + 1
           }`}
+          onClick={scrollToTop}
         >
           <FontAwesomeIcon icon="fa-solid fa-caret-right" />
         </Link>

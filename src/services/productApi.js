@@ -1,14 +1,15 @@
 // Step1:引入 createApi 和 fetchBaseQuery
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../utils/config'
-
+const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+// console.log('user', userData)
 export const productApiService = createApi({
   reducerPath: 'productApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   tagTypes: ['product'],
   endpoints: (builder) => ({
     getProductList: builder.query({
-      query: () => 'product',
+      query: () => `product?userId=${userId}`,
       providesTags: ['product'],
     }),
     getProductDetail: builder.query({
@@ -21,7 +22,7 @@ export const productApiService = createApi({
     }),
     addUserFavoriteProduct: builder.mutation({
       query: (productId, storeId, categoryId) => ({
-        url: `product/${productId}`,
+        url: `product/${productId}?userId=${userId}`,
         method: 'POST',
         body: productId,
         storeId,
@@ -31,7 +32,7 @@ export const productApiService = createApi({
     }),
     removeUserFavoriteProduct: builder.mutation({
       query: (productId) => ({
-        url: `product/${productId}`,
+        url: `product/${productId}?userId=${userId}`,
         method: 'DELETE',
         body: productId,
       }),
