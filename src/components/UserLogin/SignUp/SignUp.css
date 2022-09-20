@@ -37,8 +37,7 @@
   color: #5f5c51;
   margin-top: 82px;
 }
-.AccountInputSignUp {
-  margin-top: 32px;
+.SignUpAccountInput {
   width: 352px;
   height: 57.72px;
   padding: 0.75rem;
@@ -55,7 +54,7 @@
   background: #f4eee8;
   padding: 0.75rem;
 }
-.PasswordInputSignUp {
+.AccountPasswordInput {
   margin-top: 31.28px;
   width: 352px;
   height: 57.72px;
@@ -140,6 +139,9 @@
   .SignUpTitle{
     margin-top: 29px;
     margin-bottom: 0;
+  }
+  .SignUpAccountInput{
+    margin-top: 30px;
   }
   .SignUpFrame {
     width: 456px;
