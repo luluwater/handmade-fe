@@ -81,7 +81,9 @@ const Login = () => {
               />
             </div>
             {showEmailError && (
-              <p className="emial mt-2 text-danger mb-0">{formik.errors.email}</p>
+              <p className="emial mt-2 text-danger mb-0">
+                {formik.errors.email}
+              </p>
             )}
             <div className="position-relative mt-md-5">
               <label htmlFor="password"></label>
