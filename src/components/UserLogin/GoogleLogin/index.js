@@ -16,8 +16,10 @@ const GoogleLogin = () => {
     console.log('Encode JWT ID token ' + res.credential)
     const rawData = await jwt_decode(res.credential)
 
+    const userId = Math.floor(Math.random() * 10000)
+
     const userObject = {
-      id: rawData.exp,
+      id: userId,
       account: rawData.name,
       name: rawData.name,
       email: rawData.email,
@@ -32,7 +34,8 @@ const GoogleLogin = () => {
 
   useEffect(() => {
     window.google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT,
+      client_id:
+        '1015492838146-8k6opbtutl4v32mr22trqhm3k5rhh364.apps.googleusercontent.com',
       callback: handleCallbackResponse,
     })
 

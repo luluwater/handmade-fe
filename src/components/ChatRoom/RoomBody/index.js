@@ -1,18 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Tab from 'react-bootstrap/Tab'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 import moment from 'moment/moment'
 
 const RoomBody = ({ data }) => {
   return (
     <>
-      {data?.map((room) => {
+      {data?.map((currentChat) => {
+        console.log(currentChat)
         return (
-          <Tab.Pane key={room.id} eventKey={`#${room.id}`}>
-            {/* header */}
+          <>
             <div className="position-relative text-center mt-3 ">
               {/* TODO:大廳畫面要漲怎樣?? */}
               <Link
@@ -21,9 +20,7 @@ const RoomBody = ({ data }) => {
               >
                 <FontAwesomeIcon icon="fa-solid fa-angle-left" />
               </Link>
-              <h5>{room.room_title}</h5>
-              {/* TODO: 從 SOCKET 裡面拿 */}
-              <div>xx人在線上</div>
+              <h5>{currentChat?.room_title}</h5>
               <Button
                 onClick={() => {}}
                 className="position-absolute bottom-0 end-0 d-none d-md-block"
@@ -36,7 +33,7 @@ const RoomBody = ({ data }) => {
             <hr />
 
             <ListGroup className="chat_body d-flex flex-column gap-3 my-5">
-              {room.msg.map((m) => {
+              {currentChat?.msg.map((m) => {
                 return (
                   <div key={m.message_id}>
                     <div className="d-flex align-items-start gap-3">
@@ -70,7 +67,7 @@ const RoomBody = ({ data }) => {
                 )
               })}
             </ListGroup>
-          </Tab.Pane>
+          </>
         )
       })}
     </>

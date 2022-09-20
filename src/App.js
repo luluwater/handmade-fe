@@ -40,6 +40,7 @@ import MapSearch from './pages/MapSearch'
 import ChatRoomPage from './pages/ChatRoomPage'
 import Courses from './pages/Courses'
 import RoomBody from './components/ChatRoom/RoomBody'
+import Chat from './components/ChatRoom/Chat'
 
 const routeConfig = [
   {
@@ -93,13 +94,12 @@ const routeConfig = [
       {
         path: 'chat',
         element: <ChatRoomPage />,
-        children: [
-          {
-            path: ':chatId',
-            element: <RoomBody />,
-          },
-        ],
       },
+      {
+        path: 'chat/:chatId',
+        element: <Chat />,
+      },
+
       {
         path: 'user',
         element: <UserPage />,

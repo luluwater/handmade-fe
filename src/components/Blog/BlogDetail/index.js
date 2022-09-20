@@ -33,10 +33,6 @@ const BlogDetail = () => {
 
   const userData = JSON.parse(localStorage.getItem('user'))?.user
 
-  // console.log('local', userData?.user)
-  console.log('sliceAuth', sliceAuth?.user.id)
-  console.log(userData?.id)
-
   // TODO: user_id 從 local stroage 裡拿出
   const comment = {
     id: uuidv4(),
