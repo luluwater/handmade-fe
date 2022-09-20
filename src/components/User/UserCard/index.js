@@ -1,11 +1,11 @@
 import '../User.scss'
 import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import user1 from '../../../assets/user/profile_1.png'
 // import { useParams } from 'react-router-dom'
 
-const UserCard = ({ name, email }) => {
-  console.log('name, email', name, email)
+const UserCard = ({ account, email }) => {
+  // console.log('name, email', name, email)
   return (
     <>
       <Col className="d-flex">
@@ -26,7 +26,7 @@ const UserCard = ({ name, email }) => {
             </button>
           </Row>
           {/* 讀取資料 */}
-          <div className="mt-5 text-center">您好，{name}</div>
+          <div className="mt-5 text-center">您好，{account}</div>
           <div className="m-2 text-center">{email}</div>
           {/* 登出+回到首頁 */}
           <Row className="justify-content-center">

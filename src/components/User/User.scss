@@ -58,14 +58,17 @@
   }
 }
 
-.react-datepicker__triangle {
+.user_account_inputBirth .react-datepicker__triangle {
   display: none;
 }
-.react-datepicker-wrapper {
+.user_account_inputBirth .react-datepicker-wrapper {
   padding: 0 !important;
 }
-.react-datepicker__tab-loop {
+.user_account_inputBirth .react-datepicker__tab-loop {
   padding: 0 !important;
+}
+.user_account_inputBirth .react-datepicker__day--selected{
+  background-color: $primary;
 }
 
 .user_account {
@@ -82,7 +85,6 @@
     width: 800px;
     color: $gray-darker;
     letter-spacing: 3px;
-    color: $gray-darker;
     border-bottom: 1px solid $gray-darker;
     padding-bottom: 10px;
     display:block;
@@ -142,7 +144,7 @@
     background-color: $skin-brighter !important;
     border: none;
     height: 42px;
-    padding: 8px;
+    // padding: 8px;
     color: $dark;
     &:focus {
       outline: none;
@@ -164,10 +166,10 @@
 }
 
 .user_password {
-    position: absolute;
-    top: 50%;  
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%);
   &_card {
     display: flex;
     position: absolute;
@@ -179,7 +181,6 @@
     height: 300px;
     background-color: $skin-brighter;
     box-shadow :  10px 10px 15px rgba(129, 129, 129, 0.082);
-    // opacity: .5;
   }
   &_update {
     color: $gray-darker;
@@ -215,6 +216,8 @@
     width: 950px;
     background-color: $skin-bright;
     margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   &_btn {
     width: 120px;
@@ -248,8 +251,6 @@
     color: $gray-darker;
     &:focus {
       outline: none;
-      // color: $skin-bright;
-      // background-color: $primary !important;
     }
   }
   &_dateBtn {
@@ -272,9 +273,6 @@
     letter-spacing: 3px;
   }
   &_pages {
-    // position: fixed;
-    // top: 10%;  
-    // right: 60%;
     transform: translate(-50%, -50%);
   }
   &_link {
@@ -283,6 +281,19 @@
       color: $secondary-dark;
     }
   }
+}
+
+.user_order_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_order_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_order_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_order_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
 }
 
 .user_pages {
@@ -323,18 +334,36 @@
     width: 950px;
     background-color: $skin-bright;
     color: $gray-darker;
- }
- &_link {
-  color: $gray-darker;
-  &:hover {
-    color: $secondary-dark;
   }
- }
-&_table {
-  width: 850px;
-  color: $gray-darker ;
-  border-bottom: $skin-bright !important;
-}
+  &_link {
+    background-color: $skin-bright;
+    border: $skin-bright;
+    color: $gray-darker;
+      &:hover {
+        color: $secondary-dark;
+        background-color: $skin-bright;
+        border: $skin-bright;
+      }
+      &:focus {
+        color: $secondary-dark;
+        background-color: $skin-bright;
+        border: $skin-bright;
+        outline: none;
+        box-shadow:none;
+      }
+      &:active:focus  {
+        color: $secondary-dark;
+        background-color: $skin-bright;
+        border: $skin-bright;
+        outline: none;
+        box-shadow:none;
+      }
+  }
+  &_table {
+    width: 850px;
+    color: $gray-darker ;
+    border-bottom: $skin-bright !important;
+  }
 }
 
 .user_order_list {
@@ -349,16 +378,175 @@
     border-bottom: $skin-bright !important;
     // background-color: $skin-bright !important;
   }
-  &_td {
-    background-color: $skin-brighter !important;
+  &_img {
+    width: 80px;
   }
+}
+
+.user_coupon_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_coupon_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_coupon_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_coupon_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
+}
+
+.user_coupon {
+  &_form {
+    height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  &_sticky {
+    background-color: $skin-bright;
+  }
+  &_stickyBox {
+    height: 30px;
+    background-color: $skin-bright;
+  }
+  &_row {
+    width: 850px;
+  }
+  &_card {
+    height: 180px;
+    color: $gray-darker;
+    background-color: $skin-brighter;
+  }
+  &_img {
+    width: 150px;
+  }
+  img {
+    width: 100%;
+    height: auto;  
+  }
+  &_text {
+    width: 220px;
+  }
+  &_title {
+    color: $gray-darker;
+    letter-spacing: 3px;
+  }
+}
+
+.user_likes {
+  &_form {
+    height: 577px;
+    width: 950px;
+    background-color: $skin-bright;
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1;
+    position: relative;
+  }
+  &_sticky {
+    background-color: $skin-bright;
+    z-index: 2;
+    position: relative;
+  }
+  &_bottom {
+    z-index: -1;
+    position: absolute;
+  }
+  &_table {
+    width: 850px;
+    color: $gray-darker;
+    border-top: 1px solid $gray-darker;
+    border-bottom: 1px solid $gray-darker;
+    letter-spacing: 3px;
+  }
+  &_blogTitle {
+    max-width: 350px;
+  }
+  &_ellipsis {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $primary !important;
+    }
+}
+
+.user_like {
+  width: 900px;
+  &_card {
+    width: 150px;
+   &_swiper {
+    max-width: 100%;
+    height: 150px;
+   }
+  }
+  &_card_favorite{  
+    width: 2rem;
+    height: 2rem;
+  }
+  &_text {
+    color: $gray-darker;
+    letter-spacing: 3px;
+  }
+}
+.Swiperslide{    
+  img{
+    width: 100%;
+    height: auto;      
+  }
+}
+
+.user_like_card .swiper-button-prev::after,
+.user_like_card .swiper-button-next::after {
+  font-size: 1.5rem;
+}
+
+.user_page_number {
+  color: $gray-darker;
+  &:hover{
+    color:white;
+    background-color: $secondary;
+    border-radius: 50% !important;
+  }
+}
+
+.user_likes_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_likes_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_likes_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_likes_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
+}
+
+.user_blogs_scroll::-webkit-scrollbar {
+  width: 1em;
+}
+.user_blogs_scroll::-webkit-scrollbar-button{
+  background: $skin-bright;
+}
+.user_blogs_scroll::-webkit-scrollbar-track-piece{
+  background: $skin-bright;
+}
+.user_blogs_scroll::-webkit-scrollbar-thumb {
+  background-color: #5f5c514f;
 }
 
 .user_blogs {
   &_form {
     width: 950px;
+    height: 577px;
     background-color: $skin-bright;
     color: $gray-darker;
+    overflow-y: auto;
+    overflow-x: hidden;
  }
  &_newBtn {
   width: 120px;
@@ -373,8 +561,11 @@
     border: 1px solid $primary;
   }
  }
+  &_link {
+    color: $gray-darker;
+ }
   &_btn {
-    padding: 0 15px;
+    padding: 0 8px;
     border: none;
     &:hover {
       color: $secondary;
@@ -387,6 +578,27 @@
   &_table {
       width: 850px;
       color: $gray-darker;
+      letter-spacing: 3px;
       border-bottom: 1px solid $gray-darker;
+  }
+  &_eyeBtn {
+    background-color: $skin-bright;
+    border: none;
+    &:hover {
+      background-color: $skin-bright !important;
+      border: none !important;
+    }
+    &:active {
+      border: none !important;
+      background-color: $skin-bright !important;
+      outline: none !important;
+      box-shadow:none !important;
+    }
+    &:focus {
+      border: none !important;
+      background-color: $skin-bright !important;
+      outline: none !important;
+      box-shadow:none !important;
+    }
   }
 }

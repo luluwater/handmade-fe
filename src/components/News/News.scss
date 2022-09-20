@@ -105,7 +105,7 @@
   &_btn {
     border: none;
     position: absolute;
-    z-index: 10000;
+    z-index: 1;
     color: $secondary-dark;
     width: 200px;
     background-color: $skin-bright;
@@ -117,22 +117,27 @@
       color: $skin-bright;
     }
     &:focus {
-      // border: none;
-      // outline: none;
+      outline: none;
+      box-shadow:none;
+      border: none;
       background-color: $secondary-dark;
       color: $skin-bright;
     }
-    //   &:active {
-    //     border: none!important;
-    //     outline: none!important
-        
-    //   }
+    &:active:focus  {
+      border: none;
+      background-color: $secondary-dark;
+      color: $skin-bright;
+      outline: none;
+      box-shadow:none;
+    }
   }
 }
 
 .news_card {
   padding: 1rem;
   @media screen and (max-width: 576px) {
+    overflow: visible;
+    flex-wrap: wrap;
     &_m {
       margin-top: 1rem;
       margin-bottom: 1rem;
@@ -143,7 +148,6 @@
   overflow: hidden;
   &_swiper {
     max-width: 100%;
-    height: var(--product_card_scale);
   }
   &_title {
     letter-spacing: 3px;
@@ -165,19 +169,26 @@
     height: auto; 
   }
   &_cart {
-    width: 25px;
-    height: 25px; 
+    width: 23px;
+    height: 23px; 
   }
   &_text {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color:$gray-darker;
+    @media screen and (max-width: 576px) {
+        // overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
   }
   &_store {
     color:$gray-darker;
   }
+
 }
 
 .news_card .swiper-button-prev::after,
 .news_card .swiper-button-next::after {
   font-size: 2rem;
 }
+

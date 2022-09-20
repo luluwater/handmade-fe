@@ -1,0 +1,238 @@
+@import '../../styles/custom_variables';
+
+// Cart Item
+.cart_imgBox{
+  img{
+    width: 80px;
+    height: 80px;
+  }
+}
+.CartItem{
+  background: none;
+}
+
+.Cart_amountBox{
+  .detail_amount_minus {
+    margin: 0 2rem 0 0;
+  }
+  .detail_amount_plus{
+    margin: 0 0 0 2rem;
+  }
+  h5{
+    margin: 0;
+  }
+}
+.CartItem_trash{
+  cursor: pointer;
+  &:hover{
+    color: $primary;
+  }
+}
+
+
+// Cart
+.Cart{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  color: $gray-darker;
+
+
+  &_main{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    z-index: 99999;
+  }
+
+  &_item_list{
+    overflow-y: scroll;
+  }
+
+  &_tabContent{
+    background: $skin-brighter;
+  }
+
+  &_NavLink{
+    width: 100%;
+    height: 13rem;
+    writing-mode: vertical-lr;
+    letter-spacing: .4rem;
+    line-height: 1.5rem;
+  }
+  .nav-link{
+    border-radius: 20px 0 0 20px;
+    background: $skin-bright;
+    color: $gray-darker;
+  }
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: $gray-darker;
+    background-color: $skin-brighter;
+  }
+  &_emptyCart{
+    border: 1px solid $gray-darker;
+  }
+  &_courseRightSide{
+    background: $skin-bright;
+  }
+
+  &_mainContent{
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  &_backToStore{
+    width: 20%;
+    color: $gray-darker;
+    cursor: pointer;
+  }
+  &_backToStore_x{
+    // width: 20%;
+    color: $gray-darker;
+    svg{
+      cursor: pointer;
+    }
+  }
+  &_arrow{
+    margin-left: 2rem;
+    margin-right: .5rem;
+  }
+
+  &_empty{
+    text-align: center;
+    
+  }
+
+  &_CourseTitle{
+    margin: 1.5rem 0 2rem 2rem;
+    font-weight: 900;
+  }
+  &_DetailTitle{
+    margin: 1rem 2rem 1rem 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $gray-darker;
+
+  }
+  &_couponBox{
+    margin: 2rem 0 3.5rem 2rem;
+    // margin-bottom: ;
+    .Cart_couponSelect{
+      padding: 0;
+      border: 1px solid $gray-darker;
+      option{
+        color: $gray-darker;
+      }
+    }
+  }
+  &_couponInputBox{
+    padding: 0;
+  }
+  &_couponInput{
+    .form-control{
+      border: 1px solid $gray-darker;
+      border-right: 0;
+      &::-webkit-input-placeholder{
+        font-size: 1rem;
+      }
+
+
+    }
+    
+  }
+  &_or{
+    width: 8%;
+  }
+
+  &_courseRightSide{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    position: relative;
+  }
+  &_TotalTitle{
+    margin: 1.5rem 0 2rem 0;
+    font-weight: 900;
+  }
+  &_TotalPrice{
+    width: 80%;
+    position: absolute;
+    top: 30rem;
+  }
+  &_nextBTN{
+    color: $white;
+    width: 80%;
+    height: 6%;
+    position: absolute;
+    top: 30.8rem;
+    letter-spacing: .5rem;
+    &:hover{
+      color: $white;
+    }
+  }
+  &_userLikeBox{
+    margin: 1rem 0 1rem 2rem;
+  }
+  &_youMightLikeBox{
+    margin: .5rem 0 2rem 2rem;
+  }
+  &_userLike{
+    height: 100%;
+    width: 100%;
+    background: $skin-bright;
+    padding: 1.5rem 0;
+  }
+  
+
+  }
+  .Cart_tabChooseBox{
+    position: relative;
+    width: 110px;
+  }
+  .Cart_tabChoose{
+    position: absolute;
+    right: 0;
+  }
+
+
+  // recommend Card
+
+  .cartRecommend{
+    width: 210px;
+
+    .row{
+      height: 90px;
+    }
+    .cart{
+      width: 20px;
+      height: 20px;
+    }
+    .swiper-button-prev::after,.swiper-button-next::after{
+      font-size: 2rem;
+  }
+  .card_swiper{
+      max-width: 210px;
+      max-height: 210px;
+
+      .swiperslide{    
+        img{
+          width: 100%;
+          height: auto;      
+        }
+      }
+    }
+    .card_favorite{  
+      width: 2.5rem;
+      height: 2.5rem;
+
+    }
+    &_storeName{
+      font-size: .9rem;
+    }
+  }
+
+  //Seven 

@@ -3,7 +3,7 @@ import UserAccount from '../components/User/UserAccount'
 import { useGetUserQuery } from '../services/userApi'
 
 const UserAccountPage = () => {
-  const { data, error, isLoading } = useGetUserQuery()
+  const { data } = useGetUserQuery()
   console.log('DATA', data)
   return (
     <>
