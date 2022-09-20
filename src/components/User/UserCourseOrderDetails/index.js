@@ -11,6 +11,7 @@ import PaymentsDetails from './PaymentsDetails'
 
 const UserCoursesOrderDetails = () => {
   const { orderNumber } = useParams()
+
   const { data } = useGetUserCourseOrderDetailsQuery(orderNumber)
   // console.log("data:", data )
   return (

@@ -20,7 +20,7 @@ const UserOrdersPage = () => {
   return (
     <>
       <Col>
-        <div className="user_orders_form m-8 user_order_scroll">
+        <div className="user_orders_form m-8 user_scroll">
           <Form.Group>
             <Row>
               <div className="my-5 ms-7 d-flex justify-content-start">

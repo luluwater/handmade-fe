@@ -2,10 +2,12 @@ import '../User.scss'
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import user1 from '../../../assets/user/profile_1.png'
+import { useLogOutMutation } from '../../../services/userApi'
 // import { useParams } from 'react-router-dom'
 
 const UserCard = ({ account, email }) => {
   // console.log('name, email', name, email)
+  const [logOut] = useLogOutMutation()
   return (
     <>
       <Col className="d-flex">
@@ -30,7 +32,10 @@ const UserCard = ({ account, email }) => {
           <div className="m-2 text-center">{email}</div>
           {/* 登出+回到首頁 */}
           <Row className="justify-content-center">
-            <button className="user_profile_card_logout_btn mt-10 fw-bold">
+            <button
+              onClick={logOut}
+              className="user_profile_card_logout_btn mt-10 fw-bold"
+            >
               我要登出
             </button>
           </Row>

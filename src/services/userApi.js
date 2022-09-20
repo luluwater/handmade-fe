@@ -15,20 +15,27 @@ export const userApiService = createApi({
       invalidatesTags: ['User'],
     }),
     getUser: builder.query({
-      query: () => 'user',
+      query: (userId) => `user/${userId}`,
       providesTags: ['User'],
     }),
-    //update
-    // updateUser: builder.mutation({
-    //   query: (userId) => ({
-    //     url: `user`,
-    //     method: 'put',
-    //     body: userId,
-    //   }),
-    //   invalidatesTags: ['User']
-    // }),
+    updatePassword: builder.mutation({
+      query: (data) => ({
+        url: `/user/password`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    updateUserAccount: builder.mutation({
+      query: (data) => ({
+        url: `/user/account`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
     getUserCourseOrders: builder.query({
-      query: () => 'user/course-orders',
+      query: (userId) => `user/${userId}/course-orders`,
       providesTags: ['User'],
     }),
     getUserCourseOrderDetails: builder.query({
@@ -44,7 +51,7 @@ export const userApiService = createApi({
       providesTags: ['User'],
     }),
     getUserProductOrders: builder.query({
-      query: () => 'user/product-orders',
+      query: (userId) => `user/${userId}/product-orders`,
       providesTags: ['User'],
     }),
     getUserProductOrderDetails: builder.query({
@@ -60,11 +67,11 @@ export const userApiService = createApi({
       providesTags: ['User'],
     }),
     getUserCoupons: builder.query({
-      query: () => 'user/coupons',
+      query: (userId) => `user/${userId}/coupons`,
       providesTags: ['User'],
     }),
     userLikesCourse: builder.query({
-      query: () => 'user/likes-course',
+      query: (userId) => `user/${userId}/likes-course`,
       providesTags: ['User'],
     }),
     removeUserFavoriteCourse: builder.mutation({
@@ -76,7 +83,7 @@ export const userApiService = createApi({
       invalidatesTags: ['User'],
     }),
     userLikesProduct: builder.query({
-      query: () => 'user/likes-product',
+      query: (userId) => `user/${userId}/likes-product`,
       providesTags: ['User'],
     }),
     removeUserFavoriteProduct: builder.mutation({
@@ -88,7 +95,7 @@ export const userApiService = createApi({
       invalidatesTags: ['User'],
     }),
     getUserBlog: builder.query({
-      query: () => 'user/blog',
+      query: (userId) => `user/${userId}/blog`,
       providesTags: ['User'],
     }),
     deleteBlog: builder.mutation({
@@ -115,6 +122,14 @@ export const userApiService = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    logOut: builder.mutation({
+      query: (data) => ({
+        url: '/auth/register',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['auth'],
+    }),
     // userLikesBlog: builder.query({
     //   query: () => 'user/likes-blog',
     //   providesTags: ['User'],
@@ -124,6 +139,8 @@ export const userApiService = createApi({
 
 export const {
   useCreateCouponMutation,
+  useUpdatePasswordMutation,
+  useUpdateUserAccountMutation,
   useGetUserQuery,
   useGetUserProductOrdersQuery,
   useGetUserProductOrderDetailsQuery,
@@ -142,4 +159,5 @@ export const {
   useDeleteBlogMutation,
   useHideBlogMutation,
   useShowBlogMutation,
+  useLogOutMutation,
 } = userApiService

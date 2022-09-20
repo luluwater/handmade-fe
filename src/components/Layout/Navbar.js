@@ -3,13 +3,18 @@ import { Link } from 'react-router-dom'
 import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSelector } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartToggle } from '../../slices/cart-ui-slice'
 import { getProductTotal } from '../../slices/productCart-slice'
 import { getCourseTotal } from '../../slices/courseCart-slice'
 
 const Navbar = () => {
+  const userData = JSON.parse(localStorage.getItem('user'))
+
+  const authReducers = useSelector((state) => state.authReducers)
+
+  const isLogin = authReducers.isLogin
+
   const courseCartQuantity = useSelector(
     (state) => state.courseCartReducer.totalQuantity
   )

@@ -7,7 +7,7 @@ import UserBlogs from '../components/User/UserBlogs'
 const UserBlogsPage = () => {
   return (
     <>
-      <div className="user_blogs_form user_blogs_scroll my-8">
+      <div className="user_blogs_form user_scroll my-8">
         <UserBlogs />
       </div>
     </>

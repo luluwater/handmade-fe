@@ -1,10 +1,10 @@
 import React from 'react'
-import { Row, Col, Form } from 'react-bootstrap'
+import { Row, Form } from 'react-bootstrap'
 // import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import UserLikesCourses from './UserLikesCourses'
 import UserLikesProducts from './UserLikesProducts'
-import UserLikesBlogs from './UserLikesBlogs'
+// import UserLikesBlogs from './UserLikesBlogs'
 import StickyBox from 'react-sticky-box'
 
 export const UserLikes = () => {
