@@ -10,9 +10,9 @@ import {
   setType,
 } from '../slices/filterPagination-slice'
 import { productBanner } from '../image'
-import Paginate from '../components/FIlter/Paginate'
-import Filter from '../components/FIlter/Filter'
-import SortSelect from '../components/FIlter/SortSelect'
+import Paginate from '../components/Filter/Paginate'
+import Filter from '../components/Filter/Filter'
+import SortSelect from '../components/Filter/SortSelect'
 import { initFilterPrice } from '../slices/filterPrice-slice'
 import { initFilterDate } from '../slices/filterDate-silce'
 import { initSearchWord } from '../slices/filterKeyword-slice'
@@ -56,7 +56,7 @@ function Proudcts() {
       })
     )
   }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
-  // console.log('pagination', productList)
+  console.log('pagination', productList)
   // console.log(
   //   'pagination:filter',
   //   useSelector((state) => state.paginationReducer.filter)
