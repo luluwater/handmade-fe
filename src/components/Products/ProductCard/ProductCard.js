@@ -46,6 +46,8 @@ function ProductCard({
   const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
 
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
       <Swiper
@@ -79,6 +81,7 @@ function ProductCard({
           <button
             className="bg-primary card_favorite border-0  rounded-circle me-2"
             onClick={() => {
+              if (!userId) return (window.location.href = '/login')
               if (isFavorite) {
                 type === 'product'
                   ? removeUserFavoriteProduct({
