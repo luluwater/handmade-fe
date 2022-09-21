@@ -19,7 +19,6 @@ import sortSelectReducer from '../slices/sortSelect-slice'
 import filterDateReducer from '../slices/filterDate-silce'
 import userProductDetailsReducer from '../slices/userProductDetails-slice'
 import orderFilterDateReducer from '../slices/orderFilterDate-slice'
-
 import authReducers from '../slices/auth-slice'
 //Service
 import { blogApiService } from '../services/blogApi'
@@ -33,6 +32,7 @@ import { utilApiService } from '../services/untilApi'
 import { courseApiService } from '../services/courseApi'
 import { authApiService } from '../services/authApi'
 import { userApiService } from '../services/userApi'
+import { productOrderApiService } from '../services/productOrderApi'
 
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
@@ -72,6 +72,8 @@ const reducers = combineReducers({
   [utilApiService.reducerPath]: utilApiService.reducer,
   [courseApiService.reducerPath]: courseApiService.reducer,
   [authApiService.reducerPath]: authApiService.reducer,
+  [productOrderApiService.reducerPath]: productOrderApiService.reducer,
+
 })
 
 const store = configureStore({
@@ -90,6 +92,8 @@ const store = configureStore({
       .concat(userApiService.middleware)
       .concat(courseApiService.middleware)
       .concat(authApiService.middleware)
+      .concat(productOrderApiService.middleware)
+
   },
 })
 

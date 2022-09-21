@@ -42,14 +42,15 @@
   border: 2px solid #5f5c51;
   border-radius: 10px;
   padding: 0.75rem;
+  margin-bottom: 0px;
   background: #f4eee8;
 }
 .PasswordInput {
   width: 352px;
   border: 2px solid #5f5c51;
   border-radius: 10px;
-  margin-bottom: 0px;
   background: #f4eee8;
+  
   padding: 0.75rem;
 }
 input::placeholder {
@@ -74,7 +75,7 @@ input::placeholder {
   right: 0%;
 } */
 .Login {
-  margin-top: 20px;
+  margin-top: 35px;
   width: 352px;
   height: 57.72px;
   background: #e77656;
@@ -123,30 +124,35 @@ input::placeholder {
   margin-top: 28px;
   margin-bottom: 35px;
 }
-.iconEyeThird{
+.translate-middle{
+  left: 325px;
+}
+/* .iconEyeThird{
   position:relative;
   color: #5f5c51;
   top: -60px;
   left: 300px;
-}
-.icon2 {
+} */
+/* .icon2 {
   position: absolute;
   color:#f4eee8;
   size: 30px;
   margin-left:6.72em;
   margin-top: 33px;
   margin-bottom: 35px;
-}
+} */
 @media screen and (max-width: 576px) {
-  /* img {
+  .LoginPic {
+  
     display: none;
-  } */
+  } 
   .LoginTitle {
     margin-top: 28px;
     margin-bottom: 0;
   }
   .AccountInput {
     margin-top: 25px;
+    margin-bottom: 25px;
   }
   .ForgetPassword {
     margin-top: 10px;
@@ -160,5 +166,9 @@ input::placeholder {
   }
   .footerLogin {
     margin-top: 27px;
+  }
+  .emial{
+    padding-bottom: 10px;
+    margin-top: -15px !important;
   }
 }

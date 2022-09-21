@@ -8,12 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import moment from 'moment'
+import { Toast } from '../../UI/SwalStyle'
 import SevenStore from './SevenStore'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductTotal } from '../../../slices/productCart-slice'
+import { getProductTotal, clearCart } from '../../../slices/productCart-slice'
 
 import { v4 as uuidv4 } from 'uuid'
+
+import { useCreateProductOrderMutation } from '../../../services/productOrderApi'
+import { useCreateProductOrderDetailMutation } from '../../../services/productOrderDetailApi'
 
 const ProductCartInfo = () => {
   // ===========delivery border==========
@@ -23,16 +27,6 @@ const ProductCartInfo = () => {
   )
   const [homeBorder, setHomeBorder] = useState('ProductCartInfo_borderGray')
   const [deliveryInfo, setDeliveryInfo] = useState(true)
-
-  // ===========payment===========
-  const [cashOnDelivery, setCashOnDelivery] = useState('')
-  const [atmAccount, setAtmAccount] = useState('')
-  const [creditCard, setCreditCard] = useState('')
-
-  // ===========payment checked===========
-  const [cashchecked, setCashchecked] = useState('')
-  const [atmChecked, setAtmChecked] = useState('')
-  const [creditCardChecked, setCreditCardChecked] = useState('')
 
   // ===========input===========
   const [orderName, setOrderName] = useState('')
@@ -47,32 +41,9 @@ const ProductCartInfo = () => {
   // ===========popup==============
   const [openSeven, setOpenSeven] = useState(false)
 
-  const shoppingInfo = []
-  const submitHandler = (e) => {
-    e.preventDefault()
-    const ProductOrder = {
-      orderNumber: Date.now(),
-      // TODO:抓取userid
-      user_id: 1,
-      // TODO:抓取couponid,有的話顯示，沒有給null
-      coupon_id: 0,
-      cueate_time: moment(new Date()).format('YYYY-MM-DD'),
-      name: orderName,
-      Phone: orderPhone,
-      delivery_id: delivery,
-      payment_id: payment,
-      address: zipCode + address,
-      note: note,
-      // TODO:total_amount要再減掉折價券金額
-      total_amount: ProductCartTotal,
-      payment_state_id: paymentState,
-      order_state_id: '1',
-      valid: '1',
-      order_detail: [...ProductItem],
-    }
-    shoppingInfo.push(ProductOrder)
-    // console.log('shoppingInfo', shoppingInfo)
-  }
+  // ===========api==============
+  const [createProductOrder] = useCreateProductOrderMutation()
+  const [createProductOrderDetail] =useCreateProductOrderDetailMutation()
 
   const dispatch = useDispatch()
 
@@ -84,9 +55,206 @@ const ProductCartInfo = () => {
     (state) => state.productCartReducer.totalAmount
   )
 
+  const clearCourseItems = () => {
+    dispatch(clearCart())
+  }
+
   useEffect(() => {
     dispatch(getProductTotal())
+    console.log('ProductOrder', ProductOrder)
   }, [])
+
+  const productOrderId = Math.floor(Math.random() * 10000)
+
+  const ProductOrder = {
+    id: productOrderId,
+    orderNumber: Date.now(),
+    // TODO:抓取userid
+    user_id: 1,
+    // TODO:抓取couponid,有的話顯示，沒有給null
+    coupon_id: 0,
+    create_time: moment(new Date()).format('YYYY-MM-DD'),
+    name: orderName,
+    phone: orderPhone,
+    delivery_id: delivery,
+    payment_id: payment,
+    address: zipCode + address,
+    note: note,
+    // TODO:total_amount要再減掉折價券金額
+    total_amount: ProductCartTotal,
+    payment_state_id: paymentState,
+    order_state_id: '1',
+    order_detail: [...ProductItem],
+  }
+
+
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    try {
+      await createProductOrder(ProductOrder)
+      await createProductOrderDetail(ProductOrder)
+      await clearCourseItems()
+      await getProductTotal()
+      await Toast.fire({
+        icon: 'success',
+        title: '已完成訂購',
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const functionSwitch = (delivery) => {
+    switch (delivery) {
+      case '1':
+        return (
+          <>
+            <div className="ProductCartInfo_input mt-4">
+              <label for="ProductCart" className="d-flex align-items-center">
+                <input
+                  type="radio"
+                  className="form-check-input ProductCartInfo_radioStyle"
+                  value="1"
+                  name="payment"
+                  id="ProductCart"
+                  onChange={(e) => {
+                    setPayment(e.target.value)
+                    setPaymentState('2')
+                  }}
+                />
+                <label
+                  className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                  for="ProductCart"
+                ></label>
+                貨到付款
+              </label>
+            </div>
+
+            <div className="ProductCartInfo_input mt-3">
+              <label for="ProductCartATM" className="d-flex align-items-center">
+                <input
+                  type="radio"
+                  className="form-check-input ProductCartInfo_radioStyle"
+                  value="3"
+                  name="payment"
+                  id="ProductCartATM"
+                  onChange={(e) => {
+                    setPayment(e.target.value)
+                    setPaymentState('2')
+                  }}
+                />
+                <label
+                  className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                  for="ProductCartATM"
+                ></label>
+                ATM匯款轉帳
+              </label>
+            </div>
+
+            <div className="ProductCartInfo_input my-3">
+              <label
+                for="ProductCartCard"
+                className="d-flex align-items-center"
+              >
+                <input
+                  type="radio"
+                  className="form-check-input ProductCartInfo_radioStyle"
+                  value="2"
+                  name="payment"
+                  id="ProductCartCard"
+                  onChange={(e) => {
+                    setPayment(e.target.value)
+                    setPaymentState('1')
+                  }}
+                />
+                <label
+                  className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                  for="ProductCartCard"
+                ></label>
+                信用卡支付（綠界金流）
+              </label>
+            </div>
+          </>
+        )
+
+      case '2':
+        return (
+          <div className="ProductCartInfo_input mt-4">
+            <label for="ProductCart" className="d-flex align-items-center">
+              <input
+                type="radio"
+                className="form-check-input ProductCartInfo_radioStyle"
+                value="1"
+                name="payment"
+                id="ProductCart"
+                onChange={(e) => {
+                  setPayment(e.target.value)
+                  setPaymentState('2')
+                }}
+              />
+              <label
+                className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                for="ProductCart"
+              ></label>
+              貨到付款
+            </label>
+          </div>
+        )
+
+      case '3':
+        return (
+          <>
+            <div className="ProductCartInfo_input mt-3">
+              <label for="ProductCartATM" className="d-flex align-items-center">
+                <input
+                  type="radio"
+                  className="form-check-input ProductCartInfo_radioStyle"
+                  value="3"
+                  name="payment"
+                  id="ProductCartATM"
+                  onChange={(e) => {
+                    setPayment(e.target.value)
+                    setPaymentState('2')
+                  }}
+                />
+                <label
+                  className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                  for="ProductCartATM"
+                ></label>
+                ATM匯款轉帳
+              </label>
+            </div>
+
+            <div className="ProductCartInfo_input my-3">
+              <label
+                for="ProductCartCard"
+                className="d-flex align-items-center"
+              >
+                <input
+                  type="radio"
+                  className="form-check-input ProductCartInfo_radioStyle"
+                  value="2"
+                  name="payment"
+                  id="ProductCartCard"
+                  onChange={(e) => {
+                    setPayment(e.target.value)
+                    setPaymentState('1')
+                  }}
+                />
+                <label
+                  className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
+                  for="ProductCartCard"
+                ></label>
+                信用卡支付（綠界金流）
+              </label>
+            </div>
+          </>
+        )
+
+      default:
+        break
+    }
+  }
 
   return (
     <>
@@ -175,9 +343,6 @@ const ProductCartInfo = () => {
                         setSevenPaidBorder('ProductCartInfo_borderGray')
                         setHomeBorder('ProductCartInfo_borderGray')
                         setDeliveryInfo(true)
-                        setCashOnDelivery('')
-                        setAtmAccount('disabled')
-                        setCreditCard('disabled')
                       }}
                       className={'ProductCartInfo_delivery ps-2 ' + sevenBorder}
                     >
@@ -203,9 +368,6 @@ const ProductCartInfo = () => {
                         setSevenBorder('ProductCartInfo_borderGray')
                         setHomeBorder('ProductCartInfo_borderGray')
                         setDeliveryInfo(true)
-                        setCashOnDelivery('disabled')
-                        setAtmAccount('')
-                        setCreditCard('')
                       }}
                       className={
                         'ProductCartInfo_deliveryHome ps-2 ' + sevenPaidBorder
@@ -236,9 +398,6 @@ const ProductCartInfo = () => {
                         setSevenPaidBorder('ProductCartInfo_borderGray')
                         setHomeBorder('ProductCartInfo_borderOrange')
                         setDeliveryInfo(false)
-                        setCashOnDelivery('')
-                        setAtmAccount('')
-                        setCreditCard('')
                       }}
                     >
                       <input
@@ -258,13 +417,13 @@ const ProductCartInfo = () => {
                   </div>
 
                   {deliveryInfo ? (
-                    <button
-                    type='button'
+                    <Button
+                      type="button"
                       onClick={() => setOpenSeven(true)}
-                      className="ProductCartInfo_chooseStore text-center mt-5"
+                      className="ProductCartInfo_chooseStore mt-5 d-flex align-items-center justify-content-center"
                     >
                       選擇取貨門市
-                    </button>
+                    </Button>
                   ) : (
                     <>
                       <div className="ProductCartInfo_Postal_code mt-2">
@@ -296,84 +455,16 @@ const ProductCartInfo = () => {
                       </div>
                     </>
                   )}
-                  <SevenStore open={openSeven} />
+                  <SevenStore
+                    open={openSeven}
+                    onClose={() => {
+                      setOpenSeven(false)
+                    }}
+                  />
 
                   <p className="fs-4 ProductCartInfo_inputTitle">付款方式</p>
 
-                  <div className="ProductCartInfo_input mt-4">
-                    <label
-                      for="ProductCart"
-                      className="d-flex align-items-center"
-                    >
-                      <input
-                        type="radio"
-                        className="form-check-input ProductCartInfo_radioStyle"
-                        value="1"
-                        name="payment"
-                        id="ProductCart"
-                        disabled={cashOnDelivery}
-                        onChange={(e) => {
-                          setPayment(e.target.value)
-                          setPaymentState('2')
-                        }}
-                      />
-                      <label
-                        className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
-                        for="ProductCart"
-                      ></label>
-                      貨到付款
-                    </label>
-                  </div>
-
-                  <div className="ProductCartInfo_input mt-3">
-                    <label
-                      for="ProductCartATM"
-                      className="d-flex align-items-center"
-                    >
-                      <input
-                        type="radio"
-                        className="form-check-input ProductCartInfo_radioStyle"
-                        value="3"
-                        name="payment"
-                        id="ProductCartATM"
-                        disabled={atmAccount}
-                        onChange={(e) => {
-                          setPayment(e.target.value)
-                          setPaymentState('2')
-                        }}
-                      />
-                      <label
-                        className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
-                        for="ProductCartATM"
-                      ></label>
-                      ATM匯款轉帳
-                    </label>
-                  </div>
-
-                  <div className="ProductCartInfo_input my-3">
-                    <label
-                      for="ProductCartCard"
-                      className="d-flex align-items-center"
-                    >
-                      <input
-                        type="radio"
-                        className="form-check-input ProductCartInfo_radioStyle"
-                        value="2"
-                        name="payment"
-                        id="ProductCartCard"
-                        disabled={creditCard}
-                        onChange={(e) => {
-                          setPayment(e.target.value)
-                          setPaymentState('1')
-                        }}
-                      />
-                      <label
-                        className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
-                        for="ProductCartCard"
-                      ></label>
-                      信用卡支付（綠界金流）
-                    </label>
-                  </div>
+                  {functionSwitch(delivery)}
 
                   <div className="ProductCartInfo_textArea mt-5">
                     <FloatingLabel controlId="floatingTextarea2" label="備註">

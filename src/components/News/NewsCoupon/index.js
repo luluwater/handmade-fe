@@ -1,14 +1,33 @@
-// import '../About.scss'
+
 import React from 'react'
 import Coupon from '../../../assets/news/coupon_logo.png'
 import Button from 'react-bootstrap/Button'
 import { Row } from 'react-bootstrap'
-// import { useCreateCouponMutation } from '../../../services/userApi'
+import { Link } from 'react-router-dom'
+import { useCreateCouponMutation } from '../../../services/userApi'
+import { toast } from 'react-toastify'
+import '../../../styles/style.scss'
 
-//TODO: login API 帶入 user_id > 執行  useCreateCouponMutation()
-//TODO: 錯誤訊息
 const NewsCoupon = () => {
-  // const [getCoupon] = useCreateCouponMutation()
+  const userData = localStorage.getItem('user')
+  // console.log(userData)
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const [getCoupon] = useCreateCouponMutation()
+
+  const addCoupon = async () => {
+    try {
+      await toast.success(`已領取成功！`, {
+        position: 'top-center',
+        autoClose: 500,
+        hideProgressBar: true,
+        className: 'toast-addCouponMessage',
+      })
+      await getCoupon(userId)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <div className="mt-12 news_coupon_text d-flex justify-content-center">
@@ -24,13 +43,24 @@ const NewsCoupon = () => {
             alt="Coupon"
           />
         </div>
-        <Button
-          className="mt-8 news_coupon_btn fw-bold justify-content-center"
-          type="submit"
-          // onClick={handleGetCoupon}
-        >
-          領取折價券
-        </Button>
+        {userData ? (
+          <Button
+            className="mt-8 news_coupon_btn fw-bold justify-content-center"
+            type="submit"
+            onClick={addCoupon}
+          >
+            領取折價券
+          </Button>
+        ) : (
+          <Button
+            className="mt-8 news_coupon_btn fw-bold justify-content-center"
+            type="submit"
+          >
+            <Link className="news_coupon_link" to="/login">
+              請登入會員
+            </Link>
+          </Button>
+        )}
       </Row>
       <h4 className="mb-5 news_card_title text-center mt-8 fw-bold">
         限定商品推薦

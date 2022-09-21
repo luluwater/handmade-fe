@@ -166,7 +166,7 @@ function Map() {
             >
               <Popup closeButton={false}>
                 <Row className="align-items-center">
-                  <Col sm={5}>
+                  <Col sm={4} md={5}>
                     <img
                       className="border"
                       src={require(`../../assets/store/store_${v.category_en_name}_${v.id}/${v.img}`)}
@@ -175,18 +175,18 @@ function Map() {
                   </Col>
                   <Col>
                     <h5 className="fw-bold">{v.name}</h5>
-                    <p className="my-2">
+                    <p className="my-md-2 my-1">
                       <b>地址:</b>
                       {v.address}
                     </p>
-                    <p className="my-2">
+                    <p className="my-md-2 my-1">
                       <b>電話:</b>
                       {v.phone}
                     </p>
                   </Col>
                 </Row>
 
-                <p className="line-clamp">{v.intro}</p>
+                <p className="line-clamp my-2">{v.intro}</p>
               </Popup>
             </Marker>
           )

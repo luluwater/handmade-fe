@@ -1,8 +1,7 @@
 @import './custom_variables';
-:root{
-  --toastify-color-success: #fff!important;
-  --toastify-color-info:#fff!important;
-
+:root {
+  --toastify-color-success: #fff !important;
+  --toastify-color-info: #fff !important;
 }
 
 img {
@@ -165,11 +164,6 @@ img {
 .letter-spacing-2 {
   letter-spacing: 0.2rem;
 }
-.storeList_leftSide {
-  @media screen and (max-width: 576px) {
-    display: none;
-  }
-}
 
 @keyframes pathAnim-0 {
   0% {
@@ -277,20 +271,23 @@ img {
   transform: translate(-300%, -50%);
 }
 
-.toast-addCartMessage{
-  background: $secondary!important;
-  color: $white!important;
+.toast-addCartMessage {
+  background: $secondary !important;
+  color: $white !important;
   z-index: 99999;
-
 }
 
-.toast-alreadyInCartMessage{
-  background: $primary!important;
-  color: $white!important;
+.toast-alreadyInCartMessage {
+  background: $primary !important;
+  color: $white !important;
   z-index: 99999;
-
 }
 
+.toast-addCouponMessage {
+  background: $dark !important;
+  color: $white !important;
+  z-index: 99999;
+}
 
 .avatar {
   width: 40px;

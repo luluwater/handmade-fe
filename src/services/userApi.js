@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../utils/config'
+const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
 export const userApiService = createApi({
   reducerPath: 'userApi',
@@ -7,28 +8,34 @@ export const userApiService = createApi({
   tagTypes: ['User'],
   endpoints: (builder) => ({
     createCoupon: builder.mutation({
-      query: (user_id) => ({
-        url: '/user/get-coupon',
-        method: 'POST',
-        body: user_id,
+      query: (userId) => ({
+        url: `user/${userId}/get-coupon`,
+        method: 'put',
       }),
       invalidatesTags: ['User'],
     }),
     getUser: builder.query({
-      query: () => 'user',
+      query: (userId) => `user/${userId}`,
       providesTags: ['User'],
     }),
-    //update
-    // updateUser: builder.mutation({
-    //   query: (userId) => ({
-    //     url: `user`,
-    //     method: 'put',
-    //     body: userId,
-    //   }),
-    //   invalidatesTags: ['User']
-    // }),
+    updatePassword: builder.mutation({
+      query: (data) => ({
+        url: `/user/password`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    updateUserAccount: builder.mutation({
+      query: (data) => ({
+        url: `/user/account`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
     getUserCourseOrders: builder.query({
-      query: () => 'user/course-orders',
+      query: (userId) => `user/${userId}/course-orders`,
       providesTags: ['User'],
     }),
     getUserCourseOrderDetails: builder.query({
@@ -44,7 +51,7 @@ export const userApiService = createApi({
       providesTags: ['User'],
     }),
     getUserProductOrders: builder.query({
-      query: () => 'user/product-orders',
+      query: (userId) => `user/${userId}/product-orders`,
       providesTags: ['User'],
     }),
     getUserProductOrderDetails: builder.query({
@@ -60,35 +67,35 @@ export const userApiService = createApi({
       providesTags: ['User'],
     }),
     getUserCoupons: builder.query({
-      query: () => 'user/coupons',
+      query: (userId) => `user/${userId}/coupons`,
       providesTags: ['User'],
     }),
     userLikesCourse: builder.query({
-      query: () => 'user/likes-course',
+      query: (userId) => `user/${userId}/likes-course`,
       providesTags: ['User'],
     }),
     removeUserFavoriteCourse: builder.mutation({
       query: (courseId) => ({
-        url: `course/${courseId}`,
+        url: `course/${courseId}?userId=${userId}`,
         method: 'DELETE',
         body: courseId,
       }),
       invalidatesTags: ['User'],
     }),
     userLikesProduct: builder.query({
-      query: () => 'user/likes-product',
+      query: (userId) => `user/${userId}/likes-product`,
       providesTags: ['User'],
     }),
     removeUserFavoriteProduct: builder.mutation({
       query: (productId) => ({
-        url: `product/${productId}`,
+        url: `product/${productId}?userId=${userId}`,
         method: 'delete',
         body: productId,
       }),
       invalidatesTags: ['User'],
     }),
     getUserBlog: builder.query({
-      query: () => 'user/blog',
+      query: (userId) => `user/${userId}/blog`,
       providesTags: ['User'],
     }),
     deleteBlog: builder.mutation({
@@ -124,6 +131,8 @@ export const userApiService = createApi({
 
 export const {
   useCreateCouponMutation,
+  useUpdatePasswordMutation,
+  useUpdateUserAccountMutation,
   useGetUserQuery,
   useGetUserProductOrdersQuery,
   useGetUserProductOrderDetailsQuery,
@@ -142,4 +151,5 @@ export const {
   useDeleteBlogMutation,
   useHideBlogMutation,
   useShowBlogMutation,
+  useRemoveUserFavoriteProductOnNewsMutation,
 } = userApiService

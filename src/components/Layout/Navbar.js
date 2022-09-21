@@ -33,18 +33,20 @@ const Navbar = () => {
 
   const navRef = useRef(null)
 
+  const scrollFunction = () => {
+    if (
+      document.body.scrollTop > 152 ||
+      document.documentElement.scrollTop > 152
+    ) {
+      navRef.current.classList.add('navbar_shrink')
+    } else {
+      navRef.current.classList.remove('navbar_shrink')
+    }
+  }
+
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (
-        document.body.scrollTop > 152 ||
-        document.documentElement.scrollTop > 152
-      ) {
-        navRef.current.classList.add('navbar_shrink')
-      } else {
-        navRef.current.classList.remove('navbar_shrink')
-      }
-    })
-    return () => window.removeEventListener('scroll')
+    window.addEventListener('scroll', scrollFunction)
+    return () => window.removeEventListener('scroll', scrollFunction)
   }, [])
 
   useEffect(() => {
@@ -98,10 +100,10 @@ const Navbar = () => {
             {isLogin || userData ? (
               <>
                 <Link to="/user/management">
-                  {userData.user.avatar ? (
+                  {userData?.user.avatar ? (
                     <div className="avatar ">
                       <img
-                        src={userData.user.avatar}
+                        src={userData?.user.avatar}
                         className="rounded-circle"
                         alt="user img"
                       />

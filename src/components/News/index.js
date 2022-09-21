@@ -2,22 +2,35 @@ import NewsBanner from './NewsBanner'
 import NewsDetails from './NewsDetails'
 import NewsCoupon from './NewsCoupon'
 import NewsCard from './NewsCard'
+import { React, useEffect, useState } from 'react'
+// import { useDispatch } from 'react-redux'
 import { useGetProductListQuery } from '../../services/productApi'
 import { Container } from 'react-bootstrap'
 
 const News = () => {
+  const [card, setCard] = useState()
   const { data } = useGetProductListQuery()
+  // const dispatch = useDispatch()
+  let newData = []
+
+  useEffect(() => {
+    if (data) {
+      newData = [...data]?.sort(() => 0.5 - Math.random())
+      setCard(newData)
+    }
+  }, [data])
+
   return (
     <>
       <NewsBanner />
       <NewsDetails />
       <NewsCoupon />
       <Container className="news_card mb-12 w-100 d-flex">
-        {data?.map((v, i) => {
+        {card?.map((v, i) => {
           if (i < 4) {
             return (
               <NewsCard
-                key={v.id}
+                key={'abc' + v.id}
                 productId={v.id}
                 storeId={v.store_id}
                 categoryId={v.category_id}

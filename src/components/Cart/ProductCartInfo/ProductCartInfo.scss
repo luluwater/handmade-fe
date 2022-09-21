@@ -121,6 +121,7 @@
         height: 45px;
         margin-left: 8rem;
         line-height: 45px;
+        border: 1px solid $gray-darker;
 
         a{
             &:hover{
@@ -187,6 +188,57 @@
         position: absolute;
         top: 55rem;
     }
+
+
+      //Seven 
+    &_overlay{
+        background-color: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+  
+    &_modalContainer{
+        background-color: $skin-brighter;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border:1px solid black;
+        max-width: 500px;
+        width: 80%;
+        height: 240px;
+        box-shadow: 0 0 18px 0 rgba(0,0,0,0.15);
+        span{
+            cursor: pointer;
+        }
+    
+    }
+
+    &_city{
+        width: 30%;
+        border: 1px solid $gray-darker;
+    }
+    &_store{
+        width: 86%;
+        border: 1px solid $gray-darker;
+    }
+    &_storeBTN{
+        background: $gray-darker;
+        border: 1px solid $gray-darker;
+        color: $white;
+        width: 100px;
+        height: 45px;
+        line-height: 45px;
+    }
+
+
+
+
     
 
 }
