@@ -6,7 +6,7 @@ import Image2_2 from '../../assets/course/course_floral_29/花藝＿課程＿花
 import Image2_3 from '../../assets/course/course_floral_29/花藝＿課程＿花曜日＿藤編花籃＿3.jpg'
 import Image3_1 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_1.jpg'
 import Image3_2 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_2.jpg'
-import Image3_3 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_2.jpg'
+import Image3_3 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_3.jpg'
 import Image4_1 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_3.jpg'
 import Image4_2 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_1.jpg'
 import Image4_3 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_2.jpg'
@@ -99,7 +99,7 @@ function CourseCard() {
               lg={3}
               sm={6}
               className="course_detail_card_m px-3"
-              key={v.img}
+              key={v.courseId}
             >
               {/* ========== 商品照片 ========== */}
               <Link to={v.link}>
@@ -114,9 +114,8 @@ function CourseCard() {
                 >
                   {v.img.map((v2, i2) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={v2}>
                         <img
-                          key={v2[0]}
                           className="swiper-slide course_detail_card_img"
                           src={v2}
                           alt="products"

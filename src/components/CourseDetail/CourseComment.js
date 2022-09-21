@@ -13,14 +13,18 @@ import moment from 'moment'
 function starAmount(num) {
   let starList = []
   for (let i = 0; i < num; i++) {
-    starList.push(<FontAwesomeIcon icon="fa-solid fa-star" className="pe-1 " />)
+    starList.push(
+      <FontAwesomeIcon key={i} icon="fa-solid fa-star" className="pe-1 " />
+    )
   }
   return starList
 }
 function star2Amount(num2) {
   let star2List = []
   for (let i = 0; i < num2; i++) {
-    star2List.push(<FontAwesomeIcon icon="far fa-star" className="pe-1" />)
+    star2List.push(
+      <FontAwesomeIcon key={i} icon="far fa-star" className="pe-1" />
+    )
   }
 
   return star2List
@@ -39,6 +43,7 @@ const CourseComment = () => {
         <Col className="col-10 ">
           <ShowMore maxHeight={375} className="showmore" defaultAnchor={true}>
             {data?.map((item) => {
+              {/* console.log('item', item) */}
               return (
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
                   <Row className="d-flex align-items-baseline">

@@ -115,7 +115,7 @@ function ProductCard() {
               md={3}
               xs={6}
               className="product_detail_card_m px-3"
-              key={v.name}
+              key={v.productId}
             >
               {/* ========== 商品照片 ========== */}
               <Link to={v.link}>
@@ -130,9 +130,8 @@ function ProductCard() {
                 >
                   {v.img.map((v2, i2) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={v2}>
                         <img
-                          key={v2[0]}
                           className="swiper-slide product_detail_card_img"
                           src={v2}
                           alt="products"
