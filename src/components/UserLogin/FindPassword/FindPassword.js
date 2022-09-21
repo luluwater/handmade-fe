@@ -32,15 +32,11 @@ const FindPassword = () => {
               name="SignUpEmail"
               placeholder="註冊信箱"
               required
-            ></input>
+            />
             <br />
-            <Link to="/ResetPassword">
-              <input type="submit" value="送出" className="submit" />
-            </Link>
+
+            <input type="submit" value="送出" className="submit" />
           </form>
-          {/* <Link className="text-primary btn" to="/blog">
-          會員登入
-        </Link> */}
         </div>
       </div>
     </>
