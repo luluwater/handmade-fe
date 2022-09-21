@@ -28,7 +28,7 @@ function CoursePic({ id, category, store, img }) {
           >
             {img?.map((item) => {
               return (
-                <Row key={id}>
+                <Row key={item}>
                   <SwiperSlide>
                     <Col>
                       <img
@@ -57,9 +57,9 @@ function CoursePic({ id, category, store, img }) {
             modules={[Navigation, Thumbs]}
             className="mySwiper2"
           >
-            {img?.map((item) => {
+            {img?.map((item,i) => {
               return (
-                <div key={id}>
+                <div key={i}>
                   <SwiperSlide>
                     <img
                       src={require(`../../assets/course/course_${category}_${id}/${item}`)}

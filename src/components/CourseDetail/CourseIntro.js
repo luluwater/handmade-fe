@@ -162,6 +162,7 @@ const CourseIntro = ({
                   {filterResult?.map((item) => {
                     return (
                       <Button
+                        key={item.id}
                         className="col-3 me-3 mb-3 course_time_btn"
                         onClick={() => {
                           setStartTime(item.time_start)
