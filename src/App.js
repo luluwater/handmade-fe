@@ -153,7 +153,7 @@ const routeConfig = [
         element: <FindPasswordPage />,
       },
       {
-        path: 'ResetPassword',
+        path: 'ResetPassword/:email',
         element: <ResetPasswordPage />,
       },
 

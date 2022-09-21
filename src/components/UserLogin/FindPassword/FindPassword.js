@@ -1,8 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import './FindPassword.scss'
+import { useSendValidationMailMutation } from '../../../services/googleApi'
+import { useState } from 'react'
 
-const FindPassword = () => {
+const FindPassword = (props) => {
+  const [mail, setMail] = useState('')
+  const [isSend, setIsSend] = useState(false)
+  const [sendVaildMail] = useSendValidationMailMutation()
+  const { startingMinutes = 1, startingSeconds = 2 } = props
+  const [mins, setMinutes] = useState(startingMinutes)
+  const [secs, setSeconds] = useState(startingSeconds)
+
+  useEffect(() => {
+    if (!isSend) return
+    let sampleInterval = setInterval(() => {
+      if (secs > 0) {
+        setSeconds(secs - 1)
+      }
+      if (secs === 0) {
+        setMinutes(startingSeconds)
+        if (mins === 0) {
+          clearInterval(sampleInterval)
+          setIsSend((pre) => !pre)
+          setMinutes(startingMinutes)
+        } else {
+          setMinutes(mins - 1)
+          setSeconds(59)
+        }
+      }
+    }, 1000)
+    return () => {
+      clearInterval(sampleInterval)
+    }
+  }, [isSend, mins, secs, startingSeconds, startingMinutes])
+
+  const handleSendMail = (e) => {
+    e.preventDefault()
+    setIsSend((pre) => !pre)
+    sendVaildMail({ mail })
+  }
+
+  const handleChange = (e) => {
+    setMail(e.target.value)
+  }
+
   return (
     <>
       <div className="PFrankWorkDisplay text-center">
@@ -18,7 +59,7 @@ const FindPassword = () => {
             alt=""
           />
 
-          <form action="" className="FormFindPassword ">
+          <form className="FormFindPassword ">
             <h1 className="FindPassword text-center">找回密碼</h1>
             <br />
             <div className="PFrankWork text-center">
@@ -32,10 +73,25 @@ const FindPassword = () => {
               name="SignUpEmail"
               placeholder="註冊信箱"
               required
+              disabled={isSend}
+              onChange={handleChange}
             />
             <br />
-
-            <input type="submit" value="送出" className="submit" />
+            <button
+              disabled={isSend || mail === ''}
+              onClick={handleSendMail}
+              type="submit"
+              className={`submit ${
+                isSend || mail === '' ? 'bg-skin-dark border-0' : 'bg-primary'
+              }`}
+            >
+              {isSend ? '察看信箱' : '送出'}
+            </button>
+            {isSend && (
+              <div className="text-center fs-5 mt-5 text-danger">
+                {mins}:{secs < 10 ? `0${secs}` : secs} 後過期
+              </div>
+            )}
           </form>
         </div>
       </div>
