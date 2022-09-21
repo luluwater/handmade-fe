@@ -7,7 +7,7 @@ import { useGetStoreQuery } from '../services/storeApi'
 
 const Store = () => {
   const { data } = useGetStoreQuery()
-  console.log(data)
+  // console.log(data)
 
   return (
     <>

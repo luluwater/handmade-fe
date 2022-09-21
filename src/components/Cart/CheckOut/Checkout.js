@@ -2,11 +2,15 @@ import React from 'react'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import '../CourseCartInfo/CourseCartInfo.scss'
 import './Checkout.scss'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import { useGetOrderDetailQuery } from '../../../services/productOrderApi'
 
 const Checkout = () => {
+  const { orderId } = useParams()
+  // console.log('orderId', orderId)
+  const [getOrderDetail] = useGetOrderDetailQuery(orderId)
   return (
     <>
       <Container fluid className="CheckoutPage">

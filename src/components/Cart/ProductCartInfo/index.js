@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './ProductCartInfo.scss'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -43,9 +43,10 @@ const ProductCartInfo = () => {
 
   // ===========api==============
   const [createProductOrder] = useCreateProductOrderMutation()
-  const [createProductOrderDetail] =useCreateProductOrderDetailMutation()
+  const [createProductOrderDetail] = useCreateProductOrderDetailMutation()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const ProductItem = useSelector(
     (state) => state.productCartReducer.productCartItem
@@ -87,7 +88,6 @@ const ProductCartInfo = () => {
     order_detail: [...ProductItem],
   }
 
-
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
@@ -95,10 +95,7 @@ const ProductCartInfo = () => {
       await createProductOrderDetail(ProductOrder)
       await clearCourseItems()
       await getProductTotal()
-      await Toast.fire({
-        icon: 'success',
-        title: '已完成訂購',
-      })
+      navigate(`/checkout/${productOrderId}`)
     } catch (e) {
       console.error(e)
     }
