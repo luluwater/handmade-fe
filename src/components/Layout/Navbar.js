@@ -32,6 +32,7 @@ const Navbar = () => {
   }
 
   const navRef = useRef(null)
+
   const scrollFunction = () => {
     if (
       document.body.scrollTop > 152 ||
@@ -42,6 +43,7 @@ const Navbar = () => {
       navRef.current.classList.remove('navbar_shrink')
     }
   }
+
   useEffect(() => {
     window.addEventListener('scroll', scrollFunction)
     return () => window.removeEventListener('scroll', scrollFunction)

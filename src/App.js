@@ -187,7 +187,7 @@ const routeConfig = [
     element: <ProductCart />,
   },
   {
-    path: '/checkout',
+    path: '/checkout/:orderId',
     element: <CheckoutPage />,
   },
 ]

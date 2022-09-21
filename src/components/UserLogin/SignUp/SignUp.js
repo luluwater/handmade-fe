@@ -78,7 +78,7 @@ const Signup = () => {
             <div className="position-relative mt-md-5">
               <label htmlFor="account"></label>
               <input
-                className="PasswordInput"
+                className="AccountPasswordInput"
                 name="account"
                 placeholder="帳號"
                 onChange={formik.handleChange}
@@ -92,7 +92,7 @@ const Signup = () => {
             <div className="mt-md-5">
               <label htmlFor="email"></label>
               <input
-                className="AccountInput"
+                className="SignUpAccountInput"
                 type="text"
                 name="email"
                 placeholder="信箱"
