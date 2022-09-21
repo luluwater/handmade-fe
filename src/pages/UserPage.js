@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router'
-import { Container } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import FilterPage from '../components/User/FilterPage'
 import UserCard from '../components/User/UserCard'
 import { useGetUserQuery } from '../services/userApi'
@@ -13,7 +13,9 @@ const UserPage = () => {
   // console.log('DATA', data)
   return (
     <>
-      <FilterPage />
+      {data?.map((item, v) => {
+        return <FilterPage key={item.id} account={item.account} />
+      })}
       <Container className="d-flex">
         {data?.map((item, v) => {
           return (

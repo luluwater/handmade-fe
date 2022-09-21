@@ -5,39 +5,56 @@
   height: 63px;
   width: 1320px;
   text-align: center;
-  .item {
-      letter-spacing: 3px;
-      font-size: $h5-font-size;
-      color: $gray-darker;
-      flex-grow: 1;
-      padding: 15px;
-      border-bottom: 1px solid $gray-darker;
-      &:hover {
-        background-color: $secondary;
-        color: $skin-brighter;
-      }
-      &:focus {
-        background-color: $secondary;
-        color: $skin-brighter;
-      }
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
+  &_item {
+    letter-spacing: 3px;
+    font-size: $h5-font-size;
+    color: $gray-darker;
+    flex-grow: 1;
+    padding: 15px;
+    border-bottom: 1px solid $gray-darker;
+    &:hover {
+      background-color: $secondary;
+      color: $skin-brighter;
+    }
+    &:focus {
+      background-color: $secondary;
+      color: $skin-brighter;
     }
   }
-
-  .user_profile_card {
-    width: 292px;
-    height: 577px;
-    background-color: $skin-bright;
-    &_img {
-      object-fit: cover;
-      height: 200px;
-      width: 200px;
+  &_mobile {
+    display: none;
+    @media screen and (max-width: 576px) {
+      display: block;
     }
-    &_btn {
-      width: 120px;
-      color: $gray-darker;
-      border: none;
-      letter-spacing: 3px;
-      font-size: $h5-font-size;
+  }
+}
+
+.user_profile_card {
+  display: block;
+  width: 292px;
+  height: 577px;
+  background-color: $skin-bright;
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
+  &_img {
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    @media screen and (max-width: 576px) {
+      height: 50px;
+      width: 50px;
+    }
+  }
+  &_btn {
+    width: 120px;
+    color: $gray-darker;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h5-font-size;
     &:hover {
       background-color: $secondary;
       color: $skin-brighter;
@@ -51,9 +68,20 @@
     letter-spacing: 3px;
     font-size: $h5-font-size;
     background-color: $primary;
-    &:hover {
-      background-color: $secondary;
-      color: $skin-brighter;
+      &:hover {
+        background-color: $secondary;
+        color: $skin-brighter;
+      }
+    @media screen and (max-width: 576px) {
+      width: 120px;
+      height: 40px;
+      font-size: $h6-font-size;
+      }
+    }
+  &_mobile {
+    display: none;
+    @media screen and (max-width: 576px) {
+      display: block;
     }
   }
 }
@@ -72,6 +100,9 @@
 }
 
 .user_account {
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
   &_from {
     width: 950px;
     height: 577px;

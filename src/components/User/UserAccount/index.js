@@ -81,7 +81,7 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
 
   return (
     <>
-      <Col>
+      <Col className="user_account">
         <div className="user_account_from m-8">
           <h5 className="user_account_title fw-bold">帳號設定</h5>
           <Form.Group className="my-3">

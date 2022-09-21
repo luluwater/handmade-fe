@@ -1,8 +1,8 @@
 import '../User.scss'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 import user1 from '../../../assets/user/profile_1.png'
 import { logout } from '../../../slices/auth-slice'
 
@@ -15,6 +15,7 @@ const UserCard = ({ account, email }) => {
 
   return (
     <>
+      {/* 電腦版 */}
       <Col className="d-flex">
         <div className="user_profile_card mt-8">
           <Row>
@@ -54,3 +55,4 @@ const UserCard = ({ account, email }) => {
   )
 }
 export default UserCard
+//className="d-flex justify-content-center align-items-center"
