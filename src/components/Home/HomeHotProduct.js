@@ -73,25 +73,18 @@ function HomeHotProduct() {
           className="mySwiper"
         >
           <div className="d-flex">
-            {Cards.map((v, i) => {
+            {Cards.map((v) => {
               return (
-                <>
-                  <SwiperSlide className="home_hotSwiper">
-                    <div
-                      className="home_hotCard d-flex flex-column align-items-center"
-                      key={v.name}
-                    >
-                      <img className="home_hotCard_pic" src={v.img} alt="" />
-                      <h5 className="home_hotCard_name">{v.name}</h5>
-                      <div className="home_hotCard_text">{v.text}</div>
-                      <Link to={v.link}>
-                        <Button className="home_hotCard_button">
-                          {v.price}
-                        </Button>
-                      </Link>
-                    </div>
-                  </SwiperSlide>
-                </>
+                <SwiperSlide className="home_hotSwiper" key={v.img}>
+                  <div className="home_hotCard d-flex flex-column align-items-center">
+                    <img className="home_hotCard_pic" src={v.img} alt="" />
+                    <h5 className="home_hotCard_name">{v.name}</h5>
+                    <div className="home_hotCard_text">{v.text}</div>
+                    <Link to={v.link}>
+                      <Button className="home_hotCard_button">{v.price}</Button>
+                    </Link>
+                  </div>
+                </SwiperSlide>
               )
             })}
           </div>
