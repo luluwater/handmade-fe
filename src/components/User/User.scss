@@ -263,16 +263,17 @@
     }
   }
   &_dateBtn {
+    border: 2px solid $gray-dark !important;
     width: 100px;
     border: 1px solid $gray-darker;
     letter-spacing: 3px;
     font-size: $h6-font-size;
-    color: $gray-darker;
-    background-color: $skin-bright !important;
+    color: $skin-bright;
+    background-color: $gray-dark !important;
     &:hover {
       background-color: $primary !important;
       color: $skin-bright;
-      border: none;
+      border: 2px solid $primary !important;
     }
   }
   &_table {

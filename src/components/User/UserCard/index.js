@@ -1,13 +1,18 @@
 import '../User.scss'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import user1 from '../../../assets/user/profile_1.png'
-import { useLogOutMutation } from '../../../services/userApi'
-// import { useParams } from 'react-router-dom'
+import { logout } from '../../../slices/auth-slice'
 
 const UserCard = ({ account, email }) => {
   // console.log('name, email', name, email)
-  const [logOut] = useLogOutMutation()
+  const authLogOut = () => {
+    dispatch(logout())
+  }
+  const dispatch = useDispatch()
+
   return (
     <>
       <Col className="d-flex">
@@ -27,17 +32,21 @@ const UserCard = ({ account, email }) => {
               更換圖像
             </button>
           </Row>
-          {/* 讀取資料 */}
           <div className="mt-5 text-center">您好，{account}</div>
           <div className="m-2 text-center">{email}</div>
           {/* 登出+回到首頁 */}
-          <Row className="justify-content-center">
-            <button
-              onClick={logOut}
-              className="user_profile_card_logout_btn mt-10 fw-bold"
+          <Row>
+            <Link
+              className="d-flex align-items-center justify-content-center"
+              to="/"
             >
-              我要登出
-            </button>
+              <button
+                onClick={authLogOut}
+                className="user_profile_card_logout_btn mt-10 fw-bold"
+              >
+                我要登出
+              </button>
+            </Link>
           </Row>
         </div>
       </Col>

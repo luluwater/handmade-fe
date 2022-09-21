@@ -122,14 +122,6 @@ export const userApiService = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-    logOut: builder.mutation({
-      query: (data) => ({
-        url: '/auth/register',
-        method: 'POST',
-        body: data,
-      }),
-      providesTags: ['auth'],
-    }),
     // userLikesBlog: builder.query({
     //   query: () => 'user/likes-blog',
     //   providesTags: ['User'],
