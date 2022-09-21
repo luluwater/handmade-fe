@@ -100,10 +100,10 @@ const Navbar = () => {
             {isLogin || userData ? (
               <>
                 <Link to="/user/management">
-                  {userData.user.avatar ? (
+                  {userData?.user.avatar ? (
                     <div className="avatar ">
                       <img
-                        src={userData.user.avatar}
+                        src={userData?.user.avatar}
                         className="rounded-circle"
                         alt="user img"
                       />

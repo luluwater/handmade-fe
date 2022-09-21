@@ -8,7 +8,8 @@ import { useGetUserCouponsQuery } from '../../../../services/userApi'
 import moment from 'moment'
 
 const AllCoupon = () => {
-  const { data } = useGetUserCouponsQuery()
+  const userDataId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const { data } = useGetUserCouponsQuery(userDataId)
   return (
     <>
       {data === 0 ? (

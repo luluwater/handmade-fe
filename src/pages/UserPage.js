@@ -7,7 +7,9 @@ import { useGetUserQuery } from '../services/userApi'
 // import UserAccount from '../components/User/UserAccount'
 
 const UserPage = () => {
-  const { data } = useGetUserQuery()
+  const userDataId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const { data } = useGetUserQuery(userDataId)
+  // console.log('userDataId', userDataId)
   // console.log('DATA', data)
   return (
     <>
