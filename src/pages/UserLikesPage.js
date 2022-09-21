@@ -6,7 +6,7 @@ export const UserLikesPage = () => {
   return (
     <>
       <Col>
-        <div className="user_likes_form user_likes_scroll m-8">
+        <div className="user_likes_form user_scroll m-8">
           <UserLikes />
         </div>
       </Col>

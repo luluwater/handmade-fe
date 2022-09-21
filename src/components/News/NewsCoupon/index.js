@@ -3,11 +3,14 @@ import React from 'react'
 import Coupon from '../../../assets/news/coupon_logo.png'
 import Button from 'react-bootstrap/Button'
 import { Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 // import { useCreateCouponMutation } from '../../../services/userApi'
 
 //TODO: login API 帶入 user_id > 執行  useCreateCouponMutation()
 //TODO: 錯誤訊息
 const NewsCoupon = () => {
+  const userData = localStorage.getItem('user')
+  console.log(userData)
   // const [getCoupon] = useCreateCouponMutation()
   return (
     <>
@@ -24,13 +27,23 @@ const NewsCoupon = () => {
             alt="Coupon"
           />
         </div>
-        <Button
-          className="mt-8 news_coupon_btn fw-bold justify-content-center"
-          type="submit"
-          // onClick={handleGetCoupon}
-        >
-          領取折價券
-        </Button>
+        {userData ? (
+          <Button
+            className="mt-8 news_coupon_btn fw-bold justify-content-center"
+            type="submit"
+            // onClick={handleGetCoupon}
+          >
+            領取折價券
+          </Button>
+        ) : (
+          <Button
+            className="mt-8 news_coupon_btn fw-bold justify-content-center"
+            type="submit"
+            // onClick={handleGetCoupon}
+          >
+            <Link to="/login">請先登入會員 </Link>
+          </Button>
+        )}
       </Row>
       <h4 className="mb-5 news_card_title text-center mt-8 fw-bold">
         限定商品推薦
