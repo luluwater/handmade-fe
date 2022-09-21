@@ -28,8 +28,8 @@ function CoursePic({ id, category, store, img }) {
           >
             {img?.map((item) => {
               return (
-                <SwiperSlide>
-                  <Row key={id}>
+                <Row key={id}>
+                  <SwiperSlide>
                     <Col>
                       <img
                         src={require(`../../assets/course/course_${category}_${id}/${item}`)}
@@ -37,8 +37,8 @@ function CoursePic({ id, category, store, img }) {
                         className="detail_swiperL_pic"
                       />
                     </Col>
-                  </Row>
-                </SwiperSlide>
+                  </SwiperSlide>
+                </Row>
               )
             })}
           </Swiper>
@@ -59,15 +59,15 @@ function CoursePic({ id, category, store, img }) {
           >
             {img?.map((item) => {
               return (
-                <SwiperSlide>
-                  <div key={id}>
+                <div key={id}>
+                  <SwiperSlide>
                     <img
                       src={require(`../../assets/course/course_${category}_${id}/${item}`)}
                       alt=""
                       className="detail_swiperR_pic"
                     />
-                  </div>
-                </SwiperSlide>
+                  </SwiperSlide>
+                </div>
               )
             })}
           </Swiper>

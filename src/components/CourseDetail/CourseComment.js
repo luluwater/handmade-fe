@@ -29,7 +29,7 @@ function star2Amount(num2) {
 const CourseComment = () => {
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
-  console.log('data', data)
+  // console.log('data', data)
   return (
     <>
       <Row className="my-10 d-flex justify-content-center C_border">

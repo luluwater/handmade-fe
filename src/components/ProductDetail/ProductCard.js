@@ -36,7 +36,6 @@ function ProductCard() {
   const getData = data?.map((item) => {
     return item.isFavorite
   })
-  console.log('gatData', getData?.[38])
   const Info = [
     {
       productId: '39',
