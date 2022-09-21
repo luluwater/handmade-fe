@@ -53,7 +53,7 @@ export const getNewData = (data) => {
   return result
 }
 
-function Filter({ haveDate = true }) {
+function Filter({ haveDate = true, havePrice = true }) {
   const { data, error, isload } = useGetStoreQuery()
 
   //處理資料格式
@@ -81,7 +81,7 @@ function Filter({ haveDate = true }) {
       <FilterKeyword />
       <FilterStore state={state} className="d-none d-md-block" />
       {haveDate ? <FilterDate className="d-none d-md-block" /> : ''}
-      <FilterPrice className="d-none d-md-block" />
+      {havePrice ? <FilterPrice className="d-none d-md-block" /> : ''}
 
       <div className="d-flex justify-content-around">
         <Button
@@ -90,13 +90,21 @@ function Filter({ haveDate = true }) {
         >
           商品類別
         </Button>
-        <Button
-          onClick={toggleShowFilterOther}
-          className="text-white filter-store-btn rounded-5 px-3 fw-bold letter-spacing-2 bg-gray-dark border-0"
-        >
-          更多條件
-        </Button>
-        <SortSelect className="w-25 me-0 d-md-none"></SortSelect>
+        {havePrice ? (
+          <Button
+            onClick={toggleShowFilterOther}
+            className="text-white filter-store-btn rounded-5 px-3 fw-bold letter-spacing-2 bg-gray-dark border-0"
+          >
+            更多條件
+          </Button>
+        ) : (
+          ''
+        )}
+        {havePrice ? (
+          <SortSelect className="w-25 me-0 d-md-none"></SortSelect>
+        ) : (
+          ''
+        )}
       </div>
 
       <Modal
