@@ -354,13 +354,13 @@
     border: $skin-bright;
     color: $gray-darker;
       &:hover {
-        color: $secondary-dark;
-        background-color: $skin-bright;
-        border: $skin-bright;
+        color: $secondary-dark !important;
+        background-color: $skin-bright !important;
+        border: $skin-bright !important;
       }
       &:focus {
-        color: $secondary-dark;
-        background-color: $skin-bright;
+        color: $secondary-dark !important;
+        background-color: $skin-bright !important;
         border: $skin-bright;
         outline: none;
         box-shadow:none;
