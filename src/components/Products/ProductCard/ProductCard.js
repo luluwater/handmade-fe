@@ -22,7 +22,7 @@ import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
-import { scrollToTop } from '../../FIlter/Paginate'
+import { scrollToTop } from '../../Filter/Paginate'
 
 //取得圖片路徑
 function getImgsRouter(imgsName, category, productId, type) {

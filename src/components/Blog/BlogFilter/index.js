@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import FilterStore from '../../FIlter/FilterStore/FilterStore'
+import FilterStore from '../../Filter/FilterStore/FilterStore'
 import { useDispatch, useSelector } from 'react-redux'
-import { getNewData } from '../../FIlter/Filter'
+import { getNewData } from '../../Filter/Filter'
 import { useGetStoreQuery } from '../../../services/storeApi'
 import { addFilterStore } from '../../../slices/filterStore-silce'
-import FilterDate from '../../FIlter/FilterDate'
-import Paginate from '../../FIlter/Paginate'
+import FilterDate from '../../Filter/FilterDate'
+import Paginate from '../../Filter/Paginate'
 
 const BlogFilter = () => {
   const { data } = useGetStoreQuery()
