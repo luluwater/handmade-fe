@@ -5,7 +5,7 @@ import { useGetCourseCommentQuery } from '../../services/courseApi'
 import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '../../slices/counter-slice'
+import { increment, decrement, maxStocks } from '../../slices/counter-slice'
 import { addCourseCart, getCourseTotal } from '../../slices/courseCart-slice'
 
 import {
@@ -51,13 +51,13 @@ const CourseIntro = ({
     return moment(StockDate).format('YYYY-MM-DD')
   })
   const formatStartDate = moment(startDate).format('YYYY-MM-DD')
-  console.log('處理過的資料庫時段', formatStockDate)
-  console.log('處理過的選擇時段', formatStartDate)
+  // console.log('處理過的資料庫時段', formatStockDate)
+  // console.log('處理過的選擇時段', formatStartDate)
 
   const filterResult = stock.filter((value) => {
     return moment(value.date).format('YYYY-MM-DD') === formatStartDate
   })
-  console.log('filterResult', filterResult)
+  // console.log('filterResult', filterResult)
 
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
@@ -73,7 +73,6 @@ const CourseIntro = ({
     totalSum
   )
 
-  // 改用 score.length , 如果用 data.length 會一直跟後端要資料 -> 時間差問題 -> undefind
   const length = score?.length
   let average = sumWithInitial / length
   ////////// SCORE //////////
@@ -82,6 +81,7 @@ const CourseIntro = ({
   const dispatch = useDispatch()
   const quantity = useSelector((state) => state.counterReducer.value)
   const stockWarning = useSelector((state) => state.counterReducer.stockWarning)
+  ////////// COUNTER //////////
 
   const shopUrl = `/store/${storeId}`
 
@@ -93,7 +93,6 @@ const CourseIntro = ({
   })
   const date = formatStartDate
   const time = startTime
-  console.log('TOEFEF', time)
   ////////// 加入購物車 //////////
   const addToCourseCart = () => {
     dispatch(
@@ -161,12 +160,13 @@ const CourseIntro = ({
               {filterResult.length > 0 ? (
                 <Col className="mt-lg-6 ms-lg-5 my-lg-2 mb-sm-2">
                   {filterResult?.map((item) => {
-                    console.log('success')
                     return (
                       <Button
+                        key={item.id}
                         className="col-3 me-3 mb-3 course_time_btn"
                         onClick={() => {
                           setStartTime(item.time_start)
+                          dispatch(maxStocks(item.stock))
                         }}
                       >
                         {item.time_start}

@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Container } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from 'react-router-dom'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -35,7 +36,6 @@ function ProductCard() {
   const getData = data?.map((item) => {
     return item.isFavorite
   })
-  console.log('gatData', getData?.[38])
   const Info = [
     {
       productId: '39',
@@ -115,10 +115,10 @@ function ProductCard() {
               md={3}
               xs={6}
               className="product_detail_card_m px-3"
-              key={v.name}
+              key={v.productId}
             >
               {/* ========== 商品照片 ========== */}
-              <a href={v.link}>
+              <Link to={v.link}>
                 <Swiper
                   modules={[Navigation]}
                   navigation
@@ -130,9 +130,8 @@ function ProductCard() {
                 >
                   {v.img.map((v2, i2) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={v2}>
                         <img
-                          key={v2[0]}
                           className="swiper-slide product_detail_card_img"
                           src={v2}
                           alt="products"
@@ -141,21 +140,21 @@ function ProductCard() {
                     )
                   })}
                 </Swiper>
-              </a>
+              </Link>
 
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <a href={v.storeLink}>
-                    <p className="product_detail_card_store m-2 text-truncate">
-                      <small>| {v.store} |</small>
-                    </p>
-                  </a>
-                  <a href={v.link}>
+                  {/* <Link to={v.storeLink}> */}
+                  <p className="product_detail_card_store m-2 text-truncate">
+                    <small>| {v.store} |</small>
+                  </p>
+                  {/* </Link> */}
+                  <Link to={v.link}>
                     <h6 className="product_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>
-                  </a>
+                  </Link>
                   <h6 className="product_detail_card_text text-primary fw-bold m-1">
                     $ {v.price}
                   </h6>

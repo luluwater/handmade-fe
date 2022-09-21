@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   value: 1,
   stockWarning: '',
-  stocks: 0,
+  stock: 0,
 }
 
 export const counterSlice = createSlice({
@@ -11,10 +11,10 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state, action) => {
-      if (state.value < 5) {
+      if (state.value < state.stock) {
         state.value += action.payload
       }
-      if (state.value >= 5) {
+      if (state.value >= state.stock) {
         state.stockWarning = '庫存已達上限'
       }
     },
@@ -22,12 +22,15 @@ export const counterSlice = createSlice({
       if (state.value > 1) {
         state.value -= action.payload
       }
-      if (state.value < 5) {
+      if (state.value < state.stock) {
         state.stockWarning = ''
       }
+    },
+    maxStocks: (state, action) => {
+      state.stock = action.payload
     },
   },
 })
 
-export const { increment, decrement } = counterSlice.actions
+export const { increment, decrement, maxStocks } = counterSlice.actions
 export default counterSlice.reducer
