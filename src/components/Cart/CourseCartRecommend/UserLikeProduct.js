@@ -12,7 +12,7 @@ const UserLikeProduct = () => {
       setNewData([...data]?.sort(() => 0.5 - Math.random()))
     }
   }, [data])
-  
+
   // let newData = []
 
   // if (data) {
@@ -28,12 +28,13 @@ const UserLikeProduct = () => {
               <CartRecommendCard
                 type="product"
                 cartIcon="true"
-                id={item.product_id}
+                productId={item.product_id}
                 store={item.store_name}
                 name={item.product_name}
                 price={item.price}
-                img={item.img_name}
+                imgs={item.img_name}
                 category={item.category_en_name}
+                amount={item.amount}
               />
             </div>
           )

@@ -22,11 +22,11 @@ const YouWillLikeCourse = () => {
               <CartRecommendCard
                 type="course"
                 cartIcon=""
-                id={item.id}
+                productId={item.id}
                 store={item.store_name}
                 name={item.name}
                 price={item.price}
-                img={item.imgName}
+                imgs={item.imgName}
                 category={item.category_en_name}
               />
             </div>

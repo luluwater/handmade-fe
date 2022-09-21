@@ -17,6 +17,8 @@ import YouWillLikeProduct from './CourseCartRecommend/YouWillLikeProduct'
 import { v4 as uuidv4 } from 'uuid'
 
 const Cart = () => {
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
   const dispatch = useDispatch()
   const toggleCart = () => {
     dispatch(cartToggle())

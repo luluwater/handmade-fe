@@ -20,11 +20,11 @@ const UserLikeCourse = () => {
               <CartRecommendCard
                 type="course"
                 cartIcon=""
-                id={item.course_id}
+                productId={item.course_id}
                 store={item.store_name}
                 name={item.course_name}
                 price={item.price}
-                img={item.img_name}
+                imgs={item.img_name}
                 category={item.category_en_name}
               />
             </div>

@@ -2,15 +2,13 @@ import React from 'react'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import '../CourseCartInfo/CourseCartInfo.scss'
 import './Checkout.scss'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
-import { useGetOrderDetailQuery } from '../../../services/productOrderApi'
 
-const Checkout = () => {
-  const { orderId } = useParams()
-  // console.log('orderId', orderId)
-  const [getOrderDetail] = useGetOrderDetailQuery(orderId)
+const CourseCheckout = (data) => {
+  
+
   return (
     <>
       <Container fluid className="CheckoutPage">
@@ -27,7 +25,7 @@ const Checkout = () => {
                 <p className="fs-4 CheckoutPage_title">
                   您的訂單已完成，感謝您的訂購
                 </p>
-                <p>您的訂單編號為 #123456</p>
+                <p>您的訂單編號為 </p>
                 <p>課程報到確認信已寄至test@gmail.com</p>
                 <div className="d-flex align-items-center CheckoutPage_noteBox">
                   <p className="CheckoutPage_note">
@@ -88,4 +86,4 @@ const Checkout = () => {
   )
 }
 
-export default Checkout
+export default CourseCheckout

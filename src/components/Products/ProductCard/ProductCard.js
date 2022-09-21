@@ -5,7 +5,10 @@ import Card from 'react-bootstrap/Card'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProductCart } from '../../../slices/productCart-slice'
+import {
+  addProductCart,
+  getProductTotal,
+} from '../../../slices/productCart-slice'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -16,13 +19,12 @@ import {
 } from '../../../services/productApi'
 
 import cart from '../../../assets/cart.svg'
-import { getProductTotal } from '../../../slices/productCart-slice'
 import { Link } from 'react-router-dom'
 import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
-import { scrollToTop } from '../../FIlter/Paginate'
+import { scrollToTop } from '../../Filter/Paginate'
 
 //取得圖片路徑
 function getImgsRouter(imgsName, category, productId, type) {

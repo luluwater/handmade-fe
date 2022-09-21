@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 const YouWillLikeProduct = () => {
   const { data, error, isLoading } = useGetProductListQuery()
   const [newData, setNewData] = useState([])
+  console.log('data',data)
 
   useEffect(() => {
     if (data) {
@@ -28,12 +29,13 @@ const YouWillLikeProduct = () => {
               <CartRecommendCard
                 type="product"
                 cartIcon="true"
-                id={item.id}
+                productId={item.id}
                 store={item.store_name}
                 name={item.name}
                 price={item.price}
-                img={item.img_name}
+                imgs={item.img_name}
                 category={item.category_en_name}
+                amount={item.amount}
               />
             </div>
           )

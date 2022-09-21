@@ -73,7 +73,7 @@ const ProductCartInfo = () => {
     // TODO:抓取userid
     user_id: 1,
     // TODO:抓取couponid,有的話顯示，沒有給null
-    coupon_id: 0,
+    coupon_id: 28,
     create_time: moment(new Date()).format('YYYY-MM-DD'),
     name: orderName,
     phone: orderPhone,
@@ -95,7 +95,7 @@ const ProductCartInfo = () => {
       await createProductOrderDetail(ProductOrder)
       await clearCourseItems()
       await getProductTotal()
-      navigate(`/checkout/${productOrderId}`)
+      navigate(`/product_checkout/${productOrderId}`)
     } catch (e) {
       console.error(e)
     }
