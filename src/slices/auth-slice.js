@@ -25,12 +25,11 @@ export const userSlice = createSlice({
       state.googleUser = actions.payload.googleUser
       state.isLogin = true
     },
-    // login: (state, action) => {
-    //   state.user = action.payload
-    // },
-    // logout: (state) => {
-    //   state.user = null
-    // },
+    logout: (state, action) => {
+      state.user = {}
+      localStorage.removeItem('user', JSON.stringify(state.user))
+      state.isLogin = false
+    },
   },
 })
 export const { setUser, login, logout } = userSlice.actions

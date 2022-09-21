@@ -1,16 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUserLikesProductQuery } from '../../../services/userApi'
 import CartRecommendCard from './CartRecommendCard'
 import { v4 as uuidv4 } from 'uuid'
 
 const UserLikeProduct = () => {
   const { data } = useUserLikesProductQuery()
+  const [newData, setNewData] = useState([])
 
-  let newData = []
+  useEffect(() => {
+    if (data) {
+      setNewData([...data]?.sort(() => 0.5 - Math.random()))
+    }
+  }, [data])
+  
+  // let newData = []
 
-  if (data) {
-    newData = [...data]?.sort(() => 0.5 - Math.random())
-  }
+  // if (data) {
+  //   newData = [...data]?.sort(() => 0.5 - Math.random())
+  // }
 
   return (
     <>

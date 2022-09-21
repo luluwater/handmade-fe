@@ -1,16 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGetProductListQuery } from '../../../services/productApi'
 import CartRecommendCard from './CartRecommendCard'
 import { v4 as uuidv4 } from 'uuid'
 
 const YouWillLikeProduct = () => {
   const { data, error, isLoading } = useGetProductListQuery()
+  const [newData, setNewData] = useState([])
 
-  let newData = []
+  useEffect(() => {
+    if (data) {
+      setNewData([...data]?.sort(() => 0.5 - Math.random()))
+    }
+  }, [data])
 
-  if (data) {
-    newData = [...data]?.sort(() => 0.5 - Math.random())
-  }
+  // let newData = []
+
+  // if (data) {
+  //   newData = [...data]?.sort(() => 0.5 - Math.random())
+  // }
 
   return (
     <>

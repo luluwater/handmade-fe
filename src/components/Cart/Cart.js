@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 import { Row, Col, Nav, Tab, Form, InputGroup, Button } from 'react-bootstrap'
 import CourseCartItem from './CourseCartItem'
 import ProductCartItem from './ProductCartItem'
@@ -338,12 +340,13 @@ const Cart = () => {
                       <strong className="fs-5">實付金額</strong>
                       <strong className="fs-5">{ProductCartTotal}</strong>
                     </div>
-                    <Button
+                    <Link
+                      to="/product_cart"
                       variant="primary"
-                      className="Cart_nextBTN fs-5 mt-6 mb-10 text-center"
+                      className="Cart_nextBTN fs-5 mt-6 mb-10 text-center d-flex align-items-center justify-content-center"
                     >
                       繼續
-                    </Button>
+                    </Link>
                   </Col>
                 </Row>
               </Tab.Pane>

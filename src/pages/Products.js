@@ -56,7 +56,7 @@ function Proudcts() {
       })
     )
   }, [dispatch, filterStore, filterSearchWord, filterPrice, sort])
-  // console.log('pagination', productList)
+  console.log('pagination', productList)
   // console.log(
   //   'pagination:filter',
   //   useSelector((state) => state.paginationReducer.filter)
