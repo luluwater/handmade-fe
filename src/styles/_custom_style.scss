@@ -283,6 +283,12 @@ img {
   z-index: 99999;
 }
 
+.toast-addCouponMessage {
+  background: $dark !important;
+  color: $white !important;
+  z-index: 99999;
+}
+
 .avatar {
   width: 40px;
   height: 40px;

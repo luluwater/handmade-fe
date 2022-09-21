@@ -13,14 +13,6 @@ import { useUpdateUserAccountMutation } from '../../../services/userApi'
 import { Toast } from '../../UI/SwalStyle'
 
 const UserAccount = ({ id, account, name, phone, birthday, address }) => {
-  // console.log(
-  //   'account, name, phone, birthday, address',
-  //   account,
-  //   name,
-  //   phone,
-  //   birthday,
-  //   address
-  // )
   const [update] = useUpdateUserAccountMutation()
   const transformBirthday = moment(birthday).format('YYYY.MM.DD')
   const [showUserPassword, setShowUserPassword] = useState(false)

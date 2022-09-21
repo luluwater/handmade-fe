@@ -102,6 +102,12 @@
   &_img {
     object-fit: cover;
   }
+  &_link {
+    color: $secondary-dark !important;
+    &:hover {
+      color: $skin-bright !important;
+    }
+  } 
   &_btn {
     border: none;
     position: absolute;
@@ -113,23 +119,23 @@
     font-size: $h3-font-size;
     &:hover {
       border: none;
-      background-color: $secondary-dark;
-      color: $skin-bright;
+      background-color: $secondary-dark !important;
+      color: $skin-bright !important;
     }
     &:focus {
       outline: none;
       box-shadow:none;
       border: none;
-      background-color: $secondary-dark;
-      color: $skin-bright;
+      background-color: $secondary-dark !important;
+      color: $skin-bright !important;
     }
-    &:active:focus  {
-      border: none;
-      background-color: $secondary-dark;
-      color: $skin-bright;
-      outline: none;
-      box-shadow:none;
-    }
+    // &:active:focus  {
+    //   border: none;
+    //   background-color: $secondary-dark !important;
+    //   color: $skin-bright !important;
+    //   outline: none;
+    //   box-shadow:none;
+    // }
   }
 }
 

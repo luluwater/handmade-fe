@@ -4,7 +4,7 @@ import StoreBanner from '../components/Store/StoreBanner'
 import StoreCard from '../components/Store/StoreCard'
 import { Row, Col } from 'react-bootstrap'
 import { useGetStoreQuery } from '../services/storeApi'
-import Fitler from '../components/FIlter/Filter'
+import Fitler from '../components/Filter/Filter'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   pagination,

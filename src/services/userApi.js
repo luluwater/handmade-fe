@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../utils/config'
+const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
 export const userApiService = createApi({
   reducerPath: 'userApi',
@@ -7,10 +8,9 @@ export const userApiService = createApi({
   tagTypes: ['User'],
   endpoints: (builder) => ({
     createCoupon: builder.mutation({
-      query: (user_id) => ({
-        url: '/user/get-coupon',
-        method: 'POST',
-        body: user_id,
+      query: (userId) => ({
+        url: `user/${userId}/get-coupon`,
+        method: 'put',
       }),
       invalidatesTags: ['User'],
     }),
@@ -76,7 +76,7 @@ export const userApiService = createApi({
     }),
     removeUserFavoriteCourse: builder.mutation({
       query: (courseId) => ({
-        url: `course/${courseId}`,
+        url: `course/${courseId}?userId=${userId}`,
         method: 'DELETE',
         body: courseId,
       }),
@@ -88,7 +88,7 @@ export const userApiService = createApi({
     }),
     removeUserFavoriteProduct: builder.mutation({
       query: (productId) => ({
-        url: `product/${productId}`,
+        url: `product/${productId}?userId=${userId}`,
         method: 'delete',
         body: productId,
       }),
@@ -151,5 +151,5 @@ export const {
   useDeleteBlogMutation,
   useHideBlogMutation,
   useShowBlogMutation,
-  useLogOutMutation,
+  useRemoveUserFavoriteProductOnNewsMutation,
 } = userApiService
