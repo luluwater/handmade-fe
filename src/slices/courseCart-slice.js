@@ -5,24 +5,10 @@ import '../styles/style.scss'
 const initialState = {
   courseCartItem: localStorage.getItem('CourseCart')
     ? JSON.parse(localStorage.getItem('CourseCart'))
-    : [
-        {
-          id: '1',
-          stockId: '1',
-          name: '測試',
-          img: '金工_課程_以覺學_格紋戒指課程_kv1.webp',
-          price: '1000',
-          category: 'metalwork',
-          date: '2022.02.02',
-          time: '14:00',
-          quantity: 1,
-          totalPrice: '1000',
-          stocks: 15,
-          stockWarning: '',
-        },
-      ],
+    : [],
   totalQuantity: 0,
   totalAmount: 0,
+  isCartOpen: false,
 }
 
 const courseCartSlice = createSlice({
@@ -54,30 +40,36 @@ const courseCartSlice = createSlice({
           stocks: newItem.stocks,
           stockWarning: '',
         })
-        toast(`${action.payload.name} 成功加入購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-addCartMessage',
-        })
+        if (!state.isCartOpen) {
+          toast(`${action.payload.name} 成功加入購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-addCartMessage',
+          })
+        }
       } else if (existingItem && existingItem.quantity < existingItem.stocks) {
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(existingItem.price)
-        toast(`${action.payload.name} 已存在於購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-alreadyInCartMessage',
-        })
+        if (!state.isCartOpen) {
+          toast(`${action.payload.name} 已存在於購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-alreadyInCartMessage',
+          })
+        }
       } else if (existingItem && existingItem.quantity >= existingItem.stock) {
         existingItem.stockWarning = '已達庫存上限'
-        toast(`${action.payload.name} 已存在於購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-alreadyInCartMessage',
-        })
+        if (!state.isCartOpen) {
+          toast(`${action.payload.name} 已存在於購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-alreadyInCartMessage',
+          })
+        }
       }
       localStorage.setItem('CourseCart', JSON.stringify(state.courseCartItem))
     },
@@ -132,6 +124,13 @@ const courseCartSlice = createSlice({
       state.courseCartItem = []
       localStorage.setItem('CourseCart', JSON.stringify(state.courseCartItem))
     },
+    //==========確認購物車狀態============
+    CourseCartClose(state, action) {
+      state.isCartOpen = action.payload
+    },
+    CourseCartToggle(state) {
+      state.isCartOpen = !state.isCartOpen
+    },
   },
 })
 
@@ -141,5 +140,7 @@ export const {
   deleteCourseItem,
   getCourseTotal,
   clearCourseCart,
+  CourseCartClose,
+  CourseCartToggle,
 } = courseCartSlice.actions
 export default courseCartSlice.reducer

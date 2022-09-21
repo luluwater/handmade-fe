@@ -8,8 +8,11 @@ const cartUiSlice = createSlice({
     cartToggle(state) {
       state.cartIsVisible = !state.cartIsVisible
     },
+    cartClose(state, action) {
+      state.cartIsVisible = action.payload
+    },
   },
 })
 
-export const { cartToggle } = cartUiSlice.actions
+export const { cartToggle, cartClose } = cartUiSlice.actions
 export default cartUiSlice.reducer

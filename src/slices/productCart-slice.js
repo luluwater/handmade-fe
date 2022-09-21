@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
 
@@ -8,6 +8,8 @@ const initialState = {
     : [],
   totalQuantity: 0,
   totalAmount: 0,
+  coupon: 28,
+  isCartOpen: false,
 }
 
 const productCartSlice = createSlice({
@@ -37,30 +39,39 @@ const productCartSlice = createSlice({
           amount: newItem.amount,
           stockWarning: '',
         })
-        toast.success(`${action.payload.name} 成功加入購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-addCartMessage',
-        })
+
+        if (!state.isCartOpen) {
+          toast.success(`${action.payload.name} 成功加入購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-addCartMessage',
+          })
+        }
       } else if (existingItem && existingItem.quantity < existingItem.amount) {
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(newItem.price)
-        toast.info(`${action.payload.name} 已存在於購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-alreadyInCartMessage',
-        })
+
+        if (!state.isCartOpen) {
+          toast.info(`${action.payload.name} 已存在於購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-alreadyInCartMessage',
+          })
+        }
       } else if (existingItem && existingItem.quantity >= existingItem.amount) {
         existingItem.stockWarning = '已達庫存上限'
-        toast.info(`${action.payload.name} 已存在於購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-alreadyInCartMessage',
-        })
+
+        if (!state.isCartOpen) {
+          toast.info(`${action.payload.name} 已存在於購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-alreadyInCartMessage',
+          })
+        }
       }
 
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
@@ -118,10 +129,24 @@ const productCartSlice = createSlice({
       state.totalQuantity = quantity
       state.totalAmount = total
     },
+    // =========拿取coupon==========
+    getCoupon(state, action) {
+      state.coupon = action.payload
+      localStorage.setItem('ProductCoupon', JSON.stringify(state.coupon))
+    },
+    
     // ============清空購物車==========
     clearCart(state, action) {
       state.productCartItem = []
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
+    },
+
+    //==========確認購物車狀態============
+    ProductCartClose(state, action) {
+      state.isCartOpen = action.payload
+    },
+    ProductCartToggle(state) {
+      state.isCartOpen = !state.isCartOpen
     },
   },
 })
@@ -132,5 +157,8 @@ export const {
   deleteProductItem,
   getProductTotal,
   clearCart,
+  ProductCartClose,
+  ProductCartToggle,
+  getCoupon,
 } = productCartSlice.actions
 export default productCartSlice.reducer

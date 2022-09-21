@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useUserLikesProductQuery } from '../../../services/userApi'
 import CartRecommendCard from './CartRecommendCard'
-import { v4 as uuidv4 } from 'uuid'
 
-const UserLikeProduct = () => {
-  const { data } = useUserLikesProductQuery()
-  const [newData, setNewData] = useState([])
+const UserLikeProduct = ({userId}) => {
+  const { data } = useUserLikesProductQuery(userId)
+  const [Card, setCard] = useState([])
+
+  let newData = []
 
   useEffect(() => {
     if (data) {
-      setNewData([...data]?.sort(() => 0.5 - Math.random()))
+      newData = [...data]?.sort(() => 0.5 - Math.random())
+      setCard(newData)
     }
   }, [data])
 
-  // let newData = []
-
-  // if (data) {
-  //   newData = [...data]?.sort(() => 0.5 - Math.random())
-  // }
-
   return (
     <>
-      {newData?.map((item, i) => {
+      {Card?.map((item, i) => {
         if (i < 4) {
           return (
-            <div key={uuidv4()}>
+            <div key={'bb' + i}>
               <CartRecommendCard
                 type="product"
                 cartIcon="true"

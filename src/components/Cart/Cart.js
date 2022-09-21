@@ -1,15 +1,28 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import '../../styles/_custom_style.scss'
 
 import { Row, Col, Nav, Tab, Form, InputGroup, Button } from 'react-bootstrap'
 import CourseCartItem from './CourseCartItem'
 import ProductCartItem from './ProductCartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
-import { cartToggle } from '../../slices/cart-ui-slice'
-import { getProductTotal, clearCart } from '../../slices/productCart-slice'
-import { getCourseTotal, clearCourseCart } from '../../slices/courseCart-slice'
+import { cartToggle, cartClose } from '../../slices/cart-ui-slice'
+import {
+  ProductCartToggle,
+  ProductCartClose,
+} from '../../slices/productCart-slice'
 
+import { getProductTotal, clearCart } from '../../slices/productCart-slice'
+import {
+  getCourseTotal,
+  clearCourseCart,
+  CourseCartClose,
+  CourseCartToggle,
+} from '../../slices/courseCart-slice'
+
+import { useGetUserCouponsQuery } from '../../services/userApi'
 import UserLikeCourse from './CourseCartRecommend/UserLikeCourse'
 import YouWillLikeCourse from './CourseCartRecommend/YouWillLikeCourse'
 import UserLikeProduct from './CourseCartRecommend/UserLikeProduct'
@@ -17,13 +30,30 @@ import YouWillLikeProduct from './CourseCartRecommend/YouWillLikeProduct'
 import { v4 as uuidv4 } from 'uuid'
 
 const Cart = () => {
+  const navigate = useNavigate()
+
+  // =========登入狀態=========
+  const authReducers = useSelector((state) => state.authReducers)
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
+  // =========拿取user Coupon=======
+  const { data } = useGetUserCouponsQuery(userId)
+
+  console.log('userCoupon', data)
 
   const dispatch = useDispatch()
   const toggleCart = () => {
     dispatch(cartToggle())
+    dispatch(ProductCartToggle())
+    dispatch(CourseCartToggle())
   }
-  // 課程購物車slice
+  const closeCart = () => {
+    dispatch(cartClose(false))
+    dispatch(ProductCartClose(false))
+    dispatch(CourseCartClose(false))
+  }
+
+  // ========課程購物車slice========
   const CourseItem = useSelector(
     (state) => state.courseCartReducer.courseCartItem
   )
@@ -47,6 +77,38 @@ const Cart = () => {
 
   const clearProductCart = () => {
     dispatch(clearCart())
+  }
+
+  const ProuductContinue = (e) => {
+    e.preventDefault()
+    if (userId && ProductItem.length > 0) {
+      navigate(`/product_cart`)
+    } else if (ProductItem.length <= 0) {
+      Swal.fire({
+        title: '請先選購商品',
+        confirmButtonColor: '#779cb2',
+        color: '#5f5c51',
+        background: '#e2dad2',
+        customClass: 'CartSwal',
+      })
+    } else if (!userId) {
+      Swal.fire({
+        title: '請先登入後再繼續結帳',
+        showDenyButton: true,
+        confirmButtonText: '登入',
+        denyButtonText: `取消`,
+        confirmButtonColor: '#779cb2',
+        denyButtonColor: '#e77656',
+        background: '#e2dad2',
+        color: '#5f5c51',
+        customClass: 'CartSwal',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/Login`)
+          closeCart()
+        }
+      })
+    }
   }
 
   useEffect(() => {
@@ -170,14 +232,19 @@ const Cart = () => {
                       </>
                     )}
 
-                    <Row className="Cart_userLikeBox">
-                      <p className="fs-5 text-center">您的課程收藏清單</p>
-                      <Row className="mb-5">
-                        <Col className="d-flex justify-content-center Cart_userLike">
-                          <UserLikeCourse />
-                        </Col>
+                    {userId ? (
+                      <Row className="Cart_userLikeBox">
+                        <p className="fs-5 text-center">您的課程收藏清單</p>
+                        <Row className="mb-5">
+                          <Col className="d-flex justify-content-center Cart_userLike">
+                            <UserLikeCourse />
+                          </Col>
+                        </Row>
                       </Row>
-                    </Row>
+                    ) : (
+                      ''
+                    )}
+
                     <Row className="Cart_youMightLikeBox">
                       <p className="fs-5 text-center">您可能會喜歡</p>
                       <Row className="mb-5">
@@ -264,11 +331,24 @@ const Cart = () => {
                         </div>
                         <Row className="Cart_couponBox d-flex align-items-center">
                           <Col xs={3} className="Cart_couponSelect">
-                            <Form.Select aria-label="Default select example">
-                              <option>使用折價券</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                            <Form.Select aria-label="userCoupon">
+                              <option value="28">使用折價券</option>
+                              {userId ? (
+                                <>
+                                  {data?.map((item) => {
+                                    if (item.state === 1) {
+                                      return (
+                                        <option value={item.coupon_id}>
+                                          {item.coupon_name}
+                                        </option>
+                                      )
+                                    }
+                                  })}
+                                  )
+                                </>
+                              ) : (
+                                ''
+                              )}
                             </Form.Select>
                           </Col>
 
@@ -303,14 +383,19 @@ const Cart = () => {
                       <ProductCartItem />
                     </div> */}
 
-                    <Row className="Cart_userLikeBox">
-                      <p className="fs-5 text-center">您的商品收藏清單</p>
-                      <Row className="mb-5">
-                        <Col className="d-flex justify-content-center Cart_userLike">
-                          <UserLikeProduct />
-                        </Col>
+                    {userId ? (
+                      <Row className="Cart_userLikeBox">
+                        <p className="fs-5 text-center">您的商品收藏清單</p>
+                        <Row className="mb-5">
+                          <Col className="d-flex justify-content-center Cart_userLike">
+                            <UserLikeProduct userId={userId} />
+                          </Col>
+                        </Row>
                       </Row>
-                    </Row>
+                    ) : (
+                      ''
+                    )}
+
                     <Row className="Cart_youMightLikeBox">
                       <p className="fs-5 text-center">您可能會喜歡</p>
                       <Row className="mb-5">
@@ -342,13 +427,13 @@ const Cart = () => {
                       <strong className="fs-5">實付金額</strong>
                       <strong className="fs-5">{ProductCartTotal}</strong>
                     </div>
-                    <Link
-                      to="/product_cart"
+                    <Button
+                      onClick={ProuductContinue}
                       variant="primary"
                       className="Cart_nextBTN fs-5 mt-6 mb-10 text-center d-flex align-items-center justify-content-center"
                     >
                       繼續
-                    </Link>
+                    </Button>
                   </Col>
                 </Row>
               </Tab.Pane>

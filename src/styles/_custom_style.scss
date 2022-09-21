@@ -287,3 +287,23 @@ img {
   width: 40px;
   height: 40px;
 }
+
+.CartSwal{
+  .swal2-title{
+    margin-top: 1.5px;
+    margin-bottom: 1.5px;
+  font-size: 1.5rem !important;
+
+  }
+  .swal2-styled.swal2-confirm,.swal2-deny{
+    border-radius: 0 !important;
+    height: 2.5rem;
+    line-height: 1.25rem;
+
+  }
+  
+}
+.swal2-popup{
+  border-radius: 0 !important;
+
+}

@@ -40,7 +40,7 @@ const Signup = () => {
 
     onSubmit: (values) => {
       register({
-        id: Date.now(),
+        id: userId,
         account: values.account,
         email: values.email,
         password: values.password,

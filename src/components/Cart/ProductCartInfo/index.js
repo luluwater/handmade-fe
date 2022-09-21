@@ -265,13 +265,17 @@ const ProductCartInfo = () => {
             </header>
             <Row>
               <Col xs={12} md={2} className="CourseCartInfo_previous_page">
-                <a href="/">
+                <Button
+                  onClick={() => {
+                    navigate(-1)
+                  }}
+                >
                   <FontAwesomeIcon
                     icon="fa-solid fa-chevron-left"
                     className="CourseCartInfo_arrow"
                   />
                   修改購物車
-                </a>
+                </Button>
               </Col>
               <Col xs={12} md={10} className="ProductCartInfo_inputBox">
                 <p className="fs-4 ProductCartInfo_inputTitle">訂購人資訊</p>
