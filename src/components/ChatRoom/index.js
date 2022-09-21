@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './ChatRoom.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -13,12 +13,12 @@ import useSocket from '../../hooks/socketConnect'
 import { useSelector, useDispatch } from 'react-redux'
 
 const ChatRoom = () => {
-  const { data } = useGetRoomsQuery('all')
   const sliceAuth = useSelector((state) => state.authReducers)
   const dispatch = useDispatch()
   const userData = JSON.parse(localStorage.getItem('user'))?.user
-
-  // useSocket(userData || sliceAuth?.user, dispatch)
+  useSocket(userData || sliceAuth?.user, dispatch)
+  const chatReducer = useSelector((state) => state.chatReducer)
+  const rooms = chatReducer.chatRooms
 
   return (
     <>
@@ -30,10 +30,11 @@ const ChatRoom = () => {
           </Col>
           <Col md={9}>
             <Row className="gap-4 gap-md-0 gap-bottom-4 mt-8">
-              {data?.map((room) => {
+              {rooms?.map((room) => {
                 return (
                   <Col key={room.id} className="mt-0 mb-5" md={4}>
                     <RoomCard
+                      room={room}
                       endpoint={room.endpoint}
                       roomName={room.room_title}
                       roomImg={room.img_url}

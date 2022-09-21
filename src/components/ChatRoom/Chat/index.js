@@ -16,34 +16,39 @@ import {
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
+import ChatToast from '../../UI/ChatToast'
+import { addMesssage } from '../../../slices/chat-slice'
 import useSocket from '../../../hooks/socketConnect'
 
 const Chat = () => {
   const { chatId } = useParams()
-  const { data } = useGetRoomsQuery('all')
+  const [message, setMessage] = useState('')
+  const [sendMessage, { isLoading }] = useSendMessageMutation()
+  // TODO:EMOJI
+  const [showPicker, setShowPicker] = useState(false)
+
   const dispatch = useDispatch()
-  const currentChat = data?.filter((room) => {
+  const rooms = useSelector((state) => state.chatReducer).chatRooms
+
+  const currentChat = rooms?.filter((room) => {
     return room.endpoint === `/${chatId}`
   })
 
   //兩個 user
   const sliceAuth = useSelector((state) => state.authReducers)
   const userData = JSON.parse(localStorage.getItem('user'))?.user
-
   useSocket(userData || sliceAuth?.user, dispatch)
 
-  //socket
-  const socket = useSelector((state) => state.chatReducer.socket)
+  const navigate = useNavigate()
+  const chatReducer = useSelector((state) => state.chatReducer)
+  const socket = chatReducer.socket
 
-  const [message, setMessage] = useState('')
+  useEffect(() => {
+    socket.emit('join', { userData: userData, currentChat: currentChat[0] })
+  }, [])
 
-  //todo:不確定是不是放這
+  const welcomeMsg = chatReducer.welcomeMsg
 
-  const [sendMessage, { isLoading }] = useSendMessageMutation()
-  // TODO:EMOJI
-  const [showPicker, setShowPicker] = useState(false)
-
-  //TODO:INPUT 改變事件
   const handleChange = (e) => {
     setMessage(e.target.value)
   }
@@ -52,8 +57,7 @@ const Chat = () => {
   }
 
   //send msg
-  const handleSendMsg = (imgUpload) => {
-    //考慮一下這裡要不要放imgupload
+  const handleSendMsg = async (imgUpload) => {
     if (message.length < 1 && !imgUpload) return
 
     const msg = {
@@ -63,10 +67,10 @@ const Chat = () => {
       created_at: moment().format('YYYY-MM-DD h:mm:ss'),
       room_id: currentChat?.[0].id,
     }
-    sendMessage(msg)
-    //TODO: SNEDMSG
-    socket.emit('sendMsg', msg)
-    setMessage('')
+    await socket.emit('msgFromClient', msg)
+    await sendMessage(msg)
+    await dispatch(addMesssage([msg]))
+    await setMessage('')
   }
 
   const handleShowPicker = () => {
@@ -74,31 +78,33 @@ const Chat = () => {
   }
 
   return (
-    <Container className="my-8">
-      <Row>
-        <Col className="bg-skin-dark" lg={3}>
-          <div className="d-flex align-items-center gap-3 p-1 m-3 bg-skin-brighter">
-            <img
-              className="chat_avatar"
-              src={require('../../../assets/user/profile_2.png')}
-              alt="user avatar"
-            />
+    <>
+      <Container className="my-8">
+        <ChatToast text={welcomeMsg} />
+        <Row>
+          <Col className="bg-skin-dark" lg={3}>
+            <div className="d-flex align-items-center gap-3 p-1 m-3 bg-skin-brighter">
+              <img
+                className="chat_avatar"
+                src={require('../../../assets/user/profile_2.png')}
+                alt="user avatar"
+              />
 
-            <span>{userData.account}</span>
-          </div>
-          <div className="p-1 m-3">
-            {/* TODO: 從 SOCKET 裡面拿 */}
-            <div className="d-flex align-items-center">
-              <h5 className="text-gray-darker m-0">線上成員</h5>
-              <div className="chat_amount fs-6 fw-bold ms-2 p-1 bg-dark rounded-circle text-white d-flex justify-content-center align-items-center">
-                22
-              </div>
+              <span>{userData.account}</span>
             </div>
-            <hr />
+            <div className="p-1 m-3">
+              {/* TODO: 從 SOCKET 裡面拿 */}
+              <div className="d-flex align-items-center">
+                <h5 className="text-gray-darker m-0">線上成員</h5>
+                <div className="chat_amount fs-6 fw-bold ms-2 p-1 bg-dark rounded-circle text-white d-flex justify-content-center align-items-center">
+                  22
+                </div>
+              </div>
+              <hr />
 
-            {/* TODO: socket 裡拿用來顯示目前連線的使用者 */}
-            <ListGroup className="d-flex gap-3 rounded-0">
-              {/* {data?.map((room) => {
+              {/* TODO: socket 裡拿用來顯示目前連線的使用者 */}
+              <ListGroup className="d-flex gap-3 rounded-0">
+                {/* {data?.map((room) => {
                 return (
                   <ListGroup.Item
                     key={room.id}
@@ -119,67 +125,68 @@ const Chat = () => {
                   </ListGroup.Item>
                 )
               })} */}
-            </ListGroup>
-          </div>
-        </Col>
-        <Col
-          className="chat_wrapper bg-skin-bright position-absolute position-md-relative py-3"
-          lg={9}
-        >
-          <RoomBody data={currentChat} />
+              </ListGroup>
+            </div>
+          </Col>
+          <Col
+            className="chat_wrapper bg-skin-bright position-absolute position-md-relative py-3"
+            lg={9}
+          >
+            <RoomBody data={currentChat} />
 
-          <Form>
-            <Form.Group className="m-2 d-flex align-items-center">
-              <InputGroup>
-                <Form.Control
-                  as="textarea"
-                  required
-                  value={message}
-                  className="rounded-start"
-                  onChange={handleChange}
-                  onKeyDown={handleKeyDown}
-                  style={{ height: '20px', resize: 'none' }}
-                />
-                <FontAwesomeIcon
-                  onClick={handleShowPicker}
-                  className="position-absolute top-50 start-98 translate-middle"
-                  icon="fa-regular fa-face-smile"
-                />
-                {showPicker && <EmojiPicker />}
-              </InputGroup>{' '}
-              <DropdownButton
-                id={`dropdown-button-drop-up`}
-                drop="up"
-                variant="skin-brighter border-0"
-              >
-                <Dropdown.Item
-                  className="d-flex justify-content-around align-items-center"
-                  eventKey="1"
+            <Form>
+              <Form.Group className="m-2 d-flex align-items-center">
+                <InputGroup>
+                  <Form.Control
+                    as="textarea"
+                    required
+                    value={message}
+                    className="rounded-start"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    style={{ height: '20px', resize: 'none' }}
+                  />
+                  <FontAwesomeIcon
+                    onClick={handleShowPicker}
+                    className="position-absolute top-50 start-98 translate-middle"
+                    icon="fa-regular fa-face-smile"
+                  />
+                  {showPicker && <EmojiPicker />}
+                </InputGroup>
+                <DropdownButton
+                  id={`dropdown-button-drop-up`}
+                  drop="up"
+                  variant="skin-brighter border-0"
                 >
-                  上傳圖片
-                  <FontAwesomeIcon icon="fa-solid fa-plus" />
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className="d-flex justify-content-around align-items-center"
-                  eventKey="1"
+                  <Dropdown.Item
+                    className="d-flex justify-content-around align-items-center"
+                    eventKey="1"
+                  >
+                    上傳圖片
+                    <FontAwesomeIcon icon="fa-solid fa-plus" />
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    className="d-flex justify-content-around align-items-center"
+                    eventKey="1"
+                  >
+                    個人資訊
+                    <FontAwesomeIcon icon="fa-solid fa-circle-info" />
+                  </Dropdown.Item>
+                </DropdownButton>
+                <Button
+                  onClick={handleSendMsg}
+                  disabled={isLoading}
+                  className="bg-skin-brighter border-0 border-start  rounded-end"
+                  type="submit"
                 >
-                  個人資訊
-                  <FontAwesomeIcon icon="fa-solid fa-circle-info" />
-                </Dropdown.Item>
-              </DropdownButton>
-              <Button
-                onClick={handleSendMsg}
-                disabled={isLoading}
-                className="bg-skin-brighter border-0 border-start  rounded-end"
-                type="submit"
-              >
-                <FontAwesomeIcon icon="fa-regular fa-paper-plane" />
-              </Button>
-            </Form.Group>
-          </Form>
-        </Col>{' '}
-      </Row>{' '}
-    </Container>
+                  <FontAwesomeIcon icon="fa-regular fa-paper-plane" />
+                </Button>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </>
   )
 }
 

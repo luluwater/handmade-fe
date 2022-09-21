@@ -2,7 +2,14 @@ import { useEffect } from 'react'
 import io from 'socket.io-client'
 import { BASE_URL } from '../utils/config'
 import { useGetRoomsQuery } from '../services/chatApi'
-import { setSocket, addMesssage } from '../slices/chat-slice'
+import {
+  setSocket,
+  addMesssage,
+  setJoinRoomMsg,
+  setWelcomeMsg,
+  fetchAllRooms,
+} from '../slices/chat-slice'
+import { useSelector } from 'react-redux'
 
 /**
  * SOCKET TODO
@@ -43,33 +50,79 @@ import { setSocket, addMesssage } from '../slices/chat-slice'
 function useSocket(user, dispatch) {
   const { data } = useGetRoomsQuery('all')
 
-  // console.log('user in useSocket', user)
-  // console.log('data in useSocket', data)
+  const userData = JSON.parse(localStorage.getItem('user'))?.user
+  const chatReducer = useSelector((state) => state.chatReducer)
+  const currentRoom = chatReducer.currentRoom
+  const newMessage = chatReducer.newMessage
 
   useEffect(() => {
     const socket = io(BASE_URL, {
       withCredentials: true,
     })
-
     dispatch(setSocket(socket))
-    console.log(user)
 
-    socket.emit('join', user)
+    // socket.emit('join', user)
 
-    socket.on('message', (msg) => {
-      console.log(msg)
+    socket.on('rooms', (rooms) => {
+      dispatch(fetchAllRooms(rooms))
     })
 
-    //用 disptch 傳到狀態中
-    socket.on('responseMsg', (msg) => {
-      dispatch(addMesssage(msg))
-      // console.log('responseMsg', msg)
+    socket.on('welcome-user-msg', (welcomeMsg) => {
+      dispatch(setWelcomeMsg(welcomeMsg))
     })
 
-    socket.on('typing', (user) => {
-      console.log(user)
+    socket.on('responseMsg', (responseMsg) => {
+      console.log('responseMsg in socket', responseMsg)
+      dispatch(addMesssage(responseMsg))
     })
-  }, [])
+  }, [dispatch])
 }
 
 export default useSocket
+
+// useEffect(() => {
+//   const socket = io(BASE_URL, {
+//     withCredentials: true,
+//   })
+//   dispatch(setSocket({ socket }))
+
+//   socket.emit('joinRoom', currentRoom)
+
+//   // socket.on('join-room-message', (msg) => {
+//   //   dispatch(setJoinRoomMsg(msg))
+//   // })
+
+//   socket.emit('join-room-user', userData)
+
+//   socket.on('welcome-user-msg', (msg) => {
+//     console.log('In HOOKKKK', msg)
+//     dispatch(setWelcomeMsg(msg))
+//   })
+
+//   console.log('newMessage in hook', newMessage)
+
+//   socket.emit('sendMsg', newMessage)
+
+//   socket.on('responseMsg', (msg) => {
+//     console.log('responseMsg', msg)
+//     // dispatch(addMesssage(msg))
+//   })
+
+//   // console.log(user)
+
+//   // socket.emit('join', user)
+
+//   // socket.on('message', (msg) => {
+//   //   console.log(msg)
+//   // })
+
+//   // //用 disptch 傳到狀態中
+//   // socket.on('responseMsg', (msg) => {
+//   //   dispatch(addMesssage(msg))
+//   //   // console.log('responseMsg', msg)
+//   // })
+
+//   // socket.on('typing', (user) => {
+//   //   console.log(user)
+//   // })
+// }, [newMessage])

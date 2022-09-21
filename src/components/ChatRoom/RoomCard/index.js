@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function RoomCard({ roomName, endpoint, roomImg }) {
   return (
-    <Card>
-      <Card.Body className="px-0 py-0 rounded">
+    <Card className="rounded-3">
+      <Card.Body className="px-0 py-0">
         <div className="max-h-md-175">
           <img
             className="max-h-md-175 w-100 object-fit"

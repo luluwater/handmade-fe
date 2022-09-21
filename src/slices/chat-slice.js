@@ -7,14 +7,16 @@ import { createSlice, current } from '@reduxjs/toolkit'
  */
 
 const initialState = {
+  chatRooms: [],
   chats: [],
-  currentChat: {},
+  currentRoom: {},
   socket: {},
   newMessage: [],
   scrollBottom: 0,
   senderTyping: { typing: false },
-  //TODO:加入 HISTORY 的欄位，這個拿來抓後端資料
   history: [],
+  joinRoomMsg: '',
+  welcomeMsg: '',
 }
 
 export const chatSilce = createSlice({
@@ -27,14 +29,47 @@ export const chatSilce = createSlice({
         socket: action.payload,
       }
     },
+
+    fetchAllRooms: (state, action) => {
+      return { ...state, chatRooms: action.payload }
+    },
+
+    currentRoom: (state, action) => {
+      return { ...state, currentRoom: action.payload }
+    },
+
+    // setJoinRoomMsg: (state, action) => {
+    //   return { ...state, joinRoomMsg: action.payload }
+    // },
+
+    setWelcomeMsg: (state, action) => {
+      // console.log('in slice ', action.payload)
+      return { ...state, welcomeMsg: action.payload }
+    },
+
+    getMessage: (state, action) => {},
+
+    getRooms: (state, action) => {},
+
+    //TODO:抓到後端 MSG 再把 NEW MSG 塞到狀態裡
     addMesssage: (state, action) => {
+      console.log('state.currentRoom', current(state.currentRoom))
       return {
         ...state,
+        currentRoom: state.currentRoom.msg.concat(action.payload),
         newMessage: state.newMessage.concat(action.payload),
       }
     },
   },
 })
 
-export const { setSocket, addMesssage } = chatSilce.actions
+export const {
+  sendMesssage,
+  setSocket,
+  addMesssage,
+  setJoinRoomMsg,
+  currentRoom,
+  setWelcomeMsg,
+  fetchAllRooms,
+} = chatSilce.actions
 export default chatSilce.reducer

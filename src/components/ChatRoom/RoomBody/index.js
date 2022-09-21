@@ -2,33 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button, Container } from 'react-bootstrap'
 import moment from 'moment/moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+import useSocket from '../../../hooks/socketConnect'
+import { currentRoom } from '../../../slices/chat-slice'
 
 const RoomBody = ({ data }) => {
   const [isCurrentUser, setIsCurrentUser] = useState(true)
-  const newMessage = useSelector((state) => state.chatReducer.newMessage)
 
-  const userData = JSON.parse(localStorage.getItem('user'))
+  const newMessage = useSelector((state) => state.chatReducer).newMessage
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const currentUser = newMessage.find((item) => {
-      return item.user_id === userData.user.id
-    })
-    setIsCurrentUser(currentUser)
-  }, [])
-  console.log(isCurrentUser)
-
-  const isSliceMsg = newMessage.length !== 0
+    dispatch(currentRoom(data?.[0]))
+  }, [dispatch])
 
   return (
     <>
       {data?.map((currentChat) => {
-        //TODO:先用狀態擋著
-        let finalMsg = isSliceMsg ? newMessage : currentChat?.msg
-
         return (
           <div key={currentChat.id}>
             <div className="position-relative text-center mt-3 ">
@@ -52,7 +45,8 @@ const RoomBody = ({ data }) => {
             {isCurrentUser ? (
               <>
                 <ListGroup className="chat_body d-flex flex-column gap-3 my-5">
-                  {newMessage.map((m) => {
+                  {currentChat.msg.map((m) => {
+                    console.log(currentChat.msg)
                     return (
                       <div key={m.message_id}>
                         <div className="d-flex align-items-start gap-3">
@@ -106,3 +100,9 @@ const RoomBody = ({ data }) => {
 }
 
 export default RoomBody
+
+//  //TODO:先用狀態擋著
+//  let finalMsg = isSliceMsg ? newMessage : currentChat?.msg
+//  const finalMsg = currentChat?.msg.concat(newMessage)
+
+//  console.log('finalMsg', finalMsg)
