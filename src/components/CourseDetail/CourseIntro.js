@@ -146,7 +146,7 @@ const CourseIntro = ({
         </Col>
         {/* ========== */}
         <Row className="d-flex">
-          <Col className="d-flex flex-column mt-5 course_date col-lg-4 col-sm-12 align-items-center">
+          <Col className="d-flex flex-column mt-5 datepicker_style col-lg-4 col-sm-12 align-items-center">
             <h6 className="course_order_title mt-1 mb-3">預約日期與時段</h6>
             <DatePicker
               selected={startDate}
