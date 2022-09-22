@@ -27,6 +27,8 @@ const BlogCreate = () => {
   const [blogId, setBlogId] = useState(uuidv4())
   const [addTagName, setAddTagName] = useState([])
 
+  const localUser = JSON.parse(localStorage.getItem('user'))?.user
+
   const navigate = useNavigate()
 
   const handleContentChange = (e, editor) => {
@@ -152,7 +154,7 @@ const BlogCreate = () => {
                 <Modal.Body className="py-md-12 px-md-6 overflow-hidden">
                   <h4 className="mb-3 fs-5 ">
                     <span className="text-muted">發布人：</span>
-                    {/* {localUser.account} */}
+                    {localUser.account}
                   </h4>
                   <div className="d-flex flex-column gap-md-6 gap-5">
                     <Form.Select

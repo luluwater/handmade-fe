@@ -25,7 +25,10 @@ const BlogItem = ({
   if (content === undefined) return
 
   return (
-    <div className="mb-2 d-flex flex-column flex-lg-row gap-6 pb-4 mb-6 border-bottom ">
+    <div
+      data-aos="fade-up"
+      className="mb-2 d-flex flex-column flex-lg-row gap-6 pb-4 mb-6 border-bottom "
+    >
       <div className="blog_list_img">
         <Link to={`/blog/${id}`}>
           <img
