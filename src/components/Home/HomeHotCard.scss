@@ -14,6 +14,7 @@
 .home_hotCard{
     width: 420px;
     height: 610px;
+    margin-bottom: 0px;
 
     &_pic{
         display: inline-block;
@@ -63,6 +64,7 @@
     }
 }
 .home_card{
+    height: 550px;
     .swiper-button-prev, .swiper-button-next{
         cursor: default;
     }

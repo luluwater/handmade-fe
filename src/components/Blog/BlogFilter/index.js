@@ -5,6 +5,7 @@ import { getNewData } from '../../FIlter/Filter'
 import { useGetStoreQuery } from '../../../services/storeApi'
 import { addFilterStore } from '../../../slices/filterStore-silce'
 import FilterDate from '../../FIlter/FilterDate'
+import Paginate from '../../FIlter/Paginate'
 
 const BlogFilter = () => {
   const { data } = useGetStoreQuery()

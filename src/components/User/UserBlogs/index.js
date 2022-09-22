@@ -17,7 +17,8 @@ const UserBlogs = () => {
   const [deleteBlog] = useDeleteBlogMutation()
   const [hideBlog] = useHideBlogMutation()
   const [showBlog] = useShowBlogMutation()
-  const { data } = useGetUserBlogQuery()
+  const userDataId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const { data } = useGetUserBlogQuery(userDataId)
 
   if (!data)
     return (
@@ -108,7 +109,7 @@ const UserBlogs = () => {
               <tbody key={item.blog_id}>
                 <tr className="text-center align-middle">
                   <td>{item.category_name}</td>
-                  <td className="user_likes_blogTitle text-start  user_likes_ellipsis">
+                  <td className="user_likes_blogTitle text-start user_likes_ellipsis">
                     <Link
                       to={`/blog/${item.blog_id}`}
                       className="user_orders_link fw-bold"

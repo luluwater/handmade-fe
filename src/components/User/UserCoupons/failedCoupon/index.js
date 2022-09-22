@@ -7,7 +7,8 @@ import { useGetUserCouponsQuery } from '../../../../services/userApi'
 import moment from 'moment'
 
 const FailedCoupon = () => {
-  const { data } = useGetUserCouponsQuery()
+  const userDataId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const { data } = useGetUserCouponsQuery(userDataId)
   if (!data)
     return (
       <p className="user_coupon_title text-center py-3" colSpan={6}>

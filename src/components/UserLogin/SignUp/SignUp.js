@@ -16,6 +16,7 @@ const Signup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const navigate = useNavigate()
+  const userId = Math.floor(Math.random() * 10000)
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +40,7 @@ const Signup = () => {
 
     onSubmit: (values) => {
       register({
-        id: Date.now(),
+        id: userId,
         account: values.account,
         email: values.email,
         password: values.password,
