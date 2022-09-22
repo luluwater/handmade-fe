@@ -30,6 +30,7 @@ const UserPassword = ({ closeUserPassword, id }) => {
   })
 
   const handleClosed = async () => {
+    if (!passwordIsAllvalid) return
     try {
       await Toast.fire({
         icon: 'success',
@@ -45,6 +46,8 @@ const UserPassword = ({ closeUserPassword, id }) => {
   const showconfirmPasswordError =
     formik.touched.confirmPassword && formik.errors.confirmPassword
 
+  const passwordIsAllvalid =
+    formik.values.password && formik.values.confirmPassword
   const isAllvalid = !showPasswordError && !showconfirmPasswordError
 
   return (

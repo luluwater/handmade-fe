@@ -278,18 +278,20 @@
     font-size: $h6-font-size;
     background-color: $primary;
     &:hover {
-      background-color: $secondary;
-      color: $skin-brighter;
+      background-color: $secondary-dark !important;
+      color: $skin-brighter !important;
     }
     &:active {
+      background-color: $secondary-dark !important;
+      color: $skin-brighter !important;
       outline: none !important;
       box-shadow:none !important;
     }
-    &:focus {
-      border: none !important;
-      outline: none !important;
-      box-shadow:none !important;
-    }
+    // &:focus {
+    //   border: none !important;
+    //   outline: none !important;
+    //   box-shadow: none !important;
+    // }
   }
   &_show {
     width: 50px;
