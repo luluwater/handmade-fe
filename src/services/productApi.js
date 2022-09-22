@@ -13,7 +13,7 @@ export const productApiService = createApi({
       providesTags: ['product'],
     }),
     getProductDetail: builder.query({
-      query: (productId) => `product/detail/${productId}`,
+      query: (productId) => `product/detail/${productId}?userId=${userId}`,
       providesTags: ['product'],
     }),
     getProductComment: builder.query({

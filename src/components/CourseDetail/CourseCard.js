@@ -86,6 +86,8 @@ function CourseCard() {
   ////////// isFavorite //////////
   const [aaddUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
   return (
     <>
       <h4 className="mb-5 course_detail_card_title text-center mt-10 mb-8 fw-bold">
@@ -149,6 +151,7 @@ function CourseCard() {
                 <div className="d-flex align-items-center me-2">
                   <button
                     onClick={() => {
+                      if (!userId) return (window.location.href = '/login')
                       if (v.isFavorite) {
                         removeUserFavoriteCourse({
                           courseId: v.courseId,

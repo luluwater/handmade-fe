@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useGetCourseCommentQuery } from '../../services/courseApi'
 import { useParams } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,6 +8,7 @@ import { increment, decrement, maxStocks } from '../../slices/counter-slice'
 import { addCourseCart, getCourseTotal } from '../../slices/courseCart-slice'
 
 import {
+  useGetCourseCommentQuery,
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } from '../../services/courseApi'
@@ -35,6 +35,7 @@ const CourseIntro = ({
   ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
   const [startTime, setStartTime] = useState('')
+  // const [isFavorite, setIsFavorite] = useState(false)
 
   ////////// GetDate //////////
   function handleOnChange(date) {
@@ -119,7 +120,8 @@ const CourseIntro = ({
   }, [CourseItem, dispatch])
 
   ////////// isFavorite //////////
-  const [aaddUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
 
   return (
@@ -242,14 +244,17 @@ const CourseIntro = ({
 
               <Button
                 onClick={() => {
+                  if (!userId) return (window.location.href = '/login')
                   if (isFavorite) {
+                    // setIsFavorite((pre) => !pre)
                     removeUserFavoriteCourse({
                       courseId: id,
                       storeId,
                       categoryId,
                     })
                   } else {
-                    aaddUserFavoriteCourse({
+                    // setIsFavorite((pre) => !pre)
+                    addUserFavoriteCourse({
                       courseId: id,
                       storeId,
                       categoryId,

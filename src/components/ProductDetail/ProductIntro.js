@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 // import Counter from './Counter'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '../../slices/counter-slice'
+import { increment, decrement, maxStocks } from '../../slices/counter-slice'
 import { addProductCart, getProductTotal } from '../../slices/productCart-slice'
 
 import {
@@ -50,7 +50,10 @@ const ProductIntro = ({
   const dispatch = useDispatch()
   const quantity = useSelector((state) => state.counterReducer.value)
   const stockWarning = useSelector((state) => state.counterReducer.stockWarning)
-
+  // dispatch(maxStocks(amount))
+  useEffect(() => {
+    dispatch(maxStocks(amount))
+  }, [amount, dispatch])
   const shopUrl = `/store/${storeId}`
 
   ////////// 加入購物車 //////////

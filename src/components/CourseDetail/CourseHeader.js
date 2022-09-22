@@ -25,6 +25,7 @@ const CourseDetailPage = () => {
             )
           })}
           {data?.map((item) => {
+            console.log('isFavorite', item.isFavorite)
             return (
               <Col lg={6} sm={12} key={item.id}>
                 <CourseIntro
