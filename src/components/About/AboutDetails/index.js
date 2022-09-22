@@ -17,7 +17,11 @@ const AboutDetails = () => {
           </div>
           <div className="about_details_box ms-8 mt-5" />
         </Col>
-        <Row className="about_details_mobile">
+        <Row
+          className="about_details_mobile"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        >
           <Col sm={12} md={6} className="d-flex justify-content-end p-0">
             <div className="about_details_imgBox">
               <img
@@ -40,7 +44,11 @@ const AboutDetails = () => {
             </div>
           </Col>
         </Row>
-        <Row className="column-revers">
+        <Row
+          className="column-revers"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
           <Col sm={12} md={6} className="p-0">
             <div className="about_details_content text-center">
               每個人都需要藉由某種方式達到自己的身心平衡，生活累了，

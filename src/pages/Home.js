@@ -35,13 +35,27 @@ const Home = () => {
               <HomeNewActive />
             </Col>
           </Row>
-          <Row id="home_hot_course">
+          <Row
+            id="home_hot_course"
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeHotCourse />
           </Row>
-          <Row id="home_hot_product">
+          <Row
+            id="home_hot_product"
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeHotProduct />
           </Row>
-          <Row>
+          <Row
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeCategory />
           </Row>
           <Row id="home_blog">
