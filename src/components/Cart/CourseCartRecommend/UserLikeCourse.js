@@ -3,7 +3,6 @@ import { useUserLikesCourseQuery } from '../../../services/userApi'
 // import RecommendCard from '../../Store/RecommendCard'
 import CartRecommendCard from './CartRecommendCard'
 
-
 const UserLikeCourse = () => {
   const { data } = useUserLikesCourseQuery()
   const [Card, setCard] = useState([])

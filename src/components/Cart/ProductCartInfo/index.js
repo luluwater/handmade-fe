@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import moment from 'moment'
-import { Toast } from '../../UI/SwalStyle'
 import SevenStore from './SevenStore'
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -20,6 +19,9 @@ import { useCreateProductOrderMutation } from '../../../services/productOrderApi
 import { useCreateProductOrderDetailMutation } from '../../../services/productOrderDetailApi'
 
 const ProductCartInfo = () => {
+  // ==========登入狀態============
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
   // ===========delivery border==========
   const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderGray')
   const [sevenPaidBorder, setSevenPaidBorder] = useState(
@@ -48,6 +50,8 @@ const ProductCartInfo = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  //==========product slice===========
+
   const ProductItem = useSelector(
     (state) => state.productCartReducer.productCartItem
   )
@@ -55,6 +59,19 @@ const ProductCartInfo = () => {
   const ProductCartTotal = useSelector(
     (state) => state.productCartReducer.totalAmount
   )
+
+  const OrderDiscount = useSelector(
+    (state) => state.productCartReducer.couponDiscount
+  )
+  console.log('OrderDiscount', OrderDiscount)
+
+  const ActuallyPrice = useSelector(
+    (state) => state.productCartReducer.actuallyPrice
+  )
+
+  const ActuallyPriceString = ActuallyPrice[0]
+
+  const couponId = useSelector((state) => state.productCartReducer.coupon)
 
   const clearCourseItems = () => {
     dispatch(clearCart())
@@ -70,10 +87,8 @@ const ProductCartInfo = () => {
   const ProductOrder = {
     id: productOrderId,
     orderNumber: Date.now(),
-    // TODO:抓取userid
-    user_id: 1,
-    // TODO:抓取couponid,有的話顯示，沒有給null
-    coupon_id: 28,
+    user_id: userId,
+    coupon_id: couponId,
     create_time: moment(new Date()).format('YYYY-MM-DD'),
     name: orderName,
     phone: orderPhone,
@@ -81,15 +96,14 @@ const ProductCartInfo = () => {
     payment_id: payment,
     address: zipCode + address,
     note: note,
-    // TODO:total_amount要再減掉折價券金額
-    total_amount: ProductCartTotal,
+    total_amount: ActuallyPriceString,
     payment_state_id: paymentState,
     order_state_id: '1',
     order_detail: [...ProductItem],
   }
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     try {
       await createProductOrder(ProductOrder)
       await createProductOrderDetail(ProductOrder)
@@ -317,6 +331,7 @@ const ProductCartInfo = () => {
                       <br />
                       若與證件不符將無法完成取貨。
                     </p>
+       
                   </div>
 
                   <div className="ProductCartInfo_input">
@@ -513,11 +528,11 @@ const ProductCartInfo = () => {
 
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_coupon d-flex justify-content-between">
               <p className="fs-5">折扣券折扣：</p>
-              <p className="fs-5">0</p>
+              <p className="fs-5">{OrderDiscount}</p>
             </div>
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_total d-flex justify-content-between">
               <strong className="fs-5">實付金額</strong>
-              <strong className="fs-5">${ProductCartTotal}</strong>
+              <strong className="fs-5">{ActuallyPrice}</strong>
             </div>
           </Col>
         </Row>

@@ -10,11 +10,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartToggle, cartClose } from '../../slices/cart-ui-slice'
 import {
+  getProductTotal,
+  clearCart,
+  getCoupon,
   ProductCartToggle,
   ProductCartClose,
+  getDiscount,
+  getActuallyPrice,
 } from '../../slices/productCart-slice'
 
-import { getProductTotal, clearCart } from '../../slices/productCart-slice'
 import {
   getCourseTotal,
   clearCourseCart,
@@ -23,14 +27,17 @@ import {
 } from '../../slices/courseCart-slice'
 
 import { useGetUserCouponsQuery } from '../../services/userApi'
+import { useGetCouponQuery } from '../../services/couponApi'
 import UserLikeCourse from './CourseCartRecommend/UserLikeCourse'
 import YouWillLikeCourse from './CourseCartRecommend/YouWillLikeCourse'
 import UserLikeProduct from './CourseCartRecommend/UserLikeProduct'
 import YouWillLikeProduct from './CourseCartRecommend/YouWillLikeProduct'
 import { v4 as uuidv4 } from 'uuid'
+import moment from 'moment'
 
 const Cart = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   // =========登入狀態=========
   const authReducers = useSelector((state) => state.authReducers)
@@ -39,9 +46,77 @@ const Cart = () => {
   // =========拿取user Coupon=======
   const { data } = useGetUserCouponsQuery(userId)
 
-  console.log('userCoupon', data)
+  const couponId = useSelector((state) => state.productCartReducer.coupon)
+  const userCoupon = data?.map((item) => ({
+    ...item,
+    end_date: moment(item.end_date).format('YYYY-MM-DD'),
+    start_date: moment(item.start_date).format('YYYY-MM-DD'),
+  }))
 
-  const dispatch = useDispatch()
+  const today = moment(new Date()).format('YYYY-MM-DD')
+  const useableCoupon = userCoupon?.filter(
+    (item) =>
+      item.state === 1 && item.start_date <= today && item.end_date > today
+  )
+
+  const takeCoupon = (value) => {
+    dispatch(getCoupon(value))
+  }
+
+  const [couponDiscount, setCouponDiscount] = useState('0')
+
+  const [userSelectCoupon, setUserSelectCoupon] = useState([
+    {
+      coupon_id: '28',
+      state: '1',
+      discount_type_id: '2',
+      coupon_discount: 0,
+    },
+  ])
+
+  useEffect(() => {
+    if (couponId == 28) {
+      setUserSelectCoupon([
+        {
+          coupon_id: '28',
+          state: '1',
+          discount_type_id: '2',
+          coupon_discount: 0,
+        },
+      ])
+    } else {
+      setUserSelectCoupon(data?.filter((item) => item.coupon_id == couponId))
+    }
+  }, [couponId, dispatch])
+
+  useEffect(() => {
+    setCouponDiscount(
+      userSelectCoupon?.map((item) => {
+        return item.discount_type_id == 1
+          ? `${Math.round(item.coupon_discount * 100) / 10} 折`
+          : -item.coupon_discount
+      })
+    )
+    dispatch(
+      getDiscount(
+        userSelectCoupon?.map((item) => {
+          return item.discount_type_id == 1
+            ? `${Math.round(item.coupon_discount * 100) / 10} 折`
+            : -item.coupon_discount
+        })
+      )
+    )
+    dispatch(
+      getActuallyPrice(
+        userSelectCoupon?.map((item) => {
+          return item.discount_type_id == 1
+            ? Math.round(ProductCartTotal * item.coupon_discount)
+            : Number(ProductCartTotal - item.coupon_discount)
+        })
+      )
+    )
+  }, [userSelectCoupon])
+
   const toggleCart = () => {
     dispatch(cartToggle())
     dispatch(ProductCartToggle())
@@ -66,7 +141,7 @@ const Cart = () => {
     dispatch(clearCourseCart())
   }
 
-  // 商品購物車slice
+  // =======商品購物車slice============
   const ProductItem = useSelector(
     (state) => state.productCartReducer.productCartItem
   )
@@ -331,20 +406,23 @@ const Cart = () => {
                         </div>
                         <Row className="Cart_couponBox d-flex align-items-center">
                           <Col xs={3} className="Cart_couponSelect">
-                            <Form.Select aria-label="userCoupon">
+                            <Form.Select
+                              value={couponId}
+                              aria-label="userCoupon"
+                              onChange={(e) => {
+                                takeCoupon(e.target.value)
+                              }}
+                            >
                               <option value="28">使用折價券</option>
                               {userId ? (
                                 <>
-                                  {data?.map((item) => {
-                                    if (item.state === 1) {
-                                      return (
-                                        <option value={item.coupon_id}>
-                                          {item.coupon_name}
-                                        </option>
-                                      )
-                                    }
+                                  {useableCoupon?.map((item) => {
+                                    return (
+                                      <option value={item.coupon_id}>
+                                        {item.coupon_name}
+                                      </option>
+                                    )
                                   })}
-                                  )
                                 </>
                               ) : (
                                 ''
@@ -352,11 +430,11 @@ const Cart = () => {
                             </Form.Select>
                           </Col>
 
-                          <Col xs="2" className="Cart_or text-center">
+                          {/* <Col xs="2" className="Cart_or text-center">
                             或
-                          </Col>
+                          </Col> */}
 
-                          <Col
+                          {/* <Col
                             xs={4}
                             className="Cart_couponInputBox text-center"
                           >
@@ -373,7 +451,7 @@ const Cart = () => {
                                 使用
                               </Button>
                             </InputGroup>
-                          </Col>
+                          </Col> */}
                         </Row>
                       </>
                     )}
@@ -421,11 +499,35 @@ const Cart = () => {
                     </div>
                     <div className="d-flex justify-content-between">
                       <p>折價券折扣：</p>
-                      <p>0</p>
+
+                      <p>{couponDiscount}</p>
+
+                      {/* {userSelectCoupon?.map((item) => {
+                        return (
+                          <p>
+                            {item.discount_type_id == 1
+                              ? `${
+                                  Math.round(item.coupon_discount * 100) / 10
+                                } 折`
+                              : -item.coupon_discount}
+                          </p>
+                        )
+                      })} */}
                     </div>
                     <div className="d-flex justify-content-between Cart_TotalPrice">
                       <strong className="fs-5">實付金額</strong>
-                      <strong className="fs-5">{ProductCartTotal}</strong>
+
+                      {userSelectCoupon?.map((item) => {
+                        return (
+                          <strong className="fs-5">
+                            {item.discount_type_id == 1
+                              ? Math.round(
+                                  ProductCartTotal * item.coupon_discount
+                                )
+                              : Number(ProductCartTotal - item.coupon_discount)}
+                          </strong>
+                        )
+                      })}
                     </div>
                     <Button
                       onClick={ProuductContinue}

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
 
+
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
     ? JSON.parse(localStorage.getItem('ProductCart'))
@@ -9,6 +10,8 @@ const initialState = {
   totalQuantity: 0,
   totalAmount: 0,
   coupon: 28,
+  couponDiscount: 0,
+  actuallyPrice: '',
   isCartOpen: false,
 }
 
@@ -132,9 +135,16 @@ const productCartSlice = createSlice({
     // =========拿取coupon==========
     getCoupon(state, action) {
       state.coupon = action.payload
-      localStorage.setItem('ProductCoupon', JSON.stringify(state.coupon))
     },
-    
+    // =======顧客選擇折價券折數========
+    getDiscount(state,action){
+      state.couponDiscount=action.payload
+    },
+    // =======實付金額===========
+    getActuallyPrice(state,action){
+      state.actuallyPrice = action.payload
+    },
+
     // ============清空購物車==========
     clearCart(state, action) {
       state.productCartItem = []
@@ -160,5 +170,7 @@ export const {
   ProductCartClose,
   ProductCartToggle,
   getCoupon,
+  getDiscount,
+  getActuallyPrice,
 } = productCartSlice.actions
 export default productCartSlice.reducer
