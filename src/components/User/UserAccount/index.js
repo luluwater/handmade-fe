@@ -81,8 +81,8 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
 
   return (
     <>
-      <Col className="user_account">
-        <div className="user_account_from m-8">
+      <Col className="user_account m-8">
+        <div className="user_account_from">
           <h5 className="user_account_title fw-bold">帳號設定</h5>
           <Form.Group className="my-3">
             <Table className="d-flex user_account_table">
@@ -134,22 +134,22 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
               <Table className="d-flex user_account_table">
                 <thead>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       姓名
                     </th>
                   </tr>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       生日
                     </th>
                   </tr>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       電話
                     </th>
                   </tr>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       聯絡地址
                     </th>
                   </tr>

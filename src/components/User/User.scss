@@ -30,6 +30,11 @@
       display: block;
     }
   }
+  &_mobile_text {
+    @media screen and (max-width: 576px) {
+      font-size: 10px;
+    }
+  }
 }
 
 .user_profile_card {
@@ -101,16 +106,25 @@
 
 .user_account {
   @media screen and (max-width: 576px) {
-    display: none;
+    margin: 0px !important;
   }
   &_from {
     width: 950px;
     height: 577px;
     background-color: $skin-bright;
-    // margin: 0;
+    @media screen and (max-width: 576px) {
+      width: 500px;
+      background-color: $skin-brighter;
+    }
   }
   &_table {
     border-color: $skin-bright !important;
+    @media screen and (max-width: 576px) {
+      text-align: start !important;
+      border-bottom: 1px solid $skin-brighter !important;
+      margin: 0;
+      padding: 0;
+    }
   }
   &_title {
     width: 800px;
@@ -121,22 +135,47 @@
     display:block;
     margin: 0 auto 15px ;
     padding-top: 2rem;
+    @media screen and (max-width: 576px) {
+      width: 480px;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 10px;
+    }
+    
   }
   &_header {
     width: 300px;
     color: $gray-darker;
     letter-spacing: 3px;
     padding: 50px;
+    @media screen and (max-width: 576px) {
+      text-align: start !important;
+      border-bottom: 1px solid $skin-brighter !important;
+      width: 150px;
+      margin: 0;
+      padding: 10px !important;
+    }
+  }
+  &_mdHeader {
+    @media screen and (max-width: 576px) {
+      padding: 16px !important;
+    }
   }
   &_text {
     color: $gray-darker;
     letter-spacing: 3px;
-    // padding: 30px;
+    @media screen and (max-width: 576px) {
+      text-align: start !important;
+      border-bottom: 1px solid $skin-brighter !important;
+      width: 350px;
+      margin: 0px;
+      padding-left: 16px !important;
+    }
   }
   &_edit_show {
     border: none;
     color: $gray-darker;
-    padding: 0 0 0 10px;
+    padding: 0px 0px 0px 10px;
     &:hover {
       color: $secondary;
       border: none;
@@ -152,7 +191,6 @@
     font-size: $h6-font-size;
     color: $gray-darker;
     background-color: $skin-bright !important;
-    // border: none;
     &:hover {
       background-color: $primary !important;
       color: $skin-bright;
@@ -175,7 +213,6 @@
     background-color: $skin-brighter !important;
     border: none;
     height: 42px;
-    // padding: 8px;
     color: $dark;
     &:focus {
       outline: none;
@@ -201,6 +238,11 @@
   top: 50%;  
   left: 50%;
   transform: translate(-50%, -50%);
+  @media screen and (max-width: 576px){
+    background-color: $skin-bright;
+    width: 490px;
+    transform: translate(-50%, -50%);
+  }
   &_card {
     display: flex;
     position: absolute;
@@ -212,6 +254,11 @@
     height: 300px;
     background-color: $skin-brighter;
     box-shadow :  10px 10px 15px rgba(129, 129, 129, 0.082);
+    @media screen and (max-width: 576px){
+      background-color: $skin-bright;
+      width: 490px;
+      transform: translate(-62%, -50%);
+    }
   }
   &_update {
     color: $gray-darker;
@@ -245,6 +292,7 @@
     }
   }
   &_show {
+    width: 50px;
     border: none;
     color: $secondary-dark;
   }

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import user1 from '../../../assets/user/profile_1.png'
 import { logout } from '../../../slices/auth-slice'
 
-export const FilterPage = ({ account}) => {
+export const FilterPage = ({ account }) => {
   // console.log('name, email', name, email)
   const authLogOut = () => {
     dispatch(logout())
@@ -65,26 +65,32 @@ export const FilterPage = ({ account}) => {
           </Col>
         </Row>
       </Container>
-      <Container className="user_navbar_mobile mb-5">
+      <Container className="user_navbar_mobile my-8">
         <div className="mt-5 d-flex align-items-center justify-content-center">
           <nav className="user_navbar d-flex fw-bold align-items-center justify-content-center">
             <Link to="management" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-user" />
+              <div className="user_navbar_mobile_text">帳戶</div>
             </Link>
             <Link to="orders" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-rectangle-list" />
+              <div className="user_navbar_mobile_text">訂單</div>
             </Link>
             <Link to="likes" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-heart" />
+              <div className="user_navbar_mobile_text">收藏</div>
             </Link>
             <Link to="coupons" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-rug" />
+              <div className="user_navbar_mobile_text">優惠券</div>
             </Link>
             <Link to="blogs" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-book" />
+              <div className="user_navbar_mobile_text">部落格</div>
             </Link>
             <Link to="/chat" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-comments" />
+              <div className="user_navbar_mobile_text">聊天室</div>
             </Link>
           </nav>
         </div>
