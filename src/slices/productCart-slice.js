@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import '../styles/style.scss'
 
-
 const initialState = {
   productCartItem: localStorage.getItem('ProductCart')
     ? JSON.parse(localStorage.getItem('ProductCart'))
@@ -10,8 +9,12 @@ const initialState = {
   totalQuantity: 0,
   totalAmount: 0,
   coupon: 28,
-  couponDiscount: 0,
-  actuallyPrice: '',
+  couponDiscount: localStorage.getItem('couponDiscount')
+    ? JSON.parse(localStorage.getItem('couponDiscount'))
+    : [],
+  actuallyPrice: localStorage.getItem('actuallyPrice')
+    ? JSON.parse(localStorage.getItem('actuallyPrice'))
+    : [],
   isCartOpen: false,
 }
 
@@ -137,18 +140,24 @@ const productCartSlice = createSlice({
       state.coupon = action.payload
     },
     // =======顧客選擇折價券折數========
-    getDiscount(state,action){
-      state.couponDiscount=action.payload
+    getDiscount(state, action) {
+      state.couponDiscount = action.payload
+      localStorage.setItem(
+        'couponDiscount',
+        JSON.stringify(state.couponDiscount)
+      )
     },
     // =======實付金額===========
-    getActuallyPrice(state,action){
+    getActuallyPrice(state, action) {
       state.actuallyPrice = action.payload
+      localStorage.setItem('actuallyPrice', JSON.stringify(state.actuallyPrice))
     },
 
     // ============清空購物車==========
     clearCart(state, action) {
       state.productCartItem = []
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
+
     },
 
     //==========確認購物車狀態============

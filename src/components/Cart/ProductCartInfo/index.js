@@ -11,16 +11,37 @@ import moment from 'moment'
 import SevenStore from './SevenStore'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductTotal, clearCart } from '../../../slices/productCart-slice'
+import {
+  getProductTotal,
+  clearCart,
+  getActuallyPrice,
+  getDiscount,
+} from '../../../slices/productCart-slice'
 
 import { v4 as uuidv4 } from 'uuid'
 
 import { useCreateProductOrderMutation } from '../../../services/productOrderApi'
 import { useCreateProductOrderDetailMutation } from '../../../services/productOrderDetailApi'
+import { useGetUserQuery } from '../../../services/userApi'
+import Swal from 'sweetalert2'
 
 const ProductCartInfo = () => {
   // ==========登入狀態============
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const { data } = useGetUserQuery(userId)
+
+  const [userFromDb, setUserFromDb] = useState(false)
+  useEffect(() => {
+    if (userFromDb) {
+      data?.map((item) => setOrderName(item.name))
+      data?.map((item) => setOrderPhone(item.phone))
+      data?.map((item) => setAddress(item.address))
+    } else {
+      setOrderName('')
+      setOrderPhone('')
+      setAddress('')
+    }
+  }, [userFromDb])
 
   // ===========delivery border==========
   const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderGray')
@@ -63,7 +84,6 @@ const ProductCartInfo = () => {
   const OrderDiscount = useSelector(
     (state) => state.productCartReducer.couponDiscount
   )
-  console.log('OrderDiscount', OrderDiscount)
 
   const ActuallyPrice = useSelector(
     (state) => state.productCartReducer.actuallyPrice
@@ -75,14 +95,29 @@ const ProductCartInfo = () => {
 
   const clearCourseItems = () => {
     dispatch(clearCart())
+    dispatch(getDiscount(0))
+    dispatch(getActuallyPrice(0))
   }
 
   useEffect(() => {
     dispatch(getProductTotal())
-    console.log('ProductOrder', ProductOrder)
+    // console.log('ProductOrder', ProductOrder)
   }, [])
 
   const productOrderId = Math.floor(Math.random() * 10000)
+
+  useEffect(() => {
+    console.log('susses', ProductOrder)
+  }, [
+    orderName,
+    orderPhone,
+    delivery,
+    payment,
+    zipCode,
+    address,
+    note,
+    paymentState,
+  ])
 
   const ProductOrder = {
     id: productOrderId,
@@ -103,7 +138,24 @@ const ProductCartInfo = () => {
   }
 
   const submitHandler = async (e) => {
-    // e.preventDefault()
+    e.preventDefault()
+    if (
+      !orderName ||
+      !orderPhone ||
+      !delivery ||
+      !payment ||
+      !zipCode ||
+      !address
+    ) {
+      Swal.fire({
+        title: '請填寫完整的收件資訊',
+        confirmButtonColor: '#e77656',
+        customClass: 'cartInfoSwal',
+        heightAuto: 'false',
+      })
+      return
+    }
+
     try {
       await createProductOrder(ProductOrder)
       await createProductOrderDetail(ProductOrder)
@@ -297,8 +349,11 @@ const ProductCartInfo = () => {
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    value=""
+                    value={userFromDb}
                     id="ProductCartInfoCheckBox"
+                    onChange={() => {
+                      setUserFromDb(!userFromDb)
+                    }}
                   />
                   <label
                     className="form-check-label ps-1"
@@ -320,7 +375,7 @@ const ProductCartInfo = () => {
                       <Form.Control
                         type="text"
                         placeholder=" "
-                        required
+                        value={orderName}
                         onChange={(e) => {
                           setOrderName(e.target.value)
                         }}
@@ -331,7 +386,6 @@ const ProductCartInfo = () => {
                       <br />
                       若與證件不符將無法完成取貨。
                     </p>
-       
                   </div>
 
                   <div className="ProductCartInfo_input">
@@ -339,7 +393,7 @@ const ProductCartInfo = () => {
                       <Form.Control
                         type="tel"
                         placeholder=" "
-                        required
+                        value={orderPhone}
                         onChange={(e) => {
                           setOrderPhone(e.target.value)
                         }}
@@ -464,6 +518,7 @@ const ProductCartInfo = () => {
                         >
                           <Form.Control
                             type="text"
+                            value={address}
                             placeholder=" "
                             onChange={(e) => setAddress(e.target.value)}
                           />

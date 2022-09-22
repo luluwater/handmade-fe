@@ -152,6 +152,8 @@ const Cart = () => {
 
   const clearProductCart = () => {
     dispatch(clearCart())
+    dispatch(getDiscount(0))
+    dispatch(getActuallyPrice(0))
   }
 
   const ProuductContinue = (e) => {

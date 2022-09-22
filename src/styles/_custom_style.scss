@@ -307,3 +307,27 @@ img {
   border-radius: 0 !important;
 
 }
+
+.cartInfoSwal{
+  background: $skin-bright;
+  height: 8.5rem;
+  width: 20.5rem;
+  .swal2-title{
+    color: #5f5c51;
+    margin-top: 1.5px;
+    margin-bottom: 1.5px;
+  font-size: 1.4rem !important;
+  letter-spacing: 1.5px;
+
+  }
+  .swal2-styled.swal2-confirm,.swal2-deny{
+    border-radius: 0 !important;
+    height: 2.5rem;
+    line-height: 1.25rem;
+
+  }
+  .swal2-popup{
+    border-radius: 0 !important;
+  
+  }
+}

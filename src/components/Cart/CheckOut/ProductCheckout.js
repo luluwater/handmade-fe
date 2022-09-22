@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetOrderDetailQuery } from '../../../services/productOrderApi'
-import { map } from 'leaflet'
+import moment from 'moment'
 
 const ProductCheckout = () => {
   const { orderId } = useParams()
@@ -18,7 +18,7 @@ const ProductCheckout = () => {
     <>
       <Container fluid className="CheckoutPage">
         {data?.map((item) => {
-          let date = item.create_time.split('T', 1)
+          let date = moment(item.create_time).format('YYYY-MM-DD')
           let couponDiscount = Math.round(item.coupon_discount * 100) / 10
           return (
             <Row>
@@ -95,7 +95,7 @@ const ProductCheckout = () => {
                 </div>
                 <div className="CheckoutPage_total d-flex justify-content-between">
                   <strong className="fs-5">實付金額</strong>
-                  <strong className="fs-5">$2600</strong>
+                  <strong className="fs-5">{item.total_amount}</strong>
                 </div>
               </Col>
             </Row>
