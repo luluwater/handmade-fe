@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import config from './config'
 import MessageParser from './MessageParser'
 import ActionProvider from './ActionProvider'
+import GeneralOptions from './widgets/OverView'
 
 function CrazyCatBot() {
   const [show, setShow] = useState(false)
@@ -15,16 +16,15 @@ function CrazyCatBot() {
   return (
     <>
       <div>
-        {show && (
+        <GeneralOptions />
+        {!show && (
           <Chatbot
+            data-aos="zoom-in-right"
             config={config}
             messageParser={MessageParser}
             actionProvider={ActionProvider}
             headerText="手手客服"
             placeholderText="請輸入..."
-            // messageHistory={loadMessages()}
-            // saveMessages={saveMessages}
-            // validator={validateInput}
             runInitialMessagesWithHistory
             disableScrollToBottom={false}
           />
@@ -32,9 +32,12 @@ function CrazyCatBot() {
       </div>
       <div onClick={handleToggle} className="bot-switch">
         {show ? (
-          <>123</>
-        ) : (
           <FontAwesomeIcon className="bot-switch_times" icon="fas fa-times" />
+        ) : (
+          <FontAwesomeIcon
+            className="bot-switch_times"
+            icon="fa-brands fa-bots"
+          />
         )}
       </div>
     </>

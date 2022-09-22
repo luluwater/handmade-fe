@@ -39,7 +39,6 @@ import Products from './pages/Products'
 import MapSearch from './pages/MapSearch'
 import ChatRoomPage from './pages/ChatRoomPage'
 import Courses from './pages/Courses'
-import RoomBody from './components/ChatRoom/RoomBody'
 import Chat from './components/ChatRoom/Chat'
 
 const routeConfig = [

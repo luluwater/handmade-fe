@@ -12,20 +12,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }))
   }
 
-  //顯示金工所有店家
-  const handleMetalwork = () => {
-    const botMessage = createChatBotMessage('這是金工的所有店家', {})
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }))
-  }
-
-  //顯示花藝所有店家
-  const handleFloral = () => {
-    const botMessage = createChatBotMessage('這是花藝的所有店家', {
-      widget: 'globalStatistics',
+  const handleShowCategory = () => {
+    const botMessage = createChatBotMessage('手作體驗種類', {
+      widget: 'showCategory',
       loading: true,
       terminateLoading: true,
       withAvatar: true,
@@ -37,10 +26,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }))
   }
 
-  //顯示陶藝所有店家
-  const handlePottery = () => {
-    const botMessage = createChatBotMessage('這是陶藝的所有店家', {
-      widget: 'globalStatistics',
+  const handleShopNow = () => {
+    const botMessage = createChatBotMessage('馬上購物', {
+      widget: 'showNow',
       loading: true,
       terminateLoading: true,
       withAvatar: true,
@@ -52,16 +40,47 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }))
   }
 
-  // const handlPottery = () => {
-  //   const botMessage = createChatBotMessage('這是陶藝的所有店家', {
-  //     widget: 'dogPicture',
-  //   })
+  const handleSignup = () => {
+    const botMessage = createChatBotMessage('註冊會員', {
+      widget: 'signupPlease',
+      loading: true,
+      terminateLoading: true,
+      withAvatar: true,
+    })
 
-  //   setState((prev) => ({
-  //     ...prev,
-  //     messages: [...prev.messages, botMessage],
-  //   }))
-  // }
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }))
+  }
+
+  const handleViewBlog = () => {
+    const botMessage = createChatBotMessage('觀看部落格文章', {
+      widget: 'viewBlog',
+      loading: true,
+      terminateLoading: true,
+      withAvatar: true,
+    })
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }))
+  }
+
+  const handleConcatUs = () => {
+    const botMessage = createChatBotMessage('聯絡我們', {
+      widget: 'concatUs',
+      loading: true,
+      terminateLoading: true,
+      withAvatar: true,
+    })
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }))
+  }
 
   return (
     <div>
@@ -69,9 +88,11 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         return React.cloneElement(child, {
           actions: {
             handleHello,
-            handleMetalwork,
-            handlePottery,
-            handleFloral,
+            handleShowCategory,
+            handleShopNow,
+            handleSignup,
+            handleViewBlog,
+            handleConcatUs,
           },
         })
       })}
