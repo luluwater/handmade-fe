@@ -1,0 +1,52 @@
+@import '../../styles/custom_variables';
+
+.home_sticky{
+  position: --webkit-sticky;
+  position: sticky;
+  width: 200px;
+  height: 0px;
+  position: relative;
+  left: 1660px;
+  top: 350px;
+  list-style: none;
+  &_li{
+    background: $primary;
+    color: $white;
+    text-align: center;
+    line-height: 35px;
+    letter-spacing: 3px;
+    margin: 10px;
+    width: 100px;
+    height: 35px;
+    border-radius: 25px;
+    font-size: 14px;
+  }
+  &_li:hover{
+    background: $white;
+    color: $primary;
+
+  }
+  &_logo{
+    width: 115px;
+    margin-bottom: 10px;
+  }
+}
+
+#home_news{
+  padding-top: 250px;
+}
+#home_hot_course, #home_hot_product, #home_blog{
+  padding-top: 150px;
+}
+
+@media screen and (max-width:576px){ 
+  .home_sticky{
+    display: none;
+  }
+  #home_news{
+    padding-top: 50px;
+  }
+  #home_hot_course, #home_hot_product, #home_blog{
+    padding-top: 50px;
+  }
+}

@@ -106,7 +106,7 @@ const BlogCreate = () => {
               type="button"
               disabled
               onClick={() => handleShow()}
-              className="btn btn-primary rounded-5 px-5 text-white"
+              className="btn btn-primary rounded-5 px-5 text-white border-0 text-dark"
             >
               發布
             </button>

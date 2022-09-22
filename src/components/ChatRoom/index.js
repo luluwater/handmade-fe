@@ -19,6 +19,7 @@ const ChatRoom = () => {
   useSocket(userData || sliceAuth?.user, dispatch)
   const chatReducer = useSelector((state) => state.chatReducer)
   const rooms = chatReducer.chatRooms
+  const { data } = useGetRoomsQuery('all')
 
   return (
     <>
@@ -30,7 +31,7 @@ const ChatRoom = () => {
           </Col>
           <Col md={9}>
             <Row className="gap-4 gap-md-0 gap-bottom-4 mt-8">
-              {rooms?.map((room) => {
+              {data?.map((room) => {
                 return (
                   <Col key={room.id} className="mt-0 mb-5" md={4}>
                     <RoomCard

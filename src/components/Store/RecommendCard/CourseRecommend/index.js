@@ -7,7 +7,7 @@ import { useGetStoreCourseQuery } from '../../../../services/storeApi'
 const CourseRecommend = () => {
   const { storeId } = useParams()
   const { data } = useGetStoreCourseQuery(storeId)
-  // console.log(data)
+
   return (
     <>
       <Row className="mb-5">
@@ -19,7 +19,8 @@ const CourseRecommend = () => {
               className="d-flex justify-content-center"
             >
               <RecommendCard
-              type='course'
+                type="course"
+                cartIcon=""
                 id={item.id}
                 store={item.store_name}
                 name={item.name}

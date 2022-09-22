@@ -7,6 +7,7 @@ import Image5 from '../../assets/product/product_floral_71/花藝＿商品＿花
 import Image6 from '../../assets/product/product_metalwork_1/金工_商品_以覺學_流水純銀耳扣 Flow Silver EarCuff_kv2.webp'
 import { Button } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Link } from 'react-router-dom'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -20,36 +21,42 @@ function HomeHotProduct() {
       name: '苦甜巧克力',
       text: '小型的法式甜點，散發著酒香和香草味。',
       price: '$990',
+      link: '/product/detail/112',
     },
     {
       img: Image2,
       name: '極簡短夾 | DIY材料盒',
       text: '在乎生活細節的你，擁有一個能夠陪你很久的革製皮夾。',
       price: '$3,380',
+      link: '/product/detail/80',
     },
     {
       img: Image3,
       name: '什物印花盤',
       text: '不拘泥造型及技法上的規範，充分發揮個人的特色和美學意識。',
       price: '$1,500',
+      link: '/product/detail/33',
     },
     {
       img: Image4,
       name: '中型梭織板材料包',
       text: '讓我們用簡單4個小時的時間，輕鬆體驗織布的樂趣吧！',
       price: '$550',
+      link: '/product/detail/145',
     },
     {
       img: Image5,
       name: '訂製商品｜莫蘭迪粉花籃',
       text: '隨著不同的心情，每朵花的姿態呈現各自的美。',
       price: '$1,580',
+      link: '/product/detail/71',
     },
     {
       img: Image6,
       name: '流水純銀耳扣',
       text: '探索傳統工藝，從文化中玩轉出新式的時尚法則。',
       price: '$2,980',
+      link: '/product/detail/1',
     },
   ]
   return (
@@ -66,21 +73,18 @@ function HomeHotProduct() {
           className="mySwiper"
         >
           <div className="d-flex">
-            {Cards.map((v, i) => {
+            {Cards.map((v) => {
               return (
-                <>
-                  <SwiperSlide className="home_hotSwiper">
-                    <div
-                      className="home_hotCard d-flex flex-column align-items-center"
-                      key={v.name}
-                    >
-                      <img className="home_hotCard_pic" src={v.img} alt="" />
-                      <h5 className="home_hotCard_name">{v.name}</h5>
-                      <div className="home_hotCard_text">{v.text}</div>
+                <SwiperSlide className="home_hotSwiper" key={v.img}>
+                  <div className="home_hotCard d-flex flex-column align-items-center">
+                    <img className="home_hotCard_pic" src={v.img} alt="" />
+                    <h5 className="home_hotCard_name">{v.name}</h5>
+                    <div className="home_hotCard_text">{v.text}</div>
+                    <Link to={v.link}>
                       <Button className="home_hotCard_button">{v.price}</Button>
-                    </div>
-                  </SwiperSlide>
-                </>
+                    </Link>
+                  </div>
+                </SwiperSlide>
               )
             })}
           </div>

@@ -1,10 +1,12 @@
 import './HomeNews.scss'
 import Image1 from '../../assets/store/store_pottery_6/陶藝_璐室_BN.jpg'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
 function HomeNewActive() {
   return (
     <>
-      <div className="home_newStore d-flex flex-column align-items-center mb-10">
+      <div className="home_newStore d-flex flex-column align-items-center">
         <h4 className="home_newStore_title">活動資訊</h4>
         <div className="home_newStore_content ">
           <img className="home_newStore_content_pic2" src={Image1} alt="" />
@@ -23,7 +25,9 @@ function HomeNewActive() {
               手手邀請擁有無與倫比創造力的妳，把自己歸零、擺脫生活中的所有身分，與我們攜手度過愜意放鬆的手做體驗，享受專屬於自己或是與閨蜜們的美好時光。
               <br />
             </div>
-            <Button className="home_newStore_content_button">看更多</Button>
+            <Link to="/news">
+              <Button className="home_newStore_content_button">看更多</Button>
+            </Link>
           </div>
         </div>
       </div>

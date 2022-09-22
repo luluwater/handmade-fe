@@ -34,6 +34,9 @@
 }
 
 // ===== intro =====
+.detail_stockWarning{
+    margin: -20px 0 10px 133px;
+}
 .detail_top{
     border-top: 1px solid $gray-darker;
     border-bottom: 1px solid $gray-darker;
@@ -42,8 +45,9 @@
 .detail_store{
     font-size: 14px;
     color: $gray-darker;
-    padding-left: 3px;
-    
+}
+.detail_store:hover{
+    color: $primary;
 }
 .detail_name{
     font-size: 30px;
@@ -59,6 +63,7 @@
 }
 
 .detail_score{
+    width: 180px;
     &_title{
         font-size: 14px;
         color: $gray-darker;
@@ -218,11 +223,10 @@
     }
 }
 
-// ========== ==========
+// ========== showmore ==========
 
 .showmore{
     background: transparent !important;
-
 }
 .showmore button{
     width: 200px;
@@ -234,12 +238,20 @@
     position: relative;
     right: 110px;
 }
+
+.ShowMore_ButtonDiv__uCJeR{    
+    opacity: 1 !important;
+    z-index: initial !important;
+}
 .showmore button:hover{
     color: $skin-bright !important;
     background: $gray-darker !important;
 }
 
 @media screen and (max-width: 576px) {
+    .detail_stockWarning{
+        margin: -20px 0 10px 45px;
+    }
     .detail_swiperL{
         display: none;
     }

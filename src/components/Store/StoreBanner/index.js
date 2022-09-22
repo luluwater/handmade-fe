@@ -6,7 +6,7 @@ import storeBanner from '../../../assets/store_banner/store_banner.jpg'
 const StoreBanner = () => {
   return (
     <>
-      <div className="store_banner mt-4">
+      <div className="store_banner mt-4 pb-1">
         <img src={storeBanner} alt="" />
         <svg
           xmlns="http://www.w3.org/2000/svg"

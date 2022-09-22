@@ -174,7 +174,7 @@ const BlogDetail = () => {
                     />
                     <span className="ms-2">收藏數{item.favorite_amount}</span>
                   </div>
-                  <article className="text-ceneter">
+                  <article className="text-center">
                     {parse(item.content)}
                   </article>
                 </div>

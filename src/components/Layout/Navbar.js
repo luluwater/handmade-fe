@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../../src/assets/HANDMADE_LOGO.png'
 import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartToggle } from '../../slices/cart-ui-slice'
+import { getProductTotal } from '../../slices/productCart-slice'
+import { getCourseTotal } from '../../slices/courseCart-slice'
 
 const Navbar = () => {
   const userData = JSON.parse(localStorage.getItem('user'))
@@ -12,9 +15,51 @@ const Navbar = () => {
 
   const isLogin = authReducers.isLogin
 
+  const courseCartQuantity = useSelector(
+    (state) => state.courseCartReducer.totalQuantity
+  )
+
+  const productCartQuantity = useSelector(
+    (state) => state.productCartReducer.totalQuantity
+  )
+
+  const cartTotalQuantity =
+    Number(productCartQuantity) + Number(courseCartQuantity)
+
+  const dispatch = useDispatch()
+  const toggleCart = () => {
+    dispatch(cartToggle())
+  }
+
+  const navRef = useRef(null)
+
+  const scrollFunction = () => {
+    if (
+      document.body.scrollTop > 152 ||
+      document.documentElement.scrollTop > 152
+    ) {
+      navRef.current.classList.add('navbar_shrink')
+    } else {
+      navRef.current.classList.remove('navbar_shrink')
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollFunction)
+    return () => window.removeEventListener('scroll', scrollFunction)
+  }, [])
+
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [courseCartQuantity, dispatch])
+
+  useEffect(() => {
+    dispatch(getCourseTotal())
+  }, [productCartQuantity, dispatch])
+
   return (
     <>
-      <nav className="navbar">
+      <nav className="navbar" ref={navRef}>
         <div className="d-flex align-items-center">
           <Link to="/">
             <img src={Logo} alt="" />
@@ -36,22 +81,29 @@ const Navbar = () => {
               </button>
             </form>
 
-            <Link to="cart">
+            <span onClick={toggleCart} className="navbar_cartIcon">
               <FontAwesomeIcon
                 icon="fa-solid fa-cart-shopping"
                 size="xl"
                 className="mx-3 navbar_awesomeIcon"
                 fixedWidth
               />
-            </Link>
+              {cartTotalQuantity > 0 ? (
+                <span className="navbar_cartBadge d-flex justify-content-center align-items-center">
+                  {cartTotalQuantity}
+                </span>
+              ) : (
+                ''
+              )}
+            </span>
 
             {isLogin || userData ? (
               <>
                 <Link to="/user/management">
-                  {userData.user.avatar ? (
+                  {userData?.user.avatar ? (
                     <div className="avatar ">
                       <img
-                        src={userData.user.avatar}
+                        src={userData?.user.avatar}
                         className="rounded-circle"
                         alt="user img"
                       />
@@ -94,9 +146,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="store" className="navbar_link">
+              {/* <Link to="store" className="navbar_link">
                 STORE
-              </Link>
+              </Link> */}
+              <a href="/store" className="navbar_link">
+              STORE
+              </a>
             </li>
             <li>
               <Link to="course" className="navbar_link">

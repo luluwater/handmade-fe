@@ -34,6 +34,10 @@
 }
 
 // ===== intro =====
+
+.course_detail_stockWarning{
+    margin: 0px 0px 10px 80px;
+}
 .detail_top{
     border-top: 1px solid $gray-darker;
     border-bottom: 1px solid $gray-darker;
@@ -59,6 +63,7 @@
 }
 
 .detail_score{
+    width: 180px;
     &_title{
         font-size: 14px;
         color: $gray-darker;
@@ -133,23 +138,32 @@
 
     }
 }
-.detail_intro{
+.detail_intro_C{
     font-size: 14px;
     color: $gray-darker;
     width: 960px;
     padding: 20px 0 20px 25px;
     line-height: 25px;
-    border-top: none;
 }
 
 .detail_button:focus{
     outline: none;
     box-shadow:none;
 }
+.detail_button:disabled{
+    background-color: $primary !important;
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
 
 .detail_button:active:focus{
     outline: none;
     box-shadow:none;
+}
+.btn:disabled{
+    background-color: $skin-bright;
+    color: $skin-brighter;
 }
 
 .detail_cart:hover{
@@ -187,6 +201,11 @@
 }
 
 // ========== comment ==========
+
+.C_border{
+    border-top: 1px solid $gray-darker;
+    padding-top: 70px;
+}
 
 .detail_comment_title{
     color: $gray-darker;
@@ -230,28 +249,40 @@
 
 // ========== showmore ==========
 
-.showmore{
-    background: transparent !important;
+// .showmore{
+//     background: transparent !important;
 
-}
-.showmore button{
-    width: 200px;
-    height: 50px;
-    color: $gray-darker !important;
-    background: $skin-bright !important;
-    border: none;
-    transition: .5s;
-    position: relative;
-    right: 110px;
-}
-.showmore button:hover{
-    color: $skin-bright !important;
-    background: $gray-darker !important;
-}
+// }
+// .showmore button{
+//     width: 200px;
+//     height: 50px;
+//     color: $gray-darker !important;
+//     background: $skin-bright !important;
+//     border: none;
+//     transition: .5s;
+//     position: relative;
+//     right: 110px;
+// }
+// .ShowMore_ButtonDiv__uCJeR{    
+//     opacity: 1 !important;
+//     z-index: initial !important;
+// }
+// .showmore button:hover{
+//     color: $skin-bright !important;
+//     background: $gray-darker !important;
+// }
 
 @media screen and (max-width: 576px) {
+    .course_detail_stockWarning{
+        margin: 0px 0px 10px 15px;
+    }
+    .course_time_button{
+        text-align: center;
+        margin: 0 20px 0 40px;
+    }
     .detail_swiperL{
         display: none;
+
     }
     .detail_RWD{
         width: 530px;
@@ -293,33 +324,39 @@
     .react-datepicker__month-container{
         width: 370px;
     }
+    .detail_swiperR{
+        .swiper{
+            margin-left: 50px;
+        }
+    }
 }
 
 // ========== DatePicker ==========
-
-.course-total{
-    border: 1px $gray-darker solid;
-    width: 320px;
+// .datepicker_style{
+.react-datepicker__current-month, .react-datepicker__day-name{
     color: $gray-darker;
 }
-.course_order_title{
+.react-datepicker__day{
     color: $gray-darker;
 }
-.course_time_btn{
-    background: $skin-bright;
-    border: none;
-    color: $gray-darker;
+.react-datepicker__day--disabled{
+    color: $skin-brighter;
 }
-.course_time_btn:focus,.course_time_btn:active:focus{
-    outline: none;
-    box-shadow:none;
-    color: $white;
-
+.react-datepicker__day--selected{
+    color: $skin-brighter;
 }
-.course_time_btn:hover{
+.react-datepicker__day--in-range{
+    background-color: $skin-brighter;
+}
+.react-datepicker__day--range-end{
     color: $white;
 }
-.course_date{
+.react-datepicker__day--in-range:hover{
+    background-color: $skin-dark;
+}
+.react-datepicker__day--in-selecting-range{
+    background-color: $skin-brighter !important;
+}
 .react-datepicker{
     font-family: 'Roboto';
     font-style: normal;
@@ -351,4 +388,27 @@
         background-color: $primary !important;
     }
 }
+// }
+.course-total{
+    border: 1px $gray-darker solid;
+    width: 320px;
+    color: $gray-darker;
+}
+.course_order_title{
+    color: $gray-darker;
+}
+.course_time_btn{
+    background: $skin-bright;
+    border: none;
+    color: $gray-darker;
+    width: 100px;
+}
+.course_time_btn:focus,.course_time_btn:active:focus{
+    outline: none;
+    box-shadow:none;
+    color: $white;
+
+}
+.course_time_btn:hover{
+    color: $white;
 }

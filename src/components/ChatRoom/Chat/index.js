@@ -28,9 +28,10 @@ const Chat = () => {
   const [showPicker, setShowPicker] = useState(false)
 
   const dispatch = useDispatch()
-  const rooms = useSelector((state) => state.chatReducer).chatRooms
+  // const rooms = useSelector((state) => state.chatReducer).chatRooms
+  const { data } = useGetRoomsQuery('all')
 
-  const currentChat = rooms?.filter((room) => {
+  const currentChat = data?.filter((room) => {
     return room.endpoint === `/${chatId}`
   })
 
@@ -79,7 +80,7 @@ const Chat = () => {
 
   return (
     <>
-      <Container className="my-8">
+      <Container data-aos="zoom-in-up" data-aos-duration="600" className="my-8">
         <ChatToast text={welcomeMsg} />
         <Row>
           <Col className="bg-skin-dark" lg={3}>

@@ -111,6 +111,25 @@ function blog(state) {
   )
 }
 
+function store(state) {
+  if (!state.rawData) return
+  state.data = state.rawData
+  //篩選關鍵字
+  if (state.filter.searchWord !== '') {
+    state.data = state.data?.filter((store) =>
+      store.name.includes(state.filter.searchWord)
+    )
+  }
+
+  //篩選商店名稱
+  if (state.filter.store.length > 0) {
+    state.data = state.data?.filter((store) =>
+      state.filter.store.includes(store.name)
+    )
+  }
+  console.log('pData', state.data)
+}
+
 function doPagination(state) {
   switch (state.type) {
     case 'product':
@@ -118,6 +137,9 @@ function doPagination(state) {
       break
     case 'blog':
       blog(state)
+      break
+    case 'store':
+      store(state)
       break
 
     default:

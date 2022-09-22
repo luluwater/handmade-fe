@@ -27,6 +27,7 @@ function StoreCard({
       className="map_storeCard m-1"
       onClick={() => {
         dispatch(setCenter([lat, lng]))
+        window.location.href = '#map'
       }}
       role="button"
     >

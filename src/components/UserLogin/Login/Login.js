@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../services/authApi'
 import { useNavigate } from 'react-router-dom'
 import { Toast } from '../../UI/SwalStyle'
-import GoogleLogin from '../GoogleLogin'
+// import GoogleLogin from '../GoogleLogin'
 import { setUser } from '../../../slices/auth-slice'
 
 const Login = () => {
@@ -81,7 +81,9 @@ const Login = () => {
               />
             </div>
             {showEmailError && (
-              <p className="mt-2 text-danger mb-0">{formik.errors.email}</p>
+              <p className="emial mt-2 text-danger mb-0">
+                {formik.errors.email}
+              </p>
             )}
             <div className="position-relative mt-md-5">
               <label htmlFor="password"></label>
@@ -118,7 +120,7 @@ const Login = () => {
               </button>
             </Link>
             <h2 className="footerLogin text-center mb-5">Or Login With</h2>
-            <GoogleLogin />
+            {/* <GoogleLogin /> */}
           </form>
         </div>
       </div>

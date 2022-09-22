@@ -43,7 +43,6 @@ export const chatSilce = createSlice({
     // },
 
     setWelcomeMsg: (state, action) => {
-      // console.log('in slice ', action.payload)
       return { ...state, welcomeMsg: action.payload }
     },
 

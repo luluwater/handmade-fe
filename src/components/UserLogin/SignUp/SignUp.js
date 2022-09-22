@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './SignUp.css'
 import ShowPassword from '../ShowEye/ShowPassword'
 import { Button } from 'react-bootstrap'
-import GoogleLogin from '../GoogleLogin'
+// import GoogleLogin from '../GoogleLogin'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useRegisterMutation } from '../../../services/authApi'
@@ -16,7 +16,6 @@ const Signup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const navigate = useNavigate()
-
   const userId = Math.floor(Math.random() * 10000)
 
   const formik = useFormik({
@@ -80,7 +79,7 @@ const Signup = () => {
             <div className="position-relative mt-md-5">
               <label htmlFor="account"></label>
               <input
-                className="PasswordInput"
+                className="AccountPasswordInput"
                 name="account"
                 placeholder="帳號"
                 onChange={formik.handleChange}
@@ -94,7 +93,7 @@ const Signup = () => {
             <div className="mt-md-5">
               <label htmlFor="email"></label>
               <input
-                className="AccountInput"
+                className="SignUpAccountInput"
                 type="text"
                 name="email"
                 placeholder="信箱"
@@ -163,7 +162,7 @@ const Signup = () => {
             )}
 
             <h2 className="footerLogin text-center mb-5">Or Login With</h2>
-            <GoogleLogin />
+            {/* <GoogleLogin /> */}
           </form>
         </div>
       </div>

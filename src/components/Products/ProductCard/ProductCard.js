@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import { Navigation } from 'swiper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Card from 'react-bootstrap/Card'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProductCart } from '../../../slices/productCart-slice'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -13,11 +16,13 @@ import {
 } from '../../../services/productApi'
 
 import cart from '../../../assets/cart.svg'
-import { Link } from 'react-router-dom'
+import { getProductTotal } from '../../../slices/productCart-slice'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
+import { scrollToTop } from '../../FIlter/Paginate'
 
 //取得圖片路徑
 function getImgsRouter(imgsName, category, productId, type) {
@@ -40,11 +45,30 @@ function ProductCard({
   name,
   price,
   isFavorite,
+  amount,
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const addToProductCart = () => {
+    dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
+  }
+
+  const ProductItem = useSelector(
+    (state) => state.productCartReducer.productCartItem
+  )
+
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [ProductItem, dispatch])
+
+  // console.log(isFavorite)
   const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
   return (
     <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
@@ -56,6 +80,12 @@ function ProductCard({
         slidesPerView={1}
         loop
         className="card_swiper rounded shadow"
+        onClick={() => {
+          console.log('click')
+          scrollToTop()
+          navigate(`/${type}/detail/${productId}`)
+        }}
+        role="button"
       >
         {getImgsRouter(imgs, category, productId, type)?.map((v, i) => {
           return (
@@ -67,7 +97,7 @@ function ProductCard({
       </Swiper>
       <Row className="justify-content-between align-items-center ">
         <Col xs={6} className="mt-2">
-          <Link to={`/product/detail/${productId}`}>
+          <Link to={`/${type}/detail/${productId}`} onClick={scrollToTop}>
             <p className="mb-1  text-truncate">
               <small>| {storeName} |</small>
             </p>
@@ -79,6 +109,7 @@ function ProductCard({
           <button
             className="bg-primary card_favorite border-0  rounded-circle me-2"
             onClick={() => {
+              if (!userId) return (window.location.href = '/login')
               if (isFavorite) {
                 type === 'product'
                   ? removeUserFavoriteProduct({
@@ -108,8 +139,12 @@ function ProductCard({
               size="lg"
             />
           </button>
+
           {type === 'product' ? (
-            <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+            <button
+              className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
+              onClick={addToProductCart}
+            >
               <img src={cart} alt="" className="cart" />
             </button>
           ) : (

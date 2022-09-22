@@ -5,9 +5,8 @@ import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Avatar from '@mui/material/Avatar'
-import Typography from '@mui/material/Typography'
+import { Skeleton, Typography } from '@mui/material'
 
-import Skeleton from '@mui/material/Skeleton'
 
 function Media(props) {
   const { loading = false } = props
