@@ -5,8 +5,8 @@ import moment from 'moment/moment'
 const initialState = {
   startDate: null,
   endDate: null,
-  startPicker: new Date(),
-  endPicker: new Date(),
+  startPicker: null,
+  endPicker: null,
 }
 
 export const orderFilterDateSlice = createSlice({
