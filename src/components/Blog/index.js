@@ -22,8 +22,10 @@ import {
   setShowItemCount,
   setType,
 } from '../../slices/filterPagination-slice'
+import { scrollToTop } from '../../components/FIlter/Paginate'
 
 const Blog = () => {
+  scrollToTop()
   const { data } = useGetBlogQuery('all')
   const dispatch = useDispatch()
 
