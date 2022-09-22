@@ -12,7 +12,7 @@ export const courseApiService = createApi({
       providesTags: ['course'],
     }),
     getCourseDetail: builder.query({
-      query: (courseId) => `course/detail/${courseId}`,
+      query: (courseId) => `course/detail/${courseId}?userId=${userId}`,
       providesTags: ['course'],
     }),
     getCourseComment: builder.query({
