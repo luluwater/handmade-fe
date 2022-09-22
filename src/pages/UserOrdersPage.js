@@ -1,7 +1,7 @@
 import React from 'react'
 import UserProductsOrders from '../components/User/UserProductsOrders'
 import UserCourseOrders from '../components/User/UserCourseOrders'
-import { Row, Col, Form } from 'react-bootstrap'
+import { Row, Col, Form, Container } from 'react-bootstrap'
 import { product } from '../slices/userProductDetails-slice'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -19,11 +19,11 @@ const UserOrdersPage = () => {
   }
   return (
     <>
-      <Col>
-        <div className="user_orders_form m-8 user_scroll">
+      <Container className="user_orders_mdForm">
+        <div className="user_orders_form mx-8 mt-8 user_scroll">
           <Form.Group>
-            <Row>
-              <div className="my-5 ms-7 d-flex justify-content-start">
+            <Row className="m-0">
+              <Col className="my-5 ms-7 d-flex justify-content-start user_orders_mdBtn">
                 <button
                   className="user_orders_btn fw-bold me-5"
                   onClick={() => {
@@ -40,7 +40,7 @@ const UserOrdersPage = () => {
                 >
                   商品訂單
                 </button>
-              </div>
+              </Col>
             </Row>
           </Form.Group>
           {showUserProductOrders ? (
@@ -49,7 +49,7 @@ const UserOrdersPage = () => {
             <UserCourseOrders />
           )}
         </div>
-      </Col>
+      </Container>
     </>
   )
 }

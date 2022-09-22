@@ -38,6 +38,9 @@
 }
 
 .user_profile_card {
+  color: $gray-darker;
+  font-family: 'Roboto';
+  letter-spacing: 3px;
   display: block;
   width: 292px;
   height: 577px;
@@ -87,21 +90,30 @@
     display: none;
     @media screen and (max-width: 576px) {
       display: block;
+      color: $gray-darker;
+      font-family: 'Roboto';
+      letter-spacing: 3px;
     }
   }
 }
 
-.user_account_inputBirth .react-datepicker__triangle {
-  display: none;
-}
-.user_account_inputBirth .react-datepicker-wrapper {
-  padding: 0 !important;
-}
-.user_account_inputBirth .react-datepicker__tab-loop {
-  padding: 0 !important;
-}
-.user_account_inputBirth .react-datepicker__day--selected{
-  background-color: $primary;
+.user_datepicker .react-datepicker {
+  &__header {
+    background-color: $skin-brighter !important;
+  }
+  &__month-container {
+    background-color: $skin-brighter !important;
+    width: 250px !important;
+    height: 250px !important;
+  }
+  @media screen and (max-width: 576px) {
+    &__header {
+      background-color: $skin-bright !important;
+    }
+    &__month-container {
+      background-color: $skin-bright !important;
+    }
+  }
 }
 
 .user_account {
@@ -133,12 +145,12 @@
     border-bottom: 1px solid $gray-darker;
     padding-bottom: 10px;
     display:block;
-    margin: 0 auto 15px ;
+    margin: 0px auto 15px ;
     padding-top: 2rem;
     @media screen and (max-width: 576px) {
       width: 480px;
-      margin: 0;
-      padding: 0;
+      margin: 0px;
+      padding: 0px;
       padding-bottom: 10px;
     }
     
@@ -158,11 +170,12 @@
   }
   &_mdHeader {
     @media screen and (max-width: 576px) {
-      padding: 16px !important;
+      padding-top: 20px !important;
     }
   }
   &_text {
     color: $gray-darker;
+    // font-family: 'Roboto'!important;
     letter-spacing: 3px;
     @media screen and (max-width: 576px) {
       text-align: start !important;
@@ -207,8 +220,26 @@
     background-color: $skin-brighter !important;
     color: $gray-darker;
     letter-spacing: 3px;
+    display: block;
+    @media screen and (max-width: 576px) {
+      width: 335px;
+      display: none;
+      // margin-top: 5px;
+    }
+  }
+  &_mdInput {
+    display: none;
+    @media screen and (max-width: 576px) {
+      width: 335px;
+      display: block;
+      color: $gray-darker;
+      letter-spacing: 3px;
+    }
   }
   &_inputBirth {
+    letter-spacing: 3px;
+    color: $gray-dark !important;
+    padding: 15px;
     width: 350px;
     background-color: $skin-brighter !important;
     border: none;
@@ -229,6 +260,15 @@
     &:hover {
       background-color: $secondary;
       color: $skin-brighter;
+    }
+    @media screen and (max-width: 576px) {
+      margin-top: 50px;
+    }
+  }
+  &_formik_errors_xl {
+    display: block;
+    @media screen and (max-width: 576px) {
+      display: none;
     }
   }
 }
@@ -300,14 +340,46 @@
   }
 }
 
+.user_orders_datepicker  .react-datepicker {
+  &__header {
+    background-color: $skin-brighter !important;
+  }
+  &__month-container {
+    background-color: $skin-brighter !important;
+    width: 250px !important;
+    height: 250px !important;
+  }
+  @media screen and (max-width: 576px) {
+    &__header {
+      background-color: $skin-bright !important;
+    }
+    &__month-container {
+      background-color: $skin-bright !important;
+    }
+  }
+}
+
 .user_orders {
   &_form {
     height: 577px;
     width: 950px;
     background-color: $skin-bright;
-    margin: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    @media screen and (max-width: 576px) {
+      overflow-y: hidden;
+      overflow-x: hidden;
+      transform: translate(-10%, -5%);
+      width: 500px;
+      height: auto;
+      margin-right: 60px !important;
+      background-color: $skin-brighter;
+    }
+  }
+  &_mdForm {
+    @media screen and (max-width: 576px) {
+      transform: translateY(-5%);
+    }
   }
   &_btn {
     width: 120px;
@@ -327,10 +399,36 @@
       border: 1px solid $primary;
     }
   }
+  &_mdBtn {
+    @media screen and (max-width: 576px) {
+      width: 500px;
+      margin: 0px !important;
+    }
+  }
   &_header {
     color: $gray-darker;
     letter-spacing: 3px;
     padding: 15px;
+    display: block;
+  }
+  &_mdHeader {
+    @media screen and (max-width: 576px) {
+      color: $gray-darker;
+      letter-spacing: 3px;
+    }
+  }
+  &_filter {
+    display: block;
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+  }
+  &_mdFilter {
+    display: none;
+    @media screen and (max-width: 576px) {
+      display: block;
+      width: 500px !important;
+    }
   }
   &_date {
     text-align: center;
@@ -357,11 +455,31 @@
       border: 2px solid $primary !important;
     }
   }
+  &_dateMDBtn {
+    @media screen and (max-width: 576px) {
+      width: 60px;
+    }
+  }
   &_table {
     color: $gray-darker;
     border-top: 1px solid $gray-darker;
     border-bottom: 1px solid $gray-darker;
     letter-spacing: 3px;
+    width: 850px;
+    @media screen and (max-width: 576px) {
+      width: 100% !important;
+      display: none;
+    }
+  }
+  &_md {
+    display: none;
+    @media screen and (max-width: 576px) {
+      display: block;
+      font-size: 14px;
+      border-bottom: none;
+      margin: auto;
+
+    }
   }
   &_pages {
     transform: translate(-50%, -50%);
@@ -423,12 +541,23 @@
   &_title {
     border-bottom: 1px solid $gray-darker;
     padding-bottom: 8px;
+    @media screen and (max-width: 576px) {
+      width: 480px !important;
+      margin: 30px 0px 0px !important;
+    }
   }
   &_form {
-    // height: 577px;
+    letter-spacing: 3px;
     width: 950px;
     background-color: $skin-bright;
     color: $gray-darker;
+    @media screen and (max-width: 576px) {
+      // transform: translate(-10%, -5%);
+      width: 500px !important;
+      height: auto;
+      background-color: $skin-brighter;
+      margin: 0px !important;
+    }
   }
   &_link {
     background-color: $skin-bright;
@@ -453,11 +582,32 @@
         outline: none;
         box-shadow:none;
       }
+      @media screen and (max-width: 576px) {
+        margin: 0px !important;
+        padding: 0px;
+        background-color: $skin-brighter;
+      }
   }
   &_table {
     width: 850px;
     color: $gray-darker ;
     border-bottom: $skin-bright !important;
+    @media screen and (max-width: 576px) {
+      width: 500px !important;
+      margin: 0px !important;
+    }
+  }
+  &_xl {
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+  }
+  &_mdTable {
+    display: none;
+    @media screen and (max-width: 576px) {
+      width: 480px;
+      display: block;
+    }
   }
 }
 
@@ -466,6 +616,12 @@
     width: 850px;
     color: $gray-darker;
     border-bottom: 1px solid $gray-darker;
+    @media screen and (max-width: 576px) {
+      width: 480px;
+      margin: 40px 0px !important;
+      // font-size: 14px !important;
+      letter-spacing: 1px;
+    }
   }
   &_pay {
     width: 250px;
@@ -475,6 +631,11 @@
   }
   &_img {
     width: 80px;
+  }
+  &_coupon {
+    @media screen and (max-width: 576px) {
+      margin: 0px !important;
+    }
   }
 }
 
