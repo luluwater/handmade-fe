@@ -38,6 +38,7 @@ const Home = () => {
           <Row
             id="home_hot_course"
             data-aos="fade-right"
+            data-aos-delay="300"
             data-aos-duration="600"
           >
             <HomeHotCourse />
@@ -45,14 +46,19 @@ const Home = () => {
           <Row
             id="home_hot_product"
             data-aos="fade-right"
+            data-aos-delay="300"
             data-aos-duration="600"
           >
             <HomeHotProduct />
           </Row>
-          <Row data-aos="fade-right" data-aos-duration="600">
+          <Row
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeCategory />
           </Row>
-          <Row id="home_blog" data-aos="fade-right" data-aos-duration="600">
+          <Row id="home_blog">
             <HomeBlog />
           </Row>
         </Container>
