@@ -33,6 +33,9 @@ import { courseApiService } from '../services/courseApi'
 import { authApiService } from '../services/authApi'
 import { userApiService } from '../services/userApi'
 import { productOrderApiService } from '../services/productOrderApi'
+import { productOrderDetailApiService } from '../services/productOrderDetailApi'
+import { courseOrderApiService } from '../services/courseOrderApi'
+import { courseOrderDetailApiService } from '../services/courseOrderDetailApi'
 import { couponApiService } from '../services/couponApi'
 
 /**
@@ -74,6 +77,13 @@ const reducers = combineReducers({
   [courseApiService.reducerPath]: courseApiService.reducer,
   [authApiService.reducerPath]: authApiService.reducer,
   [productOrderApiService.reducerPath]: productOrderApiService.reducer,
+  [productOrderDetailApiService.reducerPath]: productOrderDetailApiService.reducer,
+  [courseOrderApiService.reducerPath]: courseOrderApiService.reducer,
+  [courseOrderDetailApiService.reducerPath]: courseOrderDetailApiService.reducer,
+  
+  [couponApiService.reducerPath]: couponApiService.reducer,
+
+
 })
 
 const store = configureStore({
@@ -93,6 +103,9 @@ const store = configureStore({
       .concat(courseApiService.middleware)
       .concat(authApiService.middleware)
       .concat(productOrderApiService.middleware)
+      .concat(productOrderDetailApiService.middleware)
+      .concat(courseOrderApiService.middleware)
+      .concat(courseOrderDetailApiService.middleware)
       .concat(couponApiService.middleware)
   },
 })

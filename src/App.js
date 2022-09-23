@@ -180,7 +180,7 @@ const routeConfig = [
     ],
   },
   {
-    path: '/course_cart',
+    path: '/course_cart/:userCouponId',
     element: <CourseCart />,
   },
   {

@@ -19,18 +19,19 @@ import {
 } from '../../../slices/productCart-slice'
 
 import { v4 as uuidv4 } from 'uuid'
+import Swal from 'sweetalert2'
 
 import { useCreateProductOrderMutation } from '../../../services/productOrderApi'
 import { useCreateProductOrderDetailMutation } from '../../../services/productOrderDetailApi'
 import { useGetUserQuery } from '../../../services/userApi'
 import { useDeleteUserCouponMutation } from '../../../services/couponApi'
 
-import Swal from 'sweetalert2'
-
 const ProductCartInfo = () => {
   // ==========登入狀態============
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
   const { data } = useGetUserQuery(userId)
+
+  // ============= 資料同會員中心 ==========
 
   const [userFromDb, setUserFromDb] = useState(false)
   useEffect(() => {
@@ -61,7 +62,7 @@ const ProductCartInfo = () => {
   const [zipCode, setZipCode] = useState('')
   const [address, setAddress] = useState('')
   const [note, setNote] = useState('')
-  const [paymentState, setPaymentState] = useState('')
+  const [paymentState, setPaymentState] = useState
 
   // ===========popup==============
   const [openSeven, setOpenSeven] = useState(false)
@@ -93,11 +94,11 @@ const ProductCartInfo = () => {
     (state) => state.productCartReducer.actuallyPrice
   )
 
-  const ActuallyPriceString = ActuallyPrice[0]
+  // const ActuallyPriceString = ActuallyPrice[0]
 
   const couponId = useSelector((state) => state.productCartReducer.coupon)
 
-  const clearCourseItems = () => {
+  const clearProductItems = () => {
     dispatch(clearCart())
     dispatch(getDiscount(0))
     dispatch(getActuallyPrice(0))
@@ -135,7 +136,7 @@ const ProductCartInfo = () => {
     payment_id: payment,
     address: zipCode + address,
     note: note,
-    total_amount: ActuallyPriceString,
+    total_amount: ActuallyPrice,
     payment_state_id: paymentState,
     order_state_id: '1',
     order_detail: [...ProductItem],
@@ -164,7 +165,7 @@ const ProductCartInfo = () => {
       await createProductOrder(ProductOrder)
       await createProductOrderDetail(ProductOrder)
       await deleteUserCoupon({ userCouponId })
-      await clearCourseItems()
+      await clearProductItems()
       await getProductTotal()
       navigate(`/product_checkout/${productOrderId}`)
     } catch (e) {
@@ -570,11 +571,11 @@ const ProductCartInfo = () => {
           <Col xs={12} md={3} className="ProductCartInfo_rightSide">
             <p className="fs-4 ProductCartInfo_inputTitle mb-6">購買細項</p>
 
-            {ProductItem?.map((item) => {
+            {ProductItem?.map((item,i) => {
               return (
                 <div
                   className="ProductCartInfo_shoppingDetail mt-1 d-flex justify-content-between"
-                  key={uuidv4()}
+                  key={'ProductCartInfo' + i}
                 >
                   <p className="fs-5">
                     {item.name} <br />
@@ -588,7 +589,11 @@ const ProductCartInfo = () => {
 
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_coupon d-flex justify-content-between">
               <p className="fs-5">折扣券折扣：</p>
-              <p className="fs-5">{OrderDiscount}</p>
+              <p className="fs-5">
+                {OrderDiscount < 1 && OrderDiscount > 0
+                  ? `${OrderDiscount * 10}折`
+                  : `-${OrderDiscount}`}
+              </p>
             </div>
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_total d-flex justify-content-between">
               <strong className="fs-5">實付金額</strong>

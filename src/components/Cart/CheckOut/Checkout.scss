@@ -60,4 +60,21 @@
     position: absolute;
     bottom: 4rem;
   }
+
+  &_calendar{
+    color: $gray-darker;
+    background: none;
+    border: none;
+    &:hover{
+      background: none !important;
+      color: $primary !important;
+    }
+
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+  color: $gray-darker;
+  background-color: none;
+  border-color: none;
+}
+  }
 }

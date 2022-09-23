@@ -8,7 +8,14 @@ const initialState = {
     : [],
   totalQuantity: 0,
   totalAmount: 0,
+  coupon: 28,
   isCartOpen: false,
+  courseCouponDiscount: localStorage.getItem('courseCouponDiscount')
+    ? JSON.parse(localStorage.getItem('courseCouponDiscount'))
+    : 0,
+  courseActuallyPrice: localStorage.getItem('courseActuallyPrice')
+    ? JSON.parse(localStorage.getItem('courseActuallyPrice'))
+    : 0,
 }
 
 const courseCartSlice = createSlice({
@@ -35,7 +42,6 @@ const courseCartSlice = createSlice({
           date: newItem.date,
           time: newItem.time,
           quantity: newItem.quantity,
-          // TODO:修改如果有傳入quantity的話,total要先計算
           totalPrice: newItem.price,
           stocks: newItem.stocks,
           stockWarning: '',
@@ -119,7 +125,29 @@ const courseCartSlice = createSlice({
       state.totalQuantity = quantity
       state.totalAmount = total
     },
-    // ============刪除項目==========
+    // =========拿取coupon==========
+    getCourseCoupon(state, action) {
+      state.coupon = action.payload
+    },
+
+    // =======顧客選擇折價券折數========
+    getCourseDiscount(state, action) {
+      state.courseCouponDiscount = action.payload
+      localStorage.setItem(
+        'courseCouponDiscount',
+        JSON.stringify(state.courseCouponDiscount)
+      )
+    },
+    // =======實付金額===========
+    getCourseActuallyPrice(state, action) {
+      state.courseActuallyPrice = action.payload
+      localStorage.setItem(
+        'courseActuallyPrice',
+        JSON.stringify(state.courseActuallyPrice)
+      )
+    },
+
+    // ============清空購物車==========
     clearCourseCart(state, action) {
       state.courseCartItem = []
       localStorage.setItem('CourseCart', JSON.stringify(state.courseCartItem))
@@ -142,5 +170,8 @@ export const {
   clearCourseCart,
   CourseCartClose,
   CourseCartToggle,
+  getCourseCoupon,
+  getCourseDiscount,
+  getCourseActuallyPrice,
 } = courseCartSlice.actions
 export default courseCartSlice.reducer

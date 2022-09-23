@@ -95,7 +95,7 @@ const ProductCheckout = () => {
                 </div>
                 <div className="CheckoutPage_total d-flex justify-content-between">
                   <strong className="fs-5">實付金額</strong>
-                  <strong className="fs-5">{item.total_amount}</strong>
+                  <strong className="fs-5">${item.total_amount}</strong>
                 </div>
               </Col>
             </Row>

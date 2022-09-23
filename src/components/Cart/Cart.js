@@ -24,6 +24,9 @@ import {
   clearCourseCart,
   CourseCartClose,
   CourseCartToggle,
+  getCourseCoupon,
+  getCourseDiscount,
+  getCourseActuallyPrice,
 } from '../../slices/courseCart-slice'
 
 import { useGetUserCouponsQuery } from '../../services/userApi'
@@ -44,14 +47,19 @@ const Cart = () => {
   // =========拿取user Coupon=======
   const { data } = useGetUserCouponsQuery(userId)
   // console.log('data', data)
+
+  const courseCouponId = useSelector((state) => state.courseCartReducer.coupon)
+
   const couponId = useSelector((state) => state.productCartReducer.coupon)
+
+  const courseCouponDiscountSlice = useSelector(
+    (state) => state.courseCartReducer.courseCouponDiscount
+  )
   const couponDiscountSlice = useSelector(
     (state) => state.productCartReducer.couponDiscount
   )
-  const actuallyPriceSlice = useSelector(
-    (state) => state.productCartReducer.actuallyPrice
-  )
-  let userCouponId = '0'
+
+  let userCouponId = '28'
   let useableCoupon = []
 
   if (userId && data) {
@@ -68,11 +76,45 @@ const Cart = () => {
     )
   }
 
+  const takeCourseCoupon = (value) => {
+    dispatch(getCourseCoupon(value))
+  }
+
   const takeCoupon = (value) => {
     dispatch(getCoupon(value))
   }
 
-  const [couponDiscount, setCouponDiscount] = useState('0')
+  // ======== Course 選取折價券 ========
+
+  const [courseSelectCoupon, setCourseSelectCoupon] = useState([
+    {
+      coupon_id: '28',
+      state: '1',
+      discount_type_id: '2',
+      coupon_discount: 0,
+    },
+  ])
+
+  useEffect(() => {
+    if (courseCouponId == 28) {
+      setCourseSelectCoupon([
+        {
+          coupon_id: '28',
+          state: '1',
+          discount_type_id: '2',
+          coupon_discount: 0,
+        },
+      ])
+    } else {
+      console.log('courseCouponId', courseCouponId)
+      setCourseSelectCoupon(
+        data?.filter((item) => item.coupon_id == courseCouponId)
+      )
+      console.log('courseSelectCoupon', courseSelectCoupon)
+    }
+  }, [courseCouponId, dispatch])
+
+  // ======== product 選取折價券 ========
 
   const [userSelectCoupon, setUserSelectCoupon] = useState([
     {
@@ -98,31 +140,27 @@ const Cart = () => {
     }
   }, [couponId, dispatch])
 
+  //========= course Cart Coupon Slice==========
   useEffect(() => {
-    userSelectCoupon?.map((item) => {
+    courseSelectCoupon?.map((item) => {
       return item.discount_type_id == 1
-        ? setCouponDiscount(`${Math.round(item.coupon_discount * 100) / 10} 折`)
-        : setCouponDiscount(`-${item.coupon_discount}`)
+        ? dispatch(
+            getCourseDiscount(Math.round(item.coupon_discount * 10) / 10)
+          )
+        : dispatch(getCourseDiscount(item.coupon_discount))
     })
+  }, [courseSelectCoupon])
 
+  //========= product Cart Coupon Slice==========
+  useEffect(() => {
     userSelectCoupon?.map((item) => {
       return item.discount_type_id == 1
         ? dispatch(getDiscount(Math.round(item.coupon_discount * 10) / 10))
         : dispatch(getDiscount(item.coupon_discount))
     })
-
-    userSelectCoupon?.map((item) => {
-      return item.discount_type_id == 1
-        ? dispatch(
-            getActuallyPrice(
-              Math.round(ProductCartTotal * item.coupon_discount)
-            )
-          )
-        : dispatch(
-            getActuallyPrice(Number(ProductCartTotal - item.coupon_discount))
-          )
-    })
   }, [userSelectCoupon])
+
+  //========= close Cart ==========
 
   const toggleCart = () => {
     dispatch(cartToggle())
@@ -146,6 +184,56 @@ const Cart = () => {
 
   const clearCourseItems = () => {
     dispatch(clearCourseCart())
+    dispatch(getCourseDiscount('0'))
+    dispatch(getCourseCoupon('28'))
+  }
+
+  const CourseContinue = (e) => {
+    e.preventDefault()
+    if (userId && CourseItem.length > 0) {
+      courseSelectCoupon?.map((item) => {
+        userCouponId = item.id
+        return item.discount_type_id == 1
+          ? dispatch(
+              getCourseActuallyPrice(
+                Math.round(CourseCartTotal * item.coupon_discount)
+              )
+            )
+          : dispatch(
+              getCourseActuallyPrice(
+                Number(CourseCartTotal - item.coupon_discount)
+              )
+            )
+      })
+      !userCouponId
+        ? navigate(`/course_cart/28`)
+        : navigate(`/course_cart/${userCouponId}`)
+    } else if (CourseItem.length <= 0) {
+      Swal.fire({
+        title: '請先選購商品',
+        confirmButtonColor: '#779cb2',
+        color: '#5f5c51',
+        background: '#e2dad2',
+        customClass: 'CartSwal',
+      })
+    } else if (!userId) {
+      Swal.fire({
+        title: '請先登入後再繼續結帳',
+        showDenyButton: true,
+        confirmButtonText: '登入',
+        denyButtonText: `取消`,
+        confirmButtonColor: '#779cb2',
+        denyButtonColor: '#e77656',
+        background: '#e2dad2',
+        color: '#5f5c51',
+        customClass: 'CartSwal',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/Login`)
+          closeCart()
+        }
+      })
+    }
   }
 
   // =======商品購物車slice============
@@ -160,12 +248,25 @@ const Cart = () => {
   const clearProductCart = () => {
     dispatch(clearCart())
     dispatch(getDiscount('0'))
-    dispatch(getActuallyPrice(0))
+    dispatch(getCoupon('28'))
   }
 
   const ProuductContinue = (e) => {
     e.preventDefault()
     if (userId && ProductItem.length > 0) {
+      userSelectCoupon?.map((item) => {
+        userCouponId = item.id
+        return item.discount_type_id == 1
+          ? dispatch(
+              getActuallyPrice(
+                Math.round(ProductCartTotal * item.coupon_discount)
+              )
+            )
+          : dispatch(
+              getActuallyPrice(Number(ProductCartTotal - item.coupon_discount))
+            )
+      })
+
       navigate(`/product_cart/${userCouponId}`)
     } else if (ProductItem.length <= 0) {
       Swal.fire({
@@ -195,19 +296,10 @@ const Cart = () => {
     }
   }
 
+  //========= 計算總金額 ==========
+
   useEffect(() => {
     dispatch(getProductTotal())
-    userSelectCoupon?.map((item) => {
-      return item.discount_type_id == 1
-        ? dispatch(
-            getActuallyPrice(
-              Math.round(ProductCartTotal * item.coupon_discount)
-            )
-          )
-        : dispatch(
-            getActuallyPrice(Number(ProductCartTotal - item.coupon_discount))
-          )
-    })
   }, [ProductItem, dispatch])
 
   useEffect(() => {
@@ -293,15 +385,31 @@ const Cart = () => {
                         </div>
                         <Row className="Cart_couponBox d-flex align-items-center">
                           <Col xs={3} className="Cart_couponSelect">
-                            <Form.Select aria-label="Default select example">
-                              <option>使用折價券</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                            <Form.Select
+                              aria-label="courseUserCoupon"
+                              value={courseCouponId}
+                              onChange={(e) => {
+                                takeCourseCoupon(e.target.value)
+                              }}
+                            >
+                              <option value="28">您擁有的折價券</option>
+                              {userId ? (
+                                <>
+                                  {useableCoupon?.map((item) => {
+                                    return (
+                                      <option value={item.coupon_id}>
+                                        {item.coupon_name}
+                                      </option>
+                                    )
+                                  })}
+                                </>
+                              ) : (
+                                ''
+                              )}
                             </Form.Select>
                           </Col>
 
-                          <Col xs="2" className="Cart_or text-center">
+                          {/* <Col xs="2" className="Cart_or text-center">
                             或
                           </Col>
 
@@ -322,7 +430,7 @@ const Cart = () => {
                                 使用
                               </Button>
                             </InputGroup>
-                          </Col>
+                          </Col> */}
                         </Row>
                       </>
                     )}
@@ -332,7 +440,7 @@ const Cart = () => {
                         <p className="fs-5 text-center">您的課程收藏清單</p>
                         <Row className="mb-5">
                           <Col className="d-flex justify-content-center Cart_userLike">
-                            <UserLikeCourse />
+                            <UserLikeCourse userId={userId} />
                           </Col>
                         </Row>
                       </Row>
@@ -365,13 +473,32 @@ const Cart = () => {
                     </div>
                     <div className="d-flex justify-content-between">
                       <p>折價券折扣：</p>
-                      <p>0</p>
+                      {courseSelectCoupon?.map((item) => {
+                        return item.discount_type_id == 1 ? (
+                          <p>{courseCouponDiscountSlice * 10}折</p>
+                        ) : (
+                          <p>-{courseCouponDiscountSlice}</p>
+                        )
+                      })}
                     </div>
                     <div className="d-flex justify-content-between Cart_TotalPrice">
                       <strong className="fs-5">實付金額</strong>
-                      <strong className="fs-5">{CourseCartTotal}</strong>
+
+                      {courseSelectCoupon?.map((item) => {
+                        userCouponId = item.id
+                        return item.discount_type_id == 1 ? (
+                          <strong className="fs-5">
+                            {Math.round(CourseCartTotal * item.coupon_discount)}
+                          </strong>
+                        ) : (
+                          <strong className="fs-5">
+                            {Number(CourseCartTotal - item.coupon_discount)}
+                          </strong>
+                        )
+                      })}
                     </div>
                     <Button
+                      onClick={CourseContinue}
                       variant="primary"
                       className="Cart_nextBTN fs-5 mt-6 mb-10 text-center"
                     >
@@ -433,7 +560,7 @@ const Cart = () => {
                                 takeCoupon(e.target.value)
                               }}
                             >
-                              <option value="28">使用折價券</option>
+                              <option value="28">您擁有的折價券</option>
                               {userId ? (
                                 <>
                                   {useableCoupon?.map((item) => {
@@ -533,7 +660,7 @@ const Cart = () => {
 
                       {userSelectCoupon?.map((item) => {
                         userCouponId = item.id
-                        item.discount_type_id == 1 ? (
+                        return item.discount_type_id == 1 ? (
                           <strong className="fs-5">
                             {Math.round(
                               ProductCartTotal * item.coupon_discount
