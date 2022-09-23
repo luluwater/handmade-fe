@@ -50,6 +50,9 @@ img {
   .max-h-md-300 {
     max-height: 300px;
   }
+  .max-h-md-175 {
+    max-height: 175px;
+  }
   .position-md-relative {
     position: relative !important;
   }
@@ -296,4 +299,8 @@ img {
 .avatar {
   width: 40px;
   height: 40px;
+}
+
+.max-h-175 {
+  max-height: 175px;
 }

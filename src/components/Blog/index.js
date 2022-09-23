@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import BlogList from './BlogList'
 import { Link } from 'react-router-dom'
-import FilterKeyword from '../Filter/FilterKeyword'
-import Paginate from '../Filter/Paginate'
+import FilterKeyword from '../FIlter/FilterKeyword'
+import Paginate from '../FIlter/Paginate'
 import { useGetBlogQuery } from '../../services/blogApi'
 import { IMG_URL } from '../../utils/config'
 import BlogFilter from './BlogFilter'
@@ -22,8 +22,13 @@ import {
   setShowItemCount,
   setType,
 } from '../../slices/filterPagination-slice'
+import { scrollToTop } from '../../components/FIlter/Paginate'
 
 const Blog = () => {
+  useEffect(() => {
+    scrollToTop()
+  }, [])
+
   const { data } = useGetBlogQuery('all')
   const dispatch = useDispatch()
 
@@ -46,7 +51,7 @@ const Blog = () => {
     dispatch(initFilterStore())
     dispatch(setShowItemCount(4))
     dispatch(pagination(data))
-  }, [dispatch, data])
+  }, [dispatch, data, rawData])
 
   useEffect(() => {
     dispatch(
@@ -67,13 +72,11 @@ const Blog = () => {
         <Row>
           <Col className="border-right" lg={3}>
             <FilterKeyword />
-
             <div className="filter w-100 w-md-auto mb-5 mb-md-3">
               <h5 className="filter_title">最新文章</h5>
             </div>
             {newData?.map((item) => {
               const imgUrl = item.img_url[0].img_name
-
               return (
                 <Row className="mb-5">
                   <Col className="d-flex align-items-center">

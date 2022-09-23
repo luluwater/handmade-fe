@@ -6,10 +6,6 @@ import { useDispatch } from 'react-redux'
 import { useGetBlogQuery } from '../../../services/blogApi'
 import BlogItemSkeleton from './BlogItemSkeleton'
 
-/**
- * 跟後端拿資料到這裡渲染
- * @returns
- */
 const BlogList = ({ blogList }) => {
   const { data, isLoading } = useGetBlogQuery('all')
   const dispatch = useDispatch()

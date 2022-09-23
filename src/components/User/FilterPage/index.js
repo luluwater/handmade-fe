@@ -34,7 +34,7 @@ export const FilterPage = ({ account }) => {
             <Link to="blogs" className="user_navbar_item">
               我的部落格
             </Link>
-            <Link to="/chat" className="user_navbar_item">
+            <Link to="chat" className="user_navbar_item">
               聊天室
             </Link>
           </nav>
