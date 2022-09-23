@@ -20,7 +20,6 @@ export const userSlice = createSlice({
         'user',
         JSON.stringify({ user: actions.payload.user })
       )
-      console.log(actions.payload.user)
       state.user = actions.payload.user
       state.googleUser = actions.payload.googleUser
       state.isLogin = true

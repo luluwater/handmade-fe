@@ -150,7 +150,7 @@ const Navbar = () => {
                 STORE
               </Link> */}
               <a href="/store" className="navbar_link">
-              STORE
+                STORE
               </a>
             </li>
             <li>

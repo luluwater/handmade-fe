@@ -15,6 +15,7 @@ import {
 } from '../../../services/blogApi'
 import { useCreateCommentMutation } from '../../../services/commentAPI'
 import { Toast } from '../../UI/SwalStyle'
+import { useSelector } from 'react-redux'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
@@ -28,11 +29,15 @@ const BlogDetail = () => {
 
   const [chosenEmoji, setChosenEmoji] = useState(null)
 
+  const sliceAuth = useSelector((state) => state.authReducers)
+
+  const userData = JSON.parse(localStorage.getItem('user'))?.user
+
   // TODO: user_id 從 local stroage 裡拿出
   const comment = {
     id: uuidv4(),
     blog_id: blogId,
-    user_id: '3',
+    user_id: userData?.id || sliceAuth?.user.id,
     comment_date: moment().format('YYYY-MM-DD h:mm:ss'),
     content: inputValue,
   }
@@ -131,7 +136,12 @@ const BlogDetail = () => {
                   </li>
                 </ul>
 
-                <BlogDropdown item={item} handleDeleteBlog={handleDeleteBlog} />
+                <BlogDropdown
+                  localUser={userData}
+                  isLogin={sliceAuth.isLogin}
+                  item={item}
+                  handleDeleteBlog={handleDeleteBlog}
+                />
               </div>
 
               <div className="container mb-6 mb-lg-8">
@@ -190,6 +200,8 @@ const BlogDetail = () => {
               <div className="mt-4 container">
                 <h6 className="pb-2 mb-3 d fs-md-6 fs-md-3 ">我要留言</h6>
                 <TextForm
+                  localUser={userData}
+                  isLogin={sliceAuth.isLogin}
                   handleSubmit={handleSubmit}
                   inputValue={inputValue}
                   handleChange={handleChange}

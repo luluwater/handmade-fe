@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import user1 from '../../../assets/user/profile_1.png'
 import { logout } from '../../../slices/auth-slice'
 
-export const FilterPage = ({ account}) => {
+export const FilterPage = ({ account }) => {
   // console.log('name, email', name, email)
   const authLogOut = () => {
     dispatch(logout())
@@ -34,7 +34,7 @@ export const FilterPage = ({ account}) => {
             <Link to="blogs" className="user_navbar_item">
               我的部落格
             </Link>
-            <Link to="/chat" className="user_navbar_item">
+            <Link to="chat" className="user_navbar_item">
               聊天室
             </Link>
           </nav>

@@ -24,7 +24,19 @@ export const authApiService = createApi({
       }),
       providesTags: ['auth'],
     }),
+    resetPassWord: builder.mutation({
+      query: (data) => ({
+        url: '/auth/resetPassword',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['auth'],
+    }),
   }),
 })
 
-export const { useLoginMutation, useRegisterMutation } = authApiService
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useResetPassWordMutation,
+} = authApiService

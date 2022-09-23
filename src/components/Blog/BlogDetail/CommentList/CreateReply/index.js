@@ -1,15 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
-
 import Collapse from 'react-bootstrap/Collapse'
 import Form from 'react-bootstrap/Form'
 import { Toast } from '../../../../UI/SwalStyle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import {
   useRepliesQuery,
   useCreateReplyMutation,
@@ -36,12 +33,12 @@ const CreateReply = ({ commentId }) => {
     dispatch(getReply(data))
   }, [data, dispatch])
 
-  // 要傳送的物件
+  const localUser = JSON.parse(localStorage?.getItem('user')).user
+
   const reply = {
     id: uuidv4(),
     reply_content: inputValue,
-    //TODO: USER_ID 從 LOCAL STROAGE拿
-    user_id: '1',
+    user_id: localUser.id,
     reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
     comment_id: commentId,
   }
