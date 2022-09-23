@@ -13,11 +13,11 @@ const UserPage = () => {
   // console.log('DATA', data)
   return (
     <>
-      {data?.map((item, v) => {
+      {data?.map((item) => {
         return <FilterPage key={item.id} account={item.account} />
       })}
       <Container className="d-flex">
-        {data?.map((item, v) => {
+        {data?.map((item) => {
           return (
             <UserCard key={item.id} account={item.account} email={item.email} />
           )

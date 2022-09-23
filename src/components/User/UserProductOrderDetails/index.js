@@ -33,13 +33,6 @@ const UserProductsOrderDetails = () => {
             <FontAwesomeIcon icon="fa-solid fa-angle-left" />
             <h6 className="ms-2 fw-bold">回到商品訂單</h6>
           </Button>
-          {/* <Link
-            to={'/user/orders'}
-            className="user_order_details_link pt-5 m-7 d-flex"
-          >
-            <FontAwesomeIcon icon="fa-solid fa-angle-left" />
-            <h6 className="ms-2 fw-bold">回到商品訂單</h6>
-          </Link> */}
           {data?.map((item) => {
             return (
               <div
@@ -60,7 +53,8 @@ const UserProductsOrderDetails = () => {
                 key={item.id}
                 className="m-8 mt-2 user_order_details_table"
               >
-                <tbody>
+                {/* 電腦版 */}
+                <tbody className="user_order_details_xl">
                   <tr>
                     <th>訂單日期</th>
                     <td>{transformProducts}</td>
@@ -84,6 +78,37 @@ const UserProductsOrderDetails = () => {
                   <tr>
                     <th>顧客備註</th>
                     <td colSpan={4}>{item.note}</td>
+                  </tr>
+                </tbody>
+                {/* 手機版 */}
+                <tbody className="mt-3 user_order_details_mdTable align-middle">
+                  <tr>
+                    <th className="text-nowrap">訂單日期</th>
+                    <td>{transformProducts}</td>
+                  </tr>
+                  <tr>
+                    <th>訂購人</th>
+                    <td>{item.user_name}</td>
+                  </tr>
+                  <tr>
+                    <th>收件人</th>
+                    <td>{item.product_order_name}</td>
+                  </tr>
+                  <tr>
+                    <th>付款方式</th>
+                    <td>{item.payment_name}</td>
+                  </tr>
+                  <tr>
+                    <th>訂單狀態</th>
+                    <td>{item.order_staus_name}</td>
+                  </tr>
+                  <tr>
+                    <th>連絡電話</th>
+                    <td>{item.phone}</td>
+                  </tr>
+                  <tr>
+                    <th>顧客備註</th>
+                    <td>{item.note}</td>
                   </tr>
                 </tbody>
               </Table>
