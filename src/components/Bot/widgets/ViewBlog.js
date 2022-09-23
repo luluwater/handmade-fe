@@ -3,10 +3,10 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 const ViewBlog = () => {
-  const blogId = 2
+  const blogId = '35b0c729-6804-4492-adf0-bbeee3f894d4'
   return (
     <>
-      {['skin-brighter', 'Secondary'].map((variant) => (
+      {['skin-brighter'].map((variant) => (
         <Card
           bg={variant.toLowerCase()}
           key={variant}

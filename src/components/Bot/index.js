@@ -17,13 +17,12 @@ function CrazyCatBot() {
     <>
       <div>
         <GeneralOptions />
-        {!show && (
+        {show && (
           <Chatbot
-            data-aos="zoom-in-right"
             config={config}
             messageParser={MessageParser}
             actionProvider={ActionProvider}
-            headerText="手手客服"
+            headerText="小花貓客服"
             placeholderText="請輸入..."
             runInitialMessagesWithHistory
             disableScrollToBottom={false}
