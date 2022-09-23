@@ -193,8 +193,8 @@
     color: $white;
     height: 50px;
     width: 50px;
-    background: #7e7b6f;
-    border: 1px solid #7e7b6f;
+    background: #7e7b6f !important;
+    border: 1px solid #7e7b6f !important;
 }
 .borderButtom{
     border-bottom: 1px solid $gray-darker;
@@ -249,28 +249,28 @@
 
 // ========== showmore ==========
 
-.showmore{
-    background: transparent !important;
+// .showmore{
+//     background: transparent !important;
 
-}
-.showmore button{
-    width: 200px;
-    height: 50px;
-    color: $gray-darker !important;
-    background: $skin-bright !important;
-    border: none;
-    transition: .5s;
-    position: relative;
-    right: 110px;
-}
-.ShowMore_ButtonDiv__uCJeR{    
-    opacity: 1 !important;
-    z-index: initial !important;
-}
-.showmore button:hover{
-    color: $skin-bright !important;
-    background: $gray-darker !important;
-}
+// }
+// .showmore button{
+//     width: 200px;
+//     height: 50px;
+//     color: $gray-darker !important;
+//     background: $skin-bright !important;
+//     border: none;
+//     transition: .5s;
+//     position: relative;
+//     right: 110px;
+// }
+// .ShowMore_ButtonDiv__uCJeR{    
+//     opacity: 1 !important;
+//     z-index: initial !important;
+// }
+// .showmore button:hover{
+//     color: $skin-bright !important;
+//     background: $gray-darker !important;
+// }
 
 @media screen and (max-width: 576px) {
     .course_detail_stockWarning{
@@ -332,7 +332,7 @@
 }
 
 // ========== DatePicker ==========
-.course_date{
+// .datepicker_style{
 .react-datepicker__current-month, .react-datepicker__day-name{
     color: $gray-darker;
 }
@@ -345,31 +345,18 @@
 .react-datepicker__day--selected{
     color: $skin-brighter;
 }
+.react-datepicker__day--in-range{
+    background-color: $skin-brighter;
 }
-.course-total{
-    border: 1px $gray-darker solid;
-    width: 320px;
-    color: $gray-darker;
-}
-.course_order_title{
-    color: $gray-darker;
-}
-.course_time_btn{
-    background: $skin-bright;
-    border: none;
-    color: $gray-darker;
-    width: 100px;
-}
-.course_time_btn:focus,.course_time_btn:active:focus{
-    outline: none;
-    box-shadow:none;
-    color: $white;
-
-}
-.course_time_btn:hover{
+.react-datepicker__day--range-end{
     color: $white;
 }
-.course_date{
+.react-datepicker__day--in-range:hover{
+    background-color: $skin-dark;
+}
+.react-datepicker__day--in-selecting-range{
+    background-color: $skin-brighter !important;
+}
 .react-datepicker{
     font-family: 'Roboto';
     font-style: normal;
@@ -401,4 +388,28 @@
         background-color: $primary !important;
     }
 }
+// }
+.course-total{
+    border: 1px $gray-darker solid;
+    width: 320px;
+    color: $gray-darker;
+}
+.course_order_title{
+    color: $gray-darker;
+}
+.course_time_btn{
+    background: $skin-bright;
+    border: none;
+    color: $gray-darker;
+    width: 100px;
+}
+.course_time_btn:focus,.course_time_btn:active:focus{
+    outline: none;
+    box-shadow:none;
+    color: $white;
+    background-color: $primary !important;
+
+}
+.course_time_btn:hover{
+    color: $white !important;
 }

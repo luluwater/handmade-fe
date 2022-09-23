@@ -1,17 +1,32 @@
-// import '../About.scss'
 import React from 'react'
 import Coupon from '../../../assets/news/coupon_logo.png'
 import Button from 'react-bootstrap/Button'
 import { Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// import { useCreateCouponMutation } from '../../../services/userApi'
+import { useCreateCouponMutation } from '../../../services/userApi'
+import { toast } from 'react-toastify'
+import '../../../styles/style.scss'
 
-//TODO: login API 帶入 user_id > 執行  useCreateCouponMutation()
-//TODO: 錯誤訊息
 const NewsCoupon = () => {
   const userData = localStorage.getItem('user')
-  console.log(userData)
-  // const [getCoupon] = useCreateCouponMutation()
+  // console.log(userData)
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const [getCoupon] = useCreateCouponMutation()
+
+  const addCoupon = async () => {
+    try {
+      await toast.success(`已領取成功！`, {
+        position: 'top-center',
+        autoClose: 500,
+        hideProgressBar: true,
+        className: 'toast-addCouponMessage',
+      })
+      await getCoupon(userId)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <>
       <div className="mt-12 news_coupon_text d-flex justify-content-center">
@@ -19,7 +34,12 @@ const NewsCoupon = () => {
         <br />
         專屬於女孩們的好康活動千萬別錯過！
       </div>
-      <Row className="justify-content-center align-items-center m-0">
+      <Row
+        className="justify-content-center align-items-center m-0"
+        data-aos="flip-left"
+        data-aos-delay="300"
+        data-aos-duration="600"
+      >
         <div className="news_coupon_imgBox">
           <img
             className="news_coupon_img img-fluid"
@@ -31,7 +51,7 @@ const NewsCoupon = () => {
           <Button
             className="mt-8 news_coupon_btn fw-bold justify-content-center"
             type="submit"
-            // onClick={handleGetCoupon}
+            onClick={addCoupon}
           >
             領取折價券
           </Button>
@@ -39,9 +59,10 @@ const NewsCoupon = () => {
           <Button
             className="mt-8 news_coupon_btn fw-bold justify-content-center"
             type="submit"
-            // onClick={handleGetCoupon}
           >
-            <Link to="/login">請先登入會員 </Link>
+            <Link className="news_coupon_link" to="/login">
+              請登入會員
+            </Link>
           </Button>
         )}
       </Row>

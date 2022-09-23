@@ -13,14 +13,6 @@ import { useUpdateUserAccountMutation } from '../../../services/userApi'
 import { Toast } from '../../UI/SwalStyle'
 
 const UserAccount = ({ id, account, name, phone, birthday, address }) => {
-  // console.log(
-  //   'account, name, phone, birthday, address',
-  //   account,
-  //   name,
-  //   phone,
-  //   birthday,
-  //   address
-  // )
   const [update] = useUpdateUserAccountMutation()
   const transformBirthday = moment(birthday).format('YYYY.MM.DD')
   const [showUserPassword, setShowUserPassword] = useState(false)
@@ -89,7 +81,7 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
 
   return (
     <>
-      <Col>
+      <Col className="user_account">
         <div className="user_account_from m-8">
           <h5 className="user_account_title fw-bold">帳號設定</h5>
           <Form.Group className="my-3">

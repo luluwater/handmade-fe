@@ -6,7 +6,7 @@ import Image2_2 from '../../assets/course/course_floral_29/花藝＿課程＿花
 import Image2_3 from '../../assets/course/course_floral_29/花藝＿課程＿花曜日＿藤編花籃＿3.jpg'
 import Image3_1 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_1.jpg'
 import Image3_2 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_2.jpg'
-import Image3_3 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_2.jpg'
+import Image3_3 from '../../assets/course/course_pottery_11/陶藝_課程_璐室_陶藝手捏體驗_3.jpg'
 import Image4_1 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_3.jpg'
 import Image4_2 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_1.jpg'
 import Image4_3 from '../../assets/course/course_tufting_53/tufting_課程_小紅花Little Red Fafa_常規_kv_2.jpg'
@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Container } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -25,6 +26,9 @@ import {
   useRemoveUserFavoriteCourseMutation,
   useGetCourseListQuery,
 } from '../../services/courseApi'
+export function scrollToTop() {
+  window.scrollTo(0, 0)
+}
 
 function CourseCard() {
   const { data } = useGetCourseListQuery()
@@ -84,6 +88,8 @@ function CourseCard() {
   ////////// isFavorite //////////
   const [aaddUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
   const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
   return (
     <>
       <h4 className="mb-5 course_detail_card_title text-center mt-10 mb-8 fw-bold">
@@ -97,10 +103,10 @@ function CourseCard() {
               lg={3}
               sm={6}
               className="course_detail_card_m px-3"
-              key={v.img}
+              key={v.courseId}
             >
               {/* ========== 商品照片 ========== */}
-              <a href={v.link}>
+              <a href={v.link} onClick={scrollToTop}>
                 <Swiper
                   modules={[Navigation]}
                   navigation
@@ -112,9 +118,8 @@ function CourseCard() {
                 >
                   {v.img.map((v2, i2) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={v2}>
                         <img
-                          key={v2[0]}
                           className="swiper-slide course_detail_card_img"
                           src={v2}
                           alt="products"
@@ -128,12 +133,12 @@ function CourseCard() {
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <a href={v.storeLink}>
-                    <p className="course_detail_card_store m-2 text-truncate">
-                      <small>| {v.store} |</small>
-                    </p>
-                  </a>
-                  <a href={v.link}>
+                  {/* <Link to={v.storeLink}> */}
+                  <p className="course_detail_card_store m-2 text-truncate">
+                    <small>| {v.store} |</small>
+                  </p>
+                  {/* </Link> */}
+                  <a href={v.link} onClick={scrollToTop}>
                     <h6 className="course_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>
@@ -148,6 +153,7 @@ function CourseCard() {
                 <div className="d-flex align-items-center me-2">
                   <button
                     onClick={() => {
+                      if (!userId) return (window.location.href = '/login')
                       if (v.isFavorite) {
                         removeUserFavoriteCourse({
                           courseId: v.courseId,

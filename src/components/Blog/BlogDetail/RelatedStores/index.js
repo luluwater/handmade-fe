@@ -10,7 +10,7 @@ const RelatedStores = ({
   storeImg,
 }) => {
   return (
-    <>
+    <div>
       <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
         / <spna class="mx-2">詳細資訊</spna>/
       </div>
@@ -26,7 +26,7 @@ const RelatedStores = ({
           <p>營業時間：{opening_hour}</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

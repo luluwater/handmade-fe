@@ -29,13 +29,15 @@ import {
 
 import { useDispatch } from 'react-redux'
 import { addProductCart } from '../../slices/productCart-slice'
+export function scrollToTop() {
+  window.scrollTo(0, 0)
+}
 
 function ProductCard() {
   const { data } = useGetProductListQuery()
   const getData = data?.map((item) => {
     return item.isFavorite
   })
-  console.log('gatData', getData?.[38])
   const Info = [
     {
       productId: '39',
@@ -115,10 +117,10 @@ function ProductCard() {
               md={3}
               xs={6}
               className="product_detail_card_m px-3"
-              key={v.name}
+              key={v.productId}
             >
               {/* ========== 商品照片 ========== */}
-              <a href={v.link}>
+              <a href={v.link} onClick={scrollToTop}>
                 <Swiper
                   modules={[Navigation]}
                   navigation
@@ -130,9 +132,8 @@ function ProductCard() {
                 >
                   {v.img.map((v2, i2) => {
                     return (
-                      <SwiperSlide>
+                      <SwiperSlide key={v2}>
                         <img
-                          key={v2[0]}
                           className="swiper-slide product_detail_card_img"
                           src={v2}
                           alt="products"
@@ -146,12 +147,12 @@ function ProductCard() {
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
                 <div>
-                  <a href={v.storeLink}>
-                    <p className="product_detail_card_store m-2 text-truncate">
-                      <small>| {v.store} |</small>
-                    </p>
-                  </a>
-                  <a href={v.link}>
+                  {/* <Link to={v.storeLink}> */}
+                  <p className="product_detail_card_store m-2 text-truncate">
+                    <small>| {v.store} |</small>
+                  </p>
+                  {/* </Link> */}
+                  <a href={v.link} onClick={scrollToTop}>
                     <h6 className="product_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>

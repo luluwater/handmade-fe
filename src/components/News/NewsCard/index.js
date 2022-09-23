@@ -3,7 +3,6 @@ import {
   useAddUserFavoriteProductMutation,
   useRemoveUserFavoriteProductMutation,
 } from '../../../services/productApi'
-import { v4 as uuidv4 } from 'uuid'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addProductCart,
@@ -29,6 +28,7 @@ function getImgsRouter(imgsName, category, productId) {
 }
 
 function NewsCard({
+  key,
   productId,
   storeId,
   categoryId,
@@ -43,7 +43,7 @@ function NewsCard({
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
   const dispatch = useDispatch()
-
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
   // const ProductItem = useSelector(
   //   (state) => state.productCartReducer.productCartItem
   // )
@@ -58,15 +58,9 @@ function NewsCard({
     dispatch(getProductTotal())
   }, [dispatch, productItem])
 
-  // let newData = []
-
-  // if (data) {
-  //   newData = [...data]?.sort(() => 0.5 - Math.random())
-  // }
-
   return (
     <>
-      <Col md={3} xs={6} className="news_card_m px-3" key={uuidv4()}>
+      <Col md={3} xs={6} className="news_card_m px-3" key={key}>
         {/* ========== 商品照片 ========== */}
         <Swiper
           modules={[Navigation]}
@@ -106,6 +100,7 @@ function NewsCard({
             <button
               className="bg-primary news_card_favorite me-2"
               onClick={() => {
+                if (!userId) return (window.location.href = '/login')
                 if (isFavorite) {
                   removeUserFavoriteProduct({
                     productId,

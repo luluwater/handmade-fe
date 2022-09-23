@@ -27,8 +27,8 @@ const ProductPic = ({ id, category, store, img }) => {
           >
             {img?.map((item) => {
               return (
-                <SwiperSlide>
-                  <Row key={id}>
+                <SwiperSlide key={item}>
+                  <Row>
                     <Col>
                       <img
                         src={require(`../../assets/product/product_${category}_${id}/${item}`)}
@@ -58,8 +58,8 @@ const ProductPic = ({ id, category, store, img }) => {
           >
             {img?.map((item) => {
               return (
-                <SwiperSlide>
-                  <div key={id}>
+                <SwiperSlide key={item}>
+                  <div>
                     <img
                       src={require(`../../assets/product/product_${category}_${id}/${item}`)}
                       alt=""

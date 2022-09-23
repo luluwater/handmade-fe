@@ -9,14 +9,15 @@ import {
   setType,
 } from '../slices/filterPagination-slice'
 import { courseBanner } from '../image'
-import Paginate from '../components/Filter/Paginate'
-import Filter from '../components/Filter/Filter'
-import SortSelect from '../components/Filter/SortSelect'
+import Paginate, { scrollToTop } from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/Filter'
+import SortSelect from '../components/FIlter/SortSelect'
 import { useGetCourseListQuery } from '../services/courseApi'
-import { initFilterStore } from '../slices/filterStore-silce'
-import { initFilterPrice } from '../slices/filterPrice-slice'
-import { initFilterDate } from '../slices/filterDate-silce'
-import { initSearchWord } from '../slices/filterKeyword-slice'
+import CourseBanner from '../components/Products/CourseBanner'
+// import { initFilterStore } from '../slices/filterStore-silce'
+// import { initFilterPrice } from '../slices/filterPrice-slice'
+// import { initFilterDate } from '../slices/filterDate-silce'
+// import { initSearchWord } from '../slices/filterKeyword-slice'
 
 function Courses() {
   //api get products data
@@ -41,6 +42,7 @@ function Courses() {
   //設定篩選資料
   useEffect(() => {
     if (rawData === data) return
+    scrollToTop()
     // dispatch(initFilterPrice())
     // dispatch(initFilterDate())
     // dispatch(initSearchWord())
@@ -69,41 +71,9 @@ function Courses() {
 
   return (
     <>
-      <div className="position-relative">
-        <svg
-          id="svg"
-          viewBox="0 0 1440 300"
-          xmlns="http://www.w3.org/2000/svg"
-          className="position-absolute top-0"
-        >
-          <path
-            d="M 0,300 C 0,300 0,200 0,200 C 132,177 264,154 437,159 C 610,163 824,194 998,206 C 1172,217 1306,208 1440,200 C 1440,200 1440,300 1440,300 Z"
-            stroke="none"
-            fill="#f4eee8"
-            className="path-top"
-            transform="rotate(-180 720 200)"
-          ></path>
-        </svg>
-        <svg
-          id="svg"
-          viewBox="0 0 1440 300"
-          xmlns="http://www.w3.org/2000/svg"
-          className="position-absolute bottom-0"
-        >
-          <path
-            d="M 0,400 C 0,400 0,200 0,200 C 132,177 264,154 437,159 C 610,163 824,194 998,206 C 1172,217 1306,208 1440,200 C 1440,200 1440,400 1440,400 Z"
-            stroke="none"
-            fill="#f4eee8"
-            className="path-bottom"
-          ></path>
-        </svg>
-        <img className="banner" src={courseBanner} alt="banner"></img>
-        <h1 className="position-absolute top-50 start-50 translate-middle text-white fw-light banner_title">
-          COURSE
-        </h1>
-      </div>
+      <CourseBanner />
       <Container fluid className="m-3 mx-auto ">
-        <Row className="gx-0 gy-5">
+        <Row className="gx-0 gy-5 m-160">
           <Col md={'auto'}>
             <Filter />
           </Col>

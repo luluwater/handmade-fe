@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useEffect } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import HomeNewStore from '../components/Home/HomeNewStore'
 import HomeNewActive from '../components/Home/HomeNewActive'
@@ -10,9 +10,11 @@ import Video from '../components/Home/HomeVideo'
 
 import { StickyContainer, Sticky } from 'react-sticky'
 import HomeSticky from '../components/Home/HomeSticky'
-import '../components/Home/HomeSticky.scss'
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       <Video />
@@ -27,7 +29,7 @@ const Home = () => {
           }}
         </Sticky>
         <Container>
-          <Row id="home_news" className="pt-lg-12">
+          <Row id="home_news">
             <Col>
               <HomeNewStore />
             </Col>
@@ -35,13 +37,27 @@ const Home = () => {
               <HomeNewActive />
             </Col>
           </Row>
-          <Row id="home_hot_course">
+          <Row
+            id="home_hot_course"
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeHotCourse />
           </Row>
-          <Row id="home_hot_product">
+          <Row
+            id="home_hot_product"
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeHotProduct />
           </Row>
-          <Row>
+          <Row
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
             <HomeCategory />
           </Row>
           <Row id="home_blog">

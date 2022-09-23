@@ -1,10 +1,12 @@
 @import '../../styles/custom_variables';
 
 .home_sticky{
+  position: --webkit-sticky;
+  position: sticky;
   width: 200px;
   height: 0px;
   position: relative;
-  left: 1660px;
+  left: 50px;
   top: 350px;
   list-style: none;
   &_li{
@@ -29,8 +31,22 @@
     margin-bottom: 10px;
   }
 }
+
+#home_news{
+  padding-top: 250px;
+}
+#home_hot_course, #home_hot_product, #home_blog{
+  padding-top: 150px;
+}
+
 @media screen and (max-width:576px){ 
   .home_sticky{
     display: none;
+  }
+  #home_news{
+    padding-top: 50px;
+  }
+  #home_hot_course, #home_hot_product, #home_blog{
+    padding-top: 50px;
   }
 }
