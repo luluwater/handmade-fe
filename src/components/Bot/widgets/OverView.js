@@ -3,12 +3,12 @@ import Options from './Options'
 const GeneralOptions = (props) => {
   const options = [
     {
-      name: '手作體驗種類',
+      name: '人氣店家',
       handler: props.actionProvider?.handleShowCategory,
       id: 1,
     },
     {
-      name: '馬上購物',
+      name: '查看人氣商品',
       handler: props.actionProvider?.handleShopNow,
       id: 2,
     },
@@ -18,7 +18,7 @@ const GeneralOptions = (props) => {
       id: 3,
     },
     {
-      name: '觀看部落格文章',
+      name: '最新文章',
       handler: props.actionProvider?.handleViewBlog,
       id: 4,
     },

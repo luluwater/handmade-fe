@@ -3,19 +3,31 @@ import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
 import { useGetcategoryListQuery } from '../../../services/categoryApi'
 import { Container, Row, Col } from 'react-bootstrap'
+import { useGetStoreQuery } from '../../../services/storeApi'
+import Card from 'react-bootstrap/Card'
 
 const ShowCategory = () => {
-  const { data } = useGetcategoryListQuery()
-  console.log(data)
+  const { data } = useGetStoreQuery()
+
+  let sliceData = data?.slice(7, 8)
 
   return (
     <Container>
       <Row>
-        {data?.map((item) => {
+        {sliceData?.map((item) => {
           return (
-            <Col className="mb-2 text-center fs-4" md={4}>
-              <Badge bg="gray-light text-dark">{item.category_name}</Badge>
-            </Col>
+            <Card key={item.id} className="mb-2 w-75 mx-auto p-0">
+              <Card.Header className="p-0">
+                <img src={item.img_url} alt="new blog" />
+              </Card.Header>
+
+              <Card.Body className="text-dark">
+                <Card.Title className="text-cut-1 fs-4 fw-bold">
+                  {item.name}
+                </Card.Title>
+                <Card.Text className="text-cut fs-6">{item.slogan}</Card.Text>
+              </Card.Body>
+            </Card>
           )
         })}
       </Row>
