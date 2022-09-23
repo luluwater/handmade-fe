@@ -17,7 +17,7 @@ import {
 
 import cart from '../../../assets/cart.svg'
 import { getProductTotal } from '../../../slices/productCart-slice'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
@@ -50,6 +50,7 @@ function ProductCard({
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const addToProductCart = () => {
     dispatch(addProductCart({ productId, name, imgs, price, category, amount }))
@@ -79,6 +80,12 @@ function ProductCard({
         slidesPerView={1}
         loop
         className="card_swiper rounded shadow"
+        onClick={() => {
+          console.log('click')
+          scrollToTop()
+          navigate(`/${type}/detail/${productId}`)
+        }}
+        role="button"
       >
         {getImgsRouter(imgs, category, productId, type)?.map((v, i) => {
           return (

@@ -146,9 +146,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="store" className="navbar_link">
+              {/* <Link to="store" className="navbar_link">
                 STORE
-              </Link>
+              </Link> */}
+              <a href="/store" className="navbar_link">
+              STORE
+              </a>
             </li>
             <li>
               {/* <Link to="course" className="navbar_link">
