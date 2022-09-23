@@ -9,10 +9,12 @@ import FilterPage from '../User/FilterPage'
 import RoomCard from './RoomCard'
 import UserCard from '../User/UserCard'
 import useSocket from '../../hooks/socketConnect'
+import { scrollToTop } from '../FIlter/Paginate'
 
 import { useSelector, useDispatch } from 'react-redux'
 
 const ChatRoom = () => {
+  scrollToTop()
   const sliceAuth = useSelector((state) => state.authReducers)
   const dispatch = useDispatch()
   const userData = JSON.parse(localStorage.getItem('user'))?.user
@@ -23,28 +25,20 @@ const ChatRoom = () => {
 
   return (
     <>
-      <FilterPage />
       <Container className="mb-8">
-        <Row>
-          <Col md={3}>
-            <UserCard />
-          </Col>
-          <Col md={9}>
-            <Row className="gap-4 gap-md-0 gap-bottom-4 mt-8">
-              {data?.map((room) => {
-                return (
-                  <Col key={room.id} className="mt-0 mb-5" md={4}>
-                    <RoomCard
-                      room={room}
-                      endpoint={room.endpoint}
-                      roomName={room.room_title}
-                      roomImg={room.img_url}
-                    />
-                  </Col>
-                )
-              })}
-            </Row>
-          </Col>
+        <Row className="gap-4 gap-md-0 gap-bottom-4 mt-8">
+          {data?.map((room) => {
+            return (
+              <Col key={room.id} className="mt-0 mb-md-5 mb-2" md={4}>
+                <RoomCard
+                  room={room}
+                  endpoint={room.endpoint}
+                  roomName={room.room_title}
+                  roomImg={room.img_url}
+                />
+              </Col>
+            )
+          })}
         </Row>
       </Container>
     </>

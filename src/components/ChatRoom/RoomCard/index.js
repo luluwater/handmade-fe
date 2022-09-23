@@ -8,7 +8,7 @@ function RoomCard({ roomName, endpoint, roomImg }) {
       <Card.Body className="px-0 py-0">
         <div className="max-h-md-175">
           <img
-            className="max-h-md-175 w-100 object-fit"
+            className="max-h-175 h-md-auto w-100 object-fit "
             src={roomImg}
             alt="room card"
           />

@@ -45,7 +45,6 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ChatRoomPage from './pages/ChatRoomPage'
 import Courses from './pages/Courses'
-import RoomBody from './components/ChatRoom/RoomBody'
 import Chat from './components/ChatRoom/Chat'
 
 const routeConfig = [
@@ -97,14 +96,6 @@ const routeConfig = [
         path: 'store/:storeId',
         element: <StoreDetail />,
       },
-      {
-        path: 'chat',
-        element: <ChatRoomPage />,
-      },
-      {
-        path: 'chat/:chatId',
-        element: <Chat />,
-      },
 
       {
         path: 'user',
@@ -138,7 +129,15 @@ const routeConfig = [
             path: 'blogs',
             element: <UserBlogsPage />,
           },
+          {
+            path: 'chat',
+            element: <ChatRoomPage />,
+          },
         ],
+      },
+      {
+        path: 'chat/:chatId',
+        element: <Chat />,
       },
 
       {

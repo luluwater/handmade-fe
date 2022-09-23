@@ -19,8 +19,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import ChatToast from '../../UI/ChatToast'
 import { addMesssage } from '../../../slices/chat-slice'
 import useSocket from '../../../hooks/socketConnect'
+import { scrollToTop } from '../../FIlter/Paginate'
 
 const Chat = () => {
+  scrollToTop()
   const { chatId } = useParams()
   const [message, setMessage] = useState('')
   const [sendMessage, { isLoading }] = useSendMessageMutation()

@@ -25,7 +25,10 @@ import {
 import { scrollToTop } from '../../components/FIlter/Paginate'
 
 const Blog = () => {
-  scrollToTop()
+  useEffect(() => {
+    scrollToTop()
+  }, [])
+
   const { data } = useGetBlogQuery('all')
   const dispatch = useDispatch()
 
@@ -69,13 +72,11 @@ const Blog = () => {
         <Row>
           <Col className="border-right" lg={3}>
             <FilterKeyword />
-
             <div className="filter w-100 w-md-auto mb-5 mb-md-3">
               <h5 className="filter_title">最新文章</h5>
             </div>
             {newData?.map((item) => {
               const imgUrl = item.img_url[0].img_name
-
               return (
                 <Row className="mb-5">
                   <Col className="d-flex align-items-center">

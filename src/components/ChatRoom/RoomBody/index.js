@@ -26,14 +26,14 @@ const RoomBody = ({ data }) => {
           <div key={currentChat.id}>
             <div className="position-relative text-center mt-3 ">
               <Link
-                to="/chat"
+                to="/user/chat"
                 className="position-absolute bottom-0 start-0 fs-1 d-md-none"
               >
                 <FontAwesomeIcon icon="fa-solid fa-angle-left" />
               </Link>
               <h5>{currentChat?.room_title}</h5>
               <Link
-                to="/chat"
+                to="/user/chat"
                 className="position-absolute bottom-0 end-0 d-none d-md-block"
               >
                 <FontAwesomeIcon icon="fa-solid fa-door-open" />
