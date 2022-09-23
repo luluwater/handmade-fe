@@ -8,6 +8,7 @@ import {
   setShowItemCount,
   setType,
 } from '../slices/filterPagination-slice'
+import { courseBanner } from '../image'
 import Paginate from '../components/FIlter/Paginate'
 import Filter from '../components/FIlter/Filter'
 import SortSelect from '../components/FIlter/SortSelect'
