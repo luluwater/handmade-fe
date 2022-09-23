@@ -8,10 +8,20 @@ import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useSendValidationMailMutation } from '../../../services/googleApi'
 
 const CourseCheckout = () => {
   const { orderId } = useParams()
   const { data } = useGetCourseOrderDetailQuery(orderId)
+
+  const [SendValidationMail] = useSendValidationMailMutation()
+  const calendarHandler = async (v) => {
+    try {
+      await SendValidationMail(v)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   console.log('data', data)
   return (
@@ -73,15 +83,23 @@ const CourseCheckout = () => {
 
                 {item.orderDetail?.map((v) => {
                   let courseDate = moment(v.date).format('YYYY-MM-DD')
+                  const newItem = { ...v, date: courseDate }
                   return (
                     <div className="mt-4 d-flex justify-content-between">
                       <p className="fs-5">
                         {v.name} <br />
-                        <span className="fs-6">{courseDate}</span>
+                        <span className="fs-6">{newItem.date}</span>
                       </p>
                       <p className="fs-5 text-center me-5">
                         ${v.price} x{v.amount}
-                        <Button className='CheckoutPage_calendar'>
+                        <Button
+                          className="CheckoutPage_calendar"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            calendarHandler(newItem)
+                            console.log('v', newItem)
+                          }}
+                        >
                           <FontAwesomeIcon
                             icon="fa-regular fa-calendar"
                             size="lg"

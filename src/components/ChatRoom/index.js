@@ -9,7 +9,7 @@ import FilterPage from '../User/FilterPage'
 import RoomCard from './RoomCard'
 import UserCard from '../User/UserCard'
 import useSocket from '../../hooks/socketConnect'
-import { scrollToTop } from '../FIlter/Paginate'
+import { scrollToTop } from '../Filter/Paginate'
 
 import { useSelector, useDispatch } from 'react-redux'
 
