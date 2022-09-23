@@ -16,7 +16,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Container } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Link } from 'react-router-dom'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -30,6 +29,9 @@ import {
 
 import { useDispatch } from 'react-redux'
 import { addProductCart } from '../../slices/productCart-slice'
+export function scrollToTop() {
+  window.scrollTo(0, 0)
+}
 
 function ProductCard() {
   const { data } = useGetProductListQuery()
@@ -118,7 +120,7 @@ function ProductCard() {
               key={v.productId}
             >
               {/* ========== 商品照片 ========== */}
-              <Link to={v.link}>
+              <a href={v.link} onClick={scrollToTop}>
                 <Swiper
                   modules={[Navigation]}
                   navigation
@@ -140,7 +142,7 @@ function ProductCard() {
                     )
                   })}
                 </Swiper>
-              </Link>
+              </a>
 
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
@@ -150,11 +152,11 @@ function ProductCard() {
                     <small>| {v.store} |</small>
                   </p>
                   {/* </Link> */}
-                  <Link to={v.link}>
+                  <a href={v.link} onClick={scrollToTop}>
                     <h6 className="product_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>
-                  </Link>
+                  </a>
                   <h6 className="product_detail_card_text text-primary fw-bold m-1">
                     $ {v.price}
                   </h6>
