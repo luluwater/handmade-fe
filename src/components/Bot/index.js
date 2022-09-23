@@ -35,7 +35,7 @@ function CrazyCatBot() {
         ) : (
           <FontAwesomeIcon
             className="bot-switch_times"
-            icon="fa-brands fa-bots"
+            icon="fa-solid fa-lightbulb"
           />
         )}
       </div>
