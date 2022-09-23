@@ -121,6 +121,7 @@
   margin-bottom: 1rem;
   justify-content: center;
   margin-top: 0.7rem;
+  align-items: center;
 }
 
 .react-chatbot-kit-chat-bot-avatar-container {
@@ -212,18 +213,34 @@
 }
 
 .option-item {
+  position: relative;
   padding: 8px 15px;
   border: 1px solid $skin-bright;
   border-radius: 25px;
-  color: $gray-dark;
+  color: $dark;
   font-size: 0.9rem;
   margin: 3px;
-  box-shadow: inset 0px 0px 0px $skin-bright;
-  transition: all 0.5s;
+  background: $skin-brighter;
+  &::after {
+    content: '';
+    border-radius: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    transition: all 0.4s;
+  }
   cursor: pointer;
-}
 
-.option-item:hover {
-  box-shadow: inset 120px 0px 0px $secondary;
-  color: $white;
+  &:hover {
+    z-index: 1;
+    color: $white;
+    &::after {
+      color: $white;
+      width: 100%;
+      background: $secondary;
+      z-index: -1;
+    }
+  }
 }

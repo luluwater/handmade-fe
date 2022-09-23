@@ -12,6 +12,20 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }))
   }
 
+  const handleOptions = (options) => {
+    const botMessage = createChatBotMessage('請問需要什麼協助呢 ?', {
+      widget: 'overview',
+      loading: true,
+      terminateLoading: true,
+      ...options,
+    })
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }))
+  }
+
   const handleShowCategory = () => {
     const botMessage = createChatBotMessage('手作體驗種類', {
       widget: 'showCategory',
@@ -93,6 +107,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleSignup,
             handleViewBlog,
             handleConcatUs,
+            handleOptions,
           },
         })
       })}

@@ -1,11 +1,6 @@
 import React from 'react'
 
-const MessageParser = ({
-  children,
-  setState,
-  actions,
-  createChatBotMessage,
-}) => {
+const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
     if (message.includes('hello')) {
       actions.handleHello()
@@ -14,15 +9,29 @@ const MessageParser = ({
     if (message.includes('dog')) {
       actions.handleDog()
     }
-  }
 
-  const handleHello = () => {
-    const botMessage = createChatBotMessage('Hello. Nice to meet you.')
+    if (message.includes('選項') || message.includes('option')) {
+      actions.handleOptions()
+    }
 
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }))
+    if (message.includes('類別') || message.includes('店家')) {
+      actions.handleShowCategory()
+    }
+
+    if (message.includes('買')) {
+      actions.handleShopNow()
+    }
+    if (message.includes('會員') || message.includes('註冊')) {
+      actions.handleSignup()
+    }
+
+    if (message.includes('部落格') || message.includes('文章')) {
+      actions.handleViewBlog()
+    }
+
+    if (message.includes('聯絡')) {
+      actions.handleConcatUs()
+    }
   }
 
   return (
@@ -30,7 +39,7 @@ const MessageParser = ({
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           parse: parse,
-          actions: { handleHello },
+          actions,
         })
       })}
     </div>

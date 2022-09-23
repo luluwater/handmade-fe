@@ -33,7 +33,7 @@ const config = {
     },
     {
       widgetName: 'showCategory',
-      widgetFunc: (props) => <ShowCategory />,
+      widgetFunc: (props) => <ShowCategory {...props} />,
     },
     {
       widgetName: 'showNow',
