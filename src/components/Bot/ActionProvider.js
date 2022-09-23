@@ -41,7 +41,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleShopNow = () => {
-    const botMessage = createChatBotMessage('馬上購物', {
+    const botMessage = createChatBotMessage('人氣商品', {
       widget: 'showNow',
       loading: true,
       terminateLoading: true,
@@ -69,7 +69,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleViewBlog = () => {
-    const botMessage = createChatBotMessage('觀看部落格文章', {
+    const botMessage = createChatBotMessage('最新部落格', {
       widget: 'viewBlog',
       loading: true,
       terminateLoading: true,
@@ -83,7 +83,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   }
 
   const handleConcatUs = () => {
-    const botMessage = createChatBotMessage('聯絡我們', {
+    const botMessage = createChatBotMessage('聯絡資訊', {
       widget: 'concatUs',
       loading: true,
       terminateLoading: true,
