@@ -93,25 +93,25 @@
     // ========== 加 ==========
 
     &_plus, &_plus:focus{
-        background: none;
-        color: $primary;
+        background: none !important;
+        color: $primary !important;
     }
     &_plus:hover{
-        background: $primary;
-        color: $white;
+        background: $primary !important;
+        color: $white !important;
     }
 
     // ========== 減 ==========
 
     &_minus, &_minus:focus{
         background: none;
-        border: 1px solid $gray-darker;
-        color: $gray-darker;
+        border: 1px solid $gray-darker !important;
+        color: $gray-darker !important;
         }
     &_minus:hover{
-        background: $gray-darker;
-        border: 1px solid $gray-darker;
-        color: $white;
+        background: $gray-darker !important;
+        border: 1px solid $gray-darker !important;
+        color: $white !important;
     }
 
 
@@ -151,7 +151,7 @@
 .detail_cart:hover{
     width: 200px;
     height: 50px;
-    color: $white;
+    color: $white !important;
     letter-spacing: 5px;
     margin: 0 20px;
 }

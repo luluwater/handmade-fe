@@ -1,7 +1,7 @@
 import ReactPlayer from 'react-player'
 import VideoFile from '../../assets/video/handmade_movie_1280x500.mp4'
 import './HomeVideo.scss'
-import { Button } from 'react-bootstrap'
+// import { Button } from 'react-bootstrap'
 
 function Video() {
   return (
@@ -35,9 +35,9 @@ function Video() {
         height="100%"
         className="home_video"
       />
-      <Button href="/course" className="home_video_button">
+      <button href="/course" className="home_video_button">
         DISCOVER MORE
-      </Button>
+      </button>
 
       <div className="home_svg_bottom">
         <svg

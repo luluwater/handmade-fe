@@ -1,6 +1,6 @@
 import './HomeNews.scss'
 import Image1 from '../../assets/store/store_pottery_6/陶藝_璐室_BN.jpg'
-import { Button } from 'react-bootstrap'
+// import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function HomeNewActive() {
@@ -26,7 +26,7 @@ function HomeNewActive() {
               <br />
             </div>
             <Link to="/news">
-              <Button className="home_newStore_content_button">看更多</Button>
+              <button className="home_newStore_content_button">看更多</button>
             </Link>
           </div>
         </div>

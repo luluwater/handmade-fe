@@ -125,7 +125,7 @@ const ProductIntro = ({
             加入購物車
           </Button>
 
-          <Button
+          <button
             className="detail_button detail_heart"
             onClick={() => {
               if (isFavorite) {
@@ -145,7 +145,7 @@ const ProductIntro = ({
               icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
               inverse
             />
-          </Button>
+          </button>
         </Col>
         {stockWarning === '' ? (
           ''

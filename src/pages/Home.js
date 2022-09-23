@@ -10,7 +10,6 @@ import Video from '../components/Home/HomeVideo'
 
 import { StickyContainer, Sticky } from 'react-sticky'
 import HomeSticky from '../components/Home/HomeSticky'
-import '../components/Home/HomeSticky.scss'
 
 const Home = () => {
   return (
