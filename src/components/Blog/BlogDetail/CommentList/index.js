@@ -32,7 +32,7 @@ const CommentList = () => {
             <CommentItem
               key={item.comment_id}
               commentId={item.comment_id}
-              user={item.name}
+              user={item.account}
               userAvatar={item.avatar}
               content={item.content}
               commentTime={moment(item.comment_date).calendar()}

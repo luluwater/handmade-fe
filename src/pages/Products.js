@@ -9,14 +9,14 @@ import {
   setShowItemCount,
   setType,
 } from '../slices/filterPagination-slice'
-import { productBanner } from '../image'
 import Paginate from '../components/FIlter/Paginate'
 import Filter from '../components/FIlter/Filter'
 import SortSelect from '../components/FIlter/SortSelect'
-import { initFilterPrice } from '../slices/filterPrice-slice'
-import { initFilterDate } from '../slices/filterDate-silce'
-import { initSearchWord } from '../slices/filterKeyword-slice'
-import { initFilterStore } from '../slices/filterStore-silce'
+// import { initFilterPrice } from '../slices/filterPrice-slice'
+// import { initFilterDate } from '../slices/filterDate-silce'
+// import { initSearchWord } from '../slices/filterKeyword-slice'
+// import { initFilterStore } from '../slices/filterStore-silce'
+import ProductBanner from '../components/Products/ProductBanner'
 
 function Proudcts() {
   //api get products data
@@ -64,41 +64,9 @@ function Proudcts() {
 
   return (
     <>
-      <div className="position-relative">
-        <svg
-          id="svg"
-          viewBox="0 0 1440 300"
-          xmlns="http://www.w3.org/2000/svg"
-          className="position-absolute top-0"
-        >
-          <path
-            d="M 0,300 C 0,300 0,200 0,200 C 132,177 264,154 437,159 C 610,163 824,194 998,206 C 1172,217 1306,208 1440,200 C 1440,200 1440,300 1440,300 Z"
-            stroke="none"
-            fill="#f4eee8"
-            className="path-top"
-            transform="rotate(-180 720 200)"
-          ></path>
-        </svg>
-        <svg
-          id="svg"
-          viewBox="0 0 1440 300"
-          xmlns="http://www.w3.org/2000/svg"
-          className="position-absolute bottom-0"
-        >
-          <path
-            d="M 0,400 C 0,400 0,200 0,200 C 132,177 264,154 437,159 C 610,163 824,194 998,206 C 1172,217 1306,208 1440,200 C 1440,200 1440,400 1440,400 Z"
-            stroke="none"
-            fill="#f4eee8"
-            className="path-bottom"
-          ></path>
-        </svg>
-        <img className="banner" src={productBanner} alt="banner"></img>
-        <h1 className="position-absolute top-50 start-50 translate-middle text-white fw-light banner_title">
-          SHOP
-        </h1>
-      </div>
+      <ProductBanner />
       <Container fluid className="m-3 mx-auto ">
-        <Row className="gx-0 gy-5">
+        <Row className="gx-0 gy-5 m-160">
           <Col md={'auto'}>
             <Filter haveDate={false} />
           </Col>

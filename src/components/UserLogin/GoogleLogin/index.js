@@ -4,30 +4,38 @@ import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../../slices/auth-slice'
 import './Button.scss'
+import { useRegisterMutation } from '../../../services/authApi'
+import moment from 'moment'
 
 const GoogleLogin = () => {
+  const [register] = useRegisterMutation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleCallbackResponse = (res) => {
+  const handleCallbackResponse = async (res) => {
     console.log('Encode JWT ID token ' + res.credential)
-    const rawData = jwt_decode(res.credential)
+    const rawData = await jwt_decode(res.credential)
+
+    const userId = Math.floor(Math.random() * 10000)
 
     const userObject = {
+      id: userId,
       account: rawData.name,
       name: rawData.name,
       email: rawData.email,
       avatar: rawData.picture,
       password: 'sercert',
+      create_time: moment().format('YYYY-MM-DD h:mm:ss'),
     }
-
-    dispatch(setUser({ user: userObject }))
-    navigate('/')
+    await register(userObject)
+    await dispatch(setUser({ user: userObject }))
+    await navigate('/')
   }
 
   useEffect(() => {
     window.google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT,
+      client_id:
+        '1015492838146-8k6opbtutl4v32mr22trqhm3k5rhh364.apps.googleusercontent.com',
       callback: handleCallbackResponse,
     })
 
