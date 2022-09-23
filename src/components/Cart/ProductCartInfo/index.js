@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './ProductCartInfo.scss'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,6 +23,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { useCreateProductOrderMutation } from '../../../services/productOrderApi'
 import { useCreateProductOrderDetailMutation } from '../../../services/productOrderDetailApi'
 import { useGetUserQuery } from '../../../services/userApi'
+import { useDeleteUserCouponMutation } from '../../../services/couponApi'
+
 import Swal from 'sweetalert2'
 
 const ProductCartInfo = () => {
@@ -65,8 +67,10 @@ const ProductCartInfo = () => {
   const [openSeven, setOpenSeven] = useState(false)
 
   // ===========api==============
+  const { userCouponId } = useParams()
   const [createProductOrder] = useCreateProductOrderMutation()
   const [createProductOrderDetail] = useCreateProductOrderDetailMutation()
+  const [deleteUserCoupon] = useDeleteUserCouponMutation()
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -77,9 +81,9 @@ const ProductCartInfo = () => {
     (state) => state.productCartReducer.productCartItem
   )
 
-  const ProductCartTotal = useSelector(
-    (state) => state.productCartReducer.totalAmount
-  )
+  // const ProductCartTotal = useSelector(
+  //   (state) => state.productCartReducer.totalAmount
+  // )
 
   const OrderDiscount = useSelector(
     (state) => state.productCartReducer.couponDiscount
@@ -159,6 +163,7 @@ const ProductCartInfo = () => {
     try {
       await createProductOrder(ProductOrder)
       await createProductOrderDetail(ProductOrder)
+      await deleteUserCoupon({ userCouponId })
       await clearCourseItems()
       await getProductTotal()
       navigate(`/product_checkout/${productOrderId}`)

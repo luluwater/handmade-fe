@@ -1,15 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 import { API_URL } from '../utils/config'
 
-export const couponService = createApi({
+export const couponApiService = createApi({
   reducerPath: 'couponApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
   endpoints: (builder) => ({
-    getCoupon: builder.query({
-      query: (couponId) => `coupon/${couponId}`,
-      providesTags: ['coupon'],
+    deleteUserCoupon: builder.mutation({
+      query: (userCouponId) => ({
+        url: 'coupon',
+        method: 'delete',
+        body: userCouponId,
+      }),
+      invalidatesTags: ['coupon'],
     }),
   }),
 })
 
-export const { useGetCouponQuery } = couponService
+export const { useDeleteUserCouponMutation } = couponApiService

@@ -184,7 +184,7 @@ const routeConfig = [
     element: <CourseCart />,
   },
   {
-    path: '/product_cart',
+    path: '/product_cart/:userCouponId',
     element: <ProductCart />,
   },
   {

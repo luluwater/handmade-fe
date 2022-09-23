@@ -11,10 +11,10 @@ const initialState = {
   coupon: 28,
   couponDiscount: localStorage.getItem('couponDiscount')
     ? JSON.parse(localStorage.getItem('couponDiscount'))
-    : [],
+    : 0,
   actuallyPrice: localStorage.getItem('actuallyPrice')
     ? JSON.parse(localStorage.getItem('actuallyPrice'))
-    : [],
+    : 0,
   isCartOpen: false,
 }
 
@@ -30,7 +30,7 @@ const productCartSlice = createSlice({
       const existingItem = state.productCartItem.find(
         (Item) => Item.productId === newItem.productId
       )
-      console.log('existingItem', existingItem)
+      // console.log('existingItem', existingItem)
 
       if (!existingItem) {
         state.productCartItem.push({
@@ -157,7 +157,6 @@ const productCartSlice = createSlice({
     clearCart(state, action) {
       state.productCartItem = []
       localStorage.setItem('ProductCart', JSON.stringify(state.productCartItem))
-
     },
 
     //==========確認購物車狀態============

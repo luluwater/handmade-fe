@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useGetProductListQuery } from '../../../services/productApi'
 import CartRecommendCard from './CartRecommendCard'
-
 const YouWillLikeProduct = () => {
   const { data, error, isLoading } = useGetProductListQuery()
-  console.log('data', data)
+// /  console.log('data', data)
 
   const [Card, setCard] = useState([])
 

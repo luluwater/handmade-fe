@@ -27,7 +27,6 @@ import {
 } from '../../slices/courseCart-slice'
 
 import { useGetUserCouponsQuery } from '../../services/userApi'
-import { useGetCouponQuery } from '../../services/couponApi'
 import UserLikeCourse from './CourseCartRecommend/UserLikeCourse'
 import YouWillLikeCourse from './CourseCartRecommend/YouWillLikeCourse'
 import UserLikeProduct from './CourseCartRecommend/UserLikeProduct'
@@ -40,24 +39,34 @@ const Cart = () => {
   const dispatch = useDispatch()
 
   // =========登入狀態=========
-  const authReducers = useSelector((state) => state.authReducers)
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
   // =========拿取user Coupon=======
   const { data } = useGetUserCouponsQuery(userId)
-
+  // console.log('data', data)
   const couponId = useSelector((state) => state.productCartReducer.coupon)
-  const userCoupon = data?.map((item) => ({
-    ...item,
-    end_date: moment(item.end_date).format('YYYY-MM-DD'),
-    start_date: moment(item.start_date).format('YYYY-MM-DD'),
-  }))
-
-  const today = moment(new Date()).format('YYYY-MM-DD')
-  const useableCoupon = userCoupon?.filter(
-    (item) =>
-      item.state === 1 && item.start_date <= today && item.end_date > today
+  const couponDiscountSlice = useSelector(
+    (state) => state.productCartReducer.couponDiscount
   )
+  const actuallyPriceSlice = useSelector(
+    (state) => state.productCartReducer.actuallyPrice
+  )
+  let userCouponId = '0'
+  let useableCoupon = []
+
+  if (userId && data) {
+    const userCoupon = data?.map((item) => ({
+      ...item,
+      end_date: moment(item.end_date).format('YYYY-MM-DD'),
+      start_date: moment(item.start_date).format('YYYY-MM-DD'),
+    }))
+
+    const today = moment(new Date()).format('YYYY-MM-DD')
+    useableCoupon = userCoupon?.filter(
+      (item) =>
+        item.state === 1 && item.start_date <= today && item.end_date > today
+    )
+  }
 
   const takeCoupon = (value) => {
     dispatch(getCoupon(value))
@@ -90,31 +99,29 @@ const Cart = () => {
   }, [couponId, dispatch])
 
   useEffect(() => {
-    setCouponDiscount(
-      userSelectCoupon?.map((item) => {
-        return item.discount_type_id == 1
-          ? `${Math.round(item.coupon_discount * 100) / 10} 折`
-          : -item.coupon_discount
-      })
-    )
-    dispatch(
-      getDiscount(
-        userSelectCoupon?.map((item) => {
-          return item.discount_type_id == 1
-            ? `${Math.round(item.coupon_discount * 100) / 10} 折`
-            : -item.coupon_discount
-        })
-      )
-    )
-    dispatch(
-      getActuallyPrice(
-        userSelectCoupon?.map((item) => {
-          return item.discount_type_id == 1
-            ? Math.round(ProductCartTotal * item.coupon_discount)
-            : Number(ProductCartTotal - item.coupon_discount)
-        })
-      )
-    )
+    userSelectCoupon?.map((item) => {
+      return item.discount_type_id == 1
+        ? setCouponDiscount(`${Math.round(item.coupon_discount * 100) / 10} 折`)
+        : setCouponDiscount(`-${item.coupon_discount}`)
+    })
+
+    userSelectCoupon?.map((item) => {
+      return item.discount_type_id == 1
+        ? dispatch(getDiscount(Math.round(item.coupon_discount * 10) / 10))
+        : dispatch(getDiscount(item.coupon_discount))
+    })
+
+    userSelectCoupon?.map((item) => {
+      return item.discount_type_id == 1
+        ? dispatch(
+            getActuallyPrice(
+              Math.round(ProductCartTotal * item.coupon_discount)
+            )
+          )
+        : dispatch(
+            getActuallyPrice(Number(ProductCartTotal - item.coupon_discount))
+          )
+    })
   }, [userSelectCoupon])
 
   const toggleCart = () => {
@@ -152,14 +159,14 @@ const Cart = () => {
 
   const clearProductCart = () => {
     dispatch(clearCart())
-    dispatch(getDiscount(0))
+    dispatch(getDiscount('0'))
     dispatch(getActuallyPrice(0))
   }
 
   const ProuductContinue = (e) => {
     e.preventDefault()
     if (userId && ProductItem.length > 0) {
-      navigate(`/product_cart`)
+      navigate(`/product_cart/${userCouponId}`)
     } else if (ProductItem.length <= 0) {
       Swal.fire({
         title: '請先選購商品',
@@ -190,6 +197,17 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getProductTotal())
+    userSelectCoupon?.map((item) => {
+      return item.discount_type_id == 1
+        ? dispatch(
+            getActuallyPrice(
+              Math.round(ProductCartTotal * item.coupon_discount)
+            )
+          )
+        : dispatch(
+            getActuallyPrice(Number(ProductCartTotal - item.coupon_discount))
+          )
+    })
   }, [ProductItem, dispatch])
 
   useEffect(() => {
@@ -502,31 +520,28 @@ const Cart = () => {
                     <div className="d-flex justify-content-between">
                       <p>折價券折扣：</p>
 
-                      <p>{couponDiscount}</p>
-
-                      {/* {userSelectCoupon?.map((item) => {
-                        return (
-                          <p>
-                            {item.discount_type_id == 1
-                              ? `${
-                                  Math.round(item.coupon_discount * 100) / 10
-                                } 折`
-                              : -item.coupon_discount}
-                          </p>
+                      {userSelectCoupon?.map((item) => {
+                        return item.discount_type_id == 1 ? (
+                          <p>{couponDiscountSlice * 10}折</p>
+                        ) : (
+                          <p>-{couponDiscountSlice}</p>
                         )
-                      })} */}
+                      })}
                     </div>
                     <div className="d-flex justify-content-between Cart_TotalPrice">
                       <strong className="fs-5">實付金額</strong>
 
                       {userSelectCoupon?.map((item) => {
-                        return (
+                        userCouponId = item.id
+                        item.discount_type_id == 1 ? (
                           <strong className="fs-5">
-                            {item.discount_type_id == 1
-                              ? Math.round(
-                                  ProductCartTotal * item.coupon_discount
-                                )
-                              : Number(ProductCartTotal - item.coupon_discount)}
+                            {Math.round(
+                              ProductCartTotal * item.coupon_discount
+                            )}
+                          </strong>
+                        ) : (
+                          <strong className="fs-5">
+                            {Number(ProductCartTotal - item.coupon_discount)}
                           </strong>
                         )
                       })}
