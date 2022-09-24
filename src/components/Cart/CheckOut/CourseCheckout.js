@@ -8,16 +8,16 @@ import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSendValidationMailMutation } from '../../../services/googleApi'
+import { useAddToScheduleMutation } from '../../../services/googleApi'
 
 const CourseCheckout = () => {
   const { orderId } = useParams()
   const { data } = useGetCourseOrderDetailQuery(orderId)
 
-  const [SendValidationMail] = useSendValidationMailMutation()
+  const [addToSchedule] = useAddToScheduleMutation()
   const calendarHandler = async (v) => {
     try {
-      await SendValidationMail(v)
+      await addToSchedule(v)
     } catch (e) {
       console.error(e)
     }
@@ -97,7 +97,7 @@ const CourseCheckout = () => {
                           onClick={(e) => {
                             e.preventDefault()
                             calendarHandler(newItem)
-                            console.log('v', newItem)
+                            console.log('newItem', newItem)
                           }}
                         >
                           <FontAwesomeIcon
