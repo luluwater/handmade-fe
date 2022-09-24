@@ -143,7 +143,7 @@ const ProductCartInfo = () => {
   }
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault() 
     if (
       !orderName ||
       !orderPhone ||
