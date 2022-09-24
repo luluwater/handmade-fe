@@ -150,18 +150,24 @@ const Navbar = () => {
                 STORE
               </Link> */}
               <a href="/store" className="navbar_link">
-              STORE
+                STORE
               </a>
             </li>
             <li>
-              <Link to="course" className="navbar_link">
+              {/* <Link to="course" className="navbar_link">
                 COURSE
-              </Link>
+              </Link> */}
+              <a href="/course" className="navbar_link">
+                COURSE
+              </a>
             </li>
             <li>
-              <Link to="shop" className="navbar_link">
+              {/* <Link to="shop" className="navbar_link">
                 SHOP
-              </Link>
+              </Link> */}
+              <a href="/shop" className="navbar_link">
+                SHOP
+              </a>
             </li>
             <li>
               <Link to="map" className="navbar_link">

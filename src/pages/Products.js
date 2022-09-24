@@ -9,9 +9,9 @@ import {
   setShowItemCount,
   setType,
 } from '../slices/filterPagination-slice'
-import Paginate from '../components/Filter/Paginate'
-import Filter from '../components/Filter/Filter'
-import SortSelect from '../components/Filter/SortSelect'
+import Paginate, { scrollToTop } from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/Filter'
+import SortSelect from '../components/FIlter/SortSelect'
 // import { initFilterPrice } from '../slices/filterPrice-slice'
 // import { initFilterDate } from '../slices/filterDate-silce'
 // import { initSearchWord } from '../slices/filterKeyword-slice'
@@ -36,6 +36,7 @@ function Proudcts() {
   const filterPrice = useSelector((state) => state.filterPriceReducer)
   useEffect(() => {
     if (rawData === data) return
+    scrollToTop()
     // console.log('get rawData')
     dispatch(pagination(data))
     // dispatch(initFilterPrice())

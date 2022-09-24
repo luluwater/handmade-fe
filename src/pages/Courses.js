@@ -9,7 +9,7 @@ import {
   setType,
 } from '../slices/filterPagination-slice'
 import { courseBanner } from '../image'
-import Paginate from '../components/FIlter/Paginate'
+import Paginate, { scrollToTop } from '../components/FIlter/Paginate'
 import Filter from '../components/FIlter/Filter'
 import SortSelect from '../components/FIlter/SortSelect'
 import { useGetCourseListQuery } from '../services/courseApi'
@@ -42,6 +42,7 @@ function Courses() {
   //設定篩選資料
   useEffect(() => {
     if (rawData === data) return
+    scrollToTop()
     // dispatch(initFilterPrice())
     // dispatch(initFilterDate())
     // dispatch(initSearchWord())

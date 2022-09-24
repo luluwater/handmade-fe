@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Coupon from '../../../assets/news/coupon_logo.png'
 import Button from 'react-bootstrap/Button'
@@ -35,7 +34,12 @@ const NewsCoupon = () => {
         <br />
         專屬於女孩們的好康活動千萬別錯過！
       </div>
-      <Row className="justify-content-center align-items-center m-0">
+      <Row
+        className="justify-content-center align-items-center m-0"
+        data-aos="flip-left"
+        data-aos-delay="300"
+        data-aos-duration="600"
+      >
         <div className="news_coupon_imgBox">
           <img
             className="news_coupon_img img-fluid"

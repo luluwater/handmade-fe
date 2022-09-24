@@ -6,7 +6,7 @@ import Image4 from '../../assets/course/course_leather_33/課程＿Shekinah 手�
 import Image5 from '../../assets/course/course_bakery_41/課程_花貓_基礎海綿蛋糕研修班_1.jpg'
 import Image6 from '../../assets/course/course_floral_28/花藝＿課程＿草地學花＿原木乾燥桌花＿1.jpg'
 
-import { Button } from 'react-bootstrap'
+// import { Button } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Link } from 'react-router-dom'
 
@@ -82,7 +82,7 @@ function HomeHotCourse() {
                     <h5 className="home_hotCard_name">{v.name}</h5>
                     <div className="home_hotCard_text">{v.text}</div>
                     <Link to={v.link}>
-                      <Button className="home_hotCard_button">{v.price}</Button>
+                      <button className="home_hotCard_button">{v.price}</button>
                     </Link>
                   </div>
                 </SwiperSlide>

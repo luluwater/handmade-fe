@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Container } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Link } from 'react-router-dom'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -27,6 +26,9 @@ import {
   useRemoveUserFavoriteCourseMutation,
   useGetCourseListQuery,
 } from '../../services/courseApi'
+export function scrollToTop() {
+  window.scrollTo(0, 0)
+}
 
 function CourseCard() {
   const { data } = useGetCourseListQuery()
@@ -104,7 +106,7 @@ function CourseCard() {
               key={v.courseId}
             >
               {/* ========== 商品照片 ========== */}
-              <Link to={v.link}>
+              <a href={v.link} onClick={scrollToTop}>
                 <Swiper
                   modules={[Navigation]}
                   navigation
@@ -126,7 +128,7 @@ function CourseCard() {
                     )
                   })}
                 </Swiper>
-              </Link>
+              </a>
 
               {/* ========== 商品照片 ========== */}
               <div className="d-flex justify-content-between">
@@ -136,11 +138,11 @@ function CourseCard() {
                     <small>| {v.store} |</small>
                   </p>
                   {/* </Link> */}
-                  <Link to={v.link}>
+                  <a href={v.link} onClick={scrollToTop}>
                     <h6 className="course_detail_card_text m-1 fw-bold">
                       {v.name}
                     </h6>
-                  </Link>
+                  </a>
                   <h6 className="course_detail_card_text text-primary fw-bold m-1">
                     $ {v.price}
                   </h6>

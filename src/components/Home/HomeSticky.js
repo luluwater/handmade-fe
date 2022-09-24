@@ -1,14 +1,13 @@
 import React from 'react'
 import './HomeSticky.scss'
-// import Logo from '../../../src/assets/HANDMADE_LOGO.png'
-import { Link } from 'react-router-dom'
+import HD from '../../assets/HD_04.png'
 
 const HomeSticky = () => {
   return (
     <>
       <div>
         <ul className="home_sticky">
-          {/* <img className="home_sticky_logo" src={Logo} alt="" /> */}
+          <img className="home_sticky_logo" src={HD} alt="" />
           <a href="#home_news">
             <li className="home_sticky_li">最新消息</li>
           </a>
