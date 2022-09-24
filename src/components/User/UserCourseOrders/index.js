@@ -97,7 +97,7 @@ const UserCourseOrders = () => {
           {/* 手機版 */}
           <Container className="user_orders_mdFilter">
             <Form.Group>
-              <Row className="ps-3 pt-5 pb-2 fw-bold user_orders_mdHeader">
+              <Row className="mt-8 ps-3 pb-2 fw-bold user_orders_mdHeader">
                 查詢訂單時間
               </Row>
               <Row>
@@ -145,12 +145,13 @@ const UserCourseOrders = () => {
             </Form.Group>
           </Container>
           {orderData === 0 ? (
-            <div className="user_orders_text text-center py-3" colSpan={6}>
+            <div className="user_orders_text text-center py-8" colSpan={6}>
               目前沒有課程訂單
             </div>
           ) : (
             <Col className="d-flex justify-content-center">
-              <Table className="mt-5 user_orders_table">
+              {/* 電腦版 */}
+              <Table className="mx-7 mt-5 user_orders_table">
                 <thead>
                   <tr className="text-center">
                     <th>訂單項目</th>
@@ -188,7 +189,7 @@ const UserCourseOrders = () => {
               </Table>
               <div>
                 {/* 手機板 */}
-                <Table className="mt-5 user_orders_table user_orders_md">
+                <Table className="my-5 user_orders_table user_orders_md">
                   <thead>
                     <tr className="text-center">
                       <th>項目</th>
