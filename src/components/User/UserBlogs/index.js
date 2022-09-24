@@ -1,7 +1,7 @@
 import '../User.scss'
 import React from 'react'
 import moment from 'moment'
-import { Button, Row, Table } from 'react-bootstrap'
+import { Button, Container, Row, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   useGetUserBlogQuery,
@@ -24,7 +24,7 @@ const UserBlogs = () => {
     return (
       <>
         <Row>
-          <div className="my-5 ms-7 d-flex justify-content-start">
+          <div className="user_blogs_back_zero my-5 ms-7 d-flex justify-content-start">
             <Link
               className="user_blogs_newBtn fw-bold text-center"
               to={`/blog/create`}
@@ -39,33 +39,31 @@ const UserBlogs = () => {
           </div>
         </Row>
         <Row>
-          <p className="user_coupon_title text-center py-3">目前沒有文章</p>
+          <p className="user_blogs_title text-center py-3">目前沒有文章</p>
         </Row>
       </>
     )
   return (
     <>
-      <Row>
-        <div className="my-5 ms-7 d-flex justify-content-start">
-          <Link
-            className="user_blogs_newBtn fw-bold text-center"
-            to={`/blog/create`}
-          >
-            <FontAwesomeIcon
-              className="me-2"
-              icon="fa-solid fa-pen-to-square"
-              size="sm"
-            />
-            新增文章
-          </Link>
-        </div>
-      </Row>
-      <Row>
+      <div className="user_blogs_back my-5 ms-7 d-flex justify-content-start">
+        <Link
+          className="user_blogs_newBtn fw-bold text-center"
+          to={`/blog/create`}
+        >
+          <FontAwesomeIcon
+            className="me-2"
+            icon="fa-solid fa-pen-to-square"
+            size="sm"
+          />
+          新增文章
+        </Link>
+      </div>
+      <div>
         <Table className="ms-8 user_blogs_table">
           <thead>
             <tr className="text-center">
-              <th>店家類別</th>
-              <th>文章標題</th>
+              <th>類別</th>
+              <th colSpan={2}>文章標題</th>
               <th>發布時間</th>
               <th>狀態</th>
             </tr>
@@ -109,7 +107,10 @@ const UserBlogs = () => {
               <tbody key={item.blog_id}>
                 <tr className="text-center align-middle">
                   <td>{item.category_name}</td>
-                  <td className="user_likes_blogTitle text-start user_likes_ellipsis">
+                  <td
+                    colSpan={2}
+                    className="user_likes_blogTitle text-start user_likes_ellipsis"
+                  >
                     <Link
                       to={`/blog/${item.blog_id}`}
                       className="user_orders_link fw-bold"
@@ -118,7 +119,7 @@ const UserBlogs = () => {
                     </Link>
                   </td>
                   <td>{transformBlog}</td>
-                  <td>
+                  <td className="user_blogs_td">
                     <Link to={`/blog/${item.blog_id}/edit`}>
                       <FontAwesomeIcon
                         className="user_blogs_btn user_blogs_link "
@@ -155,7 +156,7 @@ const UserBlogs = () => {
             )
           })}
         </Table>
-      </Row>
+      </div>
     </>
   )
 }

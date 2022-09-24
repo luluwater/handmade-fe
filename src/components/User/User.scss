@@ -362,23 +362,17 @@
 .user_orders {
   &_form {
     height: 577px;
-    width: 950px;
+    width: 950px  !important;
+    margin: 56px -2px !important;
     background-color: $skin-bright;
     overflow-y: auto;
     overflow-x: hidden;
     @media screen and (max-width: 576px) {
       overflow-y: hidden;
       overflow-x: hidden;
-      transform: translate(-10%, -5%);
-      width: 500px;
       height: auto;
-      margin-right: 60px !important;
+      margin: 0px !important;
       background-color: $skin-brighter;
-    }
-  }
-  &_mdForm {
-    @media screen and (max-width: 576px) {
-      transform: translateY(-5%);
     }
   }
   &_btn {
@@ -401,7 +395,6 @@
   }
   &_mdBtn {
     @media screen and (max-width: 576px) {
-      width: 500px;
       margin: 0px !important;
     }
   }
@@ -465,7 +458,6 @@
     border-top: 1px solid $gray-darker;
     border-bottom: 1px solid $gray-darker;
     letter-spacing: 3px;
-    width: 850px;
     @media screen and (max-width: 576px) {
       width: 100% !important;
       display: none;
@@ -475,10 +467,8 @@
     display: none;
     @media screen and (max-width: 576px) {
       display: block;
-      font-size: 14px;
+      // font-size: 14px;
       border-bottom: none;
-      margin: auto;
-
     }
   }
   &_pages {
@@ -538,6 +528,14 @@
 }
 
 .user_order_details {
+  &_mdTableTittle {
+    @media screen and (max-width: 576px) {
+      white-space: nowrap;
+    }
+  }
+  &_xlTitle {
+    width: 120px !important;
+  }
   &_title {
     border-bottom: 1px solid $gray-darker;
     padding-bottom: 8px;
@@ -547,12 +545,11 @@
     }
   }
   &_form {
-    letter-spacing: 3px;
+    // letter-spacing: 3px;
     width: 950px;
     background-color: $skin-bright;
     color: $gray-darker;
     @media screen and (max-width: 576px) {
-      // transform: translate(-10%, -5%);
       width: 500px !important;
       height: auto;
       background-color: $skin-brighter;
@@ -563,10 +560,16 @@
     background-color: $skin-bright;
     border: $skin-bright;
     color: $gray-darker;
+    @media screen and (max-width: 576px) {
+      padding-top: 10px !important;
+    }
       &:hover {
         color: $secondary-dark !important;
         background-color: $skin-bright !important;
         border: $skin-bright !important;
+        @media screen and (max-width: 576px) {
+          background-color: $skin-brighter !important;
+        }
       }
       &:focus {
         color: $secondary-dark !important;
@@ -574,6 +577,9 @@
         border: $skin-bright;
         outline: none;
         box-shadow:none;
+        @media screen and (max-width: 576px) {
+          background-color: $skin-brighter !important;
+        }
       }
       &:active:focus  {
         color: $secondary-dark;
@@ -581,11 +587,14 @@
         border: $skin-bright;
         outline: none;
         box-shadow:none;
+        @media screen and (max-width: 576px) {
+          background-color: $skin-brighter !important;
+        }
       }
       @media screen and (max-width: 576px) {
         margin: 0px !important;
         padding: 0px;
-        background-color: $skin-brighter;
+        background-color: $skin-brighter !important;
       }
   }
   &_table {
@@ -593,25 +602,18 @@
     color: $gray-darker ;
     border-bottom: $skin-bright !important;
     @media screen and (max-width: 576px) {
-      width: 500px !important;
+      width: 480px !important;
       margin: 0px !important;
-    }
-  }
-  &_xl {
-    @media screen and (max-width: 576px) {
-      display: none;
-    }
-  }
-  &_mdTable {
-    display: none;
-    @media screen and (max-width: 576px) {
-      width: 480px;
-      display: block;
     }
   }
 }
 
 .user_order_list {
+  &_title {
+    @media screen and (max-width: 576px) {
+      white-space: nowrap;
+    }
+  }
   &_table {
     width: 850px;
     color: $gray-darker;
@@ -619,7 +621,6 @@
     @media screen and (max-width: 576px) {
       width: 480px;
       margin: 40px 0px !important;
-      // font-size: 14px !important;
       letter-spacing: 1px;
     }
   }
@@ -627,29 +628,55 @@
     width: 250px;
     color: $gray-darker;
     border-bottom: $skin-bright !important;
-    // background-color: $skin-bright !important;
+    @media screen and (max-width: 576px) {
+      margin-right: -20px !important;
+    }
   }
   &_img {
     width: 80px;
   }
   &_coupon {
     @media screen and (max-width: 576px) {
-      margin: 0px !important;
+      margin: -10px 0px !important;
     }
   }
 }
 
 .user_coupon {
+  &_md {
+    @media screen and (max-width: 576px) {
+      margin: 0px !important;
+      padding: 0px !important;
+    }
+  }
+  &_mdCard {
+    @media screen and (max-width: 576px) {
+      height: 200px;
+      width: 450px;
+    }
+  } 
   &_form {
     height: 577px;
     width: 950px;
     background-color: $skin-bright;
-    margin: 0;
+    margin: 56px 44px !important;
     overflow-y: auto;
     overflow-x: hidden;
+    @media screen and (max-width: 576px) {
+      overflow-y: hidden;
+      overflow-x: hidden;
+      width: 500px;
+      background-color: $skin-brighter;
+      margin: 0px !important;
+      height: 100%;
+    }
   }
   &_sticky {
     background-color: $skin-bright;
+    @media screen and (max-width: 576px) {
+      background-color: $skin-brighter;
+      margin: 0px !important;
+    }
   }
   &_stickyBox {
     height: 30px;
@@ -657,11 +684,21 @@
   }
   &_row {
     width: 850px;
+    @media screen and (max-width: 576px) {
+      width: 500px;
+      justify-content: center;
+      padding: 30px 0px;
+    }
   }
   &_card {
     height: 180px;
     color: $gray-darker;
     background-color: $skin-brighter;
+    text-align: center;
+    @media screen and (max-width: 576px) {
+      height: 200px;
+      width: 450px;
+    }
   }
   &_img {
     width: 150px;
@@ -676,10 +713,19 @@
   &_title {
     color: $gray-darker;
     letter-spacing: 3px;
+    @media screen and (max-width: 576px) {
+      padding: 0px !important;
+      margin: 0px;
+    }
   }
 }
 
 .user_likes {
+  &_mdFrom {
+    @media screen and (max-width: 576px) {
+      height: 100% !important;
+    }
+  }
   &_form {
     height: 577px;
     width: 950px;
@@ -689,15 +735,32 @@
     overflow-x: hidden;
     z-index: 1;
     position: relative;
+    margin: 56px 44px !important;
+    @media screen and (max-width: 576px) {
+      overflow-y: hidden;
+      overflow-x: hidden;
+      width: 500px;
+      background-color: $skin-brighter;
+      margin: 0px -12px !important;
+      height: 100%;
+    }
   }
   &_sticky {
     background-color: $skin-bright;
     z-index: 2;
     position: relative;
+    @media screen and (max-width: 576px) {
+      background-color: $skin-brighter;
+      margin: 0px !important;
+      padding: 0px !important;
+    }
   }
   &_bottom {
     z-index: -1;
     position: absolute;
+    @media screen and (max-width: 576px) {
+      position: relative;
+    }
   }
   &_table {
     width: 850px;
@@ -707,10 +770,13 @@
     letter-spacing: 3px;
   }
   &_blogTitle {
-    max-width: 350px;
+    max-width: 350px; 
+    @media screen and (max-width: 576px) {
+      max-width: 50px !important;
+    }
   }
   &_ellipsis {
-    overflow:hidden;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: $primary !important;
@@ -719,11 +785,23 @@
 
 .user_like {
   width: 900px;
+  &_md {
+    @media screen and (max-width: 576px) {
+      margin: 50px 0px;
+      width: 500px;
+    }
+  }
   &_card {
     width: 150px;
+    @media screen and (max-width: 576px) {
+      width: 200px;
+    }
    &_swiper {
     max-width: 100%;
     height: 150px;
+    @media screen and (max-width: 576px) {
+      height: 200px;
+    }
    }
   }
   &_card_favorite{  
@@ -736,6 +814,10 @@
   }
   &_none {
     width: 950px;
+    @media screen and (max-width: 576px) {
+      width: 500px;
+      padding: 30px !important;
+    }
   }
 }
 .Swiperslide{    
@@ -750,16 +832,44 @@
   font-size: 1.5rem;
 }
 
-.user_page_number {
-  color: $gray-darker;
-  &:hover{
-    color:white;
-    background-color: $secondary;
-    border-radius: 50% !important;
-  }
-}
+// .user_page_number {
+//   color: $gray-darker;
+//   &:hover{
+//     color:white;
+//     background-color: $secondary;
+//     border-radius: 50% !important;
+//   }
+// }
 
 .user_blogs {
+  &_title {
+    color: $gray-darker;
+    letter-spacing: 3px;
+    @media screen and (max-width: 576px) {
+      padding: 30px !important;
+      color: $gray-darker;
+      letter-spacing: 3px;
+      margin: 0px;
+    }
+  }
+  &_back {
+    @media screen and (max-width: 576px) {
+      margin: 0px !important;
+      padding: 0px !important;
+    }
+  }
+  &_back_zero {
+    @media screen and (max-width: 576px) {
+      margin: 0px 15px !important;
+      padding: 0px !important;
+    }
+  }
+  &_td {
+    width: 173px;
+    @media screen and (max-width: 576px) {
+      width: 100px !important;
+    }
+  }
   &_form {
     width: 950px;
     height: 577px;
@@ -767,6 +877,16 @@
     color: $gray-darker;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 0px !important;
+    margin-right: -2px !important;
+    @media screen and (max-width: 576px) {
+      overflow-y: hidden;
+      overflow-x: hidden;
+      height: auto;
+      padding: 0px !important;
+      margin: 0px !important;
+      background-color: $skin-brighter;
+    }
  }
  &_newBtn {
   width: 120px;
@@ -785,7 +905,10 @@
     color: $gray-darker;
  }
   &_btn {
-    padding: 0 8px;
+    padding: 0px 10px;
+    @media screen and (max-width: 576px) {
+      padding: 0px  5px !important;
+    }
     border: none;
     &:hover {
       color: $secondary;
@@ -800,25 +923,48 @@
       color: $gray-darker;
       letter-spacing: 3px;
       border-bottom: 1px solid $gray-darker;
+      @media screen and (max-width: 576px) {
+        white-space: nowrap;
+        width: 500px !important;
+        letter-spacing: 1px;
+        margin: 30px 0px !important;
+      }
   }
   &_eyeBtn {
+    color: $gray-darker;
     background-color: $skin-bright;
+    width: 62px;
     border: none;
+    @media screen and (max-width: 576px) {
+      background-color: $skin-brighter;
+      width: 25px;
+      padding: 0px !important;
+    }
     &:hover {
+      color: $gray-darker !important;
       background-color: $skin-bright !important;
       border: none !important;
+      @media screen and (max-width: 576px) {
+        background-color: $skin-brighter !important;
+      }
     }
     &:active {
       border: none !important;
       background-color: $skin-bright !important;
       outline: none !important;
       box-shadow:none !important;
+      @media screen and (max-width: 576px) {
+        background-color: $skin-brighter !important;
+      }
     }
     &:focus {
       border: none !important;
       background-color: $skin-bright !important;
       outline: none !important;
       box-shadow:none !important;
+      @media screen and (max-width: 576px) {
+        background-color: $skin-brighter !important;
+      }
     }
   }
 }

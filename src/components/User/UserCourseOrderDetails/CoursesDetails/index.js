@@ -16,11 +16,11 @@ const CoursesDetails = () => {
         <thead>
           <tr className="text-center">
             <th></th>
-            <th>課程名稱</th>
-            <th>預約時段</th>
-            <th>人量</th>
-            <th>單價</th>
-            <th>小計</th>
+            <th className="user_order_list_title">課程名稱</th>
+            <th className="user_order_list_title">預約時段</th>
+            <th className="user_order_list_title">人數</th>
+            <th className="user_order_list_title">單價</th>
+            <th className="user_order_list_title">小計</th>
           </tr>
         </thead>
         {data?.map((item) => {
@@ -40,8 +40,10 @@ const CoursesDetails = () => {
                 <td>{item.course_name}</td>
                 <td>{transformCourse}</td>
                 <td>{item.amount}</td>
-                <td>$ {item.price}</td>
-                <td>$ {item.amount * item.price}</td>
+                <td className="user_order_list_title">$ {item.price}</td>
+                <td className="user_order_list_title">
+                  $ {item.amount * item.price}
+                </td>
               </tr>
             </tbody>
           )

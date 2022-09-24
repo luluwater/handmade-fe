@@ -53,62 +53,34 @@ const UserProductsOrderDetails = () => {
                 key={item.id}
                 className="m-8 mt-2 user_order_details_table"
               >
-                {/* 電腦版 */}
-                <tbody className="user_order_details_xl">
+                <tbody>
                   <tr>
-                    <th>訂單日期</th>
+                    <th className="user_order_details_xlTitle">訂單日期</th>
                     <td>{transformProducts}</td>
-                    <th>付款方式</th>
-                    <td>{item.payment_name}</td>
+                    <th className="user_order_details_xlTitle">付款方式</th>
+                    <td className="user_order_list_title">
+                      {item.payment_name}
+                    </td>
                   </tr>
                   <tr>
-                    <th>訂購人</th>
+                    <th className="user_order_details_xlTitle">訂購人</th>
                     <td>{item.user_name}</td>
-                    <th>訂單狀態</th>
+                    <th className="user_order_details_xlTitle">訂單狀態</th>
                     <td>{item.order_staus_name}</td>
                   </tr>
                   <tr>
-                    <th>收件人</th>
+                    <th className="user_order_details_xlTitle">收件人</th>
                     <td colSpan={4}>{item.product_order_name}</td>
                   </tr>
                   <tr>
-                    <th>連絡電話</th>
+                    <th className="user_order_details_xlTitle">連絡電話</th>
                     <td colSpan={4}>{item.phone}</td>
                   </tr>
                   <tr>
-                    <th>顧客備註</th>
+                    <th className="align-middle user_order_details_mdTableTittle">
+                      顧客備註
+                    </th>
                     <td colSpan={4}>{item.note}</td>
-                  </tr>
-                </tbody>
-                {/* 手機版 */}
-                <tbody className="mt-3 user_order_details_mdTable align-middle">
-                  <tr>
-                    <th className="text-nowrap">訂單日期</th>
-                    <td>{transformProducts}</td>
-                  </tr>
-                  <tr>
-                    <th>訂購人</th>
-                    <td>{item.user_name}</td>
-                  </tr>
-                  <tr>
-                    <th>收件人</th>
-                    <td>{item.product_order_name}</td>
-                  </tr>
-                  <tr>
-                    <th>付款方式</th>
-                    <td>{item.payment_name}</td>
-                  </tr>
-                  <tr>
-                    <th>訂單狀態</th>
-                    <td>{item.order_staus_name}</td>
-                  </tr>
-                  <tr>
-                    <th>連絡電話</th>
-                    <td>{item.phone}</td>
-                  </tr>
-                  <tr>
-                    <th>顧客備註</th>
-                    <td>{item.note}</td>
                   </tr>
                 </tbody>
               </Table>

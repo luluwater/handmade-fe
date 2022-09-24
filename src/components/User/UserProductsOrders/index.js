@@ -99,12 +99,12 @@ const UserProductsOrders = () => {
           {/* 手機版 */}
           <Container className="user_orders_mdFilter">
             <Form.Group>
-              <Row className="ps-3 pt-5 pb-2 fw-bold user_orders_mdHeader">
+              <Row className="mt-8 ps-3 pb-2 fw-bold user_orders_mdHeader">
                 查詢訂單時間
               </Row>
               <Row>
                 <div className="d-flex user_orders_header p-0">
-                  <Col md={4} className="d-flex align-items-center">
+                  <Col md={4}>
                     <div className="user_orders_datepicker d-flex align-items-center">
                       <DatePicker
                         className="ms-2 user_orders_date p-0"
@@ -147,13 +147,13 @@ const UserProductsOrders = () => {
             </Form.Group>
           </Container>
           {orderData === 0 ? (
-            <div className="user_orders_text text-center my-3" colSpan={6}>
+            <div className="user_orders_text text-center py-8" colSpan={6}>
               目前沒有商品訂單
             </div>
           ) : (
             <Col className="d-flex justify-content-center">
               {/* 電腦版 */}
-              <Table className="mt-5 user_orders_table">
+              <Table className="mx-7 mt-5 user_orders_table">
                 <thead>
                   <tr className="text-center">
                     <th>訂單項目</th>
@@ -191,7 +191,7 @@ const UserProductsOrders = () => {
               </Table>
               <div>
                 {/* 手機板 */}
-                <Table className="mt-5 user_orders_table user_orders_md">
+                <Table className="my-5 user_orders_table user_orders_md">
                   <thead>
                     <tr className="text-center">
                       <th>項目</th>
