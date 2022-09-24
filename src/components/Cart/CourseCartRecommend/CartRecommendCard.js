@@ -1,8 +1,14 @@
+import { useEffect } from 'react'
 import cart from '../../../assets/cart.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Card } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addProductCart,
+  getProductTotal,
+} from '../../../slices/productCart-slice'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -13,13 +19,34 @@ import '../Cart.scss'
 const CartRecommendCard = ({
   type,
   cartIcon,
-  id,
+  productId,
   store,
   name,
   price,
-  img,
+  imgs,
   category,
+  amount,
 }) => {
+  const dispatch = useDispatch()
+  const addToProductCart = () => {
+    dispatch(
+      addProductCart({
+        productId,
+        name,
+        imgs,
+        price,
+        category,
+        amount,
+      })
+    )
+  }
+  const ProductItem = useSelector(
+    (state) => state.productCartReducer.productCartItem
+  )
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [ProductItem, dispatch])
+
   return (
     <>
       <Card className="cartRecommend border-0 bg-transparent mx-1 p-0 text-gray-darker">
@@ -32,11 +59,11 @@ const CartRecommendCard = ({
           loop
           className="card_swiper shadow"
         >
-          {img?.map((item) => {
+          {imgs?.map((item) => {
             return (
               <SwiperSlide key={item}>
                 <img
-                  src={require(`../../../assets/${type}/${type}_${category}_${id}/${item}`)}
+                  src={require(`../../../assets/${type}/${type}_${category}_${productId}/${item}`)}
                   alt=""
                 />
               </SwiperSlide>
@@ -58,7 +85,10 @@ const CartRecommendCard = ({
             </button>
 
             {cartIcon ? (
-              <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+              <button
+                className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
+                onClick={addToProductCart}
+              >
                 <img src={cart} alt="" className="cart" />
               </button>
             ) : (

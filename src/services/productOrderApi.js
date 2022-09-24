@@ -17,7 +17,12 @@ export const productOrderApiService = createApi({
       }),
       invalidatesTags: ['ProductOrder'],
     }),
+    getOrderDetail: builder.query({
+      query: (orderId) => `order/product/${orderId}`,
+      providesTags: ['ProductOrder'],
+    }),
   }),
 })
 
-export const { useCreateProductOrderMutation } = productOrderApiService
+export const { useCreateProductOrderMutation, useGetOrderDetailQuery } =
+  productOrderApiService

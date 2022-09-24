@@ -5,24 +5,17 @@ import '../styles/style.scss'
 const initialState = {
   courseCartItem: localStorage.getItem('CourseCart')
     ? JSON.parse(localStorage.getItem('CourseCart'))
-    : [
-        {
-          id: '1',
-          stockId: '1',
-          name: '測試',
-          img: '金工_課程_以覺學_格紋戒指課程_kv1.webp',
-          price: '1000',
-          category: 'metalwork',
-          date: '2022.02.02',
-          time: '14:00',
-          quantity: 1,
-          totalPrice: '1000',
-          stocks: 15,
-          stockWarning: '',
-        },
-      ],
+    : [],
   totalQuantity: 0,
   totalAmount: 0,
+  coupon: 28,
+  isCartOpen: false,
+  courseCouponDiscount: localStorage.getItem('courseCouponDiscount')
+    ? JSON.parse(localStorage.getItem('courseCouponDiscount'))
+    : 0,
+  courseActuallyPrice: localStorage.getItem('courseActuallyPrice')
+    ? JSON.parse(localStorage.getItem('courseActuallyPrice'))
+    : 0,
 }
 
 const courseCartSlice = createSlice({
@@ -49,35 +42,40 @@ const courseCartSlice = createSlice({
           date: newItem.date,
           time: newItem.time,
           quantity: newItem.quantity,
-          // TODO:修改如果有傳入quantity的話,total要先計算
           totalPrice: newItem.price,
           stocks: newItem.stocks,
           stockWarning: '',
         })
-        toast(`${action.payload.name} 成功加入購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-addCartMessage',
-        })
+        if (!state.isCartOpen) {
+          toast(`${action.payload.name} 成功加入購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-addCartMessage',
+          })
+        }
       } else if (existingItem && existingItem.quantity < existingItem.stocks) {
         existingItem.quantity++
         existingItem.totalPrice =
           Number(existingItem.totalPrice) + Number(existingItem.price)
-        toast(`${action.payload.name} 已存在於購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-alreadyInCartMessage',
-        })
+        if (!state.isCartOpen) {
+          toast(`${action.payload.name} 已存在於購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-alreadyInCartMessage',
+          })
+        }
       } else if (existingItem && existingItem.quantity >= existingItem.stock) {
         existingItem.stockWarning = '已達庫存上限'
-        toast(`${action.payload.name} 已存在於購物車！`, {
-          position: 'top-center',
-          autoClose: 500,
-          hideProgressBar: true,
-          className: 'toast-alreadyInCartMessage',
-        })
+        if (!state.isCartOpen) {
+          toast(`${action.payload.name} 已存在於購物車！`, {
+            position: 'top-center',
+            autoClose: 500,
+            hideProgressBar: true,
+            className: 'toast-alreadyInCartMessage',
+          })
+        }
       }
       localStorage.setItem('CourseCart', JSON.stringify(state.courseCartItem))
     },
@@ -127,10 +125,39 @@ const courseCartSlice = createSlice({
       state.totalQuantity = quantity
       state.totalAmount = total
     },
-    // ============刪除項目==========
+    // =========拿取coupon==========
+    getCourseCoupon(state, action) {
+      state.coupon = action.payload
+    },
+
+    // =======顧客選擇折價券折數========
+    getCourseDiscount(state, action) {
+      state.courseCouponDiscount = action.payload
+      localStorage.setItem(
+        'courseCouponDiscount',
+        JSON.stringify(state.courseCouponDiscount)
+      )
+    },
+    // =======實付金額===========
+    getCourseActuallyPrice(state, action) {
+      state.courseActuallyPrice = action.payload
+      localStorage.setItem(
+        'courseActuallyPrice',
+        JSON.stringify(state.courseActuallyPrice)
+      )
+    },
+
+    // ============清空購物車==========
     clearCourseCart(state, action) {
       state.courseCartItem = []
       localStorage.setItem('CourseCart', JSON.stringify(state.courseCartItem))
+    },
+    //==========確認購物車狀態============
+    CourseCartClose(state, action) {
+      state.isCartOpen = action.payload
+    },
+    CourseCartToggle(state) {
+      state.isCartOpen = !state.isCartOpen
     },
   },
 })
@@ -141,5 +168,10 @@ export const {
   deleteCourseItem,
   getCourseTotal,
   clearCourseCart,
+  CourseCartClose,
+  CourseCartToggle,
+  getCourseCoupon,
+  getCourseDiscount,
+  getCourseActuallyPrice,
 } = courseCartSlice.actions
 export default courseCartSlice.reducer

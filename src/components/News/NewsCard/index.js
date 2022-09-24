@@ -17,6 +17,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import '../News.scss'
+import { Link } from 'react-router-dom'
 
 function getImgsRouter(imgsName, category, productId) {
   const baseRouter = `assets/product/product`
@@ -61,38 +62,38 @@ function NewsCard({
   return (
     <>
       <Col md={3} xs={6} className="news_card_m px-3" key={key}>
-        {/* ========== 商品照片 ========== */}
-        <Swiper
-          modules={[Navigation]}
-          navigation
-          effect={'slide'}
-          speed={800}
-          slidesPerView={1}
-          loop={true}
-          className="news_card_swiper rounded shadow"
-        >
-          {getImgsRouter(imgs, category, productId)?.map((v, i) => {
-            return (
-              <SwiperSlide key={i}>
-                <img src={require(`../../../${v}`)} alt={name} />
-              </SwiperSlide>
-            )
-          })}
-        </Swiper>
-        {/* ========== 商品照片 ========== */}
+        <Link to={`/product/detail/${productId}`}>
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            effect={'slide'}
+            speed={800}
+            slidesPerView={1}
+            loop={true}
+            className="news_card_swiper rounded shadow"
+          >
+            {getImgsRouter(imgs, category, productId)?.map((v, i) => {
+              return (
+                <SwiperSlide key={i}>
+                  <img src={require(`../../../${v}`)} alt={name} />
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        </Link>
         <div className="d-flex justify-content-between">
           <div>
             <p className="news_card_store m-2 text-truncate">
               <small>| {storeName} |</small>
             </p>
-            <a href="#/">
+            <a href={`/product/detail/${productId}`}>
               <h6 className="news_card_text m-1 fw-bold">{name}</h6>
             </a>
+
             <h6 className="news_card_text text-primary fw-bold m-1">
               $ {price}
             </h6>
           </div>
-          {/* ========== 收藏 & 購物車 ========== */}
           <div className="d-flex align-items-center me-2">
             <button
               className="bg-primary news_card_favorite me-2"

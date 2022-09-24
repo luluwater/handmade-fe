@@ -15,7 +15,7 @@ export const productOrderDetailApiService = createApi({
         method: 'POST',
         body: ProductOrder,
       }),
-      invalidatesTags: ['ProductProductOrderDetailOrder'],
+      invalidatesTags: ['ProductOrderDetail'],
     }),
   }),
 })

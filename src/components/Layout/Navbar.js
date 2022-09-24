@@ -5,6 +5,8 @@ import './Navbar.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartToggle } from '../../slices/cart-ui-slice'
+import { CourseCartToggle } from '../../slices/courseCart-slice'
+import { ProductCartToggle } from '../../slices/productCart-slice'
 import { getProductTotal } from '../../slices/productCart-slice'
 import { getCourseTotal } from '../../slices/courseCart-slice'
 
@@ -29,6 +31,8 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const toggleCart = () => {
     dispatch(cartToggle())
+    dispatch(ProductCartToggle())
+    dispatch(CourseCartToggle())
   }
 
   const navRef = useRef(null)

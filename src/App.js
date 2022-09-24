@@ -6,7 +6,8 @@ import Layout from './pages/Layout'
 
 import CourseCart from './pages/CourseCart'
 import ProductCart from './pages/ProductCart'
-import CheckoutPage from './pages/CheckoutPage'
+import CheckoutPageCourse from './pages/CheckoutPageCourse'
+import CheckoutPageProduct from './pages/CheckoutPageProduct'
 
 import BlogLayout from './components/Blog'
 import Home from './pages/Home'
@@ -185,16 +186,20 @@ const routeConfig = [
     ],
   },
   {
-    path: '/course_cart',
+    path: '/course_cart/:userCouponId',
     element: <CourseCart />,
   },
   {
-    path: '/product_cart',
+    path: '/product_cart/:userCouponId',
     element: <ProductCart />,
   },
   {
-    path: '/checkout/:orderId',
-    element: <CheckoutPage />,
+    path: '/course_checkout/:orderId',
+    element: <CheckoutPageCourse />,
+  },
+  {
+    path: '/product_checkout/:orderId',
+    element: <CheckoutPageProduct />,
   },
 ]
 

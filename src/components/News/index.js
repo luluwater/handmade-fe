@@ -8,15 +8,24 @@ import { useGetProductListQuery } from '../../services/productApi'
 import { Container } from 'react-bootstrap'
 
 const News = () => {
-  const [card, setCard] = useState()
+  const [card, setCard] = useState([])
   const { data } = useGetProductListQuery()
   // const dispatch = useDispatch()
-  let newData = []
 
   useEffect(() => {
+    console.log('useEffect ****8')
     if (data) {
-      newData = [...data]?.sort(() => 0.5 - Math.random())
-      setCard(newData)
+      if (card.length == 0) {
+        let newData = [...data]?.sort(() => 0.5 - Math.random()).slice(0, 4)
+        setCard(newData)
+      } else {
+        let newData = card.map((c) => {
+          return data.find((product) => {
+            return product.id == c.id
+          })
+        })
+        setCard([...newData])
+      }
     }
   }, [data])
 
@@ -27,23 +36,21 @@ const News = () => {
       <NewsCoupon />
       <Container className="news_card mb-12 w-100 d-flex">
         {card?.map((v, i) => {
-          if (i < 4) {
-            return (
-              <NewsCard
-                key={'abc' + v.id}
-                productId={v.id}
-                storeId={v.store_id}
-                categoryId={v.category_id}
-                imgs={v.img_name}
-                category={v.category_en_name}
-                storeName={v.store_name}
-                name={v.name}
-                price={v.price}
-                isFavorite={v.isFavorite}
-                amount={v.amount}
-              />
-            )
-          }
+          return (
+            <NewsCard
+              key={'newscard-' + v.id}
+              productId={v.id}
+              storeId={v.store_id}
+              categoryId={v.category_id}
+              imgs={v.img_name}
+              category={v.category_en_name}
+              storeName={v.store_name}
+              name={v.name}
+              price={v.price}
+              isFavorite={v.isFavorite}
+              amount={v.amount}
+            />
+          )
         })}
       </Container>
     </>
@@ -51,3 +58,4 @@ const News = () => {
 }
 
 export default News
+
