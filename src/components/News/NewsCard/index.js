@@ -79,7 +79,6 @@ function NewsCard({
             )
           })}
         </Swiper>
-
         {/* ========== 商品照片 ========== */}
         <div className="d-flex justify-content-between">
           <div>
@@ -93,9 +92,7 @@ function NewsCard({
               $ {price}
             </h6>
           </div>
-
           {/* ========== 收藏 & 購物車 ========== */}
-
           <div className="d-flex align-items-center me-2">
             <button
               className="bg-primary news_card_favorite me-2"

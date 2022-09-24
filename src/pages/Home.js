@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useEffect } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import HomeNewStore from '../components/Home/HomeNewStore'
 import HomeNewActive from '../components/Home/HomeNewActive'
@@ -10,9 +10,11 @@ import Video from '../components/Home/HomeVideo'
 
 import { StickyContainer, Sticky } from 'react-sticky'
 import HomeSticky from '../components/Home/HomeSticky'
-import '../components/Home/HomeSticky.scss'
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       <Video />

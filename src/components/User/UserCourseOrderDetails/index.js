@@ -47,27 +47,31 @@ const UserCoursesOrderDetails = () => {
               >
                 <tbody>
                   <tr>
-                    <th>訂單日期</th>
+                    <th className="user_order_details_xlTitle">訂單日期</th>
                     <td>{transformCourse}</td>
-                    <th>付款方式</th>
-                    <td>{item.payment_name}</td>
+                    <th className="user_order_details_xlTitle">付款方式</th>
+                    <td className="user_order_list_title">
+                      {item.payment_name}
+                    </td>
                   </tr>
                   <tr>
-                    <th>訂購人</th>
+                    <th className="user_order_details_xlTitle">訂購人</th>
                     <td>{item.user_name}</td>
-                    <th>訂單狀態</th>
+                    <th className="user_order_details_xlTitle">訂單狀態</th>
                     <td>{item.order_staus_name}</td>
                   </tr>
                   <tr>
-                    <th>收件人</th>
-                    <td colSpan={4}>{item.course_order_name}</td>
+                    <th className="user_order_details_xlTitle">收件人</th>
+                    <td>{item.course_order_name}</td>
                   </tr>
                   <tr>
-                    <th>連絡電話</th>
+                    <th className="user_order_details_xlTitle">連絡電話</th>
                     <td colSpan={4}>{item.phone}</td>
                   </tr>
                   <tr>
-                    <th>顧客備註</th>
+                    <th className="align-middle user_order_details_mdTableTittle">
+                      顧客備註
+                    </th>
                     <td colSpan={4}>{item.note}</td>
                   </tr>
                 </tbody>

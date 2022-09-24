@@ -1,15 +1,15 @@
 import React from 'react'
+import { Container, Col } from 'react-bootstrap'
 import UserBlogs from '../components/User/UserBlogs'
-// import { Row, Col, Form } from 'react-bootstrap'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import UserPagination from '../components/User/UserPagination'
 
 const UserBlogsPage = () => {
   return (
     <>
-      <div className="user_blogs_form user_scroll my-8">
-        <UserBlogs />
-      </div>
+      <Container className="user_blogs_form user_scroll my-8">
+        <Col>
+          <UserBlogs />
+        </Col>
+      </Container>
     </>
   )
 }

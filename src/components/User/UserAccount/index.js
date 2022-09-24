@@ -21,10 +21,10 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      phone: '',
-      startDate: '',
-      address: '',
+      name: name,
+      phone: phone,
+      startDate: birthday,
+      address: address,
     },
     validationSchema: Yup.object({
       phone: Yup.string()
@@ -65,6 +65,7 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
   }
 
   const handleClosed = async () => {
+    if (!isDataAllvalid) return
     try {
       await Toast.fire({
         icon: 'success',
@@ -76,13 +77,15 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
     }
   }
 
+  const isDataAllvalid =
+    formik.values.phone && formik.values.name && formik.values.address
   const isAllvalid = !showPhoneError && !showNameError && !showAddressError
   //&& !showStartDateError
 
   return (
     <>
-      <Col className="user_account">
-        <div className="user_account_from m-8">
+      <Col className="user_account m-8">
+        <div className="user_account_from">
           <h5 className="user_account_title fw-bold">帳號設定</h5>
           <Form.Group className="my-3">
             <Table className="d-flex user_account_table">
@@ -134,22 +137,22 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
               <Table className="d-flex user_account_table">
                 <thead>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       姓名
                     </th>
                   </tr>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       生日
                     </th>
                   </tr>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       電話
                     </th>
                   </tr>
                   <tr>
-                    <th className="user_account_header text-end pe-8 p-3">
+                    <th className="user_account_header user_account_mdHeader text-end pe-8 p-3">
                       聯絡地址
                     </th>
                   </tr>
@@ -166,7 +169,16 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                           className="user_account_input"
                           type="text"
                           name="name"
-                          placeholder={name}
+                          // placeholder={name}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.name}
+                        />
+                        <Form.Control
+                          className="user_account_mdInput"
+                          type="text"
+                          name="name"
+                          placeholder="此欄位不得為空"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.name}
@@ -174,9 +186,9 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                       </td>
                     )}
                     {showNameError && (
-                      <p className="mt-2 text-danger mb-0">
+                      <td className="user_account_formik_errors_xl align-middle mt-2 text-danger mb-0">
                         {formik.errors.name}
-                      </p>
+                      </td>
                     )}
                   </tr>
                   <tr>
@@ -186,9 +198,9 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                       </td>
                     ) : (
                       <td>
-                        <div className="user_account_inputBirth">
+                        <div className="user_datepicker">
                           <DatePicker
-                            className="user_account_inputBirth"
+                            className="user_account_inputBirth fw-bold"
                             dateFormat="yyyy.MM.dd"
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
@@ -214,7 +226,16 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                           className="user_account_input"
                           type="text"
                           name="phone"
-                          placeholder={phone}
+                          // placeholder={phone}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.phone}
+                        />
+                        <Form.Control
+                          className="user_account_mdInput"
+                          type="text"
+                          name="phone"
+                          placeholder="此欄位不得為空"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.phone}
@@ -222,9 +243,9 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                       </td>
                     )}
                     {showPhoneError && (
-                      <p className="mt-2 text-danger mb-0">
+                      <td className="user_account_formik_errors_xl align-middle mt-2 text-danger mb-0">
                         {formik.errors.phone}
-                      </p>
+                      </td>
                     )}
                   </tr>
                   <tr>
@@ -238,7 +259,16 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                           className="user_account_input"
                           type="text"
                           name="address"
-                          placeholder={address}
+                          // placeholder={address}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.address}
+                        />
+                        <Form.Control
+                          className="user_account_mdInput"
+                          type="text"
+                          name="address"
+                          placeholder="此欄位不得為空"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           value={formik.values.address}
@@ -246,9 +276,9 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                       </td>
                     )}
                     {showAddressError && (
-                      <p className="mt-2 text-danger mb-0">
+                      <td className="user_account_formik_errors_xl align-middle mt-2 text-danger mb-0">
                         {formik.errors.address}
-                      </p>
+                      </td>
                     )}
                   </tr>
                 </tbody>

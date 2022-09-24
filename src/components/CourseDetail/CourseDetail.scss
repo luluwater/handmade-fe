@@ -193,8 +193,8 @@
     color: $white;
     height: 50px;
     width: 50px;
-    background: #7e7b6f;
-    border: 1px solid #7e7b6f;
+    background: #7e7b6f !important;
+    border: 1px solid #7e7b6f !important;
 }
 .borderButtom{
     border-bottom: 1px solid $gray-darker;
@@ -407,8 +407,9 @@
     outline: none;
     box-shadow:none;
     color: $white;
+    background-color: $primary !important;
 
 }
 .course_time_btn:hover{
-    color: $white;
+    color: $white !important;
 }

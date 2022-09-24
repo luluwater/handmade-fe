@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Form } from 'react-bootstrap'
+import { Row, Form, Container } from 'react-bootstrap'
 // import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import UserLikesCourses from './UserLikesCourses'
@@ -16,7 +16,7 @@ export const UserLikes = () => {
       <StickyBox>
         <Form.Group>
           <Row className="user_likes_sticky">
-            <div className="my-5 ms-7 d-flex justify-content-start ">
+            <div className="user_likes_sticky my-5 ms-7 d-flex justify-content-start ">
               <button
                 className="user_orders_btn fw-bold me-5"
                 onClick={() => {
@@ -51,7 +51,7 @@ export const UserLikes = () => {
           </Row>
         </Form.Group>
       </StickyBox>
-      <Row className="user_likes_bottom">
+      <div className="user_likes_bottom">
         {showUserLikesCourses && (
           <UserLikesCourses closeUserLikesCourses={setUserLikesCourses} />
         )}
@@ -61,7 +61,7 @@ export const UserLikes = () => {
         {/* {showUserLikesBlogs && (
           <UserLikesBlogs closeUserLikesCourses={setUserLikesBlogs} />
         )} */}
-      </Row>
+      </div>
     </>
   )
 }
