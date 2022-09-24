@@ -23,14 +23,18 @@
     }
     &_previous_page{
 
-        a{
+        button{
             color: $gray-darker;
             font-size: 1.1rem;
             font-weight: 700;
+            border: none;
+            background: none;
             &:hover{
-                color:$primary;
+                color:$primary!important;
+                background: none!important;
             }
         }
+
     }
     &_arrow{
         padding-left: 3.5rem;
@@ -58,6 +62,8 @@
             color:$gray-dark;
         }
     }
+
+
 
     &_inputNotic{
         padding-left: 12px;

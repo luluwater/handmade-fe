@@ -1,25 +1,51 @@
 import React, { useState, useEffect } from 'react'
 import './ProductCartInfo.scss'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import moment from 'moment'
-import { Toast } from '../../UI/SwalStyle'
 import SevenStore from './SevenStore'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductTotal, clearCart } from '../../../slices/productCart-slice'
+import {
+  getProductTotal,
+  clearCart,
+  getActuallyPrice,
+  getDiscount,
+} from '../../../slices/productCart-slice'
 
 import { v4 as uuidv4 } from 'uuid'
+import Swal from 'sweetalert2'
 
 import { useCreateProductOrderMutation } from '../../../services/productOrderApi'
 import { useCreateProductOrderDetailMutation } from '../../../services/productOrderDetailApi'
+import { useGetUserQuery } from '../../../services/userApi'
+import { useDeleteUserCouponMutation } from '../../../services/couponApi'
 
 const ProductCartInfo = () => {
+  // ==========登入狀態============
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const { data } = useGetUserQuery(userId)
+
+  // ============= 資料同會員中心 ==========
+
+  const [userFromDb, setUserFromDb] = useState(false)
+  useEffect(() => {
+    if (userFromDb) {
+      data?.map((item) => setOrderName(item.name))
+      data?.map((item) => setOrderPhone(item.phone))
+      data?.map((item) => setAddress(item.address))
+    } else {
+      setOrderName('')
+      setOrderPhone('')
+      setAddress('')
+    }
+  }, [userFromDb])
+
   // ===========delivery border==========
   const [sevenBorder, setSevenBorder] = useState('ProductCartInfo_borderGray')
   const [sevenPaidBorder, setSevenPaidBorder] = useState(
@@ -36,43 +62,73 @@ const ProductCartInfo = () => {
   const [zipCode, setZipCode] = useState('')
   const [address, setAddress] = useState('')
   const [note, setNote] = useState('')
-  const [paymentState, setPaymentState] = useState('')
+  const [paymentState, setPaymentState] = useState
 
   // ===========popup==============
   const [openSeven, setOpenSeven] = useState(false)
 
   // ===========api==============
+  const { userCouponId } = useParams()
   const [createProductOrder] = useCreateProductOrderMutation()
-  const [createProductOrderDetail] =useCreateProductOrderDetailMutation()
+  const [createProductOrderDetail] = useCreateProductOrderDetailMutation()
+  const [deleteUserCoupon] = useDeleteUserCouponMutation()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  //==========product slice===========
 
   const ProductItem = useSelector(
     (state) => state.productCartReducer.productCartItem
   )
 
-  const ProductCartTotal = useSelector(
-    (state) => state.productCartReducer.totalAmount
+  // const ProductCartTotal = useSelector(
+  //   (state) => state.productCartReducer.totalAmount
+  // )
+
+  const OrderDiscount = useSelector(
+    (state) => state.productCartReducer.couponDiscount
   )
 
-  const clearCourseItems = () => {
+  const ActuallyPrice = useSelector(
+    (state) => state.productCartReducer.actuallyPrice
+  )
+
+  // const ActuallyPriceString = ActuallyPrice[0]
+
+  const couponId = useSelector((state) => state.productCartReducer.coupon)
+
+  const clearProductItems = () => {
     dispatch(clearCart())
+    dispatch(getDiscount(0))
+    dispatch(getActuallyPrice(0))
   }
 
   useEffect(() => {
     dispatch(getProductTotal())
-    console.log('ProductOrder', ProductOrder)
+    // console.log('ProductOrder', ProductOrder)
   }, [])
 
   const productOrderId = Math.floor(Math.random() * 10000)
 
+  useEffect(() => {
+    console.log('susses', ProductOrder)
+  }, [
+    orderName,
+    orderPhone,
+    delivery,
+    payment,
+    zipCode,
+    address,
+    note,
+    paymentState,
+  ])
+
   const ProductOrder = {
     id: productOrderId,
     orderNumber: Date.now(),
-    // TODO:抓取userid
-    user_id: 1,
-    // TODO:抓取couponid,有的話顯示，沒有給null
-    coupon_id: 0,
+    user_id: userId,
+    coupon_id: couponId,
     create_time: moment(new Date()).format('YYYY-MM-DD'),
     name: orderName,
     phone: orderPhone,
@@ -80,25 +136,38 @@ const ProductCartInfo = () => {
     payment_id: payment,
     address: zipCode + address,
     note: note,
-    // TODO:total_amount要再減掉折價券金額
-    total_amount: ProductCartTotal,
+    total_amount: ActuallyPrice,
     payment_state_id: paymentState,
     order_state_id: '1',
     order_detail: [...ProductItem],
   }
 
-
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault() 
+    if (
+      !orderName ||
+      !orderPhone ||
+      !delivery ||
+      !payment ||
+      !zipCode ||
+      !address
+    ) {
+      Swal.fire({
+        title: '請填寫完整的收件資訊',
+        confirmButtonColor: '#e77656',
+        customClass: 'cartInfoSwal',
+        heightAuto: 'false',
+      })
+      return
+    }
+
     try {
       await createProductOrder(ProductOrder)
       await createProductOrderDetail(ProductOrder)
-      await clearCourseItems()
+      await deleteUserCoupon({ userCouponId })
+      await clearProductItems()
       await getProductTotal()
-      await Toast.fire({
-        icon: 'success',
-        title: '已完成訂購',
-      })
+      navigate(`/product_checkout/${productOrderId}`)
     } catch (e) {
       console.error(e)
     }
@@ -268,13 +337,17 @@ const ProductCartInfo = () => {
             </header>
             <Row>
               <Col xs={12} md={2} className="CourseCartInfo_previous_page">
-                <a href="/">
+                <Button
+                  onClick={() => {
+                    navigate(-1)
+                  }}
+                >
                   <FontAwesomeIcon
                     icon="fa-solid fa-chevron-left"
                     className="CourseCartInfo_arrow"
                   />
                   修改購物車
-                </a>
+                </Button>
               </Col>
               <Col xs={12} md={10} className="ProductCartInfo_inputBox">
                 <p className="fs-4 ProductCartInfo_inputTitle">訂購人資訊</p>
@@ -282,8 +355,11 @@ const ProductCartInfo = () => {
                   <input
                     type="checkbox"
                     className="form-check-input"
-                    value=""
+                    value={userFromDb}
                     id="ProductCartInfoCheckBox"
+                    onChange={() => {
+                      setUserFromDb(!userFromDb)
+                    }}
                   />
                   <label
                     className="form-check-label ps-1"
@@ -305,7 +381,7 @@ const ProductCartInfo = () => {
                       <Form.Control
                         type="text"
                         placeholder=" "
-                        required
+                        value={orderName}
                         onChange={(e) => {
                           setOrderName(e.target.value)
                         }}
@@ -323,7 +399,7 @@ const ProductCartInfo = () => {
                       <Form.Control
                         type="tel"
                         placeholder=" "
-                        required
+                        value={orderPhone}
                         onChange={(e) => {
                           setOrderPhone(e.target.value)
                         }}
@@ -448,6 +524,7 @@ const ProductCartInfo = () => {
                         >
                           <Form.Control
                             type="text"
+                            value={address}
                             placeholder=" "
                             onChange={(e) => setAddress(e.target.value)}
                           />
@@ -494,11 +571,11 @@ const ProductCartInfo = () => {
           <Col xs={12} md={3} className="ProductCartInfo_rightSide">
             <p className="fs-4 ProductCartInfo_inputTitle mb-6">購買細項</p>
 
-            {ProductItem?.map((item) => {
+            {ProductItem?.map((item,i) => {
               return (
                 <div
                   className="ProductCartInfo_shoppingDetail mt-1 d-flex justify-content-between"
-                  key={uuidv4()}
+                  key={'ProductCartInfo' + i}
                 >
                   <p className="fs-5">
                     {item.name} <br />
@@ -512,11 +589,15 @@ const ProductCartInfo = () => {
 
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_coupon d-flex justify-content-between">
               <p className="fs-5">折扣券折扣：</p>
-              <p className="fs-5">0</p>
+              <p className="fs-5">
+                {OrderDiscount < 1 && OrderDiscount > 0
+                  ? `${OrderDiscount * 10}折`
+                  : `-${OrderDiscount}`}
+              </p>
             </div>
             <div className="ProductCartInfo_shoppingDetail ProductCartInfo_total d-flex justify-content-between">
               <strong className="fs-5">實付金額</strong>
-              <strong className="fs-5">${ProductCartTotal}</strong>
+              <strong className="fs-5">{ActuallyPrice}</strong>
             </div>
           </Col>
         </Row>

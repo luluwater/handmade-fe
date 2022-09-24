@@ -69,8 +69,8 @@ const Blog = () => {
     <>
       <BlogBanner />
       <Container className="mb-12">
-        <Row>
-          <Col className="border-right" lg={3}>
+        <Row className="justify-content-around">
+          <Col className="border-right " lg={3}>
             <FilterKeyword />
             <div className="filter w-100 w-md-auto mb-5 mb-md-3">
               <h5 className="filter_title">最新文章</h5>
@@ -96,7 +96,7 @@ const Blog = () => {
             })}
             <BlogFilter />
           </Col>
-          <Col lg={9}>
+          <Col lg={8}>
             <BlogList blogList={blogList} />
             <Paginate baseUrl={'blog'} />
           </Col>

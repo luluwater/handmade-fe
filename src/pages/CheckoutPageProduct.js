@@ -1,11 +1,12 @@
 import React from 'react'
-import Checkout from '../components/Cart/CheckOut/Checkout'
+import ProductCheckout from '../components/Cart/CheckOut/ProductCheckout'
 import Footer from '../components/Layout/Footer'
+
 
 const CheckoutPage = () => {
   return (
     <>
-      <Checkout />
+      <ProductCheckout />
       <Footer />
     </>
   )

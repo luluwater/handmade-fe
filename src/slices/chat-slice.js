@@ -38,9 +38,9 @@ export const chatSilce = createSlice({
       return { ...state, currentRoom: action.payload }
     },
 
-    // setJoinRoomMsg: (state, action) => {
-    //   return { ...state, joinRoomMsg: action.payload }
-    // },
+    setJoinRoomMsg: (state, action) => {
+      return { ...state, joinRoomMsg: action.payload }
+    },
 
     setWelcomeMsg: (state, action) => {
       return { ...state, welcomeMsg: action.payload }

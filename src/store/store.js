@@ -36,6 +36,10 @@ import { authApiService } from '../services/authApi'
 import { userApiService } from '../services/userApi'
 import { googleApiService } from '../services/googleApi'
 import { productOrderApiService } from '../services/productOrderApi'
+import { productOrderDetailApiService } from '../services/productOrderDetailApi'
+import { courseOrderApiService } from '../services/courseOrderApi'
+import { courseOrderDetailApiService } from '../services/courseOrderDetailApi'
+import { couponApiService } from '../services/couponApi'
 
 /**
  * 引入 slice ， 引入名稱統一為 xxxReducer
@@ -78,6 +82,13 @@ const reducers = combineReducers({
   [authApiService.reducerPath]: authApiService.reducer,
   [googleApiService.reducerPath]: googleApiService.reducer,
   [productOrderApiService.reducerPath]: productOrderApiService.reducer,
+  [productOrderDetailApiService.reducerPath]: productOrderDetailApiService.reducer,
+  [courseOrderApiService.reducerPath]: courseOrderApiService.reducer,
+  [courseOrderDetailApiService.reducerPath]: courseOrderDetailApiService.reducer,
+  
+  [couponApiService.reducerPath]: couponApiService.reducer,
+
+
 })
 
 const store = configureStore({
@@ -98,6 +109,10 @@ const store = configureStore({
       .concat(authApiService.middleware)
       .concat(googleApiService.middleware)
       .concat(productOrderApiService.middleware)
+      .concat(productOrderDetailApiService.middleware)
+      .concat(courseOrderApiService.middleware)
+      .concat(courseOrderDetailApiService.middleware)
+      .concat(couponApiService.middleware)
   },
 })
 
