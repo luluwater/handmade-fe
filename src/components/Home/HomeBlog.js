@@ -12,13 +12,13 @@ function HomeBlog() {
       img: Image1,
       name: '一器一花｜相約在瀰漫著京都春夏氣息的詩意午後',
       date: '黑色小花貓 2022.05.16',
-      link: '/blog/6',
+      link: '/blog/9992f7bf-d2fc-44de-9a88-5d233af973c9',
     },
     {
       img: Image3,
       name: '台北人氣花藝教室分享「草地學花 Meadow」',
       date: '黑色小花貓 2022.06.18',
-      link: '/blog/7',
+      link: '/blog/fb92c52e-0947-4311-ad56-c93dba244c12',
     },
   ]
   const HotBlog = [
@@ -26,13 +26,13 @@ function HomeBlog() {
       img: Image4,
       name: '一次就上手！小紅書上最火「Tufting手作地毯」台灣也玩得到，做完立即讓你帶回家。',
       date: '黑色小花貓 2022.06.10',
-      link: '/blog/12',
+      link: '/blog/90f8cdb6-f593-43a7-aec9-9e3bb627a39b',
     },
     {
       img: Image2,
       name: '忠孝敦化時尚陶藝空間！陶創作 ╳ Round Round，捏塑揉壓、在陶土中挹注掌心的溫度。',
       date: '黑色小花貓 2021.12.05',
-      link: '/blog/4',
+      link: '/blog/445947e9-b6e2-4771-a61a-06122c2a7367',
     },
   ]
   return (

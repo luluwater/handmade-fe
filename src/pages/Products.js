@@ -9,9 +9,9 @@ import {
   setShowItemCount,
   setType,
 } from '../slices/filterPagination-slice'
-import Paginate, { scrollToTop } from '../components/Filter/Paginate'
-import Filter from '../components/Filter/Filter'
-import SortSelect from '../components/Filter/SortSelect'
+import Paginate, { scrollToTop } from '../components/FIlter/Paginate'
+import Filter from '../components/FIlter/Filter'
+import SortSelect from '../components/FIlter/SortSelect'
 // import { initFilterPrice } from '../slices/filterPrice-slice'
 // import { initFilterDate } from '../slices/filterDate-silce'
 // import { initSearchWord } from '../slices/filterKeyword-slice'

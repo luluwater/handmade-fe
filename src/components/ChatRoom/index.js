@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import { useGetRoomsQuery } from '../../services/chatApi'
 import RoomCard from './RoomCard'
 import useSocket from '../../hooks/socketConnect'
-import { scrollToTop } from '../Filter/Paginate'
+import { scrollToTop } from '../FIlter/Paginate'
 
 import { useSelector, useDispatch } from 'react-redux'
 
