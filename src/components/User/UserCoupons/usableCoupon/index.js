@@ -31,7 +31,7 @@ const UsableCoupon = () => {
       {newDataCoupon?.map((item) => {
         const coupon = item.discount_type_id === 1
         return (
-          <Col xs={6} key={item.id} className="p-0">
+          <Col lg={6} xs={12} key={item.id} className="user_coupon_mdCard p-0">
             <Row className="user_coupon_card m-1">
               <Col className="user_coupon_img d-flex align-items-center">
                 {coupon ? (

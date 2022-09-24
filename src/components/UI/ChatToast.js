@@ -7,7 +7,7 @@ function ChatToast({ text }) {
 
   useEffect(() => {
     setShow((pre) => !pre)
-  }, [])
+  }, [text])
 
   return (
     <ToastContainer position="top-end" className="p-3">

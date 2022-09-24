@@ -16,7 +16,6 @@ function CrazyCatBot() {
   return (
     <>
       <div>
-        <GeneralOptions />
         {show && (
           <Chatbot
             config={config}
@@ -35,7 +34,7 @@ function CrazyCatBot() {
         ) : (
           <FontAwesomeIcon
             className="bot-switch_times"
-            icon="fa-brands fa-bots"
+            icon="fa-solid fa-lightbulb"
           />
         )}
       </div>

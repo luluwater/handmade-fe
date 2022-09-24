@@ -61,13 +61,11 @@ function useSocket(user, dispatch) {
     })
     dispatch(setSocket(socket))
 
-    // socket.emit('join', user)
-
     socket.on('rooms', (rooms) => {
       dispatch(fetchAllRooms(rooms))
     })
 
-    socket.on('welcome-user-msg', (welcomeMsg) => {
+    socket.on('welcomeMsg', (welcomeMsg) => {
       dispatch(setWelcomeMsg(welcomeMsg))
     })
 
