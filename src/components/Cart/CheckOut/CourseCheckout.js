@@ -7,6 +7,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
 import moment from 'moment'
+import { Toast } from '../../UI/SwalStyle'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAddToScheduleMutation } from '../../../services/googleApi'
 
@@ -18,6 +20,10 @@ const CourseCheckout = () => {
   const calendarHandler = async (v) => {
     try {
       await addToSchedule(v)
+      Toast.fire({
+        icon: 'success',
+        title: '已成功將行程加入Google行事曆',
+      })
     } catch (e) {
       console.error(e)
     }

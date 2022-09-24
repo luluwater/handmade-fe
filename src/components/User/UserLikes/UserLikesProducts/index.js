@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Row, Col, Card } from 'react-bootstrap'
 import {
   useUserLikesProductQuery,
-  useRemoveUserFavoriteProductMutation,
+  useRemoveUserPageFavoriteProductMutation,
 } from '../../../../services/userApi'
 import { v4 as uuidv4 } from 'uuid'
 import '../../User.scss'
@@ -27,7 +27,7 @@ function dataImgRouter(img_name, category_en_name, product_id) {
 export const UserLikesProducts = () => {
   const userDataId = JSON.parse(localStorage.getItem('user'))?.user.id
   const { data } = useUserLikesProductQuery(userDataId)
-  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserPageFavoriteProductMutation()
   // console.log(data)
   return (
     <>
