@@ -16,7 +16,6 @@ function CrazyCatBot() {
   return (
     <>
       <div>
-        <GeneralOptions />
         {show && (
           <Chatbot
             config={config}

@@ -167,13 +167,6 @@ const BlogDetail = () => {
                     </span>
                   </h5>
 
-                  <div className="text-end mb-3 fs-6">
-                    <FontAwesomeIcon
-                      className="text-primary"
-                      icon="fa-solid fa-heart"
-                    />
-                    <span className="ms-2">收藏數{item.favorite_amount}</span>
-                  </div>
                   <article className="text-center">
                     {parse(item.content)}
                   </article>

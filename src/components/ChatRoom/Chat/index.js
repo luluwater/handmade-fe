@@ -46,11 +46,13 @@ const Chat = () => {
   const chatReducer = useSelector((state) => state.chatReducer)
   const socket = chatReducer.socket
 
-  useEffect(() => {
-    socket.emit('join', { userData: userData, currentChat: currentChat[0] })
-  }, [])
+  // useEffect(() => {
+  //   socket.emit('join', { userData: userData, currentChat: currentChat[0] })
+  // }, [])
 
   const welcomeMsg = chatReducer.welcomeMsg
+
+  console.log('welcomeMsg in component', welcomeMsg)
 
   const handleChange = (e) => {
     setMessage(e.target.value)
@@ -82,8 +84,8 @@ const Chat = () => {
 
   return (
     <>
+      <ChatToast text={welcomeMsg} />
       <Container data-aos="zoom-in-up" data-aos-duration="600" className="my-8">
-        <ChatToast text={welcomeMsg} />
         <Row>
           <Col className="bg-skin-dark" lg={3}>
             <div className="d-flex align-items-center gap-3 p-1 m-3 bg-skin-brighter">

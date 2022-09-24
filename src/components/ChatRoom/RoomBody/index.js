@@ -46,7 +46,6 @@ const RoomBody = ({ data }) => {
               <>
                 <ListGroup className="chat_body d-flex flex-column gap-3 my-5">
                   {currentChat.msg.map((m) => {
-                    console.log(currentChat.msg)
                     return (
                       <div key={m.message_id}>
                         <div className="d-flex align-items-start gap-3">
