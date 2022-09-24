@@ -104,7 +104,7 @@ const CourseCheckout = () => {
                             icon="fa-regular fa-calendar"
                             size="lg"
                           />
-                        </Button>
+                        </Button> 
                       </p>
                     </div>
                   )
