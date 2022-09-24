@@ -81,7 +81,7 @@ const CourseCheckout = () => {
                       </p>
                       <p className="fs-5 text-center me-5">
                         ${v.price} x{v.amount}
-                        <Button className='CheckoutPage_calendar'>
+                        <Button className="CheckoutPage_calendar">
                           <FontAwesomeIcon
                             icon="fa-regular fa-calendar"
                             size="lg"

@@ -5,13 +5,8 @@ import Footer from '../components/Layout/Footer'
 const CheckoutPage = () => {
   return (
     <>
-<<<<<<< HEAD:src/pages/CheckoutPageCourse.js
       <CourseCheckout />
       <Footer/>
-=======
-      <Checkout />
-      <Footer />
->>>>>>> develop:src/pages/CheckoutPage.js
     </>
   )
 }

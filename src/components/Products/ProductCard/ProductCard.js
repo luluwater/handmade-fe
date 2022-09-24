@@ -19,12 +19,7 @@ import {
 } from '../../../services/productApi'
 
 import cart from '../../../assets/cart.svg'
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-=======
-import { getProductTotal } from '../../../slices/productCart-slice'
 import { Link, useNavigate } from 'react-router-dom'
->>>>>>> develop
 import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
