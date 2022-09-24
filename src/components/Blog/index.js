@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import BlogList from './BlogList'
 import { Link } from 'react-router-dom'
-import FilterKeyword from '../FIlter/FilterKeyword'
-import Paginate from '../FIlter/Paginate'
+import FilterKeyword from '../Filter/FilterKeyword'
+import Paginate from '../Filter/Paginate'
 import { useGetBlogQuery } from '../../services/blogApi'
 import { IMG_URL } from '../../utils/config'
 import BlogFilter from './BlogFilter'
@@ -22,7 +22,7 @@ import {
   setShowItemCount,
   setType,
 } from '../../slices/filterPagination-slice'
-import { scrollToTop } from '../../components/FIlter/Paginate'
+import { scrollToTop } from '../Filter/Paginate'
 
 const Blog = () => {
   useEffect(() => {
