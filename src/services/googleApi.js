@@ -23,8 +23,16 @@ export const googleApiService = createApi({
       }),
       invalidatesTags: ['google'],
     }),
+    addToSchedule:builder.mutation({
+      query:(data) => ({
+        url:'google/calendar',
+        method:'POST',
+        body:data,
+      }),
+      invalidatesTags: ['google'],
+    })
   }),
 })
 
-export const { useSendValidationMailMutation, useSendOrderDetailMutation } =
+export const { useSendValidationMailMutation, useSendOrderDetailMutation,useAddToScheduleMutation } =
   googleApiService

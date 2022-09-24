@@ -1,10 +1,9 @@
 import React from 'react'
 import './Cart.scss'
 import { Row, Col } from 'react-bootstrap'
-
-import productImg from '../../assets/course/course_bakery_41/課程_花貓_基礎海綿蛋糕研修班_1.jpg'
 import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 import { useDispatch } from 'react-redux'
 import {
@@ -53,6 +52,8 @@ const CourseCartItem = ({ item }) => {
   const deleteCourse = () => {
     dispatch(deleteCourseItem({ stockId }))
   }
+
+
 
   return (
     <Row className="text-center Cart_DetailTitle">

@@ -24,6 +24,7 @@ const UserLikeProduct = ({ userId }) => {
               <div key={'bb' + i}>
                 <CartRecommendCard
                   type="product"
+                  dataFrom="user"
                   cartIcon="true"
                   productId={item.product_id}
                   store={item.store_name}
@@ -32,6 +33,9 @@ const UserLikeProduct = ({ userId }) => {
                   imgs={item.img_name}
                   category={item.category_en_name}
                   amount={item.amount}
+                  isFavorite={true}
+                  storeId={item.store_id}
+                  categoryId={item.category_id}
                 />
               </div>
             )

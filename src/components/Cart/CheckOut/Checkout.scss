@@ -20,6 +20,7 @@
   }
 
   &_BTN{
+  color: $white;
   width: 25%;
   height: 65px;
   background: $gray-darker;
@@ -62,12 +63,20 @@
   }
 
   &_calendar{
+    position: relative;
     color: $gray-darker;
     background: none;
     border: none;
     &:hover{
       background: none !important;
       color: $primary !important;
+    }
+    &:hover::before{
+      position: absolute;
+      top: -35px;
+      left: 0;
+      content:'加入到行事曆';
+      font-size:.8rem;
     }
 
 

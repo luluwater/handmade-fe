@@ -5,10 +5,28 @@ import { Row, Col, Card } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+
 import {
   addProductCart,
   getProductTotal,
 } from '../../../slices/productCart-slice'
+
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+} from '../../../services/productApi'
+
+import {
+  useAddUserFavoriteCourseMutation,
+  useRemoveUserFavoriteCourseMutation,
+} from '../../../services/courseApi'
+
+import { useRemoveUserPageFavoriteProductMutation } from '../../../services/userApi'
+import { useRemoveUserPageFavoriteCourseMutation } from '../../../services/userApi'
+
+import { scrollToTop } from '../../Filter/Paginate'
+
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
@@ -26,8 +44,26 @@ const CartRecommendCard = ({
   imgs,
   category,
   amount,
+  isFavorite,
+  storeId,
+  categoryId,
+  dataFrom,
 }) => {
+  const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
+  const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+
+  const [removeUserPageFavoriteCourse] =
+    useRemoveUserPageFavoriteCourseMutation()
+  const [removeUserPageFavoriteProduct] =
+    useRemoveUserPageFavoriteProductMutation()
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+
   const addToProductCart = () => {
     dispatch(
       addProductCart({
@@ -58,6 +94,10 @@ const CartRecommendCard = ({
           slidesPerView={1}
           loop
           className="card_swiper shadow"
+          onClick={() => {
+            scrollToTop()
+            navigate(`/${type}/detail/${productId}`)
+          }}
         >
           {imgs?.map((item) => {
             return (
@@ -73,16 +113,78 @@ const CartRecommendCard = ({
 
         <Row className="justify-content-between align-items-center ">
           <Col xs={6} className="mt-2">
-            <p className="mb-1 text-truncate recommendCard_storeName ">
-              <p className="m-0">| {store} |</p>
-            </p>
-            <h6 className="mb-1 text-truncate ps-1">{name}</h6>
-            <p className="text-primary fw-bold ps-1">${price}</p>
+            <Link to={`/${type}/detail/${productId}`} onClick={scrollToTop}>
+              <p className="mb-1 text-truncate recommendCard_storeName ">
+                <p className="m-0">| {store} |</p>
+              </p>
+              <h6 className="mb-1 text-truncate ps-1">{name}</h6>
+              <p className="text-primary fw-bold ps-1">${price}</p>
+            </Link>
           </Col>
           <Col className="text-end d-flex justify-content-end">
-            <button className="bg-primary card_favorite border-0  rounded-circle me-2">
-              <FontAwesomeIcon icon="far fa-heart" inverse size="lg" />
-            </button>
+            {dataFrom === 'user' ? (
+              <button
+                className="bg-primary card_favorite border-0  rounded-circle me-2"
+                onClick={() => {
+                  if (!userId) return (window.location.href = '/login')
+                  if (isFavorite) {
+                    type === 'product'
+                      ? removeUserPageFavoriteProduct({
+                          productId,
+                          userId,
+                        })
+                      : removeUserPageFavoriteCourse({
+                          courseId: productId,
+                          userId,
+                        })
+                  }
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                  inverse
+                  size="lg"
+                />
+              </button>
+            ) : (
+              <button
+                className="bg-primary card_favorite border-0  rounded-circle me-2"
+                onClick={() => {
+                  if (!userId) return (window.location.href = '/login')
+                  if (isFavorite) {
+                    type === 'product'
+                      ? removeUserFavoriteProduct({
+                          productId,
+                          storeId,
+                          categoryId,
+                        })
+                      : removeUserFavoriteCourse({
+                          courseId: productId,
+                          storeId,
+                          categoryId,
+                        })
+                  } else {
+                    type === 'product'
+                      ? addUserFavoriteProduct({
+                          productId,
+                          storeId,
+                          categoryId,
+                        })
+                      : addUserFavoriteCourse({
+                          courseId: productId,
+                          storeId,
+                          categoryId,
+                        })
+                  }
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                  inverse
+                  size="lg"
+                />
+              </button>
+            )}
 
             {cartIcon ? (
               <button

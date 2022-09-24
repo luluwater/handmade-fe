@@ -3,28 +3,36 @@ import { useUserLikesCourseQuery } from '../../../services/userApi'
 // import RecommendCard from '../../Store/RecommendCard'
 import CartRecommendCard from './CartRecommendCard'
 
-const UserLikeCourse = ({userId}) => {
+const UserLikeCourse = ({ userId }) => {
   const { data } = useUserLikesCourseQuery(userId)
-  const [Card, setCard] = useState([])
+  // const [card, setCard] = useState([])
 
-  let newData = []
-
-  useEffect(() => {
-    if (data) {
-      newData = [...data]?.sort(() => 0.5 - Math.random())
-      setCard(newData)
-    }
-  }, [data])
+  // useEffect(() => {
+  //   if (data) {
+  //     if (card.length == 0) {
+  //       let newData = [...data]?.sort(() => 0.5 - Math.random()).slice(0, 4)
+  //       setCard(newData)
+  //     } else {
+  //       let newData = card.map((c) => {
+  //         return data.find((course) => {
+  //           return course.id == data.id
+  //         })
+  //       })
+  //       setCard([...newData])
+  //     }
+  //   }
+  // }, [data])
 
   return (
     <>
-      {Card.length > 0 ? (
-        Card?.map((item, i) => {
+      {data?.length > 0 ? (
+        data?.map((item, i) => {
           if (i < 4) {
             return (
               <div key={'cc' + i}>
                 <CartRecommendCard
                   type="course"
+                  dataFrom="user"
                   cartIcon=""
                   productId={item.course_id}
                   store={item.store_name}
@@ -32,13 +40,16 @@ const UserLikeCourse = ({userId}) => {
                   price={item.price}
                   imgs={item.img_name}
                   category={item.category_en_name}
+                  isFavorite={true}
+                  storeId={item.store_id}
+                  categoryId={item.category_id}
                 />
               </div>
             )
           }
         })
       ) : (
-        <h3 className='my-10'>目前尚未有收藏喔</h3>
+        <h3 className="my-10">目前尚未有收藏喔</h3>
       )}
     </>
   )

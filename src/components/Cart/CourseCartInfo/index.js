@@ -94,7 +94,7 @@ const CourseCartInfo = () => {
   const courseOrderId = Math.floor(Math.random() * 10000)
 
   useEffect(() => {
-    console.log('susses', CourseOrder)
+    console.log('CourseOrder', CourseOrder)
   }, [orderName, orderPhone, email, note, payment, paymentState])
 
   const CourseOrder = {
