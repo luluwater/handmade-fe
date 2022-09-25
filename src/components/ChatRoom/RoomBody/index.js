@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment/moment'
@@ -10,10 +10,18 @@ import { currentRoom } from '../../../slices/chat-slice'
 
 const RoomBody = ({ data }) => {
   const [isCurrentUser, setIsCurrentUser] = useState(true)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const userData = JSON.parse(localStorage.getItem('user'))?.user
 
   const newMessage = useSelector((state) => state.chatReducer).newMessage
+  const socket = useSelector((state) => state.chatReducer).socket
 
-  const dispatch = useDispatch()
+  const handleLeftRoom = () => {
+    socket.emit('roomMsg', `${userData.account} 已離開 ${data?.[0].room_title}`)
+    navigate('/user/chat')
+  }
 
   useEffect(() => {
     dispatch(currentRoom(data?.[0]))
@@ -25,27 +33,24 @@ const RoomBody = ({ data }) => {
         return (
           <div key={currentChat.id}>
             <div className="position-relative text-center mt-3 ">
-              <Link
-                to="/user/chat"
-                className="position-absolute bottom-0 start-0 fs-1 d-md-none"
-              >
+              <div className="position-absolute bottom-0 start-0 fs-1 d-md-none">
                 <FontAwesomeIcon icon="fa-solid fa-angle-left" />
-              </Link>
+              </div>
               <h5>{currentChat?.room_title}</h5>
-              <Link
-                to="/user/chat"
+              <div
+                onClick={handleLeftRoom}
                 className="position-absolute bottom-0 end-0 d-none d-md-block"
               >
                 <FontAwesomeIcon icon="fa-solid fa-door-open" />
                 <span className="ms-md-2">離開</span>
-              </Link>
+              </div>
             </div>
             <hr />
 
             {isCurrentUser ? (
               <>
                 <ListGroup className="chat_body d-flex flex-column gap-3 my-5">
-                  {currentChat.msg.map((m) => {
+                  {newMessage.map((m) => {
                     return (
                       <div key={m.message_id}>
                         <div className="d-flex align-items-start gap-3">

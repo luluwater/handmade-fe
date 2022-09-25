@@ -46,13 +46,7 @@ const Chat = () => {
   const chatReducer = useSelector((state) => state.chatReducer)
   const socket = chatReducer.socket
 
-  // useEffect(() => {
-  //   socket.emit('join', { userData: userData, currentChat: currentChat[0] })
-  // }, [])
-
   const welcomeMsg = chatReducer.welcomeMsg
-
-  console.log('welcomeMsg in component', welcomeMsg)
 
   const handleChange = (e) => {
     setMessage(e.target.value)
@@ -72,9 +66,9 @@ const Chat = () => {
       created_at: moment().format('YYYY-MM-DD h:mm:ss'),
       room_id: currentChat?.[0].id,
     }
-    await socket.emit('msgFromClient', msg)
+    await socket.emit('sendMsg', msg)
     await sendMessage(msg)
-    await dispatch(addMesssage([msg]))
+    // await dispatch(addMesssage([msg]))
     await setMessage('')
   }
 

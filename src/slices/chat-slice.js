@@ -15,7 +15,6 @@ const initialState = {
   scrollBottom: 0,
   senderTyping: { typing: false },
   history: [],
-  joinRoomMsg: '',
   welcomeMsg: '',
 }
 
@@ -35,29 +34,17 @@ export const chatSilce = createSlice({
     },
 
     currentRoom: (state, action) => {
-      console.log('action.payload', action.payload)
-
       return { ...state, currentRoom: action.payload }
-    },
-
-    setJoinRoomMsg: (state, action) => {
-      return { ...state, joinRoomMsg: action.payload }
     },
 
     setWelcomeMsg: (state, action) => {
       return { ...state, welcomeMsg: action.payload }
     },
 
-    getMessage: (state, action) => {},
-
-    getRooms: (state, action) => {},
-
     //TODO:抓到後端 MSG 再把 NEW MSG 塞到狀態裡
     addMesssage: (state, action) => {
-      console.log('state.currentRoom', current(state.currentRoom))
       return {
         ...state,
-        currentRoom: state.currentRoom.msg.concat(action.payload),
         newMessage: state.newMessage.concat(action.payload),
       }
     },
@@ -65,10 +52,8 @@ export const chatSilce = createSlice({
 })
 
 export const {
-  sendMesssage,
   setSocket,
   addMesssage,
-  setJoinRoomMsg,
   currentRoom,
   setWelcomeMsg,
   fetchAllRooms,

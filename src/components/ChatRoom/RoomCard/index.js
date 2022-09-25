@@ -12,10 +12,7 @@ function RoomCard({ roomName, endpoint, roomImg }) {
   const userData = JSON.parse(localStorage.getItem('user'))?.user
 
   const handleJoinRoom = async () => {
-    await socket.emit(
-      'joinRoomMsg',
-      `welcome${userData.account} join ${roomName}`
-    )
+    await socket.emit('roomMsg', `${userData.account} 已加入 ${roomName}`)
     await navigate(`/chat${endpoint}`)
   }
 
