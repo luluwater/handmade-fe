@@ -35,6 +35,8 @@ export const chatSilce = createSlice({
     },
 
     currentRoom: (state, action) => {
+      console.log('action.payload', action.payload)
+
       return { ...state, currentRoom: action.payload }
     },
 

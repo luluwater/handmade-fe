@@ -9,6 +9,8 @@ function ChatToast({ text }) {
     setShow((pre) => !pre)
   }, [text])
 
+  console.log('texttexttexttext', text)
+
   return (
     <ToastContainer position="top-end" className="p-3">
       <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>

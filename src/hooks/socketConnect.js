@@ -70,7 +70,7 @@ function useSocket(user, dispatch) {
     })
 
     socket.on('responseMsg', (responseMsg) => {
-      console.log('responseMsg in socket', responseMsg)
+      // console.log('responseMsg in socket', responseMsg)
       dispatch(addMesssage(responseMsg))
     })
   }, [dispatch])
