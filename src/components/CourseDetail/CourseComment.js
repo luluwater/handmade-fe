@@ -43,15 +43,11 @@ const CourseComment = () => {
         <Col className="col-10 ">
           <ShowMore maxHeight={375} className="showmore" defaultAnchor={true}>
             {data?.map((item) => {
-              {/* console.log('item', item) */}
               return (
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
                   <Row className="d-flex align-items-baseline">
                     <Col className="col-1 detail_comment_photo">
-                      <img
-                        src={require(`../../assets/user/profile_1.png`)}
-                        alt=""
-                      />
+                      <img src={item.avatar} alt="" />
                     </Col>
                     <Col className="col-1 p-0">
                       <p className=" detail_comment_name">{item.user_name}</p>

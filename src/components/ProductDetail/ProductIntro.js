@@ -30,6 +30,7 @@ const ProductIntro = ({
 }) => {
   const { productId } = useParams()
   const { data } = useGetProductCommentQuery(productId)
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
   let totalSum = 0
 
@@ -128,6 +129,7 @@ const ProductIntro = ({
           <button
             className="detail_button detail_heart"
             onClick={() => {
+              if (!userId) return (window.location.href = '/login')
               if (isFavorite) {
                 removeUserFavoriteProduct({
                   productId: productId,
