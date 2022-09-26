@@ -35,8 +35,11 @@ function Proudcts() {
   )
   const filterPrice = useSelector((state) => state.filterPriceReducer)
   useEffect(() => {
-    if (rawData === data) return
     scrollToTop()
+  }, [])
+  useEffect(() => {
+    if (rawData === data) return
+
     // console.log('get rawData')
     dispatch(pagination(data))
     // dispatch(initFilterPrice())

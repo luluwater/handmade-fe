@@ -41,8 +41,10 @@ function Courses() {
   // console.log(filterPrice)
   //設定篩選資料
   useEffect(() => {
-    if (rawData === data) return
     scrollToTop()
+  }, [])
+  useEffect(() => {
+    if (rawData === data) return
     // dispatch(initFilterPrice())
     // dispatch(initFilterDate())
     // dispatch(initSearchWord())
