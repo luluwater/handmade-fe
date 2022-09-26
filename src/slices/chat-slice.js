@@ -6,16 +6,27 @@ import { createSlice, current } from '@reduxjs/toolkit'
  * 4. 傳送的聊天內容
  */
 
+//  {
+//   id: '',
+//   content: '',
+//   user_id: '',
+//   created_at: '',
+//   room_id: '',
+//   isCurrentUser: true,
+// },
+
+const userData = JSON.parse(localStorage.getItem('user'))?.user
+
 const initialState = {
   chatRooms: [],
   chats: [],
   currentRoom: {},
   socket: {},
   newMessage: [],
-  scrollBottom: 0,
-  senderTyping: { typing: false },
   history: [],
   welcomeMsg: '',
+  userData: userData,
+  senderTyping: { typing: false },
 }
 
 export const chatSilce = createSlice({
@@ -34,6 +45,7 @@ export const chatSilce = createSlice({
     },
 
     currentRoom: (state, action) => {
+      console.log('action.payload', action.payload)
       return { ...state, currentRoom: action.payload }
     },
 
@@ -41,11 +53,20 @@ export const chatSilce = createSlice({
       return { ...state, welcomeMsg: action.payload }
     },
 
-    //TODO:抓到後端 MSG 再把 NEW MSG 塞到狀態裡
     addMesssage: (state, action) => {
-      return {
-        ...state,
-        newMessage: state.newMessage.concat(action.payload),
+      console.log('before eqully', current(state.newMessage))
+      if (action.payload.user_id === userData.id) {
+        return {
+          ...state,
+          newMessage: state.newMessage.concat(action.payload),
+        }
+      }
+      console.log('after eqully', current(state.newMessage))
+      if (action.payload.user_id !== userData.id) {
+        return {
+          ...state,
+          newMessage: state.newMessage.concat(action.payload),
+        }
       }
     },
   },

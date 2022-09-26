@@ -12,13 +12,11 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const ChatRoom = () => {
   scrollToTop()
+  const { data } = useGetRoomsQuery('all')
   const sliceAuth = useSelector((state) => state.authReducers)
   const dispatch = useDispatch()
   const userData = JSON.parse(localStorage.getItem('user'))?.user
   useSocket(userData || sliceAuth?.user, dispatch)
-  const chatReducer = useSelector((state) => state.chatReducer)
-  const rooms = chatReducer.chatRooms
-  const { data } = useGetRoomsQuery('all')
 
   return (
     <>

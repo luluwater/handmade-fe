@@ -26,7 +26,11 @@ function useSocket(user, dispatch) {
       dispatch(setWelcomeMsg(roomMsg))
     })
     socket.on('sendMsg', (roomMsg) => {
+      console.log('roomMsg in hook ', roomMsg)
       dispatch(addMesssage(roomMsg))
+    })
+    socket.on('leftMsg', (leftMsg) => {
+      dispatch(setWelcomeMsg(leftMsg))
     })
   }, [dispatch])
 }
