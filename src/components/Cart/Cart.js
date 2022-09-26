@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../styles/_custom_style.scss'
 
-import { Row, Col, Nav, Tab, Form, InputGroup, Button } from 'react-bootstrap'
+import { Row, Col, Nav, Tab, Form, Button } from 'react-bootstrap'
 import CourseCartItem from './CourseCartItem'
 import ProductCartItem from './ProductCartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -315,6 +315,31 @@ const Cart = () => {
             e.stopPropagation()
           }}
         >
+          <Row className="Cart_mobileTabChooseBox ">
+            <Nav
+              variant="pills"
+              className="Cart_mobileTabChoose justify-content-center"
+              justify
+            >
+              <Nav.Item className="">
+                <Nav.Link
+                  className="Cart_mobileNavLink text-center fs-5 "
+                  eventKey="first"
+                >
+                  課程購物車
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  className="Cart_mobileNavLink text-center fs-5"
+                  eventKey="second"
+                >
+                  商品購物車
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Row>
+
           <Col className="pe-0 Cart_tabChooseBox" sm={12}>
             <Nav variant="pills" className="flex-column Cart_tabChoose">
               <Nav.Item className="">
@@ -336,12 +361,12 @@ const Cart = () => {
             </Nav>
           </Col>
 
-          <Col className="ps-0">
+          <Col className="px-0 Cart_tabContentBox">
             <Tab.Content className="Cart_tabContent">
               {/* =============課程購物車============== */}
               <Tab.Pane eventKey="first">
-                <Row>
-                  <Col xs={12} md={9} className="Cart_mainContent">
+                <Row className="Cart_row">
+                  <Col md={9} className="Cart_mainContent">
                     <div
                       className="mt-5 Cart_backToStore fs-5"
                       onClick={toggleCart}
@@ -384,7 +409,7 @@ const Cart = () => {
                           ))}
                         </div>
                         <Row className="Cart_couponBox d-flex align-items-center">
-                          <Col xs={3} className="Cart_couponSelect">
+                          <Col sm={9} md={3} className="Cart_couponSelect">
                             <Form.Select
                               aria-label="courseUserCoupon"
                               value={courseCouponId}
@@ -408,58 +433,36 @@ const Cart = () => {
                               )}
                             </Form.Select>
                           </Col>
-
-                          {/* <Col xs="2" className="Cart_or text-center">
-                            或
-                          </Col>
-
-                          <Col
-                            xs={4}
-                            className="Cart_couponInputBox text-center"
-                          >
-                            <InputGroup className="Cart_couponInput">
-                              <Form.Control
-                                placeholder="輸入折價券代碼..."
-                                aria-label="CouponInput"
-                                aria-describedby="basic-addon2"
-                              />
-                              <Button
-                                variant="outline-gray-darker"
-                                id="button-addon2"
-                              >
-                                使用
-                              </Button>
-                            </InputGroup>
-                          </Col> */}
                         </Row>
                       </>
                     )}
 
-                    {userId ? (
-                      <Row className="Cart_userLikeBox">
-                        <p className="fs-5 text-center">您的課程收藏清單</p>
+                    <div className="Cart_RecommendPC">
+                      {userId ? (
+                        <Row className="Cart_userLikeBox">
+                          <p className="fs-5 text-center">您的課程收藏清單</p>
+                          <Row className="mb-5">
+                            <Col className="d-flex justify-content-center Cart_userLike ">
+                              <UserLikeCourse userId={userId} />
+                            </Col>
+                          </Row>
+                        </Row>
+                      ) : (
+                        ''
+                      )}
+                      <Row className="Cart_youMightLikeBox">
+                        <p className="fs-5 text-center">您可能會喜歡</p>
                         <Row className="mb-5">
                           <Col className="d-flex justify-content-center Cart_userLike">
-                            <UserLikeCourse userId={userId} />
+                            <YouWillLikeCourse />
                           </Col>
                         </Row>
                       </Row>
-                    ) : (
-                      ''
-                    )}
-
-                    <Row className="Cart_youMightLikeBox">
-                      <p className="fs-5 text-center">您可能會喜歡</p>
-                      <Row className="mb-5">
-                        <Col className="d-flex justify-content-center Cart_userLike">
-                          <YouWillLikeCourse />
-                        </Col>
-                      </Row>
-                    </Row>
+                    </div>
                   </Col>
 
                   {/* ===========課程購物車 右側========== */}
-                  <Col xs={12} md={3} className="Cart_courseRightSide ">
+                  <Col md={3} className="Cart_courseRightSide ">
                     <div className="mt-5 text-end Cart_backToStore_x fs-5">
                       <FontAwesomeIcon
                         icon="fa-solid fa-xmark"
@@ -467,11 +470,11 @@ const Cart = () => {
                       />
                     </div>
                     <p className="fs-4 Cart_TotalTitle">總計</p>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between Cart_TotalContent ">
                       <p>總金額：</p>
                       <p>{CourseCartTotal}</p>
                     </div>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between Cart_TotalContent">
                       <p>折價券折扣：</p>
                       {courseSelectCoupon?.map((item) => {
                         return item.discount_type_id == 1 ? (
@@ -504,6 +507,29 @@ const Cart = () => {
                     >
                       繼續
                     </Button>
+
+                    <div className="Cart_RecommendMobile">
+                      {userId ? (
+                        <Row>
+                          <p className="fs-5 text-center">您的課程收藏清單</p>
+                          <Row className="mb-5">
+                            <Col className="d-flex justify-content-center Cart_userLike ">
+                              <UserLikeCourse userId={userId} />
+                            </Col>
+                          </Row>
+                        </Row>
+                      ) : (
+                        ''
+                      )}
+                      <Row className="Cart_youMightLikeBox">
+                        <p className="fs-5 text-center">您可能會喜歡</p>
+                        <Row className="mb-5">
+                          <Col className="d-flex justify-content-center Cart_userLike">
+                            <YouWillLikeCourse />
+                          </Col>
+                        </Row>
+                      </Row>
+                    </div>
                   </Col>
                 </Row>
               </Tab.Pane>
@@ -511,7 +537,7 @@ const Cart = () => {
               {/* =============商品購物車============== */}
               <Tab.Pane eventKey="second">
                 <Row>
-                  <Col xs={12} md={9} className="Cart_mainContent">
+                  <Col xs={12} md={9} className="Cart_mainContent px-0">
                     <div
                       className="mt-5 Cart_backToStore fs-5"
                       onClick={toggleCart}
@@ -539,7 +565,7 @@ const Cart = () => {
                     ) : (
                       <>
                         <Row className="text-center Cart_DetailTitle">
-                          <Col sm={5}>課程名稱</Col>
+                          <Col sm={5}>商品名稱</Col>
                           <Col sm={3}>數量</Col>
                           <Col sm={2}>小計</Col>
                           <Col sm={2}>刪除</Col>
@@ -552,7 +578,7 @@ const Cart = () => {
                           ))}
                         </div>
                         <Row className="Cart_couponBox d-flex align-items-center">
-                          <Col xs={3} className="Cart_couponSelect">
+                          <Col sm={9} md={3} className="Cart_couponSelect">
                             <Form.Select
                               value={couponId}
                               aria-label="userCoupon"
@@ -576,59 +602,33 @@ const Cart = () => {
                               )}
                             </Form.Select>
                           </Col>
-
-                          {/* <Col xs="2" className="Cart_or text-center">
-                            或
-                          </Col> */}
-
-                          {/* <Col
-                            xs={4}
-                            className="Cart_couponInputBox text-center"
-                          >
-                            <InputGroup className="Cart_couponInput">
-                              <Form.Control
-                                placeholder="輸入折價券代碼..."
-                                aria-label="CouponInput"
-                                aria-describedby="basic-addon2"
-                              />
-                              <Button
-                                variant="outline-gray-darker"
-                                id="button-addon2"
-                              >
-                                使用
-                              </Button>
-                            </InputGroup>
-                          </Col> */}
                         </Row>
                       </>
                     )}
 
-                    {/* <div>
-                      <ProductCartItem />
-                      <ProductCartItem />
-                    </div> */}
+                    <div className="Cart_RecommendPC">
+                      {userId ? (
+                        <Row className="Cart_userLikeBox">
+                          <p className="fs-5 text-center">您的商品收藏清單</p>
+                          <Row className="mb-5">
+                            <Col className="d-flex justify-content-center Cart_userLike">
+                              <UserLikeProduct userId={userId} />
+                            </Col>
+                          </Row>
+                        </Row>
+                      ) : (
+                        ''
+                      )}
 
-                    {userId ? (
-                      <Row className="Cart_userLikeBox">
-                        <p className="fs-5 text-center">您的商品收藏清單</p>
+                      <Row className="Cart_youMightLikeBox">
+                        <p className="fs-5 text-center">您可能會喜歡</p>
                         <Row className="mb-5">
                           <Col className="d-flex justify-content-center Cart_userLike">
-                            <UserLikeProduct userId={userId} />
+                            <YouWillLikeProduct />
                           </Col>
                         </Row>
                       </Row>
-                    ) : (
-                      ''
-                    )}
-
-                    <Row className="Cart_youMightLikeBox">
-                      <p className="fs-5 text-center">您可能會喜歡</p>
-                      <Row className="mb-5">
-                        <Col className="d-flex justify-content-center Cart_userLike">
-                          <YouWillLikeProduct />
-                        </Col>
-                      </Row>
-                    </Row>
+                    </div>
                   </Col>
 
                   {/* ========商品購物車  右側========== */}
@@ -640,11 +640,11 @@ const Cart = () => {
                       />
                     </div>
                     <p className="fs-4 Cart_TotalTitle">總計</p>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between Cart_TotalContent">
                       <p>總金額：</p>
                       <p>{ProductCartTotal}</p>
                     </div>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between Cart_TotalContent">
                       <p>折價券折扣：</p>
 
                       {userSelectCoupon?.map((item) => {
@@ -676,10 +676,33 @@ const Cart = () => {
                     <Button
                       onClick={ProuductContinue}
                       variant="primary"
-                      className="Cart_nextBTN fs-5 mt-6 mb-10 text-center d-flex align-items-center justify-content-center"
+                      className="Cart_nextBTN fs-5 mt-6 mb-10 text-center "
                     >
                       繼續
                     </Button>
+                    <div className="Cart_RecommendMobile">
+                      {userId ? (
+                        <Row className="Cart_userLikeBox">
+                          <p className="fs-5 text-center">您的商品收藏清單</p>
+                          <Row className="mb-5">
+                            <Col className="d-flex justify-content-center Cart_userLike">
+                              <UserLikeProduct userId={userId} />
+                            </Col>
+                          </Row>
+                        </Row>
+                      ) : (
+                        ''
+                      )}
+
+                      <Row className="Cart_youMightLikeBox">
+                        <p className="fs-5 text-center">您可能會喜歡</p>
+                        <Row className="mb-5">
+                          <Col className="d-flex justify-content-center Cart_userLike">
+                            <YouWillLikeProduct />
+                          </Col>
+                        </Row>
+                      </Row>
+                    </div>
                   </Col>
                 </Row>
               </Tab.Pane>

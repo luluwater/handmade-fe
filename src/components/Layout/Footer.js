@@ -85,7 +85,7 @@ const Footer = () => {
             <p className="footer_cursor">網站使用條款</p>
           </Col>
           <Col xs={6} md={4} className="footer_smallWord  footerOrder_0">
-            <p>service@handmade.com</p>
+            <p className="footerOrder_0">service@handmade.com</p>
           </Col>
           <Col
             xs={6}

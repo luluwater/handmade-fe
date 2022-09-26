@@ -48,6 +48,7 @@ function ProductCard({
   price,
   isFavorite,
   amount,
+  
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
