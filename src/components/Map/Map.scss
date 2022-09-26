@@ -9,45 +9,59 @@
   height: 100%;
 }
 .map_storeCard {
-  max-height: 10rem;
+  height: 100%;
   color: $gray-darker;
+  background-color: $skin-brighter;
+  border: none;
+  border-radius: 0;
+
+  &:hover {
+    background-color: rgba(238, 237, 237, 0.89);
+    color: $dark;
+  }
+  &:active {
+    color: $gray-darker;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  a {
+    color: $secondary;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .card-text {
+    margin-bottom: 0;
+  }
 }
-.map_storeCard:hover {
-  background-color: rgba(238, 237, 237, 0.89);
-  color: $dark;
-}
-.map_storeCard:active {
-  background-color: white;
-  color: $gray-darker;
-}
-.map_storeCard img {
-  width: 80px;
-  height: 80px;
-}
-.map_storeCard .card-text {
-  margin-bottom: 0;
-}
+
 .line-clamp {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
   overflow: hidden;
 }
-.map_storeCard a {
-  color: $secondary;
-}
-.map_storeCard a:hover {
-  color: $primary;
-}
 .map_Sidebar {
   height: 100vh;
-  width: 400px;
+  width: 568px;
   overflow-y: scroll;
 }
 .mapSearchBar {
   width: 100%;
   height: 3rem;
   background-color: $secondary;
+}
+.map_container {
+  margin: 50px 80px;
+}
+.mapSearchBar_shrink {
+  position: sticky;
+  top: 152px;
+  left: 0;
+  z-index: 8000;
+  box-shadow: 5px 5px 15px -5px $skin-bright;
 }
 @media screen and (max-width: 768px) {
   .map {
@@ -59,7 +73,13 @@
     height: 100%;
     overflow-y: visible;
   }
-  .line-clamp{
+  .line-clamp {
     -webkit-line-clamp: 3;
+  }
+  .map_container {
+    margin: 20px 0;
+  }
+  .mapSearchBar_shrink {
+    top: 92px;
   }
 }

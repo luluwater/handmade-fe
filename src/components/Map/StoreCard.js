@@ -33,39 +33,40 @@ function StoreCard({
     >
       {/* <CardHeader className="fw-bold">{name}</CardHeader> */}
       <Card.Body className=" ps-0">
-        <Row className="g-0">
-          <Col sm={4} className="text-center">
+        <Row className="g-0 align-items-center">
+          <Col sm={4} md={12} className="text-center">
             <div className="w-100">
               <CardImg
-                className="border"
+                className="border rounded-0"
                 src={require(`../../assets/store/store_${category}_${id}/${img}`)}
               />
             </div>
-
-            <Card.Link href={fbUrl} target={'_blank'}>
-              <FontAwesomeIcon
-                icon="fa-brands fa-square-facebook"
-                size={'lg'}
-                className="mt-1"
-              />
-            </Card.Link>
-            <Card.Link href={igUrl} target={'_blank'}>
-              <FontAwesomeIcon
-                icon="fa-brands fa-square-instagram"
-                size={'lg'}
-                className="mt-1"
-              />
-            </Card.Link>
           </Col>
-          <Col>
-            <CardHeader className="fw-bold h6 ">{name}</CardHeader>
-            <Card.Text>地址:{address}</Card.Text>
-            <Card.Text>電話:{phone}</Card.Text>
-            {/* <Card.Text>營業時間:{openingHour}</Card.Text> */}
+          <Col className="mx-5 mt-3">
+            <Card.Title className="fw-bold h6 text-md-center ">
+              | {name} |
+            </Card.Title>
 
-            {/* <Card.Text className="map_storeCard_intro small ">
-              {intro}
-            </Card.Text> */}
+            <Card.Text className="row gx-1">
+              <label className="col-auto">地址 : </label>
+              <p className="col m-0">{address}</p>
+            </Card.Text>
+            <Card.Text>電話:{phone}</Card.Text>
+
+            <div className="text-center mt-2">
+              <Card.Link href={fbUrl} target={'_blank'}>
+                <FontAwesomeIcon
+                  icon="fa-brands fa-square-facebook"
+                  size={'lg'}
+                />
+              </Card.Link>
+              <Card.Link href={igUrl} target={'_blank'}>
+                <FontAwesomeIcon
+                  icon="fa-brands fa-square-instagram"
+                  size={'lg'}
+                />
+              </Card.Link>
+            </div>
           </Col>
         </Row>
       </Card.Body>

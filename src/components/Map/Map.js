@@ -162,7 +162,7 @@ function Map() {
                   ? markerRef
                   : null
               }
-              zIndexOffset={1000}
+              zIndexOffset={50}
             >
               <Popup closeButton={false}>
                 <Row className="align-items-center">
