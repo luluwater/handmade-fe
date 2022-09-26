@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import moment from 'moment'
+import CreditCart from '../CreditCard'
 
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -279,8 +280,12 @@ const CourseCartInfo = () => {
                       className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
                       for="CourseCartCard"
                     ></label>
-                    信用卡支付（綠界金流）
+                    信用卡支付（TapPay）
                   </label>
+                  <div>
+                    <CreditCart />
+                  </div>
+
                   <Button
                     variant="primary"
                     className="CourseCartInfo_BTN fs-5 mt-6 mb-10 text-center"
