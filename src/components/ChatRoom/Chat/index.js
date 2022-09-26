@@ -19,7 +19,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ChatToast from '../../UI/ChatToast'
 import { addMesssage } from '../../../slices/chat-slice'
 import useSocket from '../../../hooks/socketConnect'
-import { scrollToTop } from '../../FIlter/Paginate'
+import { scrollToTop } from '../../Filter/Paginate'
 
 const Chat = () => {
   scrollToTop()
