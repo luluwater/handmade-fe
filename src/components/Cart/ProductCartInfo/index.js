@@ -62,13 +62,14 @@ const ProductCartInfo = () => {
   const [zipCode, setZipCode] = useState('')
   const [address, setAddress] = useState('')
   const [note, setNote] = useState('')
-  const [paymentState, setPaymentState] = useState
+  const [paymentState, setPaymentState] = useState('')
 
   // ===========popup==============
   const [openSeven, setOpenSeven] = useState(false)
 
   // ===========api==============
   const { userCouponId } = useParams()
+  if (userCouponId === undefined) userCouponId = 28
   const [createProductOrder] = useCreateProductOrderMutation()
   const [createProductOrderDetail] = useCreateProductOrderDetailMutation()
   const [deleteUserCoupon] = useDeleteUserCouponMutation()

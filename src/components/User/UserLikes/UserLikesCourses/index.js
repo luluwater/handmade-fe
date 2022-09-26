@@ -10,7 +10,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRemoveUserFavoriteCourseMutation } from '../../../../services/userApi'
+import { useRemoveUserPageFavoriteCourseMutation } from '../../../../services/userApi'
 
 function dataImgRouter(img_name, category_en_name, course_id) {
   const baseRouter = 'assets/course/course'
@@ -25,7 +25,7 @@ function dataImgRouter(img_name, category_en_name, course_id) {
 export const UserLikesCourses = () => {
   const userDataId = JSON.parse(localStorage.getItem('user'))?.user.id
   const { data } = useUserLikesCourseQuery(userDataId)
-  const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+  const [removeUserFavoriteCourse] = useRemoveUserPageFavoriteCourseMutation()
   // console.log(data)
   return (
     <>
