@@ -48,10 +48,10 @@ function StoreCard({
               | {name} |
             </Card.Title>
 
-            <Card.Text className="row gx-1">
+            <div className="row gx-1">
               <label className="col-auto">地址 : </label>
               <p className="col m-0">{address}</p>
-            </Card.Text>
+            </div>
             <Card.Text>電話:{phone}</Card.Text>
 
             <div className="text-center mt-2">
