@@ -78,7 +78,9 @@ function HomeHotCourse() {
               return (
                 <SwiperSlide className="home_hotSwiper" key={v.img}>
                   <div className="home_hotCard d-flex flex-column align-items-center">
-                    <img className="home_hotCard_pic" src={v.img} alt="" />
+                    <Link to={v.link}>
+                      <img className="home_hotCard_pic" src={v.img} alt="" />
+                    </Link>
                     <h5 className="home_hotCard_name">{v.name}</h5>
                     <div className="home_hotCard_text">{v.text}</div>
                     <Link to={v.link}>

@@ -24,7 +24,7 @@ import {
   useAddUserFavoriteCourseMutation,
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
-import { scrollToTop } from '../../Filter/Paginate'
+import { scrollToTop } from '../../FIlter/Paginate'
 
 //取得圖片路徑
 function getImgsRouter(imgsName, category, productId, type) {
@@ -84,7 +84,6 @@ function ProductCard({
         className="card_swiper rounded shadow"
         onClick={() => {
           console.log('click')
-          scrollToTop()
           navigate(`/${type}/detail/${productId}`)
         }}
         role="button"
@@ -99,7 +98,7 @@ function ProductCard({
       </Swiper>
       <Row className="justify-content-between align-items-center ">
         <Col xs={6} className="mt-2">
-          <Link to={`/${type}/detail/${productId}`} onClick={scrollToTop}>
+          <Link to={`/${type}/detail/${productId}`}>
             <p className="mb-1  text-truncate">
               <small>| {storeName} |</small>
             </p>
