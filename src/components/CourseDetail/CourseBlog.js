@@ -11,13 +11,13 @@ function CourseBlog() {
       img: Image1,
       name: '一器一花｜相約在瀰漫著京都春夏氣息的詩意午後',
       date: '黑色小花貓 2022.05.16',
-      link: '/blog/6',
+      link: '/blog/9992f7bf-d2fc-44de-9a88-5d233af973c9',
     },
     {
       img: Image3,
       name: '台北人氣花藝教室分享「草地學花 Meadow」',
       date: '黑色小花貓 2022.06.18',
-      link: '/blog/7',
+      link: '/blog/fb92c52e-0947-4311-ad56-c93dba244c12',
     },
   ]
 

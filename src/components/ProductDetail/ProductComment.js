@@ -46,10 +46,7 @@ const ProductComment = () => {
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
                   <Row className="d-flex align-items-baseline">
                     <Col className="col-1 detail_comment_photo">
-                      <img
-                        src={require(`../../assets/user/profile_1.png`)}
-                        alt=""
-                      />
+                      <img src={item.avatar} alt="" />
                     </Col>
                     <Col className="col-1 p-0">
                       <p className=" detail_comment_name">{item.user_name}</p>

@@ -68,6 +68,7 @@
   &_md {
     @media screen and (max-width: 576px) {
       transform: translate(265px, -15%);
+      z-index: 10000;
     }
   }
 }
@@ -519,6 +520,11 @@
   &_text {
     color: $gray-darker;
     letter-spacing: 3px;
+  }
+  &_text_md {
+    @media screen and (max-width: 576px) {
+      padding: 50px !important;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import BlogCreate from '../components/Blog/BlogCreate'
-import { scrollToTop } from '../components/Filter/Paginate'
+import { scrollToTop } from '../components/FIlter/Paginate'
 
 const BlogCreatePage = () => {
   scrollToTop()

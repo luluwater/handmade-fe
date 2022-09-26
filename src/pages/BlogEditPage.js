@@ -1,6 +1,6 @@
 import React from 'react'
 import BlogEdit from '../components/Blog/BlogEdit'
-import { scrollToTop } from '../components/Filter/Paginate'
+import { scrollToTop } from '../components/FIlter/Paginate'
 
 const BlogEditPage = () => {
   scrollToTop()

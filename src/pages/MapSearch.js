@@ -3,7 +3,7 @@ import Map from '../components/Map/Map'
 import { Row, Col } from 'react-bootstrap'
 import MapSidebar from '../components/Map/MapSidebar'
 import MapSearchBar from '../components/Map/MapSearchBar'
-import { scrollToTop } from '../components/Filter/Paginate'
+import { scrollToTop } from '../components/FIlter/Paginate'
 
 const MapSearch = () => {
   useEffect(() => {
