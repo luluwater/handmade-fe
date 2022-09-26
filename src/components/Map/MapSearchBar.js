@@ -29,9 +29,9 @@ function MapSearchBar() {
       document.body.scrollTop > 152 ||
       document.documentElement.scrollTop > 152
     ) {
-      mapSearchBarRef.current.classList.add('navbar_shrink')
+      mapSearchBarRef.current.classList.add('mapSearchBar_shrink')
     } else {
-      mapSearchBarRef.current.classList.remove('navbar_shrink')
+      mapSearchBarRef.current.classList.remove('mapSearchBar_shrink')
     }
   }
   useEffect(() => {

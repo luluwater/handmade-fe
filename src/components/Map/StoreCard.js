@@ -33,7 +33,7 @@ function StoreCard({
       role="button"
     >
       {/* <CardHeader className="fw-bold">{name}</CardHeader> */}
-      <Card.Body className=" ps-0">
+      <Card.Body>
         <Row className="g-0 align-items-center">
           <Col sm={4} md={12} className="text-center">
             <div className="w-100">
@@ -54,17 +54,17 @@ function StoreCard({
             </div>
             <Card.Text>電話:{phone}</Card.Text>
 
-            <div className="text-center mt-2">
+            <div className=" text-md-center mt-2">
               <Card.Link href={fbUrl} target={'_blank'}>
                 <FontAwesomeIcon
                   icon="fa-brands fa-square-facebook"
-                  size={'lg'}
+                  size={'2x'}
                 />
               </Card.Link>
               <Card.Link href={igUrl} target={'_blank'}>
                 <FontAwesomeIcon
                   icon="fa-brands fa-square-instagram"
-                  size={'lg'}
+                  size={'2x'}
                 />
               </Card.Link>
             </div>
