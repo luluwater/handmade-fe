@@ -12,11 +12,11 @@ const MapSearch = () => {
   return (
     <>
       <MapSearchBar />
-      <Row className="gx-0">
+      <Row className="map_container gx-2">
         <Col>
           <Map />
         </Col>
-        <Col md={'auto'} className="bg-skin-bright">
+        <Col md={'auto'}>
           <MapSidebar />
         </Col>
       </Row>

@@ -6,11 +6,16 @@ import { Link, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
+// import { useDispatch } from 'react-redux'
+// import { cartClose } from '../../../slices/cart-ui-slice'
 import moment from 'moment'
+import { Toast } from '../../UI/SwalStyle'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAddToScheduleMutation } from '../../../services/googleApi'
 
 const CourseCheckout = () => {
+  // const dispatch = useDispatch()
   const { orderId } = useParams()
   const { data } = useGetCourseOrderDetailQuery(orderId)
 
@@ -18,6 +23,10 @@ const CourseCheckout = () => {
   const calendarHandler = async (v) => {
     try {
       await addToSchedule(v)
+      Toast.fire({
+        icon: 'success',
+        title: '已成功將行程加入Google行事曆',
+      })
     } catch (e) {
       console.error(e)
     }
@@ -34,7 +43,7 @@ const CourseCheckout = () => {
             <Row>
               <Col xs={12} md={9} className="CheckoutPage_leftSide">
                 <header className="CourseCartInfo_logoBox">
-                  <Link to="/">
+                  <Link to="/" >
                     <img src={Logo} alt="HANDMADE_LOGO" />
                   </Link>
                 </header>
@@ -64,6 +73,8 @@ const CourseCheckout = () => {
 
               <Col xs={12} md={3} className="CheckoutPage_rightSide">
                 <p className="fs-4 CheckoutPage_title mb-3">購買細項</p>
+                <div className="CheckoutPage_detailTitle"></div>
+
                 <div className="d-flex justify-content-between fs-5">
                   <p>訂單編號</p>
                   <p className="pe-4">{item.order_number}</p>
@@ -79,18 +90,18 @@ const CourseCheckout = () => {
 
                 <div className="CheckoutPage_detailHr me-4 my-4"></div>
 
-                <div className="fs-5 text-center">購買項目</div>
+                <h6 className="fs-5 text-center ">購買項目</h6>
 
                 {item.orderDetail?.map((v) => {
                   let courseDate = moment(v.date).format('YYYY-MM-DD')
                   const newItem = { ...v, date: courseDate }
                   return (
-                    <div className="mt-4 d-flex justify-content-between">
+                    <div className="mt-4 d-flex justify-content-between CheckoutPage_Item">
                       <p className="fs-5">
                         {v.name} <br />
                         <span className="fs-6">{newItem.date}</span>
                       </p>
-                      <p className="fs-5 text-center me-5">
+                      <p className="fs-5 text-center ">
                         ${v.price} x{v.amount}
                         <Button
                           className="CheckoutPage_calendar"
@@ -104,7 +115,7 @@ const CourseCheckout = () => {
                             icon="fa-regular fa-calendar"
                             size="lg"
                           />
-                        </Button> 
+                        </Button>
                       </p>
                     </div>
                   )
@@ -122,6 +133,25 @@ const CourseCheckout = () => {
                   <strong className="fs-5">實付金額</strong>
                   <strong className="fs-5">${item.total_amount}</strong>
                 </div>
+                <div className="d-flex">
+                  <a
+                    href={'/user/orders/courses/' + item.order_number}
+                    className="CheckoutPage_orderDetailBTN fs-5 text-center"
+                  >
+                    查看訂單細項
+                  </a>
+                </div>
+              </Col>
+              <Col xs={12} md={0} className="CheckoutPage_mobileBTNBox">
+                <a
+                  href={'/user/orders/courses/' + item.order_number}
+                  className="CheckoutPage_mobileBTN fs-5 text-center"
+                >
+                  查看訂單細項
+                </a>
+                <a href="/" className="CheckoutPage_mobileBTN fs-5 text-center">
+                  返回首頁
+                </a>
               </Col>
             </Row>
           )

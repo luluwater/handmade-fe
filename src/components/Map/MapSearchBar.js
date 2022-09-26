@@ -15,6 +15,7 @@ import {
 } from '../../slices/store-slice'
 import MRT from '../../utils/TRTC-Station.json'
 import MRT_Line from '../../utils/TRTC-Line.json'
+import { useEffect, useRef } from 'react'
 
 function MapSearchBar() {
   const { data } = useGetcategoryListQuery()
@@ -22,8 +23,26 @@ function MapSearchBar() {
   const mrt_line = useSelector((state) => state.storeReducer.mrt_line)
   // console.log('line', mrt_line)
   // console.log('category', data)
+  const mapSearchBarRef = useRef(null)
+  const scrollFunction = () => {
+    if (
+      document.body.scrollTop > 152 ||
+      document.documentElement.scrollTop > 152
+    ) {
+      mapSearchBarRef.current.classList.add('mapSearchBar_shrink')
+    } else {
+      mapSearchBarRef.current.classList.remove('mapSearchBar_shrink')
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', scrollFunction)
+    return () => window.removeEventListener('scroll', scrollFunction)
+  }, [])
   return (
-    <Row id="map" className="mapSearchBar align-items-center px-5 m-0">
+    <Row
+      className="mapSearchBar align-items-center px-5 m-0"
+      ref={mapSearchBarRef}
+    >
       <Col sm={'auto'}>
         <FormGroup as={Row} className="align-items-center g-2">
           <FormLabel column sm={'auto'} className="fw-bold text-light fs-5">

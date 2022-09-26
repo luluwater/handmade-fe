@@ -45,6 +45,7 @@
     "emoji-picker-react": "^3.6.1",
     "formik": "^2.2.9",
     "framer-motion": "^7.2.1",
+    "gsap": "^3.11.1",
     "html-react-parser": "^3.0.4",
     "icons": "^1.0.0",
     "jwt-decode": "^3.1.2",

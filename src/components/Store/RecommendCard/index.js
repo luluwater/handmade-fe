@@ -1,24 +1,75 @@
+import { useEffect } from 'react'
 import cart from '../../../assets/cart.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Card } from 'react-bootstrap'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './recommendCard.scss'
 
+import {
+  addProductCart,
+  getProductTotal,
+} from '../../../slices/productCart-slice'
+
+import {
+  useAddUserFavoriteProductMutation,
+  useRemoveUserFavoriteProductMutation,
+} from '../../../services/productApi'
+
+import {
+  useAddUserFavoriteCourseMutation,
+  useRemoveUserFavoriteCourseMutation,
+} from '../../../services/courseApi'
+
 // 資料
 const RecommendCard = ({
   type,
   cartIcon,
-  id,
+  productId,
   store,
   name,
   price,
   img,
   category,
+  isFavorite,
+  storeId,
+  categoryId,
+  amount,
 }) => {
+  const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const [addUserFavoriteCourse] = useAddUserFavoriteCourseMutation()
+  const [removeUserFavoriteCourse] = useRemoveUserFavoriteCourseMutation()
+  const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
+  const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const addToProductCart = () => {
+    dispatch(
+      addProductCart({
+        productId,
+        name,
+        imgs: img,
+        price,
+        category,
+        amount,
+      })
+    )
+  }
+  const ProductItem = useSelector(
+    (state) => state.productCartReducer.productCartItem
+  )
+  useEffect(() => {
+    dispatch(getProductTotal())
+  }, [ProductItem, dispatch])
+
   return (
     <>
       <Card className="recommendCard border-0 bg-transparent mx-1 p-0 text-gray-darker">
@@ -35,7 +86,7 @@ const RecommendCard = ({
             return (
               <SwiperSlide key={item}>
                 <img
-                  src={require(`../../../assets/${type}/${type}_${category}_${id}/${item}`)}
+                  src={require(`../../../assets/${type}/${type}_${category}_${productId}/${item}`)}
                   alt=""
                 />
               </SwiperSlide>
@@ -52,12 +103,49 @@ const RecommendCard = ({
             <p className="text-primary fw-bold ps-1">${price}</p>
           </Col>
           <Col className="text-end d-flex justify-content-end">
-            <button className="bg-primary card_favorite border-0  rounded-circle me-2">
-              <FontAwesomeIcon icon="far fa-heart" inverse size="lg" />
+            <button
+              className="bg-primary card_favorite border-0  rounded-circle me-2"
+              onClick={() => {
+                if (!userId) return (window.location.href = '/login')
+                if (isFavorite) {
+                  type === 'product'
+                    ? removeUserFavoriteProduct({
+                        productId,
+                        storeId,
+                        categoryId,
+                      })
+                    : removeUserFavoriteCourse({
+                        courseId: productId,
+                        storeId,
+                        categoryId,
+                      })
+                } else {
+                  type === 'product'
+                    ? addUserFavoriteProduct({
+                        productId,
+                        storeId,
+                        categoryId,
+                      })
+                    : addUserFavoriteCourse({
+                        courseId: productId,
+                        storeId,
+                        categoryId,
+                      })
+                }
+              }}
+            >
+              <FontAwesomeIcon
+                icon={isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
+                inverse
+                size="lg"
+              />
             </button>
 
             {cartIcon ? (
-              <button className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center">
+              <button
+                className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
+                onClick={addToProductCart}
+              >
                 <img src={cart} alt="" className="cart" />
               </button>
             ) : (
