@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import '../../styles/_custom_style.scss'
 
-import { Row, Col, Nav, Tab, Form, InputGroup, Button } from 'react-bootstrap'
+import { Row, Col, Nav, Tab, Form, Button } from 'react-bootstrap'
 import CourseCartItem from './CourseCartItem'
 import ProductCartItem from './ProductCartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -315,6 +315,31 @@ const Cart = () => {
             e.stopPropagation()
           }}
         >
+          <Row className="pe-0 Cart_mobileTabChooseBox ">
+            <Nav
+              variant="pills"
+              className="Cart_mobileTabChoose justify-content-center"
+              justify
+            >
+              <Nav.Item className="" >
+                <Nav.Link
+                  className="Cart_mobileNavLink text-center fs-5 "
+                  eventKey="first"
+                >
+                  課程購物車
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="mt-2" >
+                <Nav.Link
+                  className="Cart_mobileNavLink text-center fs-5"
+                  eventKey="second"
+                >
+                  商品購物車
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Row>
+
           <Col className="pe-0 Cart_tabChooseBox" sm={12}>
             <Nav variant="pills" className="flex-column Cart_tabChoose">
               <Nav.Item className="">

@@ -5212,9 +5212,9 @@
     "string.prototype.matchall" "^4.0.7"
 
 "eslint-plugin-testing-library@^5.0.1":
-  "integrity" "sha512-0oW3tC5NNT2WexmJ3848a/utawOymw4ibl3/NkwywndVAz2hT9+ab70imA7ccg3RaScQgMvJT60OL00hpmJvrg=="
-  "resolved" "https://registry.npmjs.org/eslint-plugin-testing-library/-/eslint-plugin-testing-library-5.6.4.tgz"
-  "version" "5.6.4"
+  "integrity" "sha512-pI8LKtFiAflBpN4h14vTtfhKqLwtIW40TNhWyw0ckqHm0W/J0VmYtThoxpTAdHrvEWnkALSG1Z8ABBkIncMIHA=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-testing-library/-/eslint-plugin-testing-library-5.7.0.tgz"
+  "version" "5.7.0"
   dependencies:
     "@typescript-eslint/utils" "^5.13.0"
 
@@ -5959,6 +5959,11 @@
   "integrity" "sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ=="
   "resolved" "https://registry.npmjs.org/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz"
   "version" "1.0.4"
+
+"gsap@^3.11.1":
+  "integrity" "sha512-UKuJ0UPhntFHMwT6URFQ4cTQv88xc7Kd9Dhxt7qX9IPhC+d+/a5wKW5E5Vn33hZ53nBI1JfApcEbzKgXkcuPZw=="
+  "resolved" "https://registry.npmjs.org/gsap/-/gsap-3.11.1.tgz"
+  "version" "3.11.1"
 
 "gzip-size@^6.0.0":
   "integrity" "sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q=="
@@ -7332,9 +7337,9 @@
     "language-subtag-registry" "~0.3.2"
 
 "leaflet@^1.8.0":
-  "integrity" "sha512-lL8433PmoPoTSfPoPMzsQdTKmH36Rn2bQx9/j0bbZ98LimrsMof0P+7AQ0LntwRbjXe601j/IY1P2mwBRnN/1Q=="
-  "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.9.0.tgz"
-  "version" "1.9.0"
+  "integrity" "sha512-5FcDAMTLAuOq0RisQQbTFatl8Sl4bM0gMrBfuHbl7CYbYJv45BfCS8oU3T644MLjleBq1Ncq541QEA1pqUGTFA=="
+  "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.9.1.tgz"
+  "version" "1.9.1"
 
 "leven@^3.1.0":
   "integrity" "sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A=="

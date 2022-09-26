@@ -4,6 +4,7 @@
     &_inputBox{
         color: $gray-darker;
         padding-left: 3rem;
+        padding-right: 3rem;
 
     }
     &_inputBox{
@@ -13,26 +14,52 @@
     }
     &_inputTitle{
         font-weight: 900;
+        
+        @media screen and (max-width:576px){
+
+            font-size: 5rem;
+        }
 
     }
     &_input{
         margin-left: 8rem;
         width: 60%;
+        @media screen and (max-width:576px){
+            width: 100%;
+        }
 
         .form-control{
             height:70px;
             border: none;
             border-bottom: 1px solid $gray-dark;
             color:$gray-dark;
+
+        }
+        @media screen and (max-width:576px){
+            margin-left: 0rem;
+            font-size: 1.2rem;
+
         }
     }
     &_inputNotic{
         padding-left: 12px;
         font-size: .8rem;
         letter-spacing: .05rem;
+        @media screen and (max-width:576px){
+            font-size: 1.1rem;
+        }
+        br{
+            @media screen and (max-width:576px){
+                display: none;
+            }
+        }
     }
     &_deliveryBox{
         width: 71%;
+        @media screen and (max-width:576px){
+            width: 100%;
+
+        }
     }
     &_radioStyle{
         display: none;
@@ -99,6 +126,17 @@
         margin-left: 8rem;
         display: flex;
         align-items: center;
+        @media screen and (max-width:576px){
+            margin-left: 0;
+        }
+    }
+    &_deliveryBr{
+        display: none;
+        @media screen and (max-width:576px){
+            display: block;
+
+        }
+
     }
     &_deliveryHome{
         width: 40%;
@@ -106,6 +144,10 @@
         margin-left: 2rem;
         display: flex;
         align-items: center;
+        @media screen and (max-width:576px) {
+        margin-left: .8rem;
+            
+        }
     }
 
     &_borderGray{
@@ -122,6 +164,10 @@
         margin-left: 8rem;
         line-height: 45px;
         border: 1px solid $gray-darker;
+        @media screen and (max-width:576px) {
+            width: 100%;
+            margin: 0;
+        }
 
         a{
             &:hover{
@@ -131,7 +177,11 @@
     }
     &_Postal_code{
         margin-left: 8rem;
-        width: 10%;
+        width: 30%;
+
+        @media screen and (max-width:576px) {
+            margin-left: 0;
+        }
 
         .form-control{
             height:70px;
@@ -146,6 +196,12 @@
         margin-left: 8rem;
         width: 60%;
         height: 200px;
+        @media screen and (max-width:576px){
+            margin-left: 0;
+            width: 100%;
+            height: 160px;
+
+        }
         textarea{
             border: 1px solid $gray-dark;
             resize:none;
@@ -162,6 +218,9 @@
         &:hover{
             color: $white;
         }
+        @media screen and (max-width:576px){
+            display: none;
+         }
 
     }
     &_rightSide{
@@ -169,24 +228,53 @@
         color: $gray-darker;
         padding: 0;
         position: relative;
+        @media screen and (max-width:576px){
+            margin-top: 3rem;
+        }
         .ProductCartInfo_inputTitle{
             margin:5rem 0 0 2rem;
+            @media screen and (max-width:576px){
+                margin:2rem 0 1rem 2rem !important;
+            }
+        }
+
+    }
+    &_detailTitle{
+        @media screen and (max-width:576px){
+            width: 90%;
+            margin: 1rem 2rem;
+            border-bottom: 1px solid $gray-darker;
         }
 
     }
     &_shoppingDetail{
+        width: 85%;
         margin-left: 2rem;
+        @media screen and (max-width:576px){
+            margin-left: 2.5rem;
+        }
     }
     &_coupon{
         width: 85%;
         position: absolute;
         top: 52rem;
+        
+        @media screen and (max-width:576px) {
+            position: relative;
+            top: 0;
+            margin-top: 10rem;
+        }
     }
 
     &_total{
         width: 85%;
         position: absolute;
         top: 55rem;
+        @media screen and (max-width:576px) {
+            position: relative;
+            top: 0;
+            margin-bottom: 2rem;
+        }
     }
 
 
@@ -245,3 +333,9 @@
 .ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:before,
 .ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:after{
     opacity:1;}
+
+@media screen and (max-width:576px) {
+    .ProductCartInfo_PaymentTitle{
+        margin-top: 3rem;
+    }
+}
