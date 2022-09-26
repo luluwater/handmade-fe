@@ -19,11 +19,12 @@ const userData = JSON.parse(localStorage.getItem('user'))?.user
 
 const initialState = {
   chatRooms: [],
-  chats: [],
   currentRoom: {},
   socket: {},
   newMessage: [],
-  history: [],
+  // history: [],
+  friends: [],
+  online: false,
   welcomeMsg: '',
   userData: userData,
   senderTyping: { typing: false },
@@ -44,8 +45,7 @@ export const chatSilce = createSlice({
       return { ...state, chatRooms: action.payload }
     },
 
-    currentRoom: (state, action) => {
-      console.log('action.payload', action.payload)
+    setCurrentRoom: (state, action) => {
       return { ...state, currentRoom: action.payload }
     },
 
@@ -53,20 +53,39 @@ export const chatSilce = createSlice({
       return { ...state, welcomeMsg: action.payload }
     },
 
-    addMesssage: (state, action) => {
-      console.log('before eqully', current(state.newMessage))
-      if (action.payload.user_id === userData.id) {
-        return {
-          ...state,
-          newMessage: state.newMessage.concat(action.payload),
-        }
+    setLeftRoom: (state, action) => {
+      const { user, room } = action.payload
+
+      const newFriends = state.friends.filter((f) => f.id !== user.id)
+
+      console.log('action.payload', action.payload)
+      console.log('current(newFriends)', current(newFriends))
+      return {
+        ...state,
+        friends: newFriends,
       }
-      console.log('after eqully', current(state.newMessage))
-      if (action.payload.user_id !== userData.id) {
-        return {
-          ...state,
-          newMessage: state.newMessage.concat(action.payload),
-        }
+    },
+
+    setFriends: (state, action) => {
+      const concatFriends = state.friends.concat(action.payload)
+
+      // const set = new Set()
+      console.log('concatFrienconcatFriendd', concatFriends)
+
+      // const filterFriend = concatFriends.filter((item) =>
+      //   !set.has(item.account) ? set.add(item.account) : false
+      // )
+
+      return {
+        ...state,
+        friends: concatFriends,
+      }
+    },
+
+    addMesssage: (state, action) => {
+      return {
+        ...state,
+        newMessage: [...state.newMessage, ...[action.payload]],
       }
     },
   },
@@ -75,8 +94,10 @@ export const chatSilce = createSlice({
 export const {
   setSocket,
   addMesssage,
-  currentRoom,
+  setCurrentRoom,
   setWelcomeMsg,
+  setFriends,
+  setLeftRoom,
   fetchAllRooms,
 } = chatSilce.actions
 export default chatSilce.reducer

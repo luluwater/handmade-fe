@@ -7,15 +7,11 @@ import {
   addMesssage,
   setJoinRoomMsg,
   setWelcomeMsg,
+  setFriends,
+  setLeftRoom,
 } from '../slices/chat-slice'
-import { useSelector } from 'react-redux'
 
 function useSocket(user, dispatch) {
-  const { data } = useGetRoomsQuery('all')
-
-  const userData = JSON.parse(localStorage.getItem('user'))?.user
-  const chatReducer = useSelector((state) => state.chatReducer)
-
   useEffect(() => {
     const socket = io(BASE_URL, {
       withCredentials: true,
@@ -25,12 +21,25 @@ function useSocket(user, dispatch) {
     socket.on('roomMsg', (roomMsg) => {
       dispatch(setWelcomeMsg(roomMsg))
     })
-    socket.on('sendMsg', (roomMsg) => {
-      console.log('roomMsg in hook ', roomMsg)
-      dispatch(addMesssage(roomMsg))
+
+    socket.on('joinData', async (data) => {
+      await dispatch(setFriends(data.user))
     })
+
     socket.on('leftMsg', (leftMsg) => {
       dispatch(setWelcomeMsg(leftMsg))
+    })
+
+    socket.on('leftData', (leftData) => {
+      dispatch(setLeftRoom(leftData))
+    })
+
+    // socket.on('leftData', (leftData) => {
+    //   dispatch(setLeftRoom(leftData))
+    // })
+
+    socket.on('chat', async (chatMsg) => {
+      await dispatch(addMesssage(chatMsg))
     })
   }, [dispatch])
 }
