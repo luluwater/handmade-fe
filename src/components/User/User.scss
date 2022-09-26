@@ -37,6 +37,40 @@
   }
 }
 
+.user_avatar {
+  width: 150px;
+  height: 577px;
+  background-color: $skin-bright;
+  position: absolute;
+  top: 33%;  
+  left: 7%;
+  &_box {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+  &_img {
+    object-fit: cover;
+    max-width: 100px;
+  }
+  &_btn {
+    width: 100px;
+    height: 40px;
+    color: $skin-brighter;
+    border: none;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    background-color: $primary;
+    &:hover {
+      color: $skin-brighter !important;
+    }
+  }
+  &_md {
+    @media screen and (max-width: 576px) {
+      transform: translate(265px, -15%);
+    }
+  }
+}
 .user_profile_card {
   color: $gray-darker;
   font-family: 'Roboto';
@@ -49,6 +83,7 @@
     display: none;
   }
   &_img {
+    border-radius: 50%;
     object-fit: cover;
     height: 200px;
     width: 200px;
@@ -81,9 +116,10 @@
         color: $skin-brighter;
       }
     @media screen and (max-width: 576px) {
-      width: 120px;
+      width: 100px;
       height: 40px;
       font-size: $h6-font-size;
+      margin: 5px 0px 0px 10px;
       }
     }
   &_mobile {

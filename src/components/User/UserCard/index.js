@@ -1,35 +1,49 @@
 import '../User.scss'
 import React from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Row, Col, Container } from 'react-bootstrap'
-import user1 from '../../../assets/user/profile_1.png'
+import { Row, Col } from 'react-bootstrap'
 import { logout } from '../../../slices/auth-slice'
+import UserAvatar from '../UserAvatar'
 
-const UserCard = ({ account, email }) => {
-  // console.log('name, email', name, email)
+const UserCard = ({ account, email, avatar }) => {
+  // const userData = JSON.parse(localStorage.getItem('user'))
+  const [showUserAvatar, setShowUserAvatar] = useState(false)
+  const dispatch = useDispatch()
   const authLogOut = () => {
     dispatch(logout())
   }
-  const dispatch = useDispatch()
 
   return (
     <>
-      {/* 電腦版 */}
       <Col className="d-flex">
         <div className="user_profile_card mt-8">
           <Row>
             <div className="d-flex justify-content-center">
+              {/* {userData?.user.avatar ? (
+                <img
+                  className="mt-5 user_profile_card_img img-fluid"
+                  src={userData?.user.avatar}
+                  alt="user_img"
+                />
+              ) : ( */}
               <img
                 className="mt-5 user_profile_card_img img-fluid"
-                src={user1}
-                alt="user1"
+                src={avatar}
+                alt="user_img"
               />
+              {/* )} */}
             </div>
           </Row>
-          {/* 感覺很難的預設+上傳照片 */}
+          {/* 預設+上傳照片 */}
           <Row className="justify-content-center">
-            <button className="user_profile_card_btn mt-5 fw-bold">
+            <button
+              className="user_profile_card_btn mt-5 fw-bold"
+              onClick={() => {
+                setShowUserAvatar(true)
+              }}
+            >
               更換圖像
             </button>
           </Row>
@@ -51,8 +65,8 @@ const UserCard = ({ account, email }) => {
           </Row>
         </div>
       </Col>
+      {showUserAvatar && <UserAvatar setShowUserAvatar={setShowUserAvatar} />}
     </>
   )
 }
 export default UserCard
-//className="d-flex justify-content-center align-items-center"
