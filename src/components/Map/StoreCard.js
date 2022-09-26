@@ -6,6 +6,7 @@ import Leaflet from 'leaflet'
 import { useDispatch } from 'react-redux'
 import { setCenter } from '../../slices/store-slice'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { scrollToTop } from '../Filter/Paginate'
 function StoreCard({
   id,
   name,
@@ -27,7 +28,7 @@ function StoreCard({
       className="map_storeCard m-1"
       onClick={() => {
         dispatch(setCenter([lat, lng]))
-        window.location.href = '#map'
+        scrollToTop()
       }}
       role="button"
     >

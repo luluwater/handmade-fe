@@ -40,7 +40,6 @@ function MapSearchBar() {
   }, [])
   return (
     <Row
-      id="map"
       className="mapSearchBar align-items-center px-5 m-0"
       ref={mapSearchBarRef}
     >
