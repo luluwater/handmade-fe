@@ -24,19 +24,19 @@ function MapSearchBar() {
   // console.log('line', mrt_line)
   // console.log('category', data)
   const mapSearchBarRef = useRef(null)
-
+  const scrollFunction = () => {
+    if (
+      document.body.scrollTop > 152 ||
+      document.documentElement.scrollTop > 152
+    ) {
+      mapSearchBarRef.current.classList.add('navbar_shrink')
+    } else {
+      mapSearchBarRef.current.classList.remove('navbar_shrink')
+    }
+  }
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (
-        document.body.scrollTop > 152 ||
-        document.documentElement.scrollTop > 152
-      ) {
-        mapSearchBarRef.current.classList.add('mapSearchBar_shrink')
-      } else {
-        mapSearchBarRef.current.classList.remove('mapSearchBar_shrink')
-      }
-    })
-    return () => window.removeEventListener('scroll')
+    window.addEventListener('scroll', scrollFunction)
+    return () => window.removeEventListener('scroll', scrollFunction)
   }, [])
   return (
     <Row
