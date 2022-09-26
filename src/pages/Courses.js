@@ -9,9 +9,9 @@ import {
   setType,
 } from '../slices/filterPagination-slice'
 import { courseBanner } from '../image'
-import Paginate, { scrollToTop } from '../components/FIlter/Paginate'
-import Filter from '../components/FIlter/Filter'
-import SortSelect from '../components/FIlter/SortSelect'
+import Paginate, { scrollToTop } from '../components/Filter/Paginate'
+import Filter from '../components/Filter/Filter'
+import SortSelect from '../components/Filter/SortSelect'
 import { useGetCourseListQuery } from '../services/courseApi'
 import CourseBanner from '../components/Products/CourseBanner'
 // import { initFilterStore } from '../slices/filterStore-silce'
