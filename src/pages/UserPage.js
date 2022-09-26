@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router'
 import { Container, Row } from 'react-bootstrap'
 import FilterPage from '../components/User/FilterPage'
@@ -11,15 +11,29 @@ const UserPage = () => {
   const { data } = useGetUserQuery(userDataId)
   // console.log('userDataId', userDataId)
   // console.log('DATA', data)
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       {data?.map((item) => {
-        return <FilterPage key={item.id} account={item.account} />
+        return (
+          <FilterPage
+            key={item.id}
+            account={item.account}
+            avatar={item.avatar}
+          />
+        )
       })}
       <Container className="d-flex">
         {data?.map((item) => {
           return (
-            <UserCard key={item.id} account={item.account} email={item.email} />
+            <UserCard
+              key={item.id}
+              account={item.account}
+              email={item.email}
+              avatar={item.avatar}
+            />
           )
         })}
         <Outlet />

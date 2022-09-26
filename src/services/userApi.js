@@ -18,6 +18,10 @@ export const userApiService = createApi({
       query: (userId) => `user/${userId}`,
       providesTags: ['User'],
     }),
+    getAvatar: builder.query({
+      query: () => `user/avatar/img`,
+      providesTags: ['User'],
+    }),
     updatePassword: builder.mutation({
       query: (data) => ({
         url: `/user/password`,
@@ -29,6 +33,14 @@ export const userApiService = createApi({
     updateUserAccount: builder.mutation({
       query: (data) => ({
         url: `/user/account`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    updateUserAvatar: builder.mutation({
+      query: (data) => ({
+        url: `/user/avatar`,
         method: 'put',
         body: data,
       }),
@@ -133,6 +145,7 @@ export const {
   useCreateCouponMutation,
   useUpdatePasswordMutation,
   useUpdateUserAccountMutation,
+  useUpdateUserAvatarMutation,
   useGetUserQuery,
   useGetUserProductOrdersQuery,
   useGetUserProductOrderDetailsQuery,
@@ -151,5 +164,6 @@ export const {
   useDeleteBlogMutation,
   useHideBlogMutation,
   useShowBlogMutation,
-  useRemoveUserFavoriteProductOnNewsMutation,
+  useGetAvatarQuery,
+  // useRemoveUserFavoriteProductOnNewsMutation,
 } = userApiService

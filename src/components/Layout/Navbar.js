@@ -9,10 +9,15 @@ import { CourseCartToggle } from '../../slices/courseCart-slice'
 import { ProductCartToggle } from '../../slices/productCart-slice'
 import { getProductTotal } from '../../slices/productCart-slice'
 import { getCourseTotal } from '../../slices/courseCart-slice'
+import { useGetUserQuery } from '../../services/userApi'
 
 const Navbar = () => {
   const userData = JSON.parse(localStorage.getItem('user'))
-
+  // console.log('userData', userData)
+  const id = JSON.parse(localStorage.getItem('user'))?.user.id
+  // console.log('id', id)
+  const { data } = useGetUserQuery(id)
+  // console.log('userdata', data)
   const authReducers = useSelector((state) => state.authReducers)
 
   const isLogin = authReducers.isLogin
@@ -106,7 +111,18 @@ const Navbar = () => {
             {isLogin || userData ? (
               <>
                 <Link to="/user/management">
-                  {userData?.user.avatar ? (
+                  {data?.map((v) => {
+                    return (
+                      <div key={v.id} className="avatar ">
+                        <img
+                          src={v.avatar}
+                          className="rounded-circle"
+                          alt="user img"
+                        />
+                      </div>
+                    )
+                  })}
+                  {/* {userData?.user.avatar ? (
                     <div className="avatar ">
                       <img
                         src={userData?.user.avatar}
@@ -115,13 +131,18 @@ const Navbar = () => {
                       />
                     </div>
                   ) : (
-                    <FontAwesomeIcon
-                      icon="fa-solid fa-user"
-                      size="xl"
-                      className="mx-3 navbar_awesomeIcon"
-                      fixedWidth
-                    />
-                  )}
+                    data?.map((v) => {
+                      return (
+                        <div key={v.id} className="avatar ">
+                          <img
+                            src={v.avatar}
+                            className="rounded-circle"
+                            alt="user img"
+                          />
+                        </div>
+                      )
+                    })
+                  )} */}
                 </Link>
               </>
             ) : (
