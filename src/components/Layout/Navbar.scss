@@ -23,11 +23,11 @@
       display: none;
     }
   }
-  &_form{
-    @media screen and (max-width:576px){
-      display: none;
-    }
-  }
+  // &_form{
+  //   @media screen and (max-width:576px){
+  //     display: none;
+  //   }
+  // }
   .searchInput{
     width: 13rem;
     height: 2rem;
@@ -114,7 +114,7 @@
     justify-content: center;
     align-items: center;
     line-height: 5rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     transform: translateX(100%);
     transition: all .4s ease-in-out;
     opacity: 0;
@@ -170,7 +170,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 90;
+  z-index: 1500;
   box-shadow: 5px 5px 15px -5px $skin-bright;
 }
 

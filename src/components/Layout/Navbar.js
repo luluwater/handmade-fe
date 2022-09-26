@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
         <div>
           <div className="d-flex justify-content-end align-items-center mt-3">
-            <form action="" className="flex navbar_form">
+            {/* <form action="" className="flex navbar_form">
               <input type="text" className="searchInput" />
               <button type="submit" className="border-0">
                 <FontAwesomeIcon
@@ -85,7 +85,7 @@ const Navbar = () => {
                   fixedWidth
                 />
               </button>
-            </form>
+            </form> */}
 
             <span onClick={toggleCart} className="navbar_cartIcon">
               <FontAwesomeIcon
@@ -154,7 +154,7 @@ const Navbar = () => {
                 fixedWidth
               />
             </span>
-            <form action="" className="flex">
+            {/* <form action="" className="flex">
               <input type="text" className="searchInput" />
               <button type="submit" className="border-0">
                 <FontAwesomeIcon
@@ -164,7 +164,7 @@ const Navbar = () => {
                   fixedWidth
                 />
               </button>
-            </form>
+            </form> */}
             <li onClick={toggleMenu}>
               <Link to="/" className="navbar_link">
                 HOME

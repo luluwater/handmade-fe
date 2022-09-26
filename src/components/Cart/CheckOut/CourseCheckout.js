@@ -6,6 +6,8 @@ import { Link, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
+// import { useDispatch } from 'react-redux'
+// import { cartClose } from '../../../slices/cart-ui-slice'
 import moment from 'moment'
 import { Toast } from '../../UI/SwalStyle'
 
@@ -13,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAddToScheduleMutation } from '../../../services/googleApi'
 
 const CourseCheckout = () => {
+  // const dispatch = useDispatch()
   const { orderId } = useParams()
   const { data } = useGetCourseOrderDetailQuery(orderId)
 
@@ -40,7 +43,7 @@ const CourseCheckout = () => {
             <Row>
               <Col xs={12} md={9} className="CheckoutPage_leftSide">
                 <header className="CourseCartInfo_logoBox">
-                  <Link to="/">
+                  <Link to="/" >
                     <img src={Logo} alt="HANDMADE_LOGO" />
                   </Link>
                 </header>

@@ -181,6 +181,12 @@
       left: 0;
       content:'加入到行事曆';
       font-size:.8rem;
+      @media screen and (max-width:576px) {
+      font-size:.9rem;
+      top: -45px;
+      width: 50px;
+        
+      }
     }
     
 
