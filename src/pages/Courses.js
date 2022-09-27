@@ -100,6 +100,11 @@ function Courses() {
                     />
                   )
                 })}
+                {courseList.length ? (
+                  ''
+                ) : (
+                  <h1 className="text-center text-gray-darker mt-5">查無商品</h1>
+                )}
               </Row>
             </div>
             <Paginate baseUrl={'course'} />
