@@ -56,10 +56,10 @@ export const chatSilce = createSlice({
     setLeftRoom: (state, action) => {
       const { user, room } = action.payload
 
-      const newFriends = state.friends.filter((f) => f.id !== user.id)
+      const newFriends = state.friends.filter((f) => {
+        return f.id !== user.id
+      })
 
-      console.log('action.payload', action.payload)
-      console.log('current(newFriends)', current(newFriends))
       return {
         ...state,
         friends: newFriends,
@@ -69,16 +69,15 @@ export const chatSilce = createSlice({
     setFriends: (state, action) => {
       const concatFriends = state.friends.concat(action.payload)
 
-      // const set = new Set()
-      console.log('concatFrienconcatFriendd', concatFriends)
+      const set = new Set()
 
-      // const filterFriend = concatFriends.filter((item) =>
-      //   !set.has(item.account) ? set.add(item.account) : false
-      // )
+      const filterFriend = concatFriends.filter((item) =>
+        !set.has(item.account) ? set.add(item.account) : false
+      )
 
       return {
         ...state,
-        friends: concatFriends,
+        friends: filterFriend,
       }
     },
 

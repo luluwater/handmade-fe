@@ -22,8 +22,9 @@ function useSocket(user, dispatch) {
       dispatch(setWelcomeMsg(roomMsg))
     })
 
-    socket.on('joinData', async (data) => {
-      await dispatch(setFriends(data.user))
+    socket.on('joinData', (data) => {
+      console.log('data.usedata.userr', data.user)
+      dispatch(setFriends(data.user))
     })
 
     socket.on('leftMsg', (leftMsg) => {
@@ -33,10 +34,6 @@ function useSocket(user, dispatch) {
     socket.on('leftData', (leftData) => {
       dispatch(setLeftRoom(leftData))
     })
-
-    // socket.on('leftData', (leftData) => {
-    //   dispatch(setLeftRoom(leftData))
-    // })
 
     socket.on('chat', async (chatMsg) => {
       await dispatch(addMesssage(chatMsg))

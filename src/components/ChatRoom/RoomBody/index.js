@@ -104,8 +104,6 @@ const RoomBody = () => {
           {newMessage.map((m) => {
             const isCurrentUser = userData.id === m.user_id
 
-            console.log('newMessage', newMessage)
-
             return (
               <div key={m.message_id}>
                 <div
