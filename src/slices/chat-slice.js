@@ -54,7 +54,7 @@ export const chatSilce = createSlice({
     },
 
     setLeftRoom: (state, action) => {
-      const { user, room } = action.payload
+      const { user } = action.payload
 
       const newFriends = state.friends.filter((f) => {
         return f.id !== user.id
@@ -82,9 +82,17 @@ export const chatSilce = createSlice({
     },
 
     addMesssage: (state, action) => {
+      const concatMsg = state.newMessage.concat(action.payload)
+
+      const set = new Set()
+
+      const filterMsg = concatMsg.filter((m) =>
+        !set.has(m.id) ? set.add(m.id) : false
+      )
+
       return {
         ...state,
-        newMessage: [...state.newMessage, ...[action.payload]],
+        newMessage: filterMsg,
       }
     },
   },

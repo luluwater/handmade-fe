@@ -35,8 +35,8 @@ function useSocket(user, dispatch) {
       dispatch(setLeftRoom(leftData))
     })
 
-    socket.on('chat', async (chatMsg) => {
-      await dispatch(addMesssage(chatMsg))
+    socket.on('chat', (chatMsg) => {
+      dispatch(addMesssage(chatMsg))
     })
   }, [dispatch])
 }

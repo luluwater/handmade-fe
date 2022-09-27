@@ -62,16 +62,18 @@ const RoomBody = () => {
       user: userData,
     }
 
-    //TODO:
-    await socket.emit('sendMsg', msg)
     await sendMessage(msg)
-    msgBox.current.scrollTop = msgBox.current.scrollHeight
+    await socket.emit('sendMsg', msg)
     await setMessage('')
   }
 
+  function scroll() {
+    msgBox.current.scrollTop = msgBox?.current.scrollHeight
+  }
+
   useEffect(() => {
-    msgBox.current.scrollTop = msgBox.current.scrollHeight
-  }, [])
+    scroll()
+  }, [newMessage])
 
   useEffect(() => {
     dispatch(setCurrentRoom(...currentChat))

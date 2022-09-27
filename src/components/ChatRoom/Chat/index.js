@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-
 import { Container } from 'react-bootstrap'
-
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import RoomBody from '../RoomBody'
-import { Link, useParams, useNavigate } from 'react-router-dom'
-import {
-  useGetRoomsQuery,
-  useSendMessageMutation,
-} from '../../../services/chatApi'
-import { v4 as uuidv4 } from 'uuid'
-import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import ChatToast from '../../UI/ChatToast'
-import { addMesssage } from '../../../slices/chat-slice'
 import useSocket from '../../../hooks/socketConnect'
 
 const Chat = () => {
@@ -27,8 +17,6 @@ const Chat = () => {
   const chatReducer = useSelector((state) => state.chatReducer)
   const welcomeMsg = chatReducer.welcomeMsg
   const friendList = chatReducer.friends
-
-  console.log('friendListfriendList', friendList)
 
   return (
     <>
