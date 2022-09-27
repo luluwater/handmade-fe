@@ -1,14 +1,16 @@
 import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../User.scss'
 import { Row, Col, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import user1 from '../../../assets/user/profile_1.png'
 import { logout } from '../../../slices/auth-slice'
+import UserAvatar from '../../User/UserAvatar'
 
-export const FilterPage = ({ account }) => {
-  // console.log('name, email', name, email)
+export const FilterPage = ({ account, avatar }) => {
+  // console.log('account, avatar', account, account)
+  const [showUserAvatar, setShowUserAvatar] = useState(false)
   const authLogOut = () => {
     dispatch(logout())
   }
@@ -46,14 +48,22 @@ export const FilterPage = ({ account }) => {
           <Col xs={2} className="d-flex justify-content-start">
             <img
               className="user_profile_card_img img-fluid"
-              src={user1}
-              alt="user1"
+              src={avatar}
+              alt="user img"
             />
           </Col>
-          <Col xs={5} className="text-start">
+          <Col xs={4} className="text-start">
             <div className="mt-3">您好，{account}</div>
           </Col>
-          <Col xs={5} className="d-flex align-items-center justify-content-end">
+          <Col xs={6} className="d-flex justify-content-end">
+            <button
+              onClick={() => {
+                setShowUserAvatar(true)
+              }}
+              className="user_profile_card_logout_btn fw-bold"
+            >
+              更換圖像
+            </button>
             <Link to="/">
               <button
                 onClick={authLogOut}
@@ -95,6 +105,7 @@ export const FilterPage = ({ account }) => {
           </nav>
         </div>
       </Container>
+      {showUserAvatar && <UserAvatar setShowUserAvatar={setShowUserAvatar} />}
     </>
   )
 }

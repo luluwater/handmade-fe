@@ -124,7 +124,7 @@ function Map() {
   ]
 
   return (
-    <div className="border border-gray-dark map">
+    <div id="map" className="border border-gray-dark map">
       <MapContainer
         center={[25.0478641, 121.5429378]}
         zoom={13}
@@ -162,7 +162,7 @@ function Map() {
                   ? markerRef
                   : null
               }
-              zIndexOffset={1000}
+              zIndexOffset={20}
             >
               <Popup closeButton={false}>
                 <Row className="align-items-center">

@@ -18,6 +18,10 @@ export const userApiService = createApi({
       query: (userId) => `user/${userId}`,
       providesTags: ['User'],
     }),
+    getAvatar: builder.query({
+      query: () => `user/avatar/img`,
+      providesTags: ['User'],
+    }),
     updatePassword: builder.mutation({
       query: (data) => ({
         url: `/user/password`,
@@ -29,6 +33,14 @@ export const userApiService = createApi({
     updateUserAccount: builder.mutation({
       query: (data) => ({
         url: `/user/account`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    updateUserAvatar: builder.mutation({
+      query: (data) => ({
+        url: `/user/avatar`,
         method: 'put',
         body: data,
       }),
@@ -74,7 +86,7 @@ export const userApiService = createApi({
       query: (userId) => `user/${userId}/likes-course`,
       providesTags: ['User'],
     }),
-    removeUserFavoriteCourse: builder.mutation({
+    removeUserPageFavoriteCourse: builder.mutation({
       query: (courseId) => ({
         url: `course/${courseId}?userId=${userId}`,
         method: 'DELETE',
@@ -86,7 +98,7 @@ export const userApiService = createApi({
       query: (userId) => `user/${userId}/likes-product`,
       providesTags: ['User'],
     }),
-    removeUserFavoriteProduct: builder.mutation({
+    removeUserPageFavoriteProduct: builder.mutation({
       query: (productId) => ({
         url: `product/${productId}?userId=${userId}`,
         method: 'delete',
@@ -133,6 +145,7 @@ export const {
   useCreateCouponMutation,
   useUpdatePasswordMutation,
   useUpdateUserAccountMutation,
+  useUpdateUserAvatarMutation,
   useGetUserQuery,
   useGetUserProductOrdersQuery,
   useGetUserProductOrderDetailsQuery,
@@ -145,11 +158,12 @@ export const {
   useGetUserCouponsQuery,
   useUserLikesCourseQuery,
   useUserLikesProductQuery,
-  useRemoveUserFavoriteProductMutation,
-  useRemoveUserFavoriteCourseMutation,
+  useRemoveUserPageFavoriteProductMutation,
+  useRemoveUserPageFavoriteCourseMutation,
   useGetUserBlogQuery,
   useDeleteBlogMutation,
   useHideBlogMutation,
   useShowBlogMutation,
-  useRemoveUserFavoriteProductOnNewsMutation,
+  useGetAvatarQuery,
+  // useRemoveUserFavoriteProductOnNewsMutation,
 } = userApiService

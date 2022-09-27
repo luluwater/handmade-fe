@@ -60,10 +60,10 @@ const UserCoursesOrderDetails = () => {
                     <th className="user_order_details_xlTitle">訂單狀態</th>
                     <td>{item.order_staus_name}</td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <th className="user_order_details_xlTitle">收件人</th>
-                    <td>{item.course_order_name}</td>
-                  </tr>
+                    <td>{item.user_name}</td>
+                  </tr> */}
                   <tr>
                     <th className="user_order_details_xlTitle">連絡電話</th>
                     <td colSpan={4}>{item.phone}</td>

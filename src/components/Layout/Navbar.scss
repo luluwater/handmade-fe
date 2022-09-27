@@ -23,11 +23,11 @@
       display: none;
     }
   }
-  form{
-    @media screen and (max-width:576px){
-      display: none;
-    }
-  }
+  // &_form{
+  //   @media screen and (max-width:576px){
+  //     display: none;
+  //   }
+  // }
   .searchInput{
     width: 13rem;
     height: 2rem;
@@ -40,11 +40,6 @@
 
   button{
     background-color: $skin-brighter;
-  }
-  &_user{
-    @media screen and (max-width:576px){
-      display: none;
-    }
   }
   &_bars{
     display: none;
@@ -68,12 +63,11 @@
     font-size: .8rem;
     font-weight: 500;
     
-
-
-
   }
-
-
+  &_mobile_menu{
+    margin-left: .5rem;
+    width: 100%;
+  }
 }
 
 
@@ -84,7 +78,6 @@
     color: $primary;
   }
 }
-
 
 
 
@@ -99,10 +92,72 @@
   li:first-child:before{
     display: none;
   }
-
-  @media screen and (max-width:576px){
+  
+  .navbar_mobileX{
     display: none;
   }
+
+  form{
+    display: none;
+  }
+
+  @media screen and (max-width:576px){
+    position: fixed;
+    margin: 0!important;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background: $skin-brighter;
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 5rem;
+    font-size: 1.2rem;
+    transform: translateX(100%);
+    transition: all .4s ease-in-out;
+    opacity: 0;
+    box-shadow: -2px 2px 15px rgba(127, 107, 99, 0.379);
+    
+
+    li:before{
+      display: none;
+      content: '';
+    }
+
+    form{
+      margin-top: 2rem;
+      position: relative;
+      display: block;
+
+      .searchInput{
+        width: 20rem;
+        height: 2.5rem;
+      }
+    
+      button{
+        position: absolute;
+        right: -11px;
+        background: none;
+      }
+    }
+    .navbar_mobileX{
+      display:  block;
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
+  
+  
+
+  }
+}
+.navbar_showMenu{
+  transform: translateX(0);
+  transition: all .4s ease-in-out;
+  opacity: .97;
+
 }
 
 .navbar_link{
@@ -115,7 +170,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 90;
+  z-index: 1500;
   box-shadow: 5px 5px 15px -5px $skin-bright;
 }
 

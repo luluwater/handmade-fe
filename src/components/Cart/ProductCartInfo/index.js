@@ -69,7 +69,7 @@ const ProductCartInfo = () => {
 
   // ===========api==============
   const { userCouponId } = useParams()
-  if (userCouponId === undefined) userCouponId = 28
+  if (userCouponId === undefined) userCouponId = '28'
   const [createProductOrder] = useCreateProductOrderMutation()
   const [createProductOrderDetail] = useCreateProductOrderDetailMutation()
   const [deleteUserCoupon] = useDeleteUserCouponMutation()
@@ -144,7 +144,7 @@ const ProductCartInfo = () => {
   }
 
   const submitHandler = async (e) => {
-    e.preventDefault() 
+    e.preventDefault()
     if (
       !orderName ||
       !orderPhone ||
@@ -435,7 +435,8 @@ const ProductCartInfo = () => {
                         className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
                         for="seven-eleven-pay"
                       ></label>
-                      7-11超商 取貨付款
+                      7-11超商 <br className="ProductCartInfo_deliveryBr" />
+                      取貨付款
                     </label>
 
                     <label
@@ -462,7 +463,8 @@ const ProductCartInfo = () => {
                         className="form-check-label ps-2 ProductCartInfo_radioStyleLabel"
                         for="seven-eleven-paid"
                       ></label>
-                      7-11超商 取貨不付款
+                      7-11超商 <br className="ProductCartInfo_deliveryBr" />
+                      取貨不付款
                     </label>
 
                     <label
@@ -540,7 +542,9 @@ const ProductCartInfo = () => {
                     }}
                   />
 
-                  <p className="fs-4 ProductCartInfo_inputTitle">付款方式</p>
+                  <p className="fs-4 ProductCartInfo_inputTitle ProductCartInfo_PaymentTitle">
+                    付款方式
+                  </p>
 
                   {functionSwitch(delivery)}
 
@@ -572,7 +576,9 @@ const ProductCartInfo = () => {
           <Col xs={12} md={3} className="ProductCartInfo_rightSide">
             <p className="fs-4 ProductCartInfo_inputTitle mb-6">購買細項</p>
 
-            {ProductItem?.map((item,i) => {
+            <div className="ProductCartInfo_detailTitle"></div>
+
+            {ProductItem?.map((item, i) => {
               return (
                 <div
                   className="ProductCartInfo_shoppingDetail mt-1 d-flex justify-content-between"
@@ -581,7 +587,7 @@ const ProductCartInfo = () => {
                   <p className="fs-5">
                     {item.name} <br />
                   </p>
-                  <p className="fs-5 text-center pe-4">
+                  <p className="fs-5 text-center">
                     <span className="me-6">${item.price}</span>x{item.quantity}
                   </p>
                 </div>
@@ -600,6 +606,26 @@ const ProductCartInfo = () => {
               <strong className="fs-5">實付金額</strong>
               <strong className="fs-5">{ActuallyPrice}</strong>
             </div>
+          </Col>
+          <Col xs={12} md={0} className="CourseCartInfo_mobileBTNBox px-6">
+            <Button
+              variant="primary"
+              className="CourseCartInfo_mobilePrvBTN fs-5 "
+              type="submit"
+              onClick={() => {
+                navigate(-1)
+              }}
+            >
+              修改購物車
+            </Button>
+            <Button
+              variant="primary"
+              className="CourseCartInfo_mobileBTN fs-5 mb-10 text-center"
+              type="submit"
+              onClick={submitHandler}
+            >
+              結帳
+            </Button>
           </Col>
         </Row>
       </Container>

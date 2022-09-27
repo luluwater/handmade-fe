@@ -9,10 +9,15 @@ import { CourseCartToggle } from '../../slices/courseCart-slice'
 import { ProductCartToggle } from '../../slices/productCart-slice'
 import { getProductTotal } from '../../slices/productCart-slice'
 import { getCourseTotal } from '../../slices/courseCart-slice'
+import { useGetUserQuery } from '../../services/userApi'
 
 const Navbar = () => {
   const userData = JSON.parse(localStorage.getItem('user'))
-
+  // console.log('userData', userData)
+  const id = JSON.parse(localStorage.getItem('user'))?.user.id
+  // console.log('id', id)
+  const { data } = useGetUserQuery(id)
+  // console.log('userdata', data)
   const authReducers = useSelector((state) => state.authReducers)
 
   const isLogin = authReducers.isLogin
@@ -36,6 +41,8 @@ const Navbar = () => {
   }
 
   const navRef = useRef(null)
+  const menuRef = useRef(null)
+  const toggleMenu = () => menuRef.current.classList.toggle('navbar_showMenu')
 
   const scrollFunction = () => {
     if (
@@ -73,7 +80,7 @@ const Navbar = () => {
         </div>
         <div>
           <div className="d-flex justify-content-end align-items-center mt-3">
-            <form action="" className="flex ">
+            {/* <form action="" className="flex navbar_form">
               <input type="text" className="searchInput" />
               <button type="submit" className="border-0">
                 <FontAwesomeIcon
@@ -83,7 +90,7 @@ const Navbar = () => {
                   fixedWidth
                 />
               </button>
-            </form>
+            </form> */}
 
             <span onClick={toggleCart} className="navbar_cartIcon">
               <FontAwesomeIcon
@@ -104,7 +111,18 @@ const Navbar = () => {
             {isLogin || userData ? (
               <>
                 <Link to="/user/management">
-                  {userData?.user.avatar ? (
+                  {data?.map((v) => {
+                    return (
+                      <div key={v.id} className="avatar ">
+                        <img
+                          src={v.avatar}
+                          className="rounded-circle"
+                          alt="user img"
+                        />
+                      </div>
+                    )
+                  })}
+                  {/* {userData?.user.avatar ? (
                     <div className="avatar ">
                       <img
                         src={userData?.user.avatar}
@@ -113,13 +131,18 @@ const Navbar = () => {
                       />
                     </div>
                   ) : (
-                    <FontAwesomeIcon
-                      icon="fa-solid fa-user"
-                      size="xl"
-                      className="mx-3 navbar_awesomeIcon"
-                      fixedWidth
-                    />
-                  )}
+                    data?.map((v) => {
+                      return (
+                        <div key={v.id} className="avatar ">
+                          <img
+                            src={v.avatar}
+                            className="rounded-circle"
+                            alt="user img"
+                          />
+                        </div>
+                      )
+                    })
+                  )} */}
                 </Link>
               </>
             ) : (
@@ -133,57 +156,67 @@ const Navbar = () => {
               </Link>
             )}
 
-            <Link to="/" className="navbar_bars">
+            <span className="navbar_bars" onClick={toggleMenu}>
               <FontAwesomeIcon
-                icon="fa-sharp fa-solid fa-bars"
+                icon="fa-solid fa-bars"
                 size="xl"
                 className="navbar_awesomeIcon"
                 fixedWidth
               />
-            </Link>
+            </span>
           </div>
 
-          <ul className="list-unstyled navbar_list me-3 mt-5">
-            <li>
+          <ul className="list-unstyled navbar_list me-3 mt-5" ref={menuRef}>
+            <span className="navbar_mobileX" onClick={toggleMenu}>
+              <FontAwesomeIcon
+                icon="fa-solid fa-xmark"
+                size="xl"
+                className=" ms-2 me-3 navbar_awesomeIcon"
+                fixedWidth
+              />
+            </span>
+            {/* <form action="" className="flex">
+              <input type="text" className="searchInput" />
+              <button type="submit" className="border-0">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-magnifying-glass "
+                  size="lg"
+                  className=" ms-2 me-3 navbar_awesomeIcon"
+                  fixedWidth
+                />
+              </button>
+            </form> */}
+            <li onClick={toggleMenu}>
               <Link to="/" className="navbar_link">
                 HOME
               </Link>
             </li>
-            <li>
-              {/* <Link to="store" className="navbar_link">
-                STORE
-              </Link> */}
+            <li onClick={toggleMenu}>
               <a href="/store" className="navbar_link">
                 STORE
               </a>
             </li>
-            <li>
-              {/* <Link to="course" className="navbar_link">
-                COURSE
-              </Link> */}
+            <li onClick={toggleMenu}>
               <a href="/course" className="navbar_link">
                 COURSE
               </a>
             </li>
-            <li>
-              {/* <Link to="shop" className="navbar_link">
-                SHOP
-              </Link> */}
+            <li onClick={toggleMenu}>
               <a href="/shop" className="navbar_link">
                 SHOP
               </a>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link to="map" className="navbar_link">
                 MAP
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link to="blog" className="navbar_link">
                 BLOG
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link to="about" className="navbar_link">
                 ABOUT
               </Link>

@@ -59,7 +59,7 @@ const CourseCartInfo = () => {
 
   // // ===========api==============
   const { userCouponId } = useParams()
-  if (userCouponId === undefined) userCouponId = 28
+  if (userCouponId === undefined) userCouponId = '28'
   const [createCourseOrder] = useCreateCourseOrderMutation()
   const [createCourseOrderDetail] = useCreateCourseOrderDetailMutation()
   const [deleteUserCoupon] = useDeleteUserCouponMutation()
@@ -300,7 +300,8 @@ const CourseCartInfo = () => {
           {/*==========右側細項========= */}
 
           <Col xs={12} md={3} className="CourseCartInfo_rightSide">
-            <p className="fs-4 CourseCartInfo_inputTitle mb-6">購買細項</p>
+            <p className="fs-4 CourseCartInfo_inputTitle mb-6 ">購買細項</p>
+            <div className="CourseCartInfo_detailTitle"></div>
 
             {CourseItem?.map((item, i) => {
               return (
@@ -314,8 +315,9 @@ const CourseCartInfo = () => {
                       {item.date} {item.time}
                     </span>
                   </p>
-                  <p className="fs-5 text-center ">${item.price}</p>
-                  <p className="fs-5 text-center pe-4">x{item.quantity}</p>
+                  <p className="fs-5 text-center ">
+                    ${item.price} x{item.quantity}
+                  </p>
                 </div>
               )
             })}
@@ -332,6 +334,26 @@ const CourseCartInfo = () => {
               <strong className="fs-5">實付金額</strong>
               <strong className="fs-5">{ActuallyPrice}</strong>
             </div>
+          </Col>
+          <Col xs={12} md={0} className="CourseCartInfo_mobileBTNBox px-6">
+            <Button
+              variant="primary"
+              className="CourseCartInfo_mobilePrvBTN fs-5 "
+              type="submit"
+              onClick={() => {
+                navigate(-1)
+              }}
+            >
+              修改購物車
+            </Button>
+            <Button
+              variant="primary"
+              className="CourseCartInfo_mobileBTN fs-5 text-center"
+              type="submit"
+              onClick={submitHandler}
+            >
+              結帳
+            </Button>
           </Col>
         </Row>
       </Container>

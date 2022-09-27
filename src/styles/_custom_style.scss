@@ -278,9 +278,9 @@ img {
   transform: translate(-300%, -50%);
 }
 
-.toast-addCartMessage {
-  background: $secondary !important;
-  color: $white !important;
+.toast-addCartMessage  {
+  background: $secondary  !important;
+  color: $white  !important;
   z-index: 99999;
 }
 
@@ -289,7 +289,6 @@ img {
   color: $white !important;
   z-index: 99999;
 }
-
 .toast-addCouponMessage {
   background: $dark !important;
   color: $white !important;

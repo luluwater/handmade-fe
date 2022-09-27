@@ -41,8 +41,10 @@ function Courses() {
   // console.log(filterPrice)
   //設定篩選資料
   useEffect(() => {
-    if (rawData === data) return
     scrollToTop()
+  }, [])
+  useEffect(() => {
+    if (rawData === data) return
     // dispatch(initFilterPrice())
     // dispatch(initFilterDate())
     // dispatch(initSearchWord())
@@ -98,6 +100,11 @@ function Courses() {
                     />
                   )
                 })}
+                {courseList.length ? (
+                  ''
+                ) : (
+                  <h1 className="text-center text-gray-darker mt-5">查無商品</h1>
+                )}
               </Row>
             </div>
             <Paginate baseUrl={'course'} />

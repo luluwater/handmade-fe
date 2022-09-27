@@ -147,7 +147,10 @@ const UserProductsOrders = () => {
             </Form.Group>
           </Container>
           {orderData === 0 ? (
-            <div className="user_orders_text text-center py-8" colSpan={6}>
+            <div
+              className="user_orders_text user_orders_text_md text-center py-8"
+              colSpan={6}
+            >
               目前沒有商品訂單
             </div>
           ) : (

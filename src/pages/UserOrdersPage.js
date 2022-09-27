@@ -1,7 +1,7 @@
 import React from 'react'
 import UserProductsOrders from '../components/User/UserProductsOrders'
 import UserCourseOrders from '../components/User/UserCourseOrders'
-import { Row, Col, Form, Container } from 'react-bootstrap'
+import { Row, Col, Form } from 'react-bootstrap'
 import { product } from '../slices/userProductDetails-slice'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
