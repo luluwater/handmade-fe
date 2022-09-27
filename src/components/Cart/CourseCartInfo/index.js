@@ -98,6 +98,24 @@ const CourseCartInfo = () => {
     console.log('CourseOrder', CourseOrder)
   }, [orderName, orderPhone, email, note, payment, paymentState])
 
+  // ================TapPay Data=================
+
+  let CourseName = ''
+  CourseItem?.map((item) => (CourseName = `${CourseName} ${item.name}、`))
+  let TapPayCourseName = CourseName.slice(0, -1)
+
+  const TapPayDeta = {
+    amount: ActuallyPrice,
+    details: TapPayCourseName,
+    cardholder: {
+      phone_number: orderPhone,
+      name: orderName,
+      email: email,
+    },
+  }
+
+  // ================TapPay Data=================
+
   const CourseOrder = {
     id: courseOrderId,
     orderNumber: Date.now(),
@@ -126,25 +144,38 @@ const CourseCartInfo = () => {
       return
     }
     const tappayStatus = TPDirect.card.getTappayFieldsStatus()
-    if (tappayStatus.canGetPrime === false) {
-      // can not get prime
-      return
-    }
+    console.log('tappayStatus', tappayStatus)
+    if (tappayStatus.canGetPrime === false) return
+    let resultWithPrime = {}
 
-    try {
-      await createCourseOrder(CourseOrder)
-      await createCourseOrderDetail(CourseOrder)
-      await deleteUserCoupon({ userCouponId })
-      await clearCourseItem()
-      await getCourseTotal()
-      navigate(`/course_checkout/${courseOrderId}`)
-    } catch (e) {
-      console.error(e)
-    }
+    TPDirect.card.getPrime((result) => {
+      if (result.status !== 0) {
+        //get prime error
+        console.log('getPrime line135', result.msg)
+        return
+      }
+      console.log('getPrime susses line138', result.card.prime)
+      let prime = result.card.prime
+      resultWithPrime = { ...TapPayDeta, prime } //給TapPay這個資料!!
+      console.log('resultWithPrime', resultWithPrime)
+      alert('get prime 成功，prime: ' + result.card.prime)
+    })
+
+    // try {
+    //   await createCourseOrder(CourseOrder)
+    //   await createCourseOrderDetail(CourseOrder)
+    //   await deleteUserCoupon({ userCouponId })
+    //   await clearCourseItem()
+    //   await getCourseTotal()
+    //   navigate(`/course_checkout/${courseOrderId}`)
+    // } catch (e) {
+    //   console.error(e)
+    // }
   }
 
   // ===================TapPay===========================================
-  const submitBTN = useRef('disabled')
+  const [btnDisabled, setBtnDisabled] = useState(true)
+
   const number = useRef(null)
   const date = useRef(null)
   const ccv = useRef(null)
@@ -209,20 +240,54 @@ const CourseCartInfo = () => {
         },
       },
     })
-    console.log('ref', submitBTN)
-    console.log('ref', number)
-    console.log('ref', date)
-    console.log('ref', ccv)
   }, [])
 
   TPDirect.card.onUpdate((update) => {
     if (update.canGetPrime) {
-      submitBTN.current('null')
-      //全部欄位皆為正確 可以呼叫 getPrime
+      setBtnDisabled(false)
     } else {
-      submitBTN.current('disabled')
+      setBtnDisabled(true)
+    }
+
+    if (update.status.number === 2) {
+      setNumberFormGroupToError(number)
+    } else if (update.status.number === 0) {
+      setNumberFormGroupToSuccess(number)
+    } else {
+      setNumberFormGroupToNormal(number)
+    }
+
+    if (update.status.expiry === 2) {
+      setNumberFormGroupToError(date)
+    } else if (update.status.expiry === 0) {
+      setNumberFormGroupToSuccess(date)
+    } else {
+      setNumberFormGroupToNormal(date)
+    }
+
+    if (update.status.ccv === 2) {
+      setNumberFormGroupToError(ccv)
+    } else if (update.status.ccv === 0) {
+      setNumberFormGroupToSuccess(ccv)
+    } else {
+      setNumberFormGroupToNormal(ccv)
     }
   })
+
+  function setNumberFormGroupToError(v) {
+    v.current.classList.add('has-error')
+    v.current.classList.remove('has-success')
+  }
+
+  function setNumberFormGroupToSuccess(v) {
+    v.current.classList.add('has-success')
+    v.current.classList.remove('has-error')
+  }
+
+  function setNumberFormGroupToNormal(v) {
+    v.current.classList.remove('has-error')
+    v.current.classList.remove('has-success')
+  }
 
   // ===================TapPay===========================================
 
@@ -376,7 +441,7 @@ const CourseCartInfo = () => {
                     <Form>
                       <Form.Group className="mb-3" controlId="number">
                         <Form.Label for="number">信用卡卡號</Form.Label>
-                        <div id="number" ref={number}></div>
+                        <div id="number" ref={number} className="tpfield"></div>
                         {/* 可填入： 4242 4242 4242 4242 */}
                       </Form.Group>
 
@@ -387,13 +452,13 @@ const CourseCartInfo = () => {
                         <Form.Label for="cardExpirationDate">
                           卡片到期日
                         </Form.Label>
-                        <div id="date" ref={date}></div>
+                        <div id="date" ref={date} className="tpfield"></div>
                         {/* 可填入： 01/23 */}
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="cardCcv">
                         <Form.Label for="cardCcv">ccv確認碼</Form.Label>
-                        <div id="ccv" ref={ccv}></div>
+                        <div id="ccv" ref={ccv} className="tpfield"></div>
                         {/* 可填入： 123 */}
                       </Form.Group>
                     </Form>
@@ -404,6 +469,7 @@ const CourseCartInfo = () => {
                     className="CourseCartInfo_BTN fs-5 mt-6 mb-10 text-center"
                     type="submit"
                     onClick={submitHandler}
+                    disabled={btnDisabled}
                     // ref={submitBTN}
                   >
                     結帳

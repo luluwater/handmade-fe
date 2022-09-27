@@ -68,10 +68,7 @@ const CreditCart = () => {
   TPDirect.card.onUpdate((update) => {
     if (update.canGetPrime) {
       //全部欄位皆為正確 可以呼叫 getPrime
-      
     }
-
-
   })
 
   return (
@@ -80,7 +77,7 @@ const CreditCart = () => {
         <Form>
           <Form.Group className="mb-3" controlId="number">
             <Form.Label for="number">信用卡卡號</Form.Label>
-            <div id="number"></div>
+            <div id="number" className='class="tpfield"'></div>
             {/* 可填入： 4242 4242 4242 4242 */}
           </Form.Group>
 
