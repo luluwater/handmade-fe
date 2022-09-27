@@ -67,12 +67,16 @@ const ProductComment = () => {
                   >
                     {item.content}
                   </p>
-                  <img
-                    className="detail_comment_img"
-                    src={require(`../../assets/product_comment_img/` +
-                      item.img_name[0])}
-                    alt=""
-                  />
+                  {item.img_name.length > 0 ? (
+                    <img
+                      className="detail_comment_img"
+                      src={require(`../../assets/product_comment_img/` +
+                        item.img_name[0])}
+                      alt=""
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
               )
             })}

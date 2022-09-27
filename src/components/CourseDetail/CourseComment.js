@@ -43,6 +43,7 @@ const CourseComment = () => {
         <Col className="col-10 ">
           <ShowMore maxHeight={375} className="showmore" defaultAnchor={true}>
             {data?.map((item) => {
+              console.log('date', item.img_name)
               return (
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
                   <Row className="d-flex align-items-baseline">
@@ -68,12 +69,16 @@ const CourseComment = () => {
                   >
                     {item.content}
                   </p>
-                  <img
-                    className="detail_comment_img"
-                    src={require(`../../assets/course_comment_img/` +
-                      item.img_name[0])}
-                    alt=""
-                  />
+                  {item.img_name.length > 0 ? (
+                    <img
+                      className="detail_comment_img"
+                      src={require(`../../assets/course_comment_img/` +
+                        item.img_name[0])}
+                      alt=""
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
               )
             })}
