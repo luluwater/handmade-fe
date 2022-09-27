@@ -33,7 +33,6 @@ function star2Amount(num2) {
 const CourseComment = () => {
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
-  // console.log('data', data)
   return (
     <>
       <Row className="my-10 d-flex justify-content-center C_border">
@@ -43,7 +42,6 @@ const CourseComment = () => {
         <Col className="col-10 ">
           <ShowMore maxHeight={375} className="showmore" defaultAnchor={true}>
             {data?.map((item) => {
-              console.log('date', item.img_name)
               return (
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
                   <Row className="d-flex align-items-baseline">

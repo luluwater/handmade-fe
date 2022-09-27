@@ -55,7 +55,7 @@ const UserCoursesOrderDetails = () => {
                   </tr>
                   <tr>
                     <th className="user_order_details_xlTitle">訂購人</th>
-                    <td>{item.user_name}</td>
+                    <td>{item.name}</td>
                     <th className="user_order_details_xlTitle">訂單狀態</th>
                     <td>{item.order_staus_name}</td>
                   </tr>
