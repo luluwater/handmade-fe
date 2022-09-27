@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './CourseCartInfo.scss'
 import '../ProductCartInfo/ProductCartInfo.scss'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
@@ -125,6 +125,12 @@ const CourseCartInfo = () => {
       })
       return
     }
+    const tappayStatus = TPDirect.card.getTappayFieldsStatus()
+    if (tappayStatus.canGetPrime === false) {
+      // can not get prime
+      return
+    }
+
     try {
       await createCourseOrder(CourseOrder)
       await createCourseOrderDetail(CourseOrder)
@@ -136,6 +142,89 @@ const CourseCartInfo = () => {
       console.error(e)
     }
   }
+
+  // ===================TapPay===========================================
+  const submitBTN = useRef('disabled')
+  const number = useRef(null)
+  const date = useRef(null)
+  const ccv = useRef(null)
+
+  useEffect(() => {
+    TPDirect.setupSDK(
+      11327,
+      'app_whdEWBH8e8Lzy4N6BysVRRMILYORF6UxXbiOFsICkz0J9j1C0JUlCHv1tVJC',
+      'sandbox'
+    )
+    let fields = {
+      number: {
+        element: '#number',
+        placeholder: '**** **** **** ****',
+      },
+      expirationDate: {
+        element: '#date',
+        placeholder: 'MM/YY',
+      },
+      ccv: {
+        element: '#ccv',
+        placeholder: '後三碼',
+      },
+    }
+    TPDirect.card.setup({
+      fields: fields,
+      styles: {
+        // Style all elements
+        input: {
+          color: 'gray',
+        },
+        // Styling ccv field
+        'input.cvc': {
+          'font-size': '16px',
+        },
+        // Styling expiration-date field
+        'input.expiration-date': {
+          // 'font-size': '16px'
+        },
+        // Styling card-number field
+        'input.card-number': {
+          // 'font-size': '16px'
+        },
+        // style focus state
+        ':focus': {
+          // 'color': 'black'
+        },
+        // style valid state
+        '.valid': {
+          color: 'green',
+        },
+        // style invalid state
+        '.invalid': {
+          color: 'red',
+        },
+        // Media queries
+        // Note that these apply to the iframe, not the root window.
+        '@media screen and (max-width: 400px)': {
+          input: {
+            color: 'orange',
+          },
+        },
+      },
+    })
+    console.log('ref', submitBTN)
+    console.log('ref', number)
+    console.log('ref', date)
+    console.log('ref', ccv)
+  }, [])
+
+  TPDirect.card.onUpdate((update) => {
+    if (update.canGetPrime) {
+      submitBTN.current('null')
+      //全部欄位皆為正確 可以呼叫 getPrime
+    } else {
+      submitBTN.current('disabled')
+    }
+  })
+
+  // ===================TapPay===========================================
 
   return (
     <>
@@ -282,8 +371,32 @@ const CourseCartInfo = () => {
                     ></label>
                     信用卡支付（TapPay）
                   </label>
+
                   <div>
-                    <CreditCart />
+                    <Form>
+                      <Form.Group className="mb-3" controlId="number">
+                        <Form.Label for="number">信用卡卡號</Form.Label>
+                        <div id="number" ref={number}></div>
+                        {/* 可填入： 4242 4242 4242 4242 */}
+                      </Form.Group>
+
+                      <Form.Group
+                        className="mb-3"
+                        controlId="cardExpirationDate"
+                      >
+                        <Form.Label for="cardExpirationDate">
+                          卡片到期日
+                        </Form.Label>
+                        <div id="date" ref={date}></div>
+                        {/* 可填入： 01/23 */}
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="cardCcv">
+                        <Form.Label for="cardCcv">ccv確認碼</Form.Label>
+                        <div id="ccv" ref={ccv}></div>
+                        {/* 可填入： 123 */}
+                      </Form.Group>
+                    </Form>
                   </div>
 
                   <Button
@@ -291,6 +404,7 @@ const CourseCartInfo = () => {
                     className="CourseCartInfo_BTN fs-5 mt-6 mb-10 text-center"
                     type="submit"
                     onClick={submitHandler}
+                    // ref={submitBTN}
                   >
                     結帳
                   </Button>
