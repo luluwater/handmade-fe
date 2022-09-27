@@ -99,9 +99,3 @@ const RoomBody = ({ data }) => {
 }
 
 export default RoomBody
-
-//  //TODO:先用狀態擋著
-//  let finalMsg = isSliceMsg ? newMessage : currentChat?.msg
-//  const finalMsg = currentChat?.msg.concat(newMessage)
-
-//  console.log('finalMsg', finalMsg)

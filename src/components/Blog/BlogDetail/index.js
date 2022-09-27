@@ -33,7 +33,6 @@ const BlogDetail = () => {
 
   const userData = JSON.parse(localStorage.getItem('user'))?.user
 
-  // TODO: user_id 從 local stroage 裡拿出
   const comment = {
     id: uuidv4(),
     blog_id: blogId,
