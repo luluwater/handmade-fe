@@ -132,6 +132,10 @@
         }
     }
 
+    &_awesomeIcon{
+        color: $white;
+    }
+
     &_recommendBox{
         margin: 6rem 10rem  7rem 10rem;
         @media screen and (max-width:576px){

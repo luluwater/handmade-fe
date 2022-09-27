@@ -5,6 +5,10 @@
   img{
     width: 80px;
     height: 80px;
+    @media screen and (max-width:576px) {
+      width: 130px;
+      height: 130px;
+    }
   }
 }
 .CartItem{
@@ -38,8 +42,19 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 1500;
   color: $gray-darker;
+  @media screen and (max-width:576px) {
+    overflow-y: scroll;
+
+  }
+
+  &_row{
+    @media screen and (max-width:576px) {
+      width: 100vw;
+      margin: 0;
+    }
+  }
 
 
   &_main{
@@ -49,15 +64,29 @@
     width: 75%;
     height: 100%;
     z-index: 99999;
+    @media screen and (max-width:576px) {
+    position: relative;
+      width: 100%;
+      margin: 0;
+    }
   }
 
   &_item_list{
     overflow-y: scroll;
+    @media screen and (max-width:576px) {
+    overflow-y: visible;
+    }
   }
+
 
   &_tabContent{
     background: $skin-brighter;
+    @media screen and (max-width:576px) {
+      margin-top: 9rem;
+      width: 100%;
+    }
   }
+
 
   &_NavLink{
     width: 100%;
@@ -65,6 +94,7 @@
     writing-mode: vertical-lr;
     letter-spacing: .4rem;
     line-height: 1.5rem;
+
   }
   .nav-link{
     border-radius: 20px 0 0 20px;
@@ -80,28 +110,45 @@
   }
   &_courseRightSide{
     background: $skin-bright;
+    @media screen and (max-width:576px) {
+      width: 100%;
+    }
   }
 
   &_mainContent{
     height: 100vh;
     overflow-y: scroll;
+    @media screen and (max-width:576px) {
+      width: 100vw;
+      height: 100%;
+      padding: 0 !important;
+      overflow-y: visible;
+    }
   }
 
   &_backToStore{
     width: 20%;
     color: $gray-darker;
     cursor: pointer;
+    @media screen and (max-width:576px) {
+      width: 30%;
+    }
   }
+
   &_backToStore_x{
     // width: 20%;
     color: $gray-darker;
     svg{
       cursor: pointer;
     }
+    @media screen and (max-width:576px) {
+      display: none;;
+    }
   }
   &_arrow{
     margin-left: 2rem;
     margin-right: .5rem;
+
   }
 
   &_empty{
@@ -117,11 +164,25 @@
     margin: 1rem 2rem 1rem 2rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid $gray-darker;
-
+    @media screen and (max-width:576px) {
+      .col-sm-5,.col-sm-3,.col-sm-2,.col-sm-1{
+        display: none;
+      }
+    }
+  }
+  &_DetailTitleItemPc{
+    @media screen and (max-width:576px) {
+        display: none;
+    }
+  }
+  &_DetailTitleItemMobile{
+    display: none;
+    @media screen and (max-width:576px) {
+      display: flex;
+  }
   }
   &_couponBox{
     margin: 2rem 0 3.5rem 2rem;
-    // margin-bottom: ;
     .Cart_couponSelect{
       padding: 0;
       border: 1px solid $gray-darker;
@@ -129,6 +190,15 @@
         color: $gray-darker;
       }
     }
+    @media screen and (max-width:576px) {
+      justify-content: start;
+      .Cart_couponSelect{
+        
+        .form-select{
+          padding: .8rem;
+        }
+      }
+  }
   }
   &_couponInputBox{
     padding: 0;
@@ -140,28 +210,54 @@
       &::-webkit-input-placeholder{
         font-size: 1rem;
       }
-
-
     }
-    
   }
   &_or{
     width: 8%;
   }
 
   &_courseRightSide{
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 2.5rem;
     position: relative;
+    @media screen and (max-width:576px){
+      padding: 0;
+
+    }
   }
   &_TotalTitle{
     margin: 1.5rem 0 2rem 0;
     font-weight: 900;
+    @media screen and (max-width:576px){
+      padding-left: 2rem;
+      font-size: 2rem !important;
+    }
   }
+  &_TotalContent{
+    @media screen and (max-width:576px){
+      padding-left: 2rem;
+      width: 90%;
+      font-size: 1.3rem;
+      margin-right: 0 !important;
+    }
+
+    }
   &_TotalPrice{
     width: 80%;
     position: absolute;
     top: 30rem;
+    @media screen and (max-width:576px){
+      width: 90%;
+      top:0;
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 5rem;
+      strong{
+        font-size: 1.5rem !important;
+      }
+
+    }
+    
   }
   &_nextBTN{
     color: $white;
@@ -174,18 +270,43 @@
     &:hover{
       color: $white;
     }
+    @media screen and (max-width:576px){
+      width: 90%;
+      position: relative;
+      top: 0;
+      margin-left: 2rem;
+      height: 60px;
+    }
+    
   }
+
+
   &_userLikeBox{
     margin: 1rem 0 1rem 2rem;
+
   }
   &_youMightLikeBox{
     margin: .5rem 0 2rem 2rem;
   }
   &_userLike{
     height: 100%;
-    width: 100%;
+    // width: 100%;
     background: $skin-bright;
     padding: 1.5rem 0;
+    @media screen and (max-width:576px) {
+      flex-wrap: wrap;
+    }
+  }
+  &_RecommendPC{
+    @media screen and (max-width:576px) {
+      display: none;
+    }
+  }
+  &_RecommendMobile{
+    display: none;
+    @media screen and (max-width:576px) {
+      display: block;
+    }
   }
   
 
@@ -193,17 +314,64 @@
   .Cart_tabChooseBox{
     position: relative;
     width: 110px;
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
   }
   .Cart_tabChoose{
     position: absolute;
     right: 0;
+    padding: 0;
   }
+
+  // =============================mobile
+  .Cart{
+    &_mobileTabChooseBox{
+      position: absolute;
+      top: 6rem;
+      left: .7rem;
+      width: 100vw;
+      display: none;  
+      padding: 0 !important;
+      @media screen and (max-width:576px) {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &_mobileTabChoose{
+      // position: absolute;
+      // right: 0;
+      padding: 0;
+      .nav-link{
+        border-radius: 20px 20px 0 0;
+        background: $skin-bright;
+        color: $gray-darker;
+      }
+    }
+
+    &_mobileNavLink{
+      height: 3rem;
+      letter-spacing: .4rem;
+      // line-height: 1.5rem;
+  
+    }
+  }
+
+    @media screen {
+      
+    }
 
 
   // recommend Card
 
   .cartRecommend{
     width: 210px;
+
+    &_outBox{
+      @media screen and (max-width:576px) {
+        margin: .5rem 1.3rem;
+      };
+    }
 
     .row{
       height: 90px;
@@ -234,4 +402,5 @@
     &_storeName{
       font-size: .9rem;
     }
+
   }

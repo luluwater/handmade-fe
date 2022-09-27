@@ -54,7 +54,7 @@ const ProductCheckout = () => {
               </Col>
 
               <Col xs={12} md={3} className="CheckoutPage_rightSide">
-                <p className="fs-4 CheckoutPage_title mb-3">購買細項</p>
+                <p className="fs-4 CheckoutPage_title  mb-3">購買細項</p>
                 <div className="d-flex justify-content-between fs-5">
                   <p>訂單編號</p>
                   <p className="pe-4">{item.order_number}</p>
@@ -70,16 +70,17 @@ const ProductCheckout = () => {
 
                 <div className="CheckoutPage_detailHr me-4 my-4"></div>
 
-                <div className="fs-5 text-center">購買項目</div>
+                <h6 className="fs-5 text-center">購買項目</h6>
 
                 {item.orderDetail?.map((v) => {
                   return (
-                    <div className="mt-4 d-flex justify-content-between">
+                    <div className="mt-4 d-flex justify-content-between CheckoutPage_Item">
                       <p className="fs-5">
                         {v.name} <br />
                       </p>
-                      <p className="fs-5 text-center pe-4">
-                        ${v.price} <span className="ps-4">x {v.amount}</span>
+                      <p className="fs-5 text-center ">
+                        ${v.price}
+                        <span className="ps-4">x {v.amount}</span>
                       </p>
                     </div>
                   )
@@ -97,6 +98,25 @@ const ProductCheckout = () => {
                   <strong className="fs-5">實付金額</strong>
                   <strong className="fs-5">${item.total_amount}</strong>
                 </div>
+                <div className='d-flex'>
+                  <a
+                    href={'/user/orders/products/' + item.order_number}
+                    className="CheckoutPage_orderDetailBTN fs-5 text-center"
+                  >
+                    查看訂單細項
+                  </a>
+                </div>
+              </Col>
+              <Col xs={12} md={0} className="CheckoutPage_mobileBTNBox">
+                <a
+                  href={'/user/orders/products/' + item.order_number}
+                  className="CheckoutPage_mobileBTN fs-5 text-center"
+                >
+                  查看訂單細項
+                </a>
+                <a href="/" className="CheckoutPage_mobileBTN fs-5 text-center">
+                  返回首頁
+                </a>
               </Col>
             </Row>
           )
