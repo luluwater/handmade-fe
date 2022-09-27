@@ -69,7 +69,7 @@ const Signup = () => {
           <img
             className="SignUpPic"
             src={require('../../../assets/login/signup_pic.png')}
-            alt="sigup illustration"
+            alt="signup illustration"
           />
           <form
             onSubmit={formik.handleSubmit}

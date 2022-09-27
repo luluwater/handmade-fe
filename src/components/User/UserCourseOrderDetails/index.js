@@ -1,5 +1,5 @@
 import '../User.scss'
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
@@ -11,9 +11,8 @@ import PaymentsDetails from './PaymentsDetails'
 
 const UserCoursesOrderDetails = () => {
   const { orderNumber } = useParams()
-
   const { data } = useGetUserCourseOrderDetailsQuery(orderNumber)
-  // console.log("data:", data )
+  // console.log('data:', data)
   return (
     <>
       <Col>
@@ -78,6 +77,16 @@ const UserCoursesOrderDetails = () => {
               </Table>
             )
           })}
+          {/* {showUserComment &&
+            data?.map((item) => {
+              return (
+                <Comment
+                  key={item.create_time}
+                  id={item.id}
+                  setShowUserComment={setShowUserComment}
+                />
+              )
+            })} */}
           <CoursesDetails />
           <PaymentsDetails />
         </div>
