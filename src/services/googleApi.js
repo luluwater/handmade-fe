@@ -14,7 +14,6 @@ export const googleApiService = createApi({
       }),
       invalidatesTags: ['google'],
     }),
-    //TODO:傳送訂單資訊到後端
     sendOrderDetail: builder.mutation({
       query: (data) => ({
         url: 'google/orderConfirmation',
@@ -23,16 +22,19 @@ export const googleApiService = createApi({
       }),
       invalidatesTags: ['google'],
     }),
-    addToSchedule:builder.mutation({
-      query:(data) => ({
-        url:'google/calendar',
-        method:'POST',
-        body:data,
+    addToSchedule: builder.mutation({
+      query: (data) => ({
+        url: 'google/calendar',
+        method: 'POST',
+        body: data,
       }),
       invalidatesTags: ['google'],
-    })
+    }),
   }),
 })
 
-export const { useSendValidationMailMutation, useSendOrderDetailMutation,useAddToScheduleMutation } =
-  googleApiService
+export const {
+  useSendValidationMailMutation,
+  useSendOrderDetailMutation,
+  useAddToScheduleMutation,
+} = googleApiService

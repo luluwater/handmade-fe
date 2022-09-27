@@ -6,17 +6,28 @@ import { createSlice, current } from '@reduxjs/toolkit'
  * 4. 傳送的聊天內容
  */
 
+//  {
+//   id: '',
+//   content: '',
+//   user_id: '',
+//   created_at: '',
+//   room_id: '',
+//   isCurrentUser: true,
+// },
+
+const userData = JSON.parse(localStorage.getItem('user'))?.user
+
 const initialState = {
   chatRooms: [],
-  chats: [],
   currentRoom: {},
   socket: {},
   newMessage: [],
-  scrollBottom: 0,
-  senderTyping: { typing: false },
-  history: [],
-  joinRoomMsg: '',
+  // history: [],
+  friends: [],
+  online: false,
   welcomeMsg: '',
+  userData: userData,
+  senderTyping: { typing: false },
 }
 
 export const chatSilce = createSlice({
@@ -34,41 +45,66 @@ export const chatSilce = createSlice({
       return { ...state, chatRooms: action.payload }
     },
 
-    currentRoom: (state, action) => {
+    setCurrentRoom: (state, action) => {
       return { ...state, currentRoom: action.payload }
-    },
-
-    setJoinRoomMsg: (state, action) => {
-      return { ...state, joinRoomMsg: action.payload }
     },
 
     setWelcomeMsg: (state, action) => {
       return { ...state, welcomeMsg: action.payload }
     },
 
-    getMessage: (state, action) => {},
+    setLeftRoom: (state, action) => {
+      const { user } = action.payload
 
-    getRooms: (state, action) => {},
+      const newFriends = state.friends.filter((f) => {
+        return f.id !== user.id
+      })
 
-    //TODO:抓到後端 MSG 再把 NEW MSG 塞到狀態裡
-    addMesssage: (state, action) => {
-      console.log('state.currentRoom', current(state.currentRoom))
       return {
         ...state,
-        currentRoom: state.currentRoom.msg.concat(action.payload),
-        newMessage: state.newMessage.concat(action.payload),
+        friends: newFriends,
+      }
+    },
+
+    setFriends: (state, action) => {
+      const concatFriends = state.friends.concat(action.payload)
+
+      const set = new Set()
+
+      const filterFriend = concatFriends.filter((item) =>
+        !set.has(item.account) ? set.add(item.account) : false
+      )
+
+      return {
+        ...state,
+        friends: filterFriend,
+      }
+    },
+
+    addMesssage: (state, action) => {
+      const concatMsg = state.newMessage.concat(action.payload)
+
+      const set = new Set()
+
+      const filterMsg = concatMsg.filter((m) =>
+        !set.has(m.id) ? set.add(m.id) : false
+      )
+
+      return {
+        ...state,
+        newMessage: filterMsg,
       }
     },
   },
 })
 
 export const {
-  sendMesssage,
   setSocket,
   addMesssage,
-  setJoinRoomMsg,
-  currentRoom,
+  setCurrentRoom,
   setWelcomeMsg,
+  setFriends,
+  setLeftRoom,
   fetchAllRooms,
 } = chatSilce.actions
 export default chatSilce.reducer

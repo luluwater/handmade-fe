@@ -23,6 +23,7 @@ import Swal from 'sweetalert2'
 
 import { useCreateCourseOrderMutation } from '../../../services/courseOrderApi'
 import { useCreateCourseOrderDetailMutation } from '../../../services/courseOrderDetailApi'
+import { useSendOrderDetailMutation } from '../../../services/googleApi'
 
 import { useGetUserQuery } from '../../../services/userApi'
 import { useDeleteUserCouponMutation } from '../../../services/couponApi'
@@ -62,6 +63,7 @@ const CourseCartInfo = () => {
   const [createCourseOrder] = useCreateCourseOrderMutation()
   const [createCourseOrderDetail] = useCreateCourseOrderDetailMutation()
   const [deleteUserCoupon] = useDeleteUserCouponMutation()
+  const [sendOrderToGmail] = useSendOrderDetailMutation()
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -128,6 +130,7 @@ const CourseCartInfo = () => {
       await createCourseOrder(CourseOrder)
       await createCourseOrderDetail(CourseOrder)
       await deleteUserCoupon({ userCouponId })
+      sendOrderToGmail(CourseOrder)
       await clearCourseItem()
       await getCourseTotal()
       navigate(`/course_checkout/${courseOrderId}`)

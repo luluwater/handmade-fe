@@ -103,7 +103,6 @@ const CommentItem = ({
       >
         <div className="mx-4  d-flex flex-column mb-4">
           <div className="d-flex justify-content-end gap-3">
-            {/* TODO: 修改再增加條件判斷拿 user 加上 seeion 的 user 來判斷 */}
             {user && (
               <Link
                 to="#"
