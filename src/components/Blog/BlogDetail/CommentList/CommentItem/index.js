@@ -57,12 +57,10 @@ const CommentItem = ({
     }
   }
 
-  //改變編輯與閱讀狀態
   const handleChangModal = () => {
     setIsEditing((pre) => !pre)
   }
 
-  //改變編輯與閱讀狀態
   const handleChange = (e) => {
     setContentInput(e.target.value)
   }

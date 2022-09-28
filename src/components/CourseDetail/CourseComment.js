@@ -1,4 +1,4 @@
-import { React } from 'react'
+import { React, useRef, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import './CourseDetail.scss'
 
@@ -32,6 +32,14 @@ function star2Amount(num2) {
 const CourseComment = () => {
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
+
+  const handleChange = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
+
   return (
     <>
       <Row className="my-10 d-flex justify-content-center C_border">
@@ -39,7 +47,12 @@ const CourseComment = () => {
           <h4 className="detail_comment_title fw-bold">顧客回饋</h4>
         </Col>
         <Col className="col-10 ">
-          <ShowMore maxHeight={375} className="showmore" defaultAnchor={true}>
+          <ShowMore
+            onChange={handleChange}
+            maxHeight={400}
+            className="showmore"
+            defaultAnchor={true}
+          >
             {data?.map((item) => {
               return (
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
