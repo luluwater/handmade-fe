@@ -107,6 +107,13 @@
   }
   &_emptyCart{
     border: 1px solid $gray-darker;
+    transition: .4s;
+    &:hover{
+      transform:scale(1.1);
+      color: $primary !important;
+      border: 1px solid $primary !important;
+
+    }
   }
   &_courseRightSide{
     background: $skin-bright;
@@ -267,8 +274,10 @@
     position: absolute;
     top: 30.8rem;
     letter-spacing: .5rem;
+    transition: .4s;
     &:hover{
-      color: $white;
+      color: $white !important;
+      transform: scale(1.05);
     }
     @media screen and (max-width:576px){
       width: 90%;
