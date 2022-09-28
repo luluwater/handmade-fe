@@ -18,7 +18,7 @@
 
 <hr>
 
-### [功能大綱](#main-features)
+### 功能大綱
 
 - 一般登入及 google 登入
 - 會員系統
@@ -31,7 +31,7 @@
 - 響應式設計
 
 
-### [使用技術](#useage-technique)
+### 使用技術
 - [React ( hook )](https://zh-hant.reactjs.org/docs/hooks-intro.html)
 - [React Router](https://reactrouter.com/en/main)：SPA 巢狀路由配置
 - [sass](https://sass-lang.com/)：自定義 Bootstrap 變數
@@ -40,7 +40,7 @@
 - [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview): query 並緩存資料
 <!-- - [Cloud Services\*not yet](#cloud-services-1) -->
 
-### [第三方套件 & API](#third-party-library)
+### 第三方套件 & API
 
 
 - [leaflet](https://leafletjs.com/): 將捷運與附近商家整合
@@ -54,7 +54,7 @@
 - [Gmail Api](https://developers.google.com/gmail/api): 送出驗證信以及訂單成立通知
 - [TapPay 金流](https://www.tappaysdk.com/zh/): 多元支付
 
-### [版本控制](#version-control)
+### 版本控制
 
 - Git / Github
 
