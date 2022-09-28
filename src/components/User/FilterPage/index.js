@@ -98,7 +98,7 @@ export const FilterPage = ({ account, avatar }) => {
               <FontAwesomeIcon icon="fa-solid fa-book" />
               <div className="user_navbar_mobile_text">部落格</div>
             </Link>
-            <Link to="/chat" className="user_navbar_item">
+            <Link to="chat" className="user_navbar_item">
               <FontAwesomeIcon icon="fa-solid fa-comments" />
               <div className="user_navbar_mobile_text">聊天室</div>
             </Link>

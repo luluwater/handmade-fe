@@ -20,7 +20,6 @@ const ProductsDetails = () => {
   const [showOrder, setShowOrder] = useState([])
   const [showHover, setHover] = useState(null)
   const [rating, setRating] = useState(null)
-  // console.log('showHover', showHover)
   const [update] = useCreateProductCommentMutation()
 
   const handleClick = (user_id, product_id) => {
@@ -52,6 +51,13 @@ const ProductsDetails = () => {
       })
     },
   })
+
+  function deleteCard(values) {
+    setRating(null)
+    setHover(null)
+    comment.values.text = ''
+    setShowUserComment(false)
+  }
 
   const handleClosed = async () => {
     try {
@@ -163,7 +169,7 @@ const ProductsDetails = () => {
               <div className="d-flex justify-content-center align-items-center">
                 <Button
                   type="button"
-                  onClick={() => setShowUserComment(false)}
+                  onClick={deleteCard}
                   className="fw-bold user_password_btn mt-5 me-5"
                 >
                   取消

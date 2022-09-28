@@ -2,7 +2,13 @@ import React from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const BlogDropdown = ({ item, handleDeleteBlog, localUser, isLogin }) => {
+const BlogDropdown = ({
+  isAuthor,
+  item,
+  handleDeleteBlog,
+  localUser,
+  isLogin,
+}) => {
   return (
     <>
       <Dropdown className="me-md-6 ">
@@ -24,7 +30,7 @@ const BlogDropdown = ({ item, handleDeleteBlog, localUser, isLogin }) => {
             <FontAwesomeIcon icon="fa-solid fa-plus" />
           </Dropdown.Item>
 
-          {isLogin || localUser ? (
+          {isAuthor ? (
             <>
               <Dropdown.Item
                 className="d-flex gap-3 align-items-center justify-content-center"

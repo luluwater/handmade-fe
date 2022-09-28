@@ -1,11 +1,8 @@
-import { React } from 'react'
+import { React, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import './ProductDetail.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ShowMore from 'react-show-more-button'
-// import ShowMore from 'react-show-more-button/dist/module';
-
 
 import { useGetProductCommentQuery } from '../../services/productApi'
 import { useParams } from 'react-router-dom'
@@ -35,54 +32,125 @@ function star2Amount(num2) {
 const ProductComment = () => {
   const { productId } = useParams()
   const { data } = useGetProductCommentQuery(productId)
+  const [showMoreCheck, setShowMoreCheck] = useState(false)
+
+  const handleBtn = () => {
+    if (window.innerWidth <= 576) {
+      window.scrollTo({ top: 1000 })
+    }
+    if (window.innerWidth >= 577) {
+      window.scrollTo({ top: 600 })
+    }
+    setShowMoreCheck(!showMoreCheck)
+  }
+
   return (
     <>
       <Row className="my-10 d-flex justify-content-center">
         <Col className="col-lg-2 col-sm-12">
           <h4 className="detail_comment_title fw-bold">顧客回饋</h4>
         </Col>
-        <Col className="col-10 ">
-          <ShowMore maxHeight={375} defaultAnchor={true} className="showmore">
-            {data?.map((item) => {
+        <Col className="col-10">
+          <div className="showmore">
+            {data?.map((item, index) => {
               return (
-                <div className="detail_comment pb-5 mb-8" key={item.id}>
-                  <Row className="d-flex align-items-baseline">
-                    <Col className="col-1 detail_comment_photo">
-                      <img src={item.avatar} alt="" />
-                    </Col>
-                    <Col className="col-1 p-0">
-                      <p className=" detail_comment_name">{item.user_name}</p>
-                    </Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col className="col-2 detail_comment_score">
-                      {starAmount(item.score)}
-                      {star2Amount(5 - item.score)}
-                    </Col>
-                    <Col className="detail_comment_date p-0">
-                      {moment(item.pubilsh_time).format('YYYY-MM-DD')}
-                    </Col>
-                  </Row>
-                  <p
-                    className="detail_comment_content"
-                    style={{ whiteSpace: 'pre-wrap' }}
-                  >
-                    {item.content}
-                  </p>
-                  {item.img_name.length > 0 ? (
-                    <img
-                      className="detail_comment_img"
-                      src={require(`../../assets/product_comment_img/` +
-                        item.img_name[0])}
-                      alt=""
-                    />
+                <div key={item.id}>
+                  {index === 0 ? (
+                    <div className="detail_comment pb-5 mb-8 mainContent">
+                      <Row className="d-flex align-items-baseline">
+                        <Col className="col-1 detail_comment_photo">
+                          <img
+                            className="comment_avatar"
+                            src={item.avatar}
+                            alt=""
+                          />
+                        </Col>
+                        <Col className="col-1 p-0">
+                          <p className=" detail_comment_name">
+                            {item.user_name}
+                          </p>
+                        </Col>
+                      </Row>
+                      <Row className="mb-3">
+                        <Col className="col-2 detail_comment_score">
+                          {starAmount(item.score)}
+                          {star2Amount(5 - item.score)}
+                        </Col>
+                        <Col className="detail_comment_date p-0">
+                          {moment(item.pubilsh_time).format('YYYY-MM-DD')}
+                        </Col>
+                      </Row>
+                      <p
+                        className="detail_comment_content"
+                        style={{ whiteSpace: 'pre-wrap' }}
+                      >
+                        {item.content}
+                      </p>
+                      {item.img_name.length > 0 ? (
+                        <img
+                          className="detail_comment_img"
+                          src={require(`../../assets/product_comment_img/` +
+                            item.img_name[0])}
+                          alt=""
+                        />
+                      ) : (
+                        ''
+                      )}
+                      <button onClick={handleBtn}>
+                        {showMoreCheck ? 'Show Less' : 'Show More'}
+                      </button>
+                    </div>
                   ) : (
-                    ''
+                    <div
+                      className={`detail_comment pb-5 mb-8 elseContent ${
+                        showMoreCheck ? 'showMoreActive' : ''
+                      }`}
+                    >
+                      <Row className="d-flex align-items-baseline">
+                        <Col className="col-1 detail_comment_photo">
+                          <img
+                            className="comment_avatar"
+                            src={item.avatar}
+                            alt=""
+                          />
+                        </Col>
+                        <Col className="col-1 p-0">
+                          <p className=" detail_comment_name">
+                            {item.user_name}
+                          </p>
+                        </Col>
+                      </Row>
+                      <Row className="mb-3">
+                        <Col className="col-2 detail_comment_score">
+                          {starAmount(item.score)}
+                          {star2Amount(5 - item.score)}
+                        </Col>
+                        <Col className="detail_comment_date p-0">
+                          {moment(item.pubilsh_time).format('YYYY-MM-DD')}
+                        </Col>
+                      </Row>
+                      <p
+                        className="detail_comment_content"
+                        style={{ whiteSpace: 'pre-wrap' }}
+                      >
+                        {item.content}
+                      </p>
+                      {item.img_name.length > 0 ? (
+                        <img
+                          className="detail_comment_img"
+                          src={require(`../../assets/product_comment_img/` +
+                            item.img_name[0])}
+                          alt=""
+                        />
+                      ) : (
+                        ''
+                      )}
+                    </div>
                   )}
                 </div>
               )
             })}
-          </ShowMore>
+          </div>
         </Col>
       </Row>
     </>
