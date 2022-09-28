@@ -45,7 +45,7 @@
 
 - [leaflet](https://leafletjs.com/): 將捷運與附近商家整合
 - [socket.io](https://socket.io/): 即時聊天室
-- [CKeditor](https://ckeditor.com/ckeditor-5/): 部落格新增與修改功能 
+- [CKEditor](https://ckeditor.com/ckeditor-5/): 部落格新增與修改功能 
 - [sweetalert2](https://sweetalert2.github.io/#input-types): 客製化 pop 訊息 
 - [formik & yup ](https://formik.org/docs/guides/validation): 表單驗證 
 - [swiperjs](https://swiperjs.com/demos): 輪播動畫
