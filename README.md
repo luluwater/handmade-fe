@@ -1,8 +1,9 @@
-<p align="center">
-  <img width="350" src="https://github.com/angushyx/handmade/blob/main/HANDMADE_LOGO.png?raw=true">
-</p>
+<h1 align="center">HANDMADE</h1>
+
 
 <h4 align="center">
+  <img width="350" src="https://github.com/angushyx/handmade/blob/main/HANDMADE_LOGO.png?raw=true">
+
  HANDMADE 是使用 React 框架的單頁應用（SPA）網站，整合了大台北地區手作課程的店家資訊
 </h4>
   <br>
@@ -55,8 +56,6 @@
 ### [版本控制](#version-control)
 
 - Git / Github
- <br> 
-
 
 ### 資料夾結構
 <!-- [](#folder-structure) -->
