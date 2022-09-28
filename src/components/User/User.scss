@@ -37,6 +37,31 @@
   }
 }
 
+.star {
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  &_noSelect {
+    color: $skin-bright;
+    @media screen and (max-width: 576px){
+      color: $skin-brighter;
+    }
+ }
+  &_main {
+    color: $primary;
+ }
+  &_fa-star {
+    cursor: pointer;
+    transition: color 300ms;
+    font-size: 25px;
+ }
+}
+.star[type='radio'] {
+  display: none;
+}
+
+
 .user_avatar {
   width: 150px;
   height: 577px;
@@ -55,7 +80,7 @@
   }
   &_btn {
     width: 100px;
-    height: 40px;
+    height: 30px;
     color: $skin-brighter;
     border: none;
     letter-spacing: 3px;

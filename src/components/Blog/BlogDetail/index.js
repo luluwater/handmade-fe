@@ -16,22 +16,22 @@ import {
 import { useCreateCommentMutation } from '../../../services/commentAPI'
 import { Toast } from '../../UI/SwalStyle'
 import { useSelector } from 'react-redux'
+import { useGetUserQuery } from '../../../services/userApi'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
+  const navigate = useNavigate()
+  const [chosenEmoji, setChosenEmoji] = useState(null)
+  const sliceAuth = useSelector((state) => state.authReducers)
+  const userData = JSON.parse(localStorage.getItem('user'))?.user
   const { data } = useGetBlogQuery(blogId)
+  const { data: currentUser } = useGetUserQuery(userData?.id)
+  const { data: publishUser } = useGetUserQuery(data?.blog[0].user_id)
+
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
   const [deleteBlog] = useDeleteBlogMutation()
   const [showPicker, setShowPicker] = useState(false)
-
-  const navigate = useNavigate()
-
-  const [chosenEmoji, setChosenEmoji] = useState(null)
-
-  const sliceAuth = useSelector((state) => state.authReducers)
-
-  const userData = JSON.parse(localStorage.getItem('user'))?.user
 
   const comment = {
     id: uuidv4(),
@@ -39,6 +39,7 @@ const BlogDetail = () => {
     user_id: userData?.id || sliceAuth?.user.id,
     comment_date: moment().format('YYYY-MM-DD h:mm:ss'),
     content: inputValue,
+    user: currentUser,
   }
 
   /**
@@ -108,6 +109,8 @@ const BlogDetail = () => {
     setShowPicker((pre) => !pre)
   }
 
+  const isAuthor = userData?.id === publishUser?.[0]?.id
+
   return (
     <>
       <div className="position-relative">
@@ -136,6 +139,7 @@ const BlogDetail = () => {
                 </ul>
 
                 <BlogDropdown
+                  isAuthor={isAuthor}
                   localUser={userData}
                   isLogin={sliceAuth.isLogin}
                   item={item}
@@ -145,16 +149,27 @@ const BlogDetail = () => {
 
               <div className="container mb-6 mb-lg-8">
                 <div className="text-center ">
-                  {item.tags.map((item) => {
-                    return (
-                      <Badge
-                        className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4 mx-2"
-                        bg="white"
-                      >
-                        {item.tag_name}
-                      </Badge>
-                    )
-                  })}
+                  <div className="d-flex gap-3 align-items-center justify-content-center mb-4 ">
+                    <img
+                      className="avatar rounded-circle"
+                      src={publishUser?.[0]?.avatar}
+                      alt="publish user"
+                    />
+                    <p className="m-0"> {publishUser?.[0]?.account}</p>
+                  </div>
+                  <div>
+                    {item.tags.map((item) => {
+                      return (
+                        <Badge
+                          key={item.id}
+                          className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4 mx-2"
+                          bg="white"
+                        >
+                          {item.tag_name}
+                        </Badge>
+                      )
+                    })}
+                  </div>
 
                   <h1 className="fw-bold fs-3 mb-6 text-gray-darker">
                     {item.title}
@@ -165,8 +180,7 @@ const BlogDetail = () => {
                       {moment(item.blog_create_time).format('YYYY.MM.DD')}
                     </span>
                   </h5>
-
-                  <article className="text-center">
+                  <article className="text-center blog_article">
                     {parse(item.content)}
                   </article>
                 </div>

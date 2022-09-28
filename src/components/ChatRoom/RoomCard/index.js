@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useSelector, useDispatch } from 'react-redux'
+import { useGetUserQuery } from '../../../services/userApi'
 
 function RoomCard({ roomName, endpoint, roomImg }) {
   const dispatch = useDispatch()
@@ -10,9 +11,10 @@ function RoomCard({ roomName, endpoint, roomImg }) {
 
   const sliceAuth = useSelector((state) => state.authReducers)
   const userData = JSON.parse(localStorage.getItem('user'))?.user
+  const { data: user } = useGetUserQuery(userData.id)
 
   const handleJoinRoom = async () => {
-    await socket.emit('roomMsg', { user: userData, roomName })
+    await socket.emit('roomMsg', { user: user[0], roomName })
     await navigate(`/chat${endpoint}`)
   }
 

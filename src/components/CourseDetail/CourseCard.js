@@ -57,14 +57,8 @@ function CourseCard() {
 
       <Container className="course_detail_card mb-12 w-100 d-flex">
         {card.map((v, i) => {
-          console.log('CARD', v)
           return (
-            <Col
-              lg={3}
-              sm={6}
-              className="course_detail_card_m px-3"
-              key={v.courseId}
-            >
+            <Col lg={3} sm={6} className="course_detail_card_m px-3" key={v.id}>
               {/* ========== 商品照片 ========== */}
               <a href={`/course/detail/${v.id}`}>
                 <Swiper

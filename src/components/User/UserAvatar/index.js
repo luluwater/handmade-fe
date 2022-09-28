@@ -61,17 +61,8 @@ export const UserAvatar = ({ setShowUserAvatar }) => {
             </div>
           )
         })}
-        <div className="m-3 text-center">
-          <Button
-            onClick={() => setShowUserAvatar(false)}
-            className="user_avatar_btn fw-bold"
-            type="submit"
-          >
-            確定
-          </Button>
-        </div>
         <form onSubmit={handleSubmit}>
-          <div className="m-3 text-center">
+          <div className="m-2 text-center">
             <label className="user_avatar_btn" htmlFor="file">
               <p className="h-100 d-flex align-items-center justify-content-center">
                 上傳照片
@@ -85,7 +76,16 @@ export const UserAvatar = ({ setShowUserAvatar }) => {
               />
             </label>
           </div>
-          <button>上傳</button>
+          <button className="ms-4 user_avatar_btn">確定上傳</button>
+          <div className="m-3 text-center">
+            <button
+              onClick={() => setShowUserAvatar(false)}
+              className="user_avatar_btn fw-bold"
+              type="submit"
+            >
+              確定
+            </button>
+          </div>
         </form>
       </div>
     </>

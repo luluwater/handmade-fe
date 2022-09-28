@@ -7,12 +7,15 @@ import RoomBody from '../RoomBody'
 import { useSelector, useDispatch } from 'react-redux'
 import ChatToast from '../../UI/ChatToast'
 import useSocket from '../../../hooks/socketConnect'
+import { useGetUserQuery } from '../../../services/userApi'
 
 const Chat = () => {
   const dispatch = useDispatch()
 
   const sliceAuth = useSelector((state) => state.authReducers)
   const userData = JSON.parse(localStorage.getItem('user'))?.user
+
+  const { data: user } = useGetUserQuery(userData.id)
   useSocket(userData || sliceAuth?.user, dispatch)
   const chatReducer = useSelector((state) => state.chatReducer)
   const welcomeMsg = chatReducer.welcomeMsg
@@ -28,8 +31,8 @@ const Chat = () => {
               <img
                 className="chat_avatar rounded-circle"
                 src={
-                  userData.avatar
-                    ? userData.avatar
+                  user[0].avatar
+                    ? user[0].avatar
                     : require('../../../assets/user/profile_2.png')
                 }
                 alt="user avatar"
@@ -38,15 +41,14 @@ const Chat = () => {
               <span>{userData.account}</span>
             </div>
             <div className="p-1 m-3">
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center border-bottom  mb-md-4 pb-md-4 pb-2 ">
                 <h5 className="text-gray-darker m-0">線上成員</h5>
                 <div className="chat_amount fs-6 fw-bold ms-2 p-1 bg-dark rounded-circle text-white d-flex justify-content-center align-items-center">
                   {friendList.length}
                 </div>
               </div>
-              <hr />
 
-              <ListGroup className="d-flex gap-3 rounded-0">
+              <ListGroup className="rounded-0 d-none d-md-flex gap-md-3 ">
                 {friendList?.map((friend) => {
                   return (
                     <ListGroup.Item
@@ -70,10 +72,7 @@ const Chat = () => {
               </ListGroup>
             </div>
           </Col>
-          <Col
-            className="chat_wrapper bg-skin-bright position-absolute position-md-relative py-3"
-            lg={9}
-          >
+          <Col className="chat_wrapper bg-skin-bright py-3" lg={9}>
             <RoomBody />
           </Col>
         </Row>

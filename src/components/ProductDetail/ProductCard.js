@@ -58,7 +58,6 @@ function ProductCard() {
 
       <Container className="product_detail_card mb-12 w-100 d-flex">
         {card.map((v, i) => {
-          console.log('card', v)
           return (
             <Col
               md={3}
@@ -79,7 +78,6 @@ function ProductCard() {
                 >
                   {getImgsRouter(v.img_name, v.category_en_name, v.id)?.map(
                     (v2, i2) => {
-                      console.log('getImgsRouter', v2)
                       return (
                         <SwiperSlide key={i2}>
                           <img

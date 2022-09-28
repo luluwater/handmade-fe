@@ -228,15 +228,19 @@
 .showmore{
     background: transparent !important;
 }
+.showmore div:last-child{
+    opacity: 1 !important;
+    z-index: 99 !important;
+}
 .showmore button{
-    width: 200px;
-    height: 50px;
+    width: 200px !important;
+    height: 50px !important;
     color: $gray-darker !important;
     background: $skin-bright !important;
-    border: none;
-    transition: .5s;
-    position: relative;
-    right: 110px;
+    border: none !important;
+    transition: .5s !important;
+    position: relative !important;
+    right: 10px !important;
 }
 
 .ShowMore_ButtonDiv__uCJeR{    
