@@ -6,7 +6,7 @@
 
  HANDMADE 是使用 React 框架的單頁應用（SPA）網站，整合了大台北地區手作課程的店家資訊
 </h4>
-  <br>
+ <br>
 
 
 <!-- #### 🔗Website URL: <a href="https://nextmeal.herokuapp.com/#/"><strong>handmade</strong></a>
@@ -35,7 +35,7 @@
 - [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview)
 - [sass](https://sass-lang.com/)
 - [Bootstrap](https://react-bootstrap.github.io/)
-- [Cloud Services\*not yet](#cloud-services-1)
+<!-- - [Cloud Services\*not yet](#cloud-services-1) -->
 
 
 
