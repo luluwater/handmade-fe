@@ -9,11 +9,14 @@
  <br>
 
 
-<!-- #### 🔗Website URL: <a href="https://nextmeal.herokuapp.com/#/"><strong>handmade</strong></a>
+#### 🔗Website URL: <a href="https://nextmeal.herokuapp.com/#/"><strong>handmade</strong></a>
 
-#### Test account and password: test@test.com/testtest -->
+#### Test account and password: test@test.com/testtest 
 
-## Table of Contents
+
+#### 後端專案請參訪： https://github.com/angushyx/handmade-b
+
+<hr>
 
 ### [功能大綱](#main-features)
 
@@ -30,16 +33,14 @@
 
 ### [使用技術](#useage-technique)
 - [React ( hook )](https://zh-hant.reactjs.org/docs/hooks-intro.html)
-- [React Router](https://reactrouter.com/en/main)
-- [Redux (redux-toolkit)](https://redux-toolkit.js.org/)
-- [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview)
-- [sass](https://sass-lang.com/)
-- [Bootstrap](https://react-bootstrap.github.io/)
+- [React Router](https://reactrouter.com/en/main)：SPA 巢狀路由配置
+- [sass](https://sass-lang.com/)：自定義客製化 Bootstrap 變數
+- [Bootstrap](https://react-bootstrap.github.io/): 切版及 UI 元件
+- [Redux (redux-toolkit)](https://redux-toolkit.js.org/): 全域狀態管理
+- [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview): 取得後端資料並緩存於 store 內
 <!-- - [Cloud Services\*not yet](#cloud-services-1) -->
 
-
-
-### [第三方套件 & API](#third-party-library-1)
+### [第三方套件 & API](#third-party-library)
 
 
 - [leaflet](https://leafletjs.com/): 將捷運與附近商家整合
@@ -72,6 +73,20 @@
 | styles/     | .css, .sass 檔             |
 | utils/      | config 檔案                |
 
+<!-- 
+### 網站部署
+
+採用 AWS 服務部署網站
+
+| Item      | Service       |
+|-----------|---------------|
+| DNS       | AWS Route53   |
+| CDN       | AWS CloudFront|
+| Frontend  | AWS S3        |
+| ELB       | AWS EC2       |
+| Backend   | AWS EC2       |
+| DB        | AWS RDS       |
+ -->
 
 ## 貢獻
 iSpan 資展國際 MFEE27 小組成員
@@ -83,3 +98,6 @@ iSpan 資展國際 MFEE27 小組成員
 | 美術  |  |    |
 | 美術  |  |    |
 | 技術  |  |    |
+
+
+
