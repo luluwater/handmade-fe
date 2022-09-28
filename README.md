@@ -34,7 +34,7 @@
 ### [使用技術](#useage-technique)
 - [React ( hook )](https://zh-hant.reactjs.org/docs/hooks-intro.html)
 - [React Router](https://reactrouter.com/en/main)：SPA 巢狀路由配置
-- [sass](https://sass-lang.com/)：自定義客製化 Bootstrap 變數
+- [sass](https://sass-lang.com/)：自定義 Bootstrap 變數
 - [Bootstrap](https://react-bootstrap.github.io/): 切版及 UI 元件
 - [Redux (redux-toolkit)](https://redux-toolkit.js.org/): 全域狀態管理
 - [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview): 取得後端資料並緩存於 store 內
