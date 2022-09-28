@@ -34,6 +34,16 @@ const ProductComment = () => {
   const { data } = useGetProductCommentQuery(productId)
   const [showMoreCheck, setShowMoreCheck] = useState(false)
 
+  const handleBtn = () => {
+    if (window.innerWidth <= 576) {
+      window.scrollTo({ top: 1000 })
+    }
+    if (window.innerWidth >= 577) {
+      window.scrollTo({ top: 600 })
+    }
+    setShowMoreCheck(!showMoreCheck)
+  }
+
   return (
     <>
       <Row className="my-10 d-flex justify-content-center">
@@ -86,7 +96,7 @@ const ProductComment = () => {
                       ) : (
                         ''
                       )}
-                      <button onClick={() => setShowMoreCheck(!showMoreCheck)}>
+                      <button onClick={handleBtn}>
                         {showMoreCheck ? 'Show Less' : 'Show More'}
                       </button>
                     </div>

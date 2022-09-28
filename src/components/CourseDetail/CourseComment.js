@@ -1,4 +1,4 @@
-import { React, useState, useRef } from 'react'
+import { React, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import './CourseDetail.scss'
 
@@ -35,7 +35,7 @@ const CourseComment = () => {
 
   const handleBtn = () => {
     if (window.innerWidth <= 576) {
-      window.scrollTo({ top: 2000 })
+      window.scrollTo({ top: 2100 })
     }
     if (window.innerWidth >= 577) {
       window.scrollTo({ top: 1100 })
