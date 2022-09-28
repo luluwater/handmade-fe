@@ -1,19 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-/**
- * 1. 目前線上的人數
- * 2. 目前使用者是誰
- * 3. 目前使用者的房間
- * 4. 傳送的聊天內容
- */
-
-//  {
-//   id: '',
-//   content: '',
-//   user_id: '',
-//   created_at: '',
-//   room_id: '',
-//   isCurrentUser: true,
-// },
 
 const userData = JSON.parse(localStorage.getItem('user'))?.user
 

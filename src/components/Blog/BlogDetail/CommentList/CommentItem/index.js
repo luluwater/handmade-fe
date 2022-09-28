@@ -20,14 +20,14 @@ const CommentItem = ({
   commentTime,
   filterReply,
   isEdited,
+  userAvatar,
+  user_id,
 }) => {
   const [deleteComment] = useDeleteCommentMutation()
   const [updateComment] = useUpdateCommentMutation()
 
   const localUser = JSON.parse(localStorage.getItem('user'))?.user
-
-  const isCurrentUser = user === localUser.account
-  const hasAvatar = localUser.avatar !== null
+  const isCurrentUser = user_id === localUser.id
 
   const [isEditing, setIsEditing] = useState(false)
   const [contentInput, setContentInput] = useState(content)
@@ -57,12 +57,10 @@ const CommentItem = ({
     }
   }
 
-  //改變編輯與閱讀狀態
   const handleChangModal = () => {
     setIsEditing((pre) => !pre)
   }
 
-  //改變編輯與閱讀狀態
   const handleChange = (e) => {
     setContentInput(e.target.value)
   }
@@ -103,35 +101,37 @@ const CommentItem = ({
       >
         <div className="mx-4  d-flex flex-column mb-4">
           <div className="d-flex justify-content-end gap-3">
-            {user && (
-              <Link
-                to="#"
-                onClick={handleChangModal}
-                className="p-1 blog_comment_link text-secondary"
-              >
-                修改
-                <FontAwesomeIcon icon="fas fa-edit " className=" ms-1" />
-              </Link>
+            {isCurrentUser && (
+              <>
+                <Link
+                  to="#"
+                  onClick={handleChangModal}
+                  className="p-1 blog_comment_link text-secondary"
+                >
+                  修改
+                  <FontAwesomeIcon icon="fas fa-edit " className=" ms-1" />
+                </Link>
+
+                <Link
+                  to="#"
+                  onClick={handleDelete}
+                  className="p-1 blog_comment_link text-primary"
+                >
+                  刪除
+                  <FontAwesomeIcon icon="fas fa-times" className=" ms-1" />
+                </Link>
+              </>
             )}
-            <Link
-              to="#"
-              onClick={handleDelete}
-              className="p-1 blog_comment_link text-primary"
-            >
-              刪除
-              <FontAwesomeIcon icon="fas fa-times" className=" ms-1" />
-            </Link>
           </div>
-          <div className="bg-skin-bright p-3 ">
+
+          <div
+            className={`${isCurrentUser ? 'bg-white' : 'bg-skin-bright'} p-3`}
+          >
             <div className="d-flex align-items-center gap-4  mb-3 justify-content-between">
               <div className="d-flex flex-column flex-md-row align-items-center gap-3">
                 <img
                   className="user_image rounded-circle"
-                  src={`${
-                    isCurrentUser && hasAvatar
-                      ? localUser.avatar
-                      : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
-                  }`}
+                  src={userAvatar}
                   alt="user avatar"
                 />
                 <span>{user}</span>
@@ -177,6 +177,7 @@ const CommentItem = ({
                     .calendar()}
                   account={item.account}
                   reply={item.reply_content}
+                  user_id={item.user_id}
                 />
               )
             })}

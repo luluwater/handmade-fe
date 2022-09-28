@@ -551,7 +551,7 @@ const Cart = () => {
                     <div className="d-flex justify-content-between align-items-center">
                       <p className="fs-4 Cart_CourseTitle">商品購物車</p>
                       <button
-                        className="btn Cart_emptyCart me-2"
+                        className="btn Cart_emptyCart me-3"
                         onClick={clearProductCart}
                       >
                         清空購物車

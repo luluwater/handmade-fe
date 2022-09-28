@@ -195,7 +195,7 @@
     &_textArea{
         margin-left: 8rem;
         width: 60%;
-        height: 200px;
+        height: 100px;
         @media screen and (max-width:576px){
             margin-left: 0;
             width: 100%;
@@ -210,11 +210,12 @@
     }
     &_BTN{
         
-        color: $white;
+        color: $white;  
+        border: none;
         width: 25%;
         height:4rem;
         letter-spacing: .5rem;
-        margin-left: calc(8rem + 35%); 
+        margin-left: calc(15rem + 35%); 
         &:hover{
             color: $white;
         }

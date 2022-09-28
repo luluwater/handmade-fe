@@ -99,3 +99,9 @@
 .blog_dropdown_delete {
   color: $primary;
 }
+
+.blog_article {
+  > * img {
+    max-width: 32rem !important;
+  }
+}

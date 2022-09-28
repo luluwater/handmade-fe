@@ -188,6 +188,12 @@
     color: $gray-darker;
     letter-spacing: 3px;
 }
+.comment_avatar{
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 .detail_comment{
     font-size: 14px;
     color: $gray-darker;
@@ -227,7 +233,16 @@
 
 .showmore{
     background: transparent !important;
+    position: relative;
 }
+
+.elseContent{
+    display: none;
+}
+.showMoreActive{
+    display: block;
+}
+
 .showmore div:last-child{
     opacity: 1 !important;
     z-index: 99 !important;
@@ -240,7 +255,7 @@
     border: none !important;
     transition: .5s !important;
     position: relative !important;
-    right: 10px !important;
+    right: 110px !important;
 }
 
 .ShowMore_ButtonDiv__uCJeR{    
@@ -253,6 +268,7 @@
 }
 
 @media screen and (max-width: 576px) {
+   
     .detail_stockWarning{
         margin: -20px 0 10px 45px;
     }
@@ -267,16 +283,6 @@
     .detail_top{
         margin-top: 20px;
         display: none;
-    }
-    .showmore button{
-        width: 200px;
-        height: 50px;
-        color: $gray-darker !important;
-        background: $skin-bright !important;
-        border: none;
-        transition: .5s;
-        position: relative;
-        left: 0px;
     }
     .detail_score{
         width: 120px;
