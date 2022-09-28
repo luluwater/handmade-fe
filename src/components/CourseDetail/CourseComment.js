@@ -3,11 +3,10 @@ import { Row, Col } from 'react-bootstrap'
 import './CourseDetail.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ShowMore from 'react-show-more-button/dist/module'
+import ShowMore from 'react-show-more-button'
 
 import { useGetCourseCommentQuery } from '../../services/courseApi'
 import { useParams } from 'react-router-dom'
-
 import moment from 'moment'
 
 function starAmount(num) {
