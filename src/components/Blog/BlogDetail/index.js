@@ -26,7 +26,7 @@ const BlogDetail = () => {
   const userData = JSON.parse(localStorage.getItem('user'))?.user
   const { data } = useGetBlogQuery(blogId)
   const { data: currentUser } = useGetUserQuery(userData?.id)
-  const { data: publishUser } = useGetUserQuery(data?.blog[0].user_id)
+  const { data: publishUser } = useGetUserQuery(data?.blog[0]?.user_id)
 
   const [inputValue, setInputValue] = useState('')
   const [createComment] = useCreateCommentMutation()
@@ -158,7 +158,7 @@ const BlogDetail = () => {
                     <p className="m-0"> {publishUser?.[0]?.account}</p>
                   </div>
                   <div>
-                    {item.tags.map((item) => {
+                    {item.tags?.map((item) => {
                       return (
                         <Badge
                           key={item.id}

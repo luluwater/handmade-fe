@@ -51,6 +51,7 @@ const Reply = ({ id, account, createTime, user_id, reply, avatar }) => {
               }`}
               alt="user avatar"
             />
+
             <span>{account}</span>
           </div>
           <div className="d-flex gap-3">

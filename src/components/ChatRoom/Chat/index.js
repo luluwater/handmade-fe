@@ -31,8 +31,8 @@ const Chat = () => {
               <img
                 className="chat_avatar rounded-circle"
                 src={
-                  user[0].avatar
-                    ? user[0].avatar
+                  user?.[0].avatar
+                    ? user?.[0].avatar
                     : require('../../../assets/user/profile_2.png')
                 }
                 alt="user avatar"
