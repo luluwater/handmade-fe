@@ -19,6 +19,7 @@ import {
   getActuallyPrice,
   getDiscount,
 } from '../../../slices/productCart-slice'
+import { cartClose } from '../../../slices/cart-ui-slice'
 
 import Swal from 'sweetalert2'
 
@@ -217,7 +218,7 @@ const ProductCartInfo = () => {
 
     try {
       setTimeout(async () => {
-        await createProductOrder(ProductOrder)
+        await createProductOrder(resultWithPrime)
         await createProductOrderDetail(ProductOrder)
         await deleteUserCoupon({ userCouponId })
         await clearProductItems()
@@ -344,6 +345,11 @@ const ProductCartInfo = () => {
   function setNumberFormGroupToNormal(v) {
     v.current.classList.remove('has-error')
     v.current.classList.remove('has-success')
+  }
+
+  const logoHandler = () => {
+    navigate('/')
+    dispatch(cartClose(false))
   }
 
   // ===================TapPay===========================================
@@ -495,7 +501,7 @@ const ProductCartInfo = () => {
                   className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
                   for="ProductCartCard"
                 ></label>
-                信用卡支付（綠界金流）
+                信用卡支付（TapPay）
               </label>
             </div>
           </>
@@ -512,9 +518,14 @@ const ProductCartInfo = () => {
         <Row>
           <Col xs={12} md={9} className="ProductInfo_leftSide">
             <header className="CourseCartInfo_logoBox">
-              <Link to="/">
-                <img src={Logo} alt="HANDMADE_LOGO" />
-              </Link>
+              <div>
+                <img
+                  src={Logo}
+                  alt="HANDMADE_LOGO"
+                  onClick={logoHandler}
+                  className="CartInfoLogo"
+                />
+              </div>
             </header>
             <Row>
               <Col xs={12} md={2} className="CourseCartInfo_previous_page">
@@ -531,10 +542,11 @@ const ProductCartInfo = () => {
                 </Button>
               </Col>
 
-              {isLoading && (
-                <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
-              )}
-
+              {payment === 2
+                ? isLoading && (
+                    <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
+                  )
+                : isLoading && <LoadingAnimation hintWord="訂單建立中" />}
 
               <Col xs={12} md={10} className="ProductCartInfo_inputBox">
                 <p className="fs-4 ProductCartInfo_inputTitle">訂購人資訊</p>

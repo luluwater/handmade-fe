@@ -18,6 +18,7 @@ import {
   getCourseActuallyPrice,
   getCourseDiscount,
 } from '../../../slices/courseCart-slice'
+import { cartClose } from '../../../slices/cart-ui-slice'
 
 import Swal from 'sweetalert2'
 
@@ -156,13 +157,14 @@ const CourseCartInfo = () => {
           customClass: 'cartInfoSwal',
           heightAuto: 'false',
         })
+        await setIsLoading((pre) => !pre)
         return
       }
 
       TPDirect.card.getPrime((result) => {
         if (result.status !== 0) {
           //get prime error
-          console.log('getPrime line163', result.msg)
+          // console.log('getPrime line163', result.msg)
           Swal.fire({
             title: '信用卡交易失敗',
             confirmButtonColor: '#e77656',
@@ -173,7 +175,7 @@ const CourseCartInfo = () => {
         }
         let prime = result.card.prime
         resultWithPrime = { ...CourseOrder, prime } //給TapPay這個資料!!
-        console.log('resultWithPrime1733333333333333333', resultWithPrime)
+        // console.log('resultWithPrime173', resultWithPrime)
         // alert('get prime 成功，prime: ' + result.card.prime)
       })
     } else {
@@ -199,6 +201,7 @@ const CourseCartInfo = () => {
         customClass: 'cartInfoSwal',
         heightAuto: 'false',
       })
+      navigate('/')
     }
   }
 
@@ -217,15 +220,15 @@ const CourseCartInfo = () => {
     )
     let fields = {
       number: {
-        element: '#number',
+        element: '#numberProduct',
         placeholder: '**** **** **** ****',
       },
       expirationDate: {
-        element: '#date',
+        element: '#dateProduct',
         placeholder: 'MM/YY',
       },
       ccv: {
-        element: '#ccv',
+        element: '#ccvProduct',
         placeholder: '3位數確認碼',
       },
     }
@@ -312,6 +315,11 @@ const CourseCartInfo = () => {
     v.current.classList.remove('has-success')
   }
 
+  const logoHandler = () => {
+    navigate('/')
+    dispatch(cartClose(false))
+  }
+
   // ===================TapPay===========================================
 
   return (
@@ -320,9 +328,14 @@ const CourseCartInfo = () => {
         <Row>
           <Col xs={12} md={9} className="CourseCartInfo_leftSide">
             <header className="CourseCartInfo_logoBox">
-              <Link to="/">
-                <img src={Logo} alt="HANDMADE_LOGO" />
-              </Link>
+              <div>
+                <img
+                  src={Logo}
+                  alt="HANDMADE_LOGO"
+                  onClick={logoHandler}
+                  className="CartInfoLogo"
+                />
+              </div>
             </header>
             <Row>
               <Col xs={12} md={2} className="CourseCartInfo_previous_page">
@@ -339,9 +352,11 @@ const CourseCartInfo = () => {
                 </Button>
               </Col>
 
-              {isLoading && (
-                <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
-              )}
+              {payment === 2
+                ? isLoading && (
+                    <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
+                  )
+                : isLoading && <LoadingAnimation hintWord="訂單建立中" />}
 
               <Col xs={12} md={10} className="CourseCartInfo_inputBox">
                 <p className="fs-4 CourseCartInfo_inputTitle">訂購人資訊</p>
@@ -481,7 +496,7 @@ const CourseCartInfo = () => {
                           </Form.Label>
                           {/* 可填4242 4242 4242 4242 */}
                           <div
-                            id="number"
+                            id="numberProduct"
                             ref={number}
                             className="tpfield"
                           ></div>
@@ -510,7 +525,11 @@ const CourseCartInfo = () => {
                           <Form.Label for="cardExpirationDate" className="me-3">
                             卡片到期日
                           </Form.Label>
-                          <div id="date" ref={date} className="tpfield"></div>
+                          <div
+                            id="dateProduct"
+                            ref={date}
+                            className="tpfield"
+                          ></div>
                         </Form.Group>
 
                         <Form.Group
@@ -520,7 +539,11 @@ const CourseCartInfo = () => {
                           <Form.Label for="cardCcv" className="me-4">
                             ccv確認碼
                           </Form.Label>
-                          <div id="ccv" ref={ccv} className="tpfield"></div>
+                          <div
+                            id="ccvProduct"
+                            ref={ccv}
+                            className="tpfield"
+                          ></div>
                           <img src={card} className="ms-3 ccvCard" alt="ccv" />
                         </Form.Group>
                       </Form>
