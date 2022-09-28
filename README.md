@@ -14,7 +14,7 @@
 #### Test account and password: test@test.com/testtest 
  -->
 
-> 後端專案請參訪： https://github.com/angushyx/handmade-b
+
 
 <hr>
 
@@ -87,6 +87,9 @@
 | Backend   | AWS EC2       |
 | DB        | AWS RDS       |
  -->
+
+<br>
+> 後端專案請參訪： https://github.com/angushyx/handmade-b
 
 <!-- ## 貢獻
 iSpan 資展國際 MFEE27 小組成員
