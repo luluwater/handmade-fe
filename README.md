@@ -37,7 +37,7 @@
 - [sass](https://sass-lang.com/)：自定義 Bootstrap 變數
 - [Bootstrap](https://react-bootstrap.github.io/): 切版及 UI 元件
 - [Redux (redux-toolkit)](https://redux-toolkit.js.org/): 全域狀態管理
-- [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview): 取得後端資料並緩存於 store 內
+- [RTK Query (redux-toolkit query)](https://redux-toolkit.js.org/rtk-query/overview): query 並緩存資料
 <!-- - [Cloud Services\*not yet](#cloud-services-1) -->
 
 ### [第三方套件 & API](#third-party-library)
