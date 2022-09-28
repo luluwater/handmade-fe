@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './ProductCartInfo.scss'
+import '../CourseCartInfo/CourseCartInfo.scss'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -9,6 +10,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import moment from 'moment'
 import SevenStore from './SevenStore'
+import { scrollToTop } from '../../Filter/Paginate'
 
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -18,7 +20,6 @@ import {
   getDiscount,
 } from '../../../slices/productCart-slice'
 
-import { v4 as uuidv4 } from 'uuid'
 import Swal from 'sweetalert2'
 
 import { useCreateProductOrderMutation } from '../../../services/productOrderApi'
@@ -26,9 +27,19 @@ import { useCreateProductOrderDetailMutation } from '../../../services/productOr
 import { useGetUserQuery } from '../../../services/userApi'
 import { useDeleteUserCouponMutation } from '../../../services/couponApi'
 
+import card from '../../../assets/credit-card-solid.png'
+import LoadingAnimation from '../../LoadingAnimation'
+
 const ProductCartInfo = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    scrollToTop()
+  }, [isLoading])
   // ==========登入狀態============
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
+  const userEmail = JSON.parse(localStorage.getItem('user'))?.user.email
+
   const { data } = useGetUserQuery(userId)
 
   // ============= 資料同會員中心 ==========
@@ -125,6 +136,10 @@ const ProductCartInfo = () => {
     paymentState,
   ])
 
+  let ProductName = ''
+  ProductItem?.map((item) => (ProductName = `${ProductName} ${item.name}、`))
+  let TapPayProductName = ProductName.slice(0, -1)
+
   const ProductOrder = {
     id: productOrderId,
     orderNumber: Date.now(),
@@ -133,6 +148,7 @@ const ProductCartInfo = () => {
     create_time: moment(new Date()).format('YYYY-MM-DD'),
     name: orderName,
     phone: orderPhone,
+    email: userEmail,
     delivery_id: delivery,
     payment_id: payment,
     address: zipCode + address,
@@ -140,6 +156,7 @@ const ProductCartInfo = () => {
     total_amount: ActuallyPrice,
     payment_state_id: paymentState,
     order_state_id: '1',
+    details: TapPayProductName,
     order_detail: [...ProductItem],
   }
 
@@ -162,17 +179,174 @@ const ProductCartInfo = () => {
       return
     }
 
+    await setIsLoading((pre) => !pre)
+
+    let resultWithPrime = {}
+    if (payment === '2') {
+      const tappayStatus = TPDirect.card.getTappayFieldsStatus()
+      if (tappayStatus.canGetPrime === false) {
+        Swal.fire({
+          title: '請填寫正確信用卡資訊',
+          confirmButtonColor: '#e77656',
+          customClass: 'cartInfoSwal',
+          heightAuto: 'false',
+        })
+        return
+      }
+
+      TPDirect.card.getPrime((result) => {
+        if (result.status !== 0) {
+          //get prime error
+          console.log('getPrime line163', result.msg)
+          Swal.fire({
+            title: '信用卡交易失敗',
+            confirmButtonColor: '#e77656',
+            customClass: 'cartInfoSwal',
+            heightAuto: 'false',
+          })
+          return
+        }
+        let prime = result.card.prime
+        resultWithPrime = { ...ProductOrder, prime } //給TapPay這個資料!!
+        console.log('resultWithPrime1733333333333333333', resultWithPrime)
+        // alert('get prime 成功，prime: ' + result.card.prime)
+      })
+    } else {
+      resultWithPrime = { ...ProductOrder }
+    }
+
     try {
-      await createProductOrder(ProductOrder)
-      await createProductOrderDetail(ProductOrder)
-      await deleteUserCoupon({ userCouponId })
-      await clearProductItems()
-      await getProductTotal()
-      navigate(`/product_checkout/${productOrderId}`)
+      setTimeout(async () => {
+        await createProductOrder(ProductOrder)
+        await createProductOrderDetail(ProductOrder)
+        await deleteUserCoupon({ userCouponId })
+        await clearProductItems()
+        await getProductTotal()
+        await setIsLoading((pre) => !pre)
+        navigate(`/product_checkout/${productOrderId}`)
+      }, 2000)
     } catch (e) {
       console.error(e)
+      Swal.fire({
+        title: '結帳失敗',
+        confirmButtonColor: '#e77656',
+        customClass: 'cartInfoSwal',
+        heightAuto: 'false',
+      })
     }
   }
+
+  // ===================TapPay===========================================
+  const [btnDisabled, setBtnDisabled] = useState(true)
+
+  const number = useRef(null)
+  const date = useRef(null)
+  const ccv = useRef(null)
+
+  useEffect(() => {
+    TPDirect.setupSDK(
+      11327,
+      'app_whdEWBH8e8Lzy4N6BysVRRMILYORF6UxXbiOFsICkz0J9j1C0JUlCHv1tVJC',
+      'sandbox'
+    )
+    let fields = {
+      number: {
+        element: '#number',
+        placeholder: '**** **** **** ****',
+      },
+      expirationDate: {
+        element: '#date',
+        placeholder: 'MM/YY',
+      },
+      ccv: {
+        element: '#ccv',
+        placeholder: '3位數確認碼',
+      },
+    }
+    TPDirect.card.setup({
+      fields: fields,
+      styles: {
+        input: {
+          color: '#5f5c51',
+          'font-size': '16px',
+        },
+        'input.cvc': {
+          'font-size': '24px',
+        },
+        'input.expiration-date': {
+          // 'font-size': '24px'
+        },
+        'input.card-number': {
+          // 'font-size': '24px'
+        },
+
+        ':focus': {
+          // 'color': 'black'
+        },
+        '.valid': {
+          color: '#779cb2',
+        },
+        '.invalid': {
+          color: 'red',
+        },
+
+        '@media screen and (max-width: 400px)': {
+          input: {
+            color: 'orange',
+          },
+        },
+      },
+    })
+  }, [payment])
+
+  TPDirect.card.onUpdate((update) => {
+    if (update.canGetPrime) {
+      setBtnDisabled(false)
+    } else {
+      setBtnDisabled(true)
+    }
+
+    if (update.status.number === 2) {
+      setNumberFormGroupToError(number)
+    } else if (update.status.number === 0) {
+      setNumberFormGroupToSuccess(number)
+    } else {
+      setNumberFormGroupToNormal(number)
+    }
+
+    if (update.status.expiry === 2) {
+      setNumberFormGroupToError(date)
+    } else if (update.status.expiry === 0) {
+      setNumberFormGroupToSuccess(date)
+    } else {
+      setNumberFormGroupToNormal(date)
+    }
+
+    if (update.status.ccv === 2) {
+      setNumberFormGroupToError(ccv)
+    } else if (update.status.ccv === 0) {
+      setNumberFormGroupToSuccess(ccv)
+    } else {
+      setNumberFormGroupToNormal(ccv)
+    }
+  })
+
+  function setNumberFormGroupToError(v) {
+    v.current.classList.add('has-error')
+    v.current.classList.remove('has-success')
+  }
+
+  function setNumberFormGroupToSuccess(v) {
+    v.current.classList.add('has-success')
+    v.current.classList.remove('has-error')
+  }
+
+  function setNumberFormGroupToNormal(v) {
+    v.current.classList.remove('has-error')
+    v.current.classList.remove('has-success')
+  }
+
+  // ===================TapPay===========================================
 
   const functionSwitch = (delivery) => {
     switch (delivery) {
@@ -190,6 +364,7 @@ const ProductCartInfo = () => {
                   onChange={(e) => {
                     setPayment(e.target.value)
                     setPaymentState('2')
+                    setBtnDisabled(false)
                   }}
                 />
                 <label
@@ -211,6 +386,7 @@ const ProductCartInfo = () => {
                   onChange={(e) => {
                     setPayment(e.target.value)
                     setPaymentState('2')
+                    setBtnDisabled(false)
                   }}
                 />
                 <label
@@ -235,13 +411,14 @@ const ProductCartInfo = () => {
                   onChange={(e) => {
                     setPayment(e.target.value)
                     setPaymentState('1')
+                    setBtnDisabled(true)
                   }}
                 />
                 <label
                   className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
                   for="ProductCartCard"
                 ></label>
-                信用卡支付（綠界金流）
+                信用卡支付（TapPay）
               </label>
             </div>
           </>
@@ -260,6 +437,7 @@ const ProductCartInfo = () => {
                 onChange={(e) => {
                   setPayment(e.target.value)
                   setPaymentState('2')
+                  setBtnDisabled(false)
                 }}
               />
               <label
@@ -285,6 +463,7 @@ const ProductCartInfo = () => {
                   onChange={(e) => {
                     setPayment(e.target.value)
                     setPaymentState('2')
+                    setBtnDisabled(false)
                   }}
                 />
                 <label
@@ -309,6 +488,7 @@ const ProductCartInfo = () => {
                   onChange={(e) => {
                     setPayment(e.target.value)
                     setPaymentState('1')
+                    setBtnDisabled(true)
                   }}
                 />
                 <label
@@ -350,6 +530,12 @@ const ProductCartInfo = () => {
                   修改購物車
                 </Button>
               </Col>
+
+              {isLoading && (
+                <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
+              )}
+
+
               <Col xs={12} md={10} className="ProductCartInfo_inputBox">
                 <p className="fs-4 ProductCartInfo_inputTitle">訂購人資訊</p>
                 <div className="ProductCartInfo_input">
@@ -548,6 +734,71 @@ const ProductCartInfo = () => {
 
                   {functionSwitch(delivery)}
 
+                  {payment === '2' && (
+                    <div className="creditCard_box">
+                      <p className="fs-5 creditCard_payOnce">信用卡一次付清</p>
+                      <hr />
+                      <Form className="mt-2">
+                        <Form.Group
+                          className="mb-3 d-flex align-items-center mt-3 creditCard_group"
+                          controlId="number"
+                        >
+                          <Form.Label for="number" className="me-3 ">
+                            信用卡卡號
+                          </Form.Label>
+                          {/* 可填4242 4242 4242 4242 */}
+                          <div
+                            id="number"
+                            ref={number}
+                            className="tpfield"
+                          ></div>
+                          {/* 可填入： 4242 4242 4242 4242 */}
+                          <FontAwesomeIcon
+                            icon="fa-brands fa-cc-visa"
+                            size="2x"
+                            className="ms-3 credit_cardLogo"
+                          />
+                          <FontAwesomeIcon
+                            icon="fa-brands fa-cc-mastercard"
+                            size="2x"
+                            className="ms-3 credit_cardLogo"
+                          />
+                          <FontAwesomeIcon
+                            icon="fa-brands fa-cc-jcb"
+                            size="2x"
+                            className="ms-3 credit_cardLogo"
+                          />
+                        </Form.Group>
+
+                        <Form.Group
+                          className="mb-3 d-flex align-items-center creditCard_group"
+                          controlId="cardExpirationDate"
+                        >
+                          <Form.Label for="cardExpirationDate" className="me-3">
+                            卡片到期日
+                          </Form.Label>
+                          <div id="date" ref={date} className="tpfield"></div>
+                        </Form.Group>
+
+                        <Form.Group
+                          className="mb-3 d-flex align-items-center creditCard_group"
+                          controlId="cardCcv"
+                        >
+                          <Form.Label for="cardCcv" className="me-4">
+                            ccv確認碼
+                          </Form.Label>
+                          <div id="ccv" ref={ccv} className="tpfield"></div>
+                          <img src={card} className="ms-3 ccvCard" alt="ccv" />
+                        </Form.Group>
+                      </Form>
+                      <p className="creditCard_notic">
+                        本公司採用喬睿科技TapPay
+                        SSL交易系統，通過PCI-DSS國際信用卡組織Visa、MasterCard等產業資料安全Level
+                        1等級，周全保護您的信用卡資料安全。
+                      </p>
+                    </div>
+                  )}
+
                   <div className="ProductCartInfo_textArea mt-5">
                     <FloatingLabel controlId="floatingTextarea2" label="備註">
                       <Form.Control
@@ -558,11 +809,31 @@ const ProductCartInfo = () => {
                       />
                     </FloatingLabel>
                   </div>
+
+                  <div className="CourseCartInfo_inputAgree ">
+                    <input
+                      type="radio"
+                      className="form-check-input"
+                      id="checkoutInput"
+                      checked
+                    />
+                    <label
+                      className="form-check-label ps-1 "
+                      for="checkoutInput"
+                    >
+                      我已閱讀並同意「
+                      <span className="Chekout_AgreeWord">
+                        手手HANDMADE電子商務約定條款
+                      </span>
+                      」
+                    </label>
+                  </div>
                   <Button
                     variant="primary"
                     className="ProductCartInfo_BTN fs-5 mb-10 text-center"
                     type="submit"
                     onClick={submitHandler}
+                    disabled={btnDisabled}
                   >
                     結帳
                   </Button>
@@ -607,6 +878,21 @@ const ProductCartInfo = () => {
               <strong className="fs-5">{ActuallyPrice}</strong>
             </div>
           </Col>
+          <div className="CourseCartInfo_inputAgreeMobile">
+            <input
+              type="radio"
+              className="form-check-input"
+              id="checkoutInput"
+              checked
+            />
+            <label className="form-check-label ps-1 " for="checkoutInput">
+              我已閱讀並同意「
+              <span className="Chekout_AgreeWord">
+                手手HANDMADE電子商務約定條款
+              </span>
+              」
+            </label>
+          </div>
           <Col xs={12} md={0} className="CourseCartInfo_mobileBTNBox px-6">
             <Button
               variant="primary"
@@ -620,7 +906,7 @@ const ProductCartInfo = () => {
             </Button>
             <Button
               variant="primary"
-              className="CourseCartInfo_mobileBTN fs-5 mb-10 text-center"
+              className="CourseCartInfo_mobileBTN fs-5 text-center"
               type="submit"
               onClick={submitHandler}
             >

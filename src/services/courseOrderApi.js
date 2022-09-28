@@ -9,6 +9,10 @@ export const courseOrderApiService = createApi({
   }),
   tagTypes: ['CourseOrder'],
   endpoints: (builder) => ({
+    getCourseOrderDetail: builder.query({
+      query: (orderId) => `order/course/${orderId}`,
+      providesTags: ['CourseOrder'],
+    }),
     createCourseOrder: builder.mutation({
       query: (CourseOrder) => ({
         url: 'order/course',
@@ -16,10 +20,6 @@ export const courseOrderApiService = createApi({
         body: CourseOrder,
       }),
       invalidatesTags: ['CourseOrder'],
-    }),
-    getCourseOrderDetail: builder.query({
-      query: (orderId) => `order/course/${orderId}`,
-      providesTags: ['CourseOrder'],
     }),
   }),
 })

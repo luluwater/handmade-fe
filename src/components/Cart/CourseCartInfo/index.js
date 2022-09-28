@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Form from 'react-bootstrap/Form'
 import moment from 'moment'
-import CreditCart from '../CreditCard'
+import { scrollToTop } from '../../Filter/Paginate'
 
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -19,7 +19,6 @@ import {
   getCourseDiscount,
 } from '../../../slices/courseCart-slice'
 
-import { v4 as uuidv4 } from 'uuid'
 import Swal from 'sweetalert2'
 
 import { useCreateCourseOrderMutation } from '../../../services/courseOrderApi'
@@ -28,7 +27,16 @@ import { useCreateCourseOrderDetailMutation } from '../../../services/courseOrde
 import { useGetUserQuery } from '../../../services/userApi'
 import { useDeleteUserCouponMutation } from '../../../services/couponApi'
 
+import card from '../../../assets/credit-card-solid.png'
+import LoadingAnimation from '../../LoadingAnimation'
+
 const CourseCartInfo = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    scrollToTop()
+  }, [isLoading])
+
   // ==========登入狀態============
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
   const { data } = useGetUserQuery(userId)
@@ -104,16 +112,6 @@ const CourseCartInfo = () => {
   CourseItem?.map((item) => (CourseName = `${CourseName} ${item.name}、`))
   let TapPayCourseName = CourseName.slice(0, -1)
 
-  const TapPayDeta = {
-    amount: ActuallyPrice,
-    details: TapPayCourseName,
-    cardholder: {
-      phone_number: orderPhone,
-      name: orderName,
-      email: email,
-    },
-  }
-
   // ================TapPay Data=================
 
   const CourseOrder = {
@@ -129,11 +127,13 @@ const CourseCartInfo = () => {
     phone: orderPhone,
     email: email,
     note: note,
+    details: TapPayCourseName,
     order_detail: [...CourseItem],
   }
 
   const submitHandler = async (e) => {
     e.preventDefault()
+
     if (!orderName || !orderPhone || !email || !payment) {
       Swal.fire({
         title: '請填寫完整的收件資訊',
@@ -143,34 +143,60 @@ const CourseCartInfo = () => {
       })
       return
     }
-    const tappayStatus = TPDirect.card.getTappayFieldsStatus()
-    console.log('tappayStatus', tappayStatus)
-    if (tappayStatus.canGetPrime === false) return
+    await setIsLoading((pre) => !pre)
     let resultWithPrime = {}
-
-    TPDirect.card.getPrime((result) => {
-      if (result.status !== 0) {
-        //get prime error
-        console.log('getPrime line135', result.msg)
+    if (payment === '2') {
+      const tappayStatus = TPDirect.card.getTappayFieldsStatus()
+      if (tappayStatus.canGetPrime === false) {
+        Swal.fire({
+          title: '請填寫正確信用卡資訊',
+          confirmButtonColor: '#e77656',
+          customClass: 'cartInfoSwal',
+          heightAuto: 'false',
+        })
         return
       }
-      console.log('getPrime susses line138', result.card.prime)
-      let prime = result.card.prime
-      resultWithPrime = { ...TapPayDeta, prime } //給TapPay這個資料!!
-      console.log('resultWithPrime', resultWithPrime)
-      alert('get prime 成功，prime: ' + result.card.prime)
-    })
 
-    // try {
-    //   await createCourseOrder(CourseOrder)
-    //   await createCourseOrderDetail(CourseOrder)
-    //   await deleteUserCoupon({ userCouponId })
-    //   await clearCourseItem()
-    //   await getCourseTotal()
-    //   navigate(`/course_checkout/${courseOrderId}`)
-    // } catch (e) {
-    //   console.error(e)
-    // }
+      TPDirect.card.getPrime((result) => {
+        if (result.status !== 0) {
+          //get prime error
+          console.log('getPrime line163', result.msg)
+          Swal.fire({
+            title: '信用卡交易失敗',
+            confirmButtonColor: '#e77656',
+            customClass: 'cartInfoSwal',
+            heightAuto: 'false',
+          })
+          return
+        }
+        let prime = result.card.prime
+        resultWithPrime = { ...CourseOrder, prime } //給TapPay這個資料!!
+        console.log('resultWithPrime1733333333333333333', resultWithPrime)
+        // alert('get prime 成功，prime: ' + result.card.prime)
+      })
+    } else {
+      resultWithPrime = { ...CourseOrder }
+    }
+
+    try {
+      setTimeout(async () => {
+        await createCourseOrder(resultWithPrime)
+        await createCourseOrderDetail(CourseOrder)
+        await deleteUserCoupon({ userCouponId })
+        await clearCourseItem()
+        await getCourseTotal()
+        await setIsLoading((pre) => !pre)
+        navigate(`/course_checkout/${courseOrderId}`)
+      }, 2000)
+    } catch (e) {
+      console.error(e)
+      Swal.fire({
+        title: '結帳失敗',
+        confirmButtonColor: '#e77656',
+        customClass: 'cartInfoSwal',
+        heightAuto: 'false',
+      })
+    }
   }
 
   // ===================TapPay===========================================
@@ -197,42 +223,36 @@ const CourseCartInfo = () => {
       },
       ccv: {
         element: '#ccv',
-        placeholder: '後三碼',
+        placeholder: '3位數確認碼',
       },
     }
     TPDirect.card.setup({
       fields: fields,
       styles: {
-        // Style all elements
         input: {
-          color: 'gray',
-        },
-        // Styling ccv field
-        'input.cvc': {
+          color: '#5f5c51',
           'font-size': '16px',
         },
-        // Styling expiration-date field
+        'input.cvc': {
+          'font-size': '24px',
+        },
         'input.expiration-date': {
-          // 'font-size': '16px'
+          // 'font-size': '24px'
         },
-        // Styling card-number field
         'input.card-number': {
-          // 'font-size': '16px'
+          // 'font-size': '24px'
         },
-        // style focus state
+
         ':focus': {
           // 'color': 'black'
         },
-        // style valid state
         '.valid': {
-          color: 'green',
+          color: '#779cb2',
         },
-        // style invalid state
         '.invalid': {
           color: 'red',
         },
-        // Media queries
-        // Note that these apply to the iframe, not the root window.
+
         '@media screen and (max-width: 400px)': {
           input: {
             color: 'orange',
@@ -240,7 +260,7 @@ const CourseCartInfo = () => {
         },
       },
     })
-  }, [])
+  }, [payment])
 
   TPDirect.card.onUpdate((update) => {
     if (update.canGetPrime) {
@@ -315,6 +335,11 @@ const CourseCartInfo = () => {
                   修改購物車
                 </Button>
               </Col>
+
+              {isLoading && (
+                <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
+              )}
+
               <Col xs={12} md={10} className="CourseCartInfo_inputBox">
                 <p className="fs-4 CourseCartInfo_inputTitle">訂購人資訊</p>
                 <div className="CourseCartInfo_input">
@@ -410,6 +435,7 @@ const CourseCartInfo = () => {
                       onChange={(e) => {
                         setPayment(e.target.value)
                         setPaymentState('2')
+                        setBtnDisabled(false)
                       }}
                     />
                     <label
@@ -428,6 +454,7 @@ const CourseCartInfo = () => {
                       onChange={(e) => {
                         setPayment(e.target.value)
                         setPaymentState('1')
+                        setBtnDisabled(true)
                       }}
                     />
                     <label
@@ -437,31 +464,88 @@ const CourseCartInfo = () => {
                     信用卡支付（TapPay）
                   </label>
 
-                  <div>
-                    <Form>
-                      <Form.Group className="mb-3" controlId="number">
-                        <Form.Label for="number">信用卡卡號</Form.Label>
-                        <div id="number" ref={number} className="tpfield"></div>
-                        {/* 可填入： 4242 4242 4242 4242 */}
-                      </Form.Group>
+                  {payment === '2' && (
+                    <div className="creditCard_box">
+                      <p className="fs-5 creditCard_payOnce">信用卡一次付清</p>
+                      <hr />
+                      <Form className="mt-2">
+                        <Form.Group
+                          className="mb-3 d-flex align-items-center mt-3 creditCard_group"
+                          controlId="number"
+                        >
+                          <Form.Label for="number" className="me-3 ">
+                            信用卡卡號
+                          </Form.Label>
+                          {/* 可填4242 4242 4242 4242 */}
+                          <div
+                            id="number"
+                            ref={number}
+                            className="tpfield"
+                          ></div>
+                          {/* 可填入： 4242 4242 4242 4242 */}
+                          <FontAwesomeIcon
+                            icon="fa-brands fa-cc-visa"
+                            size="2x"
+                            className="ms-3 credit_cardLogo"
+                          />
+                          <FontAwesomeIcon
+                            icon="fa-brands fa-cc-mastercard"
+                            size="2x"
+                            className="ms-3 credit_cardLogo"
+                          />
+                          <FontAwesomeIcon
+                            icon="fa-brands fa-cc-jcb"
+                            size="2x"
+                            className="ms-3 credit_cardLogo"
+                          />
+                        </Form.Group>
 
-                      <Form.Group
-                        className="mb-3"
-                        controlId="cardExpirationDate"
-                      >
-                        <Form.Label for="cardExpirationDate">
-                          卡片到期日
-                        </Form.Label>
-                        <div id="date" ref={date} className="tpfield"></div>
-                        {/* 可填入： 01/23 */}
-                      </Form.Group>
+                        <Form.Group
+                          className="mb-3 d-flex align-items-center creditCard_group"
+                          controlId="cardExpirationDate"
+                        >
+                          <Form.Label for="cardExpirationDate" className="me-3">
+                            卡片到期日
+                          </Form.Label>
+                          <div id="date" ref={date} className="tpfield"></div>
+                        </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="cardCcv">
-                        <Form.Label for="cardCcv">ccv確認碼</Form.Label>
-                        <div id="ccv" ref={ccv} className="tpfield"></div>
-                        {/* 可填入： 123 */}
-                      </Form.Group>
-                    </Form>
+                        <Form.Group
+                          className="mb-3 d-flex align-items-center creditCard_group"
+                          controlId="cardCcv"
+                        >
+                          <Form.Label for="cardCcv" className="me-4">
+                            ccv確認碼
+                          </Form.Label>
+                          <div id="ccv" ref={ccv} className="tpfield"></div>
+                          <img src={card} className="ms-3 ccvCard" alt="ccv" />
+                        </Form.Group>
+                      </Form>
+                      <p className="creditCard_notic">
+                        本公司採用喬睿科技TapPay
+                        SSL交易系統，通過PCI-DSS國際信用卡組織Visa、MasterCard等產業資料安全Level
+                        1等級，周全保護您的信用卡資料安全。
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="CourseCartInfo_inputAgree">
+                    <input
+                      type="radio"
+                      className="form-check-input"
+                      id="checkoutInput"
+                      checked
+                    />
+                    <label
+                      className="form-check-label ps-1 "
+                      for="checkoutInput"
+                    >
+                      我已閱讀並同意「
+                      <span className="Chekout_AgreeWord">
+                        手手HANDMADE電子商務約定條款
+                      </span>
+                      」
+                    </label>
                   </div>
 
                   <Button
@@ -517,6 +601,21 @@ const CourseCartInfo = () => {
               <strong className="fs-5">{ActuallyPrice}</strong>
             </div>
           </Col>
+          <div className="CourseCartInfo_inputAgreeMobile">
+            <input
+              type="radio"
+              className="form-check-input"
+              id="checkoutInput"
+              checked
+            />
+            <label className="form-check-label ps-1 " for="checkoutInput">
+              我已閱讀並同意「
+              <span className="Chekout_AgreeWord">
+                手手HANDMADE電子商務約定條款
+              </span>
+              」
+            </label>
+          </div>
           <Col xs={12} md={0} className="CourseCartInfo_mobileBTNBox px-6">
             <Button
               variant="primary"
