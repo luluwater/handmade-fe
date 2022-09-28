@@ -2,17 +2,26 @@ import React from 'react'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import '../CourseCartInfo/CourseCartInfo.scss'
 import './Checkout.scss'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetOrderDetailQuery } from '../../../services/productOrderApi'
 import moment from 'moment'
+import { useDispatch } from 'react-redux'
+import { cartClose } from '../../../slices/cart-ui-slice'
 
 const ProductCheckout = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { orderId } = useParams()
   // console.log('orderId', orderId)
   const { data } = useGetOrderDetailQuery(orderId)
-  console.log('data', data)
+  // console.log('data', data)
+
+  const logoHandler = () => {
+    navigate('/')
+    dispatch(cartClose(false))
+  }
 
   return (
     <>
@@ -24,16 +33,21 @@ const ProductCheckout = () => {
             <Row>
               <Col xs={12} md={9} className="CheckoutPage_leftSide">
                 <header className="CourseCartInfo_logoBox">
-                  <Link to="/">
-                    <img src={Logo} alt="HANDMADE_LOGO" />
-                  </Link>
+                  <div>
+                    <img
+                      src={Logo}
+                      alt="HANDMADE_LOGO"
+                      onClick={logoHandler}
+                      className="CartInfoLogo"
+                    />
+                  </div>
                 </header>
 
                 <Row>
                   <Col xs={12} md={2}></Col>
                   <Col xs={12} md={10} className="CheckoutPage_leftBox">
                     <p className="fs-4 CheckoutPage_title">
-                      您的訂單已完成，感謝您的訂購
+                      您的訂單已成立，感謝您的訂購
                     </p>
                     <p>您的訂單編號為{item.order_number} </p>
                     <p>我們將盡快為您寄出商品</p>
@@ -98,7 +112,7 @@ const ProductCheckout = () => {
                   <strong className="fs-5">實付金額</strong>
                   <strong className="fs-5">${item.total_amount}</strong>
                 </div>
-                <div className='d-flex'>
+                <div className="d-flex">
                   <a
                     href={'/user/orders/products/' + item.order_number}
                     className="CheckoutPage_orderDetailBTN fs-5 text-center"

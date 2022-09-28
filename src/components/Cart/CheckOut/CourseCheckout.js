@@ -2,12 +2,12 @@ import React from 'react'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import '../CourseCartInfo/CourseCartInfo.scss'
 import './Checkout.scss'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams,useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
-// import { useDispatch } from 'react-redux'
-// import { cartClose } from '../../../slices/cart-ui-slice'
+import { useDispatch } from 'react-redux'
+import { cartClose } from '../../../slices/cart-ui-slice'
 import moment from 'moment'
 import { Toast } from '../../UI/SwalStyle'
 
@@ -15,7 +15,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAddToScheduleMutation } from '../../../services/googleApi'
 
 const CourseCheckout = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  
   const { orderId } = useParams()
   const { data } = useGetCourseOrderDetailQuery(orderId)
 
@@ -31,8 +34,12 @@ const CourseCheckout = () => {
       console.error(e)
     }
   }
+  const logoHandler = () => {
+    navigate('/')
+    dispatch(cartClose(false))
+  }
 
-  console.log('data', data)
+  // console.log('data', data)
   return (
     <>
       <Container fluid className="CheckoutPage">
@@ -43,15 +50,20 @@ const CourseCheckout = () => {
             <Row>
               <Col xs={12} md={9} className="CheckoutPage_leftSide">
                 <header className="CourseCartInfo_logoBox">
-                  <Link to="/" >
-                    <img src={Logo} alt="HANDMADE_LOGO" />
-                  </Link>
+                  <div>
+                    <img
+                      src={Logo}
+                      alt="HANDMADE_LOGO"
+                      onClick={logoHandler}
+                      className="CartInfoLogo"
+                    />
+                  </div>
                 </header>
                 <Row>
                   <Col xs={12} md={2}></Col>
                   <Col xs={12} md={10} className="CheckoutPage_leftBox">
                     <p className="fs-4 CheckoutPage_title">
-                      您的訂單已完成，感謝您的訂購
+                      您的訂單已成立，感謝您的訂購
                     </p>
                     <p>您的訂單編號為 {item.order_number}</p>
                     <p>課程報到確認信已寄至{item.email}</p>

@@ -18,6 +18,7 @@ import {
   getCourseActuallyPrice,
   getCourseDiscount,
 } from '../../../slices/courseCart-slice'
+import { cartClose } from '../../../slices/cart-ui-slice'
 
 import Swal from 'sweetalert2'
 
@@ -311,6 +312,11 @@ const CourseCartInfo = () => {
     v.current.classList.remove('has-success')
   }
 
+  const logoHandler = () => {
+    navigate('/')
+    dispatch(cartClose(false))
+  }
+
   // ===================TapPay===========================================
 
   return (
@@ -319,9 +325,14 @@ const CourseCartInfo = () => {
         <Row>
           <Col xs={12} md={9} className="CourseCartInfo_leftSide">
             <header className="CourseCartInfo_logoBox">
-              <Link to="/">
-                <img src={Logo} alt="HANDMADE_LOGO" />
-              </Link>
+              <div>
+                <img
+                  src={Logo}
+                  alt="HANDMADE_LOGO"
+                  onClick={logoHandler}
+                  className="CartInfoLogo"
+                />
+              </div>
             </header>
             <Row>
               <Col xs={12} md={2} className="CourseCartInfo_previous_page">
@@ -338,9 +349,11 @@ const CourseCartInfo = () => {
                 </Button>
               </Col>
 
-              {isLoading && (
-                <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
-              )}
+              {payment === 2
+                ? isLoading && (
+                    <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
+                  )
+                : isLoading && <LoadingAnimation hintWord="訂單建立中" />}
 
               <Col xs={12} md={10} className="CourseCartInfo_inputBox">
                 <p className="fs-4 CourseCartInfo_inputTitle">訂購人資訊</p>
