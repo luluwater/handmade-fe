@@ -12,6 +12,7 @@ import {
   useCreateReplyMutation,
 } from '../../../../../services/replyApi'
 import { getReply } from '../../../../../slices/reply-slice'
+import { useSelector } from 'react-redux'
 
 const CreateReply = ({ commentId }) => {
   const { data } = useRepliesQuery()
@@ -34,11 +35,11 @@ const CreateReply = ({ commentId }) => {
   }, [data, dispatch])
 
   const localUser = JSON.parse(localStorage?.getItem('user')).user
-
+  const sliceAuth = useSelector((state) => state.authReducers)
   const reply = {
     id: uuidv4(),
     reply_content: inputValue,
-    user_id: localUser.id,
+    user_id: localUser?.id || sliceAuth?.user.id,
     reply_date: moment().format('YYYY-MM-DD h:mm:ss'),
     comment_id: commentId,
   }

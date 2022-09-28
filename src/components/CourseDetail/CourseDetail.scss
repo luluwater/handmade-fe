@@ -248,29 +248,32 @@
 
 
 // ========== showmore ==========
+.showmore{
+    background: transparent !important;
+}
+.showmore div:last-child{
+    opacity: 1 !important;
+    z-index: 99 !important;
+}
+.showmore button{
+    width: 200px !important;
+    height: 50px !important;
+    color: $gray-darker !important;
+    background: $skin-bright !important;
+    border: none !important;
+    transition: .5s !important;
+    position: relative !important;
+    right: 10px !important;
+}
 
-// .showmore{
-//     background: transparent !important;
-
-// }
-// .showmore button{
-//     width: 200px;
-//     height: 50px;
-//     color: $gray-darker !important;
-//     background: $skin-bright !important;
-//     border: none;
-//     transition: .5s;
-//     position: relative;
-//     right: 110px;
-// }
-// .ShowMore_ButtonDiv__uCJeR{    
-//     opacity: 1 !important;
-//     z-index: initial !important;
-// }
-// .showmore button:hover{
-//     color: $skin-bright !important;
-//     background: $gray-darker !important;
-// }
+.ShowMore_ButtonDiv__uCJeR{    
+    opacity: 1 !important;
+    z-index: initial !important;
+}
+.showmore button:hover{
+    color: $skin-bright !important;
+    background: $gray-darker !important;
+}
 
 @media screen and (max-width: 576px) {
     .course_detail_stockWarning{

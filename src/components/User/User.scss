@@ -37,6 +37,31 @@
   }
 }
 
+.star {
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  &_noSelect {
+    color: $skin-bright;
+    @media screen and (max-width: 576px){
+      color: $skin-brighter;
+    }
+ }
+  &_main {
+    color: $primary;
+ }
+  &_fa-star {
+    cursor: pointer;
+    transition: color 300ms;
+    font-size: 25px;
+ }
+}
+.star[type='radio'] {
+  display: none;
+}
+
+
 .user_avatar {
   width: 150px;
   height: 577px;
@@ -55,7 +80,7 @@
   }
   &_btn {
     width: 100px;
-    height: 40px;
+    height: 30px;
     color: $skin-brighter;
     border: none;
     letter-spacing: 3px;
@@ -306,6 +331,44 @@
     display: block;
     @media screen and (max-width: 576px) {
       display: none;
+    }
+  }
+}
+
+.user_comment {
+  &_card {
+    display: flex;
+    position: absolute;
+    top: 65%;  
+    left: 60%;
+    transform: translate(-50%, -40%);
+    z-index: 2;
+    width: 600px;
+    height: 300px;
+    background-color: $skin-brighter;
+    box-shadow :  10px 10px 15px rgba(129, 129, 129, 0.082);
+    @media screen and (max-width: 576px){
+      background-color: $skin-bright;
+      width: 490px;
+      transform: translate(-62%, -50%);
+    }
+  }
+  &_btn {
+    width: 60px;
+    border: 1px solid $gray-darker;
+    letter-spacing: 3px;
+    font-size: $h6-font-size;
+    color: $gray-darker;
+    background-color: $skin-bright !important;
+    &:hover {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary ;
+    }
+    &:active {
+      background-color: $primary !important;
+      color: $skin-bright;
+      border: 1px solid $primary ;
     }
   }
 }

@@ -68,7 +68,6 @@ function HomeHotCourse() {
           slidesPerView={3}
           spaceBetween={30}
           navigation={true}
-          mousewheel={true}
           loop={true}
           modules={[Navigation, Mousewheel]}
           className="mySwiper"

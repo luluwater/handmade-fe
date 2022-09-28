@@ -1,5 +1,5 @@
 import '../User.scss'
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
@@ -11,9 +11,8 @@ import PaymentsDetails from './PaymentsDetails'
 
 const UserCoursesOrderDetails = () => {
   const { orderNumber } = useParams()
-
   const { data } = useGetUserCourseOrderDetailsQuery(orderNumber)
-  // console.log("data:", data )
+  // console.log('data:', data)
   return (
     <>
       <Col>
@@ -56,7 +55,7 @@ const UserCoursesOrderDetails = () => {
                   </tr>
                   <tr>
                     <th className="user_order_details_xlTitle">訂購人</th>
-                    <td>{item.user_name}</td>
+                    <td>{item.name}</td>
                     <th className="user_order_details_xlTitle">訂單狀態</th>
                     <td>{item.order_staus_name}</td>
                   </tr>

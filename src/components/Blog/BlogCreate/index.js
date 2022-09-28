@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router'
 import { Toast } from '../../UI/SwalStyle'
 import Tags from '../../UI/Picker'
 import { useGetSelectQuery } from '../../../services/untilApi'
+import { useSelector } from 'react-redux'
 
 const BlogCreate = () => {
   const [createBlog] = useCreateBlogMutation()
@@ -28,6 +29,7 @@ const BlogCreate = () => {
   const [addTagName, setAddTagName] = useState([])
 
   const localUser = JSON.parse(localStorage.getItem('user'))?.user
+  const sliceAuth = useSelector((state) => state.authReducers)
 
   const navigate = useNavigate()
 
@@ -54,12 +56,9 @@ const BlogCreate = () => {
     return newTag
   })
 
-  // const localUser = JSON.parse(localStorage.getItem('user')).user
-
-  //TODO: 目前 LOCAL 的 USER 不然就是SLICE 裡的 USER
   const insertData = {
     id: blogId,
-    user_id: '2',
+    user_id: localUser.id || sliceAuth?.user.id,
     title: addTitle,
     content: addContent,
     category_id: addCategory,

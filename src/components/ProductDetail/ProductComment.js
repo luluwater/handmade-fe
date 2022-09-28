@@ -3,7 +3,9 @@ import { Row, Col } from 'react-bootstrap'
 import './ProductDetail.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ShowMore from 'react-show-more-button/dist/module'
+import ShowMore from 'react-show-more-button'
+// import ShowMore from 'react-show-more-button/dist/module';
+
 
 import { useGetProductCommentQuery } from '../../services/productApi'
 import { useParams } from 'react-router-dom'
@@ -40,7 +42,7 @@ const ProductComment = () => {
           <h4 className="detail_comment_title fw-bold">顧客回饋</h4>
         </Col>
         <Col className="col-10 ">
-          <ShowMore maxHeight={375} className="showmore" defaultAnchor={true}>
+          <ShowMore maxHeight={375} defaultAnchor={true} className="showmore">
             {data?.map((item) => {
               return (
                 <div className="detail_comment pb-5 mb-8" key={item.id}>
@@ -67,12 +69,16 @@ const ProductComment = () => {
                   >
                     {item.content}
                   </p>
-                  <img
-                    className="detail_comment_img"
-                    src={require(`../../assets/product_comment_img/` +
-                      item.img_name[0])}
-                    alt=""
-                  />
+                  {item.img_name.length > 0 ? (
+                    <img
+                      className="detail_comment_img"
+                      src={require(`../../assets/product_comment_img/` +
+                        item.img_name[0])}
+                      alt=""
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
               )
             })}

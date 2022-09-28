@@ -15,6 +15,7 @@ const GoogleLogin = () => {
   const handleCallbackResponse = async (res) => {
     console.log('Encode JWT ID token ' + res.credential)
     const rawData = await jwt_decode(res.credential)
+    console.log(rawData)
 
     const userId = Math.floor(Math.random() * 10000)
 

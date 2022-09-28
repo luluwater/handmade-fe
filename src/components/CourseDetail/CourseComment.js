@@ -3,11 +3,10 @@ import { Row, Col } from 'react-bootstrap'
 import './CourseDetail.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ShowMore from 'react-show-more-button/dist/module'
+import ShowMore from 'react-show-more-button'
 
 import { useGetCourseCommentQuery } from '../../services/courseApi'
 import { useParams } from 'react-router-dom'
-
 import moment from 'moment'
 
 function starAmount(num) {
@@ -33,7 +32,6 @@ function star2Amount(num2) {
 const CourseComment = () => {
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
-  // console.log('data', data)
   return (
     <>
       <Row className="my-10 d-flex justify-content-center C_border">
@@ -68,12 +66,16 @@ const CourseComment = () => {
                   >
                     {item.content}
                   </p>
-                  <img
-                    className="detail_comment_img"
-                    src={require(`../../assets/course_comment_img/` +
-                      item.img_name[0])}
-                    alt=""
-                  />
+                  {item.img_name.length > 0 ? (
+                    <img
+                      className="detail_comment_img"
+                      src={require(`../../assets/course_comment_img/` +
+                        item.img_name[0])}
+                      alt=""
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
               )
             })}
