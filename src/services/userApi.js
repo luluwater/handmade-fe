@@ -22,6 +22,14 @@ export const userApiService = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    createProductComment: builder.mutation({
+      query: (data) => ({
+        url: `user/product-orders/comment`,
+        method: 'put',
+        body: data,
+      }),
+      invalidatesTags: ['User'],
+    }),
     getUser: builder.query({
       query: (userId) => `user/${userId}`,
       providesTags: ['User'],
@@ -152,6 +160,7 @@ export const userApiService = createApi({
 export const {
   useCreateCouponMutation,
   useCreateCourseCommentMutation,
+  useCreateProductCommentMutation,
   useUpdatePasswordMutation,
   useUpdateUserAccountMutation,
   useUpdateUserAvatarMutation,
