@@ -217,7 +217,7 @@ const ProductCartInfo = () => {
 
     try {
       setTimeout(async () => {
-        await createProductOrder(ProductOrder)
+        await createProductOrder(resultWithPrime)
         await createProductOrderDetail(ProductOrder)
         await deleteUserCoupon({ userCouponId })
         await clearProductItems()
@@ -495,7 +495,7 @@ const ProductCartInfo = () => {
                   className="form-check-label ps-1 ProductCartInfo_radioStyleLabel"
                   for="ProductCartCard"
                 ></label>
-                信用卡支付（綠界金流）
+                信用卡支付（TapPay）
               </label>
             </div>
           </>
