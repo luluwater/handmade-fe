@@ -67,6 +67,13 @@ const CoursesDetails = () => {
     }
   }
 
+  function deleteCard(values) {
+    setRating(null)
+    setHover(null)
+    comment.values.text = ''
+    setShowUserComment(false)
+  }
+
   // const showTextError = formik.touched.text && formik.errors.text
   // const isValid = !showTextError
   return (
@@ -173,7 +180,7 @@ const CoursesDetails = () => {
               <div className="d-flex justify-content-center align-items-center">
                 <Button
                   type="button"
-                  onClick={() => setShowUserComment(false)}
+                  onClick={deleteCard}
                   className="fw-bold user_password_btn mt-5 me-5"
                 >
                   取消

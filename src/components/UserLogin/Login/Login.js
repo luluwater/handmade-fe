@@ -43,7 +43,7 @@ const Login = () => {
       password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email('無效的信箱').required('請輸入有效帳號'),
+      email: Yup.string().email('無效的信箱').required('請輸入有效信箱'),
       password: Yup.string().required('請輸入密碼').min(8, '密碼至少 8 字元'),
     }),
     onSubmit: async (values) => {
@@ -74,7 +74,7 @@ const Login = () => {
                 className="AccountInput"
                 type="text"
                 name="email"
-                placeholder="輸入帳號..."
+                placeholder="輸入信箱..."
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
