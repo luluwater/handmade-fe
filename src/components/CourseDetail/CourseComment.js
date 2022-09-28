@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useRef } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import './CourseDetail.scss'
 
@@ -32,6 +32,17 @@ const CourseComment = () => {
   const { courseId } = useParams()
   const { data } = useGetCourseCommentQuery(courseId)
   const [showMoreCheck, setShowMoreCheck] = useState(false)
+
+  const handleBtn = () => {
+    if (window.innerWidth <= 576) {
+      window.scrollTo({ top: 2000 })
+    }
+    if (window.innerWidth >= 577) {
+      window.scrollTo({ top: 1100 })
+    }
+    setShowMoreCheck(!showMoreCheck)
+  }
+
   return (
     <>
       <Row className="my-10 d-flex justify-content-center C_border">
@@ -84,7 +95,7 @@ const CourseComment = () => {
                       ) : (
                         ''
                       )}
-                      <button onClick={() => setShowMoreCheck(!showMoreCheck)}>
+                      <button onClick={handleBtn}>
                         {showMoreCheck ? 'Show Less' : 'Show More'}
                       </button>
                     </div>
