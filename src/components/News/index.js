@@ -13,7 +13,6 @@ const News = () => {
   // const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('useEffect ****8')
     if (data) {
       if (card.length == 0) {
         let newData = [...data]?.sort(() => 0.5 - Math.random()).slice(0, 4)
@@ -38,7 +37,7 @@ const News = () => {
         {card?.map((v, i) => {
           return (
             <NewsCard
-              key={'newscard-' + v.id}
+              key={v.id}
               productId={v.id}
               storeId={v.store_id}
               categoryId={v.category_id}
@@ -58,4 +57,3 @@ const News = () => {
 }
 
 export default News
-
