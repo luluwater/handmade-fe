@@ -96,10 +96,14 @@ function Proudcts() {
                     />
                   )
                 })}
-                {productList.length ? (
+                {isLoading ? (
+                  ''
+                ) : productList.length ? (
                   ''
                 ) : (
-                  <h1 className="text-center text-gray-darker mt-5">查無商品</h1>
+                  <h1 className="text-center text-gray-darker mt-5">
+                    查無商品
+                  </h1>
                 )}
               </Row>
             </div>
