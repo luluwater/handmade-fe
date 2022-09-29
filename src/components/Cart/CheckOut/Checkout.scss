@@ -1,0 +1,228 @@
+@import '../../../styles/custom_variables';
+
+.CheckoutPage{
+  &_leftBox{
+    color: $gray-darker;
+    padding-left: 5rem;
+    height: 700px;
+    position: relative;
+
+    @media screen and (max-width:576px) {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 430px;
+
+      .CheckoutPage_title{
+        margin-top: 1.5rem;
+        font-size: 1.8rem !important;
+      }
+
+      p{
+        font-size: 1.3rem;
+        margin: 1rem 0;
+      }
+    }
+
+
+
+
+  }
+
+  &_title{
+  font-weight: 900;
+  letter-spacing: .1rem;
+  }
+
+  &_note{
+    width: 50%;
+    margin-right: 2rem;
+    @media screen and (max-width:576px) {
+      width: 85%;
+      text-align: center;
+    }
+  }
+
+  &_BTN{
+  color: $white;
+  width: 25%;
+  height: 65px;
+  background: $gray-darker;
+  line-height: 65px;
+  &:hover{
+    color: $white;
+    background: $primary;
+  }
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
+  }
+  &_noteBox{
+    position: absolute;
+    width: 100%;
+    bottom: 10%;
+    @media screen and (max-width:576px) {
+      position: relative;
+      bottom: 0;
+      justify-content: center !important;
+      p{
+        margin-top: 3rem;
+        font-size: 1rem !important;
+        line-height: 2rem;
+      }
+    }
+  }
+  &_detailTitle{
+    @media screen and (max-width:576px){
+        width: 90%;
+        margin: 1.7rem 2rem;
+        border-bottom: 2px solid $gray-darker;
+    }
+
+}
+  &_rightSide{
+    background-color: $skin-bright;
+    color: $gray-darker;
+    padding: 0;
+    position: relative;
+    .CheckoutPage_title{
+      margin:5rem 0 0 2rem;
+      @media screen and (max-width:576px) {
+        margin:2rem 0 0 2rem;
+        font-size: 3rem;
+      }
+    }
+    div{
+      margin-left: 2rem;
+    }
+    @media screen and (max-width: 576px) {
+      p{
+        font-size: 1.3rem;
+      }
+    }
+  }
+  &_detailHr{
+    border-bottom: 2px solid $gray-darker;
+  }
+
+  &_Item{
+    padding-right: 1.5rem;
+    @media screen and (max-width:576px) {
+      padding-right: 0;
+      p{
+        font-size: 1.3rem !important;
+        margin-right: 2rem;
+
+
+      }
+    }
+  }
+
+  &_orderDetailBTN{
+    position: absolute;
+    bottom: 3rem;
+    right: 1.4rem;
+    width: 200px;
+    height: 50px;
+    line-height: 49px;
+    border: 1.5px solid $gray-darker;
+    color: $gray-darker;
+    &:hover{
+      border: 1.5px solid $primary;
+    }
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+  }
+
+  &_coupon{
+    width: 87%;
+    position: absolute;
+    bottom: 11rem;
+    @media screen and (max-width:576px) {
+      width: 87%;
+      position: relative;
+      bottom: 0;
+      margin-top: 8rem;
+      margin-right : 0rem;
+      display: flex;
+      justify-content: center;
+
+    }
+  }
+  &_total{
+    width: 87%;
+    position: absolute;
+    bottom: 9rem;
+    @media screen and (max-width:576px) {
+      width: 87%;
+      position: relative;
+      bottom: 0;
+      margin-bottom: 2rem;
+      strong{
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+
+  &_calendar{
+    position: relative;
+    color: $gray-darker;
+    background: none;
+    border: none;
+    &:hover{
+      background: none !important;
+      color: $primary !important;
+    }
+    &:hover::before{
+      position: absolute;
+      top: -35px;
+      left: 0;
+      content:'加入到行事曆';
+      font-size:.8rem;
+      @media screen and (max-width:576px) {
+      font-size:.9rem;
+      top: -45px;
+      width: 50px;
+        
+      }
+    }
+    
+
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+  color: $gray-darker;
+  background-color: none;
+  border-color: none;
+}
+  }
+}
+.CheckoutPage_mobileBTNBox{
+  display: none;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 7rem;
+  width: 100%; 
+  @media screen and (max-width:576px) {
+    display: flex;
+  }
+
+}
+.CheckoutPage_mobileBTN{
+  margin: 0 2rem;
+  color: $white;
+  width: 200px;
+  height: 65px;
+  background: $gray-darker;
+  line-height: 65px;
+  &:first-child{
+    background: none;
+    border: 1.5px solid $gray-darker;
+    color: $gray-darker;
+    &:hover{
+      border: 1.5px solid $primary;
+    }
+  }
+
+}

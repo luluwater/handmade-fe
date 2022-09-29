@@ -1,8 +1,10 @@
 import React from 'react'
-import Editor from '../components/Blog/Editor'
+import BlogEdit from '../components/Blog/BlogEdit'
+import { scrollToTop } from '../components/Filter/Paginate'
 
 const BlogEditPage = () => {
-  return <Editor />
+  scrollToTop()
+  return <BlogEdit />
 }
 
 export default BlogEditPage

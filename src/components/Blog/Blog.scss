@@ -1,26 +1,123 @@
-.banner {
-  height: 500px;
-  background: #ccc;
-  &-item {
-  }
-  &-img {
-    object-fit: fill;
+@import '../../styles/custom_variables';
+
+.blog_banner {
+  max-height: 450px;
+
+  @media (min-width: 576px) {
     max-height: 400px;
-    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    max-height: 600px;
+  }
+
+  &_img {
+    max-height: 300px;
+    object-fit: cover;
+    @media (min-width: 576px) {
+      max-height: 400px;
+    }
+    @media (min-width: 768px) {
+      height: 100%;
+    }
+  }
+  &_text {
+    letter-spacing: 2rem;
+    line-height: 2;
   }
 }
-.blog {
-  // blog_list_item_btn
-  &_list {
-    display: flex;
-    &_item {
-      &_btn {
-        margin: 10px;
+
+.blog_list {
+  &_btn {
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: $primary;
+      position: absolute;
+      right: 0;
+      transition: 0.4s;
+    }
+    &:hover {
+      &::after {
+        width: 100%;
+        left: 0;
       }
     }
   }
+  &_img {
+    @media (min-width: 768px) {
+      width: 400px;
+    }
+  }
+
+  &_content {
+    > .image {
+      display: none;
+    }
+    > p > img {
+      display: none;
+    }
+    > h3 {
+      > img {
+        display: none;
+      }
+    }
+  }
+  &_title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+  }
 }
-.blog {
+.text-cut {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.blog_list_item_btn {
+
+.text-cut-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_image {
+  width: 32px;
+  height: 32px;
+}
+
+.blog_comment_link:hover {
+  color: $gray-darker !important;
+}
+
+.blog_dropdown_delete {
+  color: $primary;
+}
+
+.blog_article {
+  > * img {
+    max-width: 32rem !important;
+  }
+}
+
+/* Define the size */
+
+.blog_svg {
+  &-wrapper {
+    position: fixed;
+    top: 17rem;
+    left: 2rem;
+  }
+  &-indicator {
+    width: 75px;
+    height: 75px;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+  }
 }

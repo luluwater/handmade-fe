@@ -1,0 +1,342 @@
+@import '../../../styles/custom_variables';
+
+.ProductCartInfo{
+    &_inputBox{
+        color: $gray-darker;
+        padding-left: 3rem;
+        padding-right: 3rem;
+
+    }
+    &_inputBox{
+        color: $gray-darker;
+        padding-left: 3rem;
+
+    }
+    &_inputTitle{
+        font-weight: 900;
+        
+        @media screen and (max-width:576px){
+
+            font-size: 5rem;
+        }
+
+    }
+    &_input{
+        margin-left: 8rem;
+        width: 60%;
+        @media screen and (max-width:576px){
+            width: 100%;
+        }
+
+        .form-control{
+            height:70px;
+            border: none;
+            border-bottom: 1px solid $gray-dark;
+            color:$gray-dark;
+
+        }
+        @media screen and (max-width:576px){
+            margin-left: 0rem;
+            font-size: 1.2rem;
+
+        }
+    }
+    &_inputNotic{
+        padding-left: 12px;
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        @media screen and (max-width:576px){
+            font-size: 1.1rem;
+        }
+        br{
+            @media screen and (max-width:576px){
+                display: none;
+            }
+        }
+    }
+    &_deliveryBox{
+        width: 71%;
+        @media screen and (max-width:576px){
+            width: 100%;
+
+        }
+    }
+    &_radioStyle{
+        display: none;
+
+
+        &:checked + .ProductCartInfo_radioStyleLabel{
+            background-color: $primary;
+            border: 2px solid $primary;
+        }
+    }
+
+    &_radioStyleLabel{
+        vertical-align: middle;
+        margin: 2px 7px 1px 5px;
+        position: relative;
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        border: 1.5px solid #878787;
+        border-radius: 4px;
+        transition: background-color .1s ease-in;
+        -moz-transition: background-color .1s ease-in;
+        -webkit-transition: background-color .1s ease-in;
+        -o-transition: background-color .1s ease-in;
+
+        &::after,&::before{
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: $white;
+            transition: opacity .1s ease-in;
+            -moz-transition: opacity .1s ease-in;
+            -webkit-transition: opacity .1s ease-in;
+            -o-transition: opacity .1s ease-in;
+            opacity: 0;
+        }
+        &::before{
+            height: 5px;
+            top:5.7px;
+            left: 3.6px;
+            border-radius: 10px;
+            transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+
+        }
+        &::after{
+
+            height: 8px;
+            top: 2.8px;
+            left: 7.6px;
+            border-radius: 10px;
+            transform: rotate(41deg);
+            -moz-transform: rotate(41deg);
+            -webkit-transform: rotate(41deg);
+            -o-transform: rotate(41deg);
+        }
+    }
+
+    &_delivery{
+        width: 40%;
+        height: 60px;
+        margin-left: 8rem;
+        display: flex;
+        align-items: center;
+        @media screen and (max-width:576px){
+            margin-left: 0;
+        }
+    }
+    &_deliveryBr{
+        display: none;
+        @media screen and (max-width:576px){
+            display: block;
+
+        }
+
+    }
+    &_deliveryHome{
+        width: 40%;
+        height: 60px;
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+        @media screen and (max-width:576px) {
+        margin-left: .8rem;
+            
+        }
+    }
+
+    &_borderGray{
+        border: 1px solid $gray-darker;
+    }
+    &_borderOrange{
+        border: 1px solid $primary;
+    }
+    &_chooseStore{
+        background: $gray-darker;
+        color: $white;
+        width: calc(71% - 8rem);
+        height: 45px;
+        margin-left: 8rem;
+        line-height: 45px;
+        border: 1px solid $gray-darker;
+        @media screen and (max-width:576px) {
+            width: 100%;
+            margin: 0;
+        }
+
+        a{
+            &:hover{
+                color: $white;
+            }
+        }
+    }
+    &_Postal_code{
+        margin-left: 8rem;
+        width: 30%;
+
+        @media screen and (max-width:576px) {
+            margin-left: 0;
+        }
+
+        .form-control{
+            height:70px;
+            border: none;
+            border-bottom: 1px solid $gray-dark;
+            color:$gray-dark;
+        }
+    }
+
+
+    &_textArea{
+        margin-left: 8rem;
+        width: 60%;
+        height: 100px;
+        @media screen and (max-width:576px){
+            margin-left: 0;
+            width: 100%;
+            height: 160px;
+
+        }
+        textarea{
+            border: 1px solid $gray-dark;
+            resize:none;
+        }
+        
+    }
+    &_BTN{
+        
+        color: $white;  
+        border: none;
+        width: 25%;
+        height:4rem;
+        letter-spacing: .5rem;
+        margin-left: calc(15rem + 35%); 
+        &:hover{
+            color: $white;
+        }
+        @media screen and (max-width:576px){
+            display: none;
+         }
+
+    }
+    &_rightSide{
+        background-color: $skin-bright;
+        color: $gray-darker;
+        padding: 0;
+        position: relative;
+        @media screen and (max-width:576px){
+            margin-top: 3rem;
+        }
+        .ProductCartInfo_inputTitle{
+            margin:5rem 0 0 2rem;
+            @media screen and (max-width:576px){
+                margin:2rem 0 1rem 2rem !important;
+            }
+        }
+
+    }
+    &_detailTitle{
+        @media screen and (max-width:576px){
+            width: 90%;
+            margin: 1rem 2rem;
+            border-bottom: 1px solid $gray-darker;
+        }
+
+    }
+    &_shoppingDetail{
+        width: 85%;
+        margin-left: 2rem;
+        @media screen and (max-width:576px){
+            margin-left: 2.5rem;
+        }
+    }
+    &_coupon{
+        width: 85%;
+        position: absolute;
+        top: 52rem;
+        
+        @media screen and (max-width:576px) {
+            position: relative;
+            top: 0;
+            margin-top: 10rem;
+        }
+    }
+
+    &_total{
+        width: 85%;
+        position: absolute;
+        top: 55rem;
+        @media screen and (max-width:576px) {
+            position: relative;
+            top: 0;
+            margin-bottom: 2rem;
+        }
+    }
+
+
+      //Seven 
+    &_overlay{
+        background-color: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+  
+    &_modalContainer{
+        background-color: $skin-brighter;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border:1px solid black;
+        max-width: 500px;
+        width: 80%;
+        height: 240px;
+        box-shadow: 0 0 18px 0 rgba(0,0,0,0.15);
+        span{
+            cursor: pointer;
+        }
+    
+    }
+
+    &_city{
+        width: 30%;
+        border: 1px solid $gray-darker;
+    }
+    &_store{
+        width: 86%;
+        border: 1px solid $gray-darker;
+    }
+    &_storeBTN{
+        background: $gray-darker;
+        border: 1px solid $gray-darker;
+        color: $white;
+        width: 100px;
+        height: 45px;
+        line-height: 45px;
+    }
+
+
+
+
+    
+
+}
+.ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:before,
+.ProductCartInfo_radioStyle:checked+.ProductCartInfo_radioStyleLabel:after{
+    opacity:1;}
+
+@media screen and (max-width:576px) {
+    .ProductCartInfo_PaymentTitle{
+        margin-top: 3rem;
+    }
+}

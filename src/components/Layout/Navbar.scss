@@ -1,0 +1,177 @@
+@import '../../styles/custom_variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
+
+.navbar{
+  background-color: $skin-brighter;
+  padding: 1rem 2rem 1rem 2rem;
+  @media screen and (max-width:576px){
+    padding: 1rem .5rem 1rem .5rem;
+  }
+
+  img{
+    width: 11rem;
+    @media screen and (max-width:576px){
+      width: 7rem;
+    }
+  }
+  p{
+    font-family: 'Reggae One', cursive;
+    color: $secondary;
+    @media screen and (max-width:576px){
+      display: none;
+    }
+  }
+  // &_form{
+  //   @media screen and (max-width:576px){
+  //     display: none;
+  //   }
+  // }
+  .searchInput{
+    width: 13rem;
+    height: 2rem;
+    border: 2px solid $secondary;
+    border-radius: .5rem;
+    background-color: $skin-brighter;
+    padding: .5rem;
+    outline-color: $primary;
+  }
+
+  button{
+    background-color: $skin-brighter;
+  }
+  &_bars{
+    display: none;
+    @media screen and (max-width:576px){
+      display: block;
+      margin: 0 .5rem;
+    }
+  }
+  &_cartIcon{
+    position: relative;
+  }
+  &_cartBadge{
+    position: absolute;
+    top: -12px;
+    right: 5px;
+    background: $primary;
+    color: $white;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    font-size: .8rem;
+    font-weight: 500;
+    
+  }
+  &_mobile_menu{
+    margin-left: .5rem;
+    width: 100%;
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.navbar_awesomeIcon{
+  color:$secondary;
+  cursor: pointer;
+  &:hover{
+    color: $primary;
+  }
+}
+
+
+
+.navbar_list{
+  display: flex;
+
+  li:before{
+    content:'|';
+    margin: 0 2rem;
+    color:$secondary;
+  }
+  li:first-child:before{
+    display: none;
+  }
+  
+  .navbar_mobileX{
+    display: none;
+  }
+
+  form{
+    display: none;
+  }
+
+  @media screen and (max-width:576px){
+    position: fixed;
+    margin: 0!important;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background: $skin-brighter;
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 5rem;
+    font-size: 1.2rem;
+    transform: translateX(100%);
+    transition: all .4s ease-in-out;
+    opacity: 0;
+    box-shadow: -2px 2px 15px rgba(127, 107, 99, 0.379);
+    
+
+    li:before{
+      display: none;
+      content: '';
+    }
+
+    form{
+      margin-top: 2rem;
+      position: relative;
+      display: block;
+
+      .searchInput{
+        width: 20rem;
+        height: 2.5rem;
+      }
+    
+      button{
+        position: absolute;
+        right: -11px;
+        background: none;
+      }
+    }
+    .navbar_mobileX{
+      display:  block;
+      position: absolute;
+      right: 0;
+      top: 10px;
+    }
+
+  }
+}
+.navbar_showMenu{
+  transform: translateX(0);
+  transition: all .4s ease-in-out;
+  opacity: .97;
+
+}
+
+.navbar_link{
+  color: $secondary;
+  font-weight: 700;
+  letter-spacing:1px;
+}
+
+.navbar_shrink{
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  box-shadow: 5px 5px 15px -5px $skin-bright;
+}
+

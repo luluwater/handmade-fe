@@ -1,31 +1,70 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { React, useEffect } from 'react'
+import { Row, Col, Container } from 'react-bootstrap'
+import HomeNewStore from '../components/Home/HomeNewStore'
+import HomeNewActive from '../components/Home/HomeNewActive'
+import HomeHotCourse from '../components/Home/HomeHotCourse'
+import HomeHotProduct from '../components/Home/HomeHotProduct'
+import HomeCategory from '../components/Home/HomeCategory'
+import HomeBlog from '../components/Home/HomeBlog'
+import Video from '../components/Home/HomeVideo'
+
+import { StickyContainer, Sticky } from 'react-sticky'
+import HomeSticky from '../components/Home/HomeSticky'
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
-      <nav className="nav-bar bg-black text-white text-center d-flex justify-content-around">
-        <h1 className="text-center">歡迎來到首首</h1>
-        <ul className="d-flex list-unstyled gap-3 align-items-center justify-content-center gap-2">
-          <li>
-            <Link className="text-white btn btn-warning " to="/">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="text-white btn btn-warning " to="blog">
-              GO TO BLOG
-            </Link>
-          </li>
-          <li>
-            <Link className="text-white btn btn-warning" to="login">
-              Login
-            </Link>
-          </li>
-        </ul>
-      </nav>
-
-      <Outlet />
+      <Video />
+      <StickyContainer>
+        <Sticky>
+          {({ style }) => {
+            return (
+              <div style={style}>
+                <HomeSticky />
+              </div>
+            )
+          }}
+        </Sticky>
+        <Container>
+          <Row id="home_news">
+            <Col>
+              <HomeNewStore />
+            </Col>
+            <Col>
+              <HomeNewActive />
+            </Col>
+          </Row>
+          <Row
+            id="home_hot_course"
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
+            <HomeHotCourse />
+          </Row>
+          <Row
+            id="home_hot_product"
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
+            <HomeHotProduct />
+          </Row>
+          <Row
+            data-aos="fade-right"
+            data-aos-delay="300"
+            data-aos-duration="600"
+          >
+            <HomeCategory />
+          </Row>
+          <Row id="home_blog">
+            <HomeBlog />
+          </Row>
+        </Container>
+      </StickyContainer>
     </>
   )
 }

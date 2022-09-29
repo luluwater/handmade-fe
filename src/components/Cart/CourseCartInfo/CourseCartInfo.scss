@@ -1,0 +1,322 @@
+@import '../../../styles/custom_variables';
+
+.CourseCartInfo_logoBox{
+    background-color: $skin-brighter;
+
+    padding: 1rem 2rem 3rem 2rem;
+    img{
+        width: 11rem;
+    }
+    @media screen and (max-width:576px){
+        padding: 1rem 2rem 1.5rem 2rem;
+    }
+}
+
+.CourseCartInfo{
+
+    &_rightSide{
+        background-color: $skin-bright;
+        color: $gray-darker;
+        padding: 0;
+        position: relative;
+        @media screen and (max-width:576px){
+            margin-top: 3rem;
+        }
+        
+
+        .CourseCartInfo_inputTitle{
+            margin:5rem 0 0 2rem;
+        }
+
+    }
+    &_previous_page{
+
+        button{
+            color: $gray-darker;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            background: none;
+            &:hover{
+                color:$primary!important;
+                background: none!important;
+            }
+            @media screen and (max-width:576px){
+                font-size: 1.3rem;
+            }
+        }
+        @media screen and (max-width:576px){
+            margin-bottom: 2rem;
+        }
+
+    }
+    &_arrow{
+        padding-left: 3.5rem;
+        padding-right: .5rem;
+        @media screen and (max-width:576px){
+            padding-left: 1rem;
+        }
+
+    }
+    &_inputBox{
+        color: $gray-darker;
+        padding-left: 3rem;
+
+    }
+
+    &_inputTitle{
+        font-weight: 900;
+        @media screen and (max-width:576px){
+            font-size: 1.7rem !important;
+            margin-top: 2rem!important;
+            margin-bottom: 1rem!important;
+        }
+    }
+    &_detailTitle{
+        @media screen and (max-width:576px){
+            width: 90%;
+            margin: 0 2rem;
+            border-bottom: 1px solid $gray-darker;
+        }
+
+    }
+    
+    &_input{
+        margin-left: 8rem;
+        width: 60%;
+        @media screen and (max-width:576px){
+            width: 92%;
+
+        }
+
+        .form-control{
+            height:70px;
+            border: none;
+            border-bottom: 1px solid $gray-dark;
+            color:$gray-dark;
+        }
+        @media screen and (max-width:576px){
+            margin-left: 0rem;
+            font-size: 1.2rem;
+
+        }
+    }
+
+
+
+    &_inputNotic{
+        padding-left: 12px;
+        font-size: .8rem;
+        letter-spacing: .05rem;
+        @media screen and (max-width:576px){
+            font-size: 1.1rem;
+            
+        }
+        br{
+            @media screen and (max-width:576px){
+                display: none;
+               
+            }
+        }
+    }
+
+    &_textArea{
+        margin-left: 8rem;
+        width: 60%;
+        height: 200px;
+        @media screen and (max-width:576px){
+            margin-left: 0;
+            width: 92%;
+            height: 170px;
+
+
+        }
+        textarea{
+            border: 1px solid $gray-dark;
+            resize:none;
+        }
+        
+    }
+    &_BTN{
+        color: $white;
+        border: none;
+        width: 25%;
+        height:4rem;
+        letter-spacing: .5rem;
+        margin-left: calc(15rem + 35%); 
+        &:hover{
+            color: $white;
+        }
+        @media screen and (max-width:576px){
+           display: none;
+        }
+
+    }
+    &_shoppingDetail{
+        width: 85%;
+        margin-left: 2rem;
+        @media screen and (max-width:576px){
+            margin-left: 2.5rem;
+        }
+    }
+
+    &_coupon{
+        width: 85%;
+        position: absolute;
+        bottom: 15rem;
+        @media screen and (max-width:576px){
+            margin-top: 10rem;
+            position: relative;
+            bottom: 0;
+        }
+    }
+
+    &_total{
+        width: 85%;
+        position: absolute;
+        bottom: 13rem;
+        @media screen and (max-width:576px){
+            position: relative;
+            bottom: 0;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &_mobilePrvBTN{
+        color: $white;
+        width: 45%;
+        height:4rem;
+        letter-spacing: .5rem;
+        background: $gray-darker;
+        border: none;
+        &:hover{
+            color: $white;
+        }
+
+    }
+    &_mobileBTNBox{
+        display: none;
+        
+        @media screen and (max-width:576px){
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            margin-bottom: 7rem;
+        }
+    }
+    &_mobileBTN{
+        color: $white;
+        width: 45%;
+        height:4rem;
+        letter-spacing: .5rem;
+        &:hover{
+            color: $white;
+        }
+
+    }
+ 
+}
+
+// ===============================信用卡
+
+.tpfield {
+    height: 40px;
+    width: 400px;
+    border: 1px solid $gray-darker;
+    margin: 5px 0;
+    padding: 5px;
+    @media screen and (max-width:576px) {
+        height: 60px;
+        width: 480px;
+    }
+}
+
+.tappay-field-focus {
+    border-color: $secondary !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #779cb299;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #779cb299;
+}
+.has-error .tappay-field-focus {
+    border-color: $primary !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #e77656;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #e77656;
+}
+.has-success .tappay-field-focus {
+    border-color: #2b542c !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+}
+
+.credit_cardLogo{
+   color: $secondary;
+
+}
+
+.ccvCard{
+    width: 2.4em;
+    
+}
+.creditCard_box{
+    margin-top: 4rem;
+    margin-left: 8rem;
+    width: 60%;
+    @media screen and (max-width:576px) {
+        margin-left: 0;
+        width: 93%;
+    }
+}
+.creditCard_group{
+    @media screen and (max-width:576px) {
+        display: block !important;
+    }
+    label{
+        @media screen and (max-width:576px) {
+            font-size: 1.3rem;
+        }
+    }
+}
+.creditCard_notic{
+    font-size: .85rem;
+    opacity: .6;
+    letter-spacing: .1rem;
+    @media screen and (max-width:576px) {
+        font-size: 1rem;
+    }
+}
+.creditCard_payOnce{
+    font-weight: 700;
+    @media screen and (max-width:576px) {
+        font-size: 1.6rem !important;
+    }
+}
+.Chekout_AgreeWord{
+    color: $secondary;
+    cursor: pointer;
+    &:hover{
+        color: $secondary-dark;
+    }
+}
+.CourseCartInfo_inputAgree{
+    margin-left: 8rem;
+    margin-top: 5rem;
+    width: 60%;
+    @media screen and (max-width:576px){
+        display: none;
+
+    }
+}
+.CourseCartInfo_inputAgreeMobile{
+    display: none;
+    @media screen and (max-width:576px){
+        display: block;
+        width: 95%;
+        margin-top: 2rem;
+        margin-left: 2rem;
+        font-size: 1.2rem;
+
+    }
+}
+.CartInfoLogo{
+    cursor: pointer;
+}
