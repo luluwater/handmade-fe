@@ -51,8 +51,6 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
 
   const showPhoneError = formik.touched.phone && formik.errors.phone
   const showNameError = formik.touched.name && formik.errors.name
-  const showAddressError = formik.touched.address && formik.errors.address
-  // const showStartDateError = formik.touched.startDate && formik.errors.startDate
 
   if (name === null || name === '') {
     name = ' 請新增姓名'
@@ -80,9 +78,8 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
     }
   }
 
-  const isDataAllvalid =
-    formik.values.phone && formik.values.name && formik.values.address
-  const isAllvalid = !showPhoneError && !showNameError && !showAddressError
+  const isDataAllvalid = formik.values.phone && formik.values.name
+  const isAllvalid = !showPhoneError && !showNameError
   //&& !showStartDateError
 
   return (
@@ -291,7 +288,7 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                           // disabled={editProfile}
                         >
                           <option value="">選擇地區</option>
-                          {distData.map((data, index) => {
+                          {distData?.map((data, index) => {
                             if (data.city === formik.values.city)
                               return (
                                 <option key={index} value={data.dist}>
@@ -318,11 +315,6 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                           onBlur={formik.handleBlur}
                           value={formik.values.address}
                         />
-                      </td>
-                    )}
-                    {showAddressError && (
-                      <td className="user_account_formik_errors_xl align-middle mt-2 text-danger mb-0">
-                        {formik.errors.address}
                       </td>
                     )}
                   </tr>
