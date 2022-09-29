@@ -4,6 +4,22 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+.home_video_box{
+  position: relative;
+  height: 670px;
+  @media screen and (max-width:576px) {
+    height: auto;
+  }
+}
+.home_video_2{
+  position: absolute;
+  top: -100px;
+  @media screen and (max-width:576px) {
+    position: relative;
+    top: 0;
+  }
+
+}
 @keyframes pathAnim-0{
   0%{
     d: path("M 0,400 C 0,400 0,200 0,200 C 185.2,173.46666666666667 370.4,146.93333333333334 544,153 C 717.6,159.06666666666666 879.5999999999999,197.73333333333332 1027,211 C 1174.4,224.26666666666668 1307.2,212.13333333333333 1440,200 C 1440,200 1440,400 1440,400 Z");
