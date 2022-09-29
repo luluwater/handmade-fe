@@ -1,6 +1,6 @@
 import '../../../../components/User/User.scss'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {
   useProductOrderDetailsQuery,
   useCreateProductCommentMutation,
@@ -20,7 +20,6 @@ const ProductsDetails = () => {
   const [showOrder, setShowOrder] = useState([])
   const [showHover, setHover] = useState(null)
   const [rating, setRating] = useState(null)
-  // console.log('showHover', showHover)
   const [update] = useCreateProductCommentMutation()
 
   const handleClick = (user_id, product_id) => {
@@ -52,6 +51,13 @@ const ProductsDetails = () => {
       })
     },
   })
+
+  function deleteCard(values) {
+    setRating(null)
+    setHover(null)
+    comment.values.text = ''
+    setShowUserComment(false)
+  }
 
   const handleClosed = async () => {
     try {
@@ -97,7 +103,14 @@ const ProductsDetails = () => {
                     alt=""
                   />
                 </td>
-                <td>{item.product_name}</td>
+                <td>
+                  <Link
+                    className="text-center align-middle"
+                    to={`/product/detail/${item.product_id}`}
+                  >
+                    {item.product_name}
+                  </Link>
+                </td>
                 <td>{item.amount}</td>
                 <td className="user_order_list_title">$ {item.price}</td>
                 <td className="user_order_list_title">
@@ -163,7 +176,7 @@ const ProductsDetails = () => {
               <div className="d-flex justify-content-center align-items-center">
                 <Button
                   type="button"
-                  onClick={() => setShowUserComment(false)}
+                  onClick={deleteCard}
                   className="fw-bold user_password_btn mt-5 me-5"
                 >
                   取消

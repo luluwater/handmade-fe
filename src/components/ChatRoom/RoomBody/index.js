@@ -1,34 +1,31 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentRoom } from '../../../slices/chat-slice'
+import { useSelector } from 'react-redux'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import EmojiPicker from 'emoji-picker-react'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import {
   useGetRoomsQuery,
   useSendMessageMutation,
 } from '../../../services/chatApi'
-import { setFriends } from '../../../slices/chat-slice'
+import { useGetUserQuery } from '../../../services/userApi'
 
 const RoomBody = () => {
   const [message, setMessage] = useState('')
+  const userData = JSON.parse(localStorage.getItem('user'))?.user
+  const sliceAuth = useSelector((state) => state.authReducers)
 
   const { data } = useGetRoomsQuery('all')
+  const { data: user } = useGetUserQuery(userData?.id)
   const [sendMessage, { isLoading }] = useSendMessageMutation()
   const { chatId } = useParams()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const msgBox = useRef()
-
-  const userData = JSON.parse(localStorage.getItem('user'))?.user
-  const sliceAuth = useSelector((state) => state.authReducers)
 
   const currentChat = data?.filter((room) => {
     return room.endpoint === `/${chatId}`
@@ -59,7 +56,7 @@ const RoomBody = () => {
       room_id: currentChat?.[0].id,
       room_title: currentChat?.[0].room_title,
       isCurrentUser: true,
-      user: userData,
+      user: user[0],
     }
 
     await sendMessage(msg)
@@ -75,23 +72,20 @@ const RoomBody = () => {
     scroll()
   }, [newMessage])
 
-  useEffect(() => {
-    dispatch(setCurrentRoom(...currentChat))
-  }, [])
-
-  const currentRoom = useSelector((state) => state.chatReducer).currentRoom
-
   return (
     <>
       <div>
-        <div className="position-relative text-center mt-3 ">
-          <div className="position-absolute bottom-0 start-0 fs-1 d-md-none">
-            <FontAwesomeIcon icon="fa-solid fa-angle-left" />
-          </div>
-          <h5>{currentRoom.room_title}</h5>
+        <div className="position-relative justify-content-md-center my-md-3 d-md-flex align-items-center">
           <div
             onClick={handleLeftRoom}
-            className="position-absolute bottom-0 end-0 d-none d-md-block"
+            className="position-absolute top-50 translate-middle-y start-0 fs-1 d-md-none"
+          >
+            <FontAwesomeIcon icon=" fa-solid fa-angle-left mt-4 " />
+          </div>
+          <h5 className="m-0 text-center">{currentChat?.[0].room_title}</h5>
+          <div
+            onClick={handleLeftRoom}
+            className="position-absolute bottom-0 end-0 d-none d-md-flex"
           >
             <FontAwesomeIcon icon="fa-solid fa-door-open" />
             <span className="ms-md-2">離開</span>
@@ -101,11 +95,10 @@ const RoomBody = () => {
 
         <ListGroup
           ref={msgBox}
-          className="chat_body d-flex flex-column gap-3 my-5"
+          className="chat_body max-h-350 d-flex flex-column gap-3 my-5"
         >
           {newMessage.map((m) => {
             const isCurrentUser = userData.id === m.user_id
-
             return (
               <div key={m.message_id}>
                 <div

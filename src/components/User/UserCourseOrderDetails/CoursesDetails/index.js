@@ -1,6 +1,6 @@
 import '../../../../components/User/User.scss'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {
   useCourseOrderDetailsQuery,
   useCreateCourseCommentMutation,
@@ -67,6 +67,13 @@ const CoursesDetails = () => {
     }
   }
 
+  function deleteCard(values) {
+    setRating(null)
+    setHover(null)
+    comment.values.text = ''
+    setShowUserComment(false)
+  }
+
   // const showTextError = formik.touched.text && formik.errors.text
   // const isValid = !showTextError
   return (
@@ -106,7 +113,14 @@ const CoursesDetails = () => {
                     alt="course img"
                   />
                 </td>
-                <td>{item.course_name}</td>
+                <td>
+                  <Link
+                    className="text-center align-middle"
+                    to={`/course/detail/${item.course_id}`}
+                  >
+                    {item.course_name}
+                  </Link>
+                </td>
                 <td>{transformCourse}</td>
                 <td>{item.amount}</td>
                 <td className="user_order_list_title">$ {item.price}</td>
@@ -173,7 +187,7 @@ const CoursesDetails = () => {
               <div className="d-flex justify-content-center align-items-center">
                 <Button
                   type="button"
-                  onClick={() => setShowUserComment(false)}
+                  onClick={deleteCard}
                   className="fw-bold user_password_btn mt-5 me-5"
                 >
                   取消

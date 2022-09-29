@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import CommentItem from './CommentItem'
 import { useCommentsQuery } from '../../../../services/commentAPI'
 import { getComment } from '../../../../slices/comment-slice'
+import { useGetUserQuery } from '../../../../services/userApi'
 
 const CommentList = () => {
   const { blogId } = useParams()
@@ -30,6 +31,7 @@ const CommentList = () => {
         {finalComment?.map((item) => {
           return (
             <CommentItem
+              user_id={item.user_id}
               key={item.comment_id}
               commentId={item.comment_id}
               user={item.account}

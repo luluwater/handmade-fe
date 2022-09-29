@@ -215,8 +215,6 @@
     font-size: 14px;
     color: $gray-darker;
     border-bottom: 1px solid $gray-darker;
-
-
     &_photo{
         width: 80px;
         height: 80px;
@@ -245,11 +243,24 @@
         background: $gray-darker;
     }
 }
+.comment_avatar{
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 
 // ========== showmore ==========
 .showmore{
     background: transparent !important;
+    position: relative;
+}
+.elseContent{
+    display: none;
+}
+.showMoreActive{
+    display: block;
 }
 .showmore div:last-child{
     opacity: 1 !important;
@@ -262,8 +273,13 @@
     background: $skin-bright !important;
     border: none !important;
     transition: .5s !important;
-    position: relative !important;
-    right: 10px !important;
+    position: absolute !important;
+    right: 110px !important;
+    left: -120px;
+    right: 0;
+    margin: auto;
+    bottom: -80px;
+    z-index: 1;
 }
 
 .ShowMore_ButtonDiv__uCJeR{    
@@ -304,7 +320,7 @@
         border: none;
         transition: .5s;
         position: relative;
-        left: 0px;
+        left: 110px;
     }
     .detail_score{
         width: 120px;

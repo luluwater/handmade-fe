@@ -113,10 +113,10 @@ const Navbar = () => {
                 <Link to="/user/management">
                   {data?.map((v) => {
                     return (
-                      <div key={v.id} className="avatar ">
+                      <div key={v.id} className="avatar">
                         <img
                           src={v.avatar}
-                          className="rounded-circle"
+                          className="rounded-circle avatar"
                           alt="user img"
                         />
                       </div>

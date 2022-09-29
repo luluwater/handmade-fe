@@ -70,6 +70,9 @@
   }
 }
 
+.avatar {
+  border-radius: 50%;
+}
 
 .navbar_awesomeIcon{
   color:$secondary;
@@ -148,8 +151,6 @@
       right: 0;
       top: 10px;
     }
-  
-  
 
   }
 }
