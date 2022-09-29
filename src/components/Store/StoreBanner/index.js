@@ -1,6 +1,6 @@
 import React from 'react'
 import './StoreBanner.scss'
-import storeBanner from '../../../assets/store_banner/store_banner.jpg'
+import storeBanner from '../../../assets/store_banner/store_banner_2.jpg'
 
 
 const StoreBanner = () => {

@@ -20,11 +20,16 @@ const ChatRoom = () => {
 
   return (
     <>
-      <Container className="mb-8">
-        <Row className="gap-4 gap-md-0 gap-bottom-4 mt-md-8">
+      <Container className="mb-8 ms-md-4">
+        <Row className=" gap-4 gap-md-0 gap-bottom-4 mt-md-8 h-md-577 pb-3 py-5 pt-md-0">
           {data?.map((room) => {
             return (
-              <Col key={room.id} className="mt-0 mb-md-5 mb-2" md={4}>
+              <Col
+                key={room.id}
+                className=" mb-2 mt-0 my-md-3 pd-md-2 "
+                md={6}
+                lg={4}
+              >
                 <RoomCard
                   room={room}
                   endpoint={room.endpoint}

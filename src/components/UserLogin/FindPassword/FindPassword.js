@@ -85,7 +85,7 @@ const FindPassword = (props) => {
                 isSend || mail === '' ? 'bg-skin-dark border-0' : 'bg-primary'
               }`}
             >
-              {isSend ? '察看信箱' : '送出'}
+              {isSend ? '查看信箱' : '送出'}
             </button>
             {isSend && (
               <div className="text-center fs-5 mt-5 text-danger">

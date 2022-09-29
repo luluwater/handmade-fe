@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../../../assets/HANDMADE_LOGO.png'
 import '../CourseCartInfo/CourseCartInfo.scss'
 import './Checkout.scss'
-import { Link, useParams,useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useGetCourseOrderDetailQuery } from '../../../services/courseOrderApi'
@@ -18,7 +18,8 @@ const CourseCheckout = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  
+  let atmDate = moment().add(3, 'days').format('YYYY-MM-DD')
+
   const { orderId } = useParams()
   const { data } = useGetCourseOrderDetailQuery(orderId)
 
@@ -66,7 +67,25 @@ const CourseCheckout = () => {
                       您的訂單已成立，感謝您的訂購
                     </p>
                     <p>您的訂單編號為 {item.order_number}</p>
-                    <p>課程報到確認信已寄至{item.email}</p>
+                    {item.payment_name === 'ATM匯款' ? (
+                      <>
+                        <p className="CheckoutPage_ATM CheckoutPage_ATMLine1 mt-5">
+                          請於{atmDate} 24:00以前匯款
+                        </p>
+                        <p className="CheckoutPage_ATM">
+                          銀行代碼：013國泰世華銀行
+                        </p>
+                        <p className="CheckoutPage_ATM">
+                          轉帳帳號：1470305054433903(共16碼)
+                        </p>
+                        <p className="CheckoutPage_ATM">
+                          轉帳金額：${item.total_amount}
+                        </p>
+                      </>
+                    ) : (
+                      <p>課程報到確認信已寄至{item.email}</p>
+                    )}
+
                     <div className="d-flex align-items-center CheckoutPage_noteBox">
                       <p className="CheckoutPage_note">
                         期待您與我們一起共享悠閒的手作時光
