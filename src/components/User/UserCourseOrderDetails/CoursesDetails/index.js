@@ -1,6 +1,6 @@
 import '../../../../components/User/User.scss'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {
   useCourseOrderDetailsQuery,
   useCreateCourseCommentMutation,
@@ -113,7 +113,14 @@ const CoursesDetails = () => {
                     alt="course img"
                   />
                 </td>
-                <td>{item.course_name}</td>
+                <td>
+                  <Link
+                    className="text-center align-middle"
+                    to={`/course/detail/${item.course_id}`}
+                  >
+                    {item.course_name}
+                  </Link>
+                </td>
                 <td>{transformCourse}</td>
                 <td>{item.amount}</td>
                 <td className="user_order_list_title">$ {item.price}</td>

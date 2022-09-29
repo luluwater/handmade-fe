@@ -11,6 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import { useUpdateUserAccountMutation } from '../../../services/userApi'
 import { Toast } from '../../UI/SwalStyle'
+import { cityData, distData } from './location'
 
 const UserAccount = ({ id, account, name, phone, birthday, address }) => {
   const [update] = useUpdateUserAccountMutation()
@@ -24,7 +25,9 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
       name: name,
       phone: phone,
       startDate: birthday,
-      address: address,
+      address: '',
+      city: '',
+      dist: '',
     },
     validationSchema: Yup.object({
       phone: Yup.string()
@@ -35,21 +38,19 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
       // startDate: Yup.string().required('此欄位不得為空'),
     }),
     onSubmit: async (values) => {
+      console.log('saveMember', values)
       await update({
         id: id,
         name: values.name,
         phone: values.phone,
         birthday: moment(startDate).format('YYYY-MM-DD'),
-        address: values.address,
+        address: values.city + values.dist + values.address,
       })
-      // console.log(values)
     },
   })
 
   const showPhoneError = formik.touched.phone && formik.errors.phone
   const showNameError = formik.touched.name && formik.errors.name
-  const showAddressError = formik.touched.address && formik.errors.address
-  // const showStartDateError = formik.touched.startDate && formik.errors.startDate
 
   if (name === null || name === '') {
     name = ' 請新增姓名'
@@ -77,9 +78,8 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
     }
   }
 
-  const isDataAllvalid =
-    formik.values.phone && formik.values.name && formik.values.address
-  const isAllvalid = !showPhoneError && !showNameError && !showAddressError
+  const isDataAllvalid = formik.values.phone && formik.values.name
+  const isAllvalid = !showPhoneError && !showNameError
   //&& !showStartDateError
 
   return (
@@ -198,9 +198,18 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                       </td>
                     ) : (
                       <td>
-                        <div className="user_datepicker">
+                        <div className="user_datepicker user_account_datepicker">
                           <DatePicker
                             className="user_account_inputBirth fw-bold"
+                            dateFormat="yyyy.MM.dd"
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                            placeholder={transformBirthday}
+                          />
+                        </div>
+                        <div className="user_datepicker user_account_mdDatepicker">
+                          <DatePicker
+                            className="user_account_mdInputBirth fw-bold"
                             dateFormat="yyyy.MM.dd"
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
@@ -254,9 +263,42 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                         {address}
                       </td>
                     ) : (
-                      <td>
+                      <td className="d-flex">
+                        <select
+                          className="user_account_select mt-2"
+                          name="city"
+                          value={formik.values.city}
+                          onChange={formik.handleChange}
+                          // disabled={editProfile}
+                        >
+                          <option value="">選擇城市</option>
+                          {cityData?.map((data, index) => {
+                            return (
+                              <option key={index} value={data.city}>
+                                {data.city}
+                              </option>
+                            )
+                          })}
+                        </select>
+                        <Form.Select
+                          className="user_account_select ms-2 mt-2"
+                          value={formik.values.dist}
+                          name="dist"
+                          onChange={formik.handleChange}
+                          // disabled={editProfile}
+                        >
+                          <option value="">選擇地區</option>
+                          {distData?.map((data, index) => {
+                            if (data.city === formik.values.city)
+                              return (
+                                <option key={index} value={data.dist}>
+                                  {data.dist}
+                                </option>
+                              )
+                          })}
+                        </Form.Select>
                         <Form.Control
-                          className="user_account_input"
+                          className="user_account_input ms-2 mt-2 w-100"
                           type="text"
                           name="address"
                           // placeholder={address}
@@ -273,11 +315,6 @@ const UserAccount = ({ id, account, name, phone, birthday, address }) => {
                           onBlur={formik.handleBlur}
                           value={formik.values.address}
                         />
-                      </td>
-                    )}
-                    {showAddressError && (
-                      <td className="user_account_formik_errors_xl align-middle mt-2 text-danger mb-0">
-                        {formik.errors.address}
                       </td>
                     )}
                   </tr>
