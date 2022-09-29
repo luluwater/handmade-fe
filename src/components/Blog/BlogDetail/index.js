@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
@@ -111,9 +111,76 @@ const BlogDetail = () => {
 
   const isAuthor = userData?.id === publishUser?.[0]?.id
 
+  const [progress, setProgress] = useState(0)
+
+  const scrollHeight = () => {
+    let el = document.documentElement,
+      ScrollTop = el.scrollTop || document.body.scrollTop,
+      ScrollHeight = el.scrollHeight || document.body.scrollHeight
+    let percent = (ScrollTop / (ScrollHeight - el.clientHeight)) * 100
+    // store percentage in state
+    setProgress(Math.floor(percent))
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollHeight)
+    return () => window.removeEventListener('scroll', scrollHeight)
+  })
+
+  let values = {
+    size: 75,
+    progress,
+    trackWidth: 9,
+    indicatorWidth: 10,
+    labelColor: `#e77656`,
+    spinnerMode: false,
+    spinnerSpeed: 1,
+    trackColor: `#e2dad2`,
+    indicatorColor: `#e77656`,
+    indicatorCap: `round`,
+  }
+
+  const center = values.size / 2,
+    radius =
+      center -
+      (values.trackWidth > values.indicatorWidth
+        ? values.trackWidth
+        : values.indicatorWidth),
+    dashArray = 2 * Math.PI * radius,
+    dashOffset = dashArray * ((100 - values.progress) / 100)
+
   return (
     <>
       <div className="position-relative">
+        <div className="blog_svg-wrapper">
+          <svg className="blog_svg-indicator">
+            <circle
+              cx={center}
+              cy={center}
+              r={radius}
+              stroke={values.trackColor}
+              strokeWidth={values.trackWidth}
+              fill="transparent"
+            />
+            <circle
+              cx={center}
+              cy={center}
+              r={radius}
+              stroke={values.indicatorColor}
+              strokeWidth={values.indicatorWidth}
+              fill="transparent"
+              strokeDasharray={dashArray}
+              strokeDashoffset={dashOffset}
+            />
+          </svg>
+
+          <div className="position-absolute text-primary top-50 start-50 translate-middle text-center">
+            <span className="fw-bold d-block">{`${
+              progress > 100 ? 100 : progress
+            }%`}</span>
+          </div>
+        </div>
+
         {data?.blog.map((item) => {
           return (
             <>
@@ -147,8 +214,8 @@ const BlogDetail = () => {
                 />
               </div>
 
-              <div className="container mb-6 mb-lg-8">
-                <div className="text-center ">
+              <div className="w-75 mx-auto mb-6 mb-lg-8">
+                <div className="text-center">
                   <div className="d-flex gap-3 align-items-center justify-content-center mb-4 ">
                     <img
                       className="avatar rounded-circle"

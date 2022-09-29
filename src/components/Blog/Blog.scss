@@ -105,3 +105,19 @@
     max-width: 32rem !important;
   }
 }
+
+/* Define the size */
+
+.blog_svg {
+  &-wrapper {
+    position: fixed;
+    top: 17rem;
+    right: 3rem;
+  }
+  &-indicator {
+    width: 75px;
+    height: 75px;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+  }
+}
