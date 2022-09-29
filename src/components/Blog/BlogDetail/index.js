@@ -118,7 +118,7 @@ const BlogDetail = () => {
       ScrollTop = el.scrollTop || document.body.scrollTop,
       ScrollHeight = el.scrollHeight || document.body.scrollHeight
     let percent = (ScrollTop / (ScrollHeight - el.clientHeight)) * 100
-    // store percentage in state
+
     setProgress(Math.floor(percent))
   }
 
@@ -152,7 +152,7 @@ const BlogDetail = () => {
   return (
     <>
       <div className="position-relative">
-        <div className="blog_svg-wrapper">
+        <div className="blog_svg-wrapper d-none d-md-block">
           <svg className="blog_svg-indicator">
             <circle
               cx={center}

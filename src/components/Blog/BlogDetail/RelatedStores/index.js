@@ -14,7 +14,7 @@ const RelatedStores = ({
       <div className="text-center mt-9 mb-4 fs-3 d-none d-md-block">
         / <spna class="mx-2">詳細資訊</spna>/
       </div>
-      <div className="bg-skin-bright d-lg-flex mx-6 py-5 px-3 px-md-10 gap-6 mb-7 justify-content-around">
+      <div className="bg-skin-bright w-md-75 d-lg-flex mx-auto py-5 px-3 px-md-10 gap-6 mb-7 justify-content-around">
         <div className="position-relative">
           <img src={storeImg} className=" max-h-md-300" alt="store " />
         </div>
