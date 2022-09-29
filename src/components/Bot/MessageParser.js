@@ -18,10 +18,23 @@ const MessageParser = ({ children, actions }) => {
       actions.handleShowCategory()
     }
 
+    if (
+      message.includes('優惠活動') ||
+      message.includes('折價券') ||
+      message.includes('優惠資訊') ||
+      message.includes('優惠')
+    ) {
+      actions.handleAsaz()
+    }
+
+    if (message.includes('會員') || message.includes('訂單')) {
+      actions.handleMember()
+    }
+
     if (message.includes('買')) {
       actions.handleShopNow()
     }
-    if (message.includes('會員') || message.includes('註冊')) {
+    if (message.includes('註冊')) {
       actions.handleSignup()
     }
 

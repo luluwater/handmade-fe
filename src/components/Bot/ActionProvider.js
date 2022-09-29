@@ -26,6 +26,32 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }))
   }
 
+  const handleAsaz = () => {
+    const botMessage = createChatBotMessage('最新活動', {
+      widget: 'showAsaz',
+      loading: true,
+      terminateLoading: true,
+    })
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }))
+  }
+
+  const handleMember = () => {
+    const botMessage = createChatBotMessage('個人訂單', {
+      widget: 'showOrder',
+      loading: true,
+      terminateLoading: true,
+    })
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }))
+  }
+
   const handleShowCategory = () => {
     const botMessage = createChatBotMessage('手作體驗種類', {
       widget: 'showCategory',
@@ -102,12 +128,14 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         return React.cloneElement(child, {
           actions: {
             handleHello,
+            handleMember,
             handleShowCategory,
             handleShopNow,
             handleSignup,
             handleViewBlog,
             handleConcatUs,
             handleOptions,
+            handleAsaz,
           },
         })
       })}

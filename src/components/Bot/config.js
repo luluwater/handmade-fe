@@ -7,12 +7,18 @@ import ShopNow from './widgets/ShopNow'
 import ViewBlog from './widgets/ViewBlog'
 import SignupWidget from './widgets/SignupWidget'
 import OverView from './widgets/OverView'
+import Asaz from './widgets/Asaz'
+import Order from './widgets/Order'
 
 const botName = '黑色小花貓 '
 
+const localUser = JSON.parse(localStorage.getItem('user'))?.user
+
 const config = {
   initialMessages: [
-    createChatBotMessage(`哈囉 ! 歡迎來到手手`),
+    createChatBotMessage(
+      `哈囉 ${localUser ? localUser.account : '你好'}! 歡迎來到手手`
+    ),
     createChatBotMessage('想了解的手作體驗課程', {
       withAvatar: false,
       delay: 500,
@@ -34,6 +40,16 @@ const config = {
     {
       widgetName: 'showCategory',
       widgetFunc: (props) => <ShowCategory {...props} />,
+    },
+
+    {
+      widgetName: 'showOrder',
+      widgetFunc: (props) => <Order {...props} />,
+    },
+
+    {
+      widgetName: 'showAsaz',
+      widgetFunc: (props) => <Asaz />,
     },
     {
       widgetName: 'showNow',

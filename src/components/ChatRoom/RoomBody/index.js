@@ -1,20 +1,17 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentRoom } from '../../../slices/chat-slice'
+import { useSelector } from 'react-redux'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import EmojiPicker from 'emoji-picker-react'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import {
   useGetRoomsQuery,
   useSendMessageMutation,
 } from '../../../services/chatApi'
-import { setFriends } from '../../../slices/chat-slice'
 import { useGetUserQuery } from '../../../services/userApi'
 
 const RoomBody = () => {
@@ -26,7 +23,6 @@ const RoomBody = () => {
   const { data: user } = useGetUserQuery(userData?.id)
   const [sendMessage, { isLoading }] = useSendMessageMutation()
   const { chatId } = useParams()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const msgBox = useRef()
@@ -76,12 +72,6 @@ const RoomBody = () => {
     scroll()
   }, [newMessage])
 
-  useEffect(() => {
-    dispatch(setCurrentRoom(...currentChat))
-  }, [])
-
-  const currentRoom = useSelector((state) => state.chatReducer).currentRoom
-
   return (
     <>
       <div>
@@ -92,7 +82,7 @@ const RoomBody = () => {
           >
             <FontAwesomeIcon icon=" fa-solid fa-angle-left mt-4 " />
           </div>
-          <h5 className="m-0 text-center">{currentRoom.room_title}</h5>
+          <h5 className="m-0 text-center">{currentChat?.[0].room_title}</h5>
           <div
             onClick={handleLeftRoom}
             className="position-absolute bottom-0 end-0 d-none d-md-flex"
