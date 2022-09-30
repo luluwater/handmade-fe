@@ -45,6 +45,7 @@ const courseCartSlice = createSlice({
           totalPrice: newItem.price,
           stocks: newItem.stocks,
           stockWarning: '',
+          categoryName: newItem.categoryName,
         })
         if (!state.isCartOpen) {
           toast(`${action.payload.name} 成功加入購物車！`, {

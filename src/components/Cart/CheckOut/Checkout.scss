@@ -25,9 +25,15 @@
       }
     }
 
+  }
 
+  &_ATM{
+    // font-size: 1.1rem;
+    font-weight: 600;
+  }
 
-
+  &_ATMLine1{
+    color: $primary;
   }
 
   &_title{

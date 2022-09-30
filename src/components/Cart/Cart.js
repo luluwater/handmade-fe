@@ -310,7 +310,7 @@ const Cart = () => {
     <div className="Cart" onClick={toggleCart}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
         <Row
-          className="justify-content-end Cart_main "
+          className="justify-content-end Cart_main"
           onClick={(e) => {
             e.stopPropagation()
           }}
@@ -439,9 +439,11 @@ const Cart = () => {
 
                     <div className="Cart_RecommendPC">
                       {userId ? (
-                        <Row className="Cart_userLikeBox">
-                          <p className="fs-5 text-center">您的課程收藏清單</p>
-                          <Row className="mb-5">
+                        <Row className="Cart_userLikeBox p-0">
+                          <p className="fs-5 text-center ps-0 pe-4 m-0">
+                            您的課程收藏清單
+                          </p>
+                          <Row className="mb-5 mt-3">
                             <Col className="d-flex justify-content-center Cart_userLike ">
                               <UserLikeCourse userId={userId} />
                             </Col>
@@ -510,10 +512,12 @@ const Cart = () => {
 
                     <div className="Cart_RecommendMobile">
                       {userId ? (
-                        <Row>
-                          <p className="fs-5 text-center">您的課程收藏清單</p>
-                          <Row className="mb-5">
-                            <Col className="d-flex justify-content-center Cart_userLike ">
+                        <Row className="d-flex justify-content-center m-0">
+                          <p className="fs-3 text-center Cart_RecommendMobileTitle">
+                            您的課程收藏清單
+                          </p>
+                          <Row className="mb-5 p-0">
+                            <Col className="d-flex justify-content-center Cart_userLike p-0">
                               <UserLikeCourse userId={userId} />
                             </Col>
                           </Row>
@@ -522,7 +526,7 @@ const Cart = () => {
                         ''
                       )}
                       <Row className="Cart_youMightLikeBox">
-                        <p className="fs-5 text-center">您可能會喜歡</p>
+                        <p className="fs-3 text-center">您可能會喜歡</p>
                         <Row className="mb-5">
                           <Col className="d-flex justify-content-center Cart_userLike">
                             <YouWillLikeCourse />
@@ -536,7 +540,7 @@ const Cart = () => {
 
               {/* =============商品購物車============== */}
               <Tab.Pane eventKey="second">
-                <Row>
+                <Row className="Cart_row">
                   <Col xs={12} md={9} className="Cart_mainContent px-0">
                     <div
                       className="mt-5 Cart_backToStore fs-5"
@@ -682,8 +686,8 @@ const Cart = () => {
                     </Button>
                     <div className="Cart_RecommendMobile">
                       {userId ? (
-                        <Row className="Cart_userLikeBox">
-                          <p className="fs-5 text-center">您的商品收藏清單</p>
+                        <Row className="Cart_userLikeBox  d-flex justify-content-center">
+                          <p className="fs-3 text-center">您的商品收藏清單</p>
                           <Row className="mb-5">
                             <Col className="d-flex justify-content-center Cart_userLike">
                               <UserLikeProduct userId={userId} />
@@ -695,7 +699,7 @@ const Cart = () => {
                       )}
 
                       <Row className="Cart_youMightLikeBox">
-                        <p className="fs-5 text-center">您可能會喜歡</p>
+                        <p className="fs-3 text-center">您可能會喜歡</p>
                         <Row className="mb-5">
                           <Col className="d-flex justify-content-center Cart_userLike">
                             <YouWillLikeProduct />

@@ -12,6 +12,8 @@ import {
   getProductTotal,
 } from '../../../slices/productCart-slice'
 
+import { cartClose } from '../../../slices/cart-ui-slice'
+
 import {
   useAddUserFavoriteProductMutation,
   useRemoveUserFavoriteProductMutation,
@@ -96,6 +98,7 @@ const CartRecommendCard = ({
             loop
             className="card_swiper shadow"
             onClick={() => {
+              dispatch(cartClose(false))
               scrollToTop()
               navigate(`/${type}/detail/${productId}`)
             }}

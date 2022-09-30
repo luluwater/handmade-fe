@@ -27,6 +27,8 @@ import {
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
 
+import { scrollToTop } from '../../Filter/Paginate'
+
 // 資料
 const RecommendCard = ({
   type,
@@ -80,7 +82,11 @@ const RecommendCard = ({
           speed={600}
           slidesPerView={1}
           loop
-          className="card_swiper shadow"
+          className="card_swiper shadow recommendCard_Link"
+          onClick={() => {
+            scrollToTop()
+            navigate(`/${type}/detail/${productId}`)
+          }}
         >
           {img?.map((item) => {
             return (
@@ -96,11 +102,13 @@ const RecommendCard = ({
 
         <Row className="justify-content-between align-items-center ">
           <Col xs={6} className="mt-2">
-            <p className="mb-1 text-truncate recommendCard_storeName ">
-              <p className="m-0">| {store} |</p>
-            </p>
-            <h6 className="mb-1 text-truncate ps-1">{name}</h6>
-            <p className="text-primary fw-bold ps-1">${price}</p>
+            <Link to={`/${type}/detail/${productId}`}>
+              <p className="mb-1 text-truncate recommendCard_storeName ">
+                <p className="m-0">| {store} |</p>
+              </p>
+              <h6 className="mb-1 text-truncate ps-1">{name}</h6>
+              <p className="text-primary fw-bold ps-1">${price}</p>
+            </Link>
           </Col>
           <Col className="text-end d-flex justify-content-end">
             <button

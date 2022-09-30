@@ -118,7 +118,7 @@
   &_courseRightSide{
     background: $skin-bright;
     @media screen and (max-width:576px) {
-      width: 100%;
+      width: 100vw;
     }
   }
 
@@ -292,6 +292,10 @@
 
   &_userLikeBox{
     margin: 1rem 0 1rem 2rem;
+    @media screen and (max-width:576px) {
+      margin: 0;
+      padding: 0;
+    }
 
   }
   &_youMightLikeBox{
@@ -315,8 +319,13 @@
     display: none;
     @media screen and (max-width:576px) {
       display: block;
+      .row:first-child{
+        width: 100vw;
+      }
     }
   }
+
+
   
 
   }
@@ -375,6 +384,7 @@
 
   .cartRecommend{
     width: 210px;
+    cursor: pointer;
 
     &_outBox{
       @media screen and (max-width:576px) {
@@ -391,6 +401,8 @@
     }
     .swiper-button-prev::after,.swiper-button-next::after{
       font-size: 2rem;
+
+      
   }
   .card_swiper{
       max-width: 210px;
@@ -411,5 +423,19 @@
     &_storeName{
       font-size: .9rem;
     }
+    &_empty{
+      font-size: 1.3rem;
+      @media screen and (max-width:576px) {
+        font-size: 1.3rem;
+        border: 1px solid $gray-darker;
+        padding: 10px;
+      }
+    }
+
+
+
+  }
+  .Cart_RecommendMobileTitle{
+    padding-bottom: 5px;
 
   }

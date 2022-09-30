@@ -22,6 +22,7 @@ const ProductCheckout = () => {
     navigate('/')
     dispatch(cartClose(false))
   }
+  let atmDate = moment().add(3, 'days').format('YYYY-MM-DD')
 
   return (
     <>
@@ -50,7 +51,26 @@ const ProductCheckout = () => {
                       您的訂單已成立，感謝您的訂購
                     </p>
                     <p>您的訂單編號為{item.order_number} </p>
-                    <p>我們將盡快為您寄出商品</p>
+
+                    {item.payment_name === 'ATM匯款' ? (
+                      <>
+                        <p className="CheckoutPage_ATM CheckoutPage_ATMLine1 mt-5">
+                          請於{atmDate} 24:00以前匯款
+                        </p>
+                        <p className="CheckoutPage_ATM">
+                          銀行代碼：013國泰世華銀行
+                        </p>
+                        <p className="CheckoutPage_ATM">
+                          轉帳帳號：1470305054433903(共16碼)
+                        </p>
+                        <p className="CheckoutPage_ATM">
+                          轉帳金額：${item.total_amount}
+                        </p>
+                      </>
+                    ) : (
+                      <p>我們將盡快為您寄出商品</p>
+                    )}
+
                     <div className="d-flex align-items-center CheckoutPage_noteBox">
                       <p className="CheckoutPage_note">
                         基於保障消費者個人衛生因素考量，不接受客戶鑑賞商品後退貨
