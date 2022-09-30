@@ -28,7 +28,8 @@ function StoreCard({
       className="map_storeCard m-1"
       onClick={() => {
         dispatch(setCenter([lat, lng]))
-        scrollToTop()
+        console.log(window.innerWidth)
+        if (window.innerWidth <= 600) scrollToTop()
       }}
       role="button"
     >

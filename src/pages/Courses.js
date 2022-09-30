@@ -70,7 +70,6 @@ function Courses() {
   //   'pagination:filter',
   //   useSelector((state) => state.paginationReducer.filter)
   // )
-
   return (
     <>
       <CourseBanner />
@@ -100,7 +99,9 @@ function Courses() {
                     />
                   )
                 })}
-                {courseList.length ? (
+                {isLoading ? (
+                  ''
+                ) : courseList.length ? (
                   ''
                 ) : (
                   <h1 className="text-center text-gray-darker mt-5">
