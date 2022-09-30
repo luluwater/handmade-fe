@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 import io from 'socket.io-client'
 import { BASE_URL } from '../utils/config'
-import { useGetRoomsQuery } from '../services/chatApi'
 import {
   setSocket,
   addMesssage,
-  setJoinRoomMsg,
   setWelcomeMsg,
   setFriends,
   setLeftRoom,

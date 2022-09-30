@@ -82,13 +82,13 @@ const reducers = combineReducers({
   [authApiService.reducerPath]: authApiService.reducer,
   [googleApiService.reducerPath]: googleApiService.reducer,
   [productOrderApiService.reducerPath]: productOrderApiService.reducer,
-  [productOrderDetailApiService.reducerPath]: productOrderDetailApiService.reducer,
+  [productOrderDetailApiService.reducerPath]:
+    productOrderDetailApiService.reducer,
   [courseOrderApiService.reducerPath]: courseOrderApiService.reducer,
-  [courseOrderDetailApiService.reducerPath]: courseOrderDetailApiService.reducer,
-  
+  [courseOrderDetailApiService.reducerPath]:
+    courseOrderDetailApiService.reducer,
+
   [couponApiService.reducerPath]: couponApiService.reducer,
-
-
 })
 
 const store = configureStore({
