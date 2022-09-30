@@ -84,7 +84,7 @@ function ProductCard({
         loop
         className="card_swiper rounded shadow"
         onClick={() => {
-          console.log('click')
+          // console.log('click')
           navigate(`/${type}/detail/${productId}`)
         }}
         role="button"

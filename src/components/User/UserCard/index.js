@@ -52,12 +52,12 @@ const UserCard = ({ account, email, avatar }) => {
           {/* 登出+回到首頁 */}
           <Row>
             <Link
-              className="d-flex align-items-center justify-content-center"
+              className="mt-10 d-flex align-items-center justify-content-center"
               to="/"
             >
               <button
                 onClick={authLogOut}
-                className="user_profile_card_logout_btn mt-10 fw-bold"
+                className=" user_profile_card_logout_btn fw-bold"
               >
                 我要登出
               </button>

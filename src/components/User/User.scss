@@ -180,6 +180,17 @@
 }
 
 .user_account {
+  &_datepicker {
+    @media screen and (max-width: 576px) {
+      display: none; 
+    }
+  }
+  &_mdDatepicker {
+    display: none; 
+    @media screen and (max-width: 576px) {
+      display: block;
+    }
+  }
   @media screen and (max-width: 576px) {
     margin: 0px !important;
   }
@@ -279,7 +290,20 @@
     }
   }
   &_input {
-    width: 350px;
+    width: 470px;
+    background-color: $skin-brighter !important;
+    color: $gray-darker;
+    letter-spacing: 3px;
+    display: block;
+    @media screen and (max-width: 576px) {
+      width: 335px;
+      display: none;
+      // margin-top: 5px;
+    }
+  }
+  &_select {
+    width: 130px;
+    height: 35px;
     background-color: $skin-brighter !important;
     color: $gray-darker;
     letter-spacing: 3px;
@@ -300,6 +324,21 @@
     }
   }
   &_inputBirth {
+    display: block !important;
+    letter-spacing: 3px;
+    color: $gray-dark !important;
+    padding: 15px;
+    width: 470px;
+    background-color: $skin-brighter !important;
+    border: none;
+    height: 42px;
+    color: $dark;
+    &:focus {
+      outline: none;
+    }
+  }
+  &_mdInputBirth {
+    display: block !important;
     letter-spacing: 3px;
     color: $gray-dark !important;
     padding: 15px;

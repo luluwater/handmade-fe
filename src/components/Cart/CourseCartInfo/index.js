@@ -352,7 +352,7 @@ const CourseCartInfo = () => {
                 </Button>
               </Col>
 
-              {payment === 2
+              {payment === '2'
                 ? isLoading && (
                     <LoadingAnimation hintWord="信用卡結帳授權中，請勿離開畫面" />
                   )
