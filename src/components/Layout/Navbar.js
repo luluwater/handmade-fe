@@ -42,7 +42,10 @@ const Navbar = () => {
 
   const navRef = useRef(null)
   const menuRef = useRef(null)
-  const toggleMenu = () => menuRef.current.classList.toggle('navbar_showMenu')
+  const toggleMenu = () => {
+    menuRef.current.classList.toggle('navbar_showMenu')
+    navRef.current.classList.toggle('click')
+  }
 
   const scrollFunction = () => {
     if (
