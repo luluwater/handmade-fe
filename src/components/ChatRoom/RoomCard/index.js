@@ -1,11 +1,10 @@
-import Card from 'react-bootstrap/Card'
-import { Link, useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetUserQuery } from '../../../services/userApi'
 
 function RoomCard({ roomName, endpoint, roomImg }) {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const socket = useSelector((state) => state.chatReducer).socket
 
@@ -17,6 +16,10 @@ function RoomCard({ roomName, endpoint, roomImg }) {
     await socket.emit('roomMsg', { user: user[0], roomName })
     await navigate(`/chat${endpoint}`)
   }
+
+  const el = useRef()
+
+  console.log('roomName', roomName)
 
   return (
     <div className="d-flex flex-column position-relative">

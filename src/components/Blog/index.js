@@ -22,7 +22,7 @@ import {
   setShowItemCount,
   setType,
 } from '../../slices/filterPagination-slice'
-import { scrollToTop } from '../../components/Filter/Paginate'
+import { scrollToTop } from '../Filter/Paginate'
 
 const Blog = () => {
   useEffect(() => {
