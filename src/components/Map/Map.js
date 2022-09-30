@@ -17,6 +17,7 @@ import MRT from '../../utils/TRTC-Station.json'
 import MRT_Line from '../../utils/TRTC-Line.json'
 import TRTC from '../../utils/TRTC.json'
 import { color } from '@mui/system'
+import { Link } from 'react-router-dom'
 
 //全域事件
 function LocationMarker() {
@@ -167,11 +168,13 @@ function Map() {
               <Popup closeButton={false}>
                 <Row className="align-items-center">
                   <Col sm={4} md={5}>
-                    <img
-                      className="border"
-                      src={require(`../../assets/store/store_${v.category_en_name}_${v.id}/${v.img}`)}
-                      alt={v.name}
-                    />
+                    <Link to={`/store/${v.id}`}>
+                      <img
+                        className="border"
+                        src={require(`../../assets/store/store_${v.category_en_name}_${v.id}/${v.img}`)}
+                        alt={v.name}
+                      />
+                    </Link>
                   </Col>
                   <Col>
                     <h5 className="fw-bold">{v.name}</h5>
