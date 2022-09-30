@@ -106,6 +106,12 @@
   }
 }
 
+.blog_preview {
+  > * img {
+    max-height: 15rem !important;
+  }
+}
+
 /* Define the size */
 
 .blog_svg {

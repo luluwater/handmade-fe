@@ -10,10 +10,9 @@ const Order = () => {
     <div>
       你好，歡迎至會員專區查詢、管理個人帳戶資訊 !
       <br />
-      <br />
-      HANDMADE 手手會員專區 :{' '}
+      HANDMADE 手手會員專區 :
       <Link to={isLogin || userData ? '/user/management' : 'login'}>
-        提供連結
+        至會員專區
       </Link>
     </div>
   )
