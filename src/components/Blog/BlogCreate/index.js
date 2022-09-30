@@ -142,7 +142,7 @@ const BlogCreate = () => {
                     {addTitle}
                   </h5>
                   <div className="py-2 border-bottom border-gray-dark">
-                    <p className="m-0 text-cut text-muted">
+                    <p className="blog_preview m-0 text-cut text-muted text-center">
                       {addContent ? parse(addContent) : ''}
                     </p>
                   </div>

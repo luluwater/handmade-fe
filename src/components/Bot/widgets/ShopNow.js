@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
 
 const ShopNow = () => {
+  // TODO:有空換成隨機
   return (
     <Container>
       <Row>

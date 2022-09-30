@@ -102,6 +102,31 @@
 
 .blog_article {
   > * img {
-    max-width: 32rem !important;
+    max-width: 20rem;
+    @media (min-width: 768px) {
+      max-width: 32rem;
+    }
+  }
+}
+
+.blog_preview {
+  > * img {
+    max-height: 15rem !important;
+  }
+}
+
+/* Define the size */
+
+.blog_svg {
+  &-wrapper {
+    position: fixed;
+    top: 17rem;
+    left: 2rem;
+  }
+  &-indicator {
+    width: 75px;
+    height: 75px;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
   }
 }

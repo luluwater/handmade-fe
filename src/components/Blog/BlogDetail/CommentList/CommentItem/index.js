@@ -148,7 +148,7 @@ const CommentItem = ({
               <Form onSubmit={handleUpdate}>
                 <Form.Control
                   required
-                  className="bg-skin-bright border-dark"
+                  className="bg-white border-gray-dark"
                   as="textarea"
                   rows={4}
                   value={contentInput}

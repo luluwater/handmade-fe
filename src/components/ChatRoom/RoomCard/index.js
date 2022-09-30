@@ -19,28 +19,28 @@ function RoomCard({ roomName, endpoint, roomImg }) {
   }
 
   return (
-    <Card className="rounded-3">
-      <Card.Body className="px-0 py-0">
-        <div className="max-h-md-175">
-          <img
-            className="max-h-175 h-md-auto w-100 object-fit "
-            src={roomImg}
-            alt="room card"
-          />
-        </div>
-        <Card.Title className="text-center my-3">{roomName}</Card.Title>
-        <div
-          className="w-100 btn bg-secondary-dark text-white border-0 mx-auto"
+    <div className="d-flex flex-column position-relative">
+      <div className="chat-room_img d-flex pb-md-1">
+        <img
           onClick={handleJoinRoom}
-        >
-          進入聊天室
+          className="w-75 w-md-75 mx-auto "
+          src={roomImg}
+          alt="room card"
+        />
+      </div>
+      <div
+        className="chat-room_text d-flex justify-content-center align-items-center "
+        onClick={handleJoinRoom}
+      >
+        <p className="text-center my- pb-md-1 m-0 fs-6">
+          {roomName}
           <FontAwesomeIcon
-            className="text-white ms-3"
+            className="ms-3"
             icon="fa-solid fa-right-to-bracket"
           />
-        </div>
-      </Card.Body>
-    </Card>
+        </p>
+      </div>
+    </div>
   )
 }
 
