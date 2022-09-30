@@ -17,6 +17,7 @@ import FilterStore from './FilterStore/FilterStore'
 import SortSelect from './SortSelect'
 
 export const getNewData = (data) => {
+  const aa = 1
   const result = []
   let obj = {}
   const init = (obj, item) => {
