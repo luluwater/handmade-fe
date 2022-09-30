@@ -27,9 +27,10 @@ const ResetPassword = () => {
         .required('請再次輸入密碼')
         .oneOf([Yup.ref('password'), null], '輸入密碼不一致'),
     }),
-    onSubmit: (values) => {
-      resetPassword({ email: email, password: values.password })
-      navigate('/login')
+    onSubmit: async (values) => {
+      console.log(email)
+      await resetPassword({ email: email, password: values.password })
+      // navigate('/login')
     },
   })
 
