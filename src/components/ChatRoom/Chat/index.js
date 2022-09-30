@@ -21,10 +21,16 @@ const Chat = () => {
   const welcomeMsg = chatReducer.welcomeMsg
   const friendList = chatReducer.friends
 
+  // console.log('welcomeMswelcomeMsgg', welcomeMsg)
+
   return (
     <>
       <ChatToast text={welcomeMsg} />
-      <Container data-aos="zoom-in-up" data-aos-duration="600" className="my-8">
+      <Container
+        data-aos="zoom-out"
+        data-aos-duration="600"
+        className="position-relative my-8"
+      >
         <Row>
           <Col className="bg-skin-dark" lg={3}>
             <div className="d-flex align-items-center gap-3 p-1 m-3 bg-skin-brighter">

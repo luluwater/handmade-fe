@@ -4,6 +4,7 @@
   &_wrapper {
     z-index: 20;
   }
+
   &_body {
     overflow-y: scroll;
     &::-webkit-scrollbar {
@@ -74,4 +75,41 @@
   width: 40px;
   height: 40px;
   object-fit: cover;
+}
+
+.chat-room {
+  opacity: 1;
+  transform: scale(1);
+  position: relative;
+
+  &_img {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      // width: 90%;
+      // height: 90%;
+      background: #ccc;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &_img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  &_text {
+    color: $dark;
+  }
+  &_text:hover {
+    cursor: pointer;
+    color: $gray-dark;
+  }
+}
+
+.chat_transition {
+  transform: scale(5) translate(50%, 50%);
+  transition: all 1s;
 }

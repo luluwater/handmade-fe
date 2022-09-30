@@ -43,7 +43,7 @@ const Store = () => {
     <>
       <StoreBanner />
       <div className="mt-10 StorePage_container">
-        <Row>
+        <Row className="gx-0">
           <Col md={3} className="mb-3">
             <Fitler haveDate={false} havePrice={false} />
           </Col>

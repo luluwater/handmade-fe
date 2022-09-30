@@ -17,6 +17,7 @@ import { useCreateCommentMutation } from '../../../services/commentAPI'
 import { Toast } from '../../UI/SwalStyle'
 import { useSelector } from 'react-redux'
 import { useGetUserQuery } from '../../../services/userApi'
+import BlogDetailSkeleton from './BlogDetailSkeleton'
 
 const BlogDetail = () => {
   const { blogId } = useParams()
@@ -24,7 +25,7 @@ const BlogDetail = () => {
   const [chosenEmoji, setChosenEmoji] = useState(null)
   const sliceAuth = useSelector((state) => state.authReducers)
   const userData = JSON.parse(localStorage.getItem('user'))?.user
-  const { data } = useGetBlogQuery(blogId)
+  const { data, isLoading } = useGetBlogQuery(blogId)
   const { data: currentUser } = useGetUserQuery(userData?.id)
   const { data: publishUser } = useGetUserQuery(data?.blog[0]?.user_id)
 
@@ -32,6 +33,7 @@ const BlogDetail = () => {
   const [createComment] = useCreateCommentMutation()
   const [deleteBlog] = useDeleteBlogMutation()
   const [showPicker, setShowPicker] = useState(false)
+  const [progress, setProgress] = useState(0)
 
   const comment = {
     id: uuidv4(),
@@ -111,8 +113,6 @@ const BlogDetail = () => {
 
   const isAuthor = userData?.id === publishUser?.[0]?.id
 
-  const [progress, setProgress] = useState(0)
-
   const scrollHeight = () => {
     let el = document.documentElement,
       ScrollTop = el.scrollTop || document.body.scrollTop,
@@ -124,12 +124,13 @@ const BlogDetail = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', scrollHeight)
+
     return () => window.removeEventListener('scroll', scrollHeight)
   })
 
   let values = {
     size: 75,
-    progress,
+    progress: 0,
     trackWidth: 9,
     indicatorWidth: 10,
     labelColor: `#e77656`,
@@ -147,7 +148,11 @@ const BlogDetail = () => {
         ? values.trackWidth
         : values.indicatorWidth),
     dashArray = 2 * Math.PI * radius,
-    dashOffset = dashArray * ((100 - values.progress) / 100)
+    dashOffset = dashArray * ((100 - progress) / 100)
+
+  if (isNaN(progress)) {
+    setProgress(0)
+  }
 
   return (
     <>
@@ -180,110 +185,114 @@ const BlogDetail = () => {
             }%`}</span>
           </div>
         </div>
-
         {data?.blog.map((item) => {
           return (
             <>
-              <div className="d-flex align-items-center justify-content-between my-4">
-                <ul className="list-unstyled d-flex text-black m-0 ms-md-4">
-                  <li>
-                    <Link className="p-3" to="/">
-                      首頁
-                    </Link>
-                    /
-                  </li>
-                  <li>
-                    <Link className="p-3" to="/blog">
-                      部落格
-                    </Link>
-                    /
-                  </li>
-                  <li>
-                    <Link className="p-3 " to={`/blog/${item.blog_id}`}>
-                      {item.category_name}
-                    </Link>
-                  </li>
-                </ul>
+              {isLoading ? (
+                <>
+                  <BlogDetailSkeleton />
+                </>
+              ) : (
+                <>
+                  <div className="d-flex align-items-center justify-content-between my-4">
+                    <ul className="list-unstyled d-flex text-black m-0 ms-md-4">
+                      <li>
+                        <Link className="p-3" to="/">
+                          首頁
+                        </Link>
+                        /
+                      </li>
+                      <li>
+                        <Link className="p-3" to="/blog">
+                          部落格
+                        </Link>
+                        /
+                      </li>
+                      <li>
+                        <Link className="p-3 " to={`/blog/${item.blog_id}`}>
+                          {item.category_name}
+                        </Link>
+                      </li>
+                    </ul>
 
-                <BlogDropdown
-                  isAuthor={isAuthor}
-                  localUser={userData}
-                  isLogin={sliceAuth.isLogin}
-                  item={item}
-                  handleDeleteBlog={handleDeleteBlog}
-                />
-              </div>
-
-              <div className="w-75 mx-auto mb-6 mb-lg-8">
-                <div className="text-center">
-                  <div className="d-flex gap-3 align-items-center justify-content-center mb-4 ">
-                    <img
-                      className="avatar rounded-circle"
-                      src={publishUser?.[0]?.avatar}
-                      alt="publish user"
+                    <BlogDropdown
+                      isAuthor={isAuthor}
+                      localUser={userData}
+                      isLogin={sliceAuth.isLogin}
+                      item={item}
+                      handleDeleteBlog={handleDeleteBlog}
                     />
-                    <p className="m-0"> {publishUser?.[0]?.account}</p>
                   </div>
-                  <div>
-                    {item.tags?.map((item) => {
-                      return (
-                        <Badge
-                          key={item.id}
-                          className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4 mx-2"
-                          bg="white"
-                        >
-                          {item.tag_name}
-                        </Badge>
-                      )
-                    })}
+                  <div className="w-75 mx-auto mb-6 mb-lg-8">
+                    <div className="text-center">
+                      <div className="d-flex gap-3 align-items-center justify-content-center mb-4 ">
+                        <img
+                          className="avatar rounded-circle"
+                          src={publishUser?.[0]?.avatar}
+                          alt="publish user"
+                        />
+                        <p className="m-0"> {publishUser?.[0]?.account}</p>
+                      </div>
+                      <div>
+                        {item.tags?.map((item) => {
+                          return (
+                            <Badge
+                              key={item.id}
+                              className="rounded-0 mb-2 align-self-start py-2 p-5 text-dark mb-4 mx-2"
+                              bg="white"
+                            >
+                              {item.tag_name}
+                            </Badge>
+                          )
+                        })}
+                      </div>
+
+                      <h1 className="fw-bold fs-3 mb-6 text-gray-darker">
+                        {item.title}
+                      </h1>
+                      <h5 className="text-muted fs-5 mb-4">
+                        {item.name}
+                        <span className="ms-4">
+                          {moment(item.blog_create_time).format('YYYY.MM.DD')}
+                        </span>
+                      </h5>
+                      <article className="text-center blog_article">
+                        {parse(item.content)}
+                      </article>
+                    </div>
                   </div>
-
-                  <h1 className="fw-bold fs-3 mb-6 text-gray-darker">
-                    {item.title}
-                  </h1>
-                  <h5 className="text-muted fs-5 mb-4">
-                    {item.name}
-                    <span className="ms-4">
-                      {moment(item.blog_create_time).format('YYYY.MM.DD')}
-                    </span>
-                  </h5>
-                  <article className="text-center blog_article">
-                    {parse(item.content)}
-                  </article>
-                </div>
-              </div>
-
-              <RelatedStores
-                name={item.name}
-                intro={item.intro}
-                address={item.address}
-                route={item.route}
-                phone={item.phone}
-                opening_hour={item.opening_hour}
-                storeId={item.store_id}
-                storeImg={item.img_url}
-              />
-
-              <div className="container">
-                <h6 className=" w-100 fs-3 text-md-start text-center mb-0 ">
-                  留言區
-                </h6>
-                <CommentList />
-              </div>
-              <div className="mt-4 container">
-                <h6 className="pb-2 mb-3 d fs-md-6 fs-md-3 ">我要留言</h6>
-                <TextForm
-                  localUser={userData}
-                  isLogin={sliceAuth.isLogin}
-                  handleSubmit={handleSubmit}
-                  inputValue={inputValue}
-                  handleChange={handleChange}
-                  handleCancel={handleCancel}
-                  onEmojiClick={onEmojiClick}
-                  handleShowPicker={handleShowPicker}
-                  showPicker={showPicker}
-                />
-              </div>
+                  <RelatedStores
+                    name={item.name}
+                    intro={item.intro}
+                    address={item.address}
+                    route={item.route}
+                    phone={item.phone}
+                    opening_hour={item.opening_hour}
+                    storeId={item.store_id}
+                    storeImg={item.img_url}
+                  />
+                  <div className="container">
+                    <h6 className=" w-100 fs-3 text-md-start text-center mb-0 ">
+                      留言區
+                    </h6>
+                    <CommentList />
+                  </div>
+                  <div className="mt-4 container">
+                    <h6 className="pb-2 mb-3 d fs-md-6 fs-md-3 ">我要留言</h6>
+                    <TextForm
+                      localUser={userData}
+                      isLogin={sliceAuth.isLogin}
+                      handleSubmit={handleSubmit}
+                      inputValue={inputValue}
+                      handleChange={handleChange}
+                      handleCancel={handleCancel}
+                      onEmojiClick={onEmojiClick}
+                      handleShowPicker={handleShowPicker}
+                      showPicker={showPicker}
+                    />
+                  </div>
+                </>
+              )}
             </>
           )
         })}

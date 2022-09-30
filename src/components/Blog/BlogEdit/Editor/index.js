@@ -23,7 +23,7 @@ const Editor = ({
           const body = new FormData()
           loader.file.then((file) => {
             body.append('files', file)
-            console.log('file', file)
+
             fetch(`${API_URL}/api/blog/${blogId}/${UPLOAD_ENDPOINT}`, {
               method: 'post',
               body: body,

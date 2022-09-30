@@ -31,6 +31,7 @@ const CourseIntro = ({
   stock,
   isFavorite,
   categoryId,
+  categoryName
 }) => {
   ////////// DATE //////////
   const [startDate, setStartDate] = useState(new Date())
@@ -109,6 +110,7 @@ const CourseIntro = ({
         time,
         quantity,
         stocks,
+        categoryName
       })
     )
   }

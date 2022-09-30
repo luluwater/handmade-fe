@@ -48,7 +48,10 @@ img {
   }
 
   .max-h-md-300 {
-    max-height: 300px;
+    max-height: 300px !important;
+  }
+  .max-h-md-200 {
+    max-height: 200px !important;
   }
   .max-h-md-175 {
     max-height: 175px;
@@ -59,6 +62,9 @@ img {
   .m-160 {
     margin-left: 160px;
     margin-right: 160px;
+  }
+  .h-md-577 {
+    height: 577px;
   }
 }
 
@@ -262,7 +268,7 @@ img {
   max-width: 80%;
   margin: 20px auto;
 }
-//TODO:這有沒有需要放?
+
 #add_blog_active {
   color: #fff;
   background: var(--main-color);
@@ -344,4 +350,10 @@ img {
   .swal2-popup {
     border-radius: 0 !important;
   }
+}
+
+.chat_toast {
+  top: 10%;
+  right: 0;
+  z-index: 99;
 }

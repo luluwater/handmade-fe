@@ -1,6 +1,6 @@
 import '../../../../components/User/User.scss'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {
   useProductOrderDetailsQuery,
   useCreateProductCommentMutation,
@@ -103,7 +103,14 @@ const ProductsDetails = () => {
                     alt=""
                   />
                 </td>
-                <td>{item.product_name}</td>
+                <td>
+                  <Link
+                    className="text-center align-middle"
+                    to={`/product/detail/${item.product_id}`}
+                  >
+                    {item.product_name}
+                  </Link>
+                </td>
                 <td>{item.amount}</td>
                 <td className="user_order_list_title">$ {item.price}</td>
                 <td className="user_order_list_title">

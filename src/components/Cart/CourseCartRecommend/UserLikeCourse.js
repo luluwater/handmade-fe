@@ -49,7 +49,7 @@ const UserLikeCourse = ({ userId }) => {
           }
         })
       ) : (
-        <h3 className="my-10">目前尚未有收藏喔</h3>
+        <p className="my-10 cartRecommend_empty">目前尚未有收藏喔</p>
       )}
     </>
   )

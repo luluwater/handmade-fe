@@ -6,6 +6,7 @@
 .navbar{
   background-color: $skin-brighter;
   padding: 1rem 2rem 1rem 2rem;
+  z-index: 2;
   @media screen and (max-width:576px){
     padding: 1rem .5rem 1rem .5rem;
   }
@@ -173,5 +174,8 @@
   left: 0;
   z-index: 1500;
   box-shadow: 5px 5px 15px -5px $skin-bright;
+}
+.click{
+  z-index: 3500;
 }
 

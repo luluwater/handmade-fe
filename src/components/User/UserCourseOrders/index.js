@@ -54,27 +54,29 @@ const UserCourseOrders = () => {
                   <Col md={2} className="fw-bold ms-7 user_orders_header">
                     查詢訂單時間
                   </Col>
-                  <Col md={4} className="d-flex align-items-center">
-                    <DatePicker
-                      className="ms-2 user_orders_date p-0"
-                      dateFormat="yyyy.MM.dd"
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                      selectsStart
-                      startDate={startDate}
-                      endDate={endDate}
-                    />
-                    <span>-</span>
-                    <DatePicker
-                      className="user_orders_date ms-3"
-                      dateFormat="yyyy.MM.dd"
-                      selected={endDate}
-                      onChange={(date) => setEndDate(date)}
-                      selectsEnd
-                      startDate={startDate}
-                      endDate={endDate}
-                      minDate={startDate}
-                    />
+                  <Col md={4} className="my-3">
+                    <div className="user_datepicker d-flex align-items-center">
+                      <DatePicker
+                        className="ms-2 user_orders_date p-0"
+                        dateFormat="yyyy.MM.dd"
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                      />
+                      <span>-</span>
+                      <DatePicker
+                        className="user_orders_date ms-3"
+                        dateFormat="yyyy.MM.dd"
+                        selected={endDate}
+                        onChange={(date) => setEndDate(date)}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                      />
+                    </div>
                   </Col>
                   <Col md={4} className="d-flex align-items-center ms-5">
                     <button

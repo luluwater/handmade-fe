@@ -5,12 +5,18 @@ import { Autocomplete, Chip, Stack, TextField } from '@mui/material'
 export default function Tags({ setAddTagName }) {
   const { data } = useGetTagsQuery()
 
+  const set = new Set()
+
+  const filterTags = data?.filter((item) =>
+    !set.has(item.tag_name) ? set.add(item.tag_name) : false
+  )
+
   return (
     <Stack className=" w-100" spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={data?.map((option) => option.tag_name)}
+        options={filterTags?.map((option) => option.tag_name)}
         freeSolo
         renderTags={(value, getTagProps) => {
           console.log(value)
