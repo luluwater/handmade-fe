@@ -21,8 +21,6 @@ const Chat = () => {
   const welcomeMsg = chatReducer.welcomeMsg
   const friendList = chatReducer.friends
 
-  // console.log('welcomeMswelcomeMsgg', welcomeMsg)
-
   return (
     <>
       <ChatToast text={welcomeMsg} />
