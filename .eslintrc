@@ -2,15 +2,11 @@
   "extends": ["react-app"],
   "plugins": ["prettier", "react-hooks"],
   "globals": {
-    "TPDirect": true,
+    "TPDirect": true
   },
   "rules": {
     "prettier/prettier": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   }
-
-
-  
-  
 }

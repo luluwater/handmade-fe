@@ -17,6 +17,8 @@ import '../Blog.scss'
 import images from '../../../image'
 
 const BlogBanner = () => {
+  console.log('imagesimages', images)
+
   SwiperCore.use([Autoplay])
   return (
     <>

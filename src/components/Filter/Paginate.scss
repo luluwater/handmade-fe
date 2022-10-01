@@ -1,0 +1,9 @@
+@import '../../styles/custom_variables';
+.page_number {
+  color: $gray-darker;
+  &:hover {
+    color: white;
+    background-color: $secondary;
+    border-radius: 50% !important;
+  }
+}
