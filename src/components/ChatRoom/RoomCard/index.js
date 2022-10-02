@@ -17,8 +17,6 @@ function RoomCard({ roomName, endpoint, roomImg }) {
     await navigate(`/chat${endpoint}`)
   }
 
-  console.log('roomName', roomName)
-
   return (
     <div className="d-flex flex-column position-relative">
       <div className="chat-room_img d-flex pb-md-1">

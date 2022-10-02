@@ -9,8 +9,6 @@ function ChatToast({ text }) {
     setShow((pre) => !pre)
   }, [text])
 
-  console.log('in to ChatToast', text)
-
   return (
     <ToastContainer
       position="chat_toast "

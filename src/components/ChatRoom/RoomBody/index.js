@@ -14,6 +14,7 @@ import {
   useChatImgUploadMutation,
 } from '../../../services/chatApi'
 import { useGetUserQuery } from '../../../services/userApi'
+import axios from 'axios'
 
 const RoomBody = () => {
   const [message, setMessage] = useState('')
@@ -23,7 +24,7 @@ const RoomBody = () => {
   const { data } = useGetRoomsQuery('all')
   const { data: user } = useGetUserQuery(userData?.id)
   const [sendMessage, { isLoading }] = useSendMessageMutation()
-  const [uploadImg, { data: resImage }] = useChatImgUploadMutation()
+  // const [uploadImg, { data: resImage }] = useChatImgUploadMutation()
   const { chatId } = useParams()
   const navigate = useNavigate()
 
@@ -49,13 +50,14 @@ const RoomBody = () => {
 
   const [file, setFile] = useState()
 
-  const handleSendMsg = async (e) => {
-    if (message.length < 1 || file) return
-    e.preventDefault()
+  const handleSendMsg = (resImage) => {
+    if (message.length < 1 && !resImage) return
+
+    const isNotString = typeof resImage === 'object'
 
     const msg = {
       id: uuidv4(),
-      content: message,
+      content: !isNotString ? resImage : message,
       user_id: userData?.id || sliceAuth?.user.id,
       created_at: moment().format('YYYY-MM-DD h:mm:ss'),
       room_id: currentChat?.[0].id,
@@ -64,9 +66,11 @@ const RoomBody = () => {
       user: user[0],
     }
 
-    await sendMessage(msg)
-    await socket.emit('sendMsg', msg)
-    await setMessage('')
+    sendMessage(msg)
+    socket.emit('sendMsg', msg)
+
+    setMessage('')
+    setFile('')
   }
 
   function scroll() {
@@ -77,11 +81,14 @@ const RoomBody = () => {
     scroll()
   }, [newMessage])
 
-  const handleImageUpload = async () => {
-    const formData = await new FormData()
-    await formData.append('files', file)
+  const handleImageUpload = () => {
+    const formData = new FormData()
+    formData.append('files', file)
 
-    await uploadImg(formData)
+    axios
+      .post('http://localhost:8080/api/chat/msgImage', formData)
+      .then((response) => handleSendMsg(response.data))
+      .catch((error) => console.log(error))
   }
 
   return (
@@ -111,6 +118,9 @@ const RoomBody = () => {
         >
           {newMessage.map((m) => {
             const isCurrentUser = userData.id === m.user_id
+
+            const isImg = m.content.includes('http://localhost:8080')
+
             return (
               <div key={m.message_id}>
                 <div
@@ -137,9 +147,7 @@ const RoomBody = () => {
                         : 'chat_body_text-others'
                     }`}
                   >
-                    {m.content}
-                    //TODO:把這串插入CONTENT中
-                    <img src={resImage} alt="chat IMG" />
+                    {isImg ? <img src={m.content} alt="chat IMG" /> : m.content}
                   </ListGroup.Item>
                   <div className="text-muted fs-7 text-center align-self-end">
                     {moment(m.created_at).format('LT')}
@@ -169,7 +177,7 @@ const RoomBody = () => {
             variant="skin-brighter border-0"
           >
             <div className="d-flex align-items-center justify-content-center gap-4 mb-3">
-              <label htmlFor="file">
+              <label className="cursor-pointer" htmlFor="file">
                 <p className="h-100 d-flex align-items-center justify-content-center m-0">
                   上傳照片
                 </p>
