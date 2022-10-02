@@ -11,6 +11,7 @@ import moment from 'moment'
 import {
   useGetRoomsQuery,
   useSendMessageMutation,
+  useChatImgUploadMutation,
 } from '../../../services/chatApi'
 import { useGetUserQuery } from '../../../services/userApi'
 
@@ -22,10 +23,12 @@ const RoomBody = () => {
   const { data } = useGetRoomsQuery('all')
   const { data: user } = useGetUserQuery(userData?.id)
   const [sendMessage, { isLoading }] = useSendMessageMutation()
+  const [uploadImg, { data: resImage }] = useChatImgUploadMutation()
   const { chatId } = useParams()
   const navigate = useNavigate()
 
   const msgBox = useRef()
+  const chatImgRef = useRef()
 
   const currentChat = data?.filter((room) => {
     return room.endpoint === `/${chatId}`
@@ -44,8 +47,10 @@ const RoomBody = () => {
     setMessage(e.target.value)
   }
 
+  const [file, setFile] = useState()
+
   const handleSendMsg = async (e) => {
-    if (message.length < 1) return
+    if (message.length < 1 || file) return
     e.preventDefault()
 
     const msg = {
@@ -71,6 +76,13 @@ const RoomBody = () => {
   useEffect(() => {
     scroll()
   }, [newMessage])
+
+  const handleImageUpload = async () => {
+    const formData = await new FormData()
+    await formData.append('files', file)
+
+    await uploadImg(formData)
+  }
 
   return (
     <>
@@ -126,10 +138,8 @@ const RoomBody = () => {
                     }`}
                   >
                     {m.content}
-                    <img
-                      src={require('../../../assets/chatroom/chat_bakery.png')}
-                      alt=""
-                    />
+                    //TODO:把這串插入CONTENT中
+                    <img src={resImage} alt="chat IMG" />
                   </ListGroup.Item>
                   <div className="text-muted fs-7 text-center align-self-end">
                     {moment(m.created_at).format('LT')}
@@ -158,18 +168,49 @@ const RoomBody = () => {
             drop="up"
             variant="skin-brighter border-0"
           >
-            <Dropdown.Item
-              className="d-flex justify-content-around align-items-center"
-              onClick={handleSendMsg}
-            >
-              上傳圖片
-              <FontAwesomeIcon icon="fa-solid fa-plus" />
-            </Dropdown.Item>
-            <Dropdown.Item
-              className="d-flex justify-content-around align-items-center"
-              // onClick={}
-            >
-              個人資訊
+            <div className="d-flex align-items-center justify-content-center gap-4 mb-3">
+              <label htmlFor="file">
+                <p className="h-100 d-flex align-items-center justify-content-center m-0">
+                  上傳照片
+                </p>
+                <input
+                  ref={chatImgRef}
+                  className="d-none"
+                  type="file"
+                  name="file"
+                  id="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </label>
+              <FontAwesomeIcon
+                onClick={() => chatImgRef.current.click()}
+                icon="fa-solid fa-image"
+              />
+            </div>
+            {file?.name ? (
+              <div className="d-flex gap-3 mx-3">
+                <p className="text-cut-1">{file.name}</p>
+
+                <FontAwesomeIcon
+                  onClick={handleImageUpload}
+                  className="cursor-pointer"
+                  icon="fa-solid fa-upload"
+                />
+
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setFile('')
+                  }}
+                  className="cursor-pointer"
+                  icon="fa-solid fa-times"
+                />
+              </div>
+            ) : (
+              ''
+            )}
+
+            <Dropdown.Item className="d-flex justify-content-around align-items-center">
+              邀請好友
               <FontAwesomeIcon icon="fa-solid fa-circle-info" />
             </Dropdown.Item>
           </DropdownButton>

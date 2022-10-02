@@ -24,16 +24,12 @@ const Chat = () => {
 
   const [friendInfo, setFriendInfo] = useState({})
   const [showInfo, setShowInfo] = React.useState(false)
-  const [file, setFile] = useState()
 
   const handleShowInfo = async (friend) => {
     await setFriendInfo(friend)
     await setShowInfo((prev) => !prev)
   }
 
-  const saveFile = (e) => {
-    setFile(e.target.files[0])
-  }
 
   return (
     <>
@@ -48,18 +44,6 @@ const Chat = () => {
         ''
       )}
 
-      <label className="user_avatar_btn" htmlFor="file">
-        <p className="h-100 d-flex align-items-center justify-content-center">
-          上傳照片
-        </p>
-        <input
-          className="d-none"
-          type="file"
-          name="file"
-          id="file"
-          onChange={saveFile}
-        />
-      </label>
       <Container
         data-aos="zoom-out"
         data-aos-duration="600"

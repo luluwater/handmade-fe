@@ -24,7 +24,20 @@ export const chatApiService = createApi({
       }),
       invalidatesTags: ['chat'],
     }),
+
+    chatImgUpload: builder.mutation({
+      query: (data) => ({
+        url: 'chat/msgImage',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['chat'],
+    }),
   }),
 })
 
-export const { useGetRoomsQuery, useSendMessageMutation } = chatApiService
+export const {
+  useGetRoomsQuery,
+  useSendMessageMutation,
+  useChatImgUploadMutation,
+} = chatApiService

@@ -41,8 +41,6 @@ export const UserAvatar = ({ setShowUserAvatar }) => {
     update(formData)
   }
 
-  console.log('resFilename', resFilename?.filename)
-
   return (
     <>
       <div className="user_avatar align-items-center user_avatar_md">
