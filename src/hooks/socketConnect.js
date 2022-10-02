@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import { BASE_URL } from '../utils/config'
 import {
   setSocket,
-  addMesssage,
+  addMessage,
   setWelcomeMsg,
   setFriends,
   setLeftRoom,
@@ -21,7 +21,6 @@ function useSocket(user, dispatch) {
     })
 
     socket.on('joinData', (data) => {
-      console.log('data.usedata.userr', data.user)
       dispatch(setFriends(data.user))
     })
 
@@ -34,7 +33,7 @@ function useSocket(user, dispatch) {
     })
 
     socket.on('chat', (chatMsg) => {
-      dispatch(addMesssage(chatMsg))
+      dispatch(addMessage(chatMsg))
     })
   }, [dispatch])
 }

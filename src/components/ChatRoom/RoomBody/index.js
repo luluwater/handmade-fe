@@ -4,14 +4,12 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useSelector } from 'react-redux'
 import { Button, Form, InputGroup } from 'react-bootstrap'
-import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { v4 as uuidv4 } from 'uuid'
 import moment from 'moment'
 import {
   useGetRoomsQuery,
   useSendMessageMutation,
-  useChatImgUploadMutation,
 } from '../../../services/chatApi'
 import { useGetUserQuery } from '../../../services/userApi'
 import axios from 'axios'
@@ -24,7 +22,7 @@ const RoomBody = () => {
   const { data } = useGetRoomsQuery('all')
   const { data: user } = useGetUserQuery(userData?.id)
   const [sendMessage, { isLoading }] = useSendMessageMutation()
-  // const [uploadImg, { data: resImage }] = useChatImgUploadMutation()
+
   const { chatId } = useParams()
   const navigate = useNavigate()
 
@@ -73,14 +71,6 @@ const RoomBody = () => {
     setFile('')
   }
 
-  function scroll() {
-    msgBox.current.scrollTop = msgBox?.current.scrollHeight
-  }
-
-  useEffect(() => {
-    scroll()
-  }, [newMessage])
-
   const handleImageUpload = () => {
     const formData = new FormData()
     formData.append('files', file)
@@ -90,6 +80,14 @@ const RoomBody = () => {
       .then((response) => handleSendMsg(response.data))
       .catch((error) => console.log(error))
   }
+
+  function scroll() {
+    msgBox.current.scrollTop = msgBox?.current.scrollHeight
+  }
+
+  useEffect(() => {
+    scroll()
+  }, [handleSendMsg, newMessage])
 
   return (
     <>
@@ -118,9 +116,7 @@ const RoomBody = () => {
         >
           {newMessage.map((m) => {
             const isCurrentUser = userData.id === m.user_id
-
             const isImg = m.content.includes('http://localhost:8080')
-
             return (
               <div key={m.message_id}>
                 <div
@@ -176,7 +172,7 @@ const RoomBody = () => {
             drop="up"
             variant="skin-brighter border-0"
           >
-            <div className="d-flex align-items-center justify-content-center gap-4 mb-3">
+            <div className="d-flex align-items-center justify-content-center gap-4">
               <label className="cursor-pointer" htmlFor="file">
                 <p className="h-100 d-flex align-items-center justify-content-center m-0">
                   上傳照片
@@ -217,10 +213,10 @@ const RoomBody = () => {
               ''
             )}
 
-            <Dropdown.Item className="d-flex justify-content-around align-items-center">
+            {/* <Dropdown.Item className="d-flex justify-content-around align-items-center">
               邀請好友
               <FontAwesomeIcon icon="fa-solid fa-circle-info" />
-            </Dropdown.Item>
+            </Dropdown.Item> */}
           </DropdownButton>
           <Button
             onClick={handleSendMsg}

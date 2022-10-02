@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const userData = JSON.parse(localStorage.getItem('user'))?.user
 
@@ -7,15 +7,13 @@ const initialState = {
   currentRoom: {},
   socket: {},
   newMessage: [],
-  // history: [],
   friends: [],
-  online: false,
   welcomeMsg: '',
   userData: userData,
   senderTyping: { typing: false },
 }
 
-export const chatSilce = createSlice({
+export const chatSlice = createSlice({
   name: 'chat',
   initialState,
   reducers: {
@@ -66,7 +64,7 @@ export const chatSilce = createSlice({
       }
     },
 
-    addMesssage: (state, action) => {
+    addMessage: (state, action) => {
       const concatMsg = state.newMessage.concat(action.payload)
 
       const set = new Set()
@@ -85,11 +83,11 @@ export const chatSilce = createSlice({
 
 export const {
   setSocket,
-  addMesssage,
+  addMessage,
   setCurrentRoom,
   setWelcomeMsg,
   setFriends,
   setLeftRoom,
   fetchAllRooms,
-} = chatSilce.actions
-export default chatSilce.reducer
+} = chatSlice.actions
+export default chatSlice.reducer

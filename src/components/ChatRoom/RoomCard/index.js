@@ -1,14 +1,12 @@
-import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useGetUserQuery } from '../../../services/userApi'
 
 function RoomCard({ roomName, endpoint, roomImg }) {
   const navigate = useNavigate()
   const socket = useSelector((state) => state.chatReducer).socket
 
-  const sliceAuth = useSelector((state) => state.authReducers)
   const userData = JSON.parse(localStorage.getItem('user'))?.user
   const { data: user } = useGetUserQuery(userData.id)
 
