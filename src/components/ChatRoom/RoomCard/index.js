@@ -17,8 +17,6 @@ function RoomCard({ roomName, endpoint, roomImg }) {
     await navigate(`/chat${endpoint}`)
   }
 
-  const el = useRef()
-
   console.log('roomName', roomName)
 
   return (

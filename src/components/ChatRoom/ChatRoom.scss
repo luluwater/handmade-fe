@@ -113,3 +113,9 @@
   transform: scale(5) translate(50%, 50%);
   transition: all 1s;
 }
+
+.chat_user_info-img {
+  max-width: 300px;
+  object-fit: cover;
+  max-height: 300px;
+}

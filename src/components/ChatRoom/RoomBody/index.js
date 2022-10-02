@@ -126,6 +126,10 @@ const RoomBody = () => {
                     }`}
                   >
                     {m.content}
+                    <img
+                      src={require('../../../assets/chatroom/chat_bakery.png')}
+                      alt=""
+                    />
                   </ListGroup.Item>
                   <div className="text-muted fs-7 text-center align-self-end">
                     {moment(m.created_at).format('LT')}
@@ -156,14 +160,14 @@ const RoomBody = () => {
           >
             <Dropdown.Item
               className="d-flex justify-content-around align-items-center"
-              eventKey="1"
+              onClick={handleSendMsg}
             >
               上傳圖片
               <FontAwesomeIcon icon="fa-solid fa-plus" />
             </Dropdown.Item>
             <Dropdown.Item
               className="d-flex justify-content-around align-items-center"
-              eventKey="1"
+              // onClick={}
             >
               個人資訊
               <FontAwesomeIcon icon="fa-solid fa-circle-info" />
