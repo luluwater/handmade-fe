@@ -37,17 +37,27 @@ const StoreDetailBody = () => {
               </h2>
             </div>
 
-            <StoreSwiperKV
-              id={item.id}
-              category={item.category_en_name}
-              kvImg={item.kv_imgs}
-            />
+            <div data-aos="fade-up" data-aos-duration="1500">
+              <StoreSwiperKV
+                id={item.id}
+                category={item.category_en_name}
+                kvImg={item.kv_imgs}
+              />
+            </div>
 
-            <article className="StoreDetailBody_Intro">
+            <article
+              className="StoreDetailBody_Intro"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <p className="text-center">{item.intro}</p>
             </article>
 
-            <div className="StoreDetailBody_storeInfoBox align-items-center">
+            <div
+              className="StoreDetailBody_storeInfoBox align-items-center"
+              data-aos="fade-up"
+              data-aos-duration="1500"
+            >
               <ul className="list-unstyled StoreDetailBody_storeInfo">
                 <li>
                   <h5>店家資訊</h5>
@@ -87,7 +97,6 @@ const StoreDetailBody = () => {
                 </MapContainer>
               </div>
             </div>
-
 
             <div className="StoreDetailBody_SNS d-flex justify-content-center">
               <a href={item.FB_url} target="_blank" rel="noreferrer">

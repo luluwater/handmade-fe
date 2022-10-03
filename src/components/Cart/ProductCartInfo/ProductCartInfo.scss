@@ -177,10 +177,11 @@
     }
     &_Postal_code{
         margin-left: 8rem;
-        width: 30%;
+        width: 15%;
 
         @media screen and (max-width:576px) {
             margin-left: 0;
+            width: 30%;
         }
 
         .form-control{
@@ -217,7 +218,7 @@
         letter-spacing: .5rem;
         margin-left: calc(15rem + 35%); 
         &:hover{
-            color: $white;
+            color: $white !important;
         }
         @media screen and (max-width:576px){
             display: none;

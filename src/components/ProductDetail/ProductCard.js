@@ -8,6 +8,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './ProductCard.scss'
+import { motion } from 'framer-motion'
 
 import {
   useAddUserFavoriteProductMutation,
@@ -110,7 +111,9 @@ function ProductCard() {
                 {/* ========== 收藏 & 購物車 ========== */}
 
                 <div className="d-flex align-items-center me-2">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={() => {
                       if (!userId) return (window.location.href = '/login')
                       if (v.isFavorite) {
@@ -131,8 +134,10 @@ function ProductCard() {
                       icon={v.isFavorite ? 'fa-solid fa-heart' : 'far fa-heart'}
                       inverse
                     />
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={() => {
                       dispatch(
                         addProductCart({
@@ -153,7 +158,7 @@ function ProductCard() {
                       alt=""
                       className="product_detail_card_cart"
                     />
-                  </button>
+                  </motion.button>
                 </div>
               </div>
               {/* ========== 收藏 & 購物車 ========== */}

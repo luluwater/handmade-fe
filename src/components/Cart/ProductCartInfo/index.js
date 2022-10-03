@@ -30,6 +30,7 @@ import { useDeleteUserCouponMutation } from '../../../services/couponApi'
 
 import card from '../../../assets/credit-card-solid.png'
 import LoadingAnimation from '../../LoadingAnimation'
+import AnimatedPage from '../AnimatedPage'
 
 const ProductCartInfo = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -513,7 +514,7 @@ const ProductCartInfo = () => {
   }
 
   return (
-    <>
+    <AnimatedPage>
       <Container fluid className="ProductCartInfo">
         <Row>
           <Col xs={12} md={9} className="ProductInfo_leftSide">
@@ -927,7 +928,7 @@ const ProductCartInfo = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </AnimatedPage>
   )
 }
 

@@ -25,6 +25,7 @@ import {
   useRemoveUserFavoriteCourseMutation,
 } from '../../../services/courseApi'
 import { scrollToTop } from '../../Filter/Paginate'
+import { motion } from 'framer-motion'
 
 //取得圖片路徑
 function getImgsRouter(imgsName, category, productId, type) {
@@ -48,7 +49,6 @@ function ProductCard({
   price,
   isFavorite,
   amount,
-  
 }) {
   const [addUserFavoriteProduct] = useAddUserFavoriteProductMutation()
   const [removeUserFavoriteProduct] = useRemoveUserFavoriteProductMutation()
@@ -62,6 +62,7 @@ function ProductCard({
   const ProductItem = useSelector(
     (state) => state.productCartReducer.productCartItem
   )
+ 
 
   useEffect(() => {
     dispatch(getProductTotal())
@@ -73,8 +74,14 @@ function ProductCard({
 
   const userId = JSON.parse(localStorage.getItem('user'))?.user.id
 
+
   return (
-    <Card className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark">
+    <Card
+      className="product_card border-0 bg-transparent mx-1 p-0 text-gray-dark"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      data-aos-once="true"
+    >
       <Swiper
         modules={[Navigation]}
         navigation
@@ -108,7 +115,9 @@ function ProductCard({
           </Link>
         </Col>
         <Col className="text-end d-flex justify-content-end">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             className="bg-primary card_favorite border-0  rounded-circle me-2"
             onClick={() => {
               if (!userId) return (window.location.href = '/login')
@@ -140,15 +149,17 @@ function ProductCard({
               inverse
               size="lg"
             />
-          </button>
+          </motion.button>
 
           {type === 'product' ? (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
               onClick={addToProductCart}
             >
               <img src={cart} alt="" className="cart" />
-            </button>
+            </motion.button>
           ) : (
             ''
           )}

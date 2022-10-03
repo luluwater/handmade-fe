@@ -314,6 +314,7 @@ img {
 }
 
 .CartSwal {
+  z-index: 9000 !important;
   .swal2-title {
     margin-top: 1.5px;
     margin-bottom: 1.5px;
