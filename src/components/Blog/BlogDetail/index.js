@@ -117,7 +117,7 @@ const BlogDetail = () => {
     let el = document.documentElement,
       ScrollTop = el.scrollTop || document.body.scrollTop,
       ScrollHeight = el.scrollHeight || document.body.scrollHeight
-    let percent = (ScrollTop / (ScrollHeight - el.clientHeight)) * 100
+    let percent = (ScrollTop / (ScrollHeight - el.clientHeight - 527)) * 100
 
     setProgress(Math.floor(percent))
   }

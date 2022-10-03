@@ -13,11 +13,9 @@ import { useGetUserQuery } from '../../services/userApi'
 
 const Navbar = () => {
   const userData = JSON.parse(localStorage.getItem('user'))
-  // console.log('userData', userData)
   const id = JSON.parse(localStorage.getItem('user'))?.user.id
-  // console.log('id', id)
+  //TODO:LOACL 裡面一開始沒東西不能用這ㄍ ID
   const { data } = useGetUserQuery(id)
-  // console.log('userdata', data)
   const authReducers = useSelector((state) => state.authReducers)
 
   const isLogin = authReducers.isLogin
@@ -32,6 +30,8 @@ const Navbar = () => {
 
   const cartTotalQuantity =
     Number(productCartQuantity) + Number(courseCartQuantity)
+
+  console.log('datadata', data)
 
   const dispatch = useDispatch()
   const toggleCart = () => {
@@ -83,18 +83,6 @@ const Navbar = () => {
         </div>
         <div>
           <div className="d-flex justify-content-end align-items-center mt-3">
-            {/* <form action="" className="flex navbar_form">
-              <input type="text" className="searchInput" />
-              <button type="submit" className="border-0">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-magnifying-glass "
-                  size="xl"
-                  className=" ms-2 me-3 navbar_awesomeIcon"
-                  fixedWidth
-                />
-              </button>
-            </form> */}
-
             <span onClick={toggleCart} className="navbar_cartIcon">
               <FontAwesomeIcon
                 icon="fa-solid fa-cart-shopping"
@@ -115,6 +103,7 @@ const Navbar = () => {
               <>
                 <Link to="/user/management">
                   {data?.map((v) => {
+                    console.log(v.avatar)
                     return (
                       <div key={v.id} className="avatar">
                         <img
@@ -125,27 +114,6 @@ const Navbar = () => {
                       </div>
                     )
                   })}
-                  {/* {userData?.user.avatar ? (
-                    <div className="avatar ">
-                      <img
-                        src={userData?.user.avatar}
-                        className="rounded-circle"
-                        alt="user img"
-                      />
-                    </div>
-                  ) : (
-                    data?.map((v) => {
-                      return (
-                        <div key={v.id} className="avatar ">
-                          <img
-                            src={v.avatar}
-                            className="rounded-circle"
-                            alt="user img"
-                          />
-                        </div>
-                      )
-                    })
-                  )} */}
                 </Link>
               </>
             ) : (
@@ -178,17 +146,7 @@ const Navbar = () => {
                 fixedWidth
               />
             </span>
-            {/* <form action="" className="flex">
-              <input type="text" className="searchInput" />
-              <button type="submit" className="border-0">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-magnifying-glass "
-                  size="lg"
-                  className=" ms-2 me-3 navbar_awesomeIcon"
-                  fixedWidth
-                />
-              </button>
-            </form> */}
+
             <li onClick={toggleMenu}>
               <Link to="/" className="navbar_link">
                 HOME
