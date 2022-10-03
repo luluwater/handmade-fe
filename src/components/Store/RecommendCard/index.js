@@ -11,6 +11,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import './recommendCard.scss'
+import { motion } from 'framer-motion'
 
 import {
   addProductCart,
@@ -111,7 +112,9 @@ const RecommendCard = ({
             </Link>
           </Col>
           <Col className="text-end d-flex justify-content-end">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               className="bg-primary card_favorite border-0  rounded-circle me-2"
               onClick={() => {
                 if (!userId) return (window.location.href = '/login')
@@ -147,15 +150,17 @@ const RecommendCard = ({
                 inverse
                 size="lg"
               />
-            </button>
+            </motion.button>
 
             {cartIcon ? (
-              <button
+              <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
                 className="bg-secondary card_favorite border-0  rounded-circle d-flex align-items-center justify-content-center"
                 onClick={addToProductCart}
               >
                 <img src={cart} alt="" className="cart" />
-              </button>
+              </motion.button>
             ) : (
               ''
             )}
