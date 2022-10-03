@@ -30,7 +30,7 @@ const ResetPassword = () => {
     onSubmit: async (values) => {
       console.log(email)
       await resetPassword({ email: email, password: values.password })
-      // navigate('/login')
+      navigate('/login')
     },
   })
 
