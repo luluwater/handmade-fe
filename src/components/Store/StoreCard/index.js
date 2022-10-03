@@ -8,7 +8,12 @@ import { useParams } from 'react-router-dom'
 const StoreCard = ({ id, name, img, category_en_name }) => {
   return (
     <>
-      <Card className="StoreCard_card p-0">
+      <Card
+        className="StoreCard_card p-0"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-once="true"
+      >
         <div className="StoreCard_imgBox">
           <Link to={`/store/${id}`}>
             <img

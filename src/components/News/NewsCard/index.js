@@ -18,6 +18,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import '../News.scss'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 function getImgsRouter(imgsName, category, productId) {
   const baseRouter = `assets/product/product`
@@ -95,7 +96,9 @@ function NewsCard({
             </h6>
           </div>
           <div className="d-flex align-items-center me-2">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               className="bg-primary news_card_favorite me-2"
               onClick={() => {
                 if (!userId) return (window.location.href = '/login')
@@ -117,13 +120,15 @@ function NewsCard({
                 inverse
                 size="lg"
               />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={addToProductCart}
               className="bg-secondary news_card_favorite border-0 rounded-circle"
             >
               <img src={cart} alt="" className="news_card_cart" />
-            </button>
+            </motion.button>
           </div>
         </div>
         {/* ========== 收藏 & 購物車 ========== */}

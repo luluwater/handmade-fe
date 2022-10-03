@@ -314,6 +314,10 @@ const Cart = () => {
           onClick={(e) => {
             e.stopPropagation()
           }}
+          data-aos="fade-left"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="500"
         >
           <Row className="Cart_mobileTabChooseBox ">
             <Nav
@@ -339,7 +343,6 @@ const Cart = () => {
               </Nav.Item>
             </Nav>
           </Row>
-
           <Col className="pe-0 Cart_tabChooseBox" sm={12}>
             <Nav variant="pills" className="flex-column Cart_tabChoose">
               <Nav.Item className="">
@@ -360,7 +363,6 @@ const Cart = () => {
               </Nav.Item>
             </Nav>
           </Col>
-
           <Col className="px-0 Cart_tabContentBox">
             <Tab.Content className="Cart_tabContent">
               {/* =============課程購物車============== */}

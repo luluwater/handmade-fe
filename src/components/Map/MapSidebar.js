@@ -16,7 +16,7 @@ function MapSidebar() {
   // console.log(storeData)
   return (
     <div className="map_Sidebar bg-skin-bright px-3 mt-md-0 mt-3">
-      <h3 className="text-center text-light fw-bold py-3">商家資訊</h3>
+      <h3 className="text-center text-light fw-bold py-3 text-gray-darker">商家資訊</h3>
       <Row className="gy-2 gx-1">
         {storeData?.map((v) => {
           return (

@@ -17,7 +17,6 @@ import FilterStore from './FilterStore/FilterStore'
 import SortSelect from './SortSelect'
 
 export const getNewData = (data) => {
-  const aa = 1
   const result = []
   let obj = {}
   const init = (obj, item) => {
@@ -55,7 +54,7 @@ export const getNewData = (data) => {
 }
 
 function Filter({ haveDate = true, havePrice = true }) {
-  const { data, error, isload } = useGetStoreQuery()
+  const { data } = useGetStoreQuery()
 
   //處理資料格式
 

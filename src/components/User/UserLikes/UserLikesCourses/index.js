@@ -11,6 +11,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRemoveUserPageFavoriteCourseMutation } from '../../../../services/userApi'
+import { motion } from 'framer-motion'
 
 function dataImgRouter(img_name, category_en_name, course_id) {
   const baseRouter = 'assets/course/course'
@@ -80,7 +81,9 @@ export const UserLikesCourses = () => {
                           <p className="text-primary fw-bold">${item.price}</p>
                         </Col>
                         <Col xs={4} className="d-flex align-items-end">
-                          <button
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             className="bg-primary user_like_course_card_favorite border-0 rounded-circle"
                             onClick={() => {
                               removeUserFavoriteCourse({
@@ -93,7 +96,7 @@ export const UserLikesCourses = () => {
                               inverse
                               size="sm"
                             />
-                          </button>
+                          </motion.button>
                         </Col>
                       </Row>
                     </Card>
