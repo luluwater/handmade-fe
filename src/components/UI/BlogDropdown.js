@@ -22,13 +22,28 @@ const BlogDropdown = ({
           />
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item
-            className="d-flex gap-3 align-items-center justify-content-center"
-            href="/blog/create"
-          >
-            <span>新增文章</span>
-            <FontAwesomeIcon icon="fa-solid fa-plus" />
-          </Dropdown.Item>
+          {localUser ? (
+            <>
+              <Dropdown.Item
+                className="d-flex gap-3 align-items-center justify-content-center"
+                href="/blog/create"
+              >
+                <span>新增文章</span>
+                <FontAwesomeIcon icon="fa-solid fa-plus" />
+              </Dropdown.Item>
+            </>
+          ) : (
+            <>
+              <Dropdown.Item
+                disabled
+                className="d-flex gap-3 align-items-center justify-content-center"
+                href="/blog/create"
+              >
+                <span>新增文章</span>
+                <FontAwesomeIcon icon="fa-solid fa-plus" />
+              </Dropdown.Item>
+            </>
+          )}
 
           {isAuthor ? (
             <>

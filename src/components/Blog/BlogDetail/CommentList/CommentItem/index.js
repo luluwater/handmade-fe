@@ -27,7 +27,7 @@ const CommentItem = ({
   const [updateComment] = useUpdateCommentMutation()
 
   const localUser = JSON.parse(localStorage.getItem('user'))?.user
-  const isCurrentUser = user_id === localUser.id
+  const isCurrentUser = user_id === localUser?.id 
 
   const [isEditing, setIsEditing] = useState(false)
   const [contentInput, setContentInput] = useState(content)

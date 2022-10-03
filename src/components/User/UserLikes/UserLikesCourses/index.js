@@ -70,7 +70,7 @@ export const UserLikesCourses = () => {
                       </Link>
                       <Row className="justify-content-between align-items-center">
                         <Col xs={8} className="mt-2">
-                          <p className="mb-1">
+                          <p className="mb-1 text-truncate">
                             <small>| {item.store_name} |</small>
                           </p>
                           <Link to={`/course/detail/${item.course_id}`}>
