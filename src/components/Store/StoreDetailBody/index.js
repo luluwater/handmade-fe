@@ -37,7 +37,11 @@ const StoreDetailBody = () => {
               </h2>
             </div>
 
-            <div data-aos="fade-up" data-aos-duration="1500">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-once="true"
+            >
               <StoreSwiperKV
                 id={item.id}
                 category={item.category_en_name}
@@ -49,6 +53,7 @@ const StoreDetailBody = () => {
               className="StoreDetailBody_Intro"
               data-aos="fade-up"
               data-aos-duration="1500"
+              data-aos-once="true"
             >
               <p className="text-center">{item.intro}</p>
             </article>
@@ -56,6 +61,7 @@ const StoreDetailBody = () => {
             <div
               className="StoreDetailBody_storeInfoBox align-items-center"
               data-aos="fade-up"
+              data-aos-once="true"
               data-aos-duration="1500"
             >
               <ul className="list-unstyled StoreDetailBody_storeInfo">
